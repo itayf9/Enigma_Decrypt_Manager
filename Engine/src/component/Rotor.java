@@ -6,7 +6,7 @@ import java.util.List;
 public class Rotor {
 
     private int id;
-    private int notchIndex;
+    private final int originalNotchIndex;
 
     private int offset;
     private int alphabetLength;
@@ -14,9 +14,9 @@ public class Rotor {
     private ArrayList<Integer> backwardMapping;
     private int currentWindowPosition;
 
-    public Rotor(int id, int notchIndex, ArrayList<Integer> forwardMapping, ArrayList<Integer> backwardMapping, int currentWindowPosition){
+    public Rotor(int id, int originalNotchIndex, ArrayList<Integer> forwardMapping, ArrayList<Integer> backwardMapping, int currentWindowPosition){
         this.id = id;
-        this.notchIndex = notchIndex;
+        this.originalNotchIndex = originalNotchIndex;
         this.forwardMapping= forwardMapping;
         this.backwardMapping= backwardMapping;
         this.currentWindowPosition = currentWindowPosition;
@@ -36,5 +36,17 @@ public class Rotor {
         int current_inputIndex= (inputIndex + offset) %  alphabetLength;
         int original_charIndex= backwardMapping.get(current_inputIndex);
         return (original_charIndex - offset) %  alphabetLength;
+    }
+
+    public int getOriginalNotchIndex() {
+        return originalNotchIndex;
+    }
+
+    public void rotate() {
+        offset = (offset+1) % alphabetLength;
+    }
+
+    public int getOffset() {
+        return offset;
     }
 }
