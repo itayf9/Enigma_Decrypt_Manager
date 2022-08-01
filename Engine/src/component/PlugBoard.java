@@ -22,6 +22,10 @@ public class PlugBoard {
 
     public void initPlugBoardMap(Map<Character, Integer> character2index, String plugs){
 
+        if (plugs.length() == 0)
+        {
+            return;
+        }
         // the 'plugs' String contains info in the format => "A|Z,D|E"
         String[] seperatedPlugs = plugs.split(",");
         // after split, seperates 'plugs' to pairs => ["A|Z" , "D|E"]
@@ -38,5 +42,12 @@ public class PlugBoard {
             plugMap.put(currentPlug1, currentPlug2);
             plugMap.put(currentPlug2, currentPlug1);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "PlugBoard{" +
+                "plugMap=" + plugMap +
+                '}';
     }
 }

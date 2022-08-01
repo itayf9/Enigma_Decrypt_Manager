@@ -8,34 +8,41 @@ public class Rotor {
     private int id;
     private final int originalNotchIndex;
 
-    private int offset;
+    private int offset = 0;
     private int alphabetLength;
     private ArrayList<Integer> forwardMapping;
     private ArrayList<Integer> backwardMapping;
-    private int currentWindowPosition;
 
-    public Rotor(int id, int originalNotchIndex, ArrayList<Integer> forwardMapping, ArrayList<Integer> backwardMapping, int currentWindowPosition){
+    @Override
+    public String toString() {
+        return "Rotor{" +
+                "id=" + id +
+                '}';
+    }
+
+    public Rotor(int id, int originalNotchIndex, int alphabetLength, ArrayList<Integer> forwardMapping, ArrayList<Integer> backwardMapping){
         this.id = id;
         this.originalNotchIndex = originalNotchIndex;
+        this.alphabetLength= alphabetLength;
         this.forwardMapping= forwardMapping;
         this.backwardMapping= backwardMapping;
-        this.currentWindowPosition = currentWindowPosition;
+
     }
 
 
     public int getMatchForward ( int inputIndex ) {
 
-        int original_inputIndex= (inputIndex + offset) %  alphabetLength;
+        int original_inputIndex= (inputIndex + offset + alphabetLength) %  alphabetLength;
         int original_outputIndex= forwardMapping.get(original_inputIndex);
-        return (original_outputIndex - offset) %  alphabetLength;
+        return (original_outputIndex - offset + alphabetLength) %  alphabetLength;
     }
 
 
     public int getMatchBackward ( int inputIndex ) {
 
-        int current_inputIndex= (inputIndex + offset) %  alphabetLength;
+        int current_inputIndex= (inputIndex + offset + alphabetLength) % alphabetLength;
         int original_charIndex= backwardMapping.get(current_inputIndex);
-        return (original_charIndex - offset) %  alphabetLength;
+        return ((original_charIndex - offset + alphabetLength) % alphabetLength);
     }
 
     public int getOriginalNotchIndex() {

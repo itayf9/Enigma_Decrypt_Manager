@@ -5,33 +5,65 @@ import component.Reflector;
 import component.Rotor;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class EnigmaMachine {
 
-    private ArrayList<Rotor> inUseRotors;
-    private Reflector reflector;
-    private PlugBoard plugBoard;
+    private ArrayList<Rotor> availableRotors;
+    private ArrayList<Reflector> availableReflectors;
+    private int rotorsCount;
     private String alphabet;
 
     // the map is used to replace alphabet.indexOf(srcChar)
     // with better complexity.
     private Map<Character, Integer> character2index;
 
-    public EnigmaMachine(ArrayList<Rotor> inUseRotors, Reflector reflector, String alphabet, String plugs){
+
+    private PlugBoard plugBoard;
+
+
+    // current configuration
+    private ArrayList<Rotor> inUseRotors;
+    private Reflector inUseReflector;
+
+    /*public EnigmaMachine(ArrayList<Rotor> inUseRotors, Reflector inUseReflector, String alphabet, String plugs){
         this.inUseRotors = inUseRotors;
-        this.reflector= reflector;
+        this.inUseReflector= inUseReflector;
         this.alphabet= alphabet;
         buildAlphabetMap();
         this.plugBoard= new PlugBoard();
         plugBoard.initPlugBoardMap(character2index, plugs);
 
 
+    }*/
+
+    public EnigmaMachine(ArrayList<Rotor> availableRotors, ArrayList<Reflector> availableReflectors, int rotorsCount, String alphabet) {
+        this.availableRotors = availableRotors;
+        this.availableReflectors = availableReflectors;
+        this.rotorsCount = rotorsCount;
+        this.alphabet = alphabet;
+        this.character2index= new HashMap<>();
+        buildAlphabetMap();
+        this.plugBoard= new PlugBoard();
+        this.inUseRotors= new ArrayList<>();
     }
 
+    public void updateConfiguration(ArrayList<Integer> rotorsIDs, int reflectorID, String plugs) {
 
-    public char cipher( char srcChar ){
+        for (int rotorID : rotorsIDs){
+            inUseRotors.add(availableRotors.get(rotorID));
+        }
 
+        inUseReflector = availableReflectors.get(reflectorID);
+
+        plugBoard.initPlugBoardMap(character2index, plugs);
+    }
+
+    public char cipher(char srcChar ){
+
+        // rotates the rotors
+        rotateRotors();
 
         int currentCharIndex = character2index.get(srcChar);
 
@@ -46,17 +78,19 @@ public class EnigmaMachine {
         }
 
         // reflector
-        currentCharIndex= reflector.reflect(currentCharIndex);
+        currentCharIndex= inUseReflector.reflect(currentCharIndex);
 
         // go through rotors
-        for (Rotor rotor : inUseRotors){
-            currentCharIndex = rotor.getMatchBackward(currentCharIndex);
+        for (int i = inUseRotors.size() - 1; i >= 0; i--) {
+            currentCharIndex = inUseRotors.get(i).getMatchBackward(currentCharIndex);
         }
+
 
         // go to plug board for the second time
         if (plugBoard.isPlugged(currentCharIndex)){
             currentCharIndex= plugBoard.getMatch(currentCharIndex);
         }
+
 
         return alphabet.charAt(currentCharIndex);
     }
@@ -77,5 +111,19 @@ public class EnigmaMachine {
                 break;
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        return "EnigmaMachine{" + '\n' +
+                "availableRotors=" + availableRotors + '\n' +
+                ", availableReflectors=" + availableReflectors + '\n' +
+                ", rotorsCount=" + rotorsCount + '\n' +
+                ", alphabet='" + alphabet + '\'' + '\n' +
+                ", character2index=" + character2index + '\n' +
+                ", plugBoard=" + plugBoard + '\n' +
+                ", inUseRotors=" + inUseRotors + '\n' +
+                ", inUseReflector=" + inUseReflector + '\n' +
+                '}';
     }
 }
