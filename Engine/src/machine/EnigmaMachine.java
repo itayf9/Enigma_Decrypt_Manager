@@ -38,12 +38,12 @@ public class EnigmaMachine {
 
     }*/
 
-    public EnigmaMachine(ArrayList<Rotor> availableRotors, ArrayList<Reflector> availableReflectors, int rotorsCount, String alphabet) {
+    public EnigmaMachine(ArrayList<Rotor> availableRotors, ArrayList<Reflector> availableReflectors, int rotorsCount, String alphabet, Map<Character, Integer> character2index) {
         this.availableRotors = availableRotors;
         this.availableReflectors = availableReflectors;
         this.rotorsCount = rotorsCount;
         this.alphabet = alphabet;
-        // transfer char2index;
+        this.character2index = character2index;
         this.plugBoard= new PlugBoard();
         this.inUseRotors= new ArrayList<>();
     }

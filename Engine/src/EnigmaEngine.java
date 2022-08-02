@@ -10,10 +10,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static utill.Utility.romanToDecimal;
 
@@ -24,8 +21,8 @@ public class EnigmaEngine implements Engine {
     public EnigmaEngine(){
     }
 
-    public void buildMachine(ArrayList<Rotor> availableRotors, ArrayList<Reflector> availableReflectors, int rotorsCount, String alphabet){
-        machine= new EnigmaMachine(availableRotors, availableReflectors, rotorsCount, alphabet);
+    public void buildMachine(ArrayList<Rotor> availableRotors, ArrayList<Reflector> availableReflectors, int rotorsCount, String alphabet, Map<Character, Integer> character2index){
+        machine= new EnigmaMachine(availableRotors, availableReflectors, rotorsCount, alphabet, character2index);
     }
 
     public void updateConfiguration(ArrayList<Integer> rotorsIDs, int reflectorID ,String plugs){
@@ -47,19 +44,9 @@ public class EnigmaEngine implements Engine {
             InputStream inputStream = new FileInputStream(new File("Engine/src/ex1-sanity-small.xml"));
             CTEEnigma cteEnigma = deserializeFrom(inputStream);
 
-
-
-
             System.out.println(cteEnigma);
-            // some stuff to convert to machine + buildMachine()
-
-
-
-
-
-
-
-
+            buildMachineFromCTEEnigma(cteEnigma);
+            System.out.println(machine);
 
 
         } catch (JAXBException | FileNotFoundException e) {
@@ -83,7 +70,7 @@ public class EnigmaEngine implements Engine {
         int rotorsCount = cteMachine.getRotorsCount();
 
         // initialize alphabet and character2index
-        String alphabet = cteMachine.getABC();
+        String alphabet = cteMachine.getABC().trim();
         Map<Character, Integer> character2index= new HashMap<>();
         for (int i = 0; i < alphabet.length(); i++) {
             character2index.put(alphabet.charAt(i), i);
@@ -95,8 +82,9 @@ public class EnigmaEngine implements Engine {
             int currentID = cteRotor.getId();
             int currrentNotchIndex = cteRotor.getNotch() - 1;
 
-            ArrayList<Integer> mapRotorForward = new ArrayList<>(alphabet.length());
-            ArrayList<Integer> mapRotorBackward = new ArrayList<>(alphabet.length());
+            System.out.println(alphabet.length());
+            ArrayList<Integer> mapRotorForward = new ArrayList<>(Collections.nCopies(alphabet.length(), 0));
+            ArrayList<Integer> mapRotorBackward = new ArrayList<>(Collections.nCopies(alphabet.length(), 0));
             Map<Character, Integer> forwardTranslatorChar2index = new HashMap<>();
             Map<Character, Integer> backwardTranslatorChar2index = new HashMap<>();
             int index = 0;
@@ -139,7 +127,7 @@ public class EnigmaEngine implements Engine {
 
             int currentID = romanToDecimal( cteReflector.getId() );
 
-            ArrayList<Integer> reflectorMapping = new ArrayList<>(alphabet.length());
+            ArrayList<Integer> reflectorMapping = new ArrayList<>(Collections.nCopies(alphabet.length(), 0));
 
             // creating the mapping of the reflector
             for (CTEReflect cteReflect : cteReflector.getCTEReflect()){
@@ -157,7 +145,13 @@ public class EnigmaEngine implements Engine {
 
         /** checkValidation */
 
-        buildMachine(availableRotors, availableReflectors, rotorsCount, alphabet);
+        // sort rotors and reflector by id
+        Comparator<Rotor> rotorComparator = (r1, r2) -> r1.getId() - r2.getId();
+        availableRotors.sort(rotorComparator);
+        Comparator<Reflector> reflectorComparator = (r1, r2) -> r1.getId() - r2.getId();
+        availableReflectors.sort(reflectorComparator);
+
+        buildMachine(availableRotors, availableReflectors, rotorsCount, alphabet, character2index);
 
 
     }

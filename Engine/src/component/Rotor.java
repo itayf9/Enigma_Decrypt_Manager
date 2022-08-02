@@ -23,6 +23,10 @@ public class Rotor {
                 '}';
     }
 
+    public int getId() {
+        return id;
+    }
+
     public Rotor(int id, int originalNotchIndex, Map<Character, Integer> alphabetTranslator , int alphabetLength, ArrayList<Integer> forwardMapping, ArrayList<Integer> backwardMapping){
         this.id = id;
         this.originalNotchIndex = originalNotchIndex;

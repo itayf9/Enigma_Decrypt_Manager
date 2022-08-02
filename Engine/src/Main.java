@@ -87,6 +87,18 @@ public class Main {
 //        System.out.println(((EnigmaEngine) engine).cipherText("CEFDABCEFFCEDABABD").equals("AAAEEEBBBDDDCCCFFF"));
 
         engine.buildMachineFromXmlFile("ddv");
+        ArrayList<Integer> rotorsID= new ArrayList<>();
+        rotorsID.add(1);
+        rotorsID.add(0);
+        int reflectorID = 0;
+        engine.updateConfiguration(rotorsID, reflectorID, "A|F");
+        System.out.println(engine);
+        System.out.println(((EnigmaEngine) engine).cipherText("AAAAAAAAAAAAAA"));
+        System.out.println('\n');
+
+        System.out.println(((EnigmaEngine) engine).cipherText("CEFDABCEFFCEDABABD").equals("AAAEEEBBBDDDCCCFFF"));
+
+
 
 
     }

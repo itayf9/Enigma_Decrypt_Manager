@@ -16,6 +16,10 @@ public class Reflector {
         return mapping.get(inputIndex);
     }
 
+    public int getId() {
+        return id;
+    }
+
     @Override
     public String toString() {
         return "Reflector{" +
