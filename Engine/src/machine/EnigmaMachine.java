@@ -43,8 +43,7 @@ public class EnigmaMachine {
         this.availableReflectors = availableReflectors;
         this.rotorsCount = rotorsCount;
         this.alphabet = alphabet;
-        this.character2index= new HashMap<>();
-        buildAlphabetMap();
+        // transfer char2index;
         this.plugBoard= new PlugBoard();
         this.inUseRotors= new ArrayList<>();
     }
@@ -95,11 +94,7 @@ public class EnigmaMachine {
         return alphabet.charAt(currentCharIndex);
     }
 
-    public void buildAlphabetMap(){
-        for (int i = 0; i < alphabet.length(); i++) {
-            character2index.put(alphabet.charAt(i), i);
-        }
-    }
+
 
     public void rotateRotors(){
 

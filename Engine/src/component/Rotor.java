@@ -1,7 +1,9 @@
 package component;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Rotor {
 
@@ -9,7 +11,7 @@ public class Rotor {
     private final int originalNotchIndex;
 
     private int offset = 0;
-    private ArrayList<Integer> alphabetTranslator;
+    private Map<Character ,Integer> alphabetTranslator;
     private int alphabetLength;
     private ArrayList<Integer> forwardMapping;
     private ArrayList<Integer> backwardMapping;
@@ -21,7 +23,7 @@ public class Rotor {
                 '}';
     }
 
-    public Rotor(int id, int originalNotchIndex, ArrayList<Integer> alphabetTranslator , int alphabetLength, ArrayList<Integer> forwardMapping, ArrayList<Integer> backwardMapping){
+    public Rotor(int id, int originalNotchIndex, Map<Character, Integer> alphabetTranslator , int alphabetLength, ArrayList<Integer> forwardMapping, ArrayList<Integer> backwardMapping){
         this.id = id;
         this.originalNotchIndex = originalNotchIndex;
         this.alphabetTranslator = alphabetTranslator;

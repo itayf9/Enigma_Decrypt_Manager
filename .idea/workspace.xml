@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Add initPlugBoardMap and rotateRotors">
+    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Add JAXB classes">
+      <change afterPath="$PROJECT_DIR$/Engine/src/utill/Utility.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/component/Rotor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/component/Rotor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/machine/EnigmaMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/machine/EnigmaMachine.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +82,7 @@
       <workItem from="1659204702754" duration="8461000" />
       <workItem from="1659355164851" duration="192000" />
       <workItem from="1659359535480" duration="16907000" />
-      <workItem from="1659435200767" duration="8389000" />
+      <workItem from="1659435200767" duration="17911000" />
     </task>
     <task id="LOCAL‎00001" summary="Add classes">
       <created>1659104440139</created>
@@ -95,7 +96,13 @@
       <option name="presentableId" value="LOCAL‎00002" />
       <updated>1659211555087</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL‎00003" summary="Add JAXB classes">
+      <created>1659454801180</created>
+      <option name="number" value="LOCAL‎00003" />
+      <option name="presentableId" value="LOCAL‎00003" />
+      <updated>1659454801180</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -115,14 +122,15 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add classes" />
     <MESSAGE value="Add initPlugBoardMap and rotateRotors" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add initPlugBoardMap and rotateRotors" />
+    <MESSAGE value="Add JAXB classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add JAXB classes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Engine/src/EnigmaEngine.java</url>
-          <line>34</line>
+          <line>38</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
