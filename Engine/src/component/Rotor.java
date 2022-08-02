@@ -9,6 +9,7 @@ public class Rotor {
     private final int originalNotchIndex;
 
     private int offset = 0;
+    private ArrayList<Integer> alphabetTranslator;
     private int alphabetLength;
     private ArrayList<Integer> forwardMapping;
     private ArrayList<Integer> backwardMapping;
@@ -20,9 +21,10 @@ public class Rotor {
                 '}';
     }
 
-    public Rotor(int id, int originalNotchIndex, int alphabetLength, ArrayList<Integer> forwardMapping, ArrayList<Integer> backwardMapping){
+    public Rotor(int id, int originalNotchIndex, ArrayList<Integer> alphabetTranslator , int alphabetLength, ArrayList<Integer> forwardMapping, ArrayList<Integer> backwardMapping){
         this.id = id;
         this.originalNotchIndex = originalNotchIndex;
+        this.alphabetTranslator = alphabetTranslator;
         this.alphabetLength= alphabetLength;
         this.forwardMapping= forwardMapping;
         this.backwardMapping= backwardMapping;
