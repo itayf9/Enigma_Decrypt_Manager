@@ -82,7 +82,6 @@ public class EnigmaEngine implements Engine {
             int currentID = cteRotor.getId();
             int currrentNotchIndex = cteRotor.getNotch() - 1;
 
-            System.out.println(alphabet.length());
             ArrayList<Integer> mapRotorForward = new ArrayList<>(Collections.nCopies(alphabet.length(), 0));
             ArrayList<Integer> mapRotorBackward = new ArrayList<>(Collections.nCopies(alphabet.length(), 0));
             Map<Character, Integer> forwardTranslatorChar2index = new HashMap<>();
@@ -101,7 +100,7 @@ public class EnigmaEngine implements Engine {
             // go through all left positions to build the forwarding map
             for (CTEPositioning ctePosition : cteRotor.getCTEPositioning()){
                int indexOfRightSide = forwardTranslatorChar2index.get(ctePosition.getLeft().charAt(0));
-               mapRotorForward.add(indexOfRightSide, indexOfLeftSide);
+               mapRotorForward.set(indexOfRightSide, indexOfLeftSide);
                indexOfLeftSide++;
             }
 
@@ -110,7 +109,7 @@ public class EnigmaEngine implements Engine {
             // go through all right positions to build the backwarding map
             for (CTEPositioning ctePosition : cteRotor.getCTEPositioning()){
                 int indexOfRightSide = backwardTranslatorChar2index.get(ctePosition.getRight().charAt(0));
-                mapRotorForward.add(indexOfRightSide, indexOfLeftSide);
+                mapRotorBackward.set(indexOfRightSide, indexOfLeftSide);
                 indexOfLeftSide++;
             }
 
@@ -133,8 +132,8 @@ public class EnigmaEngine implements Engine {
             for (CTEReflect cteReflect : cteReflector.getCTEReflect()){
                 int input = cteReflect.getInput() -1;
                 int output = cteReflect.getOutput() -1;
-                reflectorMapping.add(input, output);
-                reflectorMapping.add(output, input);
+                reflectorMapping.set(input, output);
+                reflectorMapping.set(output, input);
             }
 
             // creating a new reflector
@@ -155,8 +154,6 @@ public class EnigmaEngine implements Engine {
 
 
     }
-
-
 
     public void buildAlphabetMap(){
 
@@ -191,7 +188,6 @@ public class EnigmaEngine implements Engine {
 
 
      */
-
 
     @Override
     public String toString() {
