@@ -48,13 +48,17 @@ public class EnigmaMachine {
         this.inUseRotors= new ArrayList<>();
     }
 
-    public void updateConfiguration(ArrayList<Integer> rotorsIDs, int reflectorID, String plugs) {
+    public void updateConfiguration(ArrayList<Integer> rotorsIDs, ArrayList<Integer> windowOffsets ,  int reflectorID, String plugs) {
 
-        for (int rotorID : rotorsIDs){
-            inUseRotors.add(availableRotors.get(rotorID));
+        for (int i = 0; i < rotorsIDs.size(); i++) {
+            inUseRotors.add(availableRotors.get(rotorsIDs.get(i) - 1));
+            availableRotors.get(rotorsIDs.get(i) - 1).rotateToOffset(windowOffsets.get(i));
         }
 
-        inUseReflector = availableReflectors.get(reflectorID);
+        // machine.inUseWindowsOffsets = windowsOffsets
+
+        inUseReflector = availableReflectors.get(reflectorID - 1);
+
 
         plugBoard.initPlugBoardMap(character2index, plugs);
     }
@@ -120,5 +124,9 @@ public class EnigmaMachine {
                 ", inUseRotors=" + inUseRotors + '\n' +
                 ", inUseReflector=" + inUseReflector + '\n' +
                 '}';
+    }
+
+    public Rotor getRotorByID(Integer id) {
+        return availableRotors.get(id - 1);
     }
 }

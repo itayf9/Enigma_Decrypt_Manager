@@ -1,0 +1,461 @@
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_04_08_2022_14_06_[Changes]/shelved.patch
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_04_08_2022_14_06_[Changes]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_04_08_2022_14_06_[Changes]/shelved.patch
+new file mode 100644
+--- /dev/null	(date 1659611165168)
++++ b/.idea/shelf/Uncommitted_changes_before_Update_at_04_08_2022_14_06_[Changes]/shelved.patch	(date 1659611165168)
+@@ -0,0 +1,60 @@
++Index: .idea/workspace.xml
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
++<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"5a16934e-8418-4f73-aba0-46a4269ef45e\" name=\"Changes\" comment=\"Add buildMachineFromCTEEnigma\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Engine/src/EnigmaEngine.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Engine/src/EnigmaEngine.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Engine/src/Main.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Engine/src/Main.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Engine/src/component/Reflector.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Engine/src/component/Reflector.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Engine/src/component/Rotor.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Engine/src/component/Rotor.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Engine/src/machine/EnigmaMachine.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Engine/src/machine/EnigmaMachine.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Enum\" />\r\n        <option value=\"Interface\" />\r\n        <option value=\"FxmlFile\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2CUOiIrT6Hns65UYwhhJKgnNhhd\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"WebServerToolWindowFactoryState\": \"false\",\r\n    \"jdk.selected.JAVA_MODULE\": \"1.8\",\r\n    \"last_opened_file_path\": \"C:/Users/itayf/IdeaProjects/Cracking the Enigma Machine\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"project.structure.last.edited\": \"Modules\",\r\n    \"project.structure.proportion\": \"0.15\",\r\n    \"project.structure.side.proportion\": \"0.2\",\r\n    \"settings.editor.selected.configurable\": \"inlay.hints\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"Main\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"ALTERNATIVE_JRE_PATH\" value=\"1.8\" />\r\n      <option name=\"ALTERNATIVE_JRE_PATH_ENABLED\" value=\"true\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"Main\" />\r\n      <module name=\"Engine\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.Main\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"5a16934e-8418-4f73-aba0-46a4269ef45e\" name=\"Changes\" comment=\"\" />\r\n      <created>1658853827264</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1658853827264</updated>\r\n      <workItem from=\"1658853829665\" duration=\"3007000\" />\r\n      <workItem from=\"1658870102957\" duration=\"761000\" />\r\n      <workItem from=\"1659012016877\" duration=\"7050000\" />\r\n      <workItem from=\"1659052559072\" duration=\"608000\" />\r\n      <workItem from=\"1659093457666\" duration=\"5935000\" />\r\n      <workItem from=\"1659204702754\" duration=\"8461000\" />\r\n      <workItem from=\"1659355164851\" duration=\"192000\" />\r\n      <workItem from=\"1659359535480\" duration=\"16907000\" />\r\n      <workItem from=\"1659435200767\" duration=\"22403000\" />\r\n    </task>\r\n    <task id=\"LOCAL\u200E00001\" summary=\"Add classes\">\r\n      <created>1659104440139</created>\r\n      <option name=\"number\" value=\"LOCAL\u200E00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL\u200E00001\" />\r\n      <updated>1659104440139</updated>\r\n    </task>\r\n    <task id=\"LOCAL\u200E00002\" summary=\"Add initPlugBoardMap and rotateRotors\">\r\n      <created>1659211555087</created>\r\n      <option name=\"number\" value=\"LOCAL\u200E00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL\u200E00002\" />\r\n      <updated>1659211555087</updated>\r\n    </task>\r\n    <task id=\"LOCAL\u200E00003\" summary=\"Add JAXB classes\">\r\n      <created>1659454801180</created>\r\n      <option name=\"number\" value=\"LOCAL\u200E00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL\u200E00003\" />\r\n      <updated>1659454801180</updated>\r\n    </task>\r\n    <task id=\"LOCAL\u200E00004\" summary=\"Add buildMachineFromCTEEnigma\">\r\n      <created>1659464877055</created>\r\n      <option name=\"number\" value=\"LOCAL\u200E00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL\u200E00004\" />\r\n      <updated>1659464877055</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"5\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Add classes\" />\r\n    <MESSAGE value=\"Add initPlugBoardMap and rotateRotors\" />\r\n    <MESSAGE value=\"Add JAXB classes\" />\r\n    <MESSAGE value=\"Add buildMachineFromCTEEnigma\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Add buildMachineFromCTEEnigma\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/Engine/src/EnigmaEngine.java</url>\r\n          <line>35</line>\r\n          <option name=\"timeStamp\" value=\"32\" />\r\n        </line-breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n</project>
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++diff --git a/.idea/workspace.xml b/.idea/workspace.xml
++--- a/.idea/workspace.xml	(revision 19134f08f06d54d26783de67b318f2fb65f8fc64)
+++++ b/.idea/workspace.xml	(date 1659469594233)
++@@ -1,14 +1,7 @@
++ <?xml version="1.0" encoding="UTF-8"?>
++ <project version="4">
++   <component name="ChangeListManager">
++-    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Add buildMachineFromCTEEnigma">
++-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++-      <change beforePath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" afterDir="false" />
++-      <change beforePath="$PROJECT_DIR$/Engine/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/Main.java" afterDir="false" />
++-      <change beforePath="$PROJECT_DIR$/Engine/src/component/Reflector.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/component/Reflector.java" afterDir="false" />
++-      <change beforePath="$PROJECT_DIR$/Engine/src/component/Rotor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/component/Rotor.java" afterDir="false" />
++-      <change beforePath="$PROJECT_DIR$/Engine/src/machine/EnigmaMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/machine/EnigmaMachine.java" afterDir="false" />
++-    </list>
+++    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Sort availableRotors and availableReflectors with Comparator by id" />
++     <option name="SHOW_DIALOG" value="false" />
++     <option name="HIGHLIGHT_CONFLICTS" value="true" />
++     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
++@@ -82,7 +75,7 @@
++       <workItem from="1659204702754" duration="8461000" />
++       <workItem from="1659355164851" duration="192000" />
++       <workItem from="1659359535480" duration="16907000" />
++-      <workItem from="1659435200767" duration="22403000" />
+++      <workItem from="1659435200767" duration="22620000" />
++     </task>
++     <task id="LOCAL‎00001" summary="Add classes">
++       <created>1659104440139</created>
++@@ -108,7 +101,13 @@
++       <option name="presentableId" value="LOCAL‎00004" />
++       <updated>1659464877055</updated>
++     </task>
++-    <option name="localTasksCounter" value="5" />
+++    <task id="LOCAL‎00005" summary="Sort availableRotors and availableReflectors with Comparator by id">
+++      <created>1659469578836</created>
+++      <option name="number" value="LOCAL‎00005" />
+++      <option name="presentableId" value="LOCAL‎00005" />
+++      <updated>1659469578836</updated>
+++    </task>
+++    <option name="localTasksCounter" value="6" />
++     <servers />
++   </component>
++   <component name="TypeScriptGeneratedFilesManager">
++@@ -130,7 +129,8 @@
++     <MESSAGE value="Add initPlugBoardMap and rotateRotors" />
++     <MESSAGE value="Add JAXB classes" />
++     <MESSAGE value="Add buildMachineFromCTEEnigma" />
++-    <option name="LAST_COMMIT_MESSAGE" value="Add buildMachineFromCTEEnigma" />
+++    <MESSAGE value="Sort availableRotors and availableReflectors with Comparator by id" />
+++    <option name="LAST_COMMIT_MESSAGE" value="Sort availableRotors and availableReflectors with Comparator by id" />
++   </component>
++   <component name="XDebuggerManager">
++     <breakpoint-manager>
+Index: .idea/uiDesigner.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/uiDesigner.xml b/.idea/uiDesigner.xml
+new file mode 100644
+--- /dev/null	(date 1659464416768)
++++ b/.idea/uiDesigner.xml	(date 1659464416768)
+@@ -0,0 +1,124 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="Palette2">
++    <group name="Swing">
++      <item class="com.intellij.uiDesigner.HSpacer" tooltip-text="Horizontal Spacer" icon="/com/intellij/uiDesigner/icons/hspacer.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="1" hsize-policy="6" anchor="0" fill="1" />
++      </item>
++      <item class="com.intellij.uiDesigner.VSpacer" tooltip-text="Vertical Spacer" icon="/com/intellij/uiDesigner/icons/vspacer.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="1" anchor="0" fill="2" />
++      </item>
++      <item class="javax.swing.JPanel" icon="/com/intellij/uiDesigner/icons/panel.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="3" />
++      </item>
++      <item class="javax.swing.JScrollPane" icon="/com/intellij/uiDesigner/icons/scrollPane.svg" removable="false" auto-create-binding="false" can-attach-label="true">
++        <default-constraints vsize-policy="7" hsize-policy="7" anchor="0" fill="3" />
++      </item>
++      <item class="javax.swing.JButton" icon="/com/intellij/uiDesigner/icons/button.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="3" anchor="0" fill="1" />
++        <initial-values>
++          <property name="text" value="Button" />
++        </initial-values>
++      </item>
++      <item class="javax.swing.JRadioButton" icon="/com/intellij/uiDesigner/icons/radioButton.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="3" anchor="8" fill="0" />
++        <initial-values>
++          <property name="text" value="RadioButton" />
++        </initial-values>
++      </item>
++      <item class="javax.swing.JCheckBox" icon="/com/intellij/uiDesigner/icons/checkBox.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="3" anchor="8" fill="0" />
++        <initial-values>
++          <property name="text" value="CheckBox" />
++        </initial-values>
++      </item>
++      <item class="javax.swing.JLabel" icon="/com/intellij/uiDesigner/icons/label.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="0" anchor="8" fill="0" />
++        <initial-values>
++          <property name="text" value="Label" />
++        </initial-values>
++      </item>
++      <item class="javax.swing.JTextField" icon="/com/intellij/uiDesigner/icons/textField.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1">
++          <preferred-size width="150" height="-1" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JPasswordField" icon="/com/intellij/uiDesigner/icons/passwordField.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1">
++          <preferred-size width="150" height="-1" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JFormattedTextField" icon="/com/intellij/uiDesigner/icons/formattedTextField.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1">
++          <preferred-size width="150" height="-1" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JTextArea" icon="/com/intellij/uiDesigner/icons/textArea.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JTextPane" icon="/com/intellij/uiDesigner/icons/textPane.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JEditorPane" icon="/com/intellij/uiDesigner/icons/editorPane.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JComboBox" icon="/com/intellij/uiDesigner/icons/comboBox.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="2" anchor="8" fill="1" />
++      </item>
++      <item class="javax.swing.JTable" icon="/com/intellij/uiDesigner/icons/table.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JList" icon="/com/intellij/uiDesigner/icons/list.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="2" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JTree" icon="/com/intellij/uiDesigner/icons/tree.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JTabbedPane" icon="/com/intellij/uiDesigner/icons/tabbedPane.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="3">
++          <preferred-size width="200" height="200" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JSplitPane" icon="/com/intellij/uiDesigner/icons/splitPane.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="3">
++          <preferred-size width="200" height="200" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JSpinner" icon="/com/intellij/uiDesigner/icons/spinner.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1" />
++      </item>
++      <item class="javax.swing.JSlider" icon="/com/intellij/uiDesigner/icons/slider.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1" />
++      </item>
++      <item class="javax.swing.JSeparator" icon="/com/intellij/uiDesigner/icons/separator.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3" />
++      </item>
++      <item class="javax.swing.JProgressBar" icon="/com/intellij/uiDesigner/icons/progressbar.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="0" fill="1" />
++      </item>
++      <item class="javax.swing.JToolBar" icon="/com/intellij/uiDesigner/icons/toolbar.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="0" fill="1">
++          <preferred-size width="-1" height="20" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JToolBar$Separator" icon="/com/intellij/uiDesigner/icons/toolbarSeparator.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="0" anchor="0" fill="1" />
++      </item>
++      <item class="javax.swing.JScrollBar" icon="/com/intellij/uiDesigner/icons/scrollbar.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="0" anchor="0" fill="2" />
++      </item>
++    </group>
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_04_08_2022_14_09__Changes_.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_04_08_2022_14_09__Changes_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_04_08_2022_14_09__Changes_.xml
+new file mode 100644
+--- /dev/null	(date 1659611478324)
++++ b/.idea/shelf/Uncommitted_changes_before_Update_at_04_08_2022_14_09__Changes_.xml	(date 1659611478324)
+@@ -0,0 +1,4 @@
++<changelist name="Uncommitted_changes_before_Update_at_04_08_2022_14_09_[Changes]" date="1659611371016" recycled="false" toDelete="true">
++  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_08_2022_14_09_[Changes]/shelved.patch" />
++  <option name="DESCRIPTION" value="Uncommitted changes before Update at 04/08/2022 14:09 [Changes]" />
++</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_04_08_2022_14_06__Changes_.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_04_08_2022_14_06__Changes_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_04_08_2022_14_06__Changes_.xml
+new file mode 100644
+--- /dev/null	(date 1659611275647)
++++ b/.idea/shelf/Uncommitted_changes_before_Update_at_04_08_2022_14_06__Changes_.xml	(date 1659611275647)
+@@ -0,0 +1,4 @@
++<changelist name="Uncommitted_changes_before_Update_at_04_08_2022_14_06_[Changes]" date="1659611165168" recycled="false" toDelete="true">
++  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_08_2022_14_06_[Changes]/shelved.patch" />
++  <option name="DESCRIPTION" value="Uncommitted changes before Update at 04/08/2022 14:06 [Changes]" />
++</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_04_08_2022_14_09_[Changes]/shelved.patch
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_04_08_2022_14_09_[Changes]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_04_08_2022_14_09_[Changes]/shelved.patch
+new file mode 100644
+--- /dev/null	(date 1659611371016)
++++ b/.idea/shelf/Uncommitted_changes_before_Update_at_04_08_2022_14_09_[Changes]/shelved.patch	(date 1659611371016)
+@@ -0,0 +1,95 @@
++Index: .idea/workspace.xml
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
++<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"5a16934e-8418-4f73-aba0-46a4269ef45e\" name=\"Changes\" comment=\"Add buildMachineFromCTEEnigma\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Engine/src/EnigmaEngine.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Engine/src/EnigmaEngine.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Engine/src/Main.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Engine/src/Main.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Engine/src/component/Reflector.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Engine/src/component/Reflector.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Engine/src/component/Rotor.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Engine/src/component/Rotor.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Engine/src/machine/EnigmaMachine.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Engine/src/machine/EnigmaMachine.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Enum\" />\r\n        <option value=\"Interface\" />\r\n        <option value=\"FxmlFile\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2CUOiIrT6Hns65UYwhhJKgnNhhd\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"WebServerToolWindowFactoryState\": \"false\",\r\n    \"jdk.selected.JAVA_MODULE\": \"1.8\",\r\n    \"last_opened_file_path\": \"C:/Users/itayf/IdeaProjects/Cracking the Enigma Machine\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"project.structure.last.edited\": \"Modules\",\r\n    \"project.structure.proportion\": \"0.15\",\r\n    \"project.structure.side.proportion\": \"0.2\",\r\n    \"settings.editor.selected.configurable\": \"inlay.hints\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"Main\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"ALTERNATIVE_JRE_PATH\" value=\"1.8\" />\r\n      <option name=\"ALTERNATIVE_JRE_PATH_ENABLED\" value=\"true\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"Main\" />\r\n      <module name=\"Engine\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.Main\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"5a16934e-8418-4f73-aba0-46a4269ef45e\" name=\"Changes\" comment=\"\" />\r\n      <created>1658853827264</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1658853827264</updated>\r\n      <workItem from=\"1658853829665\" duration=\"3007000\" />\r\n      <workItem from=\"1658870102957\" duration=\"761000\" />\r\n      <workItem from=\"1659012016877\" duration=\"7050000\" />\r\n      <workItem from=\"1659052559072\" duration=\"608000\" />\r\n      <workItem from=\"1659093457666\" duration=\"5935000\" />\r\n      <workItem from=\"1659204702754\" duration=\"8461000\" />\r\n      <workItem from=\"1659355164851\" duration=\"192000\" />\r\n      <workItem from=\"1659359535480\" duration=\"16907000\" />\r\n      <workItem from=\"1659435200767\" duration=\"22403000\" />\r\n    </task>\r\n    <task id=\"LOCAL\u200E00001\" summary=\"Add classes\">\r\n      <created>1659104440139</created>\r\n      <option name=\"number\" value=\"LOCAL\u200E00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL\u200E00001\" />\r\n      <updated>1659104440139</updated>\r\n    </task>\r\n    <task id=\"LOCAL\u200E00002\" summary=\"Add initPlugBoardMap and rotateRotors\">\r\n      <created>1659211555087</created>\r\n      <option name=\"number\" value=\"LOCAL\u200E00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL\u200E00002\" />\r\n      <updated>1659211555087</updated>\r\n    </task>\r\n    <task id=\"LOCAL\u200E00003\" summary=\"Add JAXB classes\">\r\n      <created>1659454801180</created>\r\n      <option name=\"number\" value=\"LOCAL\u200E00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL\u200E00003\" />\r\n      <updated>1659454801180</updated>\r\n    </task>\r\n    <task id=\"LOCAL\u200E00004\" summary=\"Add buildMachineFromCTEEnigma\">\r\n      <created>1659464877055</created>\r\n      <option name=\"number\" value=\"LOCAL\u200E00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL\u200E00004\" />\r\n      <updated>1659464877055</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"5\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Add classes\" />\r\n    <MESSAGE value=\"Add initPlugBoardMap and rotateRotors\" />\r\n    <MESSAGE value=\"Add JAXB classes\" />\r\n    <MESSAGE value=\"Add buildMachineFromCTEEnigma\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Add buildMachineFromCTEEnigma\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/Engine/src/EnigmaEngine.java</url>\r\n          <line>35</line>\r\n          <option name=\"timeStamp\" value=\"32\" />\r\n        </line-breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n</project>
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++diff --git a/.idea/workspace.xml b/.idea/workspace.xml
++--- a/.idea/workspace.xml	(revision 19134f08f06d54d26783de67b318f2fb65f8fc64)
+++++ b/.idea/workspace.xml	(date 1659611275765)
++@@ -1,14 +1,7 @@
++ <?xml version="1.0" encoding="UTF-8"?>
++ <project version="4">
++   <component name="ChangeListManager">
++-    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Add buildMachineFromCTEEnigma">
++-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++-      <change beforePath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" afterDir="false" />
++-      <change beforePath="$PROJECT_DIR$/Engine/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/Main.java" afterDir="false" />
++-      <change beforePath="$PROJECT_DIR$/Engine/src/component/Reflector.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/component/Reflector.java" afterDir="false" />
++-      <change beforePath="$PROJECT_DIR$/Engine/src/component/Rotor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/component/Rotor.java" afterDir="false" />
++-      <change beforePath="$PROJECT_DIR$/Engine/src/machine/EnigmaMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/machine/EnigmaMachine.java" afterDir="false" />
++-    </list>
+++    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Sort availableRotors and availableReflectors with Comparator by id" />
++     <option name="SHOW_DIALOG" value="false" />
++     <option name="HIGHLIGHT_CONFLICTS" value="true" />
++     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
++@@ -36,20 +29,20 @@
++     <option name="hideEmptyMiddlePackages" value="true" />
++     <option name="showLibraryContents" value="true" />
++   </component>
++-  <component name="PropertiesComponent"><![CDATA[{
++-  "keyToString": {
++-    "RunOnceActivity.OpenProjectViewOnStart": "true",
++-    "RunOnceActivity.ShowReadmeOnStart": "true",
++-    "WebServerToolWindowFactoryState": "false",
++-    "jdk.selected.JAVA_MODULE": "1.8",
++-    "last_opened_file_path": "C:/Users/itayf/IdeaProjects/Cracking the Enigma Machine",
++-    "nodejs_package_manager_path": "npm",
++-    "project.structure.last.edited": "Modules",
++-    "project.structure.proportion": "0.15",
++-    "project.structure.side.proportion": "0.2",
++-    "settings.editor.selected.configurable": "inlay.hints"
+++  <component name="PropertiesComponent">{
+++  &quot;keyToString&quot;: {
+++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+++    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+++    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
+++    &quot;last_opened_file_path&quot;: &quot;C:/Users/itayf/IdeaProjects/Cracking the Enigma Machine&quot;,
+++    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+++    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+++    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+++    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+++    &quot;settings.editor.selected.configurable&quot;: &quot;inlay.hints&quot;
++   }
++-}]]></component>
+++}</component>
++   <component name="RunManager">
++     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
++@@ -82,7 +75,8 @@
++       <workItem from="1659204702754" duration="8461000" />
++       <workItem from="1659355164851" duration="192000" />
++       <workItem from="1659359535480" duration="16907000" />
++-      <workItem from="1659435200767" duration="22403000" />
+++      <workItem from="1659435200767" duration="22620000" />
+++      <workItem from="1659610911393" duration="363000" />
++     </task>
++     <task id="LOCAL‎00001" summary="Add classes">
++       <created>1659104440139</created>
++@@ -108,7 +102,13 @@
++       <option name="presentableId" value="LOCAL‎00004" />
++       <updated>1659464877055</updated>
++     </task>
++-    <option name="localTasksCounter" value="5" />
+++    <task id="LOCAL‎00005" summary="Sort availableRotors and availableReflectors with Comparator by id">
+++      <created>1659469578836</created>
+++      <option name="number" value="LOCAL‎00005" />
+++      <option name="presentableId" value="LOCAL‎00005" />
+++      <updated>1659469578836</updated>
+++    </task>
+++    <option name="localTasksCounter" value="6" />
++     <servers />
++   </component>
++   <component name="TypeScriptGeneratedFilesManager">
++@@ -130,7 +130,8 @@
++     <MESSAGE value="Add initPlugBoardMap and rotateRotors" />
++     <MESSAGE value="Add JAXB classes" />
++     <MESSAGE value="Add buildMachineFromCTEEnigma" />
++-    <option name="LAST_COMMIT_MESSAGE" value="Add buildMachineFromCTEEnigma" />
+++    <MESSAGE value="Sort availableRotors and availableReflectors with Comparator by id" />
+++    <option name="LAST_COMMIT_MESSAGE" value="Sort availableRotors and availableReflectors with Comparator by id" />
++   </component>
++   <component name="XDebuggerManager">
++     <breakpoint-manager>
+Index: Engine/src/ex1-sanity-small.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Engine/src/ex1-sanity-small.xml b/Engine/src/ex1-sanity-small.xml
+new file mode 100644
+--- /dev/null	(date 1659452538084)
++++ b/Engine/src/ex1-sanity-small.xml	(date 1659452538084)
+@@ -0,0 +1,46 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<CTE-Enigma xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Enigma-Ex1.xsd">
++	<CTE-Machine rotors-count="2">
++		<ABC>
++			ABCDEF
++		</ABC>
++		<CTE-Rotors>
++			<CTE-Rotor id="1" notch="4">
++				<CTE-Positioning right="A" left="F"/>
++				<CTE-Positioning right="B" left="E"/>
++				<CTE-Positioning right="C" left="D"/>
++				<CTE-Positioning right="D" left="C"/>
++				<CTE-Positioning right="E" left="B"/>				
++				<CTE-Positioning right="F" left="A"/>				
++			</CTE-Rotor>
++			<CTE-Rotor id="3" notch="6">
++				<CTE-Positioning right="A" left="B"/>
++				<CTE-Positioning right="B" left="A"/>
++				<CTE-Positioning right="C" left="D"/>
++				<CTE-Positioning right="D" left="C"/>
++				<CTE-Positioning right="E" left="F"/>				
++				<CTE-Positioning right="F" left="E"/>				
++			</CTE-Rotor>						
++			<CTE-Rotor id="2" notch="1">
++				<CTE-Positioning right="A" left="E"/>
++				<CTE-Positioning right="B" left="B"/>
++				<CTE-Positioning right="C" left="D"/>
++				<CTE-Positioning right="D" left="F"/>
++				<CTE-Positioning right="E" left="C"/>				
++				<CTE-Positioning right="F" left="A"/>				
++			</CTE-Rotor>						
++		</CTE-Rotors>
++		<CTE-Reflectors>
++			<CTE-Reflector id="I">
++				<CTE-Reflect input="1" output="4"/>
++				<CTE-Reflect input="2" output="5"/>
++				<CTE-Reflect input="3" output="6"/>								
++			</CTE-Reflector>
++			<CTE-Reflector id="II">
++				<CTE-Reflect input="1" output="2"/>
++				<CTE-Reflect input="3" output="4"/>
++				<CTE-Reflect input="5" output="6"/>
++			</CTE-Reflector>			
++		</CTE-Reflectors>
++	</CTE-Machine>	
++</CTE-Enigma>
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"5a16934e-8418-4f73-aba0-46a4269ef45e\" name=\"Changes\" comment=\"Add buildMachineFromCTEEnigma\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Engine/src/EnigmaEngine.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Engine/src/EnigmaEngine.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Engine/src/Main.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Engine/src/Main.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Engine/src/component/Reflector.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Engine/src/component/Reflector.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Engine/src/component/Rotor.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Engine/src/component/Rotor.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Engine/src/machine/EnigmaMachine.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Engine/src/machine/EnigmaMachine.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Enum\" />\r\n        <option value=\"Interface\" />\r\n        <option value=\"FxmlFile\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2CUOiIrT6Hns65UYwhhJKgnNhhd\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"WebServerToolWindowFactoryState\": \"false\",\r\n    \"jdk.selected.JAVA_MODULE\": \"1.8\",\r\n    \"last_opened_file_path\": \"C:/Users/itayf/IdeaProjects/Cracking the Enigma Machine\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"project.structure.last.edited\": \"Modules\",\r\n    \"project.structure.proportion\": \"0.15\",\r\n    \"project.structure.side.proportion\": \"0.2\",\r\n    \"settings.editor.selected.configurable\": \"inlay.hints\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"Main\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"ALTERNATIVE_JRE_PATH\" value=\"1.8\" />\r\n      <option name=\"ALTERNATIVE_JRE_PATH_ENABLED\" value=\"true\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"Main\" />\r\n      <module name=\"Engine\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.Main\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"5a16934e-8418-4f73-aba0-46a4269ef45e\" name=\"Changes\" comment=\"\" />\r\n      <created>1658853827264</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1658853827264</updated>\r\n      <workItem from=\"1658853829665\" duration=\"3007000\" />\r\n      <workItem from=\"1658870102957\" duration=\"761000\" />\r\n      <workItem from=\"1659012016877\" duration=\"7050000\" />\r\n      <workItem from=\"1659052559072\" duration=\"608000\" />\r\n      <workItem from=\"1659093457666\" duration=\"5935000\" />\r\n      <workItem from=\"1659204702754\" duration=\"8461000\" />\r\n      <workItem from=\"1659355164851\" duration=\"192000\" />\r\n      <workItem from=\"1659359535480\" duration=\"16907000\" />\r\n      <workItem from=\"1659435200767\" duration=\"22403000\" />\r\n    </task>\r\n    <task id=\"LOCAL\u200E00001\" summary=\"Add classes\">\r\n      <created>1659104440139</created>\r\n      <option name=\"number\" value=\"LOCAL\u200E00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL\u200E00001\" />\r\n      <updated>1659104440139</updated>\r\n    </task>\r\n    <task id=\"LOCAL\u200E00002\" summary=\"Add initPlugBoardMap and rotateRotors\">\r\n      <created>1659211555087</created>\r\n      <option name=\"number\" value=\"LOCAL\u200E00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL\u200E00002\" />\r\n      <updated>1659211555087</updated>\r\n    </task>\r\n    <task id=\"LOCAL\u200E00003\" summary=\"Add JAXB classes\">\r\n      <created>1659454801180</created>\r\n      <option name=\"number\" value=\"LOCAL\u200E00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL\u200E00003\" />\r\n      <updated>1659454801180</updated>\r\n    </task>\r\n    <task id=\"LOCAL\u200E00004\" summary=\"Add buildMachineFromCTEEnigma\">\r\n      <created>1659464877055</created>\r\n      <option name=\"number\" value=\"LOCAL\u200E00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL\u200E00004\" />\r\n      <updated>1659464877055</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"5\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Add classes\" />\r\n    <MESSAGE value=\"Add initPlugBoardMap and rotateRotors\" />\r\n    <MESSAGE value=\"Add JAXB classes\" />\r\n    <MESSAGE value=\"Add buildMachineFromCTEEnigma\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Add buildMachineFromCTEEnigma\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/Engine/src/EnigmaEngine.java</url>\r\n          <line>35</line>\r\n          <option name=\"timeStamp\" value=\"32\" />\r\n        </line-breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 19134f08f06d54d26783de67b318f2fb65f8fc64)
++++ b/.idea/workspace.xml	(date 1659611710437)
+@@ -1,13 +1,13 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Add buildMachineFromCTEEnigma">
+-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Engine/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/Main.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Engine/src/component/Reflector.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/component/Reflector.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Engine/src/component/Rotor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/component/Rotor.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Engine/src/machine/EnigmaMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/machine/EnigmaMachine.java" afterDir="false" />
++    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Sort availableRotors and availableReflectors with Comparator by id">
++      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_08_2022_14_06_[Changes]/shelved.patch" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_08_2022_14_06__Changes_.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_08_2022_14_09_[Changes]/shelved.patch" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_08_2022_14_09__Changes_.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/Engine/src/ex1-sanity-small.xml" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -36,20 +36,20 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "WebServerToolWindowFactoryState": "false",
+-    "jdk.selected.JAVA_MODULE": "1.8",
+-    "last_opened_file_path": "C:/Users/itayf/IdeaProjects/Cracking the Enigma Machine",
+-    "nodejs_package_manager_path": "npm",
+-    "project.structure.last.edited": "Modules",
+-    "project.structure.proportion": "0.15",
+-    "project.structure.side.proportion": "0.2",
+-    "settings.editor.selected.configurable": "inlay.hints"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
++    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
++    &quot;last_opened_file_path&quot;: &quot;C:/Users/itayf/IdeaProjects/Cracking the Enigma Machine&quot;,
++    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
++    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
++    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
++    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;inlay.hints&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="RunManager">
+     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />

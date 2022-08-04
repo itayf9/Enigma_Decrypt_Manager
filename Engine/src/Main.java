@@ -11,11 +11,8 @@ public class Main {
         EnigmaEngine engine= new EnigmaEngine();
 
         engine.buildMachineFromXmlFile("ddv");
-        ArrayList<Integer> rotorsID= new ArrayList<>();
-        rotorsID.add(0);
-        rotorsID.add(1);
-        int reflectorID = 0;
-        engine.updateConfiguration(rotorsID, reflectorID, "A|F");
+
+        engine.updateConfiguration("2,1", "CC", "I", "A|F");
         System.out.println(engine);
         System.out.println(((EnigmaEngine) engine).cipherText("AAAAAAAAAAAAAA"));
         System.out.println('\n');

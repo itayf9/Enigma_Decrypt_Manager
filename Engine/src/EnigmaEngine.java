@@ -2,6 +2,7 @@ import component.Reflector;
 import component.Rotor;
 import machine.EnigmaMachine;
 import machine.jaxb.generated.*;
+import utill.*;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -14,6 +15,7 @@ import java.util.*;
 
 import static utill.Utility.romanToDecimal;
 
+
 public class EnigmaEngine implements Engine {
 
     private EnigmaMachine machine;
@@ -25,8 +27,31 @@ public class EnigmaEngine implements Engine {
         machine= new EnigmaMachine(availableRotors, availableReflectors, rotorsCount, alphabet, character2index);
     }
 
-    public void updateConfiguration(ArrayList<Integer> rotorsIDs, int reflectorID ,String plugs){
-        machine.updateConfiguration(rotorsIDs, reflectorID, plugs);
+    public void updateConfiguration(String rotors, String windows, String reflector ,String plugs){
+
+        // build reflectorID
+        int reflectorID = romanToDecimal(reflector);
+
+        // build rotorsIDs list
+        ArrayList<Integer> rotorsIDs = new ArrayList<>();
+        String[] rotorsIDsAsStrings = rotors.split(",");
+
+        for (int i = rotorsIDsAsStrings.length - 1; i >= 0; i--) {
+            rotorsIDs.add(Integer.parseInt(rotorsIDsAsStrings[i]));
+        }
+
+        // build windowOffsets
+        ArrayList<Integer> windowOfssets = new ArrayList<>();
+
+        for (int i = windows.length() - 1; i >= 0; i--) {
+            int j = windows.length() - 1 - i ;
+            Rotor r = machine.getRotorByID( rotorsIDs.get(j));
+            int offset = r.translateChar2Offset(windows.charAt(i));
+            windowOfssets.add(offset);
+        }
+
+
+        machine.updateConfiguration(rotorsIDs, windowOfssets, reflectorID, plugs);
     }
 
     public String cipherText ( String toCipher ) {

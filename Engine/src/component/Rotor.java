@@ -61,7 +61,18 @@ public class Rotor {
         offset = (offset+1) % alphabetLength;
     }
 
+    public void rotateToOffset(int offset) {
+        this.offset = offset;
+    }
+
+
     public int getOffset() {
         return offset;
     }
+
+    public int translateChar2Offset(char currentChar) {
+        return alphabetTranslator.get(currentChar);
+    }
+
+
 }
