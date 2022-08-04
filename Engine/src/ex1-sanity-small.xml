@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CTE-Enigma xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Enigma-Ex1.xsd">
+	<CTE-Machine rotors-count="2">
+		<ABC>
+			ABCDEF
+		</ABC>
+		<CTE-Rotors>
+			<CTE-Rotor id="1" notch="4">
+				<CTE-Positioning right="A" left="F"/>
+				<CTE-Positioning right="B" left="E"/>
+				<CTE-Positioning right="C" left="D"/>
+				<CTE-Positioning right="D" left="C"/>
+				<CTE-Positioning right="E" left="B"/>				
+				<CTE-Positioning right="F" left="A"/>				
+			</CTE-Rotor>
+			<CTE-Rotor id="3" notch="6">
+				<CTE-Positioning right="A" left="B"/>
+				<CTE-Positioning right="B" left="A"/>
+				<CTE-Positioning right="C" left="D"/>
+				<CTE-Positioning right="D" left="C"/>
+				<CTE-Positioning right="E" left="F"/>				
+				<CTE-Positioning right="F" left="E"/>				
+			</CTE-Rotor>						
+			<CTE-Rotor id="2" notch="1">
+				<CTE-Positioning right="A" left="E"/>
+				<CTE-Positioning right="B" left="B"/>
+				<CTE-Positioning right="C" left="D"/>
+				<CTE-Positioning right="D" left="F"/>
+				<CTE-Positioning right="E" left="C"/>				
+				<CTE-Positioning right="F" left="A"/>				
+			</CTE-Rotor>						
+		</CTE-Rotors>
+		<CTE-Reflectors>
+			<CTE-Reflector id="I">
+				<CTE-Reflect input="1" output="4"/>
+				<CTE-Reflect input="2" output="5"/>
+				<CTE-Reflect input="3" output="6"/>								
+			</CTE-Reflector>
+			<CTE-Reflector id="II">
+				<CTE-Reflect input="1" output="2"/>
+				<CTE-Reflect input="3" output="4"/>
+				<CTE-Reflect input="5" output="6"/>
+			</CTE-Reflector>			
+		</CTE-Reflectors>
+	</CTE-Machine>	
+</CTE-Enigma>
