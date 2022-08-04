@@ -1,11 +1,18 @@
 package component;
 
+import dto.CharacterPair;
+
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class PlugBoard {
 
     private Map<Integer, Integer> plugMap;
+
+    public Map<Integer, Integer> getPlugMap() {
+        return plugMap;
+    }
 
     public PlugBoard() {
         this.plugMap = new HashMap<>();
@@ -50,4 +57,5 @@ public class PlugBoard {
                 "plugMap=" + plugMap +
                 '}';
     }
+
 }

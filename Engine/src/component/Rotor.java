@@ -74,5 +74,17 @@ public class Rotor {
         return alphabetTranslator.get(currentChar);
     }
 
+    public Character translateOffset2Char(int offset) {
+
+        for (Map.Entry<Character, Integer> entry : alphabetTranslator.entrySet()) {
+            if (entry.getValue().equals(offset)) {
+                return entry.getKey();
+            }
+        }
+
+        /********************************************************************add exception********************/
+        return '\n';
+    }
+
 
 }

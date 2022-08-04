@@ -1,8 +1,11 @@
 import component.Reflector;
 import component.Rotor;
+import dto.CharacterPair;
+import dto.DTOspecs;
 import machine.EnigmaMachine;
 import machine.jaxb.generated.*;
 import utill.*;
+import dto.DTO;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -13,7 +16,8 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.*;
 
-import static utill.Utility.romanToDecimal;
+import static machine.EnigmaMachine.advanceCipherCounter;
+import static utill.Utility.*;
 
 
 public class EnigmaEngine implements Engine {
@@ -61,6 +65,7 @@ public class EnigmaEngine implements Engine {
             cipheredText.append(machine.cipher(currentChar));
         }
 
+        advanceCipherCounter();
         return cipheredText.toString();
     }
 
@@ -179,6 +184,33 @@ public class EnigmaEngine implements Engine {
 
 
     }
+
+
+
+
+
+
+
+    public DTO displayMachineSpecifications () {
+
+        int availableRotorsCount = machine.getAvailableRotorsLen();
+        int inUseRotorsCount = machine.getRotorsCount();
+        List<Integer> notchPositions = machine.getAllNotchPositions();
+        int availableReflectorsCount = machine.getAvailableReflectorsLen();
+        int cipheredTextsCount = machine.getCipherCounter(); // implement static counter in machine for cipherTextOperations
+
+        List<Integer> inUseRotorsIDs = machine.getInUseRotorsIDs();
+        List<Character> windowsCharacters = machine.getAllWindowsCharacters();
+        String inUseReflectorSymbol = decimalToRoman(machine.getInUseReflector().getId());
+        List<CharacterPair> inUsePlugs = machine.getListOfPlugPairs();
+
+
+        return new DTOspecs(availableRotorsCount, inUseRotorsCount, notchPositions,
+                availableReflectorsCount, cipheredTextsCount, inUseRotorsIDs, windowsCharacters,
+                inUseReflectorSymbol, inUsePlugs);
+    }
+
+
 
     public void buildAlphabetMap(){
 

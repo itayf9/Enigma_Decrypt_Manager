@@ -3,9 +3,11 @@ package machine;
 import component.PlugBoard;
 import component.Reflector;
 import component.Rotor;
+import dto.CharacterPair;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class EnigmaMachine {
@@ -19,6 +21,7 @@ public class EnigmaMachine {
     // with better complexity.
     private Map<Character, Integer> character2index;
 
+    private ArrayList<Integer> inUseWindowsOffsets;
 
     private PlugBoard plugBoard;
 
@@ -26,6 +29,8 @@ public class EnigmaMachine {
     // current configuration
     private ArrayList<Rotor> inUseRotors;
     private Reflector inUseReflector;
+
+    private static int cipherCounter = 0;
 
     /*public EnigmaMachine(ArrayList<Rotor> inUseRotors, Reflector inUseReflector, String alphabet, String plugs){
         this.inUseRotors = inUseRotors;
@@ -48,14 +53,71 @@ public class EnigmaMachine {
         this.inUseRotors= new ArrayList<>();
     }
 
-    public void updateConfiguration(ArrayList<Integer> rotorsIDs, ArrayList<Integer> windowOffsets ,  int reflectorID, String plugs) {
+
+
+
+
+
+
+
+    // need those getters??????????????????????????????????????????????????????????????///////
+
+    public ArrayList<Rotor> getAvailableRotors() {
+        return availableRotors;
+    }
+
+    public ArrayList<Reflector> getAvailableReflectors() {
+        return availableReflectors;
+    }
+
+    public PlugBoard getPlugBoard() {
+        return plugBoard;
+    }
+
+    public ArrayList<Rotor> getInUseRotors() {
+        return inUseRotors;
+    }
+
+    public Reflector getInUseReflector() {
+        return inUseReflector;
+    }
+
+
+
+
+
+
+
+    public int getAvailableRotorsLen () {
+        return availableRotors.size();
+    }
+
+    public int getAvailableReflectorsLen () {
+        return availableReflectors.size();
+    }
+
+    public int getRotorsCount() {
+        return rotorsCount;
+    }
+
+    public List<Integer> getAllNotchPositions() {
+        List<Integer> notchPositions = new ArrayList<>();
+
+        for (Rotor rotor : availableRotors) {
+            notchPositions.add(rotor.getOriginalNotchIndex()+1);
+        }
+
+        return notchPositions;
+    }
+
+    public void updateConfiguration(ArrayList<Integer> rotorsIDs, ArrayList<Integer> windowOffsets , int reflectorID, String plugs) {
 
         for (int i = 0; i < rotorsIDs.size(); i++) {
             inUseRotors.add(availableRotors.get(rotorsIDs.get(i) - 1));
             availableRotors.get(rotorsIDs.get(i) - 1).rotateToOffset(windowOffsets.get(i));
         }
 
-        // machine.inUseWindowsOffsets = windowsOffsets
+        inUseWindowsOffsets = windowOffsets;
 
         inUseReflector = availableReflectors.get(reflectorID - 1);
 
@@ -128,5 +190,48 @@ public class EnigmaMachine {
 
     public Rotor getRotorByID(Integer id) {
         return availableRotors.get(id - 1);
+    }
+
+    public static int getCipherCounter() {
+        return cipherCounter;
+    }
+
+    public static void advanceCipherCounter(){
+        cipherCounter++;
+    }
+
+    public List<Integer> getInUseRotorsIDs() {
+        List<Integer> inUseRotorsIDs= new ArrayList<>();
+
+        for (Rotor rotor : inUseRotors){
+            inUseRotorsIDs.add(rotor.getId());
+        }
+
+        return inUseRotorsIDs;
+    }
+
+    public List<Character> getAllWindowsCharacters() {
+        List<Character> windowsCharacters = new ArrayList<>();
+
+        for (int i = 0; i < inUseWindowsOffsets.size(); i++) {
+            windowsCharacters.add( inUseRotors.get(i).translateOffset2Char( inUseWindowsOffsets.get(i) ) );
+        }
+
+        return windowsCharacters;
+    }
+
+    public List<CharacterPair> getListOfPlugPairs() {
+        List<CharacterPair> plugPairs = new ArrayList<>();
+
+        for (Map.Entry<Integer, Integer> plug : plugBoard.getPlugMap().entrySet()) {
+            CharacterPair currentPlug = new CharacterPair( alphabet.charAt(plug.getKey()), alphabet.charAt(plug.getValue()));
+            CharacterPair reversedCurrentPlug = new CharacterPair( alphabet.charAt(plug.getValue()) , alphabet.charAt(plug.getKey()) );
+
+            if ((!plugPairs.contains(currentPlug)) && (!plugPairs.contains(reversedCurrentPlug))){
+                plugPairs.add(currentPlug);
+            }
+        }
+
+        return plugPairs;
     }
 }

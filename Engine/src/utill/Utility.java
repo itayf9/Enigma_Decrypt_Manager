@@ -28,4 +28,32 @@ public class Utility {
 
         return decimal;
     }
+
+    public static String decimalToRoman(int decimal) {
+        String roman= "";
+        final String NOT_VALID= "NOT_VALID";
+
+        switch(decimal) {
+            case 1:
+                roman= "I";
+                break;
+            case 2:
+                roman= "II";
+                break;
+            case 3:
+                roman= "III";
+                break;
+            case 4:
+                roman= "IV";
+                break;
+            case 5:
+                roman= "V";
+                break;
+            default:
+                // throw ?
+                roman= NOT_VALID;
+        }
+
+        return roman;
+    }
 }

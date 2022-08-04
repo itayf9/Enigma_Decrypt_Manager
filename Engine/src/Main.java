@@ -13,12 +13,11 @@ public class Main {
         engine.buildMachineFromXmlFile("ddv");
 
         engine.updateConfiguration("2,1", "CC", "I", "A|F");
-        System.out.println(engine);
-        System.out.println(((EnigmaEngine) engine).cipherText("AAAAAAAAAAAAAA"));
-        System.out.println('\n');
+        //System.out.println(engine);
 
-        System.out.println(((EnigmaEngine) engine).cipherText("CEFDABCEFFCEDABABD").equals("AAAEEEBBBDDDCCCFFF"));
+        //System.out.println(((EnigmaEngine) engine).cipherText("CEFDABCEFFCEDABABD").equals("AAAEEEBBBDDDCCCFFF"));
 
+        System.out.println( engine.displayMachineSpecifications());
 
 
 
