@@ -1,11 +1,9 @@
 import component.Reflector;
 import component.Rotor;
-import dto.CharacterPair;
-import dto.DTOspecs;
+import dto.*;
 import machine.EnigmaMachine;
 import machine.jaxb.generated.*;
 import utill.*;
-import dto.DTO;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -17,6 +15,7 @@ import java.io.InputStream;
 import java.util.*;
 
 import static machine.EnigmaMachine.advanceCipherCounter;
+import static machine.EnigmaMachine.getCipherCounter;
 import static utill.Utility.*;
 
 
@@ -25,13 +24,19 @@ public class EnigmaEngine implements Engine {
     // The engine contains the Enigma Machine instance.
     private EnigmaMachine machine;
 
+    // a structure that holds the configuration parameters that are valid,
+    // and still not in the machine.
+    private Secret pendingConfiguration;
+
     // engine constructor
     public EnigmaEngine(){
     }
+
     // creating new machine instance using all the parts the machine needs.
     public void buildMachine(ArrayList<Rotor> availableRotors, ArrayList<Reflector> availableReflectors, int rotorsCount, String alphabet, Map<Character, Integer> character2index){
         machine = new EnigmaMachine(availableRotors, availableReflectors, rotorsCount, alphabet, character2index);
     }
+
     // updating the current machine configurations.
     // based on String of input from the user.
     public void updateConfiguration(String rotors, String windows, String reflector ,String plugs){
@@ -60,6 +65,7 @@ public class EnigmaEngine implements Engine {
 
         machine.updateConfiguration(rotorsIDs, windowOfssets, reflectorID, plugs);
     }
+
     // ciphering text with the cipher method of "machine".
     public String cipherText ( String toCipher ) {
         StringBuilder cipheredText = new StringBuilder();
@@ -71,10 +77,11 @@ public class EnigmaEngine implements Engine {
         advanceCipherCounter();
         return cipheredText.toString();
     }
+
     // get fileName from user and load Xml file to build new machine.
     public void buildMachineFromXmlFile(String fileName) {
         try {
-            InputStream inputStream = new FileInputStream(new File("Engine/src/ex1-sanity-small.xml"));
+            InputStream inputStream = new FileInputStream(new File(fileName));
             CTEEnigma cteEnigma = deserializeFrom(inputStream);
 
             System.out.println(cteEnigma);
@@ -86,6 +93,7 @@ public class EnigmaEngine implements Engine {
             e.printStackTrace();
         }
     }
+
     // unmarshalling the schema of provided Xml file to create jaxb classes
     // to help build the machine from a xml file
     private static CTEEnigma deserializeFrom(InputStream in) throws JAXBException {
@@ -191,18 +199,17 @@ public class EnigmaEngine implements Engine {
     }
 
 
-
-
-
-
-
-    public DTO displayMachineSpecifications () {
+    /**
+     * fetching the current machine specifications.
+     * @return DTO object that represents the specs.
+     */
+    public DTOspecs displayMachineSpecifications () {
 
         int availableRotorsCount = machine.getAvailableRotorsLen();
         int inUseRotorsCount = machine.getRotorsCount();
         List<Integer> notchPositions = machine.getAllNotchPositions();
         int availableReflectorsCount = machine.getAvailableReflectorsLen();
-        int cipheredTextsCount = machine.getCipherCounter(); // implement static counter in machine for cipherTextOperations
+        int cipheredTextsCount = getCipherCounter();
 
         List<Integer> inUseRotorsIDs = machine.getInUseRotorsIDs();
         List<Character> windowsCharacters = machine.getAllWindowsCharacters();
@@ -214,6 +221,40 @@ public class EnigmaEngine implements Engine {
                 availableReflectorsCount, cipheredTextsCount, inUseRotorsIDs, windowsCharacters,
                 inUseReflectorSymbol, inUsePlugs);
     }
+
+    public DTO selectConfigurationManual (String rotors, String windows, String reflector ,String plugs){
+
+        boolean isSucceed, isRotorsOK, isWidowsOK, isReflectorOK, isPlugsOK;
+        isSucceed = isRotorsOK = isWidowsOK = isReflectorOK = isPlugsOK = false;
+
+        String rotorsProblem = "";
+        String windowsProblem = "";
+        String reflectorProblem = "";
+        String plugsProblem = "";
+
+        // check rotors validation
+        //isRotorsOK = checkValidRotors(rotors);
+
+        // check windows validation
+        //isWidowsOK = checkValidWindows(windows);
+
+        // check reflector validation
+        //isReflectorOK = checkValidReflector(reflector);
+
+        // check plugs validation
+        //isPlugsOK = checkValidPlugs(plugs);
+
+        // build secret
+
+        if (isRotorsOK && isWidowsOK && isReflectorOK && isPlugsOK){
+            isSucceed = true;
+            updateConfiguration(rotors, windows, reflector, plugs);
+        }
+
+        return new DTOconfig(isSucceed, isRotorsOK, isWidowsOK, isReflectorOK, isPlugsOK,
+                rotorsProblem, windowsProblem, reflectorProblem, plugsProblem);
+    }
+
 
 
 
