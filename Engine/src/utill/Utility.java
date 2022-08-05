@@ -1,6 +1,13 @@
 package utill;
 
 public class Utility {
+
+    /**
+     * converts a roman number into a decimal number.
+     * supports only 1-5.
+     * @param roman a string that represents the roman number
+     * @return the equivalent decimal number
+     */
     public static int romanToDecimal(String roman) {
         int decimal;
         final int NOT_VALID= -1;
@@ -29,6 +36,12 @@ public class Utility {
         return decimal;
     }
 
+    /**
+     * converts a decimal number, into a roman number
+     * supports only 1-5.
+     * @param decimal a decimal number
+     * @return equivalent string that represents the roman number
+     */
     public static String decimalToRoman(int decimal) {
         String roman= "";
         final String NOT_VALID= "NOT_VALID";

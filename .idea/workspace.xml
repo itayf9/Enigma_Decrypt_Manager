@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Delete trash files">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/component/PlugBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/component/PlugBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/component/Reflector.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/component/Reflector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/component/Rotor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/component/Rotor.java" afterDir="false" />
+    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="documentation : Rotor.java, Reflector.java, PlugBoard.java">
+      <change beforePath="$PROJECT_DIR$/Engine/src/utill/Utility.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/utill/Utility.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +22,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="doc_Daniel" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -94,6 +91,7 @@
       <workItem from="1659650528535" duration="694000" />
       <workItem from="1659659127889" duration="1258000" />
       <workItem from="1659693489083" duration="4024000" />
+      <workItem from="1659699138670" duration="504000" />
     </task>
     <task id="LOCAL‎00001" summary="Add classes">
       <created>1659104440139</created>
@@ -137,7 +135,13 @@
       <option name="presentableId" value="LOCAL‎00007" />
       <updated>1659693535240</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL‎00008" summary="documentation : Rotor.java, Reflector.java, PlugBoard.java">
+      <created>1659699335021</created>
+      <option name="number" value="LOCAL‎00008" />
+      <option name="presentableId" value="LOCAL‎00008" />
+      <updated>1659699335021</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -162,6 +166,7 @@
     <MESSAGE value="Add windows ofssets and update configuration" />
     <MESSAGE value="Add displayMachineSpecifications (Q2)" />
     <MESSAGE value="Delete trash files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Delete trash files" />
+    <MESSAGE value="documentation : Rotor.java, Reflector.java, PlugBoard.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="documentation : Rotor.java, Reflector.java, PlugBoard.java" />
   </component>
 </project>
