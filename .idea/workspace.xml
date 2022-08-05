@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="documentation : Rotor.java, Reflector.java, PlugBoard.java">
-      <change beforePath="$PROJECT_DIR$/Engine/src/utill/Utility.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/utill/Utility.java" afterDir="false" />
+    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="documentation : Utility.java">
+      <change beforePath="$PROJECT_DIR$/Engine/src/machine/EnigmaMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/machine/EnigmaMachine.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +91,7 @@
       <workItem from="1659650528535" duration="694000" />
       <workItem from="1659659127889" duration="1258000" />
       <workItem from="1659693489083" duration="4024000" />
-      <workItem from="1659699138670" duration="504000" />
+      <workItem from="1659699138670" duration="1693000" />
     </task>
     <task id="LOCAL‎00001" summary="Add classes">
       <created>1659104440139</created>
@@ -141,7 +141,13 @@
       <option name="presentableId" value="LOCAL‎00008" />
       <updated>1659699335021</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL‎00009" summary="documentation : Utility.java">
+      <created>1659699671075</created>
+      <option name="number" value="LOCAL‎00009" />
+      <option name="presentableId" value="LOCAL‎00009" />
+      <updated>1659699671075</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -167,6 +173,7 @@
     <MESSAGE value="Add displayMachineSpecifications (Q2)" />
     <MESSAGE value="Delete trash files" />
     <MESSAGE value="documentation : Rotor.java, Reflector.java, PlugBoard.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="documentation : Rotor.java, Reflector.java, PlugBoard.java" />
+    <MESSAGE value="documentation : Utility.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="documentation : Utility.java" />
   </component>
 </project>

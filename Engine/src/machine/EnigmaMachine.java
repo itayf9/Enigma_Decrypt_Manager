@@ -161,13 +161,18 @@ public class EnigmaMachine {
     }
 
 
-
+    /**
+     * rotates the rotors in the machine. the first rotor is always being rotated.
+     * for each rotor, it makes the next rotor to be rotated, if the notch has reached an absolute offset of 0.
+     */
     public void rotateRotors(){
 
+        // goes through all rotors
+        // fisrt rotor is always being rotated
         for (Rotor rotor : inUseRotors) {
             rotor.rotate();
 
-            // check if need to rotate next rotor
+            // checks if needs to rotate next rotor
             if ( rotor.getOriginalNotchIndex() - rotor.getOffset() != 0){
                 break;
             }
@@ -188,18 +193,34 @@ public class EnigmaMachine {
                 '}';
     }
 
+    /**
+     * finds a rotor by a specific id
+     * @param id an unique id of a rotor
+     * @return the rotor with that id
+     */
     public Rotor getRotorByID(Integer id) {
         return availableRotors.get(id - 1);
     }
 
+    /**
+     *
+     * @return how many ciphered texts the machine has been ciphering so far
+     */
     public static int getCipherCounter() {
         return cipherCounter;
     }
 
+    /**
+     * increases the amount of ciphered texts that the machine has ciphered so far, by one.
+     */
     public static void advanceCipherCounter(){
         cipherCounter++;
     }
 
+    /**
+     *
+     * @return a list of the ids of the in-use rotors, maintaining their order.
+     */
     public List<Integer> getInUseRotorsIDs() {
         List<Integer> inUseRotorsIDs= new ArrayList<>();
 
@@ -210,6 +231,10 @@ public class EnigmaMachine {
         return inUseRotorsIDs;
     }
 
+    /**
+     *
+     * @return a list of the alphabet letters, for each rotor, that are currently at the 'window' (meaning that the absolute position is 0)
+     */
     public List<Character> getAllWindowsCharacters() {
         List<Character> windowsCharacters = new ArrayList<>();
 
@@ -220,13 +245,24 @@ public class EnigmaMachine {
         return windowsCharacters;
     }
 
+    /**
+     *
+     * @return a list of pairs of characters that are plugged in the plug board.
+     */
     public List<CharacterPair> getListOfPlugPairs() {
         List<CharacterPair> plugPairs = new ArrayList<>();
 
+        // goes through the <key, value> pairs in the plug map
         for (Map.Entry<Integer, Integer> plug : plugBoard.getPlugMap().entrySet()) {
+
+            // sets two new pairs of seperated characters.
+            // first is extracted from the current <key, value> pair.
+            // second is the opposite one to that <key, value> pair.
             CharacterPair currentPlug = new CharacterPair( alphabet.charAt(plug.getKey()), alphabet.charAt(plug.getValue()));
             CharacterPair reversedCurrentPlug = new CharacterPair( alphabet.charAt(plug.getValue()) , alphabet.charAt(plug.getKey()) );
 
+            // in order to prevent duplicates, checks this pair is already in the output list.
+            // if it's not, then the pair is added to the list.
             if ((!plugPairs.contains(currentPlug)) && (!plugPairs.contains(reversedCurrentPlug))){
                 plugPairs.add(currentPlug);
             }
