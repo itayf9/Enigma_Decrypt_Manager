@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Add cipherInputText (Q5)">
-      <change afterPath="$PROJECT_DIR$/DTO/src/dto/DTOresetConfig.java" afterDir="false" />
+    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Add resetConfiguration (Q6)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleUI/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUI/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DTO/src/dto/DTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/dto/DTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DTO/src/dto/DTOciphertext.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/dto/DTOciphertext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DTO/src/dto/DTOconfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/dto/DTOconfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DTO/src/dto/DTOspecs.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/dto/DTOspecs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/machine/EnigmaMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/machine/EnigmaMachine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +62,14 @@
       <recent name="C:\Users\itayf\IdeaProjects\Cracking the Enigma Machine\Engine\src" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main (1)">
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="ConsoleUI" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -73,7 +81,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main (1)" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
@@ -103,7 +111,7 @@
       <workItem from="1659693489083" duration="4024000" />
       <workItem from="1659699138670" duration="1802000" />
       <workItem from="1659701029393" duration="1560000" />
-      <workItem from="1659796381391" duration="13341000" />
+      <workItem from="1659796381391" duration="14888000" />
     </task>
     <task id="LOCAL‎00001" summary="Add classes">
       <created>1659104440139</created>
@@ -189,7 +197,13 @@
       <option name="presentableId" value="LOCAL‎00014" />
       <updated>1659807871108</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL‎00015" summary="Add resetConfiguration (Q6)">
+      <created>1659810081593</created>
+      <option name="number" value="LOCAL‎00015" />
+      <option name="presentableId" value="LOCAL‎00015" />
+      <updated>1659810081593</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -221,6 +235,7 @@
     <MESSAGE value="Add selectConfigurationManual (Q3)" />
     <MESSAGE value="Add selectConfigurationAuto (Q4)" />
     <MESSAGE value="Add cipherInputText (Q5)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add cipherInputText (Q5)" />
+    <MESSAGE value="Add resetConfiguration (Q6)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add resetConfiguration (Q6)" />
   </component>
 </project>

@@ -1,7 +1,6 @@
 package dto;
 
 public class DTOconfig extends DTO {
-    private boolean isSucceed;
     private boolean isRotorsOK;
     private boolean isWidowsOK;
     private boolean isReflectorOK;
@@ -11,9 +10,9 @@ public class DTOconfig extends DTO {
     private String reflectorProblem;
     private String plugsProblem;
 
-    public DTOconfig(boolean isSucceed, boolean isRotorsOK, boolean isWidowsOK, boolean isReflectorOK, boolean isPlugsOK,
+    public DTOconfig(boolean isSucceed, String details, boolean isRotorsOK, boolean isWidowsOK, boolean isReflectorOK, boolean isPlugsOK,
                      String rotorsProblem, String windowsProblem, String reflectorProblem, String plugsProblem) {
-        this.isSucceed = isSucceed;
+        super(isSucceed, details);
         this.isRotorsOK = isRotorsOK;
         this.isWidowsOK = isWidowsOK;
         this.isReflectorOK = isReflectorOK;

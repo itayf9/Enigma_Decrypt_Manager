@@ -227,6 +227,7 @@ public class EnigmaEngine implements Engine {
         boolean isSucceed, isRotorsOK, isWindowsOK, isReflectorOK, isPlugsOK;
         isSucceed = isRotorsOK = isWindowsOK = isReflectorOK = isPlugsOK = false;
 
+        String details = "";
         String rotorsProblem = "";
         String windowsProblem = "";
         String reflectorProblem = "";
@@ -263,7 +264,7 @@ public class EnigmaEngine implements Engine {
             updateConfiguration(rotors, windows, reflector, plugs);
         }
 
-        return new DTOconfig(isSucceed, isRotorsOK, isWindowsOK, isReflectorOK, isPlugsOK,
+        return new DTOconfig(isSucceed, details , isRotorsOK, isWindowsOK, isReflectorOK, isPlugsOK,
                 rotorsProblem, windowsProblem, reflectorProblem, plugsProblem);
     }
 

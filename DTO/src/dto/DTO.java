@@ -5,6 +5,9 @@ public class DTO {
     private boolean isSucceed;
     private String details;
 
+    public DTO() {
+    }
+
     public DTO(boolean isSucceed, String details) {
         this.isSucceed = isSucceed;
         this.details = details;

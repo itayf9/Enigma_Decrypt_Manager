@@ -17,6 +17,7 @@ public class DTOspecs extends DTO {
     public DTOspecs(int availableRotorsCount, int inUseRotorsCount, List<Integer> notchPositions,
                     int availableReflectorsCount, int cipheredTextsCount, List<Integer> inUseRotorsIDs,
                     List<Character> windowsCharacters, String inUseReflectorSymbol, List<CharacterPair> inUsePlugs) {
+        super();
         this.availableRotorsCount = availableRotorsCount;
         this.inUseRotorsCount = inUseRotorsCount;
         this.notchPositions = notchPositions;
