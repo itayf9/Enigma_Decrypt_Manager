@@ -92,6 +92,10 @@ public class EnigmaMachine {
         return alphabet;
     }
 
+    public ArrayList<Integer> getInUseWindowsOffsets() {
+        return inUseWindowsOffsets;
+    }
+
     // getting size of the list of Available Rotors in the machine
     public int getAvailableRotorsLen () {
         return availableRotors.size();

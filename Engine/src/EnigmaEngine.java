@@ -330,6 +330,20 @@ public class EnigmaEngine implements Engine {
         return new DTOciphertext(isSucceed , outputText);
     }
 
+    public DTO resetConfiguration () {
+
+        boolean isSucceed = true;
+        String detail = "";
+
+        for (int i = 0; i < machine.getRotorsCount(); i++) {
+
+            int currentOffset = machine.getInUseWindowsOffsets().get(i);
+            machine.getInUseRotors().get(i).rotateToOffset(currentOffset);
+        }
+
+        return new DTO(isSucceed, detail);
+    }
+
 
     public void buildAlphabetMap(){
 
