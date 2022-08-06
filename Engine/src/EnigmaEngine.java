@@ -312,6 +312,23 @@ public class EnigmaEngine implements Engine {
         return new DTOsecretConfig( rotor, windows, reflector, plugs);
     }*/
 
+    public DTOciphertext cipherInputText (String inputText) {
+
+        boolean isSucceed = true;
+        String outputText;
+        String problem = "";
+
+        // check valid ABC
+        //problem = isAllCharsInAlphabet(inputText);
+
+        if (problem.equals("")){
+            outputText = cipherText(inputText);
+        }else {
+            outputText = problem;
+        }
+
+        return new DTOciphertext(isSucceed , outputText);
+    }
 
 
     public void buildAlphabetMap(){

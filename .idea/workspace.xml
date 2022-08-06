@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Add selectConfigurationManual (Q3)">
-      <change afterPath="$PROJECT_DIR$/DTO/src/dto/DTOsecretConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DTO/src/dto/Secret.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/dto/Secret.java" afterDir="false" />
+    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Add selectConfigurationAuto (Q4)">
+      <change afterPath="$PROJECT_DIR$/DTO/src/dto/DTOciphertext.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/component/PlugBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/machine/component/PlugBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/component/Reflector.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/machine/component/Reflector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/component/Rotor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/machine/component/Rotor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/machine/EnigmaMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/machine/EnigmaMachine.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +99,7 @@
       <workItem from="1659693489083" duration="4024000" />
       <workItem from="1659699138670" duration="1802000" />
       <workItem from="1659701029393" duration="1560000" />
-      <workItem from="1659796381391" duration="9146000" />
+      <workItem from="1659796381391" duration="10996000" />
     </task>
     <task id="LOCAL‎00001" summary="Add classes">
       <created>1659104440139</created>
@@ -180,7 +173,13 @@
       <option name="presentableId" value="LOCAL‎00012" />
       <updated>1659710572701</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL‎00013" summary="Add selectConfigurationAuto (Q4)">
+      <created>1659805711173</created>
+      <option name="number" value="LOCAL‎00013" />
+      <option name="presentableId" value="LOCAL‎00013" />
+      <updated>1659805711173</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -210,6 +209,7 @@
     <MESSAGE value="documentation : EnigmaMachine.java" />
     <MESSAGE value="Add .idea/workspace.xml to .gitignore" />
     <MESSAGE value="Add selectConfigurationManual (Q3)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add selectConfigurationManual (Q3)" />
+    <MESSAGE value="Add selectConfigurationAuto (Q4)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add selectConfigurationAuto (Q4)" />
   </component>
 </project>
