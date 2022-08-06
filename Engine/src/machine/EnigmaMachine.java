@@ -1,12 +1,11 @@
 package machine;
 
-import component.PlugBoard;
-import component.Reflector;
-import component.Rotor;
+import machine.component.PlugBoard;
+import machine.component.Reflector;
+import machine.component.Rotor;
 import dto.CharacterPair;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -89,10 +88,9 @@ public class EnigmaMachine {
         return inUseReflector;
     }
 
-
-
-
-
+    public String getAlphabet() {
+        return alphabet;
+    }
 
     // getting size of the list of Available Rotors in the machine
     public int getAvailableRotorsLen () {
@@ -120,7 +118,7 @@ public class EnigmaMachine {
 
     // updating the current config of the machine.
     // by sending the updated list of rotors, reflectors and plugs.
-    public void updateConfiguration(ArrayList<Integer> rotorsIDs, ArrayList<Integer> windowOffsets , int reflectorID, String plugs) {
+    public void setMachineConfiguration(ArrayList<Integer> rotorsIDs, ArrayList<Integer> windowOffsets , int reflectorID, String plugs) {
 
         for (int i = 0; i < rotorsIDs.size(); i++) {
             inUseRotors.add(availableRotors.get(rotorsIDs.get(i) - 1));

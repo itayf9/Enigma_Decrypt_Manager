@@ -1,4 +1,4 @@
-package component;
+package machine.component;
 
 import dto.CharacterPair;
 

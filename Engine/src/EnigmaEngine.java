@@ -1,9 +1,8 @@
-import component.Reflector;
-import component.Rotor;
+import machine.component.Reflector;
+import machine.component.Rotor;
 import dto.*;
 import machine.EnigmaMachine;
 import machine.jaxb.generated.*;
-import utill.*;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -30,6 +29,7 @@ public class EnigmaEngine implements Engine {
 
     // engine constructor
     public EnigmaEngine(){
+        this.pendingConfiguration = new Secret();
     }
 
     // creating new machine instance using all the parts the machine needs.
@@ -63,7 +63,7 @@ public class EnigmaEngine implements Engine {
         }
 
 
-        machine.updateConfiguration(rotorsIDs, windowOfssets, reflectorID, plugs);
+        machine.setMachineConfiguration(rotorsIDs, windowOfssets, reflectorID, plugs);
     }
 
     // ciphering text with the cipher method of "machine".
@@ -222,10 +222,10 @@ public class EnigmaEngine implements Engine {
                 inUseReflectorSymbol, inUsePlugs);
     }
 
-    public DTO selectConfigurationManual (String rotors, String windows, String reflector ,String plugs){
+    public DTOconfig selectConfigurationManual (String rotors, String windows, String reflector ,String plugs){
 
-        boolean isSucceed, isRotorsOK, isWidowsOK, isReflectorOK, isPlugsOK;
-        isSucceed = isRotorsOK = isWidowsOK = isReflectorOK = isPlugsOK = false;
+        boolean isSucceed, isRotorsOK, isWindowsOK, isReflectorOK, isPlugsOK;
+        isSucceed = isRotorsOK = isWindowsOK = isReflectorOK = isPlugsOK = false;
 
         String rotorsProblem = "";
         String windowsProblem = "";
@@ -234,27 +234,83 @@ public class EnigmaEngine implements Engine {
 
         // check rotors validation
         //isRotorsOK = checkValidRotors(rotors);
+        if (isRotorsOK) {
+            pendingConfiguration.setRotors(rotors);
+        }
 
         // check windows validation
         //isWidowsOK = checkValidWindows(windows);
+        if (isWindowsOK) {
+            pendingConfiguration.setWindows(windows);
+        }
 
         // check reflector validation
         //isReflectorOK = checkValidReflector(reflector);
+        if (isReflectorOK) {
+            pendingConfiguration.setReflector(reflector);
+        }
 
         // check plugs validation
         //isPlugsOK = checkValidPlugs(plugs);
+        if (isPlugsOK) {
+            pendingConfiguration.setPlugs(plugs);
+        }
 
         // build secret
 
-        if (isRotorsOK && isWidowsOK && isReflectorOK && isPlugsOK){
+        if (isRotorsOK && isWindowsOK && isReflectorOK && isPlugsOK){
             isSucceed = true;
             updateConfiguration(rotors, windows, reflector, plugs);
         }
 
-        return new DTOconfig(isSucceed, isRotorsOK, isWidowsOK, isReflectorOK, isPlugsOK,
+        return new DTOconfig(isSucceed, isRotorsOK, isWindowsOK, isReflectorOK, isPlugsOK,
                 rotorsProblem, windowsProblem, reflectorProblem, plugsProblem);
     }
 
+    /*
+    public DTOsecretConfig selectConfigurationAuto (){
+
+        List<Integer> randomGeneratedRotorIDs= new ArrayList<>();
+        int randomGeneratedReflectorID;
+        List<Integer> randomGeneratedWindowOffsets = new ArrayList<>();
+
+        // randomizes rotors ID and order
+        for (int i = 0; i < machine.getRotorsCount(); i++) {
+            int randomRotorID = (int)Math.ceil( Math.random() * machine.getAvailableRotorsLen() );
+            while( randomGeneratedRotorIDs.contains(randomRotorID)){
+                randomRotorID = (int)Math.ceil( Math.random() * machine.getAvailableRotorsLen() );
+            }
+
+            randomGeneratedRotorIDs.add(randomRotorID);
+        }
+
+        // randomizes reflector ID
+        randomGeneratedReflectorID = (int)Math.ceil( Math.random() * machine.getAvailableReflectorsLen() );
+
+        // randomizes window offsets
+        for (int i = 0; i < machine.getRotorsCount(); i++) {
+            randomGeneratedWindowOffsets.add( (int)Math.floor( Math.random() * machine.getAlphabet().length()) );
+        }
+
+        // randomizes plugs
+        int randomPlugsCount =  (int)Math.floor(Math.random() * (machine.getAlphabet().length() + 1)) / 2;
+
+        for (int i = 0; i < randomPlugsCount; i++) {
+            int leftSizeOfPlug = (int)Math.floor( Math.random() * machine.getAlphabet().length());
+            int rightSizeOfPlug = (int)Math.floor( Math.random() * machine.getAlphabet().length());
+
+            /* check validation of plugs. if they already in the plugs "array"  */
+       /* }
+
+
+
+        // updates the configuration
+        machine.setMachineConfiguration(randomGeneratedRotorIDs, randomGeneratedWindowOffsets, randomGeneratedReflectorID, );
+
+        List<Character> windowCharacters = machine.getAllWindowsCharacters();
+
+        return new DTOsecretConfig( rotor, windows, reflector, plugs);
+    }*/
 
 
 

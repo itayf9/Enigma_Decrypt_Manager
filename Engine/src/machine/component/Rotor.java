@@ -1,4 +1,4 @@
-package component;
+package machine.component;
 
 import java.util.ArrayList;
 import java.util.HashMap;
