@@ -20,7 +20,7 @@ import static machine.EnigmaMachine.getCipherCounter;
 import static utill.Utility.*;
 
 
-public class EnigmaEngine implements Engine, EnigmaValidator {
+public class EnigmaEngine implements Engine {
 
     // The engine contains the Enigma Machine instance.
     private EnigmaMachine machine;
@@ -211,18 +211,22 @@ public class EnigmaEngine implements Engine, EnigmaValidator {
     public DTOstatus selectConfigurationManual (List<Integer> rotorsIDs, String windows, int reflectorID , List<String> plugs){
         boolean isSucceed = true;
         String details = null;
-       
+
         updateConfiguration(rotorsIDs, windows, reflectorID, plugs);
 
         return new DTOstatus(isSucceed, details);
     }
 
-    /*
+    @Override
     public DTOsecretConfig selectConfigurationAuto (){
+        String alphabet = machine.getAlphabet();
 
         List<Integer> randomGeneratedRotorIDs= new ArrayList<>();
         int randomGeneratedReflectorID;
-        List<Integer> randomGeneratedWindowOffsets = new ArrayList<>();
+        StringBuilder randomGeneratedWindowCharacters = new StringBuilder();
+        int randomPlugsCount =  (int)Math.floor(Math.random() * (alphabet.length() + 1)) / 2;
+        List<String> randomGeneratedPlugs = new ArrayList<>(Collections.nCopies(randomPlugsCount, ""));
+        List<Boolean> alreadyPluged = new ArrayList<>(Collections.nCopies(randomPlugsCount, false));
 
         // randomizes rotors ID and order
         for (int i = 0; i < machine.getRotorsCount(); i++) {
@@ -239,12 +243,13 @@ public class EnigmaEngine implements Engine, EnigmaValidator {
 
         // randomizes window offsets
         for (int i = 0; i < machine.getRotorsCount(); i++) {
-            randomGeneratedWindowOffsets.add( (int)Math.floor( Math.random() * machine.getAlphabet().length()) );
+            // get random index
+            int randomIndex = (int)Math.floor( Math.random() * alphabet.length());
+            // convert random index to Character from the alphabet.
+            randomGeneratedWindowCharacters.append(alphabet.charAt(randomIndex));
         }
 
         // randomizes plugs
-        int randomPlugsCount =  (int)Math.floor(Math.random() * (machine.getAlphabet().length() + 1)) / 2;
-
         for (int i = 0; i < randomPlugsCount; i++) {
             int firstInPlugIndex = (int)Math.floor( Math.random() * alphabet.length());
             int secondInPlugIndex = (int)Math.floor( Math.random() * alphabet.length());
@@ -356,6 +361,12 @@ public class EnigmaEngine implements Engine, EnigmaValidator {
 
             int firstInPlugIndex = machine.getAlphabet().indexOf(plug.charAt(0));
             int secondInPlugIndex = machine.getAlphabet().indexOf(plug.charAt(1));
+
+            // check if both characters are the same.
+            if (firstInPlugIndex == secondInPlugIndex) {
+                isSucceed = false;
+                break;
+            }
 
             // check if both characters in the current plug is in the alphabet.
             if (firstInPlugIndex == CHAR_NOT_FOUND || secondInPlugIndex == CHAR_NOT_FOUND){

@@ -4,7 +4,7 @@ import utill.CharacterPair;
 
 import java.util.List;
 
-public class DTOspecs extends DTO {
+public class DTOspecs extends DTOstatus {
     private int availableRotorsCount;
     private int inUseRotorsCount;
     private List<Integer> notchPositions;

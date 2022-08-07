@@ -1,12 +1,14 @@
 package dto;
 
-public class DTOsecretConfig {
-    private String rotors;
-    private String windows;
-    private String reflector;
-    private String plugs;
+import java.util.List;
 
-    public DTOsecretConfig(String rotors, String windows, String reflector, String plugs) {
+public class DTOsecretConfig {
+    private List<Integer> rotors;
+    private String windows;
+    private int reflector;
+    private List<String> plugs;
+
+    public DTOsecretConfig(List<Integer> rotors, String windows, int reflector, List<String> plugs) {
         this.rotors = rotors;
         this.windows = windows;
         this.reflector = reflector;
