@@ -13,7 +13,7 @@ public class DTOsecretConfig {
         this.plugs = plugs;
     }
 
-    public String getRotors() {
+    public List<Integer> getRotors() {
         return rotors;
     }
 
@@ -21,11 +21,11 @@ public class DTOsecretConfig {
         return windows;
     }
 
-    public String getReflector() {
+    public int getReflector() {
         return reflector;
     }
 
-    public String getPlugs() {
+    public List<String> getPlugs() {
         return plugs;
     }
 }

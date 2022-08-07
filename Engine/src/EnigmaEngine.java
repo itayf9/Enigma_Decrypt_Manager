@@ -250,21 +250,26 @@ public class EnigmaEngine implements Engine, EnigmaValidator {
         int randomPlugsCount =  (int)Math.floor(Math.random() * (machine.getAlphabet().length() + 1)) / 2;
 
         for (int i = 0; i < randomPlugsCount; i++) {
-            int leftSizeOfPlug = (int)Math.floor( Math.random() * machine.getAlphabet().length());
-            int rightSizeOfPlug = (int)Math.floor( Math.random() * machine.getAlphabet().length());
+            int firstInPlugIndex = (int)Math.floor( Math.random() * alphabet.length());
+            int secondInPlugIndex = (int)Math.floor( Math.random() * alphabet.length());
 
-            /* check validation of plugs. if they already in the plugs "array"  */
-       /* }
-
-
+            while (!alreadyPluged.get( firstInPlugIndex)){
+                firstInPlugIndex = (int)Math.floor( Math.random() * alphabet.length());
+            }
+            alreadyPluged.set( firstInPlugIndex, true);
+            while (!alreadyPluged.get( secondInPlugIndex)){
+                secondInPlugIndex = (int)Math.floor( Math.random() * alphabet.length());
+            }
+            alreadyPluged.set( secondInPlugIndex, true);
+        }
 
         // updates the configuration
-        machine.setMachineConfiguration(randomGeneratedRotorIDs, randomGeneratedWindowOffsets, randomGeneratedReflectorID, );
+        updateConfiguration(randomGeneratedRotorIDs, randomGeneratedWindowCharacters.toString(),
+                randomGeneratedReflectorID, randomGeneratedPlugs);
 
-        List<Character> windowCharacters = machine.getAllWindowsCharacters();
-
-        return new DTOsecretConfig( rotor, windows, reflector, plugs);
-    }*/
+        return new DTOsecretConfig( randomGeneratedRotorIDs, randomGeneratedWindowCharacters.toString(),
+                randomGeneratedReflectorID, randomGeneratedPlugs);
+    }
 
     public DTOciphertext cipherInputText (String inputText) {
 

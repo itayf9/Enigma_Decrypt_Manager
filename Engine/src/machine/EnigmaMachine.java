@@ -12,9 +12,9 @@ import java.util.Map;
 public class EnigmaMachine {
 
     // the machine contains a list of Rotors.
-    private ArrayList<Rotor> availableRotors;
+    private List<Rotor> availableRotors;
     // the machine contains also a list of Reflectors.
-    private ArrayList<Reflector> availableReflectors;
+    private List<Reflector> availableReflectors;
     // we use rotorsCount as a field which describes the current number of allowed Rotors.
     private int rotorsCount;
     // we use alphabet as a field that describes and converts the indexes to "ABC Characters".
@@ -31,11 +31,11 @@ public class EnigmaMachine {
 
     // we represent the current Rotors offset from the window of the machine.
     // using list of offset values.
-    private ArrayList<Integer> inUseWindowsOffsets;
+    private List<Integer> inUseWindowsOffsets;
     // we represent the plugBoard with plugBoard instance that contains a map of configured plugs.
     private PlugBoard plugBoard;
     // current Rotors configured in the machine to work with.
-    private ArrayList<Rotor> inUseRotors;
+    private List<Rotor> inUseRotors;
     // current Reflector configured in the machine to work with.
     private Reflector inUseReflector;
     // current text that got ciphered in the machine.
@@ -68,11 +68,11 @@ public class EnigmaMachine {
     // need those getters??????????????????????????????????????????????????????????????///////
 
     // getters
-    public ArrayList<Rotor> getAvailableRotors() {
+    public List<Rotor> getAvailableRotors() {
         return availableRotors;
     }
 
-    public ArrayList<Reflector> getAvailableReflectors() {
+    public List<Reflector> getAvailableReflectors() {
         return availableReflectors;
     }
 
@@ -80,7 +80,7 @@ public class EnigmaMachine {
         return plugBoard;
     }
 
-    public ArrayList<Rotor> getInUseRotors() {
+    public List<Rotor> getInUseRotors() {
         return inUseRotors;
     }
 
@@ -92,7 +92,7 @@ public class EnigmaMachine {
         return alphabet;
     }
 
-    public ArrayList<Integer> getInUseWindowsOffsets() {
+    public List<Integer> getInUseWindowsOffsets() {
         return inUseWindowsOffsets;
     }
 
@@ -122,7 +122,7 @@ public class EnigmaMachine {
 
     // updating the current config of the machine.
     // by sending the updated list of rotors, reflectors and plugs.
-    public void setMachineConfiguration(ArrayList<Integer> rotorsIDs, ArrayList<Integer> windowOffsets , int reflectorID, List<String> plugs) {
+    public void setMachineConfiguration(List<Integer> rotorsIDs, List<Integer> windowOffsets , int reflectorID, List<String> plugs) {
 
         for (int i = 0; i < rotorsIDs.size(); i++) {
             inUseRotors.add(availableRotors.get(rotorsIDs.get(i) - 1));

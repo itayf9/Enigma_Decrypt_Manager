@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Add printMainMenu">
-      <change afterPath="$PROJECT_DIR$/Engine/src/validation/EnigmaValidator.java" afterDir="false" />
+    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Fix validation selectConfigurationManual">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleUI/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUI/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DTO/src/dto/DTOsecretConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/dto/DTOsecretConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/machine/EnigmaMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/machine/EnigmaMachine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/machine/component/PlugBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/machine/component/PlugBoard.java" afterDir="false" />
+    </list>
+    <list id="4d3468c9-f8a2-4a3c-84be-6dffde06732b" name="Changes by kingd" comment="">
+      <change beforePath="$PROJECT_DIR$/DTO/src/dto/DTOsecretConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/dto/DTOsecretConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +33,35 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/Engine/src/EnigmaEngine.java">
+      <ranges>
+        <range start1="217" end1="218" start2="217" end2="218" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="223" end1="224" start2="223" end2="224" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="225" end1="225" start2="225" end2="226" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="228" end1="229" start2="229" end2="234" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="245" end1="246" start2="250" end2="254" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="249" end1="251" start2="257" end2="257" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="252" end1="257" start2="258" end2="260" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="258" end1="259" start2="261" end2="270" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="261" end1="262" start2="272" end2="272" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="263" end1="264" start2="273" end2="274" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="265" end1="267" start2="275" end2="278" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="360" end1="360" start2="371" end2="377" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/DTO/src/dto/DTOsecretConfig.java">
+      <ranges>
+        <range start1="2" end1="2" start2="2" end2="4" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="3" end1="4" start2="5" end2="6" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="5" end1="7" start2="7" end2="9" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="8" end1="9" start2="10" end2="11" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="15" end1="16" start2="17" end2="18" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="23" end1="24" start2="25" end2="26" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="27" end1="28" start2="29" end2="30" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+      </ranges>
+    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -112,7 +142,7 @@
       <workItem from="1659699138670" duration="1802000" />
       <workItem from="1659701029393" duration="1560000" />
       <workItem from="1659796381391" duration="15200000" />
-      <workItem from="1659881541751" duration="12422000" />
+      <workItem from="1659881541751" duration="15387000" />
     </task>
     <task id="LOCAL‎00001" summary="Add classes">
       <created>1659104440139</created>
@@ -210,7 +240,13 @@
       <option name="presentableId" value="LOCAL‎00016" />
       <updated>1659811841484</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL‎00017" summary="Fix validation selectConfigurationManual">
+      <created>1659895285797</created>
+      <option name="number" value="LOCAL‎00017" />
+      <option name="presentableId" value="LOCAL‎00017" />
+      <updated>1659895285797</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -244,6 +280,7 @@
     <MESSAGE value="Add cipherInputText (Q5)" />
     <MESSAGE value="Add resetConfiguration (Q6)" />
     <MESSAGE value="Add printMainMenu" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add printMainMenu" />
+    <MESSAGE value="Fix validation selectConfigurationManual" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix validation selectConfigurationManual" />
   </component>
 </project>
