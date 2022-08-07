@@ -3,6 +3,13 @@ public class Main {
         boolean isExit = false;
 
         printMainMenu();
+        //scan
+        //swich
+        //case 3:
+        //scan + validRotors
+        //scan + validWindow
+        // ....
+        //selctManual()
 
     }
 

@@ -57,15 +57,15 @@ public class PlugBoard {
      *              for example, "A|Z,D|E" means that there are two pairs.
      *              first pair : A and Z. second pair : D and E.
      */
-    public void initPlugBoardMap(Map<Character, Integer> character2index, String plugs){
-
-        if (plugs.length() == 0)
+    public void initPlugBoardMap(Map<Character, Integer> character2index, List<String> plugs){
+/*
+        if (plugs.size() == 0)
         {
             return;
         }
         // the 'plugs' String contains info in the format => "A|Z,D|E"
-        String[] seperatedPlugs = plugs.split(",");
-        // after split, seperates 'plugs' to pairs => ["A|Z" , "D|E"]
+        //String[] seperatedPlugs = plugs.split(",");
+         after split, seperates 'plugs' to pairs => ["A|Z" , "D|E"]
 
         String[] currentPlugCharacters;
 
@@ -78,6 +78,17 @@ public class PlugBoard {
             // add new plug to the plug board.
             plugMap.put(currentPlug1, currentPlug2);
             plugMap.put(currentPlug2, currentPlug1);
+        }*/
+        // run through all plugs
+        for (String plug : plugs) {
+
+            // convert char to index
+            int firstInPlugIndex = character2index.get(plug.charAt(0));
+            int secondInPlugIndex = character2index.get(plug.charAt(1));
+
+            // build  plug map
+            plugMap.put(secondInPlugIndex, firstInPlugIndex);
+            plugMap.put(firstInPlugIndex, secondInPlugIndex);
         }
     }
 

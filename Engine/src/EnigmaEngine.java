@@ -12,13 +12,14 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.*;
+import validation.EnigmaValidator;
 
 import static machine.EnigmaMachine.advanceCipherCounter;
 import static machine.EnigmaMachine.getCipherCounter;
 import static utill.Utility.*;
 
 
-public class EnigmaEngine implements Engine {
+public class EnigmaEngine implements Engine, EnigmaValidator {
 
     // The engine contains the Enigma Machine instance.
     private EnigmaMachine machine;
@@ -39,31 +40,19 @@ public class EnigmaEngine implements Engine {
 
     // updating the current machine configurations.
     // based on String of input from the user.
-    public void updateConfiguration(String rotors, String windows, String reflector ,String plugs){
-
-        // build reflectorID
-        int reflectorID = romanToDecimal(reflector);
-
-        // build rotorsIDs list
-        ArrayList<Integer> rotorsIDs = new ArrayList<>();
-        String[] rotorsIDsAsStrings = rotors.split(",");
-
-        for (int i = rotorsIDsAsStrings.length - 1; i >= 0; i--) {
-            rotorsIDs.add(Integer.parseInt(rotorsIDsAsStrings[i]));
-        }
+    public void updateConfiguration(List<Integer> rotorsIDs, String windowsChars, int reflectorID, List<String> plugs){
 
         // build windowOffsets
         ArrayList<Integer> windowOfssets = new ArrayList<>();
 
-        for (int i = windows.length() - 1; i >= 0; i--) {
-            int j = windows.length() - 1 - i ;
+        for (int i = windowsChars.length() - 1; i >= 0; i--) {
+            int j = windowsChars.length() - 1 - i ;
             Rotor r = machine.getRotorByID( rotorsIDs.get(j));
-            int offset = r.translateChar2Offset(windows.charAt(i));
+            int offset = r.translateChar2Offset(windowsChars.charAt(i));
             windowOfssets.add(offset);
         }
 
-
-        machine.setMachineConfiguration(rotorsIDs, windowOfssets, reflectorID, plugs);
+        machine.setMachineConfiguration((ArrayList<Integer>) rotorsIDs, windowOfssets, reflectorID, plugs);
     }
 
     // ciphering text with the cipher method of "machine".
@@ -222,50 +211,14 @@ public class EnigmaEngine implements Engine {
                 inUseReflectorSymbol, inUsePlugs);
     }
 
-    public DTOconfig selectConfigurationManual (String rotors, String windows, String reflector ,String plugs){
 
-        boolean isSucceed, isRotorsOK, isWindowsOK, isReflectorOK, isPlugsOK;
-        isSucceed = isRotorsOK = isWindowsOK = isReflectorOK = isPlugsOK = false;
+    public DTO selectConfigurationManual (List<Integer> rotorsIDs, String windows, int reflectorID ,List<String> plugs){
+        boolean isSucceed = true;
+        String details = null;
+       
+        updateConfiguration(rotorsIDs, windows, reflectorID, plugs);
 
-        String details = "";
-        String rotorsProblem = "";
-        String windowsProblem = "";
-        String reflectorProblem = "";
-        String plugsProblem = "";
-
-        // check rotors validation
-        //isRotorsOK = checkValidRotors(rotors);
-        if (isRotorsOK) {
-            pendingConfiguration.setRotors(rotors);
-        }
-
-        // check windows validation
-        //isWidowsOK = checkValidWindows(windows);
-        if (isWindowsOK) {
-            pendingConfiguration.setWindows(windows);
-        }
-
-        // check reflector validation
-        //isReflectorOK = checkValidReflector(reflector);
-        if (isReflectorOK) {
-            pendingConfiguration.setReflector(reflector);
-        }
-
-        // check plugs validation
-        //isPlugsOK = checkValidPlugs(plugs);
-        if (isPlugsOK) {
-            pendingConfiguration.setPlugs(plugs);
-        }
-
-        // build secret
-
-        if (isRotorsOK && isWindowsOK && isReflectorOK && isPlugsOK){
-            isSucceed = true;
-            updateConfiguration(rotors, windows, reflector, plugs);
-        }
-
-        return new DTOconfig(isSucceed, details , isRotorsOK, isWindowsOK, isReflectorOK, isPlugsOK,
-                rotorsProblem, windowsProblem, reflectorProblem, plugsProblem);
+        return new DTO(isSucceed, details);
     }
 
     /*
@@ -345,40 +298,86 @@ public class EnigmaEngine implements Engine {
         return new DTO(isSucceed, detail);
     }
 
+    public DTO validateRotors (List<Integer> rotorsIDs){
+        boolean isSucceed = true;
+        String details = null;
 
-    public void buildAlphabetMap(){
+        // check if rotorsIDs size is exactly the required size.
+        if (rotorsIDs.size() !=machine.getRotorsCount()){
+            isSucceed = false;
+        }
+        else {
+            for (Integer rotorID : rotorsIDs) {
 
+                // check if the rotorID exists in this machine.
+                if (rotorID <= 0 || rotorID > machine.getAvailableRotorsLen()) {
+                    isSucceed = false;
+                    break;
+                }
+            }
+        }
+
+        return new DTO(isSucceed, details);
     }
 
+    public DTO validateWindowCharacters (String windowChars){
+        boolean isSucceed = false;
+        String details = null;
+        final int CHAR_NOT_FOUND = -1;
 
-    /*
+        for (Character currentWindowCharacter : windowChars.toCharArray()) {
+            if (machine.getAlphabet().indexOf(currentWindowCharacter) == CHAR_NOT_FOUND) {
+                isSucceed = false;
+                break;
+            }
+        }
 
-    1.
-    learn JAXB
-    build machine from XML
+        return new DTO(isSucceed, details);
+    }
 
-    2.
-    implement current config
+    public DTO validateReflector (int reflectorID){
+        boolean isSucceed = true;
+        String details = null;
 
-    3 + 4 .
-    decide on the fields of the config and where to put them
+        // check if the reflectorID exists in this machine.
+        if (reflectorID <= 0 || reflectorID > machine.getAvailableReflectorsLen()) {
+            isSucceed = false;
+        }
 
-    5.
-    test cipher methods
-    implement "cipherText" in "Engine"
-    limit - can't operate before 3 or 4
-    check valid input
+        return new DTO(isSucceed, details);
+    }
 
-    6.
+    public DTO validatePlugs (List<String> plugs){
+        boolean isSucceed = true;
+        String details = null;
+        List<Boolean> alreadyPluged = new ArrayList<>(Collections.nCopies(machine.getAlphabet().length(), false));
+        final int CHAR_NOT_FOUND = -1;
 
-    7.
+        // goes through all the plugs
+        for (String plug : plugs){
 
-    8.
-    write function 'exit'
+            int firstInPlugIndex = machine.getAlphabet().indexOf(plug.charAt(0));
+            int secondInPlugIndex = machine.getAlphabet().indexOf(plug.charAt(1));
 
+            // check if both characters in the current plug is in the alphabet.
+            if (firstInPlugIndex == CHAR_NOT_FOUND || secondInPlugIndex == CHAR_NOT_FOUND){
+                isSucceed = false;
+                break;
+            } else {
+                // check if both characters are not plugged yet.
+                if (!alreadyPluged.get( firstInPlugIndex) && !alreadyPluged.get( secondInPlugIndex)){
+                    alreadyPluged.set( firstInPlugIndex, true);
+                    alreadyPluged.set( secondInPlugIndex, true);
+                } else {
+                    isSucceed = false;
+                    break;
+                }
+            }
+        }
 
+        return new DTO(isSucceed, details);
+    }
 
-     */
 
     @Override
     public String toString() {

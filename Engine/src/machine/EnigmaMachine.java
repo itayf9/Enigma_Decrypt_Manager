@@ -122,7 +122,7 @@ public class EnigmaMachine {
 
     // updating the current config of the machine.
     // by sending the updated list of rotors, reflectors and plugs.
-    public void setMachineConfiguration(ArrayList<Integer> rotorsIDs, ArrayList<Integer> windowOffsets , int reflectorID, String plugs) {
+    public void setMachineConfiguration(ArrayList<Integer> rotorsIDs, ArrayList<Integer> windowOffsets , int reflectorID, List<String> plugs) {
 
         for (int i = 0; i < rotorsIDs.size(); i++) {
             inUseRotors.add(availableRotors.get(rotorsIDs.get(i) - 1));

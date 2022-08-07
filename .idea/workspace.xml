@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Add resetConfiguration (Q6)">
+    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Add printMainMenu">
+      <change afterPath="$PROJECT_DIR$/Engine/src/validation/EnigmaValidator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConsoleUI/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUI/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DTO/src/dto/DTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/dto/DTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DTO/src/dto/DTOconfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/dto/DTOconfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DTO/src/dto/DTOspecs.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/dto/DTOspecs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/machine/EnigmaMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/machine/EnigmaMachine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/machine/component/PlugBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/machine/component/PlugBoard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,9 +18,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="FxmlFile" />
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -111,7 +111,8 @@
       <workItem from="1659693489083" duration="4024000" />
       <workItem from="1659699138670" duration="1802000" />
       <workItem from="1659701029393" duration="1560000" />
-      <workItem from="1659796381391" duration="14888000" />
+      <workItem from="1659796381391" duration="15200000" />
+      <workItem from="1659881541751" duration="12422000" />
     </task>
     <task id="LOCAL‎00001" summary="Add classes">
       <created>1659104440139</created>
@@ -203,7 +204,13 @@
       <option name="presentableId" value="LOCAL‎00015" />
       <updated>1659810081593</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL‎00016" summary="Add printMainMenu">
+      <created>1659811841484</created>
+      <option name="number" value="LOCAL‎00016" />
+      <option name="presentableId" value="LOCAL‎00016" />
+      <updated>1659811841484</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -236,6 +243,7 @@
     <MESSAGE value="Add selectConfigurationAuto (Q4)" />
     <MESSAGE value="Add cipherInputText (Q5)" />
     <MESSAGE value="Add resetConfiguration (Q6)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add resetConfiguration (Q6)" />
+    <MESSAGE value="Add printMainMenu" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add printMainMenu" />
   </component>
 </project>

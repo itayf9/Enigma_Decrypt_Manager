@@ -10,7 +10,7 @@ public class Main {
 
         engine.buildMachineFromXmlFile(xmlFileName);
 
-        engine.updateConfiguration("2,1", "CC", "I", "A|F");
+        //engine.updateConfiguration("2,1", "CC", "I", "A|F");
         //System.out.println(engine);
 
         //System.out.println(((EnigmaEngine) engine).cipherText("CEFDABCEFFCEDABABD").equals("AAAEEEBBBDDDCCCFFF"));
