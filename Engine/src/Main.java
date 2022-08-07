@@ -1,6 +1,3 @@
-import dto.Secret;
-import machine.component.Rotor;
-
 public class Main {
     public static void main(String[] args) {
 

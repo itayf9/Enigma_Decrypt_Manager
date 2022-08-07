@@ -1,14 +1,14 @@
 package dto;
 
-public class DTO {
+public class DTOstatus {
 
     private boolean isSucceed;
     private String details;
 
-    public DTO() {
+    public DTOstatus() {
     }
 
-    public DTO(boolean isSucceed, String details) {
+    public DTOstatus(boolean isSucceed, String details) {
         this.isSucceed = isSucceed;
         this.details = details;
     }

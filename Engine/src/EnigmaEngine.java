@@ -12,7 +12,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.*;
-import validation.EnigmaValidator;
+
+import utill.CharacterPair;
 
 import static machine.EnigmaMachine.advanceCipherCounter;
 import static machine.EnigmaMachine.getCipherCounter;
@@ -24,13 +25,9 @@ public class EnigmaEngine implements Engine, EnigmaValidator {
     // The engine contains the Enigma Machine instance.
     private EnigmaMachine machine;
 
-    // a structure that holds the configuration parameters that are valid,
-    // and still not in the machine.
-    private Secret pendingConfiguration;
 
     // engine constructor
     public EnigmaEngine(){
-        this.pendingConfiguration = new Secret();
     }
 
     // creating new machine instance using all the parts the machine needs.
@@ -211,14 +208,13 @@ public class EnigmaEngine implements Engine, EnigmaValidator {
                 inUseReflectorSymbol, inUsePlugs);
     }
 
-
-    public DTO selectConfigurationManual (List<Integer> rotorsIDs, String windows, int reflectorID ,List<String> plugs){
+    public DTOstatus selectConfigurationManual (List<Integer> rotorsIDs, String windows, int reflectorID , List<String> plugs){
         boolean isSucceed = true;
         String details = null;
        
         updateConfiguration(rotorsIDs, windows, reflectorID, plugs);
 
-        return new DTO(isSucceed, details);
+        return new DTOstatus(isSucceed, details);
     }
 
     /*
@@ -289,7 +285,7 @@ public class EnigmaEngine implements Engine, EnigmaValidator {
         return new DTOciphertext(isSucceed , outputText);
     }
 
-    public DTO resetConfiguration () {
+    public DTOresetConfig resetConfiguration () {
 
         boolean isSucceed = true;
         String detail = "";
@@ -300,10 +296,10 @@ public class EnigmaEngine implements Engine, EnigmaValidator {
             machine.getInUseRotors().get(i).rotateToOffset(currentOffset);
         }
 
-        return new DTO(isSucceed, detail);
+        return new DTOresetConfig(isSucceed, detail);
     }
 
-    public DTO validateRotors (List<Integer> rotorsIDs){
+    public DTOstatus validateRotors (List<Integer> rotorsIDs){
         boolean isSucceed = true;
         String details = null;
 
@@ -322,10 +318,9 @@ public class EnigmaEngine implements Engine, EnigmaValidator {
             }
         }
 
-        return new DTO(isSucceed, details);
+        return new DTOstatus(isSucceed, details);
     }
-
-    public DTO validateWindowCharacters (String windowChars){
+    public DTOstatus validateWindowCharacters (String windowChars){
         boolean isSucceed = false;
         String details = null;
         final int CHAR_NOT_FOUND = -1;
@@ -337,10 +332,9 @@ public class EnigmaEngine implements Engine, EnigmaValidator {
             }
         }
 
-        return new DTO(isSucceed, details);
+        return new DTOstatus(isSucceed, details);
     }
-
-    public DTO validateReflector (int reflectorID){
+    public DTOstatus validateReflector (int reflectorID){
         boolean isSucceed = true;
         String details = null;
 
@@ -349,10 +343,9 @@ public class EnigmaEngine implements Engine, EnigmaValidator {
             isSucceed = false;
         }
 
-        return new DTO(isSucceed, details);
+        return new DTOstatus(isSucceed, details);
     }
-
-    public DTO validatePlugs (List<String> plugs){
+    public DTOstatus validatePlugs (List<String> plugs){
         boolean isSucceed = true;
         String details = null;
         List<Boolean> alreadyPluged = new ArrayList<>(Collections.nCopies(machine.getAlphabet().length(), false));
@@ -380,7 +373,7 @@ public class EnigmaEngine implements Engine, EnigmaValidator {
             }
         }
 
-        return new DTO(isSucceed, details);
+        return new DTOstatus(isSucceed, details);
     }
 
 

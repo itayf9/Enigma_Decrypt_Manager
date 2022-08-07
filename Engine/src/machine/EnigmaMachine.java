@@ -3,7 +3,7 @@ package machine;
 import machine.component.PlugBoard;
 import machine.component.Reflector;
 import machine.component.Rotor;
-import dto.CharacterPair;
+import utill.CharacterPair;
 
 import java.util.ArrayList;
 import java.util.List;

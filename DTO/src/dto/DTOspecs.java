@@ -1,5 +1,7 @@
 package dto;
 
+import utill.CharacterPair;
+
 import java.util.List;
 
 public class DTOspecs extends DTO {
