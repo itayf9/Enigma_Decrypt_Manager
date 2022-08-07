@@ -189,6 +189,7 @@ public class EnigmaEngine implements Engine {
      * fetching the current machine specifications.
      * @return DTO object that represents the specs.
      */
+    @Override
     public DTOspecs displayMachineSpecifications () {
 
         int availableRotorsCount = machine.getAvailableRotorsLen();
@@ -208,6 +209,7 @@ public class EnigmaEngine implements Engine {
                 inUseReflectorSymbol, inUsePlugs);
     }
 
+    @Override
     public DTOstatus selectConfigurationManual (List<Integer> rotorsIDs, String windows, int reflectorID , List<String> plugs){
         boolean isSucceed = true;
         String details = null;
@@ -272,6 +274,7 @@ public class EnigmaEngine implements Engine {
                 randomGeneratedReflectorID, randomGeneratedPlugs);
     }
 
+    @Override
     public DTOciphertext cipherInputText (String inputText) {
 
         boolean isSucceed = true;
@@ -290,6 +293,7 @@ public class EnigmaEngine implements Engine {
         return new DTOciphertext(isSucceed , outputText);
     }
 
+    @Override
     public DTOresetConfig resetConfiguration () {
 
         boolean isSucceed = true;
@@ -304,6 +308,7 @@ public class EnigmaEngine implements Engine {
         return new DTOresetConfig(isSucceed, detail);
     }
 
+    @Override
     public DTOstatus validateRotors (List<Integer> rotorsIDs){
         boolean isSucceed = true;
         String details = null;
@@ -325,6 +330,8 @@ public class EnigmaEngine implements Engine {
 
         return new DTOstatus(isSucceed, details);
     }
+
+    @Override
     public DTOstatus validateWindowCharacters (String windowChars){
         boolean isSucceed = false;
         String details = null;
@@ -339,6 +346,8 @@ public class EnigmaEngine implements Engine {
 
         return new DTOstatus(isSucceed, details);
     }
+
+    @Override
     public DTOstatus validateReflector (int reflectorID){
         boolean isSucceed = true;
         String details = null;
@@ -350,6 +359,8 @@ public class EnigmaEngine implements Engine {
 
         return new DTOstatus(isSucceed, details);
     }
+
+    @Override
     public DTOstatus validatePlugs (List<String> plugs){
         boolean isSucceed = true;
         String details = null;
