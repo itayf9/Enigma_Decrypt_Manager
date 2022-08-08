@@ -228,7 +228,7 @@ public class EnigmaEngine implements Engine {
         StringBuilder randomGeneratedWindowCharacters = new StringBuilder();
         int randomPlugsCount =  (int)Math.floor(Math.random() * (alphabet.length() + 1)) / 2;
         List<String> randomGeneratedPlugs = new ArrayList<>(Collections.nCopies(randomPlugsCount, ""));
-        List<Boolean> alreadyPluged = new ArrayList<>(Collections.nCopies(randomPlugsCount, false));
+        List<Boolean> alreadyPluged = new ArrayList<>(Collections.nCopies(alphabet.length(), false));
 
         // randomizes rotors ID and order
         for (int i = 0; i < machine.getRotorsCount(); i++) {
@@ -256,14 +256,17 @@ public class EnigmaEngine implements Engine {
             int firstInPlugIndex = (int)Math.floor( Math.random() * alphabet.length());
             int secondInPlugIndex = (int)Math.floor( Math.random() * alphabet.length());
 
-            while (!alreadyPluged.get( firstInPlugIndex)){
+            while (alreadyPluged.get( firstInPlugIndex)){
                 firstInPlugIndex = (int)Math.floor( Math.random() * alphabet.length());
             }
             alreadyPluged.set( firstInPlugIndex, true);
-            while (!alreadyPluged.get( secondInPlugIndex)){
+            while (alreadyPluged.get( secondInPlugIndex)){
                 secondInPlugIndex = (int)Math.floor( Math.random() * alphabet.length());
             }
             alreadyPluged.set( secondInPlugIndex, true);
+
+            String currentPlug = "" + alphabet.charAt(firstInPlugIndex) + alphabet.charAt(secondInPlugIndex);
+            randomGeneratedPlugs.set(i, currentPlug);
         }
 
         // updates the configuration
