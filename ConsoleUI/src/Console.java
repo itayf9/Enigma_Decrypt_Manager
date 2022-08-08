@@ -15,7 +15,7 @@ public class Console {
 
     }
 
-    public static void run(){
+    public static void run() {
         Engine engine = new EnigmaEngine();
         String xmlFileName = "Engine/src/ex1-sanity-small.xml";
         boolean isExit = false;
@@ -23,15 +23,13 @@ public class Console {
         printMainMenu();
         Operation choice = getInputUserChoice();
 
-        while (!isExit){
-            switch(choice) {
+        while (!isExit) {
+            switch (choice) {
                 case READ_SYSTEM_DETAILS_FROM_XML:
-                    System.out.println(choice.name());
                     // get XML fileName();
                     engine.buildMachineFromXmlFile(xmlFileName);
                     break;
                 case DISPLAY_SPECS:
-                    System.out.println(choice.name());
                     System.out.println(engine.displayMachineSpecifications());
                     break;
                 case CHOOSE_INIT_CONFIG_MANUAL:
@@ -296,4 +294,3 @@ public class Console {
         return cipherText;
     }
 }
-

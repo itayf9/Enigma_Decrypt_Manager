@@ -333,7 +333,7 @@ public class EnigmaEngine implements Engine {
 
     @Override
     public DTOstatus validateWindowCharacters (String windowChars){
-        boolean isSucceed = false;
+        boolean isSucceed = true;
         String details = null;
         final int CHAR_NOT_FOUND = -1;
 
