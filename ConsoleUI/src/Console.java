@@ -1,4 +1,10 @@
-public class Main {
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class Console {
+
+    private static final Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
         run();
 

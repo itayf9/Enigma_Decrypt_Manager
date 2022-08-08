@@ -3,6 +3,7 @@ import dto.*;
 import java.util.List;
 
 public interface Engine {
+    public void buildMachineFromXmlFile(String fileName);
 
     public DTOspecs displayMachineSpecifications();
 

@@ -69,11 +69,8 @@ public class EnigmaEngine implements Engine {
         try {
             InputStream inputStream = new FileInputStream(new File(fileName));
             CTEEnigma cteEnigma = deserializeFrom(inputStream);
-
-            System.out.println(cteEnigma);
             buildMachineFromCTEEnigma(cteEnigma);
             System.out.println(machine);
-
 
         } catch (JAXBException | FileNotFoundException e) {
             e.printStackTrace();
@@ -226,7 +223,7 @@ public class EnigmaEngine implements Engine {
         List<Integer> randomGeneratedRotorIDs= new ArrayList<>();
         int randomGeneratedReflectorID;
         StringBuilder randomGeneratedWindowCharacters = new StringBuilder();
-        int randomPlugsCount =  (int)Math.floor(Math.random() * (alphabet.length() + 1)) / 2;
+        int randomPlugsCount = (int)Math.floor(Math.random() * (alphabet.length() + 1)) / 2;
         List<String> randomGeneratedPlugs = new ArrayList<>(Collections.nCopies(randomPlugsCount, ""));
         List<Boolean> alreadyPluged = new ArrayList<>(Collections.nCopies(alphabet.length(), false));
 
