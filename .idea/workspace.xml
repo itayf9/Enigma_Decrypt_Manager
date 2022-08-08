@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment=" Fix overrides in Engine.java">
-      <change afterPath="$PROJECT_DIR$/ConsoleUI/src/Operation.java" afterDir="false" />
+    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Implement DISPLAY_SPECS, CHOOSE_INIT_CONFIG_AUTO, PROCESS_INPUT, &#10;RESET_CURRENT_CODE in ConsoleUI">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleUI/ConsoleUI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUI/ConsoleUI.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleUI/src/EnigmaAPI.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleUI/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUI/src/Console.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleUI/src/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUI/src/Console.java" afterDir="false" />
     </list>
     <list id="4d3468c9-f8a2-4a3c-84be-6dffde06732b" name="Changes by kingd" comment="Change of kingd">
-      <change beforePath="$PROJECT_DIR$/ConsoleUI/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUI/src/Console.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/Engine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleUI/src/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUI/src/Console.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,22 +35,26 @@
   <component name="LineStatusTrackerManager">
     <file path="$PROJECT_DIR$/ConsoleUI/src/Console.java">
       <ranges>
-        <range start1="0" end1="1" start2="0" end2="7" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="2" end1="2" start2="8" end2="16" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="5" end1="12" start2="19" end2="66" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="13" end1="13" start2="67" end2="86" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="27" end1="27" start2="100" end2="132" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/Engine/src/EnigmaEngine.java">
-      <ranges>
-        <range start1="71" end1="73" start2="71" end2="71" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="75" end1="76" start2="73" end2="73" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="228" end1="229" start2="225" end2="226" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="230" end1="231" start2="227" end2="228" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="258" end1="259" start2="255" end2="256" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="262" end1="263" start2="259" end2="260" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="266" end1="266" start2="263" end2="266" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="0" end1="0" start2="0" end2="3" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="1" end1="1" start2="4" end2="5" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="13" end1="14" start2="17" end2="18" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="21" end1="23" start2="25" end2="27" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="24" end1="25" start2="28" end2="28" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="29" end1="30" start2="32" end2="32" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="33" end1="35" start2="35" end2="86" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="37" end1="38" start2="88" end2="88" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="41" end1="42" start2="91" end2="91" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="47" end1="48" start2="96" end2="96" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="51" end1="52" start2="99" end2="99" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="68" end1="87" start2="115" end2="115" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="125" end1="125" start2="153" end2="210" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="127" end1="127" start2="212" end2="213" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="128" end1="128" start2="214" end2="215" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="129" end1="129" start2="216" end2="217" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="130" end1="130" start2="218" end2="220" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="131" end1="131" start2="221" end2="224" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="132" end1="132" start2="225" end2="295" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="133" end1="135" start2="296" end2="296" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
       </ranges>
     </file>
   </component>
@@ -139,7 +138,7 @@
       <workItem from="1659701029393" duration="1560000" />
       <workItem from="1659796381391" duration="15200000" />
       <workItem from="1659881541751" duration="18299000" />
-      <workItem from="1659963574932" duration="9876000" />
+      <workItem from="1659963574932" duration="16811000" />
     </task>
     <task id="LOCAL‎00001" summary="Add classes">
       <created>1659104440139</created>
@@ -267,7 +266,19 @@
       <option name="presentableId" value="LOCAL‎00021" />
       <updated>1659900541818</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL‎00022" summary="Implement DISPLAY_SPECS, CHOOSE_INIT_CONFIG_AUTO, PROCESS_INPUT, &#10;RESET_CURRENT_CODE in ConsoleUI">
+      <created>1659973870582</created>
+      <option name="number" value="LOCAL‎00022" />
+      <option name="presentableId" value="LOCAL‎00022" />
+      <updated>1659973870582</updated>
+    </task>
+    <task id="LOCAL‎00023" summary="Change of kingd">
+      <created>1659973894777</created>
+      <option name="number" value="LOCAL‎00023" />
+      <option name="presentableId" value="LOCAL‎00023" />
+      <updated>1659973894777</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -305,23 +316,14 @@
     <MESSAGE value="Fix validation selectConfigurationAuto" />
     <MESSAGE value="Fix files locations + Fix Engine.java" />
     <MESSAGE value="Add Override notations to Engine.java" />
-    <MESSAGE value="Change of kingd" />
     <MESSAGE value=" Fix overrides in Engine.java" />
-    <option name="LAST_COMMIT_MESSAGE" value=" Fix overrides in Engine.java" />
+    <MESSAGE value="Implement DISPLAY_SPECS, CHOOSE_INIT_CONFIG_AUTO, PROCESS_INPUT, &#10;RESET_CURRENT_CODE in ConsoleUI" />
+    <MESSAGE value="Change of kingd" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change of kingd" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/ConsoleUI/src/Console.java</url>
-          <line>44</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/ConsoleUI/src/Console.java</url>
-          <line>38</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Engine/src/EnigmaEngine.java</url>
           <line>220</line>

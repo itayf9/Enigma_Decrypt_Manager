@@ -1,4 +1,8 @@
+import dto.DTOstatus;
+
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Console {
@@ -31,25 +35,70 @@ public class Console {
                     System.out.println(engine.displayMachineSpecifications());
                     break;
                 case CHOOSE_INIT_CONFIG_MANUAL:
-                    System.out.println(choice.name());
-                    //engine.selectConfigurationManual();
+                    int rotorCount = 2;
+                    List<Integer> rotorsIDs = getInputListOfIntegers(rotorCount);
+                    DTOstatus rotorsIDsStatus = engine.validateRotors(rotorsIDs);
+                    while (!rotorsIDsStatus.isSucceed()) {
+                        switch (rotorsIDsStatus.getDetails()) {
+                            case "problem":
+                                break;
+                        }
+
+                        rotorsIDs = getInputListOfIntegers(rotorCount);
+                        rotorsIDsStatus = engine.validateRotors(rotorsIDs);
+                    }
+
+                    String windows = getInputSequenceOfCharacters(rotorCount);
+                    DTOstatus windowCharactersStatus = engine.validateWindowCharacters(windows);
+                    while (!windowCharactersStatus.isSucceed()) {
+                        switch (windowCharactersStatus.getDetails()) {
+                            case "problem":
+                                break;
+                        }
+
+                        windows = getInputSequenceOfCharacters(rotorCount);
+                        windowCharactersStatus = engine.validateWindowCharacters(windows);
+                    }
+
+                    int reflectorID = getInputInteger();
+                    DTOstatus reflectorIDStatus = engine.validateReflector(reflectorID);
+                    while (!reflectorIDStatus.isSucceed()) {
+                        switch (reflectorIDStatus.getDetails()) {
+                            case "problem":
+                                break;
+                        }
+
+                        reflectorID = getInputInteger();
+                        reflectorIDStatus = engine.validateReflector(reflectorID);
+                    }
+
+
+                    List<String> plugs = getInputListOfStrings();
+                    DTOstatus plugsStatus = engine.validatePlugs(plugs);
+                    while (!plugsStatus.isSucceed()) {
+                        switch (plugsStatus.getDetails()) {
+                            case "problem":
+                                break;
+                        }
+
+                        plugs = getInputListOfStrings();
+                        plugsStatus = engine.validatePlugs(plugs);
+                    }
+
+                    engine.selectConfigurationManual(rotorsIDs, windows, reflectorID,plugs);
                     break;
                 case CHOOSE_INIT_CONFIG_AUTO:
-                    System.out.println(choice.name());
                     System.out.println(engine.selectConfigurationAuto());
                     break;
                 case PROCESS_INPUT:
-                    System.out.println(choice.name());
                     System.out.println("Please enter text to cipher");
                     String inputText = getInputCipherText();
                     System.out.println(engine.cipherInputText(inputText).getDetails());
                     break;
                 case RESET_CURRENT_CODE:
-                    System.out.println(choice.name());
                     engine.resetConfiguration();
                     break;
                 case HISTORY_AND_STATISTICS:
-                    System.out.println(choice.name());
                     // engine.history();
                     break;
                 case EXIT_SYSTEM:
@@ -65,25 +114,6 @@ public class Console {
         }
 
 
-    }
-
-    private static String getInputCipherText() {
-
-        boolean isValid = false;
-        String cipherText = scanner.nextLine();
-
-        while (!isValid) {
-            if (cipherText.length() == 0) {
-                System.out.println("Invalid input - please enter only one option number! ");
-                cipherText = scanner.nextLine();
-            }
-            else {
-                System.out.println(cipherText);
-                isValid = true;
-            }
-        }
-
-        return cipherText;
     }
 
     public static void printMainMenu () {
@@ -123,12 +153,147 @@ public class Console {
         return Operation.getOperation(choice.charAt(0));
     }
 
+    public static List<Integer> getInputListOfIntegers(int numberOfIntegers){
+
+        boolean isValid= false;
+        int currentRotorID = 0;
+        List<Integer> listOfChoices = new ArrayList<>();
+
+        System.out.println("Please enter " + numberOfIntegers + " rotors by their ID's." );
+
+        for (int i = 0; i < numberOfIntegers; i++) {
+
+            // String choice = scanner.nextLine();
+
+            while (!isValid) {
+                System.out.println("Please enter the ID of rotor #" + i + " (from right to left).");
+                try {
+                    currentRotorID = scanner.nextInt();
+                    isValid = true;
+                } catch (InputMismatchException e) {
+                    System.out.println("Error! Please enter numbers only.");
+                }
+            }
+
+            isValid = false;
+            listOfChoices.add(currentRotorID);
+
+        }
+
+        return listOfChoices;
+    }
+
+    private static String getInputSequenceOfCharacters(int numberOfCharacters) {
+
+        scanner.nextLine();
+        boolean isValid= false;
+        StringBuilder stringOfChoices = new StringBuilder();
+
+        System.out.println("Please enter " + numberOfCharacters + " letters that will be the window's letters." );
+
+        for (int i = 0; i < numberOfCharacters; i++) {
+            System.out.println("Please enter the window letter of rotor #" + i + " (from right to left.");
+            String currentCharacter = scanner.nextLine();
+
+            while (!isValid){
+                if (currentCharacter.length() > 1) {
+                    System.out.println("Error! You have entered more than one character. ");
+
+                    System.out.println("Please enter the window letter of rotor #" + i + " (from right to left.");
+                    currentCharacter = scanner.nextLine();
+                }
+                else {
+                    isValid = true;
+                }
+
+            }
+
+            isValid = false;
+            stringOfChoices.append(currentCharacter);
 
 
+        }
+
+        return stringOfChoices.toString();
+
+    }
+
+    private static int getInputInteger() {
+        boolean isValid= false;
+
+        System.out.println("Please enter the number of the wanted reflector.");
+        System.out.println("1. I\n2. II\n3. III\n4. IV\n5. V\n");
+        String choice = scanner.nextLine();
+
+        while (!isValid) {
+            if (choice.length() > 1) {
+                System.out.println("Invalid input. try again.");
+                choice = scanner.nextLine();
+            }
+            else if (choice.charAt(0) < '1' || choice.charAt(0) > '5') {
+                System.out.println("invalid option - try again ! with options from 1-5");
+                choice = scanner.nextLine();
+            } else {
+                isValid = true;
+            }
+        }
+        return Integer.parseInt(choice);
+    }
+
+    private static List<String> getInputListOfStrings() {
+        boolean isValid = false;
+        int numOfPlugs = 0;
+        List<String> plugsList = new ArrayList<>();
+
+        while(!isValid) {
+            System.out.println("Please enter num of plugs you want to add to the machine.");
+            try{
+                numOfPlugs = scanner.nextInt();
+                isValid = true;
+
+            } catch(InputMismatchException e) {
+                System.out.println("Input is not a number. try again.");
+            }
+        }
+        // clear the buffer after integer input
+        scanner.nextLine();
 
 
+        for (int i = 0; i < numOfPlugs; i++) {
+            boolean validPlug = false;
+            while(!validPlug) {
+                String currentPlug = scanner.nextLine();
+                if(currentPlug.length() > 2) {
+                    System.out.println("Invalid Plug! - please enter 2 letters from the alphabet and press enter. e.g: AB");
+                } else if(currentPlug.length() < 2) {
+                    System.out.println("Invalid Plug! - please enter 2 letters from the alphabet and press enter. e.g: AB");
+                } else {
+                    validPlug = true;
+                    plugsList.add(currentPlug);
+                }
+            }
+        }
+        return plugsList;
+    }
 
 
+    private static String getInputCipherText() {
 
+        boolean isValid = false;
+        String cipherText = scanner.nextLine();
+
+        while (!isValid) {
+            if (cipherText.length() == 0) {
+                System.out.println("Invalid input");
+                cipherText = scanner.nextLine();
+            }
+            else {
+                System.out.println(cipherText);
+                isValid = true;
+            }
+        }
+
+        return cipherText;
+    }
 }
 
