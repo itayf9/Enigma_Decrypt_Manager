@@ -87,8 +87,12 @@ public class DTOspecs extends DTOstatus {
         }
         res.append("\n");
         res.append("Available Reflectors Count: " + availableReflectorsCount + '\n' +
-                "Ciphered Texts Count: " + cipheredTextsCount + '\n' +
-                "Current Configuration: <") ;
+                "Ciphered Texts Count: " + cipheredTextsCount + '\n');
+
+        if (super.getDetails().equals(Problem.NO_CONFIGURATION)){
+            res.append("No configuration has been chosen yet.");
+        } else {
+            res.append("Current Configuration: <") ;
 
             for (int i = inUseRotorsIDs.size()-1; i >= 0 ; i--) {
                 res.append(inUseRotorsIDs.get(i).toString());
@@ -120,26 +124,6 @@ public class DTOspecs extends DTOstatus {
                 res.append(">");
             }
         }
-        res.append("><");
-
-        res.append(inUseReflectorSymbol);
-        res.append(">");
-
-
-        if(inUsePlugs.size() > 0) {
-            res.append("<");
-            for (int i = 0; i < inUsePlugs.size(); i++) {
-                res.append(inUsePlugs.get(i).getFirst());
-                res.append("|");
-                res.append(inUsePlugs.get(i).getSecond());
-                if (i != inUsePlugs.size()-1) {
-                    res.append(",");
-                }
-            }
-            res.append(">");
-        }
-
-
         return res.toString();
     }
 }

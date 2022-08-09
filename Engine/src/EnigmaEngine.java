@@ -231,10 +231,14 @@ public class EnigmaEngine implements Engine {
         int availableReflectorsCount = machine.getAvailableReflectorsLen();
         int cipheredTextsCount = getCipherCounter();
 
-        List<Integer> inUseRotorsIDs = machine.getInUseRotorsIDs();
-        List<Character> windowsCharacters = machine.getAllWindowsCharacters();
-        String inUseReflectorSymbol = decimalToRoman(machine.getInUseReflector().getId());
-        List<CharacterPair> inUsePlugs = machine.getListOfPlugPairs();
+        if (machine.isConfigured()) {
+            inUseRotorsIDs = machine.getInUseRotorsIDs();
+            windowsCharacters = machine.getAllWindowsCharacters();
+            inUseReflectorSymbol = decimalToRoman(machine.getInUseReflector().getId());
+            inUsePlugs = machine.getListOfPlugPairs();
+        } else {
+            details = Problem.NO_CONFIGURATION;
+        }
 
 
         return new DTOspecs(isSucceeded, details, availableRotorsCount, inUseRotorsCount, notchPositions,

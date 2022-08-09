@@ -15,7 +15,7 @@ public class Console {
     private  static boolean isXmlLoaded = false;
     private static boolean isMachineConfigured = false;
 
-    private static String xmlFileName = "Engine/src/ex1-sanity-small.xml";
+    private static String xmlFileName = "Engine/src/ex1-sanity-paper-enigma.xml";
 
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -40,20 +40,25 @@ public class Console {
                     loadXmlFile();
                     break;
                 case DISPLAY_SPECS:
-                    displaySpecifications();
+                    if (isXmlLoaded) {
+                        displaySpecifications();
+                    } else {
+                        System.out.println("Please load machine from a file before selecting further operation.");
+                    }
+
                     break;
                 case CHOOSE_INIT_CONFIG_MANUAL:
                     if (isXmlLoaded) {
                         chooseConfigManual();
                     } else {
-                        System.out.println("Please load XML file ......");
+                        System.out.println("Please load machine from a file before selecting further operation.");
                     }
                     break;
                 case CHOOSE_INIT_CONFIG_AUTO:
                     if (isXmlLoaded) {
                         chooseConfigAuto();
                     } else {
-                        System.out.println("Please load XML file ......");
+                        System.out.println("Please load machine from a file before selecting further operation.");
                     }
                     break;
                 case PROCESS_INPUT:
@@ -65,7 +70,11 @@ public class Console {
 
                     break;
                 case RESET_CURRENT_CODE:
-                    resetConfig();
+                    if (isMachineConfigured){
+                        resetConfig();
+                    } else {
+                        System.out.println("Please enter configuration, before ciphering some text.");
+                    }
                     break;
                 case HISTORY_AND_STATISTICS:
                     getHistoryAndStats();
@@ -125,7 +134,7 @@ public class Console {
 
     /**
      * get rotors ids from the user
-     * @param numberOfIntegers
+     * @param numberOfIntegers the rotors count
      * @return list of integers representing the rotor's id's
      */
     public static List<Integer> getInputListOfIntegers(int numberOfIntegers){
@@ -163,7 +172,7 @@ public class Console {
 
     /**
      * get alphabet characters from the user
-     * @param numberOfCharacters
+     * @param numberOfCharacters number of rotors count as well
      * @return String of characters
      */
     private static String getInputSequenceOfCharacters(int numberOfCharacters) {
@@ -182,7 +191,7 @@ public class Console {
                 if (currentCharacter.length() > 1) {
                     System.out.println("Error! You have entered more than one character. ");
 
-                    System.out.print("Window charcter for rotor #" + i + ": ");
+                    System.out.print("Window character for rotor #" + i + ": ");
                     currentCharacter = scanner.nextLine().toUpperCase();
                 }
                 else {
@@ -474,7 +483,11 @@ public class Console {
      * Q6 - reset machine config to it's original last config.
      */
     static private void resetConfig() {
-        engine.resetConfiguration();
+        DTOresetConfig resetStatus = engine.resetConfiguration();
+        if (resetStatus.isSucceed()){
+            System.out.println("Configuration has reset successfully.");
+        }
+
     }
     /**
      * Q7 - gets history and stats from the machine and display to user.
