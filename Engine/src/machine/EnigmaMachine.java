@@ -41,18 +41,6 @@ public class EnigmaMachine {
     // current text that got ciphered in the machine.
     private static int cipherCounter = 0;
 
-    /*public EnigmaMachine(ArrayList<Rotor> inUseRotors, Reflector inUseReflector, String alphabet, String plugs){
-        this.inUseRotors = inUseRotors;
-        this.inUseReflector= inUseReflector;
-        this.alphabet= alphabet;
-        buildAlphabetMap();
-        this.plugBoard= new PlugBoard();
-        plugBoard.initPlugBoardMap(character2index, plugs);
-
-
-    }*/
-
-
     // Constructor of Enigma Machine
     public EnigmaMachine(ArrayList<Rotor> availableRotors, ArrayList<Reflector> availableReflectors, int rotorsCount, String alphabet, Map<Character, Integer> character2index) {
         this.availableRotors = availableRotors;
@@ -124,6 +112,9 @@ public class EnigmaMachine {
     // by sending the updated list of rotors, reflectors and plugs.
     public void setMachineConfiguration(List<Integer> rotorsIDs, List<Integer> windowOffsets , int reflectorID, List<String> plugs) {
 
+        if(inUseRotors.size() != 0) {
+            inUseRotors.clear();
+        }
         for (int i = 0; i < rotorsIDs.size(); i++) {
             inUseRotors.add(availableRotors.get(rotorsIDs.get(i) - 1));
             availableRotors.get(rotorsIDs.get(i) - 1).rotateToOffset(windowOffsets.get(i));
@@ -132,7 +123,6 @@ public class EnigmaMachine {
         inUseWindowsOffsets = windowOffsets;
 
         inUseReflector = availableReflectors.get(reflectorID - 1);
-
 
         plugBoard.initPlugBoardMap(character2index, plugs);
     }

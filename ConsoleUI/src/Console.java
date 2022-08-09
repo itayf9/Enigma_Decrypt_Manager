@@ -1,3 +1,4 @@
+import dto.DTOciphertext;
 import dto.DTOstatus;
 
 import java.util.ArrayList;
@@ -19,6 +20,9 @@ public class Console {
         run();
     }
 
+    /**
+     * runs the Console UI
+     */
     public static void run() {
 
         boolean isExit = false;
@@ -43,7 +47,11 @@ public class Console {
                     }
                     break;
                 case CHOOSE_INIT_CONFIG_AUTO:
-                    chooseConfigAuto();
+                    if (isXmlLoaded) {
+                        chooseConfigAuto();
+                    } else {
+                        System.out.println("Please load XML file ......");
+                    }
                     break;
                 case PROCESS_INPUT:
                     if (isMachineConfigured){
@@ -70,6 +78,9 @@ public class Console {
         }
     }
 
+    /**
+     * the menu operations
+     */
     public static void printMainMenu () {
         System.out.println("\nSelect an operation:");
         System.out.println("1 - Load System Details From File.\n" +
@@ -82,6 +93,10 @@ public class Console {
                 "8 - Exit.\n");
     }
 
+    /**
+     * getting user choice from the menu
+     * @return Enum operation
+     */
     public static Operation getInputUserChoice() {
 
         boolean isValid= false;
@@ -105,6 +120,11 @@ public class Console {
         return Operation.getOperation(choice.charAt(0));
     }
 
+    /**
+     * get rotors ids from the user
+     * @param numberOfIntegers
+     * @return list of integers representing the rotor's id's
+     */
     public static List<Integer> getInputListOfIntegers(int numberOfIntegers){
 
         boolean isValid= false;
@@ -138,9 +158,13 @@ public class Console {
         return listOfChoices;
     }
 
+    /**
+     * get alphabet characters from the user
+     * @param numberOfCharacters
+     * @return String of characters
+     */
     private static String getInputSequenceOfCharacters(int numberOfCharacters) {
 
-        scanner.nextLine();
         boolean isValid= false;
         StringBuilder stringOfChoices = new StringBuilder();
 
@@ -174,6 +198,10 @@ public class Console {
 
     }
 
+    /**
+     * get reflector input from user.
+     * @return integer representing reflector id.
+     */
     private static int getInputInteger() {
         boolean isValid= false;
 
@@ -196,6 +224,10 @@ public class Console {
         return Integer.parseInt(choice);
     }
 
+    /**
+     * get the plugs from the user.
+     * @return a list of strings, each string contains 2 characters representing a Plug.
+     */
     private static List<String> getInputListOfStrings() {
         boolean isValid = false;
         int numOfPlugs = 0;
@@ -253,6 +285,10 @@ public class Console {
         return plugsList;
     }
 
+    /**
+     * get text to cipher from user
+     * @return string of text.
+     */
     private static String getInputCipherText() {
 
         boolean isValid = false;
@@ -271,19 +307,34 @@ public class Console {
         return cipherText;
     }
 
+    /**
+     * get fileName from user.
+     * @return string represents the file name.
+     */
     private String getXMLFileName() {
         return null; // for now
     }
 
+    /**
+     * Q1 - loads xml file and builds the enigma machine.
+     */
+
     static private void loadXmlFile() {
         // String xmlFileName = getXMLFileName();
         engine.buildMachineFromXmlFile(xmlFileName);
+        isXmlLoaded = true;
     }
 
+    /**
+     * Q2 - display the machine specifications.
+     */
     static private void displaySpecifications() {
         System.out.println(engine.displayMachineSpecifications());
     }
 
+    /**
+     * Q3 - choose new config manually.
+     */
     static private void chooseConfigManual() {
         int rotorCount = engine.getRotorsCount();
         List<Integer> rotorsIDs = getInputListOfIntegers(rotorCount);
@@ -369,13 +420,21 @@ public class Console {
         DTOstatus configStatus = engine.selectConfigurationManual(rotorsIDs, windows, reflectorID,plugs);
         if (configStatus.isSucceed()){
             System.out.println("Machine has been configured successfully.");
+            isMachineConfigured = true;
         }
     }
 
+    /**
+     * Q4 - choose new config automatically.
+     */
     static private void chooseConfigAuto() {
         System.out.println(engine.selectConfigurationAuto());
+        isMachineConfigured = true;
     }
 
+    /**
+     * Q5 - gets input from user and send it to machine to cipher.
+     */
     static private void processInput() {
         System.out.println("Please enter text to cipher: ");
         String inputText = getInputCipherText();
@@ -403,11 +462,15 @@ public class Console {
 
 
     }
-
+    /**
+     * Q6 - reset machine config to it's original last config.
+     */
     static private void resetConfig() {
         engine.resetConfiguration();
     }
-
+    /**
+     * Q7 - gets history and stats from the machine and display to user.
+     */
     static private void getHistoryAndStats() {
         //
     }

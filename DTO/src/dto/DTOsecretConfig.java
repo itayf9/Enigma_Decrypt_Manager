@@ -5,7 +5,7 @@ import java.util.List;
 public class DTOsecretConfig {
     private List<Integer> rotors;
     private String windows;
-    private int reflector;
+    private String reflectorSymbol;
     private List<String> plugs;
 
     public DTOsecretConfig(List<Integer> rotors, String windows, String reflectorSymbol, List<String> plugs) {
@@ -23,8 +23,8 @@ public class DTOsecretConfig {
         return windows;
     }
 
-    public int getReflector() {
-        return reflector;
+    public String getReflectorSymbol() {
+        return reflectorSymbol;
     }
 
     public List<String> getPlugs() {
@@ -49,7 +49,7 @@ public class DTOsecretConfig {
         }
         res.append("><");
 
-        res.append(reflector);
+        res.append(reflectorSymbol);
         res.append(">");
 
 
