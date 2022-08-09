@@ -3,17 +3,20 @@ import dto.*;
 import java.util.List;
 
 public interface Engine {
-    public void buildMachineFromXmlFile(String fileName);
 
-    public DTOspecs displayMachineSpecifications();
+    int getRotorsCount();
 
-    public DTOstatus selectConfigurationManual(List<Integer> rotorsIDs, String windows, int reflectorID, List<String> plugs);
+    void buildMachineFromXmlFile(String fileName);
 
-    public DTOsecretConfig selectConfigurationAuto();
+    DTOspecs displayMachineSpecifications();
 
-    public DTOciphertext cipherInputText(String inputText);
+    DTOstatus selectConfigurationManual(List<Integer> rotorsIDs, String windows, int reflectorID, List<String> plugs);
 
-    public DTOresetConfig resetConfiguration();
+    DTOsecretConfig selectConfigurationAuto();
+
+    DTOciphertext cipherInputText(String inputText);
+
+    DTOresetConfig resetConfiguration();
 
     public DTOstatus validateRotors(List<Integer> rotorsIDs);
 

@@ -1,14 +1,16 @@
 package dto;
 
+import utill.Problem;
+
 public class DTOstatus {
 
     private boolean isSucceed;
-    private String details;
+    private Problem details;
 
     public DTOstatus() {
     }
 
-    public DTOstatus(boolean isSucceed, String details) {
+    public DTOstatus(boolean isSucceed, Problem details) {
         this.isSucceed = isSucceed;
         this.details = details;
     }
@@ -17,7 +19,7 @@ public class DTOstatus {
         return isSucceed;
     }
 
-    public String getDetails() {
+    public Problem getDetails() {
         return details;
     }
 }

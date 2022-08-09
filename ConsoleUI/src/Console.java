@@ -33,57 +33,7 @@ public class Console {
                     System.out.println(engine.displayMachineSpecifications());
                     break;
                 case CHOOSE_INIT_CONFIG_MANUAL:
-                    int rotorCount = 2;
-                    List<Integer> rotorsIDs = getInputListOfIntegers(rotorCount);
-                    DTOstatus rotorsIDsStatus = engine.validateRotors(rotorsIDs);
-                    while (!rotorsIDsStatus.isSucceed()) {
-                        switch (rotorsIDsStatus.getDetails()) {
-                            case "problem":
-                                break;
-                        }
-
-                        rotorsIDs = getInputListOfIntegers(rotorCount);
-                        rotorsIDsStatus = engine.validateRotors(rotorsIDs);
-                    }
-
-                    String windows = getInputSequenceOfCharacters(rotorCount);
-                    DTOstatus windowCharactersStatus = engine.validateWindowCharacters(windows);
-                    while (!windowCharactersStatus.isSucceed()) {
-                        switch (windowCharactersStatus.getDetails()) {
-                            case "problem":
-                                break;
-                        }
-
-                        windows = getInputSequenceOfCharacters(rotorCount);
-                        windowCharactersStatus = engine.validateWindowCharacters(windows);
-                    }
-
-                    int reflectorID = getInputInteger();
-                    DTOstatus reflectorIDStatus = engine.validateReflector(reflectorID);
-                    while (!reflectorIDStatus.isSucceed()) {
-                        switch (reflectorIDStatus.getDetails()) {
-                            case "problem":
-                                break;
-                        }
-
-                        reflectorID = getInputInteger();
-                        reflectorIDStatus = engine.validateReflector(reflectorID);
-                    }
-
-
-                    List<String> plugs = getInputListOfStrings();
-                    DTOstatus plugsStatus = engine.validatePlugs(plugs);
-                    while (!plugsStatus.isSucceed()) {
-                        switch (plugsStatus.getDetails()) {
-                            case "problem":
-                                break;
-                        }
-
-                        plugs = getInputListOfStrings();
-                        plugsStatus = engine.validatePlugs(plugs);
-                    }
-
-                    engine.selectConfigurationManual(rotorsIDs, windows, reflectorID,plugs);
+                    chooseConfigManual();
                     break;
                 case CHOOSE_INIT_CONFIG_AUTO:
                     System.out.println(engine.selectConfigurationAuto());

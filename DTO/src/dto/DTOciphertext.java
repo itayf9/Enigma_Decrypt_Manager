@@ -1,8 +1,15 @@
 package dto;
 
+import utill.Problem;
+
 public class DTOciphertext extends DTOstatus {
 
-    public DTOciphertext(boolean isSucceed, String details) {
+    String ciperedText;
+
+    public DTOciphertext(boolean isSucceed, Problem details, String ciperedText) {
+
         super(isSucceed, details);
+        this.ciperedText= ciperedText;
+
     }
 }

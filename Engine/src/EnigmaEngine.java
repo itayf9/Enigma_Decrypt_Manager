@@ -14,6 +14,7 @@ import java.io.InputStream;
 import java.util.*;
 
 import utill.CharacterPair;
+import utill.Problem;
 
 import static machine.EnigmaMachine.advanceCipherCounter;
 import static machine.EnigmaMachine.getCipherCounter;
@@ -63,6 +64,12 @@ public class EnigmaEngine implements Engine {
         advanceCipherCounter();
         return cipheredText.toString();
     }
+
+    @Override
+    public int getRotorsCount (){
+        return machine.getRotorsCount();
+    }
+
 
     // get fileName from user and load Xml file to build new machine.
     public void buildMachineFromXmlFile(String fileName) {
@@ -209,7 +216,7 @@ public class EnigmaEngine implements Engine {
     @Override
     public DTOstatus selectConfigurationManual (List<Integer> rotorsIDs, String windows, int reflectorID , List<String> plugs){
         boolean isSucceed = true;
-        String details = null;
+        Problem details = Problem.NO_PROBLEM;
 
         updateConfiguration(rotorsIDs, windows, reflectorID, plugs);
 
@@ -278,26 +285,24 @@ public class EnigmaEngine implements Engine {
     public DTOciphertext cipherInputText (String inputText) {
 
         boolean isSucceed = true;
-        String outputText;
-        String problem = "";
+        String outputText = "";
+        Problem problem = Problem.NO_PROBLEM;
 
         // check valid ABC
         //problem = isAllCharsInAlphabet(inputText);
 
-        if (problem.equals("")){
+        if (problem.equals(Problem.NO_PROBLEM)){
             outputText = cipherText(inputText);
-        }else {
-            outputText = problem;
         }
 
-        return new DTOciphertext(isSucceed , outputText);
+        return new DTOciphertext(isSucceed, problem, outputText);
     }
 
     @Override
     public DTOresetConfig resetConfiguration () {
 
         boolean isSucceed = true;
-        String detail = "";
+        Problem details = Problem.NO_PROBLEM;
 
         for (int i = 0; i < machine.getRotorsCount(); i++) {
 
@@ -305,17 +310,22 @@ public class EnigmaEngine implements Engine {
             machine.getInUseRotors().get(i).rotateToOffset(currentOffset);
         }
 
-        return new DTOresetConfig(isSucceed, detail);
+        return new DTOresetConfig(isSucceed, details);
     }
 
     @Override
     public DTOstatus validateRotors (List<Integer> rotorsIDs){
         boolean isSucceed = true;
-        String details = null;
+        Problem details = Problem.NO_PROBLEM;
 
         // check if rotorsIDs size is exactly the required size.
-        if (rotorsIDs.size() !=machine.getRotorsCount()){
+        if (rotorsIDs.size() < machine.getRotorsCount()){
             isSucceed = false;
+            details = Problem.NOT_ENOUGH_ELEMENTS;
+        }
+        else if (rotorsIDs.size() > machine.getRotorsCount()){
+            isSucceed = false;
+            details = Problem.TOO_MANY_ELEMENTS;
         }
         else {
             for (Integer rotorID : rotorsIDs) {
@@ -323,6 +333,7 @@ public class EnigmaEngine implements Engine {
                 // check if the rotorID exists in this machine.
                 if (rotorID <= 0 || rotorID > machine.getAvailableRotorsLen()) {
                     isSucceed = false;
+                    details = Problem.OUT_OF_RANGE_ID;
                     break;
                 }
             }
@@ -334,12 +345,13 @@ public class EnigmaEngine implements Engine {
     @Override
     public DTOstatus validateWindowCharacters (String windowChars){
         boolean isSucceed = true;
-        String details = null;
+        Problem details = Problem.NO_PROBLEM;
         final int CHAR_NOT_FOUND = -1;
 
         for (Character currentWindowCharacter : windowChars.toCharArray()) {
             if (machine.getAlphabet().indexOf(currentWindowCharacter) == CHAR_NOT_FOUND) {
                 isSucceed = false;
+                details = Problem.NOT_IN_ALPHABET;
                 break;
             }
         }
@@ -350,11 +362,12 @@ public class EnigmaEngine implements Engine {
     @Override
     public DTOstatus validateReflector (int reflectorID){
         boolean isSucceed = true;
-        String details = null;
+        Problem details = Problem.NO_PROBLEM;
 
         // check if the reflectorID exists in this machine.
         if (reflectorID <= 0 || reflectorID > machine.getAvailableReflectorsLen()) {
             isSucceed = false;
+            details = Problem.OUT_OF_RANGE_ID;
         }
 
         return new DTOstatus(isSucceed, details);
@@ -363,7 +376,7 @@ public class EnigmaEngine implements Engine {
     @Override
     public DTOstatus validatePlugs (List<String> plugs){
         boolean isSucceed = true;
-        String details = null;
+        Problem details = Problem.NO_PROBLEM;
         List<Boolean> alreadyPluged = new ArrayList<>(Collections.nCopies(machine.getAlphabet().length(), false));
         final int CHAR_NOT_FOUND = -1;
 
@@ -376,12 +389,14 @@ public class EnigmaEngine implements Engine {
             // check if both characters are the same.
             if (firstInPlugIndex == secondInPlugIndex) {
                 isSucceed = false;
+                details = Problem.SELF_PLUGGING;
                 break;
             }
 
             // check if both characters in the current plug is in the alphabet.
             if (firstInPlugIndex == CHAR_NOT_FOUND || secondInPlugIndex == CHAR_NOT_FOUND){
                 isSucceed = false;
+                details = Problem.NOT_IN_ALPHABET;
                 break;
             } else {
                 // check if both characters are not plugged yet.
@@ -390,6 +405,7 @@ public class EnigmaEngine implements Engine {
                     alreadyPluged.set( secondInPlugIndex, true);
                 } else {
                     isSucceed = false;
+                    details = Problem.ALREADY_PLUGGED;
                     break;
                 }
             }

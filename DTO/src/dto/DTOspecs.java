@@ -69,16 +69,57 @@ public class DTOspecs extends DTOstatus {
 
     @Override
     public String toString() {
-        return "DTOspecs{" + '\n' +
-                "availableRotorsCount=" + availableRotorsCount + '\n' +
-                ", inUseRotorsCount=" + inUseRotorsCount + '\n' +
-                ", notchPositions=" + notchPositions + '\n' +
-                ", availableReflectorsCount=" + availableReflectorsCount + '\n' +
-                ", cipheredTextsCount=" + cipheredTextsCount + '\n' +
-                ", inUseRotorsIDs=" + inUseRotorsIDs + '\n' +
-                ", windowsCharacters=" + windowsCharacters + '\n' +
-                ", inUseReflectorSymbol='" + inUseReflectorSymbol + '\'' + '\n' +
-                ", inUsePlugs=" + inUsePlugs + '\n' +
-                '}';
+       StringBuilder res = new StringBuilder();
+       res.append("Available Rotors Count: " + availableRotorsCount + '\n' +
+                "In Use Rotors Count: " + inUseRotorsCount + '\n');
+
+        for (int i = 0; i < notchPositions.size(); i++) {
+            if (i == 0){
+                 res.append("Notch Positions: Rotor #" + (i+1) + " ---> ");
+            }
+            else {
+                res.append("                 Rotor #" + (i+1) + " ---> ");
+            }
+
+
+            res.append( notchPositions.get(i) + "\n");
+        }
+        res.append("\n");
+        res.append("Available Reflectors Count: " + availableReflectorsCount + '\n' +
+                "Ciphered Texts Count: " + cipheredTextsCount + '\n' +
+                "Current Configuration: <") ;
+
+        for (int i = inUseRotorsIDs.size()-1; i >= 0 ; i--) {
+            res.append(inUseRotorsIDs.get(i).toString());
+            if (i != 0) {
+                res.append(",");
+            }
+        }
+        res.append("><");
+
+        for (int i = windowsCharacters.size()-1; i >=0 ; i--) {
+            res.append(windowsCharacters.get(i));
+        }
+        res.append("><");
+
+        res.append(inUseReflectorSymbol);
+        res.append(">");
+
+
+        if(inUsePlugs.size() > 0) {
+            res.append("<");
+            for (int i = 0; i < inUsePlugs.size(); i++) {
+                res.append(inUsePlugs.get(i).getFirst());
+                res.append("|");
+                res.append(inUsePlugs.get(i).getSecond());
+                if (i != inUsePlugs.size()-1) {
+                    res.append(",");
+                }
+            }
+            res.append(">");
+        }
+
+
+        return res.toString();
     }
 }
