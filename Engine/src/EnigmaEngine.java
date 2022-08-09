@@ -87,15 +87,59 @@ public class EnigmaEngine implements Engine {
      * get fileName from user and load Xml file to build new machine.
      * @param fileName
      */
-    public void buildMachineFromXmlFile(String fileName) {
+    public DTOstatus buildMachineFromXmlFile(String fileName) {
+        boolean isSucceeded = false;
+        Problem details = Problem.NO_PROBLEM;
+
+        if (!fileName.endsWith(".xml")) {
+            isSucceeded = false;
+            details = Problem.FILE_NOT_IN_FORMAT;
+        }
+
         try {
             InputStream inputStream = new FileInputStream(new File(fileName));
             CTEEnigma cteEnigma = deserializeFrom(inputStream);
             buildMachineFromCTEEnigma(cteEnigma);
 
-        } catch (JAXBException | FileNotFoundException e) {
-            e.printStackTrace();
+        } catch (JAXBException e) {
+            details = Problem.JAXB_ERROR;
+            isSucceeded = false;
         }
+        catch (FileNotFoundException e) {
+            isSucceeded = false;
+            details = Problem.FILE_NOT_FOUND;
+        }
+
+        return new DTOstatus(isSucceeded, details);
+    }
+
+    /**
+     * valitdates the CTEengine
+     * @return detailed problem
+     */
+    private Problem validateCTEEnigma(CTEEnigma cteEnigma ) {
+        Problem problem = Problem.NO_PROBLEM;
+
+        CTEMachine cteMachine = cteEnigma.getCTEMachine();
+
+        // check for alphabet length to be even
+        if (cteMachine.getABC().length() % 2 == 1) {
+            problem = Problem.ODD_ALPHABET_AMOUNT;
+            //return
+        }
+
+        // check if rotors count is less than available rotors.
+        if (cteMachine.getCTERotors().getCTERotor().size() < cteMachine.getRotorsCount()) {
+            problem = Problem.NOT_ENOUGH_ROTORS;
+        }
+
+        // check if rotors count is less than 2
+        if (cteMachine.getRotorsCount() < 2) {
+            problem = Problem.ROTORS_COUNT_BELOW_TWO;
+        }
+
+
+        return problem;
     }
 
     /**

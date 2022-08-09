@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Fix cipher text validation, toApperCase, user outputs in UI">
+    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Fix displayMachineSpecifications to work even before config">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleUI/src/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUI/src/Console.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DTO/src/dto/DTOspecs.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/dto/DTOspecs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DTO/src/utill/Problem.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/utill/Problem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/Engine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/machine/EnigmaMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/machine/EnigmaMachine.java" afterDir="false" />
     </list>
     <list id="4d3468c9-f8a2-4a3c-84be-6dffde06732b" name="Changes by kingd" comment="Change of kingd">
       <change beforePath="$PROJECT_DIR$/ConsoleUI/src/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUI/src/Console.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DTO/src/dto/DTOspecs.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/dto/DTOspecs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,36 +37,10 @@
   <component name="LineStatusTrackerManager">
     <file path="$PROJECT_DIR$/Engine/src/EnigmaEngine.java">
       <ranges>
-        <range start1="219" end1="219" start2="219" end2="227" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="225" end1="229" start2="233" end2="241" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="231" end1="232" start2="243" end2="244" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/ConsoleUI/src/Console.java">
-      <ranges>
-        <range start1="1" end1="1" start2="1" end2="3" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="2" end1="2" start2="4" end2="5" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="14" end1="15" start2="17" end2="18" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="39" end1="40" start2="42" end2="48" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="45" end1="46" start2="53" end2="54" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="52" end1="53" start2="60" end2="61" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="64" end1="65" start2="72" end2="77" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="124" end1="125" start2="136" end2="137" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="162" end1="163" start2="174" end2="175" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="181" end1="182" start2="193" end2="194" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="331" end1="332" start2="343" end2="349" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="468" end1="469" start2="485" end2="490" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/DTO/src/dto/DTOspecs.java">
-      <ranges>
-        <range start1="3" end1="3" start2="3" end2="4" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="18" end1="19" start2="19" end2="20" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="21" end1="22" start2="22" end2="23" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="88" end1="90" start2="89" end2="95" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="91" end1="98" start2="96" end2="103" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="99" end1="101" start2="104" end2="125" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="102" end1="122" start2="126" end2="126" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="89" end1="90" start2="89" end2="98" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="93" end1="93" start2="101" end2="102" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="95" end1="97" start2="104" end2="107" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="98" end1="98" start2="108" end2="143" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
       </ranges>
     </file>
   </component>
@@ -155,7 +126,7 @@
       <workItem from="1659881541751" duration="18299000" />
       <workItem from="1659963574932" duration="17065000" />
       <workItem from="1660034242893" duration="11550000" />
-      <workItem from="1660054171932" duration="8035000" />
+      <workItem from="1660054171932" duration="10664000" />
     </task>
     <task id="LOCAL‎00001" summary="Add classes">
       <created>1659104440139</created>
@@ -331,7 +302,19 @@
       <option name="presentableId" value="LOCAL‎00029" />
       <updated>1660059999686</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL‎00030" summary="Fix displayMachineSpecifications to work even before config">
+      <created>1660062394820</created>
+      <option name="number" value="LOCAL‎00030" />
+      <option name="presentableId" value="LOCAL‎00030" />
+      <updated>1660062394820</updated>
+    </task>
+    <task id="LOCAL‎00031" summary="Change of kingd">
+      <created>1660062404642</created>
+      <option name="number" value="LOCAL‎00031" />
+      <option name="presentableId" value="LOCAL‎00031" />
+      <updated>1660062404642</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -349,7 +332,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add initPlugBoardMap and rotateRotors" />
     <MESSAGE value="Add JAXB classes" />
     <MESSAGE value="Add buildMachineFromCTEEnigma" />
     <MESSAGE value="Add windows ofssets and update configuration" />
@@ -373,6 +355,7 @@
     <MESSAGE value="Implement CHOOSE_INIT_CONFIG_MANUAL" />
     <MESSAGE value="Add Problem.java" />
     <MESSAGE value="Fix cipher text validation, toApperCase, user outputs in UI" />
+    <MESSAGE value="Fix displayMachineSpecifications to work even before config" />
     <MESSAGE value="Change of kingd" />
     <option name="LAST_COMMIT_MESSAGE" value="Change of kingd" />
   </component>
@@ -381,18 +364,22 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/ConsoleUI/src/Console.java</url>
-          <line>355</line>
+          <line>362</line>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Engine/src/EnigmaEngine.java</url>
-          <line>371</line>
+          <line>416</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/DTO/src/dto/DTOspecs.java</url>
-          <line>72</line>
-          <option name="timeStamp" value="26" />
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/Engine/src/EnigmaEngine.java</url>
+          <line>262</line>
+          <properties class="EnigmaEngine" method="displayMachineSpecifications">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -6,7 +6,7 @@ public interface Engine {
 
     int getRotorsCount();
 
-    void buildMachineFromXmlFile(String fileName);
+    DTOstatus buildMachineFromXmlFile(String fileName);
 
     DTOspecs displayMachineSpecifications();
 
