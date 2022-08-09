@@ -217,6 +217,14 @@ public class EnigmaEngine implements Engine {
     @Override
     public DTOspecs displayMachineSpecifications () {
 
+        boolean isSucceeded = true;
+        Problem details = Problem.NO_PROBLEM;
+
+        List<Integer> inUseRotorsIDs = new ArrayList<>();
+        List<Character> windowsCharacters = new ArrayList<>();
+        String inUseReflectorSymbol = null;
+        List<CharacterPair> inUsePlugs = new ArrayList<>();
+
         int availableRotorsCount = machine.getAvailableRotorsLen();
         int inUseRotorsCount = machine.getRotorsCount();
         List<Integer> notchPositions = machine.getAllNotchPositions();
@@ -229,7 +237,7 @@ public class EnigmaEngine implements Engine {
         List<CharacterPair> inUsePlugs = machine.getListOfPlugPairs();
 
 
-        return new DTOspecs(availableRotorsCount, inUseRotorsCount, notchPositions,
+        return new DTOspecs(isSucceeded, details, availableRotorsCount, inUseRotorsCount, notchPositions,
                 availableReflectorsCount, cipheredTextsCount, inUseRotorsIDs, windowsCharacters,
                 inUseReflectorSymbol, inUsePlugs);
     }

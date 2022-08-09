@@ -1,6 +1,7 @@
 package dto;
 
 import utill.CharacterPair;
+import utill.Problem;
 
 import java.util.List;
 
@@ -16,10 +17,10 @@ public class DTOspecs extends DTOstatus {
     private String inUseReflectorSymbol;
     private List<CharacterPair> inUsePlugs;
 
-    public DTOspecs(int availableRotorsCount, int inUseRotorsCount, List<Integer> notchPositions,
+    public DTOspecs(boolean isSucceeded, Problem details, int availableRotorsCount, int inUseRotorsCount, List<Integer> notchPositions,
                     int availableReflectorsCount, int cipheredTextsCount, List<Integer> inUseRotorsIDs,
                     List<Character> windowsCharacters, String inUseReflectorSymbol, List<CharacterPair> inUsePlugs) {
-        super();
+        super(isSucceeded, details);
         this.availableRotorsCount = availableRotorsCount;
         this.inUseRotorsCount = inUseRotorsCount;
         this.notchPositions = notchPositions;
@@ -89,16 +90,35 @@ public class DTOspecs extends DTOstatus {
                 "Ciphered Texts Count: " + cipheredTextsCount + '\n' +
                 "Current Configuration: <") ;
 
-        for (int i = inUseRotorsIDs.size()-1; i >= 0 ; i--) {
-            res.append(inUseRotorsIDs.get(i).toString());
-            if (i != 0) {
-                res.append(",");
+            for (int i = inUseRotorsIDs.size()-1; i >= 0 ; i--) {
+                res.append(inUseRotorsIDs.get(i).toString());
+                if (i != 0) {
+                    res.append(",");
+                }
             }
-        }
-        res.append("><");
+            res.append("><");
 
-        for (int i = windowsCharacters.size()-1; i >=0 ; i--) {
-            res.append(windowsCharacters.get(i));
+            for (int i = windowsCharacters.size()-1; i >=0 ; i--) {
+                res.append(windowsCharacters.get(i));
+            }
+            res.append("><");
+
+            res.append(inUseReflectorSymbol);
+            res.append(">");
+
+
+            if(inUsePlugs.size() > 0) {
+                res.append("<");
+                for (int i = 0; i < inUsePlugs.size(); i++) {
+                    res.append(inUsePlugs.get(i).getFirst());
+                    res.append("|");
+                    res.append(inUsePlugs.get(i).getSecond());
+                    if (i != inUsePlugs.size()-1) {
+                        res.append(",");
+                    }
+                }
+                res.append(">");
+            }
         }
         res.append("><");
 

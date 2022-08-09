@@ -1,5 +1,8 @@
 import dto.DTOciphertext;
+import dto.DTOresetConfig;
+import dto.DTOspecs;
 import dto.DTOstatus;
+import utill.Problem;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -329,7 +332,12 @@ public class Console {
      * Q2 - display the machine specifications.
      */
     static private void displaySpecifications() {
-        System.out.println(engine.displayMachineSpecifications());
+        DTOspecs specsStatus = engine.displayMachineSpecifications();
+        if (specsStatus.isSucceed()){
+            System.out.println(specsStatus);
+
+
+        }
     }
 
     /**

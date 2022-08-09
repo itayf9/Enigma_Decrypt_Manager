@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Add Problem.java">
+    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Fix cipher text validation, toApperCase, user outputs in UI">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConsoleUI/src/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUI/src/Console.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DTO/src/dto/DTOciphertext.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/dto/DTOciphertext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DTO/src/dto/DTOsecretConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/dto/DTOsecretConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DTO/src/dto/DTOspecs.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/dto/DTOspecs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DTO/src/utill/Problem.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/utill/Problem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/machine/EnigmaMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/machine/EnigmaMachine.java" afterDir="false" />
     </list>
     <list id="4d3468c9-f8a2-4a3c-84be-6dffde06732b" name="Changes by kingd" comment="Change of kingd">
       <change beforePath="$PROJECT_DIR$/ConsoleUI/src/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUI/src/Console.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DTO/src/dto/DTOsecretConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/dto/DTOsecretConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DTO/src/dto/DTOspecs.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/dto/DTOspecs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/machine/EnigmaMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/machine/EnigmaMachine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/machine/component/PlugBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/machine/component/PlugBoard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,94 +40,36 @@
   <component name="LineStatusTrackerManager">
     <file path="$PROJECT_DIR$/Engine/src/EnigmaEngine.java">
       <ranges>
-        <range start1="38" end1="40" start2="38" end2="46" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="51" end1="52" start2="57" end2="57" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="55" end1="56" start2="60" end2="65" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="67" end1="67" start2="76" end2="80" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="72" end1="74" start2="85" end2="89" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="85" end1="87" start2="100" end2="107" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="95" end1="96" start2="115" end2="119" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="189" end1="190" start2="212" end2="212" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="214" end1="214" start2="236" end2="244" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="224" end1="224" start2="254" end2="258" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="278" end1="278" start2="312" end2="313" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="279" end1="280" start2="314" end2="315" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="282" end1="282" start2="317" end2="322" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="285" end1="286" start2="325" end2="326" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="290" end1="291" start2="330" end2="331" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="293" end1="293" start2="333" end2="334" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="298" end1="298" start2="339" end2="351" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="299" end1="299" start2="352" end2="356" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="314" end1="314" start2="371" end2="376" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="343" end1="343" start2="405" end2="410" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="360" end1="360" start2="427" end2="432" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="374" end1="374" start2="446" end2="451" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="414" end1="415" start2="491" end2="491" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="422" end1="423" start2="498" end2="498" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="219" end1="219" start2="219" end2="227" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="225" end1="229" start2="233" end2="241" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="231" end1="232" start2="243" end2="244" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
       </ranges>
     </file>
     <file path="$PROJECT_DIR$/ConsoleUI/src/Console.java">
       <ranges>
-        <range start1="0" end1="0" start2="0" end2="1" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="9" end1="10" start2="10" end2="15" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="17" end1="17" start2="22" end2="25" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="34" end1="35" start2="42" end2="47" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="37" end1="38" start2="49" end2="54" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="40" end1="41" start2="56" end2="62" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="59" end1="59" start2="80" end2="83" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="60" end1="61" start2="84" end2="85" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="71" end1="71" start2="95" end2="99" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="75" end1="76" start2="103" end2="104" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="80" end1="81" start2="108" end2="109" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="83" end1="85" start2="111" end2="113" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="94" end1="94" start2="122" end2="127" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="100" end1="101" start2="133" end2="136" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="107" end1="108" start2="142" end2="143" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="113" end1="113" start2="148" end2="149" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="124" end1="124" start2="160" end2="165" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="126" end1="127" start2="167" end2="167" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="130" end1="131" start2="170" end2="172" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="133" end1="135" start2="174" end2="176" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="140" end1="142" start2="181" end2="183" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="159" end1="159" start2="200" end2="204" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="162" end1="163" start2="207" end2="208" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="164" end1="165" start2="209" end2="210" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="169" end1="170" start2="214" end2="215" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="173" end1="174" start2="218" end2="219" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="181" end1="181" start2="226" end2="230" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="184" end1="184" start2="233" end2="234" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="186" end1="190" start2="236" end2="242" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="191" end1="191" start2="243" end2="255" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="192" end1="198" start2="256" end2="263" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="199" end1="199" start2="264" end2="265" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="200" end1="211" start2="266" end2="279" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="214" end1="214" start2="282" end2="284" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="217" end1="217" start2="287" end2="291" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="220" end1="221" start2="294" end2="295" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="224" end1="226" start2="298" end2="300" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="235" end1="235" start2="309" end2="313" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="239" end1="239" start2="317" end2="321" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="242" end1="242" start2="324" end2="325" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="244" end1="244" start2="327" end2="330" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="248" end1="248" start2="334" end2="337" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="271" end1="271" start2="360" end2="361" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="332" end1="332" start2="422" end2="423" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="335" end1="335" start2="426" end2="429" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="337" end1="337" start2="431" end2="432" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="339" end1="339" start2="434" end2="437" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="340" end1="341" start2="438" end2="439" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="342" end1="343" start2="440" end2="463" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="344" end1="345" start2="464" end2="467" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="348" end1="349" start2="470" end2="473" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="1" end1="1" start2="1" end2="3" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="2" end1="2" start2="4" end2="5" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="14" end1="15" start2="17" end2="18" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="39" end1="40" start2="42" end2="48" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="45" end1="46" start2="53" end2="54" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="52" end1="53" start2="60" end2="61" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="64" end1="65" start2="72" end2="77" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="124" end1="125" start2="136" end2="137" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="162" end1="163" start2="174" end2="175" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="181" end1="182" start2="193" end2="194" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="331" end1="332" start2="343" end2="349" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="468" end1="469" start2="485" end2="490" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
       </ranges>
     </file>
-    <file path="$PROJECT_DIR$/DTO/src/dto/DTOsecretConfig.java">
+    <file path="$PROJECT_DIR$/DTO/src/dto/DTOspecs.java">
       <ranges>
-        <range start1="7" end1="8" start2="7" end2="8" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="10" end1="11" start2="10" end2="11" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="13" end1="14" start2="13" end2="14" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="25" end1="27" start2="25" end2="27" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="51" end1="52" start2="51" end2="52" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="3" end1="3" start2="3" end2="4" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="18" end1="19" start2="19" end2="20" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="21" end1="22" start2="22" end2="23" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="88" end1="90" start2="89" end2="95" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="91" end1="98" start2="96" end2="103" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="99" end1="101" start2="104" end2="125" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="102" end1="122" start2="126" end2="126" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
       </ranges>
     </file>
   </component>
@@ -214,7 +155,7 @@
       <workItem from="1659881541751" duration="18299000" />
       <workItem from="1659963574932" duration="17065000" />
       <workItem from="1660034242893" duration="11550000" />
-      <workItem from="1660054171932" duration="5741000" />
+      <workItem from="1660054171932" duration="8035000" />
     </task>
     <task id="LOCAL‎00001" summary="Add classes">
       <created>1659104440139</created>
@@ -378,7 +319,19 @@
       <option name="presentableId" value="LOCAL‎00027" />
       <updated>1660041627915</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL‎00028" summary="Fix cipher text validation, toApperCase, user outputs in UI">
+      <created>1660059986399</created>
+      <option name="number" value="LOCAL‎00028" />
+      <option name="presentableId" value="LOCAL‎00028" />
+      <updated>1660059986399</updated>
+    </task>
+    <task id="LOCAL‎00029" summary="Change of kingd">
+      <created>1660059999686</created>
+      <option name="number" value="LOCAL‎00029" />
+      <option name="presentableId" value="LOCAL‎00029" />
+      <updated>1660059999686</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -396,7 +349,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add classes" />
     <MESSAGE value="Add initPlugBoardMap and rotateRotors" />
     <MESSAGE value="Add JAXB classes" />
     <MESSAGE value="Add buildMachineFromCTEEnigma" />
@@ -420,6 +372,7 @@
     <MESSAGE value="Implement DISPLAY_SPECS, CHOOSE_INIT_CONFIG_AUTO, PROCESS_INPUT, &#10;RESET_CURRENT_CODE in ConsoleUI" />
     <MESSAGE value="Implement CHOOSE_INIT_CONFIG_MANUAL" />
     <MESSAGE value="Add Problem.java" />
+    <MESSAGE value="Fix cipher text validation, toApperCase, user outputs in UI" />
     <MESSAGE value="Change of kingd" />
     <option name="LAST_COMMIT_MESSAGE" value="Change of kingd" />
   </component>
@@ -428,13 +381,18 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/ConsoleUI/src/Console.java</url>
-          <line>338</line>
+          <line>355</line>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/ConsoleUI/src/Console.java</url>
-          <line>438</line>
-          <option name="timeStamp" value="23" />
+          <url>file://$PROJECT_DIR$/Engine/src/EnigmaEngine.java</url>
+          <line>371</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/DTO/src/dto/DTOspecs.java</url>
+          <line>72</line>
+          <option name="timeStamp" value="26" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

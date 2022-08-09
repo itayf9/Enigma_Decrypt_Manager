@@ -39,6 +39,8 @@ public class EnigmaMachine {
     // current Reflector configured in the machine to work with.
     private Reflector inUseReflector;
     // current text that got ciphered in the machine.
+
+    private boolean isConfigured = false;
     private static int cipherCounter = 0;
 
     // Constructor of Enigma Machine
@@ -108,6 +110,10 @@ public class EnigmaMachine {
         return notchPositions;
     }
 
+    public boolean isConfigured() {
+        return isConfigured;
+    }
+
     // updating the current config of the machine.
     // by sending the updated list of rotors, reflectors and plugs.
     public void setMachineConfiguration(List<Integer> rotorsIDs, List<Integer> windowOffsets , int reflectorID, List<String> plugs) {
@@ -125,6 +131,8 @@ public class EnigmaMachine {
         inUseReflector = availableReflectors.get(reflectorID - 1);
 
         plugBoard.initPlugBoardMap(character2index, plugs);
+
+        isConfigured = true;
     }
 
     // initialize cipher sequence based on: input->plugs->rotors-reflector-rotors-plugs->screen.
