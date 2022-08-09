@@ -30,4 +30,41 @@ public class DTOsecretConfig {
     public List<String> getPlugs() {
         return plugs;
     }
+
+    public String toString() {
+        StringBuilder res = new StringBuilder();
+
+        res.append("Configuration: <");
+
+        for (int i = rotors.size()-1; i >= 0 ; i--) {
+            res.append(rotors.get(i).toString());
+            if (i != 0) {
+                res.append(",");
+            }
+        }
+        res.append("><");
+
+        for (int i = windows.length()-1; i >=0 ; i--) {
+            res.append(windows.charAt(i));
+        }
+        res.append("><");
+
+        res.append(reflector);
+        res.append(">");
+
+
+        if(plugs.size() > 0) {
+            res.append("<");
+            for (int i = 0; i < plugs.size(); i++) {
+                res.append(plugs.get(i).charAt(0));
+                res.append("|");
+                res.append(plugs.get(i).charAt(1));
+                if (i != plugs.size()-1) {
+                    res.append(",");
+                }
+            }
+            res.append(">");
+        }
+        return res.toString();
+    }
 }

@@ -6,19 +6,19 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Console {
+    private static final Engine engine = new EnigmaEngine();
+    static String xmlFileName = "Engine/src/ex1-sanity-small.xml";
 
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         run();
-
-
     }
 
     public static void run() {
-        Engine engine = new EnigmaEngine();
-        String xmlFileName = "Engine/src/ex1-sanity-small.xml";
+
         boolean isExit = false;
+        System.out.println("Welcome to Cracking The Enigma!!\n");
 
         printMainMenu();
         Operation choice = getInputUserChoice();
@@ -26,47 +26,39 @@ public class Console {
         while (!isExit) {
             switch (choice) {
                 case READ_SYSTEM_DETAILS_FROM_XML:
-                    // get XML fileName();
-                    engine.buildMachineFromXmlFile(xmlFileName);
+                    loadXmlFile();
                     break;
                 case DISPLAY_SPECS:
-                    System.out.println(engine.displayMachineSpecifications());
+                    displaySpecifications();
                     break;
                 case CHOOSE_INIT_CONFIG_MANUAL:
                     chooseConfigManual();
                     break;
                 case CHOOSE_INIT_CONFIG_AUTO:
-                    System.out.println(engine.selectConfigurationAuto());
+                    chooseConfigAuto();
                     break;
                 case PROCESS_INPUT:
-                    System.out.println("Please enter text to cipher");
-                    String inputText = getInputCipherText();
-                    System.out.println(engine.cipherInputText(inputText).getDetails());
+                    processInput();
                     break;
                 case RESET_CURRENT_CODE:
-                    engine.resetConfiguration();
+                    resetConfig();
                     break;
                 case HISTORY_AND_STATISTICS:
-                    // engine.history();
+                    getHistoryAndStats();
                     break;
                 case EXIT_SYSTEM:
                     isExit = true;
                     continue;
-                    // System.exit(1);
                 default:
                     break;
             }
-
             printMainMenu();
             choice = getInputUserChoice();
         }
-
-
     }
 
     public static void printMainMenu () {
-        System.out.println("Welcome to Cracking The Enigma!!\n\n");
-        System.out.println("Select an operation:\n\n");
+        System.out.println("Select an operation:\n");
         System.out.println("1 - Load System Details From File.\n" +
                 "2 - Display Enigma Machine Specifications.\n" +
                 "3 - Set Configuration - Manually.\n" +
@@ -92,7 +84,6 @@ public class Console {
                 System.out.println("invalid option - try again ! with options from 1-8");
                 choice = scanner.nextLine();
             } else {
-                System.out.println(choice);
                 isValid = true;
 
             }
@@ -114,7 +105,7 @@ public class Console {
             // String choice = scanner.nextLine();
 
             while (!isValid) {
-                System.out.println("Please enter the ID of rotor #" + i + " (from right to left).");
+                System.out.println("Please enter the ID of rotor #" + (i+1) + " (from right to left).");
                 try {
                     currentRotorID = scanner.nextInt();
                     isValid = true;
@@ -224,7 +215,6 @@ public class Console {
         return plugsList;
     }
 
-
     private static String getInputCipherText() {
 
         boolean isValid = false;
@@ -236,11 +226,128 @@ public class Console {
                 cipherText = scanner.nextLine();
             }
             else {
-                System.out.println(cipherText);
                 isValid = true;
             }
         }
 
         return cipherText;
+    }
+
+    private String getXMLFileName() {
+        return null; // for now
+    }
+
+    static private void loadXmlFile() {
+        // String xmlFileName = getXMLFileName();
+        engine.buildMachineFromXmlFile(xmlFileName);
+    }
+
+    static private void displaySpecifications() {
+        System.out.println(engine.displayMachineSpecifications());
+    }
+
+    static private void chooseConfigManual() {
+        int rotorCount = engine.getRotorsCount();
+        List<Integer> rotorsIDs = getInputListOfIntegers(rotorCount);
+        DTOstatus rotorsIDsStatus = engine.validateRotors(rotorsIDs);
+        while (!rotorsIDsStatus.isSucceed()) {
+            switch (rotorsIDsStatus.getDetails()) {
+                case NOT_ENOUGH_ELEMENTS:
+                    System.out.println("The amount of IDs that you've entered is too small.");
+                    break;
+                case TOO_MANY_ELEMENTS:
+                    System.out.println("The amount of IDs that you've entered is too high.");
+                    break;
+                case OUT_OF_RANGE_ID:
+                    System.out.println("One or more of the IDs is not available in this machine.");
+                    break;
+                case UNKNOWN:
+                    System.out.println("An Unknown Problem has occurred.");
+            }
+
+            rotorsIDs = getInputListOfIntegers(rotorCount);
+            rotorsIDsStatus = engine.validateRotors(rotorsIDs);
+        }
+        System.out.println("All good.");
+
+        String windows = getInputSequenceOfCharacters(rotorCount);
+        DTOstatus windowCharactersStatus = engine.validateWindowCharacters(windows);
+        while (!windowCharactersStatus.isSucceed()) {
+            switch (windowCharactersStatus.getDetails()) {
+                case NOT_IN_ALPHABET:
+                    System.out.println("One or more of the characters that you've entered is not in the alphabet.");
+                    break;
+                case UNKNOWN:
+                    System.out.println("Unknown Error.");
+                    break;
+            }
+
+            windows = getInputSequenceOfCharacters(rotorCount);
+            windowCharactersStatus = engine.validateWindowCharacters(windows);
+        }
+        System.out.println("All good.");
+
+        int reflectorID = getInputInteger();
+        DTOstatus reflectorIDStatus = engine.validateReflector(reflectorID);
+        while (!reflectorIDStatus.isSucceed()) {
+            switch (reflectorIDStatus.getDetails()) {
+                case OUT_OF_RANGE_ID:
+                    System.out.println("Id is out of range.");
+                    break;
+                case UNKNOWN:
+                    System.out.println("Unknown Error.");
+                    break;
+            }
+
+            reflectorID = getInputInteger();
+            reflectorIDStatus = engine.validateReflector(reflectorID);
+        }
+        System.out.println("All good.");
+
+        List<String> plugs = getInputListOfStrings();
+        DTOstatus plugsStatus = engine.validatePlugs(plugs);
+        while (!plugsStatus.isSucceed()) {
+            switch (plugsStatus.getDetails()) {
+                case OUT_OF_RANGE_ID:
+                    System.out.println("Error - Id is out of range.");
+                    break;
+                case SELF_PLUGGING:
+                    System.out.println("Error - One or more of the plugs entered is self plugged.");
+                    break;
+                case ALREADY_PLUGGED:
+                    System.out.println("Error - One or more of the plugs entered more then once.");
+                    break;
+                case UNKNOWN:
+                    System.out.println("Unknown Error.");
+                    break;
+            }
+
+            plugs = getInputListOfStrings();
+            plugsStatus = engine.validatePlugs(plugs);
+        }
+        System.out.println("All good.");
+
+        DTOstatus configStatus = engine.selectConfigurationManual(rotorsIDs, windows, reflectorID,plugs);
+        if (configStatus.isSucceed()){
+            System.out.println("Machine has been configured successfully.");
+        }
+    }
+
+    static private void chooseConfigAuto() {
+        System.out.println(engine.selectConfigurationAuto());
+    }
+
+    static private void processInput() {
+        System.out.println("Please enter text to cipher");
+        String inputText = getInputCipherText();
+        System.out.println(engine.cipherInputText(inputText).getDetails());
+    }
+
+    static private void resetConfig() {
+        engine.resetConfiguration();
+    }
+
+    static private void getHistoryAndStats() {
+        //
     }
 }

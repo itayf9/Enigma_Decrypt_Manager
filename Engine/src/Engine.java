@@ -18,13 +18,13 @@ public interface Engine {
 
     DTOresetConfig resetConfiguration();
 
-    public DTOstatus validateRotors(List<Integer> rotorsIDs);
+    DTOstatus validateRotors(List<Integer> rotorsIDs);
 
-    public DTOstatus validateWindowCharacters(String windowChars);
+    DTOstatus validateWindowCharacters(String windowChars);
 
-    public DTOstatus validateReflector(int reflectorID);
+    DTOstatus validateReflector(int reflectorID);
 
-    public DTOstatus validatePlugs(List<String> plugs);
+    DTOstatus validatePlugs(List<String> plugs);
 
 
 }

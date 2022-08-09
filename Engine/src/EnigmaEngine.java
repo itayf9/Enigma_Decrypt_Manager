@@ -77,7 +77,6 @@ public class EnigmaEngine implements Engine {
             InputStream inputStream = new FileInputStream(new File(fileName));
             CTEEnigma cteEnigma = deserializeFrom(inputStream);
             buildMachineFromCTEEnigma(cteEnigma);
-            System.out.println(machine);
 
         } catch (JAXBException | FileNotFoundException e) {
             e.printStackTrace();
@@ -410,7 +409,6 @@ public class EnigmaEngine implements Engine {
                 }
             }
         }
-
         return new DTOstatus(isSucceed, details);
     }
 
