@@ -12,4 +12,8 @@ public class DTOciphertext extends DTOstatus {
         this.ciperedText= ciperedText;
 
     }
+
+    public String getCiperedText() {
+        return ciperedText;
+    }
 }

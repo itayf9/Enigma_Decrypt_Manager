@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CTE-Enigma xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Enigma-Ex1.xsd">
+	<CTE-Machine rotors-count="3">
+		<ABC>
+			ABCDEFGHIJKLMNOPQRSTUVWXYZ
+		</ABC>
+		<CTE-Rotors>
+			<CTE-Rotor id="1" notch="17">
+				<CTE-Positioning right="E" left="A"/>
+				<CTE-Positioning right="K" left="B"/>
+				<CTE-Positioning right="M" left="C"/>
+				<CTE-Positioning right="F" left="D"/>
+				<CTE-Positioning right="L" left="E"/>
+				<CTE-Positioning right="G" left="F"/>
+				<CTE-Positioning right="D" left="G"/>
+				<CTE-Positioning right="Q" left="H"/>
+				<CTE-Positioning right="V" left="I"/>
+				<CTE-Positioning right="Z" left="J"/>
+				<CTE-Positioning right="N" left="K"/>
+				<CTE-Positioning right="T" left="L"/>
+				<CTE-Positioning right="O" left="M"/>
+				<CTE-Positioning right="W" left="N"/>
+				<CTE-Positioning right="Y" left="O"/>
+				<CTE-Positioning right="H" left="P"/>
+				<CTE-Positioning right="X" left="Q"/>
+				<CTE-Positioning right="U" left="R"/>
+				<CTE-Positioning right="S" left="S"/>
+				<CTE-Positioning right="P" left="T"/>
+				<CTE-Positioning right="A" left="U"/>
+				<CTE-Positioning right="I" left="V"/>
+				<CTE-Positioning right="B" left="W"/>
+				<CTE-Positioning right="R" left="X"/>
+				<CTE-Positioning right="C" left="Y"/>
+				<CTE-Positioning right="J" left="Z"/>
+			</CTE-Rotor>
+			<CTE-Rotor id="2" notch="5">
+				<CTE-Positioning right="A" left="A"/>
+				<CTE-Positioning right="J" left="B"/>
+				<CTE-Positioning right="D" left="C"/>
+				<CTE-Positioning right="K" left="D"/>
+				<CTE-Positioning right="S" left="E"/>
+				<CTE-Positioning right="I" left="F"/>
+				<CTE-Positioning right="R" left="G"/>
+				<CTE-Positioning right="U" left="H"/>
+				<CTE-Positioning right="X" left="I"/>
+				<CTE-Positioning right="B" left="J"/>
+				<CTE-Positioning right="L" left="K"/>
+				<CTE-Positioning right="H" left="L"/>
+				<CTE-Positioning right="W" left="M"/>
+				<CTE-Positioning right="T" left="N"/>
+				<CTE-Positioning right="M" left="O"/>
+				<CTE-Positioning right="C" left="P"/>
+				<CTE-Positioning right="Q" left="Q"/>
+				<CTE-Positioning right="G" left="R"/>
+				<CTE-Positioning right="Z" left="S"/>
+				<CTE-Positioning right="N" left="T"/>
+				<CTE-Positioning right="P" left="U"/>
+				<CTE-Positioning right="Y" left="V"/>
+				<CTE-Positioning right="F" left="W"/>
+				<CTE-Positioning right="V" left="X"/>
+				<CTE-Positioning right="O" left="Y"/>
+				<CTE-Positioning right="E" left="Z"/>
+			</CTE-Rotor>
+			<CTE-Rotor id="3" notch="22">
+				<CTE-Positioning right="B" left="A"/>
+				<CTE-Positioning right="D" left="B"/>
+				<CTE-Positioning right="F" left="C"/>
+				<CTE-Positioning right="H" left="D"/>
+				<CTE-Positioning right="J" left="E"/>
+				<CTE-Positioning right="L" left="F"/>
+				<CTE-Positioning right="C" left="G"/>
+				<CTE-Positioning right="P" left="H"/>
+				<CTE-Positioning right="R" left="I"/>
+				<CTE-Positioning right="T" left="J"/>
+				<CTE-Positioning right="X" left="K"/>
+				<CTE-Positioning right="V" left="L"/>
+				<CTE-Positioning right="Z" left="M"/>
+				<CTE-Positioning right="N" left="N"/>
+				<CTE-Positioning right="Y" left="O"/>
+				<CTE-Positioning right="E" left="P"/>
+				<CTE-Positioning right="I" left="Q"/>
+				<CTE-Positioning right="W" left="R"/>
+				<CTE-Positioning right="G" left="S"/>
+				<CTE-Positioning right="A" left="T"/>
+				<CTE-Positioning right="K" left="U"/>
+				<CTE-Positioning right="M" left="V"/>
+				<CTE-Positioning right="U" left="W"/>
+				<CTE-Positioning right="S" left="X"/>
+				<CTE-Positioning right="Q" left="Y"/>
+				<CTE-Positioning right="O" left="Z"/>
+			</CTE-Rotor>
+		</CTE-Rotors>
+		<CTE-Reflectors>
+			<CTE-Reflector id="I">
+				<CTE-Reflect input="1" output="25"/>
+				<CTE-Reflect input="2" output="18"/>
+				<CTE-Reflect input="3" output="21"/>
+				<CTE-Reflect input="4" output="8"/>
+				<CTE-Reflect input="5" output="17"/>
+				<CTE-Reflect input="6" output="19"/>
+				<CTE-Reflect input="7" output="12"/>
+				<CTE-Reflect input="9" output="16"/>
+				<CTE-Reflect input="10" output="24"/>
+				<CTE-Reflect input="11" output="14"/>
+				<CTE-Reflect input="13" output="15"/>
+				<CTE-Reflect input="20" output="26"/>
+				<CTE-Reflect input="22" output="23"/>
+			</CTE-Reflector>
+		</CTE-Reflectors>
+	</CTE-Machine>	
+</CTE-Enigma>

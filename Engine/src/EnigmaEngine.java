@@ -283,18 +283,31 @@ public class EnigmaEngine implements Engine {
     @Override
     public DTOciphertext cipherInputText (String inputText) {
 
-        boolean isSucceed = true;
+        boolean isSucceed = false;
         String outputText = "";
         Problem problem = Problem.NO_PROBLEM;
 
         // check valid ABC
-        //problem = isAllCharsInAlphabet(inputText);
+        problem = isAllCharsInAlphabet(inputText);
 
         if (problem.equals(Problem.NO_PROBLEM)){
+            isSucceed = true;
             outputText = cipherText(inputText);
         }
 
         return new DTOciphertext(isSucceed, problem, outputText);
+    }
+
+    private Problem isAllCharsInAlphabet(String inputText) {
+        final int NOT_FOUND = -1;
+
+        for (Character currentCharacter: inputText.toCharArray()){
+            if (machine.getAlphabet().indexOf(currentCharacter) == NOT_FOUND){
+                return Problem.NOT_IN_ALPHABET;
+            }
+        }
+
+        return Problem.NO_PROBLEM;
     }
 
     @Override

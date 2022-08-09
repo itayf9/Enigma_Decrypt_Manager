@@ -8,10 +8,10 @@ public class DTOsecretConfig {
     private int reflector;
     private List<String> plugs;
 
-    public DTOsecretConfig(List<Integer> rotors, String windows, int reflector, List<String> plugs) {
+    public DTOsecretConfig(List<Integer> rotors, String windows, String reflectorSymbol, List<String> plugs) {
         this.rotors = rotors;
         this.windows = windows;
-        this.reflector = reflector;
+        this.reflectorSymbol = reflectorSymbol;
         this.plugs = plugs;
     }
 
