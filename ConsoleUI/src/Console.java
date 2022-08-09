@@ -324,7 +324,14 @@ public class Console {
      * @return string represents the file name.
      */
     private String getXMLFileName() {
-        return null; // for now
+        System.out.println("Please enter full path of file name to load machine from (XML file).");
+        String res = scanner.nextLine();
+        while (!res.endsWith(".xml")) {
+            System.out.println("Please enter full path of file name to load machine from (XML file).");
+            res = scanner.nextLine();
+        }
+        System.out.println("All OK");
+        return res;
     }
 
     /**

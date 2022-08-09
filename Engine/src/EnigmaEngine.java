@@ -99,6 +99,7 @@ public class EnigmaEngine implements Engine {
         try {
             InputStream inputStream = new FileInputStream(new File(fileName));
             CTEEnigma cteEnigma = deserializeFrom(inputStream);
+            details = validateCTEEnigma(cteEnigma);
             buildMachineFromCTEEnigma(cteEnigma);
 
         } catch (JAXBException e) {
