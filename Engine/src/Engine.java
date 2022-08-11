@@ -10,7 +10,7 @@ public interface Engine {
 
     DTOspecs displayMachineSpecifications();
 
-    DTOstatus selectConfigurationManual(List<Integer> rotorsIDs, String windows, int reflectorID, List<String> plugs);
+    DTOstatus selectConfigurationManual(List<Integer> rotorsIDs, String windows, int reflectorID, String plugs);
 
     DTOsecretConfig selectConfigurationAuto();
 
@@ -24,7 +24,7 @@ public interface Engine {
 
     DTOstatus validateReflector(int reflectorID);
 
-    DTOstatus validatePlugs(List<String> plugs);
+    DTOstatus validatePlugs(String plugs);
 
 
 }

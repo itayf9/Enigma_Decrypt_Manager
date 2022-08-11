@@ -2,7 +2,6 @@ import dto.DTOciphertext;
 import dto.DTOresetConfig;
 import dto.DTOspecs;
 import dto.DTOstatus;
-import utill.Problem;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -12,10 +11,10 @@ import java.util.Scanner;
 public class Console {
     private static final Engine engine = new EnigmaEngine();
 
-    private  static boolean isXmlLoaded = false;
+    private static boolean isXmlLoaded = false;
     private static boolean isMachineConfigured = false;
 
-    private static String xmlFileName = "Engine/src/ex1-sanity-paper-enigma.xml";
+    private static String xmlFileName = "Engine/src/ex1-sanity-small.xml";
 
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -62,7 +61,7 @@ public class Console {
                     }
                     break;
                 case PROCESS_INPUT:
-                    if (isMachineConfigured){
+                    if (isMachineConfigured) {
                         processInput();
                     } else {
                         System.out.println("Please enter configuration, before ciphering some text.");
@@ -70,7 +69,7 @@ public class Console {
 
                     break;
                 case RESET_CURRENT_CODE:
-                    if (isMachineConfigured){
+                    if (isMachineConfigured) {
                         resetConfig();
                     } else {
                         System.out.println("Please enter configuration, before ciphering some text.");
@@ -93,7 +92,7 @@ public class Console {
     /**
      * the menu operations
      */
-    public static void printMainMenu () {
+    public static void printMainMenu() {
         System.out.println("\nSelect an operation:");
         System.out.println("1 - Load System Details From File.\n" +
                 "2 - Display Enigma Machine Specifications.\n" +
@@ -107,11 +106,12 @@ public class Console {
 
     /**
      * getting user choice from the menu
+     *
      * @return Enum operation
      */
     public static Operation getInputUserChoice() {
 
-        boolean isValid= false;
+        boolean isValid = false;
 
         String choice = scanner.nextLine().toUpperCase();
 
@@ -119,8 +119,7 @@ public class Console {
             if (choice.length() > 1) {
                 System.out.println("Invalid input - please enter only one option number! ");
                 choice = scanner.nextLine().toUpperCase();
-            }
-            else if (choice.charAt(0) < '1' || choice.charAt(0) > '8') {
+            } else if (choice.charAt(0) < '1' || choice.charAt(0) > '8') {
                 System.out.println("Invalid option - try again ! with options from 1-8");
                 choice = scanner.nextLine().toUpperCase();
             } else {
@@ -134,25 +133,26 @@ public class Console {
 
     /**
      * get rotors ids from the user
+     *
      * @param numberOfIntegers the rotors count
      * @return list of integers representing the rotor's id's
      */
-    public static List<Integer> getInputListOfIntegers(int numberOfIntegers){
+    public static List<Integer> getInputListOfIntegers(int numberOfIntegers) {
 
-        boolean isValid= false;
+        boolean isValid = false;
         int currentRotorID = 0;
         List<Integer> listOfChoices = new ArrayList<>();
 
         System.out.println("There is a place for " + numberOfIntegers + " rotors in this machine.\n" +
                 "Enter the rotors' ID's , counting from the right most rotor to the left most rotor.\n" +
-                "(rotor #1 is the right most rotor, rotor #2 is to its left, etc.\n" );
+                "(rotor #1 is the right most rotor, rotor #2 is to its left, etc.\n");
 
         for (int i = 0; i < numberOfIntegers; i++) {
 
             // String choice = scanner.nextLine();
 
             while (!isValid) {
-                System.out.print("ID of rotor #" + (i+1) + ":");
+                System.out.print("ID of rotor #" + (i + 1) + ":");
                 try {
                     currentRotorID = scanner.nextInt();
                     isValid = true;
@@ -172,29 +172,29 @@ public class Console {
 
     /**
      * get alphabet characters from the user
+     *
      * @param numberOfCharacters number of rotors count as well
      * @return String of characters
      */
     private static String getInputSequenceOfCharacters(int numberOfCharacters) {
 
-        boolean isValid= false;
+        boolean isValid = false;
         StringBuilder stringOfChoices = new StringBuilder();
 
         System.out.println("Enter the rotors' window characters (the characters that will appear at the window for each rotor),\ncounting from the right most rotor to the left most rotor.\n" +
-                "(rotor #1 is the right most rotor, rotor #2 is to its left, etc.\n" );
+                "(rotor #1 is the right most rotor, rotor #2 is to its left, etc.\n");
 
         for (int i = 0; i < numberOfCharacters; i++) {
             System.out.print("Window character for rotor #" + i + ": ");
             String currentCharacter = scanner.nextLine().toUpperCase();
 
-            while (!isValid){
+            while (!isValid) {
                 if (currentCharacter.length() > 1) {
                     System.out.println("Error! You have entered more than one character. ");
 
                     System.out.print("Window character for rotor #" + i + ": ");
                     currentCharacter = scanner.nextLine().toUpperCase();
-                }
-                else {
+                } else {
                     isValid = true;
                 }
 
@@ -212,10 +212,11 @@ public class Console {
 
     /**
      * get reflector input from user.
+     *
      * @return integer representing reflector id.
      */
     private static int getInputInteger() {
-        boolean isValid= false;
+        boolean isValid = false;
 
         System.out.println("Enter the number of the wanted reflector (select 1-5).");
         System.out.println("1. I\n2. II\n3. III\n4. IV\n5. V\n");
@@ -225,8 +226,7 @@ public class Console {
             if (choice.length() > 1) {
                 System.out.println("Invalid input. try again.");
                 choice = scanner.nextLine().toUpperCase();
-            }
-            else if (choice.charAt(0) < '1' || choice.charAt(0) > '5') {
+            } else if (choice.charAt(0) < '1' || choice.charAt(0) > '5') {
                 System.out.println("invalid option - try again ! with options from 1-5");
                 choice = scanner.nextLine().toUpperCase();
             } else {
@@ -238,6 +238,7 @@ public class Console {
 
     /**
      * get the plugs from the user.
+     *
      * @return a list of strings, each string contains 2 characters representing a Plug.
      */
     private static String getInputListOfStrings() {
@@ -256,6 +257,7 @@ public class Console {
 
     /**
      * get text to cipher from user
+     *
      * @return string of text.
      */
     private static String getInputCipherText() {
@@ -267,8 +269,7 @@ public class Console {
             if (cipherText.length() == 0) {
                 System.out.println("Error! No input was given.");
                 cipherText = scanner.nextLine().toUpperCase();
-            }
-            else {
+            } else {
                 isValid = true;
             }
         }
@@ -278,6 +279,7 @@ public class Console {
 
     /**
      * get fileName from user.
+     *
      * @return string represents the file name.
      */
     private static String getXMLFileName() {
@@ -306,10 +308,8 @@ public class Console {
      */
     static private void displaySpecifications() {
         DTOspecs specsStatus = engine.displayMachineSpecifications();
-        if (specsStatus.isSucceed()){
+        if (specsStatus.isSucceed()) {
             System.out.println(specsStatus);
-
-
         }
     }
 
@@ -398,8 +398,8 @@ public class Console {
         }
         System.out.println("All good.");
 
-        DTOstatus configStatus = engine.selectConfigurationManual(rotorsIDs, windows, reflectorID,plugs);
-        if (configStatus.isSucceed()){
+        DTOstatus configStatus = engine.selectConfigurationManual(rotorsIDs, windows, reflectorID, plugs);
+        if (configStatus.isSucceed()) {
             System.out.println("Machine has been configured successfully.");
             isMachineConfigured = true;
         }
@@ -420,9 +420,9 @@ public class Console {
         System.out.println("Please enter text to cipher: ");
         String inputText = getInputCipherText();
         DTOciphertext cipherStatus = engine.cipherInputText(inputText);
-        while (!cipherStatus.isSucceed()){
+        while (!cipherStatus.isSucceed()) {
 
-            switch (cipherStatus.getDetails()){
+            switch (cipherStatus.getDetails()) {
                 case NOT_IN_ALPHABET:
                     System.out.println("Error! One or more of the characters in this text is not in the alphabet.\n" +
                             "Please enter text that contains only letters from the alphabet.");
@@ -437,22 +437,23 @@ public class Console {
         }
 
         System.out.println("_____________________________");
-        System.out.println(cipherStatus.getCiperedText());
+        System.out.println(cipherStatus.getCipheredText());
         System.out.println("_____________________________");
 
 
-
     }
+
     /**
      * Q6 - reset machine config to it's original last config.
      */
     static private void resetConfig() {
         DTOresetConfig resetStatus = engine.resetConfiguration();
-        if (resetStatus.isSucceed()){
+        if (resetStatus.isSucceed()) {
             System.out.println("Configuration has reset successfully.");
         }
 
     }
+
     /**
      * Q7 - gets history and stats from the machine and display to user.
      */

@@ -32,62 +32,44 @@ public class DTOspecs extends DTOstatus {
         this.inUsePlugs = inUsePlugs;
     }
 
-    public int getAvailableRotorsCount() {
-        return availableRotorsCount;
-    }
-
-    public int getInUseRotorsCount() {
-        return inUseRotorsCount;
-    }
-
-    public List<Integer> getNotchPositions() {
-        return notchPositions;
-    }
-
-    public int getAvailableReflectorsCount() {
-        return availableReflectorsCount;
-    }
-
-    public int getCipheredTextsCount() {
-        return cipheredTextsCount;
-    }
-
-    public List<Integer> getInUseRotorsIDs() {
-        return inUseRotorsIDs;
-    }
-
-    public List<Character> getWindowsCharacters() {
-        return windowsCharacters;
-    }
-
-    public String getInUseReflectorSymbol() {
-        return inUseReflectorSymbol;
-    }
-
-    public List<CharacterPair> getInUsePlugs() {
-        return inUsePlugs;
-    }
-
     @Override
     public String toString() {
        StringBuilder res = new StringBuilder();
-       res.append("Available Rotors Count: " + availableRotorsCount + '\n' +
-                "In Use Rotors Count: " + inUseRotorsCount + '\n');
+       res.append("Specifications: \n")
+               .append(" - Number Of Rotors (In Use / Available): ")
+               .append(inUseRotorsCount)
+               .append(" / ")
+               .append(availableRotorsCount)
+               .append('\n');
 
         for (int i = 0; i < notchDistancesToWindow.size(); i++) {
             if (i == 0){
-                 res.append("Notch Positions: Rotor #" + (i+1) + " ---> ");
+                 res.append(" - Notch's Distances From Windows: The notch of rotor #")
+                         .append(inUseRotorsIDs.get(i))
+                         .append(" ---> ")
+                         .append(notchDistancesToWindow.get(i))
+                         .append(" steps away");
+                 if (notchDistancesToWindow.get(i) == 0){
+                     res.append("(The notch has reached the window)");
+                 }
+                 res.append(".\n");
             }
             else {
-                res.append("                 Rotor #" + (i+1) + " ---> ");
+                res.append("                                      The notch of rotor #")
+                        .append(inUseRotorsIDs.get(i))
+                        .append(" ---> ")
+                        .append(notchDistancesToWindow.get(i))
+                        .append(" steps away");
+                if (notchDistancesToWindow.get(i) == 0){
+                    res.append("(The notch has reached the window)");
+                }
+                res.append(".\n");
             }
-
-
-            res.append( notchPositions.get(i) + "\n");
         }
         res.append("\n");
-        res.append("Available Reflectors Count: " + availableReflectorsCount + '\n' +
-                "Ciphered Texts Count: " + cipheredTextsCount + '\n');
+
+
+        res.append(" - Number Of Reflectors (Available): ").append(availableReflectorsCount).append('\n').append("Ciphered Texts Count: ").append(cipheredTextsCount).append('\n');
 
         if (super.getDetails().equals(Problem.NO_CONFIGURATION)){
             res.append(" - No configuration has been chosen yet.");
@@ -101,7 +83,6 @@ public class DTOspecs extends DTOstatus {
                 }
             }
             res.append("><");
-
             for (int i = windowsCharacters.size()-1; i >=0 ; i--) {
                 res.append(windowsCharacters.get(i));
             }

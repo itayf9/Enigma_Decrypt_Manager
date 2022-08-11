@@ -8,7 +8,7 @@ public class DTOsecretConfig {
     private String reflectorSymbol;
     private String plugs;
 
-    public DTOsecretConfig(List<Integer> rotors, String windows, String reflectorSymbol, List<String> plugs) {
+    public DTOsecretConfig(List<Integer> rotors, String windows, String reflectorSymbol, String plugs) {
         this.rotors = rotors;
         this.windows = windows;
         this.reflectorSymbol = reflectorSymbol;
@@ -37,13 +37,13 @@ public class DTOsecretConfig {
         res.append(">");
 
 
-        if(plugs.size() > 0) {
+        if (plugs.length() > 0) {
             res.append("<");
-            for (int i = 0; i < plugs.size(); i++) {
-                res.append(plugs.get(i).charAt(0));
+            for (int i = 0; i < plugs.length(); i += 2) {
+                res.append(plugs.charAt(i));
                 res.append("|");
-                res.append(plugs.get(i).charAt(1));
-                if (i != plugs.size()-1) {
+                res.append(plugs.charAt(i + 1));
+                if (i != plugs.length() - 2) {
                     res.append(",");
                 }
             }

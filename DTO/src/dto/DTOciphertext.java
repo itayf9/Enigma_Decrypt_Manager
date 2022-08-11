@@ -4,16 +4,14 @@ import utill.Problem;
 
 public class DTOciphertext extends DTOstatus {
 
-    String ciperedText;
+    String cipheredText;
 
-    public DTOciphertext(boolean isSucceed, Problem details, String ciperedText) {
-
+    public DTOciphertext(boolean isSucceed, Problem details, String cipheredText) {
         super(isSucceed, details);
-        this.ciperedText= ciperedText;
-
+        this.cipheredText = cipheredText;
     }
 
-    public String getCiperedText() {
-        return ciperedText;
+    public String getCipheredText() {
+        return cipheredText;
     }
 }

@@ -25,8 +25,6 @@ public class EnigmaMachine {
     private Map<Character, Integer> character2index;
 
 
-
-
     // This area describes the current configuration of the machine.
 
     // we represent the current Rotors offset from the window of the machine.
@@ -50,26 +48,11 @@ public class EnigmaMachine {
         this.rotorsCount = rotorsCount;
         this.alphabet = alphabet;
         this.character2index = character2index;
-        this.plugBoard= new PlugBoard();
-        this.inUseRotors= new ArrayList<>();
+        this.plugBoard = new PlugBoard();
+        this.inUseRotors = new ArrayList<>();
     }
-
-
-    // need those getters??????????????????????????????????????????????????????????????///////
 
     // getters
-    public List<Rotor> getAvailableRotors() {
-        return availableRotors;
-    }
-
-    public List<Reflector> getAvailableReflectors() {
-        return availableReflectors;
-    }
-
-    public PlugBoard getPlugBoard() {
-        return plugBoard;
-    }
-
     public List<Rotor> getInUseRotors() {
         return inUseRotors;
     }
@@ -87,11 +70,12 @@ public class EnigmaMachine {
     }
 
     // getting size of the list of Available Rotors in the machine
-    public int getAvailableRotorsLen () {
+    public int getAvailableRotorsLen() {
         return availableRotors.size();
     }
+
     // getting size of the list of Available Reflectors in the machine
-    public int getAvailableReflectorsLen () {
+    public int getAvailableReflectorsLen() {
         return availableReflectors.size();
     }
 
@@ -99,6 +83,7 @@ public class EnigmaMachine {
     public int getRotorsCount() {
         return rotorsCount;
     }
+
     // getting all the notch positions of all in use rotors in machine
     public List<Integer> getInUseNotchDistanceToWindow() {
         List<Integer> notchPositions = new ArrayList<>();
@@ -110,15 +95,13 @@ public class EnigmaMachine {
         return notchPositions;
     }
 
-    public boolean isConfigured() {
-        return isConfigured;
-    }
+    public boolean isConfigured() {return isConfigured;}
 
     // updating the current config of the machine.
     // by sending the updated list of rotors, reflectors and plugs.
     public void setMachineConfiguration(List<Integer> rotorsIDs, List<Integer> windowOffsets, int reflectorID, String plugs) {
 
-        if(inUseRotors.size() != 0) {
+        if (inUseRotors.size() != 0) {
             inUseRotors.clear();
         }
         for (int i = 0; i < rotorsIDs.size(); i++) {
@@ -136,7 +119,7 @@ public class EnigmaMachine {
     }
 
     // initialize cipher sequence based on: input->plugs->rotors-reflector-rotors-plugs->screen.
-    public char cipher(char srcChar ){
+    public char cipher(char srcChar) {
 
         // rotates the rotors
         rotateRotors();
@@ -144,17 +127,17 @@ public class EnigmaMachine {
         int currentCharIndex = character2index.get(srcChar);
 
         // go to plug board for the first time
-        if (plugBoard.isPlugged(currentCharIndex)){
-            currentCharIndex= plugBoard.getMatch(currentCharIndex);
+        if (plugBoard.isPlugged(currentCharIndex)) {
+            currentCharIndex = plugBoard.getMatch(currentCharIndex);
         }
 
         // go through rotors
-        for (Rotor rotor : inUseRotors){
+        for (Rotor rotor : inUseRotors) {
             currentCharIndex = rotor.getMatchForward(currentCharIndex);
         }
 
         // reflector
-        currentCharIndex= inUseReflector.reflect(currentCharIndex);
+        currentCharIndex = inUseReflector.reflect(currentCharIndex);
 
         // go through rotors
         for (int i = inUseRotors.size() - 1; i >= 0; i--) {
@@ -163,8 +146,8 @@ public class EnigmaMachine {
 
 
         // go to plug board for the second time
-        if (plugBoard.isPlugged(currentCharIndex)){
-            currentCharIndex= plugBoard.getMatch(currentCharIndex);
+        if (plugBoard.isPlugged(currentCharIndex)) {
+            currentCharIndex = plugBoard.getMatch(currentCharIndex);
         }
 
 
@@ -176,15 +159,15 @@ public class EnigmaMachine {
      * rotates the rotors in the machine. the first rotor is always being rotated.
      * for each rotor, it makes the next rotor to be rotated, if the notch has reached an absolute offset of 0.
      */
-    public void rotateRotors(){
+    public void rotateRotors() {
 
         // goes through all rotors
-        // fisrt rotor is always being rotated
+        // first rotor is always being rotated
         for (Rotor rotor : inUseRotors) {
             rotor.rotate();
 
-            // checks if needs to rotate next rotor
-            if ( rotor.getOriginalNotchIndex() - rotor.getOffset() != 0){
+            // check if it is needed to rotate next rotor
+            if (rotor.getOriginalNotchIndex() - rotor.getOffset() != 0) {
                 break;
             }
         }
@@ -206,6 +189,7 @@ public class EnigmaMachine {
 
     /**
      * finds a rotor by a specific id
+     *
      * @param id an unique id of a rotor
      * @return the rotor with that id
      */
@@ -214,7 +198,6 @@ public class EnigmaMachine {
     }
 
     /**
-     *
      * @return how many ciphered texts the machine has been ciphering so far
      */
     public static int getCipherCounter() {
@@ -224,18 +207,17 @@ public class EnigmaMachine {
     /**
      * increases the amount of ciphered texts that the machine has ciphered so far, by one.
      */
-    public static void advanceCipherCounter(){
+    public static void advanceCipherCounter() {
         cipherCounter++;
     }
 
     /**
-     *
      * @return a list of the ids of the in-use rotors, maintaining their order.
      */
     public List<Integer> getInUseRotorsIDs() {
-        List<Integer> inUseRotorsIDs= new ArrayList<>();
+        List<Integer> inUseRotorsIDs = new ArrayList<>();
 
-        for (Rotor rotor : inUseRotors){
+        for (Rotor rotor : inUseRotors) {
             inUseRotorsIDs.add(rotor.getId());
         }
 
@@ -243,21 +225,19 @@ public class EnigmaMachine {
     }
 
     /**
-     *
      * @return a list of the alphabet letters, for each rotor, that are currently at the 'window' (meaning that the absolute position is 0)
      */
     public List<Character> getAllWindowsCharacters() {
         List<Character> windowsCharacters = new ArrayList<>();
 
         for (int i = 0; i < inUseWindowsOffsets.size(); i++) {
-            windowsCharacters.add( inUseRotors.get(i).translateOffset2Char( inUseWindowsOffsets.get(i) ) );
+            windowsCharacters.add(inUseRotors.get(i).translateOffset2Char(inUseWindowsOffsets.get(i)));
         }
 
         return windowsCharacters;
     }
 
     /**
-     *
      * @return a list of pairs of characters that are plugged in the plug board.
      */
     public List<CharacterPair> getListOfPlugPairs() {
@@ -269,12 +249,12 @@ public class EnigmaMachine {
             // sets two new pairs of seperated characters.
             // first is extracted from the current <key, value> pair.
             // second is the opposite one to that <key, value> pair.
-            CharacterPair currentPlug = new CharacterPair( alphabet.charAt(plug.getKey()), alphabet.charAt(plug.getValue()));
-            CharacterPair reversedCurrentPlug = new CharacterPair( alphabet.charAt(plug.getValue()) , alphabet.charAt(plug.getKey()) );
+            CharacterPair currentPlug = new CharacterPair(alphabet.charAt(plug.getKey()), alphabet.charAt(plug.getValue()));
+            CharacterPair reversedCurrentPlug = new CharacterPair(alphabet.charAt(plug.getValue()), alphabet.charAt(plug.getKey()));
 
             // in order to prevent duplicates, checks this pair is already in the output list.
             // if it's not, then the pair is added to the list.
-            if ((!plugPairs.contains(currentPlug)) && (!plugPairs.contains(reversedCurrentPlug))){
+            if ((!plugPairs.contains(currentPlug)) && (!plugPairs.contains(reversedCurrentPlug))) {
                 plugPairs.add(currentPlug);
             }
         }

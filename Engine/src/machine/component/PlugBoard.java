@@ -1,7 +1,6 @@
 package machine.component;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class PlugBoard {
@@ -55,15 +54,14 @@ public class PlugBoard {
      *              for example, "A|Z,D|E" means that there are two pairs.
      *              first pair : A and Z. second pair : D and E.
      */
-    public void initPlugBoardMap(Map<Character, Integer> character2index, List<String> plugs){
+    public void initPlugBoardMap(Map<Character, Integer> character2index, String plugs){
 
         plugMap.clear();
         // run through all plugs
-        for (String plug : plugs) {
-
+        for (int i = 0; i < plugs.length(); i+=2) {
             // convert char to index
-            int firstInPlugIndex = character2index.get(plug.charAt(0));
-            int secondInPlugIndex = character2index.get(plug.charAt(1));
+            int firstInPlugIndex = character2index.get(plugs.charAt(i));
+            int secondInPlugIndex = character2index.get(plugs.charAt(i+1));
 
             // build  plug map
             plugMap.put(secondInPlugIndex, firstInPlugIndex);

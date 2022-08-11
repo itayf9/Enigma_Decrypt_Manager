@@ -6,7 +6,7 @@ public enum Operation {
 
     public static Operation getOperation(char choice){
 
-        Operation selectedOperation = NONE;
+        Operation selectedOperation;
 
         switch(choice) {
             case '1':

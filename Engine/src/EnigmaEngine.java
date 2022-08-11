@@ -7,7 +7,6 @@ import machine.jaxb.generated.*;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -28,42 +27,44 @@ public class EnigmaEngine implements Engine {
 
 
     // engine constructor
-    public EnigmaEngine(){
+    public EnigmaEngine() {
     }
 
     // creating new machine instance using all the parts the machine needs.
-    public void buildMachine(ArrayList<Rotor> availableRotors, ArrayList<Reflector> availableReflectors, int rotorsCount, String alphabet, Map<Character, Integer> character2index){
+    public void buildMachine(ArrayList<Rotor> availableRotors, ArrayList<Reflector> availableReflectors, int rotorsCount, String alphabet, Map<Character, Integer> character2index) {
         machine = new EnigmaMachine(availableRotors, availableReflectors, rotorsCount, alphabet, character2index);
     }
 
     /**
      * updating the current machine configurations.
      * based on String of input from the user.
-     * @param rotorsIDs
-     * @param windowsChars
-     * @param reflectorID
-     * @param plugs
+     *
+     * @param rotorsIDs    list of integers
+     * @param windowsChars string of characters
+     * @param reflectorID  integer
+     * @param plugs        string of plugs
      */
     public void updateConfiguration(List<Integer> rotorsIDs, String windowsChars, int reflectorID, String plugs) {
 
         // build windowOffsets
         ArrayList<Integer> windowOfssets = new ArrayList<>();
 
-        for (int i = windowsChars.length() - 1; i >= 0; i--) {
-            int j = windowsChars.length() - 1 - i ;
-            Rotor r = machine.getRotorByID( rotorsIDs.get(j));
+        for (int i = 0; i < windowsChars.length(); i++) {
+//            int j = windowsChars.length() - 1 - i;
+            Rotor r = machine.getRotorByID(rotorsIDs.get(i));
             int offset = r.translateChar2Offset(windowsChars.charAt(i));
             windowOfssets.add(offset);
         }
-        machine.setMachineConfiguration((ArrayList<Integer>) rotorsIDs, windowOfssets, reflectorID, plugs);
+        machine.setMachineConfiguration(rotorsIDs, windowOfssets, reflectorID, plugs);
     }
 
     /**
      * ciphering text with the cipher method of "machine".
-     * @param toCipher
+     *
+     * @param toCipher string of text to cipher
      * @return string of cipher text.
      */
-    public String cipherText ( String toCipher ) {
+    public String cipherText(String toCipher) {
         StringBuilder cipheredText = new StringBuilder();
 
         for (Character currentChar : toCipher.toCharArray()) {
@@ -76,31 +77,32 @@ public class EnigmaEngine implements Engine {
 
     /**
      * get the rotorsCount
+     *
      * @return rotors count
      */
     @Override
-    public int getRotorsCount (){
+    public int getRotorsCount() {
         return machine.getRotorsCount();
     }
 
     /**
      * get fileName from user and load Xml file to build new machine.
-     * @param fileName
+     *
+     * @param fileName string - name of xml file
      */
     public DTOstatus buildMachineFromXmlFile(String fileName) {
-        boolean isSucceeded = false;
-        Problem details = Problem.NO_PROBLEM;
+        boolean isSucceeded = true;
+        Problem details;
 
         if (!fileName.endsWith(".xml")) {
             isSucceeded = false;
             details = Problem.FILE_NOT_IN_FORMAT;
         }
-
-        try {
-            InputStream inputStream = new FileInputStream(new File(fileName));
-            CTEEnigma cteEnigma = deserializeFrom(inputStream);
-            details = validateCTEEnigma(cteEnigma);
-            buildMachineFromCTEEnigma(cteEnigma);
+        else {
+            try {
+                InputStream inputStream = new FileInputStream(fileName);
+                CTEEnigma cteEnigma = deserializeFrom(inputStream);
+                details = buildMachineFromCTEEnigma(cteEnigma);
 
             } catch (JAXBException e) {
                 details = Problem.JAXB_ERROR;
@@ -111,32 +113,150 @@ public class EnigmaEngine implements Engine {
             }
         }
 
+
+
         return new DTOstatus(isSucceeded, details);
     }
 
     /**
-     * valitdates the CTEengine
+     * validates the CTEngine
+     *
      * @return detailed problem
      */
-    private Problem validateCTEEnigma(CTEEnigma cteEnigma ) {
+    private Problem validateCTEEnigma(CTEEnigma cteEnigma) {
         Problem problem = Problem.NO_PROBLEM;
-
+        boolean totalValidCheck = true;
         CTEMachine cteMachine = cteEnigma.getCTEMachine();
+        String abc = cteMachine.getABC().trim();
 
         // check for alphabet length to be even
-        if (cteMachine.getABC().length() % 2 == 1) {
+        if (abc.length() % 2 == 1) {
             problem = Problem.ODD_ALPHABET_AMOUNT;
-            //return
+            totalValidCheck = false;
         }
 
         // check if rotors count is less than available rotors.
         if (cteMachine.getCTERotors().getCTERotor().size() < cteMachine.getRotorsCount()) {
             problem = Problem.NOT_ENOUGH_ROTORS;
+            totalValidCheck = false;
         }
 
         // check if rotors count is less than 2
         if (cteMachine.getRotorsCount() < 2) {
             problem = Problem.ROTORS_COUNT_BELOW_TWO;
+            totalValidCheck = false;
+        }
+
+        // check if all rotors ids are being a running counting from 1-N
+
+        Comparator<CTERotor> CTERotorComparator = Comparator.comparingInt(CTERotor::getId);
+        List<CTERotor> cteRotors = cteMachine.getCTERotors().getCTERotor();
+        cteRotors.sort(CTERotorComparator);
+        for (int i = 0; i < cteRotors.size() && totalValidCheck; i++) {
+            if (cteRotors.get(i).getId() != i + 1) {
+                problem = Problem.ROTOR_INVALID_ID_RANGE;
+                totalValidCheck = false;
+            }
+            // check notch positions in cteRotors
+            if (cteRotors.get(i).getNotch() > cteMachine.getABC().length() || cteRotors.get(i).getNotch() < 1) {
+                problem = Problem.OUT_OF_RANGE_NOTCH;
+                totalValidCheck = false;
+            }
+        }
+
+        //check for duplicate mapping in every rotor.
+        List<Boolean> rotorMappingFlags = new ArrayList<>(Collections.nCopies(abc.length(), false));
+        for (CTERotor currentRotor : cteRotors) {
+
+            // check if something else gone wrong, there is no need to do extra work.
+            if (!totalValidCheck) {
+                break;
+            }
+
+            for (CTEPositioning currentPosition : currentRotor.getCTEPositioning()) {
+                if (currentPosition.getRight().length() != 1) {
+                    problem = Problem.ROTOR_MAPPING_NOT_A_LETTER;
+                    totalValidCheck = false;
+                    break;
+                } else if (abc.indexOf(currentPosition.getRight().charAt(0)) == -1) {
+                    problem = Problem.ROTOR_MAPPING_NOT_IN_ALPHABET;
+                    totalValidCheck = false;
+                    break;
+                } else {
+                    if (!rotorMappingFlags.get(abc.indexOf(currentPosition.getRight().charAt(0)))) {
+                        rotorMappingFlags.set(abc.indexOf(currentPosition.getRight().charAt(0)), true);
+                    }
+                }
+            }
+        }
+        // if we got here safely then mapping is OK!
+
+
+        // check if all reflectors ids are being a running counting from 1-N
+        List<CTEReflector> cteReflectors = cteMachine.getCTEReflectors().getCTEReflector();
+        List<Boolean> reflectorIDFlags = new ArrayList<>(Collections.nCopies(5, false));
+
+
+        // check for reflector count < 5
+
+        if (cteReflectors.size() > 5) {
+            problem = Problem.TOO_MANY_REFLECTORS;
+            totalValidCheck = false;
+        }
+
+        // goes through all reflectors
+        for (CTEReflector cteReflector : cteReflectors) {
+
+            // check if something else gone wrong, there is no need to do extra work.
+            if (!totalValidCheck) {
+                break;
+            }
+
+            int currentID = romanToDecimal(cteReflector.getId());
+
+            // fill reflectorID flag list
+            if (currentID == NOT_VALID_ROMAN_TO_DECIMAL) {
+                problem = Problem.REFLECTOR_OUT_OF_RANGE_ID;
+                totalValidCheck = false;
+                continue;
+            } else if (reflectorIDFlags.get(currentID - 1)) {
+                problem = Problem.REFLECTOR_ID_DUPLICATIONS;
+                totalValidCheck = false;
+                continue;
+            } else {
+                reflectorIDFlags.set(currentID - 1, true);
+            }
+
+            List<CTEReflect> cteReflectPairs = cteReflector.getCTEReflect();
+
+            // check for number of reflect pairs in each reflector
+            if (cteReflectPairs.size() != abc.length() / 2) {
+                problem = Problem.NUM_OF_REFLECTS_IS_NOT_HALF_OF_ABC;
+                totalValidCheck = false;
+                continue;
+            }
+
+            // check for self mapping in each reflector
+            for (CTEReflect cteReflectPair : cteReflectPairs) {
+
+                if (cteReflectPair.getInput() == cteReflectPair.getOutput()) {
+                    problem = Problem.REFLECTOR_SELF_MAPPING;
+                    totalValidCheck = false;
+                    break;
+                }
+            }
+        }
+
+
+        int firstFalse = reflectorIDFlags.indexOf(false);
+
+        if (firstFalse != -1){
+            for (int i = firstFalse + 1; i < reflectorIDFlags.size(); i++) {
+                if (reflectorIDFlags.get(i)){
+                    problem= Problem.REFLECTOR_INVALID_ID_RANGE;
+                    break;
+                }
+            }
         }
 
 
@@ -144,11 +264,12 @@ public class EnigmaEngine implements Engine {
     }
 
     /**
-     *  unmarshalling the schema of provided Xml file to create jaxb classes.
-     *  to help build the machine from a xml file.
-     * @param in
+     * unmarshalling the schema of provided Xml file to create jaxb classes.
+     * to help build the machine from a xml file.
+     *
+     * @param in InputStream
      * @return jaxb generated engine
-     * @throws JAXBException
+     * @throws JAXBException jaxb exception..
      */
     private static CTEEnigma deserializeFrom(InputStream in) throws JAXBException {
         JAXBContext jc = JAXBContext.newInstance(JAXB_XML_PACKAGE_NAME);
@@ -160,27 +281,32 @@ public class EnigmaEngine implements Engine {
 
     /**
      * convert all data from jaxb classes to our own classes.
-     * @param cteEnigma
+     *
+     * @param cteEnigma the engine generated from jaxb
      */
-    private void buildMachineFromCTEEnigma( CTEEnigma cteEnigma ){
+    private Problem buildMachineFromCTEEnigma(CTEEnigma cteEnigma) {
+
+        //validation !!
+        Problem problem = validateCTEEnigma(cteEnigma);
+
         CTEMachine cteMachine = cteEnigma.getCTEMachine();
 
         ArrayList<Rotor> availableRotors = new ArrayList<>();
         ArrayList<Reflector> availableReflectors = new ArrayList<>();
         int rotorsCount = cteMachine.getRotorsCount();
 
-        // initialize alphabet and character2index
+        // initialize alphabet and characters-2-index
         String alphabet = cteMachine.getABC().trim();
-        Map<Character, Integer> character2index= new HashMap<>();
+        Map<Character, Integer> character2index = new HashMap<>();
         for (int i = 0; i < alphabet.length(); i++) {
             character2index.put(alphabet.charAt(i), i);
         }
 
         // initialize rotors
-        for ( CTERotor cteRotor : cteMachine.getCTERotors().getCTERotor() ) {
+        for (CTERotor cteRotor : cteMachine.getCTERotors().getCTERotor()) {
 
             int currentID = cteRotor.getId();
-            int currrentNotchIndex = cteRotor.getNotch() - 1;
+            int currentNotchIndex = cteRotor.getNotch() - 1;
 
             ArrayList<Integer> mapRotorForward = new ArrayList<>(Collections.nCopies(alphabet.length(), 0));
             ArrayList<Integer> mapRotorBackward = new ArrayList<>(Collections.nCopies(alphabet.length(), 0));
@@ -189,7 +315,7 @@ public class EnigmaEngine implements Engine {
             int index = 0;
 
             // go through all right positions to build the translators Char to index
-            for (CTEPositioning ctePosition : cteRotor.getCTEPositioning()){
+            for (CTEPositioning ctePosition : cteRotor.getCTEPositioning()) {
                 forwardTranslatorChar2index.put(ctePosition.getRight().charAt(0), index);
                 backwardTranslatorChar2index.put(ctePosition.getLeft().charAt(0), index);
                 index++;
@@ -198,23 +324,23 @@ public class EnigmaEngine implements Engine {
             int indexOfLeftSide = 0;
 
             // go through all left positions to build the forwarding map
-            for (CTEPositioning ctePosition : cteRotor.getCTEPositioning()){
-               int indexOfRightSide = forwardTranslatorChar2index.get(ctePosition.getLeft().charAt(0));
-               mapRotorForward.set(indexOfRightSide, indexOfLeftSide);
-               indexOfLeftSide++;
+            for (CTEPositioning ctePosition : cteRotor.getCTEPositioning()) {
+                int indexOfRightSide = forwardTranslatorChar2index.get(ctePosition.getLeft().charAt(0));
+                mapRotorForward.set(indexOfRightSide, indexOfLeftSide);
+                indexOfLeftSide++;
             }
 
             indexOfLeftSide = 0;
 
-            // go through all right positions to build the backwarding map
-            for (CTEPositioning ctePosition : cteRotor.getCTEPositioning()){
+            // go through all right positions to build the backward map
+            for (CTEPositioning ctePosition : cteRotor.getCTEPositioning()) {
                 int indexOfRightSide = backwardTranslatorChar2index.get(ctePosition.getRight().charAt(0));
                 mapRotorBackward.set(indexOfRightSide, indexOfLeftSide);
                 indexOfLeftSide++;
             }
 
             // creating a new rotor
-            Rotor currentRotor = new Rotor(currentID, currrentNotchIndex,
+            Rotor currentRotor = new Rotor(currentID, currentNotchIndex,
                     forwardTranslatorChar2index, alphabet.length(),
                     mapRotorForward, mapRotorBackward);
 
@@ -222,16 +348,16 @@ public class EnigmaEngine implements Engine {
         }
 
         //initialize reflectors
-        for ( CTEReflector cteReflector : cteMachine.getCTEReflectors().getCTEReflector() ){
+        for (CTEReflector cteReflector : cteMachine.getCTEReflectors().getCTEReflector()) {
 
-            int currentID = romanToDecimal( cteReflector.getId() );
+            int currentID = romanToDecimal(cteReflector.getId());
 
             ArrayList<Integer> reflectorMapping = new ArrayList<>(Collections.nCopies(alphabet.length(), 0));
 
             // creating the mapping of the reflector
-            for (CTEReflect cteReflect : cteReflector.getCTEReflect()){
-                int input = cteReflect.getInput() -1;
-                int output = cteReflect.getOutput() -1;
+            for (CTEReflect cteReflect : cteReflector.getCTEReflect()) {
+                int input = cteReflect.getInput() - 1;
+                int output = cteReflect.getOutput() - 1;
                 reflectorMapping.set(input, output);
                 reflectorMapping.set(output, input);
             }
@@ -242,25 +368,25 @@ public class EnigmaEngine implements Engine {
             availableReflectors.add(currentReflector);
         }
 
-        /** checkValidation */
-
         // sort rotors and reflector by id
-        Comparator<Rotor> rotorComparator = (r1, r2) -> r1.getId() - r2.getId();
+        Comparator<Rotor> rotorComparator = Comparator.comparingInt(Rotor::getId);
         availableRotors.sort(rotorComparator);
-        Comparator<Reflector> reflectorComparator = (r1, r2) -> r1.getId() - r2.getId();
+        Comparator<Reflector> reflectorComparator = Comparator.comparingInt(Reflector::getId);
         availableReflectors.sort(reflectorComparator);
 
+        System.out.println("validation over");
         buildMachine(availableRotors, availableReflectors, rotorsCount, alphabet, character2index);
 
-
+        return problem;
     }
 
     /**
      * fetching the current machine specifications.
+     *
      * @return DTO object that represents the specs.
      */
     @Override
-    public DTOspecs displayMachineSpecifications () {
+    public DTOspecs displayMachineSpecifications() {
 
         boolean isSucceeded = true;
         Problem details = Problem.NO_PROBLEM;
@@ -293,11 +419,12 @@ public class EnigmaEngine implements Engine {
 
     /**
      * get new config from user and updating the machine configuration.
-     * @param rotorsIDs
-     * @param windows
-     * @param reflectorID
-     * @param plugs
-     * @return
+     *
+     * @param rotorsIDs   list of integers
+     * @param windows     string of characters
+     * @param reflectorID integer
+     * @param plugs       string of plugs
+     * @return dto status
      */
     @Override
     public DTOstatus selectConfigurationManual(List<Integer> rotorsIDs, String windows, int reflectorID, String plugs) {
@@ -311,83 +438,86 @@ public class EnigmaEngine implements Engine {
 
     /**
      * get new config randomly and updating the machine config.
-     * @return
+     *
+     * @return DTO object
      */
     @Override
-    public DTOsecretConfig selectConfigurationAuto (){
+    public DTOsecretConfig selectConfigurationAuto() {
         String alphabet = machine.getAlphabet();
 
-        List<Integer> randomGeneratedRotorIDs= new ArrayList<>();
+        List<Integer> randomGeneratedRotorIDs = new ArrayList<>();
         int randomGeneratedReflectorID;
         StringBuilder randomGeneratedWindowCharacters = new StringBuilder();
-        int randomPlugsCount = (int)Math.floor(Math.random() * (alphabet.length() + 1)) / 2;
-        List<String> randomGeneratedPlugs = new ArrayList<>(Collections.nCopies(randomPlugsCount, ""));
-        List<Boolean> alreadyPluged = new ArrayList<>(Collections.nCopies(alphabet.length(), false));
+        int randomPlugsCount = (int) Math.floor(Math.random() * (alphabet.length() + 1)) / 2;
+        StringBuilder randomGeneratedPlugs = new StringBuilder();
+        List<Boolean> alreadyPlugged = new ArrayList<>(Collections.nCopies(alphabet.length(), false));
 
         // randomizes rotors ID and order
         for (int i = 0; i < machine.getRotorsCount(); i++) {
-            int randomRotorID = (int)Math.ceil( Math.random() * machine.getAvailableRotorsLen() );
-            while( randomGeneratedRotorIDs.contains(randomRotorID)){
-                randomRotorID = (int)Math.ceil( Math.random() * machine.getAvailableRotorsLen() );
+            int randomRotorID = (int) Math.ceil(Math.random() * machine.getAvailableRotorsLen());
+            while (randomGeneratedRotorIDs.contains(randomRotorID)) {
+                randomRotorID = (int) Math.ceil(Math.random() * machine.getAvailableRotorsLen());
             }
 
             randomGeneratedRotorIDs.add(randomRotorID);
         }
 
         // randomizes reflector ID
-        randomGeneratedReflectorID = (int)Math.ceil( Math.random() * machine.getAvailableReflectorsLen() );
+        randomGeneratedReflectorID = (int) Math.ceil(Math.random() * machine.getAvailableReflectorsLen());
 
         // randomizes window offsets
         for (int i = 0; i < machine.getRotorsCount(); i++) {
             // get random index
-            int randomIndex = (int)Math.floor( Math.random() * alphabet.length());
+            int randomIndex = (int) Math.floor(Math.random() * alphabet.length());
             // convert random index to Character from the alphabet.
             randomGeneratedWindowCharacters.append(alphabet.charAt(randomIndex));
         }
 
         // randomizes plugs
         for (int i = 0; i < randomPlugsCount; i++) {
-            int firstInPlugIndex = (int)Math.floor( Math.random() * alphabet.length());
-            int secondInPlugIndex = (int)Math.floor( Math.random() * alphabet.length());
+            int firstInPlugIndex = (int) Math.floor(Math.random() * alphabet.length());
+            int secondInPlugIndex = (int) Math.floor(Math.random() * alphabet.length());
 
-            while (alreadyPluged.get( firstInPlugIndex)){
-                firstInPlugIndex = (int)Math.floor( Math.random() * alphabet.length());
+            while (alreadyPlugged.get(firstInPlugIndex)) {
+                firstInPlugIndex = (int) Math.floor(Math.random() * alphabet.length());
             }
-            alreadyPluged.set( firstInPlugIndex, true);
-            while (alreadyPluged.get( secondInPlugIndex)){
-                secondInPlugIndex = (int)Math.floor( Math.random() * alphabet.length());
+            alreadyPlugged.set(firstInPlugIndex, true);
+
+            while (alreadyPlugged.get(secondInPlugIndex)) {
+                secondInPlugIndex = (int) Math.floor(Math.random() * alphabet.length());
             }
-            alreadyPluged.set( secondInPlugIndex, true);
+            alreadyPlugged.set(secondInPlugIndex, true);
 
             String currentPlug = "" + alphabet.charAt(firstInPlugIndex) + alphabet.charAt(secondInPlugIndex);
-            randomGeneratedPlugs.set(i, currentPlug);
+            randomGeneratedPlugs.append(currentPlug);
         }
 
         // updates the configuration
         updateConfiguration(randomGeneratedRotorIDs, randomGeneratedWindowCharacters.toString(),
-                randomGeneratedReflectorID, randomGeneratedPlugs);
+                randomGeneratedReflectorID, randomGeneratedPlugs.toString());
 
 
-        return new DTOsecretConfig( randomGeneratedRotorIDs, randomGeneratedWindowCharacters.toString(),
-                decimalToRoman(randomGeneratedReflectorID), randomGeneratedPlugs);
+        return new DTOsecretConfig(randomGeneratedRotorIDs, randomGeneratedWindowCharacters.toString(),
+                decimalToRoman(randomGeneratedReflectorID), randomGeneratedPlugs.toString());
     }
 
     /**
      * validates the input text from the user and calls method "cipherText" to cipher the text.
-     * @param inputText
+     *
+     * @param inputText string of inputted text
      * @return DTO which has the ciphered text
      */
     @Override
-    public DTOciphertext cipherInputText (String inputText) {
+    public DTOciphertext cipherInputText(String inputText) {
 
         boolean isSucceed = false;
         String outputText = "";
-        Problem problem = Problem.NO_PROBLEM;
+        Problem problem;
 
         // check valid ABC
         problem = isAllCharsInAlphabet(inputText);
 
-        if (problem.equals(Problem.NO_PROBLEM)){
+        if (problem.equals(Problem.NO_PROBLEM)) {
             isSucceed = true;
             outputText = cipherText(inputText);
         }
@@ -398,8 +528,8 @@ public class EnigmaEngine implements Engine {
     private Problem isAllCharsInAlphabet(String inputText) {
         final int NOT_FOUND = -1;
 
-        for (Character currentCharacter: inputText.toCharArray()){
-            if (machine.getAlphabet().indexOf(currentCharacter) == NOT_FOUND){
+        for (Character currentCharacter : inputText.toCharArray()) {
+            if (machine.getAlphabet().indexOf(currentCharacter) == NOT_FOUND) {
                 return Problem.NOT_IN_ALPHABET;
             }
         }
@@ -409,10 +539,11 @@ public class EnigmaEngine implements Engine {
 
     /**
      * resetting the offset of each rotor in configuration of machine to its original values.
-     * @return DTOresetConfig
+     *
+     * @return DTOResetConfig
      */
     @Override
-    public DTOresetConfig resetConfiguration () {
+    public DTOresetConfig resetConfiguration() {
 
         boolean isSucceed = true;
         Problem details = Problem.NO_PROBLEM;
@@ -428,24 +559,23 @@ public class EnigmaEngine implements Engine {
 
     /**
      * validates rotors input from user.
-     * @param rotorsIDs
+     *
+     * @param rotorsIDs list of integers
      * @return DTO status
      */
     @Override
-    public DTOstatus validateRotors (List<Integer> rotorsIDs){
+    public DTOstatus validateRotors(List<Integer> rotorsIDs) {
         boolean isSucceed = true;
         Problem details = Problem.NO_PROBLEM;
 
         // check if rotorsIDs size is exactly the required size.
-        if (rotorsIDs.size() < machine.getRotorsCount()){
+        if (rotorsIDs.size() < machine.getRotorsCount()) {
             isSucceed = false;
             details = Problem.NOT_ENOUGH_ELEMENTS;
-        }
-        else if (rotorsIDs.size() > machine.getRotorsCount()){
+        } else if (rotorsIDs.size() > machine.getRotorsCount()) {
             isSucceed = false;
             details = Problem.TOO_MANY_ELEMENTS;
-        }
-        else {
+        } else {
             for (Integer rotorID : rotorsIDs) {
 
                 // check if the rotorID exists in this machine.
@@ -462,11 +592,12 @@ public class EnigmaEngine implements Engine {
 
     /**
      * validates window characters offsets input from user.
-     * @param windowChars
-     * @return DTOstatus
+     *
+     * @param windowChars string of characters
+     * @return DTO-status
      */
     @Override
-    public DTOstatus validateWindowCharacters (String windowChars){
+    public DTOstatus validateWindowCharacters(String windowChars) {
         boolean isSucceed = true;
         Problem details = Problem.NO_PROBLEM;
         final int CHAR_NOT_FOUND = -1;
@@ -484,11 +615,12 @@ public class EnigmaEngine implements Engine {
 
     /**
      * validate reflector input from the user.
-     * @param reflectorID
+     *
+     * @param reflectorID integer
      * @return DTO status
      */
     @Override
-    public DTOstatus validateReflector (int reflectorID){
+    public DTOstatus validateReflector(int reflectorID) {
         boolean isSucceed = true;
         Problem details = Problem.NO_PROBLEM;
 
@@ -503,21 +635,26 @@ public class EnigmaEngine implements Engine {
 
     /**
      * validate plugs input from the user.
-     * @param plugs
-     * @return DTOstatus
+     *
+     * @param plugs string of plugs..
+     * @return DTO-status
      */
     @Override
-    public DTOstatus validatePlugs (List<String> plugs){
+    public DTOstatus validatePlugs(String plugs) {
         boolean isSucceed = true;
         Problem details = Problem.NO_PROBLEM;
-        List<Boolean> alreadyPluged = new ArrayList<>(Collections.nCopies(machine.getAlphabet().length(), false));
+        List<Boolean> alreadyPlugged = new ArrayList<>(Collections.nCopies(machine.getAlphabet().length(), false));
         final int CHAR_NOT_FOUND = -1;
 
-        // goes through all the plugs
-        for (String plug : plugs){
 
-            int firstInPlugIndex = machine.getAlphabet().indexOf(plug.charAt(0));
-            int secondInPlugIndex = machine.getAlphabet().indexOf(plug.charAt(1));
+        if (plugs.length() % 2 == 1) {
+            details = Problem.ODD_ALPHABET_AMOUNT;
+        }
+
+        // goes through all the plugs (go through pairs)
+        for (int i = 0; i < plugs.length(); i += 2) {
+            int firstInPlugIndex = machine.getAlphabet().indexOf(plugs.charAt(i));
+            int secondInPlugIndex = machine.getAlphabet().indexOf(plugs.charAt(i + 1));
 
             // check if both characters are the same.
             if (firstInPlugIndex == secondInPlugIndex) {
@@ -527,22 +664,24 @@ public class EnigmaEngine implements Engine {
             }
 
             // check if both characters in the current plug is in the alphabet.
-            if (firstInPlugIndex == CHAR_NOT_FOUND || secondInPlugIndex == CHAR_NOT_FOUND){
+            if (firstInPlugIndex == CHAR_NOT_FOUND || secondInPlugIndex == CHAR_NOT_FOUND) {
                 isSucceed = false;
                 details = Problem.NOT_IN_ALPHABET;
                 break;
             } else {
                 // check if both characters are not plugged yet.
-                if (!alreadyPluged.get( firstInPlugIndex) && !alreadyPluged.get( secondInPlugIndex)){
-                    alreadyPluged.set( firstInPlugIndex, true);
-                    alreadyPluged.set( secondInPlugIndex, true);
+                if (!alreadyPlugged.get(firstInPlugIndex) && !alreadyPlugged.get(secondInPlugIndex)) {
+                    alreadyPlugged.set(firstInPlugIndex, true);
+                    alreadyPlugged.set(secondInPlugIndex, true);
                 } else {
                     isSucceed = false;
                     details = Problem.ALREADY_PLUGGED;
                     break;
                 }
             }
+
         }
+
         return new DTOstatus(isSucceed, details);
     }
 
