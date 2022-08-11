@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.*;
 
+import statistics.StatisticRecord;
 import utill.CharacterPair;
 import utill.Problem;
 
@@ -25,6 +26,7 @@ public class EnigmaEngine implements Engine {
     // The engine contains the Enigma Machine instance.
     private EnigmaMachine machine;
 
+    private List<StatisticRecord> machineRecords = new ArrayList<>();
 
     // engine constructor
     public EnigmaEngine() {
@@ -55,6 +57,8 @@ public class EnigmaEngine implements Engine {
             int offset = r.translateChar2Offset(windowsChars.charAt(i));
             windowOfssets.add(offset);
         }
+        // StatisticRecord newRecord = new StatisticRecord(rotorsIDs, windowsChars, reflectorID, plugs);
+        // machineRecords.add(newRecord);
         machine.setMachineConfiguration(rotorsIDs, windowOfssets, reflectorID, plugs);
     }
 
@@ -103,6 +107,9 @@ public class EnigmaEngine implements Engine {
                 InputStream inputStream = new FileInputStream(fileName);
                 CTEEnigma cteEnigma = deserializeFrom(inputStream);
                 details = buildMachineFromCTEEnigma(cteEnigma);
+                if (details != Problem.NO_PROBLEM) {
+                    isSucceeded = false;
+                }
 
             } catch (JAXBException e) {
                 details = Problem.JAXB_ERROR;
@@ -112,8 +119,6 @@ public class EnigmaEngine implements Engine {
                 details = Problem.FILE_NOT_FOUND;
             }
         }
-
-
 
         return new DTOstatus(isSucceeded, details);
     }
@@ -288,7 +293,9 @@ public class EnigmaEngine implements Engine {
 
         //validation !!
         Problem problem = validateCTEEnigma(cteEnigma);
-
+        if (problem != Problem.NO_PROBLEM) {
+            return problem;
+        }
         CTEMachine cteMachine = cteEnigma.getCTEMachine();
 
         ArrayList<Rotor> availableRotors = new ArrayList<>();
@@ -374,7 +381,6 @@ public class EnigmaEngine implements Engine {
         Comparator<Reflector> reflectorComparator = Comparator.comparingInt(Reflector::getId);
         availableReflectors.sort(reflectorComparator);
 
-        System.out.println("validation over");
         buildMachine(availableRotors, availableReflectors, rotorsCount, alphabet, character2index);
 
         return problem;
@@ -567,6 +573,7 @@ public class EnigmaEngine implements Engine {
     public DTOstatus validateRotors(List<Integer> rotorsIDs) {
         boolean isSucceed = true;
         Problem details = Problem.NO_PROBLEM;
+        List<Boolean> rotorIdFlags = new ArrayList<>(Collections.nCopies(machine.getRotorsCount(), false));
 
         // check if rotorsIDs size is exactly the required size.
         if (rotorsIDs.size() < machine.getRotorsCount()) {
@@ -576,12 +583,22 @@ public class EnigmaEngine implements Engine {
             isSucceed = false;
             details = Problem.TOO_MANY_ELEMENTS;
         } else {
+
+            //check for duplicates rotors in list
             for (Integer rotorID : rotorsIDs) {
 
                 // check if the rotorID exists in this machine.
                 if (rotorID <= 0 || rotorID > machine.getAvailableRotorsLen()) {
                     isSucceed = false;
                     details = Problem.OUT_OF_RANGE_ID;
+                    break;
+                }
+                if (!rotorIdFlags.get(rotorID - 1)) {
+                    rotorIdFlags.set(rotorID - 1, true);
+                }
+                else {
+                    isSucceed = false;
+                    details = Problem.ROTOR_DUPLICATION;
                     break;
                 }
             }

@@ -2,6 +2,8 @@ import dto.DTOciphertext;
 import dto.DTOresetConfig;
 import dto.DTOspecs;
 import dto.DTOstatus;
+import javafx.util.Pair;
+import utill.Problem;
 
 import java.util.*;
 
@@ -11,7 +13,7 @@ public class Console {
     private static boolean isXmlLoaded = false;
     private static boolean isMachineConfigured = false;
 
-    private static String xmlFileName = "Engine/src/ex1-sanity-small.xml";
+    private static String xmlFileName = "Engine/src/resource/ex1-error-3.xml";
 
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -464,5 +466,87 @@ public class Console {
      */
     static private void getHistoryAndStats() {
         //
+    }
+    public static void displayMessege(Problem problem) {
+        switch(problem) {
+            case NOT_ENOUGH_ELEMENTS:
+                System.out.println();
+                break;
+            case TOO_MANY_ELEMENTS:
+                System.out.println();
+                break;
+            case OUT_OF_RANGE_ID:
+                System.out.println();
+                break;
+            case NOT_IN_ALPHABET:
+                System.out.println();
+                break;
+            case NO_CONFIGURATION:
+                System.out.println();
+                break;
+            case SELF_PLUGGING:
+                System.out.println();
+                break;
+            case ALREADY_PLUGGED:
+                System.out.println();
+                break;
+            case FILE_NOT_FOUND:
+                System.out.println();
+                break;
+            case JAXB_ERROR:
+                System.out.println();
+                break;
+            case FILE_NOT_IN_FORMAT:
+                System.out.println();
+                break;
+            case ODD_ALPHABET_AMOUNT:
+                System.out.println();
+                break;
+            case NOT_ENOUGH_ROTORS:
+                System.out.println();
+                break;
+            case ROTORS_COUNT_BELOW_TWO:
+                System.out.println();
+                break;
+            case ROTOR_MAPPING_NOT_IN_ALPHABET:
+                System.out.println();
+                break;
+            case ROTOR_MAPPING_NOT_A_LETTER:
+                System.out.println();
+                break;
+            case ROTOR_INVALID_ID_RANGE:
+                System.out.println();
+                break;
+            case OUT_OF_RANGE_NOTCH:
+                System.out.println();
+                break;
+            case NUM_OF_REFLECTS_IS_NOT_HALF_OF_ABC:
+                System.out.println();
+                break;
+            case REFLECTOR_INVALID_ID_RANGE:
+                System.out.println();
+                break;
+            case REFLECTOR_SELF_MAPPING:
+                System.out.println();
+                break;
+            case REFLECTOR_ID_DUPLICATIONS:
+                System.out.println();
+                break;
+            case TOO_MANY_REFLECTORS:
+                System.out.println();
+                break;
+            case REFLECTOR_OUT_OF_RANGE_ID:
+                System.out.println();
+                break;
+            case UNKNOWN:
+                System.out.println();
+                break;
+            case NO_PROBLEM:
+                System.out.println();
+                break;
+        }
+        problem.printMe();
+
+
     }
 }
