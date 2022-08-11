@@ -8,7 +8,7 @@ import java.util.List;
 public class DTOspecs extends DTOstatus {
     private int availableRotorsCount;
     private int inUseRotorsCount;
-    private List<Integer> notchPositions;
+    private List<Integer> notchDistancesToWindow;
     private int availableReflectorsCount;
     private int cipheredTextsCount;
 
@@ -17,13 +17,13 @@ public class DTOspecs extends DTOstatus {
     private String inUseReflectorSymbol;
     private List<CharacterPair> inUsePlugs;
 
-    public DTOspecs(boolean isSucceeded, Problem details, int availableRotorsCount, int inUseRotorsCount, List<Integer> notchPositions,
+    public DTOspecs(boolean isSucceeded, Problem details, int availableRotorsCount, int inUseRotorsCount, List<Integer> notchDistancesToWindow,
                     int availableReflectorsCount, int cipheredTextsCount, List<Integer> inUseRotorsIDs,
                     List<Character> windowsCharacters, String inUseReflectorSymbol, List<CharacterPair> inUsePlugs) {
         super(isSucceeded, details);
         this.availableRotorsCount = availableRotorsCount;
         this.inUseRotorsCount = inUseRotorsCount;
-        this.notchPositions = notchPositions;
+        this.notchDistancesToWindow = notchDistancesToWindow;
         this.availableReflectorsCount = availableReflectorsCount;
         this.cipheredTextsCount = cipheredTextsCount;
         this.inUseRotorsIDs = inUseRotorsIDs;
@@ -74,7 +74,7 @@ public class DTOspecs extends DTOstatus {
        res.append("Available Rotors Count: " + availableRotorsCount + '\n' +
                 "In Use Rotors Count: " + inUseRotorsCount + '\n');
 
-        for (int i = 0; i < notchPositions.size(); i++) {
+        for (int i = 0; i < notchDistancesToWindow.size(); i++) {
             if (i == 0){
                  res.append("Notch Positions: Rotor #" + (i+1) + " ---> ");
             }
@@ -90,9 +90,9 @@ public class DTOspecs extends DTOstatus {
                 "Ciphered Texts Count: " + cipheredTextsCount + '\n');
 
         if (super.getDetails().equals(Problem.NO_CONFIGURATION)){
-            res.append("No configuration has been chosen yet.");
+            res.append(" - No configuration has been chosen yet.");
         } else {
-            res.append("Current Configuration: <") ;
+            res.append(" - Current Configuration: <") ;
 
             for (int i = inUseRotorsIDs.size()-1; i >= 0 ; i--) {
                 res.append(inUseRotorsIDs.get(i).toString());

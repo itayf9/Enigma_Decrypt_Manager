@@ -2,6 +2,9 @@ package utill;
 
 public class Utility {
 
+    public static final int NOT_VALID_ROMAN_TO_DECIMAL= -1;
+    public static final String NOT_VALID_DECIMAL_TO_ROMAN= "NOT_VALID";
+
     /**
      * converts a roman number into a decimal number.
      * supports only 1-5.
@@ -10,7 +13,6 @@ public class Utility {
      */
     public static int romanToDecimal(String roman) {
         int decimal;
-        final int NOT_VALID= -1;
 
         switch(roman) {
             case "I":
@@ -30,7 +32,7 @@ public class Utility {
                 break;
             default:
                 // throw ?
-                decimal= NOT_VALID;
+                decimal= NOT_VALID_ROMAN_TO_DECIMAL;
         }
 
         return decimal;
@@ -44,7 +46,7 @@ public class Utility {
      */
     public static String decimalToRoman(int decimal) {
         String roman= "";
-        final String NOT_VALID= "NOT_VALID";
+
 
         switch(decimal) {
             case 1:
@@ -64,7 +66,7 @@ public class Utility {
                 break;
             default:
                 // throw ?
-                roman= NOT_VALID;
+                roman= NOT_VALID_DECIMAL_TO_ROMAN;
         }
 
         return roman;

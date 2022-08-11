@@ -6,7 +6,7 @@ public class DTOsecretConfig {
     private List<Integer> rotors;
     private String windows;
     private String reflectorSymbol;
-    private List<String> plugs;
+    private String plugs;
 
     public DTOsecretConfig(List<Integer> rotors, String windows, String reflectorSymbol, List<String> plugs) {
         this.rotors = rotors;
@@ -15,28 +15,12 @@ public class DTOsecretConfig {
         this.plugs = plugs;
     }
 
-    public List<Integer> getRotors() {
-        return rotors;
-    }
-
-    public String getWindows() {
-        return windows;
-    }
-
-    public String getReflectorSymbol() {
-        return reflectorSymbol;
-    }
-
-    public List<String> getPlugs() {
-        return plugs;
-    }
-
     public String toString() {
         StringBuilder res = new StringBuilder();
 
         res.append("Configuration: <");
 
-        for (int i = rotors.size()-1; i >= 0 ; i--) {
+        for (int i = rotors.size() - 1; i >= 0; i--) {
             res.append(rotors.get(i).toString());
             if (i != 0) {
                 res.append(",");
@@ -44,7 +28,7 @@ public class DTOsecretConfig {
         }
         res.append("><");
 
-        for (int i = windows.length()-1; i >=0 ; i--) {
+        for (int i = windows.length() - 1; i >= 0; i--) {
             res.append(windows.charAt(i));
         }
         res.append("><");

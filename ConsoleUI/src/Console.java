@@ -240,61 +240,18 @@ public class Console {
      * get the plugs from the user.
      * @return a list of strings, each string contains 2 characters representing a Plug.
      */
-    private static List<String> getInputListOfStrings() {
+    private static String getInputListOfStrings() {
         boolean isValid = false;
-        int numOfPlugs = 0;
-        String selection = "";
-        List<String> plugsList = new ArrayList<>();
+        String plugs = "";
 
-        while (!isValid){
-            System.out.println("Do you want to add plugs to the machine? ");
-            System.out.println("1- Yes.\n2-No.");
-            selection = scanner.nextLine();
-
-            if (selection.length() == 1 && (selection.charAt(0) == '1' || selection.charAt(0) == '2')){
-                isValid = true;
-            } else {
-                System.out.println("Error! Enter the matching number to your choice (1 or 2).");
-            }
-        }
-        isValid = false;
-
-        if (selection.equals("1")) {
-            while(!isValid) {
-                System.out.println("Enter number of plugs you want to add to the machine.");
-                try{
-                    numOfPlugs = scanner.nextInt();
-                    isValid = true;
-
-                } catch(InputMismatchException e) {
-                    System.out.println("Input is not a number. try again.");
-                    scanner.nextLine();
-                }
-            }
-            // clear the buffer after integer input
-            scanner.nextLine();
-
-            System.out.println("For each plug, enter two characters from the alphabet and press enter. e.g: AB");
-
-            for (int i = 0; i < numOfPlugs; i++) {
-                boolean validPlug = false;
-                System.out.print("Plug #"+ i +" out of "+numOfPlugs+": ");
-                while(!validPlug) {
-                    String currentPlug = scanner.nextLine().toUpperCase();
-                    if(currentPlug.length() > 2) {
-                        System.out.println("Invalid Plug! - please enter 2 letters from the alphabet and press enter. e.g: AB");
-                    } else if(currentPlug.length() < 2) {
-                        System.out.println("Invalid Plug! - please enter 2 letters from the alphabet and press enter. e.g: AB");
-                    } else {
-                        validPlug = true;
-                        plugsList.add(currentPlug);
-                    }
-                }
-            }
+        while (!isValid) {
+            System.out.println("Please enter your plugs. e.g - ABED");
+            plugs = scanner.nextLine().toUpperCase();
+            isValid = true;
         }
 
+        return plugs;
 
-        return plugsList;
     }
 
     /**
@@ -323,7 +280,7 @@ public class Console {
      * get fileName from user.
      * @return string represents the file name.
      */
-    private String getXMLFileName() {
+    private static String getXMLFileName() {
         System.out.println("Please enter full path of file name to load machine from (XML file).");
         String res = scanner.nextLine();
         while (!res.endsWith(".xml")) {
@@ -339,7 +296,7 @@ public class Console {
      */
 
     static private void loadXmlFile() {
-        // String xmlFileName = getXMLFileName();
+        //String xmlFileName = getXMLFileName();
         engine.buildMachineFromXmlFile(xmlFileName);
         isXmlLoaded = true;
     }
@@ -418,7 +375,7 @@ public class Console {
         }
         System.out.println("All good.");
 
-        List<String> plugs = getInputListOfStrings();
+        String plugs = getInputListOfStrings();
         DTOstatus plugsStatus = engine.validatePlugs(plugs);
         while (!plugsStatus.isSucceed()) {
             switch (plugsStatus.getDetails()) {

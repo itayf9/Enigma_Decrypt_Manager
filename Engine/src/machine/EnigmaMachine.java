@@ -100,11 +100,11 @@ public class EnigmaMachine {
         return rotorsCount;
     }
     // getting all the notch positions of all in use rotors in machine
-    public List<Integer> getAllNotchPositions() {
+    public List<Integer> getInUseNotchDistanceToWindow() {
         List<Integer> notchPositions = new ArrayList<>();
 
-        for (Rotor rotor : availableRotors) {
-            notchPositions.add(rotor.getOriginalNotchIndex()+1);
+        for (Rotor rotor : inUseRotors) {
+            notchPositions.add((rotor.getOriginalNotchIndex() - rotor.getOffset() + alphabet.length()) % alphabet.length());
         }
 
         return notchPositions;
@@ -116,7 +116,7 @@ public class EnigmaMachine {
 
     // updating the current config of the machine.
     // by sending the updated list of rotors, reflectors and plugs.
-    public void setMachineConfiguration(List<Integer> rotorsIDs, List<Integer> windowOffsets , int reflectorID, List<String> plugs) {
+    public void setMachineConfiguration(List<Integer> rotorsIDs, List<Integer> windowOffsets, int reflectorID, String plugs) {
 
         if(inUseRotors.size() != 0) {
             inUseRotors.clear();

@@ -44,7 +44,7 @@ public class EnigmaEngine implements Engine {
      * @param reflectorID
      * @param plugs
      */
-    public void updateConfiguration(List<Integer> rotorsIDs, String windowsChars, int reflectorID, List<String> plugs){
+    public void updateConfiguration(List<Integer> rotorsIDs, String windowsChars, int reflectorID, String plugs) {
 
         // build windowOffsets
         ArrayList<Integer> windowOfssets = new ArrayList<>();
@@ -102,13 +102,13 @@ public class EnigmaEngine implements Engine {
             details = validateCTEEnigma(cteEnigma);
             buildMachineFromCTEEnigma(cteEnigma);
 
-        } catch (JAXBException e) {
-            details = Problem.JAXB_ERROR;
-            isSucceeded = false;
-        }
-        catch (FileNotFoundException e) {
-            isSucceeded = false;
-            details = Problem.FILE_NOT_FOUND;
+            } catch (JAXBException e) {
+                details = Problem.JAXB_ERROR;
+                isSucceeded = false;
+            } catch (FileNotFoundException e) {
+                isSucceeded = false;
+                details = Problem.FILE_NOT_FOUND;
+            }
         }
 
         return new DTOstatus(isSucceeded, details);
@@ -272,7 +272,7 @@ public class EnigmaEngine implements Engine {
 
         int availableRotorsCount = machine.getAvailableRotorsLen();
         int inUseRotorsCount = machine.getRotorsCount();
-        List<Integer> notchPositions = machine.getAllNotchPositions();
+        List<Integer> notchDistancesToWindow = machine.getInUseNotchDistanceToWindow();
         int availableReflectorsCount = machine.getAvailableReflectorsLen();
         int cipheredTextsCount = getCipherCounter();
 
@@ -286,7 +286,7 @@ public class EnigmaEngine implements Engine {
         }
 
 
-        return new DTOspecs(isSucceeded, details, availableRotorsCount, inUseRotorsCount, notchPositions,
+        return new DTOspecs(isSucceeded, details, availableRotorsCount, inUseRotorsCount, notchDistancesToWindow,
                 availableReflectorsCount, cipheredTextsCount, inUseRotorsIDs, windowsCharacters,
                 inUseReflectorSymbol, inUsePlugs);
     }
@@ -300,7 +300,7 @@ public class EnigmaEngine implements Engine {
      * @return
      */
     @Override
-    public DTOstatus selectConfigurationManual (List<Integer> rotorsIDs, String windows, int reflectorID , List<String> plugs){
+    public DTOstatus selectConfigurationManual(List<Integer> rotorsIDs, String windows, int reflectorID, String plugs) {
         boolean isSucceed = true;
         Problem details = Problem.NO_PROBLEM;
 
