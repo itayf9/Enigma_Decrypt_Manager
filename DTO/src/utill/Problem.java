@@ -22,7 +22,7 @@ public enum Problem {
 
 
 
-    UNKNOWN, NO_PROBLEM;
+    UNKNOWN, NO_PROBLEM, INPUT_TOO_MANY_LETTERS, INPUT_TOO_FEW_LETTERS;
 
     public void printMe() {
         System.out.println(this.name());

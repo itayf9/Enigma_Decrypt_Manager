@@ -2,18 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Add validations buildMachineFromXmlFile">
-      <change afterPath="$PROJECT_DIR$/Engine/src/resource/ex1-error-3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Engine/src/statistics/StatisticRecord.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConsoleUI/src/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUI/src/Console.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DTO/src/dto/DTOspecs.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/dto/DTOspecs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DTO/src/utill/Problem.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/utill/Problem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/ex1-sanity-paper-enigma.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/resource/ex1-sanity-paper-enigma.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/ex1-sanity-small.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/resource/ex1-sanity-small.xml" afterDir="false" />
-    </list>
-    <list id="4d3468c9-f8a2-4a3c-84be-6dffde06732b" name="Changes by kingd" comment="Change of kingd">
-      <change beforePath="$PROJECT_DIR$/ConsoleUI/src/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUI/src/Console.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/Engine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" afterDir="false" />
     </list>
+    <list id="4d3468c9-f8a2-4a3c-84be-6dffde06732b" name="Changes by kingd" comment="Change of kingd" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,23 +33,6 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/ConsoleUI/src/Console.java">
-      <ranges>
-        <range start1="4" end1="4" start2="4" end2="6" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="5" end1="9" start2="7" end2="8" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="16" end1="17" start2="15" end2="16" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="21" end1="22" start2="20" end2="21" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="187" end1="188" start2="186" end2="187" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="194" end1="195" start2="193" end2="194" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="226" end1="227" start2="225" end2="226" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="229" end1="230" start2="228" end2="229" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="248" end1="249" start2="247" end2="248" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="301" end1="303" start2="300" end2="310" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="462" end1="462" start2="469" end2="551" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-      </ranges>
-    </file>
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -66,21 +45,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/itayf/IdeaProjects/Cracking the Enigma Machine&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "jdk.selected.JAVA_MODULE": "1.8",
+    "last_opened_file_path": "C:/Users/itayf/IdeaProjects/Cracking the Enigma Machine",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.editor"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\itayf\IdeaProjects\Cracking the Enigma Machine\Engine\src\resource" />
@@ -143,6 +122,7 @@
       <workItem from="1660054171932" duration="10769000" />
       <workItem from="1660207862378" duration="13752000" />
       <workItem from="1660228802230" duration="8051000" />
+      <workItem from="1660239883997" duration="3846000" />
     </task>
     <task id="LOCAL‎00001" summary="Add classes">
       <created>1659104440139</created>
@@ -398,41 +378,5 @@
     <MESSAGE value="Add validations buildMachineFromXmlFile" />
     <MESSAGE value="Change of kingd" />
     <option name="LAST_COMMIT_MESSAGE" value="Change of kingd" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/ConsoleUI/src/Console.java</url>
-          <line>326</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Engine/src/EnigmaEngine.java</url>
-          <line>553</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Engine/src/EnigmaEngine.java</url>
-          <line>383</line>
-          <option name="timeStamp" value="29" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Engine/src/EnigmaEngine.java</url>
-          <line>255</line>
-          <option name="timeStamp" value="35" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Engine/src/EnigmaEngine.java</url>
-          <line>421</line>
-          <option name="timeStamp" value="36" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Engine/src/EnigmaEngine.java</url>
-          <line>143</line>
-          <option name="timeStamp" value="39" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

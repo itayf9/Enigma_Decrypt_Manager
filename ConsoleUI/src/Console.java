@@ -13,12 +13,12 @@ public class Console {
     private static boolean isXmlLoaded = false;
     private static boolean isMachineConfigured = false;
 
-    private static String xmlFileName = "Engine/src/resource/ex1-error-3.xml";
+    private static String xmlFileName = "Engine/src/resource/ex1-sanity-paper-enigma.xml";
 
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-       run();
+        run();
     }
 
     /**
@@ -136,76 +136,52 @@ public class Console {
      * @param numberOfIntegers the rotors count
      * @return list of integers representing the rotor's id's
      */
-    public static List<Integer> getInputListOfIntegers(int numberOfIntegers) {
-
+    public static String getInputStringOfIntegers(int numberOfIntegers) {
         boolean isValid = false;
-        int currentRotorID = 0;
-        List<Integer> listOfChoices = new ArrayList<>();
+        String StringOfChoices;
 
         System.out.println("There is a place for " + numberOfIntegers + " rotors in this machine.\n" +
-                "Enter the rotors' ID's , counting from the right most rotor to the left most rotor.\n" +
-                "(rotor #1 is the right most rotor, rotor #2 is to its left, etc.\n");
+                "Enter the rotors' ID's with \",\" between each rotor, counting from the left most rotor to the right most rotor.\n");
+        System.out.println("e.g - 1,2");
+        StringOfChoices = scanner.nextLine();
 
-        for (int i = 0; i < numberOfIntegers; i++) {
-
-            // String choice = scanner.nextLine();
-
-            while (!isValid) {
-                System.out.print("ID of rotor #" + (i + 1) + ":");
-                try {
-                    currentRotorID = scanner.nextInt();
-                    isValid = true;
-                } catch (InputMismatchException e) {
-                    System.out.println("Error! Please enter numbers only.");
-                    scanner.nextLine();
-                }
+        while (!isValid) {
+            if (StringOfChoices.length() != 0) {
+                isValid = true;
+                continue;
             }
-
-            isValid = false;
-            listOfChoices.add(currentRotorID);
-
+            System.out.println("Error! Cant be 0 Rotors. Try Again.");
+            StringOfChoices = scanner.nextLine();
         }
 
-        return listOfChoices;
+        return StringOfChoices;
     }
 
     /**
      * get alphabet characters from the user
      *
-     * @param numberOfCharacters number of rotors count as well
      * @return String of characters
      */
-    private static String getInputSequenceOfCharacters(int numberOfCharacters) {
+    private static String getInputSequenceOfCharacters() {
 
         boolean isValid = false;
-        StringBuilder stringOfChoices = new StringBuilder();
+        String stringOfChoices;
 
-        System.out.println("Enter the rotors' window characters (the characters that will appear at the window for each rotor),\ncounting from the right most rotor to the left most rotor.\n" +
-                "(rotor #1 is the right most rotor, rotor #2 is to its left, etc.\n");
+        System.out.println("Enter the rotors' window characters (the characters that will appear at the window for each rotor),\ncounting from the left most rotor to the right most rotor.\n");
+        System.out.println("e.g - ABC");
 
-        for (int i = 0; i < numberOfCharacters; i++) {
-            System.out.print("Window character for rotor #" + (i+1) + ": ");
-            String currentCharacter = scanner.nextLine().toUpperCase();
+        stringOfChoices = scanner.nextLine().toUpperCase();
 
-            while (!isValid) {
-                if (currentCharacter.length() > 1) {
-                    System.out.println("Error! You have entered more than one character. ");
-
-                    System.out.print("Window character for rotor #" + (i+1) + ": ");
-                    currentCharacter = scanner.nextLine().toUpperCase();
-                } else {
-                    isValid = true;
-                }
-
+        while (!isValid) {
+            if (stringOfChoices.length() != 0) {
+                isValid = true;
+                continue;
             }
-
-            isValid = false;
-            stringOfChoices.append(currentCharacter);
-
-
+            System.out.println("Error! Cant be 0 Rotors. Try Again.");
+            stringOfChoices = scanner.nextLine().toUpperCase();
         }
 
-        return stringOfChoices.toString();
+        return stringOfChoices;
 
     }
 
@@ -301,9 +277,8 @@ public class Console {
         DTOstatus buildMachineFromXMLStatus = engine.buildMachineFromXmlFile(xmlFileName);
 
         if (!buildMachineFromXMLStatus.isSucceed()) {
-            displayMessege(buildMachineFromXMLStatus.getDetails());
-        }
-        else {
+            displayMessage(buildMachineFromXMLStatus.getDetails());
+        } else {
             isXmlLoaded = true;
             System.out.println("The machine was built successfully!");
         }
@@ -325,85 +300,41 @@ public class Console {
      */
     static private void chooseConfigManual() {
         int rotorCount = engine.getRotorsCount();
-        List<Integer> rotorsIDs = getInputListOfIntegers(rotorCount);
+        String rotorsIDs = getInputStringOfIntegers(rotorCount);
         DTOstatus rotorsIDsStatus = engine.validateRotors(rotorsIDs);
         while (!rotorsIDsStatus.isSucceed()) {
-            switch (rotorsIDsStatus.getDetails()) {
-                case NOT_ENOUGH_ELEMENTS:
-                    System.out.println("The amount of IDs that you've entered is too small.");
-                    break;
-                case TOO_MANY_ELEMENTS:
-                    System.out.println("The amount of IDs that you've entered is too high.");
-                    break;
-                case OUT_OF_RANGE_ID:
-                    System.out.println("One or more of the IDs is not available in this machine.");
-                    break;
-                case UNKNOWN:
-                    System.out.println("An Unknown Problem has occurred.");
-            }
-
-            rotorsIDs = getInputListOfIntegers(rotorCount);
+            displayMessage(rotorsIDsStatus.getDetails());
+            rotorsIDs = getInputStringOfIntegers(rotorCount);
             rotorsIDsStatus = engine.validateRotors(rotorsIDs);
         }
-        System.out.println("All good.");
-        scanner.nextLine();
+        System.out.println("All good.\n");
 
-        String windows = getInputSequenceOfCharacters(rotorCount);
+        String windows = getInputSequenceOfCharacters();
         DTOstatus windowCharactersStatus = engine.validateWindowCharacters(windows);
         while (!windowCharactersStatus.isSucceed()) {
-            switch (windowCharactersStatus.getDetails()) {
-                case NOT_IN_ALPHABET:
-                    System.out.println("One or more of the characters that you've entered is not in the alphabet.");
-                    break;
-                case UNKNOWN:
-                    System.out.println("Unknown Error.");
-                    break;
-            }
-
-            windows = getInputSequenceOfCharacters(rotorCount);
+            displayMessage(windowCharactersStatus.getDetails());
+            windows = getInputSequenceOfCharacters();
             windowCharactersStatus = engine.validateWindowCharacters(windows);
         }
-        System.out.println("All good.");
+        System.out.println("All good.\n");
 
         int reflectorID = getInputInteger();
         DTOstatus reflectorIDStatus = engine.validateReflector(reflectorID);
         while (!reflectorIDStatus.isSucceed()) {
-            switch (reflectorIDStatus.getDetails()) {
-                case OUT_OF_RANGE_ID:
-                    System.out.println("Id is out of range.");
-                    break;
-                case UNKNOWN:
-                    System.out.println("Unknown Error.");
-                    break;
-            }
-
+            displayMessage(reflectorIDStatus.getDetails());
             reflectorID = getInputInteger();
             reflectorIDStatus = engine.validateReflector(reflectorID);
         }
-        System.out.println("All good.");
+        System.out.println("All good.\n");
 
         String plugs = getInputListOfStrings();
         DTOstatus plugsStatus = engine.validatePlugs(plugs);
         while (!plugsStatus.isSucceed()) {
-            switch (plugsStatus.getDetails()) {
-                case OUT_OF_RANGE_ID:
-                    System.out.println("Error - Id is out of range.");
-                    break;
-                case SELF_PLUGGING:
-                    System.out.println("Error - One or more of the plugs entered is self plugged.");
-                    break;
-                case ALREADY_PLUGGED:
-                    System.out.println("Error - One or more of the plugs entered more then once.");
-                    break;
-                case UNKNOWN:
-                    System.out.println("Unknown Error.");
-                    break;
-            }
-
+            displayMessage(reflectorIDStatus.getDetails());
             plugs = getInputListOfStrings();
             plugsStatus = engine.validatePlugs(plugs);
         }
-        System.out.println("All good.");
+        System.out.println("All good.\n");
 
         DTOstatus configStatus = engine.selectConfigurationManual(rotorsIDs, windows, reflectorID, plugs);
         if (configStatus.isSucceed()) {
@@ -467,8 +398,9 @@ public class Console {
     static private void getHistoryAndStats() {
         //
     }
-    public static void displayMessege(Problem problem) {
-        switch(problem) {
+
+    public static void displayMessage(Problem problem) {
+        switch (problem) {
             case NOT_ENOUGH_ELEMENTS:
                 System.out.println();
                 break;

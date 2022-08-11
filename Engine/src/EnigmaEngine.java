@@ -433,11 +433,23 @@ public class EnigmaEngine implements Engine {
      * @return dto status
      */
     @Override
-    public DTOstatus selectConfigurationManual(List<Integer> rotorsIDs, String windows, int reflectorID, String plugs) {
+    public DTOstatus selectConfigurationManual(String rotorsIDs, String windows, int reflectorID, String plugs) {
         boolean isSucceed = true;
         Problem details = Problem.NO_PROBLEM;
 
-        updateConfiguration(rotorsIDs, windows, reflectorID, plugs);
+        // convert rotors from string to list of Integers here because problem with user
+        // and not with random generating so only this function get effected.
+
+        List<Integer> rotorsIDList = new ArrayList<>();
+
+        String[] arrayOfStringRotorsIds = rotorsIDs.split(",");
+
+        for(String strRotorId: arrayOfStringRotorsIds) {
+            rotorsIDList.add(Integer.parseInt(strRotorId));
+        }
+        // here we have listOf integers representing rotors ids
+
+        updateConfiguration(rotorsIDList, windows, reflectorID, plugs);
 
         return new DTOstatus(isSucceed, details);
     }
@@ -570,31 +582,36 @@ public class EnigmaEngine implements Engine {
      * @return DTO status
      */
     @Override
-    public DTOstatus validateRotors(List<Integer> rotorsIDs) {
+    public DTOstatus validateRotors(String rotorsIDs) {
         boolean isSucceed = true;
         Problem details = Problem.NO_PROBLEM;
-        List<Boolean> rotorIdFlags = new ArrayList<>(Collections.nCopies(machine.getRotorsCount(), false));
+
+        List<Boolean> rotorIdFlags = new ArrayList<>(Collections.nCopies(machine.getAvailableRotorsLen(), false));
+
+        // create list of Strings contains rotors id's to validate through
+        String[] rotorsIdArray = rotorsIDs.split(",");
+
 
         // check if rotorsIDs size is exactly the required size.
-        if (rotorsIDs.size() < machine.getRotorsCount()) {
+        if (rotorsIdArray.length < machine.getRotorsCount()) {
             isSucceed = false;
             details = Problem.NOT_ENOUGH_ELEMENTS;
-        } else if (rotorsIDs.size() > machine.getRotorsCount()) {
+        } else if (rotorsIdArray.length > machine.getRotorsCount()) {
             isSucceed = false;
             details = Problem.TOO_MANY_ELEMENTS;
         } else {
-
             //check for duplicates rotors in list
-            for (Integer rotorID : rotorsIDs) {
+            for (String rotorID : rotorsIdArray) {
+                int integerRotorId = Integer.parseInt(rotorID);
 
                 // check if the rotorID exists in this machine.
-                if (rotorID <= 0 || rotorID > machine.getAvailableRotorsLen()) {
+                if (integerRotorId <= 0 || integerRotorId > machine.getAvailableRotorsLen()) {
                     isSucceed = false;
                     details = Problem.OUT_OF_RANGE_ID;
                     break;
                 }
-                if (!rotorIdFlags.get(rotorID - 1)) {
-                    rotorIdFlags.set(rotorID - 1, true);
+                if (!rotorIdFlags.get(integerRotorId - 1)) {
+                    rotorIdFlags.set(integerRotorId - 1, true);
                 }
                 else {
                     isSucceed = false;
@@ -619,11 +636,20 @@ public class EnigmaEngine implements Engine {
         Problem details = Problem.NO_PROBLEM;
         final int CHAR_NOT_FOUND = -1;
 
-        for (Character currentWindowCharacter : windowChars.toCharArray()) {
-            if (machine.getAlphabet().indexOf(currentWindowCharacter) == CHAR_NOT_FOUND) {
-                isSucceed = false;
-                details = Problem.NOT_IN_ALPHABET;
-                break;
+        if (windowChars.length() > machine.getRotorsCount()) {
+            isSucceed = false;
+            details = Problem.INPUT_TOO_MANY_LETTERS;
+        } else if (windowChars.length() < machine.getRotorsCount()) {
+            isSucceed = false;
+            details = Problem.INPUT_TOO_FEW_LETTERS;
+        }
+        else{
+            for (Character currentWindowCharacter : windowChars.toCharArray()) {
+                if (machine.getAlphabet().indexOf(currentWindowCharacter) == CHAR_NOT_FOUND) {
+                    isSucceed = false;
+                    details = Problem.NOT_IN_ALPHABET;
+                    break;
+                }
             }
         }
 

@@ -55,7 +55,7 @@ public class DTOspecs extends DTOstatus {
                  res.append(".\n");
             }
             else {
-                res.append("                                      The notch of rotor #")
+                res.append("                                   The notch of rotor #")
                         .append(inUseRotorsIDs.get(i))
                         .append(" ---> ")
                         .append(notchDistancesToWindow.get(i))
