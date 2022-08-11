@@ -3,10 +3,7 @@ import dto.DTOresetConfig;
 import dto.DTOspecs;
 import dto.DTOstatus;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Console {
     private static final Engine engine = new EnigmaEngine();
@@ -19,7 +16,7 @@ public class Console {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        run();
+       run();
     }
 
     /**
@@ -185,14 +182,14 @@ public class Console {
                 "(rotor #1 is the right most rotor, rotor #2 is to its left, etc.\n");
 
         for (int i = 0; i < numberOfCharacters; i++) {
-            System.out.print("Window character for rotor #" + i + ": ");
+            System.out.print("Window character for rotor #" + (i+1) + ": ");
             String currentCharacter = scanner.nextLine().toUpperCase();
 
             while (!isValid) {
                 if (currentCharacter.length() > 1) {
                     System.out.println("Error! You have entered more than one character. ");
 
-                    System.out.print("Window character for rotor #" + i + ": ");
+                    System.out.print("Window character for rotor #" + (i+1) + ": ");
                     currentCharacter = scanner.nextLine().toUpperCase();
                 } else {
                     isValid = true;
@@ -224,10 +221,10 @@ public class Console {
 
         while (!isValid) {
             if (choice.length() > 1) {
-                System.out.println("Invalid input. try again.");
+                System.out.println("Invalid input. enter only the number that matches you choice.");
                 choice = scanner.nextLine().toUpperCase();
             } else if (choice.charAt(0) < '1' || choice.charAt(0) > '5') {
-                System.out.println("invalid option - try again ! with options from 1-5");
+                System.out.println("Invalid option - try again ! with options from 1-5");
                 choice = scanner.nextLine().toUpperCase();
             } else {
                 isValid = true;
@@ -246,7 +243,7 @@ public class Console {
         String plugs = "";
 
         while (!isValid) {
-            System.out.println("Please enter your plugs. e.g - ABED");
+            System.out.println("Please enter your choice plugs. e.g - ABED");
             plugs = scanner.nextLine().toUpperCase();
             isValid = true;
         }
@@ -299,8 +296,16 @@ public class Console {
 
     static private void loadXmlFile() {
         //String xmlFileName = getXMLFileName();
-        engine.buildMachineFromXmlFile(xmlFileName);
-        isXmlLoaded = true;
+        DTOstatus buildMachineFromXMLStatus = engine.buildMachineFromXmlFile(xmlFileName);
+
+        if (!buildMachineFromXMLStatus.isSucceed()) {
+            displayMessege(buildMachineFromXMLStatus.getDetails());
+        }
+        else {
+            isXmlLoaded = true;
+            System.out.println("The machine was built successfully!");
+        }
+
     }
 
     /**
