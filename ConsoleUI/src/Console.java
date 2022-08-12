@@ -73,7 +73,7 @@ public class Console {
                     if (isMachineConfigured) {
                         resetConfig();
                     } else {
-                        System.out.println("Please enter configuration, before ciphering some text.");
+                        System.out.println("Please enter configuration, before resetting it.");
                     }
                     break;
                 case HISTORY_AND_STATISTICS:
@@ -122,10 +122,9 @@ public class Console {
         String choice = scanner.nextLine().toUpperCase();
 
         while (!isValid) {
-            if (choice.length() == 0){
+            if (choice.length() == 0) {
                 System.out.println("No input was given. Please enter your choice (select 1 - 8).");
-            }
-            else if (choice.length() > 1) {
+            } else if (choice.length() > 1) {
                 System.out.println("Invalid input - please enter only one option number! ");
 
             } else if (choice.charAt(0) < '1' || choice.charAt(0) > '8') {
@@ -135,8 +134,7 @@ public class Console {
             }
 
 
-
-            if (!isValid){
+            if (!isValid) {
                 choice = scanner.nextLine().toUpperCase();
             }
         }
@@ -434,13 +432,13 @@ public class Console {
 
     public static void displayMessage(Problem problem) {
         switch (problem) {
-            case NOT_ENOUGH_ELEMENTS:
+            case ROTOR_INPUT_NOT_ENOUGH_ELEMENTS:
                 System.out.println();
                 break;
-            case TOO_MANY_ELEMENTS:
+            case ROTOR_INPUT_TOO_MANY_ELEMENTS:
                 System.out.println();
                 break;
-            case OUT_OF_RANGE_ID:
+            case ROTOR_INPUT_OUT_OF_RANGE_ID:
                 System.out.println();
                 break;
             case NOT_IN_ALPHABET:
@@ -453,6 +451,18 @@ public class Console {
                 System.out.println();
                 break;
             case ALREADY_PLUGGED:
+                System.out.println();
+                break;
+            case ROTOR_VALIDATE_EMPTY_STRING:
+                System.out.println();
+                break;
+            case ROTOR_VALIDATE_NO_SEPERATOR:
+                System.out.println();
+                break;
+            case WINDOW_INPUT_TOO_MANY_LETTERS:
+                System.out.println();
+                break;
+            case WINDOW_INPUT_TOO_FEW_LETTERS:
                 System.out.println();
                 break;
             case FILE_NOT_FOUND:
@@ -488,7 +498,7 @@ public class Console {
             case NUM_OF_REFLECTS_IS_NOT_HALF_OF_ABC:
                 System.out.println();
                 break;
-            case REFLECTOR_INVALID_ID_RANGE:
+            case FILE_REFLECTOR_INVALID_ID_RANGE:
                 System.out.println();
                 break;
             case REFLECTOR_SELF_MAPPING:
@@ -514,7 +524,7 @@ public class Console {
 
     }
 
-    public static void printSpecifications (DTOspecs dtoSpecs){
+    public static void printSpecifications(DTOspecs dtoSpecs) {
         StringBuilder strSpecs = new StringBuilder();
 
         strSpecs.append("Specifications: \n")
@@ -532,7 +542,7 @@ public class Console {
 
         System.out.println(strSpecs.toString());
 
-        if (dtoSpecs.getDetails().equals(Problem.NO_CONFIGURATION)){
+        if (dtoSpecs.getDetails().equals(Problem.NO_CONFIGURATION)) {
             System.out.println(" - No configuration has been chosen yet.");
         } else {
             System.out.print(" - Current Configuration: ");
@@ -541,7 +551,7 @@ public class Console {
 
     }
 
-    public static void printConfiguration (List<Integer> inUseRotorsIDs, String windowsCharacters, String inUseReflectorSymbol, String inUsePlugs, List<Integer> notchDistancesToWindow) {
+    public static void printConfiguration(List<Integer> inUseRotorsIDs, String windowsCharacters, String inUseReflectorSymbol, String inUsePlugs, List<Integer> notchDistancesToWindow) {
         StringBuilder strConfig = new StringBuilder();
 
         // prints rotors' configuration
@@ -549,7 +559,7 @@ public class Console {
         strConfig.append("<");
         for (int i = inUseRotorsIDs.size() - 1; i >= 0; i--) {
             strConfig.append(inUseRotorsIDs.get(i).toString());
-            if (notchDistancesToWindow.size() > 0){
+            if (notchDistancesToWindow.size() > 0) {
                 strConfig.append("(")
                         .append(notchDistancesToWindow.get(i).toString())
                         .append(")");
@@ -575,10 +585,10 @@ public class Console {
         // prints plugs configuration
         if (inUsePlugs.length() > 0) {
             strConfig.append("<");
-            for (int i = 0; i < inUsePlugs.length(); i+=2) {
+            for (int i = 0; i < inUsePlugs.length(); i += 2) {
                 strConfig.append(inUsePlugs.charAt(i))
                         .append("|")
-                        .append(inUsePlugs.charAt(i+1));
+                        .append(inUsePlugs.charAt(i + 1));
                 if (i != inUsePlugs.length() - 2) {
                     strConfig.append(",");
                 }
@@ -589,7 +599,7 @@ public class Console {
         System.out.println(strConfig.toString());
     }
 
-    public static void printStatistics (DTOstatistics stats) {
+    public static void printStatistics(DTOstatistics stats) {
 
         // get notch distances from windows
 
@@ -600,7 +610,7 @@ public class Console {
             printConfiguration(record.getInUseRotors(), record.getWindowCharacters(),
                     Utility.decimalToRoman(record.getReflectorID()), record.getPlugs(), new ArrayList<>());
 
-            for (Pair<String, String> currentCipherRecord : record.getCipherHistory()){
+            for (Pair<Pair<String, String>, Duration> currentCipherRecord : record.getCipherHistory()) {
                 cipherRecordStr.append("#. ")
                         .append("<")
                         .append(currentCipherRecord.getKey().getKey())

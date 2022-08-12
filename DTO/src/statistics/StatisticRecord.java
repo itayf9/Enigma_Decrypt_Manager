@@ -13,7 +13,7 @@ public class StatisticRecord {
     private int reflectorID;
     private String plugs;
 
-    private List<Pair<String, String>> cipherHistory;
+    private List < Pair<Pair<String, String>, Duration> > cipherHistory;
 
 
     public StatisticRecord(List<Integer> inUseRotors, String windowCharacters, int reflectorID, String plugs) {
@@ -40,7 +40,7 @@ public class StatisticRecord {
         return plugs;
     }
 
-    public List<Pair<String, String>> getCipherHistory() {
+    public List < Pair<Pair<String, String>, Duration> > getCipherHistory() {
         return cipherHistory;
     }
 

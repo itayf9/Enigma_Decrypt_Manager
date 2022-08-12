@@ -11,6 +11,8 @@ import javax.xml.bind.Unmarshaller;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.*;
 
 import statistics.StatisticRecord;
@@ -265,7 +267,7 @@ public class EnigmaEngine implements Engine {
         if (firstFalse != -1) {
             for (int i = firstFalse + 1; i < reflectorIDFlags.size(); i++) {
                 if (reflectorIDFlags.get(i)) {
-                    problem = Problem.REFLECTOR_INVALID_ID_RANGE;
+                    problem = Problem.FILE_REFLECTOR_INVALID_ID_RANGE;
                     break;
                 }
             }
@@ -553,11 +555,15 @@ public class EnigmaEngine implements Engine {
 
         if (problem.equals(Problem.NO_PROBLEM)) {
             isSucceed = true;
+
+            Instant start = Instant.now();
             outputText = cipherText(inputText);
-            Pair<String, String> inputTextToOutPutText = new Pair<>(inputText, outputText);
+            Instant end = Instant.now();
+            Duration timeElapsed = Duration.between(start, end);
 
+            Pair<Pair<String, String>, Duration> inputTextToOutputTextToTimeElapsed = new Pair<>( new Pair<>(inputText, outputText) , timeElapsed) ;
 
-            machineRecords.get(machineRecords.size() - 1).getCipherHistory().add(inputTextToOutPutText);
+            machineRecords.get(machineRecords.size() - 1).getCipherHistory().add(inputTextToOutputTextToTimeElapsed);
         }
 
         return new DTOciphertext(isSucceed, problem, outputText);
@@ -568,7 +574,7 @@ public class EnigmaEngine implements Engine {
 
         for (Character currentCharacter : inputText.toCharArray()) {
             if (machine.getAlphabet().indexOf(currentCharacter) == NOT_FOUND) {
-                return Problem.NOT_IN_ALPHABET;
+                return Problem.CIPHER_INPUT_NOT_IN_ALPHABET;
             }
         }
 
@@ -623,10 +629,10 @@ public class EnigmaEngine implements Engine {
             // check if rotorsIDs size is exactly the required size.
             if (rotorsIdArray.length < machine.getRotorsCount()) {
                 isSucceed = false;
-                details = Problem.NOT_ENOUGH_ELEMENTS;
+                details = Problem.ROTOR_INPUT_NOT_ENOUGH_ELEMENTS;
             } else if (rotorsIdArray.length > machine.getRotorsCount()) {
                 isSucceed = false;
-                details = Problem.TOO_MANY_ELEMENTS;
+                details = Problem.ROTOR_INPUT_TOO_MANY_ELEMENTS;
             } else {
                 //check for duplicates rotors in list
                 for (String rotorID : rotorsIdArray) {
@@ -635,7 +641,7 @@ public class EnigmaEngine implements Engine {
                     // check if the rotorID exists in this machine.
                     if (integerRotorId <= 0 || integerRotorId > machine.getAvailableRotorsLen()) {
                         isSucceed = false;
-                        details = Problem.OUT_OF_RANGE_ID;
+                        details = Problem.ROTOR_INPUT_OUT_OF_RANGE_ID;
                         break;
                     }
                     if (!rotorIdFlags.get(integerRotorId - 1)) {
@@ -666,10 +672,10 @@ public class EnigmaEngine implements Engine {
 
         if (windowChars.length() > machine.getRotorsCount()) {
             isSucceed = false;
-            details = Problem.INPUT_TOO_MANY_LETTERS;
+            details = Problem.WINDOW_INPUT_TOO_MANY_LETTERS;
         } else if (windowChars.length() < machine.getRotorsCount()) {
             isSucceed = false;
-            details = Problem.INPUT_TOO_FEW_LETTERS;
+            details = Problem.WINDOW_INPUT_TOO_FEW_LETTERS;
         } else {
             for (Character currentWindowCharacter : windowChars.toCharArray()) {
                 if (machine.getAlphabet().indexOf(currentWindowCharacter) == CHAR_NOT_FOUND) {
@@ -697,7 +703,7 @@ public class EnigmaEngine implements Engine {
         // check if the reflectorID exists in this machine.
         if (reflectorID <= 0 || reflectorID > machine.getAvailableReflectorsLen()) {
             isSucceed = false;
-            details = Problem.OUT_OF_RANGE_ID;
+            details = Problem.REFLECTOR_INPUT_OUT_OF_RANGE_ID;
         }
 
         return new DTOstatus(isSucceed, details);
