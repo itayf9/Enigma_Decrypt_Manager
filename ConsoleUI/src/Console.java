@@ -420,7 +420,7 @@ public class Console {
         if (!statisticsStatus.isSucceed()) {
             displayMessage(statisticsStatus.getDetails());
         } else {
-            System.out.println(statisticsStatus.toString());
+            printStatistics(statisticsStatus);
         }
     }
 
@@ -583,9 +583,24 @@ public class Console {
 
     public static void printStatistics (DTOstatistics stats) {
 
+        // get notch distances from windows
+
         for (StatisticRecord record : stats.getStats()) {
-            //printConfiguration(record.getInUseRotors(), record.getWindowCharacters(),
-            //        Utility.decimalToRoman(record.getReflectorID()), record.getPlugs(), );
+
+            StringBuilder cipherRecordStr = new StringBuilder();
+
+            printConfiguration(record.getInUseRotors(), record.getWindowCharacters(),
+                    Utility.decimalToRoman(record.getReflectorID()), record.getPlugs(), new ArrayList<>());
+
+            for (Pair<String, String> currentCipherRecord : record.getCipherHistory()){
+                cipherRecordStr.append("#. ")
+                        .append("<")
+                        .append(currentCipherRecord.getKey())
+                        .append(">").append(" --> ").append("<")
+                        .append(currentCipherRecord.getValue()).append(">").append("\n");
+            }
+
+            System.out.println(cipherRecordStr.toString());
         }
     }
 }

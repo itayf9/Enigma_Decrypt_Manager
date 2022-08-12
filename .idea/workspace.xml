@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Change data types in DTOspecs from Lists to Strings">
+    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Fix printing of plugs in printConfiguration()">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConsoleUI/src/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUI/src/Console.java" afterDir="false" />
     </list>
     <list id="4d3468c9-f8a2-4a3c-84be-6dffde06732b" name="Changes by kingd" comment="Change of kingd" />
@@ -118,7 +119,7 @@
       <workItem from="1660207862378" duration="13752000" />
       <workItem from="1660228802230" duration="8051000" />
       <workItem from="1660239883997" duration="3846000" />
-      <workItem from="1660309062043" duration="3039000" />
+      <workItem from="1660309062043" duration="4205000" />
     </task>
     <task id="LOCAL‎00001" summary="Add classes">
       <created>1659104440139</created>
@@ -354,7 +355,13 @@
       <option name="presentableId" value="LOCAL‎00039" />
       <updated>1660312056340</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL‎00040" summary="Fix printing of plugs in printConfiguration()">
+      <created>1660312276254</created>
+      <option name="number" value="LOCAL‎00040" />
+      <option name="presentableId" value="LOCAL‎00040" />
+      <updated>1660312276254</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -372,7 +379,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Delete trash files" />
     <MESSAGE value="documentation : Rotor.java, Reflector.java, PlugBoard.java" />
     <MESSAGE value="documentation : Utility.java" />
     <MESSAGE value="documentation : EnigmaMachine.java" />
@@ -397,7 +403,8 @@
     <MESSAGE value="Fix display specs" />
     <MESSAGE value="Change data types in DTOspecs from Lists to Strings" />
     <MESSAGE value="Change of kingd" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change of kingd" />
+    <MESSAGE value="Fix printing of plugs in printConfiguration()" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix printing of plugs in printConfiguration()" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
