@@ -1,6 +1,7 @@
 package machine.component;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class Rotor {
@@ -10,8 +11,8 @@ public class Rotor {
     private int offset = 0;
     private Map<Character ,Integer> alphabetTranslator;
     private int alphabetLength;
-    private ArrayList<Integer> forwardMapping;
-    private ArrayList<Integer> backwardMapping;
+    private List<Integer> forwardMapping;
+    private List<Integer> backwardMapping;
 
 
     /**
@@ -23,7 +24,7 @@ public class Rotor {
      * @param forwardMapping the mapping from right to left
      * @param backwardMapping the mapping from left to right
      */
-    public Rotor(int id, int originalNotchIndex, Map<Character, Integer> alphabetTranslator , int alphabetLength, ArrayList<Integer> forwardMapping, ArrayList<Integer> backwardMapping){
+    public Rotor(int id, int originalNotchIndex, Map<Character, Integer> alphabetTranslator , int alphabetLength, List<Integer> forwardMapping, List<Integer> backwardMapping){
         this.id = id;
         this.originalNotchIndex = originalNotchIndex;
         this.alphabetTranslator = alphabetTranslator;
@@ -125,7 +126,6 @@ public class Rotor {
         /********************************************************************add exception********************/
         return '\n';
     }
-
 
     @Override
     public String toString() {

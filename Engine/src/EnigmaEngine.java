@@ -33,7 +33,7 @@ public class EnigmaEngine implements Engine {
     }
 
     // creating new machine instance using all the parts the machine needs.
-    public void buildMachine(ArrayList<Rotor> availableRotors, ArrayList<Reflector> availableReflectors, int rotorsCount, String alphabet, Map<Character, Integer> character2index) {
+    public void buildMachine(List<Rotor> availableRotors, List<Reflector> availableReflectors, int rotorsCount, String alphabet, Map<Character, Integer> character2index) {
         machine = new EnigmaMachine(availableRotors, availableReflectors, rotorsCount, alphabet, character2index);
     }
 
@@ -49,7 +49,7 @@ public class EnigmaEngine implements Engine {
     public void updateConfiguration(List<Integer> rotorsIDs, String windowsChars, int reflectorID, String plugs) {
 
         // build windowOffsets
-        ArrayList<Integer> windowOfssets = new ArrayList<>();
+        List<Integer> windowOfssets = new ArrayList<>();
 
         for (int i = 0; i < windowsChars.length(); i++) {
 //            int j = windowsChars.length() - 1 - i;
@@ -300,8 +300,8 @@ public class EnigmaEngine implements Engine {
         }
         CTEMachine cteMachine = cteEnigma.getCTEMachine();
 
-        ArrayList<Rotor> availableRotors = new ArrayList<>();
-        ArrayList<Reflector> availableReflectors = new ArrayList<>();
+        List<Rotor> availableRotors = new ArrayList<>();
+        List<Reflector> availableReflectors = new ArrayList<>();
         int rotorsCount = cteMachine.getRotorsCount();
 
         // initialize alphabet and characters-2-index
@@ -317,8 +317,8 @@ public class EnigmaEngine implements Engine {
             int currentID = cteRotor.getId();
             int currentNotchIndex = cteRotor.getNotch() - 1;
 
-            ArrayList<Integer> mapRotorForward = new ArrayList<>(Collections.nCopies(alphabet.length(), 0));
-            ArrayList<Integer> mapRotorBackward = new ArrayList<>(Collections.nCopies(alphabet.length(), 0));
+            List<Integer> mapRotorForward = new ArrayList<>(Collections.nCopies(alphabet.length(), 0));
+            List<Integer> mapRotorBackward = new ArrayList<>(Collections.nCopies(alphabet.length(), 0));
             Map<Character, Integer> forwardTranslatorChar2index = new HashMap<>();
             Map<Character, Integer> backwardTranslatorChar2index = new HashMap<>();
             int index = 0;
@@ -361,7 +361,7 @@ public class EnigmaEngine implements Engine {
 
             int currentID = romanToDecimal(cteReflector.getId());
 
-            ArrayList<Integer> reflectorMapping = new ArrayList<>(Collections.nCopies(alphabet.length(), 0));
+            List<Integer> reflectorMapping = new ArrayList<>(Collections.nCopies(alphabet.length(), 0));
 
             // creating the mapping of the reflector
             for (CTEReflect cteReflect : cteReflector.getCTEReflect()) {
@@ -549,6 +549,10 @@ public class EnigmaEngine implements Engine {
         if (problem.equals(Problem.NO_PROBLEM)) {
             isSucceed = true;
             outputText = cipherText(inputText);
+            Pair<String, String> inputTextToOutPutText = new Pair<>(inputText, outputText);
+
+
+            machineRecords.get(machineRecords.size()-1).getCipherHistory().add(inputTextToOutPutText);
         }
 
         return new DTOciphertext(isSucceed, problem, outputText);
@@ -744,6 +748,13 @@ public class EnigmaEngine implements Engine {
         }
 
         return new DTOstatus(isSucceed, details);
+    }
+
+    public DTOstatistics getHistoryAndStatistics() {
+        boolean isSucceeded = true;
+        Problem details = Problem.NO_PROBLEM;
+
+        return new DTOstatistics(isSucceeded, details, machineRecords);
     }
 
     @Override

@@ -416,7 +416,12 @@ public class Console {
      * Q7 - gets history and stats from the machine and display to user.
      */
     static private void getHistoryAndStats() {
-        //
+        DTOstatistics statisticsStatus = engine.getHistoryAndStatistics();
+        if (!statisticsStatus.isSucceed()) {
+            displayMessage(statisticsStatus.getDetails());
+        } else {
+            System.out.println(statisticsStatus.toString());
+        }
     }
 
     public static void displayMessage(Problem problem) {
@@ -501,7 +506,6 @@ public class Console {
 
     }
 
-
     public static void printSpecifications (DTOspecs dtoSpecs){
         StringBuilder strSpecs = new StringBuilder();
 
@@ -577,8 +581,11 @@ public class Console {
         System.out.println(strConfig.toString());
     }
 
+    public static void printStatistics (DTOstatistics stats) {
 
-
-
-
+        for (StatisticRecord record : stats.getStats()) {
+            //printConfiguration(record.getInUseRotors(), record.getWindowCharacters(),
+            //        Utility.decimalToRoman(record.getReflectorID()), record.getPlugs(), );
+        }
+    }
 }

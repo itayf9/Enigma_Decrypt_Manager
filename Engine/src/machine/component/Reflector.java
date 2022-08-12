@@ -1,11 +1,12 @@
 package machine.component;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Reflector {
 
     private int id;
-    private ArrayList<Integer> mapping;
+    private List<Integer> mapping;
 
 
     /**
@@ -13,7 +14,7 @@ public class Reflector {
      * @param id the unique id of the rotor
      * @param mapping a mapping that connects pairs of entries in the reflector
      */
-    public Reflector(int id, ArrayList<Integer> mapping) {
+    public Reflector(int id, List<Integer> mapping) {
         this.id = id;
         this.mapping = mapping;
     }
@@ -35,8 +36,6 @@ public class Reflector {
     public int reflect(int inputIndex) {
         return mapping.get(inputIndex);
     }
-
-
 
     @Override
     public String toString() {

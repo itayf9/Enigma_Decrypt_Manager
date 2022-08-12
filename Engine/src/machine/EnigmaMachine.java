@@ -42,7 +42,7 @@ public class EnigmaMachine {
     private static int cipherCounter = 0;
 
     // Constructor of Enigma Machine
-    public EnigmaMachine(ArrayList<Rotor> availableRotors, ArrayList<Reflector> availableReflectors, int rotorsCount, String alphabet, Map<Character, Integer> character2index) {
+    public EnigmaMachine(List<Rotor> availableRotors, List<Reflector> availableReflectors, int rotorsCount, String alphabet, Map<Character, Integer> character2index) {
         this.availableRotors = availableRotors;
         this.availableReflectors = availableReflectors;
         this.rotorsCount = rotorsCount;
@@ -153,7 +153,6 @@ public class EnigmaMachine {
 
         return alphabet.charAt(currentCharIndex);
     }
-
 
     /**
      * rotates the rotors in the machine. the first rotor is always being rotated.

@@ -7,7 +7,6 @@ public class PlugBoard {
 
     private Map<Integer, Integer> plugMap;
 
-
     /**
      * constructor for PlugBoard
      * creates an empty plugMap
