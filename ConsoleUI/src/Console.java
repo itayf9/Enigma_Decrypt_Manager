@@ -4,6 +4,9 @@ import statistics.StatisticRecord;
 import utill.Problem;
 import utill.Utility;
 
+import java.time.Duration;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 public class Console {
@@ -74,7 +77,12 @@ public class Console {
                     }
                     break;
                 case HISTORY_AND_STATISTICS:
-                    getHistoryAndStats();
+                    if (isXmlLoaded) {
+                        getHistoryAndStats();
+                    } else {
+                        System.out.println("Please load machine from a file before checking for statistics.");
+                    }
+
                     break;
                 case EXIT_SYSTEM:
                     isExit = true;
@@ -595,9 +603,10 @@ public class Console {
             for (Pair<String, String> currentCipherRecord : record.getCipherHistory()){
                 cipherRecordStr.append("#. ")
                         .append("<")
-                        .append(currentCipherRecord.getKey())
+                        .append(currentCipherRecord.getKey().getKey())
                         .append(">").append(" --> ").append("<")
-                        .append(currentCipherRecord.getValue()).append(">").append("\n");
+                        .append(currentCipherRecord.getKey().getValue()).append(">")
+                        .append(" (").append(currentCipherRecord.getValue().toNanos()).append(" nano-seconds)").append("\n");
             }
 
             System.out.println(cipherRecordStr.toString());
