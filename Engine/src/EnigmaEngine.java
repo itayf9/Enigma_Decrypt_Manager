@@ -427,7 +427,7 @@ public class EnigmaEngine implements Engine {
 
         return new DTOspecs(isSucceeded, details, availableRotorsCount, inUseRotorsCount,
                 notchDistancesToWindow, availableReflectorsCount, cipheredTextsCount,
-                inUseRotorsIDs, windowsCharacters, inUseReflectorSymbol, inUsePlugs );
+                inUseRotorsIDs, windowsCharacters, inUseReflectorSymbol, inUsePlugs);
     }
 
     /**
@@ -557,7 +557,7 @@ public class EnigmaEngine implements Engine {
             Pair<String, String> inputTextToOutPutText = new Pair<>(inputText, outputText);
 
 
-            machineRecords.get(machineRecords.size()-1).getCipherHistory().add(inputTextToOutPutText);
+            machineRecords.get(machineRecords.size() - 1).getCipherHistory().add(inputTextToOutPutText);
         }
 
         return new DTOciphertext(isSucceed, problem, outputText);
@@ -718,38 +718,39 @@ public class EnigmaEngine implements Engine {
 
 
         if (plugs.length() % 2 == 1) {
+            isSucceed = false;
             details = Problem.ODD_ALPHABET_AMOUNT;
-        }
+        } else {
+            // goes through all the plugs (go through pairs)
+            for (int i = 0; i < plugs.length(); i += 2) {
+                int firstInPlugIndex = machine.getAlphabet().indexOf(plugs.charAt(i));
+                int secondInPlugIndex = machine.getAlphabet().indexOf(plugs.charAt(i + 1));
 
-        // goes through all the plugs (go through pairs)
-        for (int i = 0; i < plugs.length(); i += 2) {
-            int firstInPlugIndex = machine.getAlphabet().indexOf(plugs.charAt(i));
-            int secondInPlugIndex = machine.getAlphabet().indexOf(plugs.charAt(i + 1));
-
-            // check if both characters are the same.
-            if (firstInPlugIndex == secondInPlugIndex) {
-                isSucceed = false;
-                details = Problem.SELF_PLUGGING;
-                break;
-            }
-
-            // check if both characters in the current plug is in the alphabet.
-            if (firstInPlugIndex == CHAR_NOT_FOUND || secondInPlugIndex == CHAR_NOT_FOUND) {
-                isSucceed = false;
-                details = Problem.NOT_IN_ALPHABET;
-                break;
-            } else {
-                // check if both characters are not plugged yet.
-                if (!alreadyPlugged.get(firstInPlugIndex) && !alreadyPlugged.get(secondInPlugIndex)) {
-                    alreadyPlugged.set(firstInPlugIndex, true);
-                    alreadyPlugged.set(secondInPlugIndex, true);
-                } else {
+                // check if both characters are the same.
+                if (firstInPlugIndex == secondInPlugIndex) {
                     isSucceed = false;
-                    details = Problem.ALREADY_PLUGGED;
+                    details = Problem.SELF_PLUGGING;
                     break;
                 }
-            }
 
+                // check if both characters in the current plug is in the alphabet.
+                if (firstInPlugIndex == CHAR_NOT_FOUND || secondInPlugIndex == CHAR_NOT_FOUND) {
+                    isSucceed = false;
+                    details = Problem.NOT_IN_ALPHABET;
+                    break;
+                } else {
+                    // check if both characters are not plugged yet.
+                    if (!alreadyPlugged.get(firstInPlugIndex) && !alreadyPlugged.get(secondInPlugIndex)) {
+                        alreadyPlugged.set(firstInPlugIndex, true);
+                        alreadyPlugged.set(secondInPlugIndex, true);
+                    } else {
+                        isSucceed = false;
+                        details = Problem.ALREADY_PLUGGED;
+                        break;
+                    }
+                }
+
+            }
         }
 
         return new DTOstatus(isSucceed, details);
