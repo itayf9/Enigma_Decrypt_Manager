@@ -1,5 +1,7 @@
 package statistics;
 
+import javafx.util.Pair;
+
 import java.util.List;
 
 public class StatisticRecord {
@@ -9,7 +11,7 @@ public class StatisticRecord {
     private int reflectorID;
     private String plugs;
 
-    //private pair cipherHistory;
+    private List<Pair<String, String>> cipherHistory;
 
 
     public StatisticRecord(List<Integer> inUseRotors, String windowCharacters, int reflectorID, String plugs) {

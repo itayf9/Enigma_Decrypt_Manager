@@ -334,7 +334,7 @@ public class Console {
         String plugs = getInputListOfStrings();
         DTOstatus plugsStatus = engine.validatePlugs(plugs);
         while (!plugsStatus.isSucceed()) {
-            displayMessage(reflectorIDStatus.getDetails());
+            displayMessage(plugsStatus.getDetails());
             plugs = getInputListOfStrings();
             plugsStatus = engine.validatePlugs(plugs);
         }

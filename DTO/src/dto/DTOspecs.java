@@ -1,6 +1,6 @@
 package dto;
 
-import utill.CharacterPair;
+import javafx.util.Pair;
 import utill.Problem;
 
 import java.util.List;
@@ -15,11 +15,12 @@ public class DTOspecs extends DTOstatus {
     private List<Integer> inUseRotorsIDs;
     private List<Character> windowsCharacters;
     private String inUseReflectorSymbol;
-    private List<CharacterPair> inUsePlugs;
+    private List<Pair<Character, Character>> inUsePlugs;
 
-    public DTOspecs(boolean isSucceeded, Problem details, int availableRotorsCount, int inUseRotorsCount, List<Integer> notchDistancesToWindow,
-                    int availableReflectorsCount, int cipheredTextsCount, List<Integer> inUseRotorsIDs,
-                    List<Character> windowsCharacters, String inUseReflectorSymbol, List<CharacterPair> inUsePlugs) {
+    public DTOspecs(boolean isSucceeded, Problem details, int availableRotorsCount, int inUseRotorsCount,
+                    List<Integer> notchDistancesToWindow, int availableReflectorsCount, int cipheredTextsCount,
+                    List<Integer> inUseRotorsIDs, List<Character> windowsCharacters, String inUseReflectorSymbol,
+                    List<Pair<Character, Character>> inUsePlugs) {
         super(isSucceeded, details);
         this.availableRotorsCount = availableRotorsCount;
         this.inUseRotorsCount = inUseRotorsCount;
@@ -89,16 +90,16 @@ public class DTOspecs extends DTOstatus {
         if (super.getDetails().equals(Problem.NO_CONFIGURATION)) {
             res.append(" - No configuration has been chosen yet.");
         } else {
-            res.append(" - Current Configuration: <") ;
+            res.append(" - Current Configuration: <");
 
-            for (int i = inUseRotorsIDs.size()-1; i >= 0 ; i--) {
+            for (int i = inUseRotorsIDs.size() - 1; i >= 0; i--) {
                 res.append(inUseRotorsIDs.get(i).toString());
                 if (i != 0) {
                     res.append(",");
                 }
             }
             res.append("><");
-            for (int i = windowsCharacters.size()-1; i >=0 ; i--) {
+            for (int i = windowsCharacters.size() - 1; i >= 0; i--) {
                 res.append(windowsCharacters.get(i));
             }
             res.append("><");
@@ -107,13 +108,13 @@ public class DTOspecs extends DTOstatus {
             res.append(">");
 
 
-            if(inUsePlugs.size() > 0) {
+            if (inUsePlugs.size() > 0) {
                 res.append("<");
                 for (int i = 0; i < inUsePlugs.size(); i++) {
-                    res.append(inUsePlugs.get(i).getFirst());
+                    res.append(inUsePlugs.get(i).getKey());
                     res.append("|");
-                    res.append(inUsePlugs.get(i).getSecond());
-                    if (i != inUsePlugs.size()-1) {
+                    res.append(inUsePlugs.get(i).getValue());
+                    if (i != inUsePlugs.size() - 1) {
                         res.append(",");
                     }
                 }

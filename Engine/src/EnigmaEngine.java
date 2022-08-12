@@ -1,3 +1,4 @@
+import javafx.util.Pair;
 import machine.component.Reflector;
 import machine.component.Rotor;
 import dto.*;
@@ -13,7 +14,6 @@ import java.io.InputStream;
 import java.util.*;
 
 import statistics.StatisticRecord;
-import utill.CharacterPair;
 import utill.Problem;
 
 import static machine.EnigmaMachine.advanceCipherCounter;
@@ -57,8 +57,8 @@ public class EnigmaEngine implements Engine {
             int offset = r.translateChar2Offset(windowsChars.charAt(i));
             windowOfssets.add(offset);
         }
-        // StatisticRecord newRecord = new StatisticRecord(rotorsIDs, windowsChars, reflectorID, plugs);
-        // machineRecords.add(newRecord);
+        StatisticRecord newRecord = new StatisticRecord(rotorsIDs, windowsChars, reflectorID, plugs);
+        machineRecords.add(newRecord);
         machine.setMachineConfiguration(rotorsIDs, windowOfssets, reflectorID, plugs);
     }
 
@@ -101,8 +101,7 @@ public class EnigmaEngine implements Engine {
         if (!fileName.endsWith(".xml")) {
             isSucceeded = false;
             details = Problem.FILE_NOT_IN_FORMAT;
-        }
-        else {
+        } else {
             try {
                 InputStream inputStream = new FileInputStream(fileName);
                 CTEEnigma cteEnigma = deserializeFrom(inputStream);
@@ -255,10 +254,10 @@ public class EnigmaEngine implements Engine {
 
         int firstFalse = reflectorIDFlags.indexOf(false);
 
-        if (firstFalse != -1){
+        if (firstFalse != -1) {
             for (int i = firstFalse + 1; i < reflectorIDFlags.size(); i++) {
-                if (reflectorIDFlags.get(i)){
-                    problem= Problem.REFLECTOR_INVALID_ID_RANGE;
+                if (reflectorIDFlags.get(i)) {
+                    problem = Problem.REFLECTOR_INVALID_ID_RANGE;
                     break;
                 }
             }
@@ -400,7 +399,7 @@ public class EnigmaEngine implements Engine {
         List<Integer> inUseRotorsIDs = new ArrayList<>();
         List<Character> windowsCharacters = new ArrayList<>();
         String inUseReflectorSymbol = null;
-        List<CharacterPair> inUsePlugs = new ArrayList<>();
+        List<Pair<Character, Character>> inUsePlugs = new ArrayList<>();
 
         int availableRotorsCount = machine.getAvailableRotorsLen();
         int inUseRotorsCount = machine.getRotorsCount();
@@ -417,10 +416,9 @@ public class EnigmaEngine implements Engine {
             details = Problem.NO_CONFIGURATION;
         }
 
-
-        return new DTOspecs(isSucceeded, details, availableRotorsCount, inUseRotorsCount, notchDistancesToWindow,
-                availableReflectorsCount, cipheredTextsCount, inUseRotorsIDs, windowsCharacters,
-                inUseReflectorSymbol, inUsePlugs);
+        return new DTOspecs(isSucceeded, details, availableRotorsCount, inUseRotorsCount,
+                notchDistancesToWindow, availableReflectorsCount, cipheredTextsCount,
+                inUseRotorsIDs, windowsCharacters, inUseReflectorSymbol, inUsePlugs );
     }
 
     /**
@@ -444,11 +442,11 @@ public class EnigmaEngine implements Engine {
 
         String[] arrayOfStringRotorsIds = rotorsIDs.split(",");
 
-        for(String strRotorId: arrayOfStringRotorsIds) {
-            rotorsIDList.add(Integer.parseInt(strRotorId));
+        for (int i = arrayOfStringRotorsIds.length - 1; i > 0; i--) {
+
+            rotorsIDList.add(Integer.parseInt(arrayOfStringRotorsIds[i]));
         }
         // here we have listOf integers representing rotors ids
-
         updateConfiguration(rotorsIDList, windows, reflectorID, plugs);
 
         return new DTOstatus(isSucceed, details);
@@ -514,9 +512,18 @@ public class EnigmaEngine implements Engine {
         updateConfiguration(randomGeneratedRotorIDs, randomGeneratedWindowCharacters.toString(),
                 randomGeneratedReflectorID, randomGeneratedPlugs.toString());
 
+        // get Notch Distances from window to display to user.
+        List<Integer> notchDistances = new ArrayList<>();
+
+        for (Integer rotorId : randomGeneratedRotorIDs) {
+            Rotor currentRotor = machine.getRotorByID(rotorId);
+            int currentNotchDistance = (currentRotor.getOriginalNotchIndex() - currentRotor.getOffset()
+                    + machine.getAlphabet().length()) % machine.getAlphabet().length();
+            notchDistances.add(currentNotchDistance);
+        }
 
         return new DTOsecretConfig(randomGeneratedRotorIDs, randomGeneratedWindowCharacters.toString(),
-                decimalToRoman(randomGeneratedReflectorID), randomGeneratedPlugs.toString());
+                decimalToRoman(randomGeneratedReflectorID), randomGeneratedPlugs.toString(), notchDistances);
     }
 
     /**
@@ -586,37 +593,45 @@ public class EnigmaEngine implements Engine {
         boolean isSucceed = true;
         Problem details = Problem.NO_PROBLEM;
 
-        List<Boolean> rotorIdFlags = new ArrayList<>(Collections.nCopies(machine.getAvailableRotorsLen(), false));
-
-        // create list of Strings contains rotors id's to validate through
-        String[] rotorsIdArray = rotorsIDs.split(",");
-
-
-        // check if rotorsIDs size is exactly the required size.
-        if (rotorsIdArray.length < machine.getRotorsCount()) {
+        // check for empty string input
+        if (rotorsIDs.length() == 0) {
             isSucceed = false;
-            details = Problem.NOT_ENOUGH_ELEMENTS;
-        } else if (rotorsIdArray.length > machine.getRotorsCount()) {
+            details = Problem.ROTOR_VALIDATE_EMPTY_STRING;
+        } else if (!rotorsIDs.contains(",")) {
             isSucceed = false;
-            details = Problem.TOO_MANY_ELEMENTS;
+            details = Problem.ROTOR_VALIDATE_NO_SEPERATOR;
         } else {
-            //check for duplicates rotors in list
-            for (String rotorID : rotorsIdArray) {
-                int integerRotorId = Integer.parseInt(rotorID);
+            List<Boolean> rotorIdFlags = new ArrayList<>(Collections.nCopies(machine.getAvailableRotorsLen(), false));
 
-                // check if the rotorID exists in this machine.
-                if (integerRotorId <= 0 || integerRotorId > machine.getAvailableRotorsLen()) {
-                    isSucceed = false;
-                    details = Problem.OUT_OF_RANGE_ID;
-                    break;
-                }
-                if (!rotorIdFlags.get(integerRotorId - 1)) {
-                    rotorIdFlags.set(integerRotorId - 1, true);
-                }
-                else {
-                    isSucceed = false;
-                    details = Problem.ROTOR_DUPLICATION;
-                    break;
+            // create list of Strings contains rotors id's to validate through
+            String[] rotorsIdArray = rotorsIDs.split(",");
+
+
+            // check if rotorsIDs size is exactly the required size.
+            if (rotorsIdArray.length < machine.getRotorsCount()) {
+                isSucceed = false;
+                details = Problem.NOT_ENOUGH_ELEMENTS;
+            } else if (rotorsIdArray.length > machine.getRotorsCount()) {
+                isSucceed = false;
+                details = Problem.TOO_MANY_ELEMENTS;
+            } else {
+                //check for duplicates rotors in list
+                for (String rotorID : rotorsIdArray) {
+                    int integerRotorId = Integer.parseInt(rotorID);
+
+                    // check if the rotorID exists in this machine.
+                    if (integerRotorId <= 0 || integerRotorId > machine.getAvailableRotorsLen()) {
+                        isSucceed = false;
+                        details = Problem.OUT_OF_RANGE_ID;
+                        break;
+                    }
+                    if (!rotorIdFlags.get(integerRotorId - 1)) {
+                        rotorIdFlags.set(integerRotorId - 1, true);
+                    } else {
+                        isSucceed = false;
+                        details = Problem.ROTOR_DUPLICATION;
+                        break;
+                    }
                 }
             }
         }
@@ -642,8 +657,7 @@ public class EnigmaEngine implements Engine {
         } else if (windowChars.length() < machine.getRotorsCount()) {
             isSucceed = false;
             details = Problem.INPUT_TOO_FEW_LETTERS;
-        }
-        else{
+        } else {
             for (Character currentWindowCharacter : windowChars.toCharArray()) {
                 if (machine.getAlphabet().indexOf(currentWindowCharacter) == CHAR_NOT_FOUND) {
                     isSucceed = false;

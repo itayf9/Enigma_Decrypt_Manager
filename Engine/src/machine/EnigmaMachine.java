@@ -1,9 +1,9 @@
 package machine;
 
+import javafx.util.Pair;
 import machine.component.PlugBoard;
 import machine.component.Reflector;
 import machine.component.Rotor;
-import utill.CharacterPair;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -240,8 +240,8 @@ public class EnigmaMachine {
     /**
      * @return a list of pairs of characters that are plugged in the plug board.
      */
-    public List<CharacterPair> getListOfPlugPairs() {
-        List<CharacterPair> plugPairs = new ArrayList<>();
+    public List<Pair<Character, Character>> getListOfPlugPairs() {
+        List<Pair<Character, Character>> plugPairs = new ArrayList<>();
 
         // goes through the <key, value> pairs in the plug map
         for (Map.Entry<Integer, Integer> plug : plugBoard.getPlugMap().entrySet()) {
@@ -249,8 +249,8 @@ public class EnigmaMachine {
             // sets two new pairs of seperated characters.
             // first is extracted from the current <key, value> pair.
             // second is the opposite one to that <key, value> pair.
-            CharacterPair currentPlug = new CharacterPair(alphabet.charAt(plug.getKey()), alphabet.charAt(plug.getValue()));
-            CharacterPair reversedCurrentPlug = new CharacterPair(alphabet.charAt(plug.getValue()), alphabet.charAt(plug.getKey()));
+            Pair<Character, Character> currentPlug = new Pair<>(alphabet.charAt(plug.getKey()), alphabet.charAt(plug.getValue()));
+            Pair<Character, Character> reversedCurrentPlug = new Pair<>(alphabet.charAt(plug.getValue()), alphabet.charAt(plug.getKey()));
 
             // in order to prevent duplicates, checks this pair is already in the output list.
             // if it's not, then the pair is added to the list.

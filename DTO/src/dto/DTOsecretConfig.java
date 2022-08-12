@@ -7,12 +7,15 @@ public class DTOsecretConfig {
     private String windows;
     private String reflectorSymbol;
     private String plugs;
+    private List<Integer> notchDistancesToWindow;
 
-    public DTOsecretConfig(List<Integer> rotors, String windows, String reflectorSymbol, String plugs) {
+    public DTOsecretConfig(List<Integer> rotors, String windows, String reflectorSymbol,
+                           String plugs, List<Integer> notchDistancesToWindow) {
         this.rotors = rotors;
         this.windows = windows;
         this.reflectorSymbol = reflectorSymbol;
         this.plugs = plugs;
+        this.notchDistancesToWindow = notchDistancesToWindow;
     }
 
     public List<Integer> getNotchDistances() {
