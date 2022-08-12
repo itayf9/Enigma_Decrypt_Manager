@@ -15,6 +15,26 @@ public class DTOsecretConfig {
         this.plugs = plugs;
     }
 
+    public List<Integer> getNotchDistances() {
+        return notchDistancesToWindow;
+    }
+
+    public List<Integer> getRotors() {
+        return rotors;
+    }
+
+    public String getWindows() {
+        return windows;
+    }
+
+    public String getReflectorSymbol() {
+        return reflectorSymbol;
+    }
+
+    public String getPlugs() {
+        return plugs;
+    }
+
     public String toString() {
         StringBuilder res = new StringBuilder();
 

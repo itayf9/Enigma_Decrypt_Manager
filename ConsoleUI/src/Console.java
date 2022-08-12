@@ -1,7 +1,4 @@
-import dto.DTOciphertext;
-import dto.DTOresetConfig;
-import dto.DTOspecs;
-import dto.DTOstatus;
+import dto.*;
 import javafx.util.Pair;
 import utill.Problem;
 
@@ -115,15 +112,22 @@ public class Console {
         String choice = scanner.nextLine().toUpperCase();
 
         while (!isValid) {
-            if (choice.length() > 1) {
+            if (choice.length() == 0){
+                System.out.println("No input was given. Please enter your choice (select 1 - 8).");
+            }
+            else if (choice.length() > 1) {
                 System.out.println("Invalid input - please enter only one option number! ");
-                choice = scanner.nextLine().toUpperCase();
+
             } else if (choice.charAt(0) < '1' || choice.charAt(0) > '8') {
                 System.out.println("Invalid option - try again ! with options from 1-8");
-                choice = scanner.nextLine().toUpperCase();
             } else {
                 isValid = true;
+            }
 
+
+
+            if (!isValid){
+                choice = scanner.nextLine().toUpperCase();
             }
         }
 
@@ -291,7 +295,7 @@ public class Console {
     static private void displaySpecifications() {
         DTOspecs specsStatus = engine.displayMachineSpecifications();
         if (specsStatus.isSucceed()) {
-            System.out.println(specsStatus);
+            printSpecifications(specsStatus);
         }
     }
 
@@ -347,8 +351,22 @@ public class Console {
      * Q4 - choose new config automatically.
      */
     static private void chooseConfigAuto() {
-        System.out.println(engine.selectConfigurationAuto());
+        DTOsecretConfig configStatus = engine.selectConfigurationAuto();
         isMachineConfigured = true;
+
+        List<Character> convertedWindowsChars = new ArrayList<>();
+
+        for(Character windowChar : configStatus.getWindows().toCharArray()) {
+            convertedWindowsChars.add(windowChar);
+        }
+
+        List<Pair<Character, Character>> convertedPlugs = new ArrayList<>();
+        for (int i = 0; i < configStatus.getPlugs().length(); i+=2) {
+            convertedPlugs.add(new Pair<>(configStatus.getPlugs().charAt(i), configStatus.getPlugs().charAt(i+1)));
+        }
+
+        printConfiguration(configStatus.getRotors(), convertedWindowsChars,
+                configStatus.getReflectorSymbol(), convertedPlugs, configStatus.getNotchDistances());
     }
 
     /**
@@ -479,6 +497,82 @@ public class Console {
         }
         problem.printMe();
 
+    }
+
+
+    public static void printSpecifications (DTOspecs dtoSpecs){
+        StringBuilder strSpecs = new StringBuilder();
+
+        strSpecs.append("Specifications: \n")
+                .append(" - Number Of Rotors (In Use / Available): ")
+                .append(dtoSpecs.getInUseRotorsCount())
+                .append(" / ")
+                .append(dtoSpecs.getAvailableRotorsCount())
+                .append('\n')
+                .append(" - Number Of Reflectors (Available): ")
+                .append(dtoSpecs.getAvailableReflectorsCount())
+                .append('\n')
+                .append(" - Number Of Texts That Were Ciphered So Far: ")
+                .append(dtoSpecs.getCipheredTextsCount())
+                .append('\n');
+
+        System.out.println(strSpecs.toString());
+
+        if (dtoSpecs.getDetails().equals(Problem.NO_CONFIGURATION)){
+            System.out.println(" - No configuration has been chosen yet.");
+        } else {
+            System.out.print(" - Current Configuration: ");
+            printConfiguration(dtoSpecs.getInUseRotorsIDs(), dtoSpecs.getWindowsCharacters(), dtoSpecs.getInUseReflectorSymbol(), dtoSpecs.getInUsePlugs(), dtoSpecs.getNotchDistancesToWindow());
+        }
 
     }
+
+    public static void printConfiguration (List<Integer> inUseRotorsIDs, List<Character> windowsCharacters, String inUseReflectorSymbol, List<Pair<Character, Character>> inUsePlugs, List<Integer> notchDistancesToWindow) {
+        StringBuilder strConfig = new StringBuilder();
+
+        strConfig.append("<");
+
+        for (int i = inUseRotorsIDs.size() - 1; i >= 0; i--) {
+            strConfig.append(inUseRotorsIDs.get(i).toString());
+            if (notchDistancesToWindow.size() > 0){
+                strConfig.append("(")
+                        .append(notchDistancesToWindow.get(i).toString())
+                        .append(")");
+            }
+            if (i != 0) {
+                strConfig.append(",");
+            }
+        }
+        strConfig.append(">");
+
+        strConfig.append("<");
+        for (int i = windowsCharacters.size() - 1; i >= 0; i--) {
+            strConfig.append(windowsCharacters.get(i));
+        }
+        strConfig.append(">");
+
+        strConfig.append("<")
+                .append(inUseReflectorSymbol)
+                .append(">");
+
+        if (inUsePlugs.size() > 0) {
+            strConfig.append("<");
+            for (int i = 0; i < inUsePlugs.size(); i++) {
+                strConfig.append(inUsePlugs.get(i).getKey())
+                        .append("|")
+                        .append(inUsePlugs.get(i).getValue());
+                if (i != inUsePlugs.size() - 1) {
+                    strConfig.append(",");
+                }
+            }
+            strConfig.append(">");
+        }
+
+        System.out.println(strConfig.toString());
+    }
+
+
+
+
+
 }
