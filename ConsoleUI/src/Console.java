@@ -571,7 +571,7 @@ public class Console {
                 strConfig.append(inUsePlugs.charAt(i))
                         .append("|")
                         .append(inUsePlugs.charAt(i+1));
-                if (i != inUsePlugs.length() - 1) {
+                if (i != inUsePlugs.length() - 2) {
                     strConfig.append(",");
                 }
             }
