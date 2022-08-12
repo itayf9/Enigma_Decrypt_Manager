@@ -103,9 +103,9 @@ public class Console {
     }
 
     /**
-     * getting user choice from the menu
+     * getting the user's choice from the menu
      *
-     * @return Enum operation
+     * @return Operation that represents the user's choice
      */
     public static Operation getInputUserChoice() {
 

@@ -41,7 +41,14 @@ public class EnigmaMachine {
     private boolean isConfigured = false;
     private static int cipherCounter = 0;
 
-    // Constructor of Enigma Machine
+    /**
+     * Constructor of Enigma Machine
+     * @param availableRotors a list of all available rotors
+     * @param availableReflectors a list of all available reflectors
+     * @param rotorsCount the number of rotors that has should be configured inside the machine
+     * @param alphabet a string that represents the alphabet, where the characters are ordered as described in the XML file.
+     * @param character2index a map that translates each alphabet character to its matching index in alphabet string.
+     */
     public EnigmaMachine(List<Rotor> availableRotors, List<Reflector> availableReflectors, int rotorsCount, String alphabet, Map<Character, Integer> character2index) {
         this.availableRotors = availableRotors;
         this.availableReflectors = availableReflectors;
@@ -52,15 +59,27 @@ public class EnigmaMachine {
         this.inUseRotors = new ArrayList<>();
     }
 
-    // getters
+    /**
+     *
+     * @return a list of all rotors that are currently used in the machine, preserving their order.
+     *         (right most rotor is the first rotor in the list).
+     */
     public List<Rotor> getInUseRotors() {
         return inUseRotors;
     }
 
+    /**
+     *
+     * @return the reflector that is currently used in the machine.
+     */
     public Reflector getInUseReflector() {
         return inUseReflector;
     }
 
+    /**
+     *
+     * @return a string that represents the alphabet
+     */
     public String getAlphabet() {
         return alphabet;
     }
