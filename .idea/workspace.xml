@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Fix printing of plugs in printConfiguration()">
+    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Documentation : EnigmaMachine.java, PlugBoard.java">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleUI/src/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUI/src/Console.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" afterDir="false" />
     </list>
-    <list id="4d3468c9-f8a2-4a3c-84be-6dffde06732b" name="Changes by kingd" comment="Change of kingd" />
+    <list id="4d3468c9-f8a2-4a3c-84be-6dffde06732b" name="Changes by kingd" comment="Change of kingd">
+      <change beforePath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,6 +30,16 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/Engine/src/EnigmaEngine.java">
+      <ranges>
+        <range start1="124" end1="124" start2="124" end2="129" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="715" end1="715" start2="720" end2="721" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="716" end1="716" start2="722" end2="753" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="718" end1="749" start2="755" end2="755" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+      </ranges>
+    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -119,7 +131,8 @@
       <workItem from="1660207862378" duration="13752000" />
       <workItem from="1660228802230" duration="8051000" />
       <workItem from="1660239883997" duration="3846000" />
-      <workItem from="1660309062043" duration="4205000" />
+      <workItem from="1660309062043" duration="6209000" />
+      <workItem from="1660322956361" duration="1194000" />
     </task>
     <task id="LOCAL‎00001" summary="Add classes">
       <created>1659104440139</created>
@@ -361,7 +374,19 @@
       <option name="presentableId" value="LOCAL‎00040" />
       <updated>1660312276254</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL‎00041" summary="Make printStatistics() display statistics nicely">
+      <created>1660313560415</created>
+      <option name="number" value="LOCAL‎00041" />
+      <option name="presentableId" value="LOCAL‎00041" />
+      <updated>1660313560415</updated>
+    </task>
+    <task id="LOCAL‎00042" summary="Documentation : EnigmaMachine.java, PlugBoard.java">
+      <created>1660315304164</created>
+      <option name="number" value="LOCAL‎00042" />
+      <option name="presentableId" value="LOCAL‎00042" />
+      <updated>1660315304164</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -379,8 +404,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="documentation : Rotor.java, Reflector.java, PlugBoard.java" />
-    <MESSAGE value="documentation : Utility.java" />
     <MESSAGE value="documentation : EnigmaMachine.java" />
     <MESSAGE value="Add .idea/workspace.xml to .gitignore" />
     <MESSAGE value="Add selectConfigurationManual (Q3)" />
@@ -404,16 +427,13 @@
     <MESSAGE value="Change data types in DTOspecs from Lists to Strings" />
     <MESSAGE value="Change of kingd" />
     <MESSAGE value="Fix printing of plugs in printConfiguration()" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix printing of plugs in printConfiguration()" />
+    <MESSAGE value="Make printStatistics() display statistics nicely" />
+    <MESSAGE value="Documentation : EnigmaMachine.java, PlugBoard.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="Documentation : EnigmaMachine.java, PlugBoard.java" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Engine/src/EnigmaEngine.java</url>
-          <line>737</line>
-          <option name="timeStamp" value="40" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/ConsoleUI/src/Console.java</url>
           <line>307</line>

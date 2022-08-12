@@ -122,6 +122,11 @@ public class EnigmaEngine implements Engine {
             }
         }
 
+        // resets the statistics when loading a new machine
+        if (isSucceeded) {
+            machineRecords.clear();
+        }
+
         return new DTOstatus(isSucceeded, details);
     }
 
