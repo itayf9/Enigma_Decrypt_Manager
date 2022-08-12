@@ -13,14 +13,14 @@ public class DTOspecs extends DTOstatus {
     private int cipheredTextsCount;
 
     private List<Integer> inUseRotorsIDs;
-    private List<Character> windowsCharacters;
+    private String windowsCharacters;
     private String inUseReflectorSymbol;
-    private List<Pair<Character, Character>> inUsePlugs;
+    private String inUsePlugs;
 
     public DTOspecs(boolean isSucceeded, Problem details, int availableRotorsCount, int inUseRotorsCount,
                     List<Integer> notchDistancesToWindow, int availableReflectorsCount, int cipheredTextsCount,
-                    List<Integer> inUseRotorsIDs, List<Character> windowsCharacters, String inUseReflectorSymbol,
-                    List<Pair<Character, Character>> inUsePlugs) {
+                    List<Integer> inUseRotorsIDs, String windowsCharacters, String inUseReflectorSymbol,
+                    String inUsePlugs) {
         super(isSucceeded, details);
         this.availableRotorsCount = availableRotorsCount;
         this.inUseRotorsCount = inUseRotorsCount;
@@ -57,7 +57,7 @@ public class DTOspecs extends DTOstatus {
         return inUseRotorsIDs;
     }
 
-    public List<Character> getWindowsCharacters() {
+    public String getWindowsCharacters() {
         return windowsCharacters;
     }
 
@@ -65,62 +65,22 @@ public class DTOspecs extends DTOstatus {
         return inUseReflectorSymbol;
     }
 
-    public List<Pair<Character, Character>> getInUsePlugs() {
+    public String getInUsePlugs() {
         return inUsePlugs;
     }
 
     @Override
     public String toString() {
-        StringBuilder res = new StringBuilder();
-        res.append("Specifications: \n")
-                .append(" - Number Of Rotors (In Use / Available): ")
-                .append(inUseRotorsCount)
-                .append(" / ")
-                .append(availableRotorsCount)
-                .append('\n')
-                .append(" - Number Of Reflectors (Available): ")
-                .append(availableReflectorsCount)
-                .append('\n')
-                .append(" - Number Of Texts That Were Ciphered So Far: ")
-                .append(cipheredTextsCount)
-                .append('\n')
-                .append("\n");
-
-
-        if (super.getDetails().equals(Problem.NO_CONFIGURATION)) {
-            res.append(" - No configuration has been chosen yet.");
-        } else {
-            res.append(" - Current Configuration: <");
-
-            for (int i = inUseRotorsIDs.size() - 1; i >= 0; i--) {
-                res.append(inUseRotorsIDs.get(i).toString());
-                if (i != 0) {
-                    res.append(",");
-                }
-            }
-            res.append("><");
-            for (int i = windowsCharacters.size() - 1; i >= 0; i--) {
-                res.append(windowsCharacters.get(i));
-            }
-            res.append("><");
-
-            res.append(inUseReflectorSymbol);
-            res.append(">");
-
-
-            if (inUsePlugs.size() > 0) {
-                res.append("<");
-                for (int i = 0; i < inUsePlugs.size(); i++) {
-                    res.append(inUsePlugs.get(i).getKey());
-                    res.append("|");
-                    res.append(inUsePlugs.get(i).getValue());
-                    if (i != inUsePlugs.size() - 1) {
-                        res.append(",");
-                    }
-                }
-                res.append(">");
-            }
-        }
-        return res.toString();
+        return "DTOspecs{" +
+                "availableRotorsCount=" + availableRotorsCount +
+                ", inUseRotorsCount=" + inUseRotorsCount +
+                ", notchDistancesToWindow=" + notchDistancesToWindow +
+                ", availableReflectorsCount=" + availableReflectorsCount +
+                ", cipheredTextsCount=" + cipheredTextsCount +
+                ", inUseRotorsIDs=" + inUseRotorsIDs +
+                ", windowsCharacters=" + windowsCharacters +
+                ", inUseReflectorSymbol='" + inUseReflectorSymbol + '\'' +
+                ", inUsePlugs=" + inUsePlugs +
+                '}';
     }
 }

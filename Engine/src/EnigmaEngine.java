@@ -57,8 +57,11 @@ public class EnigmaEngine implements Engine {
             int offset = r.translateChar2Offset(windowsChars.charAt(i));
             windowOfssets.add(offset);
         }
+
+        // add new configuration to statistical records
         StatisticRecord newRecord = new StatisticRecord(rotorsIDs, windowsChars, reflectorID, plugs);
         machineRecords.add(newRecord);
+
         machine.setMachineConfiguration(rotorsIDs, windowOfssets, reflectorID, plugs);
     }
 
@@ -397,13 +400,13 @@ public class EnigmaEngine implements Engine {
         Problem details = Problem.NO_PROBLEM;
 
         List<Integer> inUseRotorsIDs = new ArrayList<>();
-        List<Character> windowsCharacters = new ArrayList<>();
-        String inUseReflectorSymbol = null;
-        List<Pair<Character, Character>> inUsePlugs = new ArrayList<>();
+        String windowsCharacters = "";
+        String inUseReflectorSymbol = "";
+        String inUsePlugs = "";
+        List<Integer> notchDistancesToWindow = new ArrayList<>();
 
         int availableRotorsCount = machine.getAvailableRotorsLen();
         int inUseRotorsCount = machine.getRotorsCount();
-        List<Integer> notchDistancesToWindow = machine.getInUseNotchDistanceToWindow();
         int availableReflectorsCount = machine.getAvailableReflectorsLen();
         int cipheredTextsCount = getCipherCounter();
 
@@ -411,7 +414,8 @@ public class EnigmaEngine implements Engine {
             inUseRotorsIDs = machine.getInUseRotorsIDs();
             windowsCharacters = machine.getAllWindowsCharacters();
             inUseReflectorSymbol = decimalToRoman(machine.getInUseReflector().getId());
-            inUsePlugs = machine.getListOfPlugPairs();
+            inUsePlugs = machine.getAllPlugPairs();
+            notchDistancesToWindow = machine.getInUseNotchDistanceToWindow();
         } else {
             details = Problem.NO_CONFIGURATION;
         }
@@ -442,7 +446,7 @@ public class EnigmaEngine implements Engine {
 
         String[] arrayOfStringRotorsIds = rotorsIDs.split(",");
 
-        for (int i = arrayOfStringRotorsIds.length - 1; i > 0; i--) {
+        for (int i = arrayOfStringRotorsIds.length - 1; i >= 0; i--) {
 
             rotorsIDList.add(Integer.parseInt(arrayOfStringRotorsIds[i]));
         }

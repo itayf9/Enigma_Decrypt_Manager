@@ -18,6 +18,8 @@ public interface Engine {
 
     DTOresetConfig resetConfiguration();
 
+    DTOstatistics getHistoryAndStatistics();
+
     DTOstatus validateRotors(String rotorsIDs);
 
     DTOstatus validateWindowCharacters(String windowChars);

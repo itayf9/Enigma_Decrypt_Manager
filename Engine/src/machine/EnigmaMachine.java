@@ -227,20 +227,20 @@ public class EnigmaMachine {
     /**
      * @return a list of the alphabet letters, for each rotor, that are currently at the 'window' (meaning that the absolute position is 0)
      */
-    public List<Character> getAllWindowsCharacters() {
-        List<Character> windowsCharacters = new ArrayList<>();
+    public String getAllWindowsCharacters() {
+         StringBuilder windowsCharacters = new StringBuilder();
 
         for (int i = 0; i < inUseWindowsOffsets.size(); i++) {
-            windowsCharacters.add(inUseRotors.get(i).translateOffset2Char(inUseWindowsOffsets.get(i)));
+            windowsCharacters.append(inUseRotors.get(i).translateOffset2Char(inUseWindowsOffsets.get(i)));
         }
 
-        return windowsCharacters;
+        return windowsCharacters.toString();
     }
 
     /**
      * @return a list of pairs of characters that are plugged in the plug board.
      */
-    public List<Pair<Character, Character>> getListOfPlugPairs() {
+    public String getAllPlugPairs() {
         List<Pair<Character, Character>> plugPairs = new ArrayList<>();
 
         // goes through the <key, value> pairs in the plug map
@@ -259,6 +259,14 @@ public class EnigmaMachine {
             }
         }
 
-        return plugPairs;
+        // convert the list of plug pairs to one string
+        StringBuilder allPlugPairsStr = new StringBuilder();
+
+        for (Pair<Character, Character> plugPair : plugPairs) {
+            allPlugPairsStr.append(plugPair.getKey())
+                    .append(plugPair.getValue());
+        }
+
+        return allPlugPairsStr.toString();
     }
 }

@@ -1,6 +1,8 @@
 import dto.*;
 import javafx.util.Pair;
+import statistics.StatisticRecord;
 import utill.Problem;
+import utill.Utility;
 
 import java.util.*;
 
@@ -354,19 +356,19 @@ public class Console {
         DTOsecretConfig configStatus = engine.selectConfigurationAuto();
         isMachineConfigured = true;
 
-        List<Character> convertedWindowsChars = new ArrayList<>();
+//        List<Character> convertedWindowsChars = new ArrayList<>();
+//
+//        for(Character windowChar : configStatus.getWindows().toCharArray()) {
+//            convertedWindowsChars.add(windowChar);
+//        }
+//
+//        List<Pair<Character, Character>> convertedPlugs = new ArrayList<>();
+//        for (int i = 0; i < configStatus.getPlugs().length(); i+=2) {
+//            convertedPlugs.add(new Pair<>(configStatus.getPlugs().charAt(i), configStatus.getPlugs().charAt(i+1)));
+//        }
 
-        for(Character windowChar : configStatus.getWindows().toCharArray()) {
-            convertedWindowsChars.add(windowChar);
-        }
-
-        List<Pair<Character, Character>> convertedPlugs = new ArrayList<>();
-        for (int i = 0; i < configStatus.getPlugs().length(); i+=2) {
-            convertedPlugs.add(new Pair<>(configStatus.getPlugs().charAt(i), configStatus.getPlugs().charAt(i+1)));
-        }
-
-        printConfiguration(configStatus.getRotors(), convertedWindowsChars,
-                configStatus.getReflectorSymbol(), convertedPlugs, configStatus.getNotchDistances());
+        printConfiguration(configStatus.getRotors(), configStatus.getWindows(),
+                configStatus.getReflectorSymbol(), configStatus.getPlugs(), configStatus.getNotchDistances());
     }
 
     /**
@@ -527,11 +529,12 @@ public class Console {
 
     }
 
-    public static void printConfiguration (List<Integer> inUseRotorsIDs, List<Character> windowsCharacters, String inUseReflectorSymbol, List<Pair<Character, Character>> inUsePlugs, List<Integer> notchDistancesToWindow) {
+    public static void printConfiguration (List<Integer> inUseRotorsIDs, String windowsCharacters, String inUseReflectorSymbol, String inUsePlugs, List<Integer> notchDistancesToWindow) {
         StringBuilder strConfig = new StringBuilder();
 
+        // prints rotors' configuration
+        // including the in use rotors' IDs, their order, and the current notch distances from the windows
         strConfig.append("<");
-
         for (int i = inUseRotorsIDs.size() - 1; i >= 0; i--) {
             strConfig.append(inUseRotorsIDs.get(i).toString());
             if (notchDistancesToWindow.size() > 0){
@@ -545,23 +548,26 @@ public class Console {
         }
         strConfig.append(">");
 
+        // prints windows characters configuration
         strConfig.append("<");
-        for (int i = windowsCharacters.size() - 1; i >= 0; i--) {
-            strConfig.append(windowsCharacters.get(i));
+        for (int i = windowsCharacters.length() - 1; i >= 0; i--) {
+            strConfig.append(windowsCharacters.charAt(i));
         }
         strConfig.append(">");
 
+        // prints reflector configuration
         strConfig.append("<")
                 .append(inUseReflectorSymbol)
                 .append(">");
 
-        if (inUsePlugs.size() > 0) {
+        // prints plugs configuration
+        if (inUsePlugs.length() > 0) {
             strConfig.append("<");
-            for (int i = 0; i < inUsePlugs.size(); i++) {
-                strConfig.append(inUsePlugs.get(i).getKey())
+            for (int i = 0; i < inUsePlugs.length(); i+=2) {
+                strConfig.append(inUsePlugs.charAt(i))
                         .append("|")
-                        .append(inUsePlugs.get(i).getValue());
-                if (i != inUsePlugs.size() - 1) {
+                        .append(inUsePlugs.charAt(i+1));
+                if (i != inUsePlugs.length() - 1) {
                     strConfig.append(",");
                 }
             }
