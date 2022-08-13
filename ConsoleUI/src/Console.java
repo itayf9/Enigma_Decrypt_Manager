@@ -362,17 +362,6 @@ public class Console {
         DTOsecretConfig configStatus = engine.selectConfigurationAuto();
         isMachineConfigured = true;
 
-//        List<Character> convertedWindowsChars = new ArrayList<>();
-//
-//        for(Character windowChar : configStatus.getWindows().toCharArray()) {
-//            convertedWindowsChars.add(windowChar);
-//        }
-//
-//        List<Pair<Character, Character>> convertedPlugs = new ArrayList<>();
-//        for (int i = 0; i < configStatus.getPlugs().length(); i+=2) {
-//            convertedPlugs.add(new Pair<>(configStatus.getPlugs().charAt(i), configStatus.getPlugs().charAt(i+1)));
-//        }
-
         printConfiguration(configStatus.getRotors(), configStatus.getWindows(),
                 configStatus.getReflectorSymbol(), configStatus.getPlugs(), configStatus.getNotchDistances());
     }
@@ -433,46 +422,46 @@ public class Console {
     public static void displayMessage(Problem problem) {
         switch (problem) {
             case ROTOR_INPUT_NOT_ENOUGH_ELEMENTS:
-                System.out.println();
+                System.out.println("You've entered less IDs than expected.");
                 break;
             case ROTOR_INPUT_TOO_MANY_ELEMENTS:
-                System.out.println();
+                System.out.println("You've entered more IDs than expected.");
                 break;
             case ROTOR_INPUT_OUT_OF_RANGE_ID:
-                System.out.println();
+                System.out.println("One or more of the IDs you've entered doesn't exist in this machine.");
                 break;
             case NOT_IN_ALPHABET:
                 System.out.println();
                 break;
             case NO_CONFIGURATION:
-                System.out.println();
+                System.out.println("The machine's configuration hasn't been set yet.");
                 break;
             case SELF_PLUGGING:
-                System.out.println();
+                System.out.println("One or more of the plugs you've entered is a 'self plug' (that is, a plug where the input and output are the same, e.g AA, DD....).");
                 break;
             case ALREADY_PLUGGED:
-                System.out.println();
+                System.out.println("Among the plugs you've entered, at least one input leads to multiple outputs, or multiple inputs lead to one output , for example (AB and AC), or (DR and FR).");
                 break;
             case ROTOR_VALIDATE_EMPTY_STRING:
-                System.out.println();
+                System.out.println("You haven't entered any IDs.");
                 break;
             case ROTOR_VALIDATE_NO_SEPERATOR:
-                System.out.println();
+                System.out.println("You haven't seperated all the IDs with a \",\".");
                 break;
             case WINDOW_INPUT_TOO_MANY_LETTERS:
-                System.out.println();
+                System.out.println("You've entered more characters than expected.");
                 break;
             case WINDOW_INPUT_TOO_FEW_LETTERS:
-                System.out.println();
+                System.out.println("You've entered less characters than expected.");
                 break;
             case FILE_NOT_FOUND:
-                System.out.println();
+                System.out.println("The files you've requested couldn't be found.");
                 break;
             case JAXB_ERROR:
-                System.out.println();
+                System.out.println("Internal Problem.");
                 break;
             case FILE_NOT_IN_FORMAT:
-                System.out.println();
+                System.out.println("The file you've requested isn't in the required format (only .xml files are valid).");
                 break;
             case ODD_ALPHABET_AMOUNT:
                 System.out.println();
