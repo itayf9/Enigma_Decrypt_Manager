@@ -798,8 +798,9 @@ public class EnigmaEngine implements Engine {
         Problem details = Problem.NO_PROBLEM;
 
         if (fileName.length() == 0) {
+            isSucceed = false;
             details = Problem.FILE_NOT_FOUND;
-            return new DTOstatus(false, details);
+            return new DTOstatus(isSucceed, details);
         }
         // else
 

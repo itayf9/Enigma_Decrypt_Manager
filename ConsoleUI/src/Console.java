@@ -41,21 +41,21 @@ public class Console {
                     loadXmlFile();
                     break;
                 case DISPLAY_SPECS:
-                    if (isXmlLoaded) {
+                    if (isMachineLoaded) {
                         displaySpecifications();
                     } else {
                         System.out.println("Please load machine from a file before selecting further operation.");
                     }
                     break;
                 case CHOOSE_INIT_CONFIG_MANUAL:
-                    if (isXmlLoaded) {
+                    if (isMachineLoaded) {
                         chooseConfigManual();
                     } else {
                         System.out.println("Please load machine from a file before selecting further operation.");
                     }
                     break;
                 case CHOOSE_INIT_CONFIG_AUTO:
-                    if (isXmlLoaded) {
+                    if (isMachineLoaded) {
                         chooseConfigAuto();
                     } else {
                         System.out.println("Please load machine from a file before selecting further operation.");
@@ -77,7 +77,7 @@ public class Console {
                     }
                     break;
                 case HISTORY_AND_STATISTICS:
-                    if (isXmlLoaded) {
+                    if (isMachineLoaded) {
                         getHistoryAndStats();
                     } else {
                         System.out.println("Please load machine from a file before checking for statistics.");
@@ -88,7 +88,7 @@ public class Console {
                     isExit = true;
                     continue;
                 case READ_EXISTING_MACHINE_FROM_FILE:
-                    isXmlLoaded = true;
+
                     loadExistingMachineFromFile();
                     break;
                 case WRITE_EXISTING_MACHINE_TO_FILE:
@@ -301,7 +301,7 @@ public class Console {
         if (!buildMachineFromXMLStatus.isSucceed()) {
             displayMessage(buildMachineFromXMLStatus.getDetails());
         } else {
-            isXmlLoaded = true;
+            isMachineLoaded = true;
             System.out.println("The machine was built successfully!");
         }
     }
@@ -400,7 +400,6 @@ public class Console {
         if (resetStatus.isSucceed()) {
             System.out.println("Configuration has reset successfully.");
         }
-
     }
 
     /**
@@ -665,11 +664,20 @@ public class Console {
 
     public static void loadExistingMachineFromFile() {
         String fileName = getXMLFileName();
+        DTOstatus loadExistingMachineStatus;
         try {
-            engine.loadExistingMachineFromFile(fileName);
+            loadExistingMachineStatus = engine.loadExistingMachineFromFile(fileName);
+
+            if (!loadExistingMachineStatus.isSucceed()){
+                displayMessage(loadExistingMachineStatus.getDetails());
+            } else{
+                isMachineLoaded = true;
+            }
         } catch (IOException | ClassNotFoundException e) {
             System.out.println(e);
         }
+
+
     }
 
     public static void saveExistingMachineToFile() {
