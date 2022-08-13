@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Fix time measuring">
+    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="More messages in displayMessage()">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConsoleUI/src/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUI/src/Console.java" afterDir="false" />
     </list>
-    <list id="4d3468c9-f8a2-4a3c-84be-6dffde06732b" name="Changes by kingd" comment="Change of kingd at Fix time measures">
+    <list id="4d3468c9-f8a2-4a3c-84be-6dffde06732b" name="Changes by kingd" comment="Change of kingd at More in displayMessage()">
       <change beforePath="$PROJECT_DIR$/ConsoleUI/src/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUI/src/Console.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DTO/src/utill/Problem.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/utill/Problem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleUI/src/Operation.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUI/src/Operation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,42 +36,17 @@
   <component name="LineStatusTrackerManager">
     <file path="$PROJECT_DIR$/ConsoleUI/src/Console.java">
       <ranges>
-        <range start1="285" end1="286" start2="285" end2="285" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="363" end1="374" start2="362" end2="362" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="387" end1="398" start2="375" end2="376" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="432" end1="432" start2="410" end2="414" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="435" end1="436" start2="417" end2="418" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="438" end1="439" start2="420" end2="421" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="441" end1="442" start2="423" end2="424" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="443" end1="445" start2="425" end2="427" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="447" end1="448" start2="429" end2="430" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="450" end1="451" start2="432" end2="433" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="453" end1="454" start2="435" end2="436" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="455" end1="455" start2="437" end2="443" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="456" end1="457" start2="444" end2="445" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="459" end1="460" start2="447" end2="448" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="462" end1="463" start2="450" end2="451" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="465" end1="466" start2="453" end2="454" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="467" end1="467" start2="455" end2="461" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="468" end1="469" start2="462" end2="463" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="471" end1="472" start2="465" end2="466" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="474" end1="475" start2="468" end2="469" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="476" end1="478" start2="470" end2="472" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="479" end1="481" start2="473" end2="475" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="482" end1="484" start2="476" end2="478" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="485" end1="487" start2="479" end2="481" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="488" end1="490" start2="482" end2="484" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="491" end1="493" start2="485" end2="487" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="494" end1="496" start2="488" end2="490" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="497" end1="499" start2="491" end2="493" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="501" end1="502" start2="495" end2="496" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="503" end1="505" start2="497" end2="499" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="506" end1="508" start2="500" end2="502" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="509" end1="511" start2="503" end2="505" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="512" end1="514" start2="506" end2="508" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="515" end1="515" start2="509" end2="512" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="516" end1="517" start2="513" end2="514" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="519" end1="520" start2="516" end2="517" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="14" end1="15" start2="14" end2="15" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="269" end1="277" start2="269" end2="272" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="283" end1="284" start2="278" end2="279" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="292" end1="293" start2="287" end2="287" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="516" end1="518" start2="510" end2="510" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="520" end1="520" start2="512" end2="516" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="536" end1="537" start2="532" end2="533" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="547" end1="547" start2="543" end2="551" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="592" end1="593" start2="596" end2="597" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="595" end1="595" start2="599" end2="603" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="615" end1="616" start2="623" end2="624" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
       </ranges>
     </file>
   </component>
@@ -167,13 +142,7 @@
       <workItem from="1660239883997" duration="3846000" />
       <workItem from="1660309062043" duration="6209000" />
       <workItem from="1660322956361" duration="6859000" />
-      <workItem from="1660383939178" duration="6691000" />
-    </task>
-    <task id="LOCAL‎00001" summary="Add classes">
-      <created>1659104440139</created>
-      <option name="number" value="LOCAL‎00001" />
-      <option name="presentableId" value="LOCAL‎00001" />
-      <updated>1659104440139</updated>
+      <workItem from="1660383939178" duration="7822000" />
     </task>
     <task id="LOCAL‎00002" summary="Add initPlugBoardMap and rotateRotors">
       <created>1659211555087</created>
@@ -457,7 +426,19 @@
       <option name="presentableId" value="LOCAL‎00048" />
       <updated>1660387766452</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL‎00049" summary="More messages in displayMessage()">
+      <created>1660390792573</created>
+      <option name="number" value="LOCAL‎00049" />
+      <option name="presentableId" value="LOCAL‎00049" />
+      <updated>1660390792573</updated>
+    </task>
+    <task id="LOCAL‎00050" summary="Change of kingd at More in displayMessage()">
+      <created>1660390821175</created>
+      <option name="number" value="LOCAL‎00050" />
+      <option name="presentableId" value="LOCAL‎00050" />
+      <updated>1660390821176</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -475,8 +456,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add resetConfiguration (Q6)" />
-    <MESSAGE value="Add printMainMenu" />
     <MESSAGE value="Fix validation selectConfigurationManual" />
     <MESSAGE value="Fix validation selectConfigurationAuto" />
     <MESSAGE value="Fix files locations + Fix Engine.java" />
@@ -500,6 +479,19 @@
     <MESSAGE value="Change of kingd at Add more specific Problems and commenting" />
     <MESSAGE value="Fix time measuring" />
     <MESSAGE value="Change of kingd at Fix time measures" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change of kingd at Fix time measures" />
+    <MESSAGE value="More messages in displayMessage()" />
+    <MESSAGE value="Change of kingd at More in displayMessage()" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change of kingd at More in displayMessage()" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ConsoleUI/src/Console.java</url>
+          <line>36</line>
+          <option name="timeStamp" value="51" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

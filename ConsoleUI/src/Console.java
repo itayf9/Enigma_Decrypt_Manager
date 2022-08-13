@@ -12,7 +12,7 @@ public class Console {
     private static boolean isXmlLoaded = false;
     private static boolean isMachineConfigured = false;
 
-    private static String xmlFileName = "Engine/src/resource/ex1-sanity-paper-enigma.xml";
+    //private static String xmlFileName = "Engine/src/resource/ex1-sanity-paper-enigma.xml";
 
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -267,14 +267,9 @@ public class Console {
      * @return string represents the file name.
      */
     private static String getXMLFileName() {
-        System.out.println("Please enter full path of file name to load machine from (XML file).");
-        String res = scanner.nextLine();
-        while (!res.endsWith(".xml")) {
-            System.out.println("Please enter full path of file name to load machine from (XML file).");
-            res = scanner.nextLine();
-        }
-        System.out.println("All OK");
-        return res;
+        System.out.println("Please enter the full path of the file to load machine from (XML file).");
+
+        return scanner.nextLine();
     }
 
     /**
