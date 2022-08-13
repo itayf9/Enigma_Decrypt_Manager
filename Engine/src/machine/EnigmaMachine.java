@@ -43,11 +43,12 @@ public class EnigmaMachine {
 
     /**
      * Constructor of Enigma Machine
-     * @param availableRotors a list of all available rotors
+     *
+     * @param availableRotors     a list of all available rotors
      * @param availableReflectors a list of all available reflectors
-     * @param rotorsCount the number of rotors that has should be configured inside the machine
-     * @param alphabet a string that represents the alphabet, where the characters are ordered as described in the XML file.
-     * @param character2index a map that translates each alphabet character to its matching index in alphabet string.
+     * @param rotorsCount         the number of rotors that has should be configured inside the machine
+     * @param alphabet            a string that represents the alphabet, where the characters are ordered as described in the XML file.
+     * @param character2index     a map that translates each alphabet character to its matching index in alphabet string.
      */
     public EnigmaMachine(List<Rotor> availableRotors, List<Reflector> availableReflectors, int rotorsCount, String alphabet, Map<Character, Integer> character2index) {
         this.availableRotors = availableRotors;
@@ -60,16 +61,14 @@ public class EnigmaMachine {
     }
 
     /**
-     *
      * @return a list of all rotors that are currently used in the machine, preserving their order.
-     *         (right most rotor is the first rotor in the list).
+     * (right most rotor is the first rotor in the list).
      */
     public List<Rotor> getInUseRotors() {
         return inUseRotors;
     }
 
     /**
-     *
      * @return the reflector that is currently used in the machine.
      */
     public Reflector getInUseReflector() {
@@ -77,7 +76,6 @@ public class EnigmaMachine {
     }
 
     /**
-     *
      * @return a string that represents the alphabet
      */
     public String getAlphabet() {
@@ -114,7 +112,19 @@ public class EnigmaMachine {
         return notchPositions;
     }
 
-    public boolean isConfigured() {return isConfigured;}
+    public List<Integer> getOriginalNotchPositions() {
+        List<Integer> notchPositions = new ArrayList<>();
+
+        for (int i = 0; i < inUseRotors.size(); i++) {
+            notchPositions.add((inUseRotors.get(i).getOriginalNotchIndex() - inUseWindowsOffsets.get(i) + alphabet.length()) % alphabet.length());
+        }
+
+        return notchPositions;
+    }
+
+    public boolean isConfigured() {
+        return isConfigured;
+    }
 
     // updating the current config of the machine.
     // by sending the updated list of rotors, reflectors and plugs.
@@ -246,7 +256,7 @@ public class EnigmaMachine {
      * @return a list of the alphabet letters, for each rotor, that are currently at the 'window' (meaning that the absolute position is 0)
      */
     public String getAllWindowsCharacters() {
-         StringBuilder windowsCharacters = new StringBuilder();
+        StringBuilder windowsCharacters = new StringBuilder();
 
         for (int i = 0; i < inUseWindowsOffsets.size(); i++) {
             windowsCharacters.append(inUseRotors.get(i).translateOffset2Char(inUseWindowsOffsets.get(i)));

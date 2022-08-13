@@ -8,6 +8,10 @@ public class DTOspecs extends DTOstatus {
     private int availableRotorsCount;
     private int inUseRotorsCount;
     private List<Integer> notchDistancesToWindow;
+    private List<Integer> originalNotchPositions;
+
+
+
     private int availableReflectorsCount;
     private int cipheredTextsCount;
 
@@ -17,13 +21,14 @@ public class DTOspecs extends DTOstatus {
     private String inUsePlugs;
 
     public DTOspecs(boolean isSucceeded, Problem details, int availableRotorsCount, int inUseRotorsCount,
-                    List<Integer> notchDistancesToWindow, int availableReflectorsCount, int cipheredTextsCount,
+                    List<Integer> notchDistancesToWindow, List<Integer> originalNotchPositions, int availableReflectorsCount, int cipheredTextsCount,
                     List<Integer> inUseRotorsIDs, String windowsCharacters, String inUseReflectorSymbol,
                     String inUsePlugs) {
         super(isSucceeded, details);
         this.availableRotorsCount = availableRotorsCount;
         this.inUseRotorsCount = inUseRotorsCount;
         this.notchDistancesToWindow = notchDistancesToWindow;
+        this.originalNotchPositions = originalNotchPositions;
         this.availableReflectorsCount = availableReflectorsCount;
         this.cipheredTextsCount = cipheredTextsCount;
         this.inUseRotorsIDs = inUseRotorsIDs;
@@ -42,6 +47,10 @@ public class DTOspecs extends DTOstatus {
 
     public List<Integer> getNotchDistancesToWindow() {
         return notchDistancesToWindow;
+    }
+
+    public List<Integer> getOriginalNotchPositions() {
+        return originalNotchPositions;
     }
 
     public int getAvailableReflectorsCount() {

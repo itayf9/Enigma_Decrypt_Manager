@@ -422,12 +422,13 @@ public class EnigmaEngine implements Engine {
             inUseReflectorSymbol = decimalToRoman(machine.getInUseReflector().getId());
             inUsePlugs = machine.getAllPlugPairs();
             notchDistancesToWindow = machine.getInUseNotchDistanceToWindow();
+            originalNotchPositions = machine.getOriginalNotchPositions();
         } else {
             details = Problem.NO_CONFIGURATION;
         }
 
         return new DTOspecs(isSucceeded, details, availableRotorsCount, inUseRotorsCount,
-                notchDistancesToWindow, availableReflectorsCount, cipheredTextsCount,
+                notchDistancesToWindow, originalNotchPositions, availableReflectorsCount, cipheredTextsCount,
                 inUseRotorsIDs, windowsCharacters, inUseReflectorSymbol, inUsePlugs);
     }
 

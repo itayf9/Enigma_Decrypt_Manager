@@ -12,7 +12,7 @@ public class Console {
     private static boolean isXmlLoaded = false;
     private static boolean isMachineConfigured = false;
 
-    //private static String xmlFileName = "Engine/src/resource/ex1-sanity-paper-enigma.xml";
+    private static String xmlFileName = "Engine/src/resource/ex1-sanity-paper-enigma.xml";
 
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -148,18 +148,21 @@ public class Console {
     public static String getInputStringOfIntegers(int numberOfIntegers) {
         boolean isValid = false;
         String StringOfChoices;
+        String ESC = ("" + (char)027);
 
         System.out.println("There is a place for " + numberOfIntegers + " rotors in this machine.\n" +
                 "Enter the rotors' ID's with \",\" between each rotor, counting from the left most rotor to the right most rotor.");
         System.out.println("e.g - 1,2");
-        StringOfChoices = scanner.nextLine();
+        StringOfChoices = scanner.useDelimiter(ESC).nextLine();
 
         while (!isValid) {
-            if (StringOfChoices.length() != 0) {
+            if (StringOfChoices.contains(ESC)) {
+                break;
+            } else if (StringOfChoices.length() != 0) {
                 isValid = true;
                 continue;
             }
-            System.out.println("Error! Cant be 0 Rotors. Try Again.");
+            System.out.println("Error! Cant be 0 Rotors. Try Again. or press ESC to go back to main menu.");
             StringOfChoices = scanner.nextLine();
         }
 
@@ -276,7 +279,7 @@ public class Console {
      * Q1 - loads xml file and builds the enigma machine.
      */
     static private void loadXmlFile() {
-        String xmlFileName = getXMLFileName();
+        // String xmlFileName = getXMLFileName();
         DTOstatus buildMachineFromXMLStatus = engine.buildMachineFromXmlFile(xmlFileName);
 
         if (!buildMachineFromXMLStatus.isSucceed()) {
@@ -539,7 +542,9 @@ public class Console {
         if (dtoSpecs.getDetails().equals(Problem.NO_CONFIGURATION)) {
             System.out.println(" - No configuration has been chosen yet.");
         } else {
-            System.out.print(" - Current Configuration: ");
+            System.out.print(" - Original Configuration: ");
+            printConfiguration(dtoSpecs.getInUseRotorsIDs(), dtoSpecs.getWindowsCharacters(), dtoSpecs.getInUseReflectorSymbol(), dtoSpecs.getInUsePlugs(), dtoSpecs.getOriginalNotchPositions());
+            System.out.print(" - Current Configuration:  ");
             printConfiguration(dtoSpecs.getInUseRotorsIDs(), dtoSpecs.getWindowsCharacters(), dtoSpecs.getInUseReflectorSymbol(), dtoSpecs.getInUsePlugs(), dtoSpecs.getNotchDistancesToWindow());
         }
 
