@@ -1,6 +1,6 @@
 package dto;
 
-import utill.Problem;
+import problem.Problem;
 
 public class DTOciphertext extends DTOstatus {
 

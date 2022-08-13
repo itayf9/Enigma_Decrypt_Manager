@@ -1,4 +1,4 @@
-package utill;
+package problem;
 
 public enum Problem {
     // input rotors problems

@@ -1,7 +1,6 @@
 package dto;
 
-import javafx.util.Pair;
-import utill.Problem;
+import problem.Problem;
 
 import java.util.List;
 

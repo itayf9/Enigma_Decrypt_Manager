@@ -1,6 +1,6 @@
 package dto;
 import statistics.StatisticRecord;
-import utill.Problem;
+import problem.Problem;
 
 import java.util.List;
 

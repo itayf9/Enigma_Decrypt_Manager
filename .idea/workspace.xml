@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="More messages in displayMessage()">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleUI/src/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUI/src/Console.java" afterDir="false" />
+    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Delete Console UI.iml">
+      <change afterPath="$PROJECT_DIR$/EnigmaUtillity/src/Main.java" afterDir="false" />
     </list>
-    <list id="4d3468c9-f8a2-4a3c-84be-6dffde06732b" name="Changes by kingd" comment="Change of kingd at More in displayMessage()">
-      <change beforePath="$PROJECT_DIR$/ConsoleUI/src/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUI/src/Console.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleUI/src/Operation.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUI/src/Operation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" afterDir="false" />
-    </list>
+    <list id="4d3468c9-f8a2-4a3c-84be-6dffde06732b" name="Changes by kingd" comment="Change of kingd at documentation" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,23 +27,6 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/ConsoleUI/src/Console.java">
-      <ranges>
-        <range start1="14" end1="15" start2="14" end2="15" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="269" end1="277" start2="269" end2="272" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="283" end1="284" start2="278" end2="279" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="292" end1="293" start2="287" end2="287" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="516" end1="518" start2="510" end2="510" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="520" end1="520" start2="512" end2="516" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="536" end1="537" start2="532" end2="533" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="547" end1="547" start2="543" end2="551" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="592" end1="593" start2="596" end2="597" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="595" end1="595" start2="599" end2="603" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="615" end1="616" start2="623" end2="624" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-      </ranges>
-    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -142,25 +120,7 @@
       <workItem from="1660239883997" duration="3846000" />
       <workItem from="1660309062043" duration="6209000" />
       <workItem from="1660322956361" duration="6859000" />
-      <workItem from="1660383939178" duration="7822000" />
-    </task>
-    <task id="LOCAL‎00002" summary="Add initPlugBoardMap and rotateRotors">
-      <created>1659211555087</created>
-      <option name="number" value="LOCAL‎00002" />
-      <option name="presentableId" value="LOCAL‎00002" />
-      <updated>1659211555087</updated>
-    </task>
-    <task id="LOCAL‎00003" summary="Add JAXB classes">
-      <created>1659454801180</created>
-      <option name="number" value="LOCAL‎00003" />
-      <option name="presentableId" value="LOCAL‎00003" />
-      <updated>1659454801180</updated>
-    </task>
-    <task id="LOCAL‎00004" summary="Add buildMachineFromCTEEnigma">
-      <created>1659464877055</created>
-      <option name="number" value="LOCAL‎00004" />
-      <option name="presentableId" value="LOCAL‎00004" />
-      <updated>1659464877055</updated>
+      <workItem from="1660383939178" duration="8373000" />
     </task>
     <task id="LOCAL‎00005" summary="Add windows ofssets and update configuration">
       <created>1659619818792</created>
@@ -438,7 +398,25 @@
       <option name="presentableId" value="LOCAL‎00050" />
       <updated>1660390821176</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL‎00051" summary="Fix getXMLFileName()">
+      <created>1660392027074</created>
+      <option name="number" value="LOCAL‎00051" />
+      <option name="presentableId" value="LOCAL‎00051" />
+      <updated>1660392027074</updated>
+    </task>
+    <task id="LOCAL‎00052" summary="Change of kingd at documentation">
+      <created>1660392059601</created>
+      <option name="number" value="LOCAL‎00052" />
+      <option name="presentableId" value="LOCAL‎00052" />
+      <updated>1660392059601</updated>
+    </task>
+    <task id="LOCAL‎00053" summary="Delete Console UI.iml">
+      <created>1660392191535</created>
+      <option name="number" value="LOCAL‎00053" />
+      <option name="presentableId" value="LOCAL‎00053" />
+      <updated>1660392191535</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -456,9 +434,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fix validation selectConfigurationManual" />
-    <MESSAGE value="Fix validation selectConfigurationAuto" />
-    <MESSAGE value="Fix files locations + Fix Engine.java" />
     <MESSAGE value="Add Override notations to Engine.java" />
     <MESSAGE value=" Fix overrides in Engine.java" />
     <MESSAGE value="Implement DISPLAY_SPECS, CHOOSE_INIT_CONFIG_AUTO, PROCESS_INPUT, &#10;RESET_CURRENT_CODE in ConsoleUI" />
@@ -481,17 +456,9 @@
     <MESSAGE value="Change of kingd at Fix time measures" />
     <MESSAGE value="More messages in displayMessage()" />
     <MESSAGE value="Change of kingd at More in displayMessage()" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change of kingd at More in displayMessage()" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/ConsoleUI/src/Console.java</url>
-          <line>36</line>
-          <option name="timeStamp" value="51" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Fix getXMLFileName()" />
+    <MESSAGE value="Change of kingd at documentation" />
+    <MESSAGE value="Delete Console UI.iml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Delete Console UI.iml" />
   </component>
 </project>

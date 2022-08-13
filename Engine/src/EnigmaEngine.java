@@ -14,7 +14,7 @@ import java.io.InputStream;
 import java.util.*;
 
 import statistics.StatisticRecord;
-import utill.Problem;
+import problem.Problem;
 
 import static machine.EnigmaMachine.advanceCipherCounter;
 import static machine.EnigmaMachine.getCipherCounter;
