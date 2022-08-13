@@ -147,6 +147,30 @@ public class Console {
         return Operation.getOperation(userChoiceNum);
     }
 
+    public static boolean getInputWantToTryAgain (){
+
+        String userChoice= "";
+
+        System.out.println("Do you want to try again or go back to the menu?");
+        System.out.println("1 - Try Again.\n2 - Back To The Menu.");
+
+        userChoice = scanner.nextLine().trim();
+
+        while (!userChoice.equals("1") && !userChoice.equals("2")) {
+            System.out.println("Please enter '1' or '2', depending or your choice.");
+            System.out.println("1 - Try Again.\n2 - Back To The Menu.");
+
+            userChoice = scanner.nextLine().trim();
+        }
+
+        if (userChoice.equals("1")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
     /**
      * get rotors ids from the user
      *
@@ -156,21 +180,19 @@ public class Console {
     public static String getInputStringOfIntegers(int numberOfIntegers) {
         boolean isValid = false;
         String StringOfChoices;
-        String ESC = ("" + (char) 027);
+
 
         System.out.println("There is a place for " + numberOfIntegers + " rotors in this machine.\n" +
                 "Enter the rotors' ID's with \",\" between each rotor, counting from the left most rotor to the right most rotor.");
         System.out.println("e.g - 1,2");
-        StringOfChoices = scanner.useDelimiter(ESC).nextLine();
+        StringOfChoices = scanner.nextLine();
 
         while (!isValid) {
-            if (StringOfChoices.contains(ESC)) {
-                break;
-            } else if (StringOfChoices.length() != 0) {
+             if (StringOfChoices.length() != 0) {
                 isValid = true;
                 continue;
             }
-            System.out.println("Error! Cant be 0 Rotors. Try Again. or press ESC to go back to main menu.");
+            System.out.println("Error! Cant be 0 Rotors. Try Again.");
             StringOfChoices = scanner.nextLine();
         }
 
@@ -311,40 +333,71 @@ public class Console {
      * Q3 - choose new config manually.
      */
     static private void chooseConfigManual() {
+        boolean isWantToTryAgain;
         int rotorCount = engine.getRotorsCount();
+
         String rotorsIDs = getInputStringOfIntegers(rotorCount);
         DTOstatus rotorsIDsStatus = engine.validateRotors(rotorsIDs);
         while (!rotorsIDsStatus.isSucceed()) {
+
             displayMessage(rotorsIDsStatus.getDetails());
-            rotorsIDs = getInputStringOfIntegers(rotorCount);
-            rotorsIDsStatus = engine.validateRotors(rotorsIDs);
+
+            isWantToTryAgain = getInputWantToTryAgain();
+            if (isWantToTryAgain){
+                rotorsIDs = getInputStringOfIntegers(rotorCount);
+                rotorsIDsStatus = engine.validateRotors(rotorsIDs);
+            } else {
+                return;
+            }
+
         }
         System.out.println("All good.\n");
 
         String windows = getInputSequenceOfCharacters();
         DTOstatus windowCharactersStatus = engine.validateWindowCharacters(windows);
         while (!windowCharactersStatus.isSucceed()) {
+
             displayMessage(windowCharactersStatus.getDetails());
-            windows = getInputSequenceOfCharacters();
-            windowCharactersStatus = engine.validateWindowCharacters(windows);
+            isWantToTryAgain = getInputWantToTryAgain();
+            if (isWantToTryAgain) {
+                windows = getInputSequenceOfCharacters();
+                windowCharactersStatus = engine.validateWindowCharacters(windows);
+            } else {
+                return;
+            }
+
         }
         System.out.println("All good.\n");
 
         int reflectorID = getInputInteger();
         DTOstatus reflectorIDStatus = engine.validateReflector(reflectorID);
         while (!reflectorIDStatus.isSucceed()) {
+
             displayMessage(reflectorIDStatus.getDetails());
-            reflectorID = getInputInteger();
-            reflectorIDStatus = engine.validateReflector(reflectorID);
+            isWantToTryAgain = getInputWantToTryAgain();
+            if (isWantToTryAgain) {
+                reflectorID = getInputInteger();
+                reflectorIDStatus = engine.validateReflector(reflectorID);
+            } else {
+                return;
+            }
+
         }
         System.out.println("All good.\n");
 
         String plugs = getInputListOfStrings();
         DTOstatus plugsStatus = engine.validatePlugs(plugs);
         while (!plugsStatus.isSucceed()) {
+
             displayMessage(plugsStatus.getDetails());
-            plugs = getInputListOfStrings();
-            plugsStatus = engine.validatePlugs(plugs);
+            isWantToTryAgain = getInputWantToTryAgain();
+            if (isWantToTryAgain) {
+                plugs = getInputListOfStrings();
+                plugsStatus = engine.validatePlugs(plugs);
+            } else {
+                return;
+            }
+
         }
         System.out.println("All good.\n");
 

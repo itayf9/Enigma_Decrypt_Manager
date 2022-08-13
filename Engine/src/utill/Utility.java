@@ -7,6 +7,8 @@ public class Utility {
 
     public static final char NOT_VALID_SPECIAL_CHAR_IN_XML = ' ';
 
+    public static final String ESC = "" + (char)27;
+
     /**
      * converts a roman number into a decimal number.
      * supports only 1-5.

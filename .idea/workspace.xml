@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Fix getInputUserChoice()">
+    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Add returning to menu in chooseConfigManual">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConsoleUI/src/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUI/src/Console.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/utill/Utility.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/utill/Utility.java" afterDir="false" />
     </list>
-    <list id="4d3468c9-f8a2-4a3c-84be-6dffde06732b" name="Changes by kingd" comment="Change of kingd at Add loadExistingMachineFromFile saveExistingMachineToFile">
-      <change beforePath="$PROJECT_DIR$/ConsoleUI/src/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUI/src/Console.java" afterDir="false" />
-    </list>
+    <list id="4d3468c9-f8a2-4a3c-84be-6dffde06732b" name="Changes by kingd" comment="Change of kingd at Console" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,31 +29,6 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/ConsoleUI/src/Console.java">
-      <ranges>
-        <range start1="5" end1="7" start2="5" end2="5" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="8" end1="9" start2="6" end2="6" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="10" end1="11" start2="7" end2="7" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="14" end1="16" start2="10" end2="11" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="17" end1="18" start2="12" end2="12" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="19" end1="20" start2="13" end2="13" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="43" end1="44" start2="36" end2="37" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="50" end1="51" start2="43" end2="44" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="57" end1="58" start2="50" end2="51" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="79" end1="80" start2="72" end2="73" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="90" end1="91" start2="83" end2="84" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="146" end1="147" start2="139" end2="139" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="257" end1="258" start2="249" end2="249" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="303" end1="304" start2="294" end2="295" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="391" end1="392" start2="382" end2="382" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="402" end1="403" start2="392" end2="392" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="667" end1="667" start2="656" end2="657" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="668" end1="669" start2="658" end2="665" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="672" end1="672" start2="668" end2="670" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-      </ranges>
-    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -152,19 +125,7 @@
       <workItem from="1660239883997" duration="3846000" />
       <workItem from="1660309062043" duration="6209000" />
       <workItem from="1660322956361" duration="6859000" />
-      <workItem from="1660383939178" duration="28352000" />
-    </task>
-    <task id="LOCAL‎00015" summary="Add resetConfiguration (Q6)">
-      <created>1659810081593</created>
-      <option name="number" value="LOCAL‎00015" />
-      <option name="presentableId" value="LOCAL‎00015" />
-      <updated>1659810081593</updated>
-    </task>
-    <task id="LOCAL‎00016" summary="Add printMainMenu">
-      <created>1659811841484</created>
-      <option name="number" value="LOCAL‎00016" />
-      <option name="presentableId" value="LOCAL‎00016" />
-      <updated>1659811841484</updated>
+      <workItem from="1660383939178" duration="30580000" />
     </task>
     <task id="LOCAL‎00017" summary="Fix validation selectConfigurationManual">
       <created>1659895285797</created>
@@ -448,7 +409,19 @@
       <option name="presentableId" value="LOCAL‎00063" />
       <updated>1660413394372</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL‎00064" summary="Fix isMachineLoaded">
+      <created>1660414966618</created>
+      <option name="number" value="LOCAL‎00064" />
+      <option name="presentableId" value="LOCAL‎00064" />
+      <updated>1660414966618</updated>
+    </task>
+    <task id="LOCAL‎00065" summary="Change of kingd at Console">
+      <created>1660414988593</created>
+      <option name="number" value="LOCAL‎00065" />
+      <option name="presentableId" value="LOCAL‎00065" />
+      <updated>1660414988593</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -466,9 +439,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Change data types in DTOspecs from Lists to Strings" />
-    <MESSAGE value="Fix printing of plugs in printConfiguration()" />
-    <MESSAGE value="Make printStatistics() display statistics nicely" />
     <MESSAGE value="Documentation : EnigmaMachine.java, PlugBoard.java" />
     <MESSAGE value="Fix odd plugs insert in selectConfigurationManual" />
     <MESSAGE value="Change of kingd" />
@@ -491,7 +461,10 @@
     <MESSAGE value="Change of kingd Add Problem" />
     <MESSAGE value="Fix getInputUserChoice()" />
     <MESSAGE value="Change of kingd at Add loadExistingMachineFromFile saveExistingMachineToFile" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change of kingd at Add loadExistingMachineFromFile saveExistingMachineToFile" />
+    <MESSAGE value="Fix isMachineLoaded" />
+    <MESSAGE value="Change of kingd at Console" />
+    <MESSAGE value="Add returning to menu in chooseConfigManual" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add returning to menu in chooseConfigManual" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
