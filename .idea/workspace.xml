@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Fix input selectConfigurationManual">
+    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Add original configuration to displaySpecifications">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleUI/src/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUI/src/Console.java" afterDir="false" />
     </list>
     <list id="4d3468c9-f8a2-4a3c-84be-6dffde06732b" name="Changes by kingd" comment="Change of kingd at Problem">
       <change beforePath="$PROJECT_DIR$/ConsoleUI/src/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUI/src/Console.java" afterDir="false" />
@@ -35,11 +35,19 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/Engine/src/EnigmaEngine.java">
+    <file path="$PROJECT_DIR$/ConsoleUI/src/Console.java">
       <ranges>
-        <range start1="411" end1="411" start2="411" end2="412" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="423" end1="423" start2="424" end2="425" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="428" end1="429" start2="430" end2="431" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="7" end1="7" start2="7" end2="8" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="14" end1="15" start2="15" end2="16" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="150" end1="150" start2="151" end2="152" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="154" end1="155" start2="156" end2="157" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="157" end1="158" start2="159" end2="162" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="161" end1="162" start2="165" end2="166" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="278" end1="279" start2="282" end2="283" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="365" end1="366" start2="369" end2="370" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="367" end1="369" start2="371" end2="375" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="371" end1="374" start2="377" end2="377" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="541" end1="542" start2="544" end2="547" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
       </ranges>
     </file>
   </component>
@@ -135,13 +143,7 @@
       <workItem from="1660239883997" duration="3846000" />
       <workItem from="1660309062043" duration="6209000" />
       <workItem from="1660322956361" duration="6859000" />
-      <workItem from="1660383939178" duration="12735000" />
-    </task>
-    <task id="LOCAL‎00008" summary="documentation : Rotor.java, Reflector.java, PlugBoard.java">
-      <created>1659699335021</created>
-      <option name="number" value="LOCAL‎00008" />
-      <option name="presentableId" value="LOCAL‎00008" />
-      <updated>1659699335021</updated>
+      <workItem from="1660383939178" duration="15425000" />
     </task>
     <task id="LOCAL‎00009" summary="documentation : Utility.java">
       <created>1659699671075</created>
@@ -431,7 +433,13 @@
       <option name="presentableId" value="LOCAL‎00056" />
       <updated>1660395250534</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL‎00057" summary="Add original configuration to displaySpecifications">
+      <created>1660397127095</created>
+      <option name="number" value="LOCAL‎00057" />
+      <option name="presentableId" value="LOCAL‎00057" />
+      <updated>1660397127095</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -449,7 +457,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Implement CHOOSE_INIT_CONFIG_MANUAL" />
     <MESSAGE value="Add Problem.java" />
     <MESSAGE value="Fix cipher text validation, toApperCase, user outputs in UI" />
     <MESSAGE value="Fix displayMachineSpecifications to work even before config" />
@@ -474,6 +481,18 @@
     <MESSAGE value="Add EnigmaUtillity" />
     <MESSAGE value="Fix input selectConfigurationManual" />
     <MESSAGE value="Change of kingd at Problem" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change of kingd at Problem" />
+    <MESSAGE value="Add original configuration to displaySpecifications" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add original configuration to displaySpecifications" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ConsoleUI/src/Console.java</url>
+          <line>153</line>
+          <option name="timeStamp" value="54" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

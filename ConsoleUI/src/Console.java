@@ -5,6 +5,7 @@ import problem.Problem;
 import utill.Utility;
 
 import java.util.*;
+import java.util.regex.Pattern;
 
 public class Console {
     private static final Engine engine = new EnigmaEngine();
@@ -366,15 +367,14 @@ public class Console {
         System.out.println("Please enter text to cipher: ");
         String inputText = getInputCipherText();
         DTOciphertext cipherStatus = engine.cipherInputText(inputText);
-        while (!cipherStatus.isSucceed()) {
+        if (!cipherStatus.isSucceed()) {
             displayMessage(cipherStatus.getDetails());
-            inputText = getInputCipherText();
-            cipherStatus = engine.cipherInputText(inputText);
+        } else {
+            System.out.println("-->");
+            System.out.println(cipherStatus.getCipheredText());
+            System.out.println("-->");
         }
 
-        System.out.println("-->");
-        System.out.println(cipherStatus.getCipheredText());
-        System.out.println("-->");
     }
 
     /**
