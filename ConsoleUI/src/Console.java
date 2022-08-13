@@ -4,6 +4,9 @@ import statistics.StatisticRecord;
 import problem.Problem;
 import utill.Utility;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.time.Instant;
 import java.util.*;
 import java.util.regex.Pattern;
 
@@ -13,7 +16,7 @@ public class Console {
     private static boolean isXmlLoaded = false;
     private static boolean isMachineConfigured = false;
 
-    private static String xmlFileName = "Engine/src/resource/ex1-paper-enigma.xml";
+    private static String xmlFileName = "Engine/src/resource/ex1-sanity-paper-enigma.xml";
 
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -84,6 +87,13 @@ public class Console {
                 case EXIT_SYSTEM:
                     isExit = true;
                     continue;
+                case READ_EXISTING_MACHINE_FROM_FILE:
+                    isXmlLoaded = true;
+                    loadExistingMachineFromFile();
+                    break;
+                case WRITE_EXISTING_MACHINE_TO_FILE:
+                    saveExistingMachineFromFile();
+                    break;
                 default:
                     break;
             }
@@ -97,14 +107,16 @@ public class Console {
      */
     public static void printMainMenu() {
         System.out.println("\nSelect an operation:");
-        System.out.println("1 - Load System Details From File.\n" +
-                "2 - Display Enigma Machine Specifications.\n" +
-                "3 - Set Configuration - Manually.\n" +
-                "4 - Set Configuration - Automatically.\n" +
-                "5 - Cipher.\n" +
-                "6 - Reset Configuration.\n" +
-                "7 - History And Statistics.\n" +
-                "8 - Exit.\n");
+        System.out.println("1  -  Load System Details From File.\n" +
+                "2  -  Display Enigma Machine Specifications.\n" +
+                "3  -  Set Configuration - Manually.\n" +
+                "4  -  Set Configuration - Automatically.\n" +
+                "5  -  Cipher.\n" +
+                "6  -  Reset Configuration.\n" +
+                "7  -  History And Statistics.\n" +
+                "8  -  Exit.\n" +
+                "9  -  Load an existing machine.\n" +
+                "10 -  Save an existing machine.");
     }
 
     /**
@@ -114,29 +126,33 @@ public class Console {
      */
     public static Operation getInputUserChoice() {
 
-        boolean isValid = false;
+        int userChoiceNum;
 
-        String choice = scanner.nextLine().toUpperCase();
+        try {
+            String userChoiceStr = scanner.nextLine().trim();
 
-        while (!isValid) {
-            if (choice.length() == 0) {
-                System.out.println("No input was given. Please enter your choice (select 1 - 8).");
-            } else if (choice.length() > 1) {
-                System.out.println("Invalid input - please enter only one option number! ");
+            while (userChoiceStr.length() == 0) {
+                System.out.println("No input was given. Please enter your choice (select 1 - 10).");
+                userChoiceStr = scanner.nextLine().trim();
+            }
 
-            } else if (choice.charAt(0) < '1' || choice.charAt(0) > '8') {
-                System.out.println("Invalid option - try again ! with options from 1-8");
-            } else {
-                isValid = true;
+            userChoiceNum = Integer.parseInt(userChoiceStr);
+
+            if (userChoiceNum < 1 || userChoiceNum > 10) {
+                System.out.println("The option you've chosen does not exist.");
+                System.out.println("Select an option from 1-10.");
+                userChoiceNum = Operation.INVALID_OPERATION;
             }
 
 
-            if (!isValid) {
-                choice = scanner.nextLine().toUpperCase();
-            }
+        } catch (NumberFormatException e) {
+            System.out.println("The option you've chosen is not a number.");
+            System.out.println("Select an option from 1-10.");
+            userChoiceNum = Operation.INVALID_OPERATION;
         }
 
-        return Operation.getOperation(choice.charAt(0));
+
+        return Operation.getOperation(userChoiceNum);
     }
 
     /**

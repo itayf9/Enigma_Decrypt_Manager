@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Add returning to main menu after mistaking at engine.cipherInputText()">
-      <change afterPath="$PROJECT_DIR$/Engine/src/resource/ex1-error-SpecialChars.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Engine/src/resource/ex1-error-SpecialCharsBroken.xml" afterDir="false" />
+    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Fix special characters in loadXmlFile()">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/utill/Utility.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/utill/Utility.java" afterDir="false" />
-    </list>
-    <list id="4d3468c9-f8a2-4a3c-84be-6dffde06732b" name="Changes by kingd" comment="Change of kingd Add originalNotchPositions to DTOspecs">
       <change beforePath="$PROJECT_DIR$/ConsoleUI/src/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUI/src/Console.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleUI/src/Operation.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUI/src/Operation.java" afterDir="false" />
+    </list>
+    <list id="4d3468c9-f8a2-4a3c-84be-6dffde06732b" name="Changes by kingd" comment="Change of kingd Add Problem">
+      <change beforePath="$PROJECT_DIR$/ConsoleUI/src/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUI/src/Console.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/Engine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/machine/EnigmaMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/machine/EnigmaMachine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/machine/component/PlugBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/machine/component/PlugBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/machine/component/Reflector.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/machine/component/Reflector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/machine/component/Rotor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/machine/component/Rotor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EnigmaUtillity/src/problem/Problem.java" beforeDir="false" afterPath="$PROJECT_DIR$/EnigmaUtillity/src/problem/Problem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EnigmaUtillity/src/statistics/StatisticRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/EnigmaUtillity/src/statistics/StatisticRecord.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,33 +41,26 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/Engine/src/EnigmaEngine.java">
+    <file path="$PROJECT_DIR$/ConsoleUI/src/Console.java">
       <ranges>
-        <range start1="38" end1="39" start2="38" end2="38" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="139" end1="140" start2="138" end2="138" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="141" end1="141" start2="139" end2="140" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="142" end1="142" start2="141" end2="142" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="145" end1="147" start2="145" end2="146" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="149" end1="149" start2="148" end2="153" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="151" end1="153" start2="155" end2="156" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="157" end1="159" start2="160" end2="161" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="166" end1="167" start2="168" end2="169" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="168" end1="170" start2="170" end2="171" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="173" end1="175" start2="174" end2="175" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="181" end1="186" start2="181" end2="181" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="187" end1="187" start2="182" end2="188" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="188" end1="188" start2="189" end2="190" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="189" end1="197" start2="191" end2="197" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="202" end1="202" start2="202" end2="203" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="214" end1="216" start2="215" end2="216" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="220" end1="225" start2="220" end2="220" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="230" end1="238" start2="225" end2="231" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="245" end1="248" start2="238" end2="239" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="254" end1="257" start2="245" end2="246" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="261" end1="262" start2="250" end2="250" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="267" end1="269" start2="255" end2="256" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="300" end1="301" start2="287" end2="287" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="312" end1="313" start2="298" end2="302" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="6" end1="6" start2="6" end2="9" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="15" end1="16" start2="18" end2="19" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="86" end1="86" start2="89" end2="96" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="99" end1="107" start2="109" end2="119" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="116" end1="117" start2="128" end2="129" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="118" end1="119" start2="130" end2="132" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="120" end1="130" start2="133" end2="136" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="132" end1="132" start2="138" end2="139" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="133" end1="135" start2="140" end2="144" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="136" end1="136" start2="145" end2="151" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="138" end1="139" start2="153" end2="155" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="150" end1="151" start2="166" end2="167" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="403" end1="403" start2="419" end2="420" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="515" end1="515" start2="532" end2="538" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="526" end1="526" start2="549" end2="550" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="558" end1="562" start2="582" end2="587" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="614" end1="614" start2="639" end2="640" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="638" end1="638" start2="664" end2="684" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
       </ranges>
     </file>
   </component>
@@ -162,19 +159,7 @@
       <workItem from="1660239883997" duration="3846000" />
       <workItem from="1660309062043" duration="6209000" />
       <workItem from="1660322956361" duration="6859000" />
-      <workItem from="1660383939178" duration="22018000" />
-    </task>
-    <task id="LOCAL‎00011" summary="Add .idea/workspace.xml to .gitignore">
-      <created>1659701879686</created>
-      <option name="number" value="LOCAL‎00011" />
-      <option name="presentableId" value="LOCAL‎00011" />
-      <updated>1659701879686</updated>
-    </task>
-    <task id="LOCAL‎00012" summary="Add selectConfigurationManual (Q3)">
-      <created>1659710572701</created>
-      <option name="number" value="LOCAL‎00012" />
-      <option name="presentableId" value="LOCAL‎00012" />
-      <updated>1659710572701</updated>
+      <workItem from="1660383939178" duration="26626000" />
     </task>
     <task id="LOCAL‎00013" summary="Add selectConfigurationAuto (Q4)">
       <created>1659805711173</created>
@@ -458,7 +443,19 @@
       <option name="presentableId" value="LOCAL‎00059" />
       <updated>1660399933824</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL‎00060" summary="Fix special characters in loadXmlFile()">
+      <created>1660408509117</created>
+      <option name="number" value="LOCAL‎00060" />
+      <option name="presentableId" value="LOCAL‎00060" />
+      <updated>1660408509118</updated>
+    </task>
+    <task id="LOCAL‎00061" summary="Change of kingd Add Problem">
+      <created>1660408536070</created>
+      <option name="number" value="LOCAL‎00061" />
+      <option name="presentableId" value="LOCAL‎00061" />
+      <updated>1660408536070</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -476,8 +473,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fix displayMachineSpecifications to work even before config" />
-    <MESSAGE value="Add buildMachineFromXmlFile (Q1)" />
     <MESSAGE value="Add validations buildMachineFromXmlFile" />
     <MESSAGE value="Fix display specs" />
     <MESSAGE value="Change data types in DTOspecs from Lists to Strings" />
@@ -501,19 +496,21 @@
     <MESSAGE value="Add original configuration to displaySpecifications" />
     <MESSAGE value="Change of kingd Add originalNotchPositions to DTOspecs" />
     <MESSAGE value="Add returning to main menu after mistaking at engine.cipherInputText()" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add returning to main menu after mistaking at engine.cipherInputText()" />
+    <MESSAGE value="Fix special characters in loadXmlFile()" />
+    <MESSAGE value="Change of kingd Add Problem" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change of kingd Add Problem" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/ConsoleUI/src/Console.java</url>
-          <line>152</line>
+          <line>168</line>
           <option name="timeStamp" value="54" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Engine/src/EnigmaEngine.java</url>
-          <line>137</line>
+          <line>135</line>
           <option name="timeStamp" value="57" />
         </line-breakpoint>
       </breakpoints>
