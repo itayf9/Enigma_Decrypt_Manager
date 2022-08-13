@@ -276,7 +276,7 @@ public class Console {
      * Q1 - loads xml file and builds the enigma machine.
      */
     static private void loadXmlFile() {
-        //String xmlFileName = getXMLFileName();
+        String xmlFileName = getXMLFileName();
         DTOstatus buildMachineFromXMLStatus = engine.buildMachineFromXmlFile(xmlFileName);
 
         if (!buildMachineFromXMLStatus.isSucceed()) {
@@ -285,7 +285,6 @@ public class Console {
             isXmlLoaded = true;
             System.out.println("The machine was built successfully!");
         }
-
     }
 
     /**
@@ -509,10 +508,12 @@ public class Console {
                 System.out.println("All OK.");
                 break;
         }
-        problem.printMe();
-
     }
 
+    /**
+     * print the dto specs to the user as required
+     * @param dtoSpecs the dto containing the specs of the machine.
+     */
     public static void printSpecifications(DTOspecs dtoSpecs) {
         StringBuilder strSpecs = new StringBuilder();
 
@@ -529,7 +530,7 @@ public class Console {
                 .append(dtoSpecs.getCipheredTextsCount())
                 .append('\n');
 
-        System.out.println(strSpecs.toString());
+        System.out.println(strSpecs);
 
         if (dtoSpecs.getDetails().equals(Problem.NO_CONFIGURATION)) {
             System.out.println(" - No configuration has been chosen yet.");
@@ -540,6 +541,14 @@ public class Console {
 
     }
 
+    /**
+     * print the Secret to the user.
+     * @param inUseRotorsIDs the rotors ids
+     * @param windowsCharacters window characters
+     * @param inUseReflectorSymbol the reflector symbol
+     * @param inUsePlugs the plugs in use
+     * @param notchDistancesToWindow the current notch positions
+     */
     public static void printConfiguration(List<Integer> inUseRotorsIDs, String windowsCharacters, String inUseReflectorSymbol, String inUsePlugs, List<Integer> notchDistancesToWindow) {
         StringBuilder strConfig = new StringBuilder();
 
@@ -585,9 +594,13 @@ public class Console {
             strConfig.append(">");
         }
 
-        System.out.println(strConfig.toString());
+        System.out.println(strConfig);
     }
 
+    /**
+     * print all machine stats
+     * @param stats dto contains machine records
+     */
     public static void printStatistics(DTOstatistics stats) {
 
         // get notch distances from windows
@@ -608,7 +621,7 @@ public class Console {
                         .append(" (").append(currentCipherRecord.getValue()).append(" nano-seconds)").append("\n");
             }
 
-            System.out.println(cipherRecordStr.toString());
+            System.out.println(cipherRecordStr);
         }
     }
 }

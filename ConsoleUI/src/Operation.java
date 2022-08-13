@@ -3,12 +3,10 @@ public enum Operation {
     CHOOSE_INIT_CONFIG_AUTO, PROCESS_INPUT, RESET_CURRENT_CODE,
     HISTORY_AND_STATISTICS, EXIT_SYSTEM, NONE;
 
-
-    public static Operation getOperation(char choice){
-
+    public static Operation getOperation(char choice) {
         Operation selectedOperation;
 
-        switch(choice) {
+        switch (choice) {
             case '1':
                 selectedOperation = READ_SYSTEM_DETAILS_FROM_XML;
                 break;
@@ -37,7 +35,6 @@ public enum Operation {
                 selectedOperation = NONE;
                 break;
         }
-
         return selectedOperation;
     }
 }
