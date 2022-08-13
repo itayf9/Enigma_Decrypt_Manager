@@ -2,11 +2,12 @@ package statistics;
 
 import javafx.util.Pair;
 
+import java.io.Serializable;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StatisticRecord {
+public class StatisticRecord implements Serializable {
 
     private List<Integer> inUseRotors;
     private String windowCharacters;

@@ -1,10 +1,11 @@
 package machine.component;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class Rotor {
+public class Rotor implements Serializable {
 
     private int id;
     private final int originalNotchIndex;

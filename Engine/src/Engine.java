@@ -1,6 +1,6 @@
 import dto.*;
 
-import java.util.List;
+import java.io.IOException;
 
 public interface Engine {
 
@@ -28,5 +28,8 @@ public interface Engine {
 
     DTOstatus validatePlugs(String plugs);
 
+    DTOstatus saveExistingMachineToFile(String fileName) throws IOException;
+
+    DTOstatus loadExistingMachineFromFile(String fileName) throws IOException, ClassNotFoundException;
 
 }

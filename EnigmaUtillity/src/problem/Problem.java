@@ -42,7 +42,7 @@ public enum Problem {
     CIPHER_INPUT_NOT_IN_ALPHABET,
 
 
-    UNKNOWN, NO_PROBLEM;
+    UNKNOWN, NO_PROBLEM, MACHINE_LOAD_FAILED, MACHINE_SAVE_FAILED;
 
     public void printMe() {
         System.out.println(this.name());

@@ -92,7 +92,7 @@ public class Console {
                     loadExistingMachineFromFile();
                     break;
                 case WRITE_EXISTING_MACHINE_TO_FILE:
-                    saveExistingMachineFromFile();
+                    saveExistingMachineToFile();
                     break;
                 default:
                     break;
@@ -164,7 +164,7 @@ public class Console {
     public static String getInputStringOfIntegers(int numberOfIntegers) {
         boolean isValid = false;
         String StringOfChoices;
-        String ESC = ("" + (char)027);
+        String ESC = ("" + (char) 027);
 
         System.out.println("There is a place for " + numberOfIntegers + " rotors in this machine.\n" +
                 "Enter the rotors' ID's with \",\" between each rotor, counting from the left most rotor to the right most rotor.");
@@ -417,6 +417,7 @@ public class Console {
 
     /**
      * display message for the user.
+     *
      * @param problem a detailed enum representing a problem at the code.
      */
     public static void displayMessage(Problem problem) {
@@ -529,6 +530,12 @@ public class Console {
             case CIPHER_INPUT_NOT_IN_ALPHABET:
                 System.out.println("At-least one letter isn't on the alphabet on this machine.");
                 break;
+            case MACHINE_LOAD_FAILED:
+                System.out.println("Error while trying to load machine.");
+                break;
+            case MACHINE_SAVE_FAILED:
+                System.out.println("Error while trying to save machine.");
+                break;
             case UNKNOWN:
                 System.out.println("There is an unknown error.");
                 break;
@@ -540,6 +547,7 @@ public class Console {
 
     /**
      * print the dto specs to the user as required
+     *
      * @param dtoSpecs the dto containing the specs of the machine.
      */
     public static void printSpecifications(DTOspecs dtoSpecs) {
@@ -572,10 +580,11 @@ public class Console {
 
     /**
      * print the Secret to the user.
-     * @param inUseRotorsIDs the rotors ids
-     * @param windowsCharacters window characters
-     * @param inUseReflectorSymbol the reflector symbol
-     * @param inUsePlugs the plugs in use
+     *
+     * @param inUseRotorsIDs         the rotors ids
+     * @param windowsCharacters      window characters
+     * @param inUseReflectorSymbol   the reflector symbol
+     * @param inUsePlugs             the plugs in use
      * @param notchDistancesToWindow the current notch positions
      */
     public static void printConfiguration(List<Integer> inUseRotorsIDs, String windowsCharacters, String inUseReflectorSymbol, String inUsePlugs, List<Integer> notchDistancesToWindow) {
@@ -628,6 +637,7 @@ public class Console {
 
     /**
      * print all machine stats
+     *
      * @param stats dto contains machine records
      */
     public static void printStatistics(DTOstatistics stats) {
@@ -650,6 +660,24 @@ public class Console {
             }
 
             System.out.println(cipherRecordStr);
+        }
+    }
+
+    public static void loadExistingMachineFromFile() {
+        String fileName = getXMLFileName();
+        try {
+            engine.loadExistingMachineFromFile(fileName);
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println(e);
+        }
+    }
+
+    public static void saveExistingMachineToFile() {
+        String fileName = getXMLFileName();
+        try {
+            engine.saveExistingMachineToFile(fileName);
+        } catch (IOException e) {
+            System.out.println(e);
         }
     }
 }

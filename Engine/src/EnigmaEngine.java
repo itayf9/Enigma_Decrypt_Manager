@@ -8,9 +8,7 @@ import machine.jaxb.generated.*;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.*;
 
 import statistics.StatisticRecord;
@@ -774,4 +772,49 @@ public class EnigmaEngine implements Engine {
                 "machine=" + machine +
                 '}';
     }
+
+    public DTOstatus saveExistingMachineToFile(String fileName) throws IOException {
+        boolean isSucceed = true;
+        Problem details = Problem.NO_PROBLEM;
+
+        if (fileName.length() == 0) {
+            details = Problem.FILE_NOT_FOUND;
+            return new DTOstatus(false, details);
+        }
+        // else
+        try (ObjectOutputStream out =
+                     new ObjectOutputStream(
+                             new FileOutputStream(fileName))) {
+            out.writeObject(machine);
+            out.writeObject(machineRecords);
+            out.flush();
+        }
+
+        return new DTOstatus(isSucceed, details);
+    }
+
+    public DTOstatus loadExistingMachineFromFile(String fileName) throws IOException, ClassNotFoundException {
+        boolean isSucceed = true;
+        Problem details = Problem.NO_PROBLEM;
+
+        if (fileName.length() == 0) {
+            details = Problem.FILE_NOT_FOUND;
+            return new DTOstatus(false, details);
+        }
+        // else
+
+        try (ObjectInputStream in =  new ObjectInputStream(new FileInputStream(fileName))) {
+
+            // we know that we read array list of Persons
+            machine = (EnigmaMachine) in.readObject();
+            machineRecords = (List<StatisticRecord>) in.readObject();
+        } catch (FileNotFoundException e) {
+            isSucceed = false;
+            details = Problem.FILE_NOT_FOUND;
+        }
+
+        return new DTOstatus(isSucceed, details);
+    }
+
+
 }

@@ -1,9 +1,10 @@
 package machine.component;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PlugBoard {
+public class PlugBoard implements Serializable {
 
     private Map<Integer, Integer> plugMap;
 

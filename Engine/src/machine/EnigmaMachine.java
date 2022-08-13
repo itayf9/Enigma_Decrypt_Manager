@@ -5,11 +5,12 @@ import machine.component.PlugBoard;
 import machine.component.Reflector;
 import machine.component.Rotor;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class EnigmaMachine {
+public class EnigmaMachine implements Serializable {
 
     // the machine contains a list of Rotors.
     private List<Rotor> availableRotors;
