@@ -4,9 +4,6 @@ import statistics.StatisticRecord;
 import utill.Problem;
 import utill.Utility;
 
-import java.time.Duration;
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 public class Console {
@@ -283,7 +280,6 @@ public class Console {
     /**
      * Q1 - loads xml file and builds the enigma machine.
      */
-
     static private void loadXmlFile() {
         //String xmlFileName = getXMLFileName();
         DTOstatus buildMachineFromXMLStatus = engine.buildMachineFromXmlFile(xmlFileName);
@@ -374,17 +370,7 @@ public class Console {
         String inputText = getInputCipherText();
         DTOciphertext cipherStatus = engine.cipherInputText(inputText);
         while (!cipherStatus.isSucceed()) {
-
-            switch (cipherStatus.getDetails()) {
-                case NOT_IN_ALPHABET:
-                    System.out.println("Error! One or more of the characters in this text is not in the alphabet.\n" +
-                            "Please enter text that contains only letters from the alphabet.");
-                    break;
-                case UNKNOWN:
-                    System.out.println("Unknown Error.");
-                    break;
-            }
-
+            displayMessage(cipherStatus.getDetails());
             inputText = getInputCipherText();
             cipherStatus = engine.cipherInputText(inputText);
         }
@@ -419,6 +405,10 @@ public class Console {
         }
     }
 
+    /**
+     * display message for the user.
+     * @param problem a detailed enum representing a problem at the code.
+     */
     public static void displayMessage(Problem problem) {
         switch (problem) {
             case ROTOR_INPUT_NOT_ENOUGH_ELEMENTS:
@@ -430,8 +420,8 @@ public class Console {
             case ROTOR_INPUT_OUT_OF_RANGE_ID:
                 System.out.println("One or more of the IDs you've entered doesn't exist in this machine.");
                 break;
-            case NOT_IN_ALPHABET:
-                System.out.println();
+            case ROTOR_DUPLICATION:
+                System.out.println("You have entered the same rotor twice or more.");
                 break;
             case NO_CONFIGURATION:
                 System.out.println("The machine's configuration hasn't been set yet.");
@@ -441,6 +431,12 @@ public class Console {
                 break;
             case ALREADY_PLUGGED:
                 System.out.println("Among the plugs you've entered, at least one input leads to multiple outputs, or multiple inputs lead to one output , for example (AB and AC), or (DR and FR).");
+                break;
+            case PLUGS_INPUT_NOT_IN_ALPHABET:
+                System.out.println("Among the plugs you've entered, at least one character is not in the alphabet.");
+                break;
+            case PLUGS_INPUT_ODD_ALPHABET_AMOUNT:
+                System.out.println("You've entered an odd number of characters.");
                 break;
             case ROTOR_VALIDATE_EMPTY_STRING:
                 System.out.println("You haven't entered any IDs.");
@@ -454,6 +450,12 @@ public class Console {
             case WINDOW_INPUT_TOO_FEW_LETTERS:
                 System.out.println("You've entered less characters than expected.");
                 break;
+            case WINDOWS_INPUT_NOT_IN_ALPHABET:
+                System.out.println("Among the characters you've entered, at least one character is not in the alphabet.");
+                break;
+            case REFLECTOR_INPUT_OUT_OF_RANGE_ID:
+                System.out.println("The ID you've entered doesn't exist in this machine.");
+                break;
             case FILE_NOT_FOUND:
                 System.out.println("The files you've requested couldn't be found.");
                 break;
@@ -463,50 +465,53 @@ public class Console {
             case FILE_NOT_IN_FORMAT:
                 System.out.println("The file you've requested isn't in the required format (only .xml files are valid).");
                 break;
-            case ODD_ALPHABET_AMOUNT:
-                System.out.println();
+            case FILE_ODD_ALPHABET_AMOUNT:
+                System.out.println("This file is invalid. The amount of the alphabet letters is odd. Only an even number of letters is allowed.");
                 break;
-            case NOT_ENOUGH_ROTORS:
-                System.out.println();
+            case FILE_NOT_ENOUGH_ROTORS:
+                System.out.println("This file is invalid. The machine requires more rotors, than available ones.");
                 break;
-            case ROTORS_COUNT_BELOW_TWO:
-                System.out.println();
+            case FILE_ROTORS_COUNT_BELOW_TWO:
+                System.out.println("This file is invalid. The number of places for rotors inside the machine (referred to \"rotors count\" in the file), is smaller than 2. Machines should have at least 2 rotors.");
                 break;
-            case ROTOR_MAPPING_NOT_IN_ALPHABET:
-                System.out.println();
+            case FILE_ROTOR_MAPPING_NOT_IN_ALPHABET:
+                System.out.println("This file is invalid. Among the mappings of the rotors, at least one character is not in the alphabet.");
                 break;
-            case ROTOR_MAPPING_NOT_A_LETTER:
-                System.out.println();
+            case FILE_ROTOR_MAPPING_NOT_A_SINGLE_LETTER:
+                System.out.println("This file is invalid. Among the mapping of the rotors, at lease one entry doesn't contains a single letter (e.g, contains more than one letter like \"ABC\" --> \"F\"...).");
                 break;
-            case ROTOR_INVALID_ID_RANGE:
-                System.out.println();
+            case FILE_ROTOR_INVALID_ID_RANGE:
+                System.out.println("The Rotors at the loaded file aren't maintaining a \"running-counter\" ids from 1.");
                 break;
-            case OUT_OF_RANGE_NOTCH:
-                System.out.println();
+            case FILE_OUT_OF_RANGE_NOTCH:
+                System.out.println("There is a at-least one rotor at the file loaded, that has a notch position that is in an unreachable location. ");
                 break;
-            case NUM_OF_REFLECTS_IS_NOT_HALF_OF_ABC:
-                System.out.println();
+            case FILE_NUM_OF_REFLECTS_IS_NOT_HALF_OF_ABC:
+                System.out.println("There is a reflector in the file that is loaded that does not have exactly half the length of the alphabet the amount of reflects.");
                 break;
             case FILE_REFLECTOR_INVALID_ID_RANGE:
-                System.out.println();
+                System.out.println("There is a reflector in the loaded file that has an ID that is not supported by this machine.");
                 break;
-            case REFLECTOR_SELF_MAPPING:
-                System.out.println();
+            case FILE_REFLECTOR_SELF_MAPPING:
+                System.out.println("At-least one reflector has a self mapping row in it.");
                 break;
-            case REFLECTOR_ID_DUPLICATIONS:
-                System.out.println();
+            case FILE_REFLECTOR_ID_DUPLICATIONS:
+                System.out.println("There is 2 or more reflectors at the loaded file with the same id.");
                 break;
-            case TOO_MANY_REFLECTORS:
-                System.out.println();
+            case FILE_TOO_MANY_REFLECTORS:
+                System.out.println("There is more then 5 reflectors at the file that was loaded.");
                 break;
-            case REFLECTOR_OUT_OF_RANGE_ID:
-                System.out.println();
+            case FILE_REFLECTOR_OUT_OF_RANGE_ID:
+                System.out.println("One of the reflectors at the loaded-file is out of possible range of ids.");
+                break;
+            case CIPHER_INPUT_NOT_IN_ALPHABET:
+                System.out.println("At-least one letter isn't on the alphabet on this machine.");
                 break;
             case UNKNOWN:
-                System.out.println();
+                System.out.println("There is an unknown error.");
                 break;
             case NO_PROBLEM:
-                System.out.println();
+                System.out.println("All OK.");
                 break;
         }
         problem.printMe();

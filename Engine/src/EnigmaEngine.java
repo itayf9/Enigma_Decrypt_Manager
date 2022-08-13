@@ -145,19 +145,19 @@ public class EnigmaEngine implements Engine {
 
         // check for alphabet length to be even
         if (abc.length() % 2 == 1) {
-            problem = Problem.ODD_ALPHABET_AMOUNT;
+            problem = Problem.FILE_ODD_ALPHABET_AMOUNT;
             totalValidCheck = false;
         }
 
         // check if rotors count is less than available rotors.
         if (cteMachine.getCTERotors().getCTERotor().size() < cteMachine.getRotorsCount()) {
-            problem = Problem.NOT_ENOUGH_ROTORS;
+            problem = Problem.FILE_NOT_ENOUGH_ROTORS;
             totalValidCheck = false;
         }
 
         // check if rotors count is less than 2
         if (cteMachine.getRotorsCount() < 2) {
-            problem = Problem.ROTORS_COUNT_BELOW_TWO;
+            problem = Problem.FILE_ROTORS_COUNT_BELOW_TWO;
             totalValidCheck = false;
         }
 
@@ -168,12 +168,12 @@ public class EnigmaEngine implements Engine {
         cteRotors.sort(CTERotorComparator);
         for (int i = 0; i < cteRotors.size() && totalValidCheck; i++) {
             if (cteRotors.get(i).getId() != i + 1) {
-                problem = Problem.ROTOR_INVALID_ID_RANGE;
+                problem = Problem.FILE_ROTOR_INVALID_ID_RANGE;
                 totalValidCheck = false;
             }
             // check notch positions in cteRotors
             if (cteRotors.get(i).getNotch() > cteMachine.getABC().length() || cteRotors.get(i).getNotch() < 1) {
-                problem = Problem.OUT_OF_RANGE_NOTCH;
+                problem = Problem.FILE_OUT_OF_RANGE_NOTCH;
                 totalValidCheck = false;
             }
         }
@@ -189,11 +189,11 @@ public class EnigmaEngine implements Engine {
 
             for (CTEPositioning currentPosition : currentRotor.getCTEPositioning()) {
                 if (currentPosition.getRight().length() != 1) {
-                    problem = Problem.ROTOR_MAPPING_NOT_A_LETTER;
+                    problem = Problem.FILE_ROTOR_MAPPING_NOT_A_SINGLE_LETTER;
                     totalValidCheck = false;
                     break;
                 } else if (abc.indexOf(currentPosition.getRight().charAt(0)) == -1) {
-                    problem = Problem.ROTOR_MAPPING_NOT_IN_ALPHABET;
+                    problem = Problem.FILE_ROTOR_MAPPING_NOT_IN_ALPHABET;
                     totalValidCheck = false;
                     break;
                 } else {
@@ -214,7 +214,7 @@ public class EnigmaEngine implements Engine {
         // check for reflector count < 5
 
         if (cteReflectors.size() > 5) {
-            problem = Problem.TOO_MANY_REFLECTORS;
+            problem = Problem.FILE_TOO_MANY_REFLECTORS;
             totalValidCheck = false;
         }
 
@@ -230,11 +230,11 @@ public class EnigmaEngine implements Engine {
 
             // fill reflectorID flag list
             if (currentID == NOT_VALID_ROMAN_TO_DECIMAL) {
-                problem = Problem.REFLECTOR_OUT_OF_RANGE_ID;
+                problem = Problem.FILE_REFLECTOR_OUT_OF_RANGE_ID;
                 totalValidCheck = false;
                 continue;
             } else if (reflectorIDFlags.get(currentID - 1)) {
-                problem = Problem.REFLECTOR_ID_DUPLICATIONS;
+                problem = Problem.FILE_REFLECTOR_ID_DUPLICATIONS;
                 totalValidCheck = false;
                 continue;
             } else {
@@ -245,7 +245,7 @@ public class EnigmaEngine implements Engine {
 
             // check for number of reflect pairs in each reflector
             if (cteReflectPairs.size() != abc.length() / 2) {
-                problem = Problem.NUM_OF_REFLECTS_IS_NOT_HALF_OF_ABC;
+                problem = Problem.FILE_NUM_OF_REFLECTS_IS_NOT_HALF_OF_ABC;
                 totalValidCheck = false;
                 continue;
             }
@@ -254,7 +254,7 @@ public class EnigmaEngine implements Engine {
             for (CTEReflect cteReflectPair : cteReflectPairs) {
 
                 if (cteReflectPair.getInput() == cteReflectPair.getOutput()) {
-                    problem = Problem.REFLECTOR_SELF_MAPPING;
+                    problem = Problem.FILE_REFLECTOR_SELF_MAPPING;
                     totalValidCheck = false;
                     break;
                 }
@@ -678,7 +678,7 @@ public class EnigmaEngine implements Engine {
             for (Character currentWindowCharacter : windowChars.toCharArray()) {
                 if (machine.getAlphabet().indexOf(currentWindowCharacter) == CHAR_NOT_FOUND) {
                     isSucceed = false;
-                    details = Problem.NOT_IN_ALPHABET;
+                    details = Problem.WINDOWS_INPUT_NOT_IN_ALPHABET;
                     break;
                 }
             }
@@ -723,7 +723,7 @@ public class EnigmaEngine implements Engine {
 
         if (plugs.length() % 2 == 1) {
             isSucceed = false;
-            details = Problem.ODD_ALPHABET_AMOUNT;
+            details = Problem.PLUGS_INPUT_ODD_ALPHABET_AMOUNT;
         } else {
             // goes through all the plugs (go through pairs)
             for (int i = 0; i < plugs.length(); i += 2) {
@@ -740,7 +740,7 @@ public class EnigmaEngine implements Engine {
                 // check if both characters in the current plug is in the alphabet.
                 if (firstInPlugIndex == CHAR_NOT_FOUND || secondInPlugIndex == CHAR_NOT_FOUND) {
                     isSucceed = false;
-                    details = Problem.NOT_IN_ALPHABET;
+                    details = Problem.PLUGS_INPUT_NOT_IN_ALPHABET;
                     break;
                 } else {
                     // check if both characters are not plugged yet.
