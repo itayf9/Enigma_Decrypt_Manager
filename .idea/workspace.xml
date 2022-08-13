@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Delete Console UI.iml">
-      <change afterPath="$PROJECT_DIR$/EnigmaUtillity/src/Main.java" afterDir="false" />
+    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Add EnigmaUtillity">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleUI/ConsoleUI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUI/ConsoleUI.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleUI/src/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUI/src/Console.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/Engine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/Engine.iml" afterDir="false" />
     </list>
-    <list id="4d3468c9-f8a2-4a3c-84be-6dffde06732b" name="Changes by kingd" comment="Change of kingd at documentation" />
+    <list id="4d3468c9-f8a2-4a3c-84be-6dffde06732b" name="Changes by kingd" comment="Change of kingd at documentation">
+      <change beforePath="$PROJECT_DIR$/ConsoleUI/src/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUI/src/Console.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EnigmaUtillity/src/problem/Problem.java" beforeDir="false" afterPath="$PROJECT_DIR$/EnigmaUtillity/src/problem/Problem.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,6 +34,18 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/ConsoleUI/src/Console.java">
+      <ranges>
+        <range start1="152" end1="153" start2="152" end2="153" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="178" end1="179" start2="178" end2="179" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="371" end1="372" start2="371" end2="372" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="373" end1="376" start2="373" end2="374" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="419" end1="419" start2="417" end2="429" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="434" end1="440" start2="444" end2="444" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+      </ranges>
+    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -120,13 +139,7 @@
       <workItem from="1660239883997" duration="3846000" />
       <workItem from="1660309062043" duration="6209000" />
       <workItem from="1660322956361" duration="6859000" />
-      <workItem from="1660383939178" duration="8373000" />
-    </task>
-    <task id="LOCAL‎00005" summary="Add windows ofssets and update configuration">
-      <created>1659619818792</created>
-      <option name="number" value="LOCAL‎00005" />
-      <option name="presentableId" value="LOCAL‎00005" />
-      <updated>1659619818792</updated>
+      <workItem from="1660383939178" duration="10893000" />
     </task>
     <task id="LOCAL‎00006" summary="Add displayMachineSpecifications (Q2)">
       <created>1659633350024</created>
@@ -416,7 +429,13 @@
       <option name="presentableId" value="LOCAL‎00053" />
       <updated>1660392191535</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL‎00054" summary="Add EnigmaUtillity">
+      <created>1660392700475</created>
+      <option name="number" value="LOCAL‎00054" />
+      <option name="presentableId" value="LOCAL‎00054" />
+      <updated>1660392700475</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -434,7 +453,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add Override notations to Engine.java" />
     <MESSAGE value=" Fix overrides in Engine.java" />
     <MESSAGE value="Implement DISPLAY_SPECS, CHOOSE_INIT_CONFIG_AUTO, PROCESS_INPUT, &#10;RESET_CURRENT_CODE in ConsoleUI" />
     <MESSAGE value="Implement CHOOSE_INIT_CONFIG_MANUAL" />
@@ -459,6 +477,7 @@
     <MESSAGE value="Fix getXMLFileName()" />
     <MESSAGE value="Change of kingd at documentation" />
     <MESSAGE value="Delete Console UI.iml" />
-    <option name="LAST_COMMIT_MESSAGE" value="Delete Console UI.iml" />
+    <MESSAGE value="Add EnigmaUtillity" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add EnigmaUtillity" />
   </component>
 </project>

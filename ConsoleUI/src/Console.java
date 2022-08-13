@@ -369,7 +369,7 @@ public class Console {
             cipherStatus = engine.cipherInputText(inputText);
         }
 
-        System.out.println("_____________________________");
+        System.out.println("-->");
         System.out.println(cipherStatus.getCipheredText());
         System.out.println("_____________________________");
 
