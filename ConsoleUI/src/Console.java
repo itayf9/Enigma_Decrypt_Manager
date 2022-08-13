@@ -3,21 +3,14 @@ import javafx.util.Pair;
 import statistics.StatisticRecord;
 import problem.Problem;
 import utill.Utility;
-
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.time.Instant;
 import java.util.*;
-import java.util.regex.Pattern;
 
 public class Console {
     private static final Engine engine = new EnigmaEngine();
-
-    private static boolean isXmlLoaded = false;
+    private static boolean isMachineLoaded = false;
     private static boolean isMachineConfigured = false;
-
     private static String xmlFileName = "Engine/src/resource/ex1-sanity-paper-enigma.xml";
-
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -144,7 +137,6 @@ public class Console {
                 userChoiceNum = Operation.INVALID_OPERATION;
             }
 
-
         } catch (NumberFormatException e) {
             System.out.println("The option you've chosen is not a number.");
             System.out.println("Select an option from 1-10.");
@@ -255,7 +247,6 @@ public class Console {
         }
 
         return plugs;
-
     }
 
     /**
@@ -389,7 +380,6 @@ public class Console {
             System.out.println(cipherStatus.getCipheredText());
             System.out.println("-->");
         }
-
     }
 
     /**
