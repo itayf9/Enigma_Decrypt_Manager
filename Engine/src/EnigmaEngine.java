@@ -608,6 +608,7 @@ public class EnigmaEngine implements Engine {
         boolean isSucceed = true;
         Problem details = Problem.NO_PROBLEM;
 
+
         // check for empty string input
         if (rotorsIDs.length() == 0) {
             isSucceed = false;
@@ -615,6 +616,9 @@ public class EnigmaEngine implements Engine {
         } else if (!rotorsIDs.contains(",")) {
             isSucceed = false;
             details = Problem.ROTOR_VALIDATE_NO_SEPERATOR;
+        } else if (rotorsIDs.contains(" ")) {
+            isSucceed = false;
+            details = Problem.ROTOR_INPUT_HAS_SPACE;
         } else {
             List<Boolean> rotorIdFlags = new ArrayList<>(Collections.nCopies(machine.getAvailableRotorsLen(), false));
 
@@ -632,7 +636,15 @@ public class EnigmaEngine implements Engine {
             } else {
                 //check for duplicates rotors in list
                 for (String rotorID : rotorsIdArray) {
-                    int integerRotorId = Integer.parseInt(rotorID);
+                    int integerRotorId;
+
+                    try {
+                        integerRotorId = Integer.parseInt(rotorID);
+                    } catch (NumberFormatException e) {
+                        isSucceed = false;
+                        details = Problem.ROTOR_INPUT_NUMBER_FORMAT_EXCEPTION;
+                        break;
+                    }
 
                     // check if the rotorID exists in this machine.
                     if (integerRotorId <= 0 || integerRotorId > machine.getAvailableRotorsLen()) {

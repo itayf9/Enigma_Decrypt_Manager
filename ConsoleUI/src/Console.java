@@ -150,7 +150,7 @@ public class Console {
         String StringOfChoices;
 
         System.out.println("There is a place for " + numberOfIntegers + " rotors in this machine.\n" +
-                "Enter the rotors' ID's with \",\" between each rotor, counting from the left most rotor to the right most rotor.\n");
+                "Enter the rotors' ID's with \",\" between each rotor, counting from the left most rotor to the right most rotor.");
         System.out.println("e.g - 1,2");
         StringOfChoices = scanner.nextLine();
 
@@ -176,7 +176,7 @@ public class Console {
         boolean isValid = false;
         String stringOfChoices;
 
-        System.out.println("Enter the rotors' window characters (the characters that will appear at the window for each rotor),\ncounting from the left most rotor to the right most rotor.\n");
+        System.out.println("Enter the rotors' window characters (the characters that will appear at the window for each rotor),\ncounting from the left most rotor to the right most rotor.");
         System.out.println("e.g - ABC");
 
         stringOfChoices = scanner.nextLine().toUpperCase();
@@ -371,9 +371,7 @@ public class Console {
 
         System.out.println("-->");
         System.out.println(cipherStatus.getCipheredText());
-        System.out.println("_____________________________");
-
-
+        System.out.println("-->");
     }
 
     /**
@@ -417,6 +415,18 @@ public class Console {
             case ROTOR_DUPLICATION:
                 System.out.println("You have entered the same rotor twice or more.");
                 break;
+            case ROTOR_INPUT_HAS_SPACE:
+                System.out.println("You have entered a space somewhere in the rotors ids.");
+                break;
+            case ROTOR_INPUT_NUMBER_FORMAT_EXCEPTION:
+                System.out.println("At least one of the IDs you've entered isn't a number.");
+                break;
+            case ROTOR_VALIDATE_EMPTY_STRING:
+                System.out.println("You haven't entered any IDs.");
+                break;
+            case ROTOR_VALIDATE_NO_SEPERATOR:
+                System.out.println("You haven't seperated all the IDs with a \",\".");
+                break;
             case NO_CONFIGURATION:
                 System.out.println("The machine's configuration hasn't been set yet.");
                 break;
@@ -431,12 +441,6 @@ public class Console {
                 break;
             case PLUGS_INPUT_ODD_ALPHABET_AMOUNT:
                 System.out.println("You've entered an odd number of characters.");
-                break;
-            case ROTOR_VALIDATE_EMPTY_STRING:
-                System.out.println("You haven't entered any IDs.");
-                break;
-            case ROTOR_VALIDATE_NO_SEPERATOR:
-                System.out.println("You haven't seperated all the IDs with a \",\".");
                 break;
             case WINDOW_INPUT_TOO_MANY_LETTERS:
                 System.out.println("You've entered more characters than expected.");
