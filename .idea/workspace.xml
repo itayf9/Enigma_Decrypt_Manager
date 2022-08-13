@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Fix odd plugs insert in selectConfigurationManual">
+    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Add time measuring">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleUI/src/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUI/src/Console.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DTO/src/statistics/StatisticRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/statistics/StatisticRecord.java" afterDir="false" />
-    </list>
-    <list id="4d3468c9-f8a2-4a3c-84be-6dffde06732b" name="Changes by kingd" comment="Change of kingd">
-      <change beforePath="$PROJECT_DIR$/ConsoleUI/src/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUI/src/Console.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DTO/src/statistics/StatisticRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/statistics/StatisticRecord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DTO/src/utill/Problem.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/utill/Problem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" afterDir="false" />
+    </list>
+    <list id="4d3468c9-f8a2-4a3c-84be-6dffde06732b" name="Changes by kingd" comment="Change of kingd at Add more specific Problems and commenting">
+      <change beforePath="$PROJECT_DIR$/DTO/src/statistics/StatisticRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/statistics/StatisticRecord.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,43 +30,6 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/DTO/src/statistics/StatisticRecord.java">
-      <ranges>
-        <range start1="4" end1="4" start2="4" end2="5" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="14" end1="15" start2="15" end2="16" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="41" end1="42" start2="42" end2="43" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/ConsoleUI/src/Console.java">
-      <ranges>
-        <range start1="6" end1="6" start2="6" end2="9" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="72" end1="73" start2="75" end2="76" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="76" end1="77" start2="79" end2="85" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="116" end1="117" start2="124" end2="125" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="118" end1="120" start2="126" end2="127" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="127" end1="128" start2="134" end2="134" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="130" end1="131" start2="136" end2="137" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="428" end1="429" start2="434" end2="435" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="431" end1="432" start2="437" end2="438" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="434" end1="435" start2="440" end2="441" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="447" end1="447" start2="453" end2="456" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="449" end1="449" start2="458" end2="467" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="482" end1="483" start2="500" end2="501" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="508" end1="509" start2="526" end2="527" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="526" end1="527" start2="544" end2="545" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="535" end1="536" start2="553" end2="554" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="543" end1="544" start2="561" end2="562" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="569" end1="570" start2="587" end2="588" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="572" end1="573" start2="590" end2="591" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="583" end1="584" start2="601" end2="602" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="594" end1="595" start2="612" end2="613" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
-        <range start1="597" end1="598" start2="615" end2="616" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="599" end1="600" start2="617" end2="619" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-        <range start1="601" end1="602" start2="620" end2="621" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
-      </ranges>
-    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -163,7 +122,8 @@
       <workItem from="1660228802230" duration="8051000" />
       <workItem from="1660239883997" duration="3846000" />
       <workItem from="1660309062043" duration="6209000" />
-      <workItem from="1660322956361" duration="6668000" />
+      <workItem from="1660322956361" duration="6859000" />
+      <workItem from="1660383939178" duration="3477000" />
     </task>
     <task id="LOCAL‎00001" summary="Add classes">
       <created>1659104440139</created>
@@ -429,7 +389,19 @@
       <option name="presentableId" value="LOCAL‎00044" />
       <updated>1660324253272</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL‎00045" summary="Add time measuring">
+      <created>1660330010972</created>
+      <option name="number" value="LOCAL‎00045" />
+      <option name="presentableId" value="LOCAL‎00045" />
+      <updated>1660330010972</updated>
+    </task>
+    <task id="LOCAL‎00046" summary="Change of kingd at Add more specific Problems and commenting">
+      <created>1660330116552</created>
+      <option name="number" value="LOCAL‎00046" />
+      <option name="presentableId" value="LOCAL‎00046" />
+      <updated>1660330116552</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -447,8 +419,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add .idea/workspace.xml to .gitignore" />
-    <MESSAGE value="Add selectConfigurationManual (Q3)" />
     <MESSAGE value="Add selectConfigurationAuto (Q4)" />
     <MESSAGE value="Add cipherInputText (Q5)" />
     <MESSAGE value="Add resetConfiguration (Q6)" />
@@ -472,7 +442,9 @@
     <MESSAGE value="Documentation : EnigmaMachine.java, PlugBoard.java" />
     <MESSAGE value="Fix odd plugs insert in selectConfigurationManual" />
     <MESSAGE value="Change of kingd" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change of kingd" />
+    <MESSAGE value="Add time measuring" />
+    <MESSAGE value="Change of kingd at Add more specific Problems and commenting" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change of kingd at Add more specific Problems and commenting" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -481,11 +453,6 @@
           <url>file://$PROJECT_DIR$/ConsoleUI/src/Console.java</url>
           <line>313</line>
           <option name="timeStamp" value="43" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Engine/src/EnigmaEngine.java</url>
-          <line>558</line>
-          <option name="timeStamp" value="45" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

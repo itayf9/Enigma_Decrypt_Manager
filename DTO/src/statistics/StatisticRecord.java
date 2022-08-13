@@ -40,7 +40,7 @@ public class StatisticRecord {
         return plugs;
     }
 
-    public List < Pair<Pair<String, String>, Duration> > getCipherHistory() {
+    public List < Pair<Pair<String, String>, Long> > getCipherHistory() {
         return cipherHistory;
     }
 

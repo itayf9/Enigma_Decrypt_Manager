@@ -556,12 +556,10 @@ public class EnigmaEngine implements Engine {
         if (problem.equals(Problem.NO_PROBLEM)) {
             isSucceed = true;
 
-            Instant start = Instant.now();
+            long startMeasureTime = System.nanoTime();
             outputText = cipherText(inputText);
-            Instant end = Instant.now();
-            Duration timeElapsed = Duration.between(start, end);
-
-            Pair<Pair<String, String>, Duration> inputTextToOutputTextToTimeElapsed = new Pair<>( new Pair<>(inputText, outputText) , timeElapsed) ;
+            long timeElapsed = System.nanoTime() - startMeasureTime;
+            Pair<Pair<String, String>, Long> inputTextToOutputTextToTimeElapsed = new Pair<>( new Pair<>(inputText, outputText) , timeElapsed) ;
 
             machineRecords.get(machineRecords.size() - 1).getCipherHistory().add(inputTextToOutputTextToTimeElapsed);
         }

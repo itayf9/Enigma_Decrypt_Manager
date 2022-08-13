@@ -610,13 +610,13 @@ public class Console {
             printConfiguration(record.getInUseRotors(), record.getWindowCharacters(),
                     Utility.decimalToRoman(record.getReflectorID()), record.getPlugs(), new ArrayList<>());
 
-            for (Pair<Pair<String, String>, Duration> currentCipherRecord : record.getCipherHistory()) {
+            for (Pair<Pair<String, String>, Long> currentCipherRecord : record.getCipherHistory()) {
                 cipherRecordStr.append("#. ")
                         .append("<")
                         .append(currentCipherRecord.getKey().getKey())
                         .append(">").append(" --> ").append("<")
                         .append(currentCipherRecord.getKey().getValue()).append(">")
-                        .append(" (").append(currentCipherRecord.getValue().toNanos()).append(" nano-seconds)").append("\n");
+                        .append(" (").append(currentCipherRecord.getValue()).append(" nano-seconds)").append("\n");
             }
 
             System.out.println(cipherRecordStr.toString());
