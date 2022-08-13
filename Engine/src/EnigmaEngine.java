@@ -409,6 +409,7 @@ public class EnigmaEngine implements Engine {
         String inUseReflectorSymbol = "";
         String inUsePlugs = "";
         List<Integer> notchDistancesToWindow = new ArrayList<>();
+        List<Integer> originalNotchPositions = new ArrayList<>();
 
         int availableRotorsCount = machine.getAvailableRotorsLen();
         int inUseRotorsCount = machine.getRotorsCount();
