@@ -5,6 +5,8 @@ public class Utility {
     public static final int NOT_VALID_ROMAN_TO_DECIMAL= -1;
     public static final String NOT_VALID_DECIMAL_TO_ROMAN= "NOT_VALID";
 
+    public static final char NOT_VALID_SPECIAL_CHAR_IN_XML = ' ';
+
     /**
      * converts a roman number into a decimal number.
      * supports only 1-5.
@@ -71,4 +73,43 @@ public class Utility {
 
         return roman;
     }
+
+    public static String convertXMLSpecialCharsInSeq(String alphabet) {
+
+        alphabet = alphabet.replaceAll("&lt;", "" +convertXMLSpecialChar("&lt;"));
+        alphabet = alphabet.replaceAll("&amp;", "" +convertXMLSpecialChar("&amp;"));
+        alphabet = alphabet.replaceAll("&gt;", "" +convertXMLSpecialChar("&gt;"));
+        alphabet = alphabet.replaceAll("&quot;", "" +convertXMLSpecialChar("&quot;"));
+        alphabet = alphabet.replaceAll("&apos;", "" +convertXMLSpecialChar("&apos;"));
+
+        return alphabet;
+    }
+
+    public static char convertXMLSpecialChar (String specialChar) {
+        char originalChar;
+
+        switch (specialChar){
+            case "&lt;":
+                originalChar= '<';
+                break;
+            case "&amp;":
+                originalChar= '&';
+                break;
+            case "&gt;":
+                originalChar= '>';
+                break;
+            case "&quot;":
+                originalChar= '\"';
+                break;
+            case "&apos;":
+                originalChar= '\'';
+                break;
+            default:
+                originalChar= NOT_VALID_SPECIAL_CHAR_IN_XML;
+        }
+
+        return originalChar;
+
+    }
+
 }

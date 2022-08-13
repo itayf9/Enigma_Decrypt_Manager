@@ -139,7 +139,9 @@ public class EnigmaEngine implements Engine {
         Problem problem = Problem.NO_PROBLEM;
         boolean totalValidCheck = true;
         CTEMachine cteMachine = cteEnigma.getCTEMachine();
+
         String abc = cteMachine.getABC().trim();
+        abc = convertXMLSpecialCharsInSeq(abc);
 
         // check for alphabet length to be even
         if (abc.length() % 2 == 1) {
@@ -185,6 +187,12 @@ public class EnigmaEngine implements Engine {
                 break;
             }
 
+            // check if the current rotor's mapping is at the size of the alphabet length
+            if ( currentRotor.getCTEPositioning().size() != abc.length()) {
+                return Problem.FILE_ROTOR_MAPPING_NOT_EQUAL_TO_ALPHABET_LENGTH;
+            }
+
+            // goes through all positions
             for (CTEPositioning currentPosition : currentRotor.getCTEPositioning()) {
                 if (currentPosition.getRight().length() != 1) {
                     problem = Problem.FILE_ROTOR_MAPPING_NOT_A_SINGLE_LETTER;
