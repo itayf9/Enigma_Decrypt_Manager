@@ -13,7 +13,7 @@ public class Console {
     private static boolean isXmlLoaded = false;
     private static boolean isMachineConfigured = false;
 
-    private static String xmlFileName = "Engine/src/resource/ex1-sanity-paper-enigma.xml";
+    private static String xmlFileName = "Engine/src/resource/ex1-paper-enigma.xml";
 
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -43,7 +43,6 @@ public class Console {
                     } else {
                         System.out.println("Please load machine from a file before selecting further operation.");
                     }
-
                     break;
                 case CHOOSE_INIT_CONFIG_MANUAL:
                     if (isXmlLoaded) {
@@ -475,8 +474,14 @@ public class Console {
             case FILE_ROTORS_COUNT_BELOW_TWO:
                 System.out.println("This file is invalid. The number of places for rotors inside the machine (referred to \"rotors count\" in the file), is smaller than 2. Machines should have at least 2 rotors.");
                 break;
+            case FILE_ROTOR_COUNT_HIGHER_THAN_99:
+                System.out.println("This file is invalid. The number of rotors count is higher than the machine supports (referred to \"rotors count\" in the file).");
+                break;
             case FILE_ROTOR_MAPPING_NOT_IN_ALPHABET:
                 System.out.println("This file is invalid. Among the mappings of the rotors, at least one character is not in the alphabet.");
+                break;
+            case FILE_ROTOR_MAPPING_NOT_EQUAL_TO_ALPHABET_LENGTH:
+                System.out.println("This file is invalid. Among the mappings of the rotors, at least one rotor has more or less mappings then the alphabet characters.");
                 break;
             case FILE_ROTOR_MAPPING_NOT_A_SINGLE_LETTER:
                 System.out.println("This file is invalid. Among the mapping of the rotors, at lease one entry doesn't contains a single letter (e.g, contains more than one letter like \"ABC\" --> \"F\"...).");
@@ -547,7 +552,6 @@ public class Console {
             System.out.print(" - Current Configuration:  ");
             printConfiguration(dtoSpecs.getInUseRotorsIDs(), dtoSpecs.getWindowsCharacters(), dtoSpecs.getInUseReflectorSymbol(), dtoSpecs.getInUsePlugs(), dtoSpecs.getNotchDistancesToWindow());
         }
-
     }
 
     /**
@@ -611,7 +615,6 @@ public class Console {
      * @param stats dto contains machine records
      */
     public static void printStatistics(DTOstatistics stats) {
-
         // get notch distances from windows
 
         for (StatisticRecord record : stats.getStats()) {

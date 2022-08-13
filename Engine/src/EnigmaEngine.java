@@ -36,7 +36,6 @@ public class EnigmaEngine implements Engine {
     public void buildMachine(List<Rotor> availableRotors, List<Reflector> availableReflectors, int rotorsCount, String alphabet, Map<Character, Integer> character2index) {
         machine = new EnigmaMachine(availableRotors, availableReflectors, rotorsCount, alphabet, character2index);
     }
-
     /**
      * updating the current machine configurations.
      * based on String of input from the user.
@@ -137,7 +136,6 @@ public class EnigmaEngine implements Engine {
      */
     private Problem validateCTEEnigma(CTEEnigma cteEnigma) {
         Problem problem = Problem.NO_PROBLEM;
-        boolean totalValidCheck = true;
         CTEMachine cteMachine = cteEnigma.getCTEMachine();
 
         String abc = cteMachine.getABC().trim();
@@ -145,20 +143,22 @@ public class EnigmaEngine implements Engine {
 
         // check for alphabet length to be even
         if (abc.length() % 2 == 1) {
-            problem = Problem.FILE_ODD_ALPHABET_AMOUNT;
-            totalValidCheck = false;
+            return Problem.FILE_ODD_ALPHABET_AMOUNT;
+        }
+
+        // check if rotors count is not higher than 99.
+        if (cteMachine.getRotorsCount() > 99) {
+            return Problem.FILE_ROTOR_COUNT_HIGHER_THAN_99;
         }
 
         // check if rotors count is less than available rotors.
         if (cteMachine.getCTERotors().getCTERotor().size() < cteMachine.getRotorsCount()) {
-            problem = Problem.FILE_NOT_ENOUGH_ROTORS;
-            totalValidCheck = false;
+            return Problem.FILE_NOT_ENOUGH_ROTORS;
         }
 
         // check if rotors count is less than 2
         if (cteMachine.getRotorsCount() < 2) {
-            problem = Problem.FILE_ROTORS_COUNT_BELOW_TWO;
-            totalValidCheck = false;
+            return Problem.FILE_ROTORS_COUNT_BELOW_TWO;
         }
 
         // check if all rotors ids are being a running counting from 1-N
@@ -166,26 +166,19 @@ public class EnigmaEngine implements Engine {
         Comparator<CTERotor> CTERotorComparator = Comparator.comparingInt(CTERotor::getId);
         List<CTERotor> cteRotors = cteMachine.getCTERotors().getCTERotor();
         cteRotors.sort(CTERotorComparator);
-        for (int i = 0; i < cteRotors.size() && totalValidCheck; i++) {
+        for (int i = 0; i < cteRotors.size(); i++) {
             if (cteRotors.get(i).getId() != i + 1) {
-                problem = Problem.FILE_ROTOR_INVALID_ID_RANGE;
-                totalValidCheck = false;
+                return Problem.FILE_ROTOR_INVALID_ID_RANGE;
             }
             // check notch positions in cteRotors
             if (cteRotors.get(i).getNotch() > cteMachine.getABC().length() || cteRotors.get(i).getNotch() < 1) {
-                problem = Problem.FILE_OUT_OF_RANGE_NOTCH;
-                totalValidCheck = false;
+                return Problem.FILE_OUT_OF_RANGE_NOTCH;
             }
         }
 
         //check for duplicate mapping in every rotor.
         List<Boolean> rotorMappingFlags = new ArrayList<>(Collections.nCopies(abc.length(), false));
         for (CTERotor currentRotor : cteRotors) {
-
-            // check if something else gone wrong, there is no need to do extra work.
-            if (!totalValidCheck) {
-                break;
-            }
 
             // check if the current rotor's mapping is at the size of the alphabet length
             if ( currentRotor.getCTEPositioning().size() != abc.length()) {
@@ -194,20 +187,20 @@ public class EnigmaEngine implements Engine {
 
             // goes through all positions
             for (CTEPositioning currentPosition : currentRotor.getCTEPositioning()) {
+
                 if (currentPosition.getRight().length() != 1) {
-                    problem = Problem.FILE_ROTOR_MAPPING_NOT_A_SINGLE_LETTER;
-                    totalValidCheck = false;
-                    break;
-                } else if (abc.indexOf(currentPosition.getRight().charAt(0)) == -1) {
-                    problem = Problem.FILE_ROTOR_MAPPING_NOT_IN_ALPHABET;
-                    totalValidCheck = false;
-                    break;
-                } else {
+                    return Problem.FILE_ROTOR_MAPPING_NOT_A_SINGLE_LETTER;
+                }
+                else if (abc.indexOf(currentPosition.getRight().charAt(0)) == -1) {
+                    return Problem.FILE_ROTOR_MAPPING_NOT_IN_ALPHABET;
+                }
+                else {
                     if (!rotorMappingFlags.get(abc.indexOf(currentPosition.getRight().charAt(0)))) {
                         rotorMappingFlags.set(abc.indexOf(currentPosition.getRight().charAt(0)), true);
                     }
                 }
             }
+
         }
         // if we got here safely then mapping is OK!
 
@@ -220,30 +213,22 @@ public class EnigmaEngine implements Engine {
         // check for reflector count < 5
 
         if (cteReflectors.size() > 5) {
-            problem = Problem.FILE_TOO_MANY_REFLECTORS;
-            totalValidCheck = false;
+            return Problem.FILE_TOO_MANY_REFLECTORS;
         }
 
         // goes through all reflectors
         for (CTEReflector cteReflector : cteReflectors) {
 
-            // check if something else gone wrong, there is no need to do extra work.
-            if (!totalValidCheck) {
-                break;
-            }
-
             int currentID = romanToDecimal(cteReflector.getId());
 
             // fill reflectorID flag list
             if (currentID == NOT_VALID_ROMAN_TO_DECIMAL) {
-                problem = Problem.FILE_REFLECTOR_OUT_OF_RANGE_ID;
-                totalValidCheck = false;
-                continue;
-            } else if (reflectorIDFlags.get(currentID - 1)) {
-                problem = Problem.FILE_REFLECTOR_ID_DUPLICATIONS;
-                totalValidCheck = false;
-                continue;
-            } else {
+                return Problem.FILE_REFLECTOR_OUT_OF_RANGE_ID;
+            }
+            else if (reflectorIDFlags.get(currentID - 1)) {
+                return Problem.FILE_REFLECTOR_ID_DUPLICATIONS;
+            }
+            else {
                 reflectorIDFlags.set(currentID - 1, true);
             }
 
@@ -251,30 +236,24 @@ public class EnigmaEngine implements Engine {
 
             // check for number of reflect pairs in each reflector
             if (cteReflectPairs.size() != abc.length() / 2) {
-                problem = Problem.FILE_NUM_OF_REFLECTS_IS_NOT_HALF_OF_ABC;
-                totalValidCheck = false;
-                continue;
+                return Problem.FILE_NUM_OF_REFLECTS_IS_NOT_HALF_OF_ABC;
             }
 
             // check for self mapping in each reflector
             for (CTEReflect cteReflectPair : cteReflectPairs) {
 
                 if (cteReflectPair.getInput() == cteReflectPair.getOutput()) {
-                    problem = Problem.FILE_REFLECTOR_SELF_MAPPING;
-                    totalValidCheck = false;
-                    break;
+                    return Problem.FILE_REFLECTOR_SELF_MAPPING;
                 }
             }
         }
-
 
         int firstFalse = reflectorIDFlags.indexOf(false);
 
         if (firstFalse != -1) {
             for (int i = firstFalse + 1; i < reflectorIDFlags.size(); i++) {
                 if (reflectorIDFlags.get(i)) {
-                    problem = Problem.FILE_REFLECTOR_INVALID_ID_RANGE;
-                    break;
+                    return Problem.FILE_REFLECTOR_INVALID_ID_RANGE;
                 }
             }
         }
@@ -306,7 +285,6 @@ public class EnigmaEngine implements Engine {
      */
     private Problem buildMachineFromCTEEnigma(CTEEnigma cteEnigma) {
 
-        //validation !!
         Problem problem = validateCTEEnigma(cteEnigma);
         if (problem != Problem.NO_PROBLEM) {
             return problem;
@@ -318,7 +296,10 @@ public class EnigmaEngine implements Engine {
         int rotorsCount = cteMachine.getRotorsCount();
 
         // initialize alphabet and characters-2-index
-        String alphabet = cteMachine.getABC().trim();
+        String alphabet = cteMachine.getABC().trim().toUpperCase();
+
+        alphabet = convertXMLSpecialCharsInSeq(alphabet);
+
         Map<Character, Integer> character2index = new HashMap<>();
         for (int i = 0; i < alphabet.length(); i++) {
             character2index.put(alphabet.charAt(i), i);
