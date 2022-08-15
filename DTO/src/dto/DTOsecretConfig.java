@@ -1,16 +1,19 @@
 package dto;
 
+import problem.Problem;
+
 import java.util.List;
 
-public class DTOsecretConfig {
+public class DTOsecretConfig extends DTOstatus {
     private List<Integer> rotors;
     private String windows;
     private String reflectorSymbol;
     private String plugs;
     private List<Integer> notchDistancesToWindow;
 
-    public DTOsecretConfig(List<Integer> rotors, String windows, String reflectorSymbol,
+    public DTOsecretConfig(boolean isSucceeded, Problem details, List<Integer> rotors, String windows, String reflectorSymbol,
                            String plugs, List<Integer> notchDistancesToWindow) {
+        super(isSucceeded, details);
         this.rotors = rotors;
         this.windows = windows;
         this.reflectorSymbol = reflectorSymbol;

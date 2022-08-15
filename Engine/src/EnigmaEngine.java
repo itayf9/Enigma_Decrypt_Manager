@@ -457,6 +457,9 @@ public class EnigmaEngine implements Engine {
      */
     @Override
     public DTOsecretConfig selectConfigurationAuto() {
+        boolean isSucceeded = true;
+        Problem details = Problem.NO_PROBLEM;
+
         String alphabet = machine.getAlphabet();
 
         List<Integer> randomGeneratedRotorIDs = new ArrayList<>();
@@ -520,8 +523,9 @@ public class EnigmaEngine implements Engine {
             notchDistances.add(currentNotchDistance);
         }
 
-        return new DTOsecretConfig(randomGeneratedRotorIDs, randomGeneratedWindowCharacters.toString(),
-                decimalToRoman(randomGeneratedReflectorID), randomGeneratedPlugs.toString(), notchDistances);
+        return new DTOsecretConfig(isSucceeded, details, randomGeneratedRotorIDs,
+                randomGeneratedWindowCharacters.toString(), decimalToRoman(randomGeneratedReflectorID),
+                randomGeneratedPlugs.toString(), notchDistances);
     }
 
     /**

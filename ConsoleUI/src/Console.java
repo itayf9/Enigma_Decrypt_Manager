@@ -415,8 +415,13 @@ public class Console {
         DTOsecretConfig configStatus = engine.selectConfigurationAuto();
         isMachineConfigured = true;
 
-        printConfiguration(configStatus.getRotors(), configStatus.getWindows(),
-                configStatus.getReflectorSymbol(), configStatus.getPlugs(), configStatus.getNotchDistances());
+        if (!configStatus.isSucceed()) {
+            displayMessage(configStatus.getDetails());
+        } else {
+            System.out.println("Selected Configuration:");
+            printConfiguration(configStatus.getRotors(), configStatus.getWindows(),
+                    configStatus.getReflectorSymbol(), configStatus.getPlugs(), configStatus.getNotchDistances());
+        }
     }
 
     /**
@@ -453,6 +458,7 @@ public class Console {
         if (!statisticsStatus.isSucceed()) {
             displayMessage(statisticsStatus.getDetails());
         } else {
+            System.out.println("Machine's History And Statistics:\n");
             printStatistics(statisticsStatus);
         }
     }
