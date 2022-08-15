@@ -10,7 +10,7 @@
 				<CTE-Positioning right="B" left="E"/>
 				<CTE-Positioning right="C" left="D"/>
 				<CTE-Positioning right="D" left="C"/>
-				<CTE-Positioning right="E" left="B"/>				
+				<CTE-Positioning right="E" left="B"/>
 				<CTE-Positioning right="F" left="A"/>				
 			</CTE-Rotor>
 			<CTE-Rotor id="3" notch="6">

@@ -14,14 +14,17 @@ public class StatisticRecord implements Serializable {
     private int reflectorID;
     private String plugs;
 
-    private List < Pair<Pair<String, String>, Long> > cipherHistory;
+    private List<Integer> originalNotchPositions;
+
+    private List<Pair<Pair<String, String>, Long>> cipherHistory;
 
 
-    public StatisticRecord(List<Integer> inUseRotors, String windowCharacters, int reflectorID, String plugs) {
+    public StatisticRecord(List<Integer> inUseRotors, String windowCharacters, int reflectorID, String plugs, List<Integer> originalNotchPositions) {
         this.inUseRotors = inUseRotors;
         this.windowCharacters = windowCharacters;
         this.reflectorID = reflectorID;
         this.plugs = plugs;
+        this.originalNotchPositions = originalNotchPositions;
         this.cipherHistory = new ArrayList<>();
     }
 
@@ -39,6 +42,10 @@ public class StatisticRecord implements Serializable {
 
     public String getPlugs() {
         return plugs;
+    }
+
+    public List<Integer> getOriginalNotchPositions() {
+        return originalNotchPositions;
     }
 
     public List < Pair<Pair<String, String>, Long> > getCipherHistory() {

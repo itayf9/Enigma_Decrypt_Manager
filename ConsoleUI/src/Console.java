@@ -464,6 +464,7 @@ public class Console {
         }
     }
 
+
     /**
      * display message for the user.
      *
@@ -523,10 +524,10 @@ public class Console {
                 System.out.println("The ID you've entered doesn't exist in this machine.");
                 break;
             case FILE_NOT_FOUND:
-                System.out.println("The files you've requested couldn't be found.");
+                System.out.println("The file you've requested couldn't be found.");
                 break;
             case JAXB_ERROR:
-                System.out.println("Internal Problem.");
+                System.out.println("Could not use this file. The XML file you've requested is not a valid enigma machine file.");
                 break;
             case FILE_NOT_IN_FORMAT:
                 System.out.println("The file you've requested isn't in the required format (only .xml files are valid).");
@@ -694,7 +695,7 @@ public class Console {
             StringBuilder cipherRecordStr = new StringBuilder();
 
             printConfiguration(record.getInUseRotors(), record.getWindowCharacters(),
-                    Utility.decimalToRoman(record.getReflectorID()), record.getPlugs(), new ArrayList<>());
+                    Utility.decimalToRoman(record.getReflectorID()), record.getPlugs(), record.getOriginalNotchPositions());
 
             for (Pair<Pair<String, String>, Long> currentCipherRecord : record.getCipherHistory()) {
                 cipherRecordStr.append("#. ")
@@ -715,7 +716,7 @@ public class Console {
         try {
             loadExistingMachineStatus = engine.loadExistingMachineFromFile(fileName);
 
-            if (!loadExistingMachineStatus.isSucceed()){
+            if (!loadExistingMachineStatus.isSucceed()) {
                 displayMessage(loadExistingMachineStatus.getDetails());
             } else{
                 isMachineLoaded = true;

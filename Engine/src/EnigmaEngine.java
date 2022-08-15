@@ -55,11 +55,12 @@ public class EnigmaEngine implements Engine {
             windowOfssets.add(offset);
         }
 
+        machine.setMachineConfiguration(rotorsIDs, windowOfssets, reflectorID, plugs);
+
         // add new configuration to statistical records
-        StatisticRecord newRecord = new StatisticRecord(rotorsIDs, windowsChars, reflectorID, plugs);
+        StatisticRecord newRecord = new StatisticRecord(rotorsIDs, windowsChars, reflectorID, plugs, machine.getOriginalNotchPositions());
         machineRecords.add(newRecord);
 
-        machine.setMachineConfiguration(rotorsIDs, windowOfssets, reflectorID, plugs);
     }
 
     /**
@@ -186,7 +187,8 @@ public class EnigmaEngine implements Engine {
             // goes through all positions
             for (CTEPositioning currentPosition : currentRotor.getCTEPositioning()) {
 
-                if (currentPosition.getRight().length() != 1) {
+                if (currentPosition.getRight().toUpperCase().length() != 1 ||
+                        currentPosition.getLeft().toUpperCase().length() != 1) {
                     return Problem.FILE_ROTOR_MAPPING_NOT_A_SINGLE_LETTER;
                 }
                 else if (abc.indexOf(currentPosition.getRight().charAt(0)) == -1) {
@@ -326,7 +328,7 @@ public class EnigmaEngine implements Engine {
 
             // go through all left positions to build the forwarding map
             for (CTEPositioning ctePosition : cteRotor.getCTEPositioning()) {
-                int indexOfRightSide = forwardTranslatorChar2index.get(ctePosition.getLeft().charAt(0));
+                int indexOfRightSide = forwardTranslatorChar2index.get(ctePosition.getLeft().toUpperCase().charAt(0));
                 mapRotorForward.set(indexOfRightSide, indexOfLeftSide);
                 indexOfLeftSide++;
             }
@@ -768,6 +770,10 @@ public class EnigmaEngine implements Engine {
         Problem details = Problem.NO_PROBLEM;
 
         return new DTOstatistics(isSucceeded, details, machineRecords);
+    }
+
+    public boolean getIsMachineConfigured() {
+        return machine.isConfigured();
     }
 
     @Override

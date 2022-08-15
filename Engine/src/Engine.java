@@ -28,6 +28,8 @@ public interface Engine {
 
     DTOstatus validatePlugs(String plugs);
 
+    boolean getIsMachineConfigured();
+
     DTOstatus saveExistingMachineToFile(String fileName) throws IOException;
 
     DTOstatus loadExistingMachineFromFile(String fileName) throws IOException, ClassNotFoundException;
