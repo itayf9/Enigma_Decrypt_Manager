@@ -154,7 +154,7 @@ public class Console {
 
     public static boolean getInputWantToTryAgain (){
 
-        String userChoice= "";
+        String userChoice;
 
         System.out.println("Do you want to try again or go back to the menu?");
         System.out.println("1 - Try Again.\n2 - Back To The Menu.");
@@ -168,11 +168,7 @@ public class Console {
             userChoice = scanner.nextLine().trim();
         }
 
-        if (userChoice.equals("1")) {
-            return true;
-        } else {
-            return false;
-        }
+        return userChoice.equals("1");
     }
 
 

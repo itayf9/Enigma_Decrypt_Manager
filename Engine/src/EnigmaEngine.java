@@ -9,6 +9,8 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 
 import statistics.StatisticRecord;
@@ -797,7 +799,7 @@ public class EnigmaEngine implements Engine {
         // else
         try (ObjectOutputStream out =
                      new ObjectOutputStream(
-                             new FileOutputStream(fileName))) {
+                             Files.newOutputStream(Paths.get(fileName)))) {
             out.writeObject(machine);
             out.writeObject(machineRecords);
             out.flush();
@@ -811,9 +813,8 @@ public class EnigmaEngine implements Engine {
         Problem details = Problem.NO_PROBLEM;
 
         if (fileName.length() == 0) {
-            isSucceed = false;
             details = Problem.FILE_NOT_FOUND;
-            return new DTOstatus(isSucceed, details);
+            return new DTOstatus(false, details);
         }
         // else
 
