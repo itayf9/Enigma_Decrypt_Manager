@@ -41,8 +41,9 @@ public enum Problem {
     // input cipher text problems
     CIPHER_INPUT_NOT_IN_ALPHABET,
 
+    FILE_EXISTING_LOAD_FAILED,
 
-    UNKNOWN, NO_PROBLEM, MACHINE_LOAD_FAILED, MACHINE_SAVE_FAILED;
+    UNKNOWN, NO_PROBLEM;
 
     public void printMe() {
         System.out.println(this.name());

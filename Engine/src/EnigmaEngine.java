@@ -810,7 +810,6 @@ public class EnigmaEngine implements Engine {
 
         try (ObjectInputStream in =  new ObjectInputStream(new FileInputStream(fileName))) {
 
-            // we know that we read array list of Persons
             machine = (EnigmaMachine) in.readObject();
             machineRecords = (List<StatisticRecord>) in.readObject();
         } catch (FileNotFoundException e) {

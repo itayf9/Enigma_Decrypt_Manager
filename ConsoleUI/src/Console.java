@@ -10,7 +10,7 @@ public class Console {
     private static final Engine engine = new EnigmaEngine();
     private static boolean isMachineLoaded = false;
     private static boolean isMachineConfigured = false;
-    private static String xmlFileName = "Engine/src/resource/ex1-sanity-paper-enigma.xml";
+    private static String xmlFileName = "C:/Users/itayf/IdeaProjects/Cracking the Enigma Machine/Engine/src/resource/ex1-sanity-paper-enigma.xml";
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -315,6 +315,7 @@ public class Console {
             displayMessage(buildMachineFromXMLStatus.getDetails());
         } else {
             isMachineLoaded = true;
+            isMachineConfigured = false;
             System.out.println("The machine was built successfully!");
         }
     }
