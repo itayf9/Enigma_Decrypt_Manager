@@ -48,7 +48,7 @@ public class StatisticRecord implements Serializable {
         return originalNotchPositions;
     }
 
-    public List < Pair<Pair<String, String>, Long> > getCipherHistory() {
+    public List<Pair<Pair<String, String>, Long>> getCipherHistory() {
         return cipherHistory;
     }
 

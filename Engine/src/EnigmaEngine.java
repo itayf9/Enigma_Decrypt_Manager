@@ -176,11 +176,12 @@ public class EnigmaEngine implements Engine {
         }
 
         //check for duplicate mapping in every rotor.
-        List<Boolean> rotorMappingFlags = new ArrayList<>(Collections.nCopies(abc.length(), false));
+        List<Boolean> rotorRightMappingFlags = new ArrayList<>(Collections.nCopies(abc.length(), false));
+        List<Boolean> rotorLeftMappingFlags = new ArrayList<>(Collections.nCopies(abc.length(), false));
         for (CTERotor currentRotor : cteRotors) {
 
             // check if the current rotor's mapping is at the size of the alphabet length
-            if ( currentRotor.getCTEPositioning().size() != abc.length()) {
+            if (currentRotor.getCTEPositioning().size() != abc.length()) {
                 return Problem.FILE_ROTOR_MAPPING_NOT_EQUAL_TO_ALPHABET_LENGTH;
             }
 
@@ -190,17 +191,18 @@ public class EnigmaEngine implements Engine {
                 if (currentPosition.getRight().toUpperCase().length() != 1 ||
                         currentPosition.getLeft().toUpperCase().length() != 1) {
                     return Problem.FILE_ROTOR_MAPPING_NOT_A_SINGLE_LETTER;
-                }
-                else if (abc.indexOf(currentPosition.getRight().charAt(0)) == -1) {
+                } else if (abc.indexOf(currentPosition.getRight().toUpperCase().charAt(0)) == -1 ||
+                        abc.indexOf(currentPosition.getLeft().toUpperCase().charAt(0)) == -1) {
                     return Problem.FILE_ROTOR_MAPPING_NOT_IN_ALPHABET;
-                }
-                else {
-                    if (!rotorMappingFlags.get(abc.indexOf(currentPosition.getRight().charAt(0)))) {
-                        rotorMappingFlags.set(abc.indexOf(currentPosition.getRight().charAt(0)), true);
+                } else {
+                    if (!rotorRightMappingFlags.get(abc.indexOf(currentPosition.getRight().toUpperCase().charAt(0)))) {
+                        rotorRightMappingFlags.set(abc.indexOf(currentPosition.getRight().toUpperCase().charAt(0)), true);
+                    }
+                    if (!rotorLeftMappingFlags.get(abc.indexOf(currentPosition.getLeft().toUpperCase().charAt(0)))) {
+                        rotorLeftMappingFlags.set(abc.indexOf(currentPosition.getLeft().toUpperCase().charAt(0)), true);
                     }
                 }
             }
-
         }
         // if we got here safely then mapping is OK!
 
@@ -319,14 +321,15 @@ public class EnigmaEngine implements Engine {
 
             // go through all right positions to build the translators Char to index
             for (CTEPositioning ctePosition : cteRotor.getCTEPositioning()) {
-                forwardTranslatorChar2index.put(ctePosition.getRight().charAt(0), index);
-                backwardTranslatorChar2index.put(ctePosition.getLeft().charAt(0), index);
+                forwardTranslatorChar2index.put(ctePosition.getRight().toUpperCase().charAt(0), index);
+                backwardTranslatorChar2index.put(ctePosition.getLeft().toUpperCase().charAt(0), index);
                 index++;
             }
 
             int indexOfLeftSide = 0;
 
             // go through all left positions to build the forwarding map
+            // alert !! this is hard logic code, and it won't be readable for unworthy personal.
             for (CTEPositioning ctePosition : cteRotor.getCTEPositioning()) {
                 int indexOfRightSide = forwardTranslatorChar2index.get(ctePosition.getLeft().toUpperCase().charAt(0));
                 mapRotorForward.set(indexOfRightSide, indexOfLeftSide);
@@ -337,7 +340,7 @@ public class EnigmaEngine implements Engine {
 
             // go through all right positions to build the backward map
             for (CTEPositioning ctePosition : cteRotor.getCTEPositioning()) {
-                int indexOfRightSide = backwardTranslatorChar2index.get(ctePosition.getRight().charAt(0));
+                int indexOfRightSide = backwardTranslatorChar2index.get(ctePosition.getRight().toUpperCase().charAt(0));
                 mapRotorBackward.set(indexOfRightSide, indexOfLeftSide);
                 indexOfLeftSide++;
             }

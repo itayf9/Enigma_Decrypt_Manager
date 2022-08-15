@@ -55,18 +55,21 @@ public class Console {
                     }
                     break;
                 case PROCESS_INPUT:
-                    if (isMachineConfigured) {
+                    if (isMachineConfigured && isMachineLoaded) {
                         processInput();
-                    } else {
+                    } else if (isMachineLoaded) {
                         System.out.println("Please enter configuration, before ciphering some text.");
+                    } else {
+                        System.out.println("Please load machine from file, and enter configuration before ciphering some text.");
                     }
-
                     break;
                 case RESET_CURRENT_CODE:
                     if (isMachineConfigured) {
                         resetConfig();
-                    } else {
+                    } else if (isMachineLoaded) {
                         System.out.println("Please enter configuration, before resetting it.");
+                    } else {
+                        System.out.println("Please load machine from file, and enter configuration before resetting it.");
                     }
                     break;
                 case HISTORY_AND_STATISTICS:
@@ -75,17 +78,19 @@ public class Console {
                     } else {
                         System.out.println("Please load machine from a file before checking for statistics.");
                     }
-
                     break;
                 case EXIT_SYSTEM:
                     isExit = true;
                     continue;
                 case READ_EXISTING_MACHINE_FROM_FILE:
-
                     loadExistingMachineFromFile();
                     break;
                 case WRITE_EXISTING_MACHINE_TO_FILE:
-                    saveExistingMachineToFile();
+                    if (isMachineLoaded) {
+                        saveExistingMachineToFile();
+                    } else {
+                        System.out.println("Please load machine from a file before selecting further operation.");
+                    }
                     break;
                 default:
                     break;
@@ -718,20 +723,25 @@ public class Console {
 
             if (!loadExistingMachineStatus.isSucceed()) {
                 displayMessage(loadExistingMachineStatus.getDetails());
-            } else{
+            } else {
                 isMachineLoaded = true;
+                if (engine.getIsMachineConfigured()) {
+                    isMachineConfigured = true;
+                }
+                System.out.println("Machine has been loaded successfully.");
             }
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Couldn't load machine from this file. try again with another file.");
         }
-
-
     }
 
     public static void saveExistingMachineToFile() {
         String fileName = getXMLFileName();
         try {
-            engine.saveExistingMachineToFile(fileName);
+            DTOstatus saveExistingMachineStatus = engine.saveExistingMachineToFile(fileName);
+            if (saveExistingMachineStatus.isSucceed()) {
+                System.out.println("Machine has been saved successfully.");
+            }
         } catch (IOException e) {
             System.out.println("Couldn't save machine to this file. try again with another file.");
         }
