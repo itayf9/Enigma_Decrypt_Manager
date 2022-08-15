@@ -808,17 +808,18 @@ public class EnigmaEngine implements Engine {
         }
         // else
 
-        try (ObjectInputStream in =  new ObjectInputStream(new FileInputStream(fileName))) {
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName))) {
 
             machine = (EnigmaMachine) in.readObject();
             machineRecords = (List<StatisticRecord>) in.readObject();
         } catch (FileNotFoundException e) {
             isSucceed = false;
             details = Problem.FILE_NOT_FOUND;
+        } catch (InvalidClassException | StreamCorruptedException | OptionalDataException e) {
+            isSucceed = false;
+            details = Problem.FILE_EXISTING_LOAD_FAILED;
         }
 
         return new DTOstatus(isSucceed, details);
     }
-
-
 }

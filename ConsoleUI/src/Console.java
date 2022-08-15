@@ -579,11 +579,8 @@ public class Console {
             case CIPHER_INPUT_NOT_IN_ALPHABET:
                 System.out.println("At-least one letter isn't on the alphabet on this machine.");
                 break;
-            case MACHINE_LOAD_FAILED:
-                System.out.println("Error while trying to load machine.");
-                break;
-            case MACHINE_SAVE_FAILED:
-                System.out.println("Error while trying to save machine.");
+            case FILE_EXISTING_LOAD_FAILED:
+                System.out.println("Loading an existing machine from this file has failed. Please use a different file.");
                 break;
             case UNKNOWN:
                 System.out.println("There is an unknown error.");
@@ -724,7 +721,7 @@ public class Console {
                 isMachineLoaded = true;
             }
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println(e);
+            System.out.println("Couldn't load machine from this file. try again with another file.");
         }
 
 
@@ -735,7 +732,7 @@ public class Console {
         try {
             engine.saveExistingMachineToFile(fileName);
         } catch (IOException e) {
-            System.out.println(e);
+            System.out.println("Couldn't save machine to this file. try again with another file.");
         }
     }
 }

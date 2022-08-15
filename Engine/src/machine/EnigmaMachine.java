@@ -59,6 +59,7 @@ public class EnigmaMachine implements Serializable {
         this.character2index = character2index;
         this.plugBoard = new PlugBoard();
         this.inUseRotors = new ArrayList<>();
+        cipherCounter = 0;
     }
 
     /**
