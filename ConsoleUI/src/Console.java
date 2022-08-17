@@ -189,7 +189,7 @@ public class Console {
         StringOfChoices = scanner.nextLine();
 
         while (!isValid) {
-             if (StringOfChoices.length() != 0) {
+            if (StringOfChoices.length() != 0) {
                 isValid = true;
                 continue;
             }
@@ -405,7 +405,9 @@ public class Console {
 
         DTOstatus configStatus = engine.selectConfigurationManual(rotorsIDs, windows, reflectorID, plugs);
         if (configStatus.isSucceed()) {
-            System.out.println("Machine has been configured successfully.");
+            System.out.println("|-------------------------------------------|");
+            System.out.println("| Machine has been configured successfully. |");
+            System.out.println("|-------------------------------------------|");
             isMachineConfigured = true;
         }
     }
@@ -420,7 +422,7 @@ public class Console {
         if (!configStatus.isSucceed()) {
             displayMessage(configStatus.getDetails());
         } else {
-            System.out.println("Selected Configuration:");
+            System.out.println("\nSelected Configuration:");
             printConfiguration(configStatus.getRotors(), configStatus.getWindows(),
                     configStatus.getReflectorSymbol(), configStatus.getPlugs(), configStatus.getNotchDistances());
         }
@@ -430,15 +432,17 @@ public class Console {
      * Q5 - gets input from user and send it to machine to cipher.
      */
     static private void processInput() {
-        System.out.println("Please enter text to cipher: ");
+        System.out.println("|------------------------------|");
+        System.out.println("| Please enter text to cipher: |");
+        System.out.println("|------------------------------|");
         String inputText = getInputCipherText();
         DTOciphertext cipherStatus = engine.cipherInputText(inputText);
         if (!cipherStatus.isSucceed()) {
             displayMessage(cipherStatus.getDetails());
         } else {
-            System.out.println("-->");
-            System.out.println(cipherStatus.getCipheredText());
-            System.out.println("-->");
+            System.out.println();
+            System.out.println("--> " + cipherStatus.getCipheredText());
+
         }
     }
 
@@ -448,7 +452,9 @@ public class Console {
     static private void resetConfig() {
         DTOresetConfig resetStatus = engine.resetConfiguration();
         if (resetStatus.isSucceed()) {
-            System.out.println("Configuration has reset successfully.");
+            System.out.println("|----------------------------------------|");
+            System.out.println("| Configuration has reset successfully.  |");
+            System.out.println("|----------------------------------------|");
         }
     }
 

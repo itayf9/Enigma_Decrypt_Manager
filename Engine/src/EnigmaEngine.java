@@ -139,7 +139,7 @@ public class EnigmaEngine implements Engine {
         Problem problem = Problem.NO_PROBLEM;
         CTEMachine cteMachine = cteEnigma.getCTEMachine();
 
-        String abc = cteMachine.getABC().trim();
+        String abc = cteMachine.getABC().trim().toUpperCase();
         abc = convertXMLSpecialCharsInSeq(abc);
 
         // check for alphabet length to be even

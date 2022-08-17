@@ -3,26 +3,17 @@
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
       <artifact name="ConsoleUI:jar" />
-      <artifact name="DTO:jar" />
-      <artifact name="Engine:jar" />
-      <artifact name="EnigmaUtillity:jar" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="Fix problems">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/ConsoleUI_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/DTO_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Engine_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/EnigmaUtillity_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ConsoleUI/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DTO/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Engine/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EnigmaUtillity/src/META-INF/MANIFEST.MF" afterDir="false" />
+    <list default="true" id="5a16934e-8418-4f73-aba0-46a4269ef45e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
-    <list id="4d3468c9-f8a2-4a3c-84be-6dffde06732b" name="Changes by kingd" comment="Change of kingd at Fix character toUpperCase in validateCTEEnigma()">
       <change beforePath="$PROJECT_DIR$/ConsoleUI/src/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUI/src/Console.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/EnigmaEngine.java" afterDir="false" />
+    </list>
+    <list id="4d3468c9-f8a2-4a3c-84be-6dffde06732b" name="Changes by kingd" comment="Change of kingd at Fix removing some unused imports">
+      <change beforePath="$PROJECT_DIR$/ConsoleUI/src/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUI/src/Console.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +41,38 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/ConsoleUI/src/Console.java">
+      <ranges>
+        <range start1="0" end1="0" start2="0" end2="1" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="22" end1="23" start2="23" end2="24" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="25" end1="26" start2="26" end2="27" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="105" end1="106" start2="106" end2="107" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="116" end1="117" start2="117" end2="118" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="124" end1="125" start2="125" end2="126" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="149" end1="149" start2="150" end2="151" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="154" end1="155" start2="156" end2="157" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="180" end1="181" start2="182" end2="183" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="191" end1="192" start2="193" end2="194" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="319" end1="320" start2="321" end2="324" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="407" end1="408" start2="411" end2="414" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="422" end1="423" start2="428" end2="429" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="432" end1="433" start2="438" end2="441" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="438" end1="441" start2="446" end2="449" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="450" end1="451" start2="458" end2="461" changelist="5a16934e-8418-4f73-aba0-46a4269ef45e" />
+        <range start1="473" end1="474" start2="483" end2="484" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="476" end1="476" start2="486" end2="487" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="477" end1="477" start2="488" end2="489" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="600" end1="601" start2="612" end2="613" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="603" end1="604" start2="615" end2="616" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="637" end1="638" start2="649" end2="650" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="690" end1="691" start2="702" end2="703" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="713" end1="714" start2="725" end2="726" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="733" end1="734" start2="745" end2="746" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+        <range start1="744" end1="744" start2="756" end2="764" changelist="4d3468c9-f8a2-4a3c-84be-6dffde06732b" />
+      </ranges>
+    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -150,19 +173,9 @@
       <workItem from="1660322956361" duration="6859000" />
       <workItem from="1660383939178" duration="32277000" />
       <workItem from="1660555616494" duration="11250000" />
-      <workItem from="1660598769896" duration="889000" />
-    </task>
-    <task id="LOCAL‎00023" summary="Change of kingd">
-      <created>1659973894777</created>
-      <option name="number" value="LOCAL‎00023" />
-      <option name="presentableId" value="LOCAL‎00023" />
-      <updated>1659973894777</updated>
-    </task>
-    <task id="LOCAL‎00024" summary="Implement CHOOSE_INIT_CONFIG_MANUAL">
-      <created>1659980630896</created>
-      <option name="number" value="LOCAL‎00024" />
-      <option name="presentableId" value="LOCAL‎00024" />
-      <updated>1659980630896</updated>
+      <workItem from="1660598769896" duration="1195000" />
+      <workItem from="1660649600604" duration="2946000" />
+      <workItem from="1660694252438" duration="304000" />
     </task>
     <task id="LOCAL‎00025" summary="Change of kingd">
       <created>1659980644007</created>
@@ -446,7 +459,19 @@
       <option name="presentableId" value="LOCAL‎00071" />
       <updated>1660564971296</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL‎00072" summary="Fix problems">
+      <created>1660599672188</created>
+      <option name="number" value="LOCAL‎00072" />
+      <option name="presentableId" value="LOCAL‎00072" />
+      <updated>1660599672189</updated>
+    </task>
+    <task id="LOCAL‎00073" summary="Change of kingd at Fix removing some unused imports">
+      <created>1660599794850</created>
+      <option name="number" value="LOCAL‎00073" />
+      <option name="presentableId" value="LOCAL‎00073" />
+      <updated>1660599794850</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -457,15 +482,25 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Change of kingd at Fix time measures" />
-    <MESSAGE value="More messages in displayMessage()" />
     <MESSAGE value="Change of kingd at More in displayMessage()" />
     <MESSAGE value="Fix getXMLFileName()" />
     <MESSAGE value="Change of kingd at documentation" />
@@ -489,14 +524,16 @@
     <MESSAGE value="Fix loadExistingMachineFromFile" />
     <MESSAGE value="Change of kingd at Fix character toUpperCase in validateCTEEnigma()" />
     <MESSAGE value="Fix problems" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix problems" />
+    <MESSAGE value="Change of kingd at Fix some problems" />
+    <MESSAGE value="Change of kingd at Fix removing some unused imports" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change of kingd at Fix removing some unused imports" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/ConsoleUI/src/Console.java</url>
-          <line>734</line>
+          <line>746</line>
           <option name="timeStamp" value="64" />
         </line-breakpoint>
       </breakpoints>
