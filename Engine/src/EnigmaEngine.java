@@ -172,15 +172,17 @@ public class EnigmaEngine implements Engine {
                 return Problem.FILE_ROTOR_INVALID_ID_RANGE;
             }
             // check notch positions in cteRotors
-            if (cteRotors.get(i).getNotch() > cteMachine.getABC().length() || cteRotors.get(i).getNotch() < 1) {
+            if (cteRotors.get(i).getNotch() > abc.length() || cteRotors.get(i).getNotch() < 1) {
                 return Problem.FILE_OUT_OF_RANGE_NOTCH;
             }
         }
 
         //check for duplicate mapping in every rotor.
-        List<Boolean> rotorRightMappingFlags = new ArrayList<>(Collections.nCopies(abc.length(), false));
-        List<Boolean> rotorLeftMappingFlags = new ArrayList<>(Collections.nCopies(abc.length(), false));
         for (CTERotor currentRotor : cteRotors) {
+
+            // init flags for every rotor we scan through
+            List<Boolean> rotorRightMappingFlags = new ArrayList<>(Collections.nCopies(abc.length(), false));
+            List<Boolean> rotorLeftMappingFlags = new ArrayList<>(Collections.nCopies(abc.length(), false));
 
             // check if the current rotor's mapping is at the size of the alphabet length
             if (currentRotor.getCTEPositioning().size() != abc.length()) {
@@ -197,10 +199,13 @@ public class EnigmaEngine implements Engine {
                         abc.indexOf(currentPosition.getLeft().toUpperCase().charAt(0)) == -1) {
                     return Problem.FILE_ROTOR_MAPPING_NOT_IN_ALPHABET;
                 } else {
-                    if (!rotorRightMappingFlags.get(abc.indexOf(currentPosition.getRight().toUpperCase().charAt(0)))) {
-                        rotorRightMappingFlags.set(abc.indexOf(currentPosition.getRight().toUpperCase().charAt(0)), true);
+                    if (rotorRightMappingFlags.get(abc.indexOf(currentPosition.getRight().toUpperCase().charAt(0)))) {
+                        return Problem.FILE_ROTOR_MAPPING_DUPPLICATION;
                     }
-                    if (!rotorLeftMappingFlags.get(abc.indexOf(currentPosition.getLeft().toUpperCase().charAt(0)))) {
+                    else if (rotorLeftMappingFlags.get(abc.indexOf(currentPosition.getLeft().toUpperCase().charAt(0)))) {
+                        return Problem.FILE_ROTOR_MAPPING_DUPPLICATION;
+                    } else {
+                        rotorRightMappingFlags.set(abc.indexOf(currentPosition.getRight().toUpperCase().charAt(0)), true);
                         rotorLeftMappingFlags.set(abc.indexOf(currentPosition.getLeft().toUpperCase().charAt(0)), true);
                     }
                 }
@@ -215,13 +220,16 @@ public class EnigmaEngine implements Engine {
 
 
         // check for reflector count < 5
-
         if (cteReflectors.size() > 5) {
             return Problem.FILE_TOO_MANY_REFLECTORS;
         }
 
         // goes through all reflectors
         for (CTEReflector cteReflector : cteReflectors) {
+
+            // init mapping booleans array to check duplicate mapping in reflector
+            List<Boolean> reflectorMappingFlags = new ArrayList<>(Collections.nCopies(abc.length(), false));
+
 
             int currentID = romanToDecimal(cteReflector.getId());
 
@@ -250,6 +258,28 @@ public class EnigmaEngine implements Engine {
                     return Problem.FILE_REFLECTOR_SELF_MAPPING;
                 }
             }
+
+            // check for duplicate mapping in each reflector
+            for (CTEReflect cteReflectPair : cteReflectPairs) {
+            try {
+                // run through all input if true then duplicate found
+                if (reflectorMappingFlags.get(cteReflectPair.getInput() - 1)) {
+                    return Problem.FILE_REFLECTOR_MAPPING_DUPPLICATION;
+                } // run through all output if true then duplicate found
+                else if (reflectorMappingFlags.get(cteReflectPair.getOutput() - 1)) {
+                    return Problem.FILE_REFLECTOR_MAPPING_DUPPLICATION;
+                }
+                else {
+                    // if false then set true
+                    reflectorMappingFlags.set(cteReflectPair.getInput() - 1, true);
+                    reflectorMappingFlags.set(cteReflectPair.getOutput() - 1, true);
+                }
+            } catch (IndexOutOfBoundsException e) {
+                return Problem.FILE_REFLECTOR_MAPPING_NOT_IN_ALPHABET;
+            }
+
+            }
+
         }
 
         int firstFalse = reflectorIDFlags.indexOf(false);

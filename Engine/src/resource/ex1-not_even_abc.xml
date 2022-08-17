@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CTE-Enigma xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../Enigma-Ex1.xsd">
+<CTE-Enigma xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Enigma-Ex1.xsd">
 	<CTE-Machine rotors-count="2">
 		<ABC>
-			ABCDEF
+			ABCDE
 		</ABC>
 		<CTE-Rotors>
 			<CTE-Rotor id="1" notch="4">
 				<CTE-Positioning right="A" left="F"/>
-				<CTE-Positioning right="A" left="E"/>
+				<CTE-Positioning right="B" left="E"/>
 				<CTE-Positioning right="C" left="D"/>
 				<CTE-Positioning right="D" left="C"/>
 				<CTE-Positioning right="E" left="B"/>				
