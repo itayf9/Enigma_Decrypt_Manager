@@ -12,7 +12,7 @@ public class Console {
     private static final Engine engine = new EnigmaEngine();
     private static boolean isMachineLoaded = false;
     private static boolean isMachineConfigured = false;
-    private static String xmlFileName = "C:\\Users\\kingd\\IdeaProjects\\Cracking_the_Enigma_Machine\\Engine\\src\\resource\\ex1-duplicate_letter_mapped_rotor_5.xml";
+    // private static String xmlFileName = "C:\\Users\\kingd\\IdeaProjects\\Cracking_the_Enigma_Machine\\Engine\\src\\resource\\ex1-duplicate_letter_mapped_rotor_5.xml";
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
