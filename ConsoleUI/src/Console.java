@@ -1,3 +1,4 @@
+import com.sun.scenario.effect.impl.sw.java.JSWBlend_SRC_OUTPeer;
 import dto.*;
 import javafx.util.Pair;
 import statistics.StatisticRecord;
@@ -20,10 +21,10 @@ public class Console {
     /**
      * runs the Console UI
      */
-    public static void run() {
+    private static void run() {
 
         boolean isExit = false;
-        System.out.println("Welcome to Cracking The Enigma!!\n");
+        System.out.println("\nWelcome to Cracking The Enigma!!\n");
 
         printMainMenu();
         Operation choice = getInputUserChoice();
@@ -103,7 +104,7 @@ public class Console {
     /**
      * the menu operations
      */
-    public static void printMainMenu() {
+    private static void printMainMenu() {
         System.out.println("\nSelect an operation:");
         System.out.println("1  -  Load System Details From File.\n" +
                 "2  -  Display Enigma Machine Specifications.\n" +
@@ -114,7 +115,7 @@ public class Console {
                 "7  -  History And Statistics.\n" +
                 "8  -  Exit.\n" +
                 "9  -  Load an existing machine.\n" +
-                "10 -  Save an existing machine.");
+                "10 -  Save an existing machine.\n");
     }
 
     /**
@@ -122,7 +123,7 @@ public class Console {
      *
      * @return Operation that represents the user's choice
      */
-    public static Operation getInputUserChoice() {
+    private static Operation getInputUserChoice() {
 
         int userChoiceNum;
 
@@ -147,12 +148,13 @@ public class Console {
             System.out.println("Select an option from 1-10.");
             userChoiceNum = Operation.INVALID_OPERATION;
         }
+        System.out.println("");
 
 
         return Operation.getOperation(userChoiceNum);
     }
 
-    public static boolean getInputWantToTryAgain (){
+    private static boolean getInputWantToTryAgain() {
 
         String userChoice;
 
@@ -178,7 +180,7 @@ public class Console {
      * @param numberOfIntegers the rotors count
      * @return list of integers representing the rotor's id's
      */
-    public static String getInputStringOfIntegers(int numberOfIntegers) {
+    private static String getInputStringOfIntegers(int numberOfIntegers) {
         boolean isValid = false;
         String StringOfChoices;
 
@@ -317,7 +319,9 @@ public class Console {
         } else {
             isMachineLoaded = true;
             isMachineConfigured = false;
-            System.out.println("The machine was built successfully!");
+            System.out.println("|-------------------------------------|");
+            System.out.println("| The machine was built successfully! |");
+            System.out.println("|-------------------------------------|");
         }
     }
 
@@ -477,10 +481,12 @@ public class Console {
      *
      * @param problem a detailed enum representing a problem at the code.
      */
-    public static void displayMessage(Problem problem) {
+    private static void displayMessage(Problem problem) {
         switch (problem) {
             case ROTOR_INPUT_NOT_ENOUGH_ELEMENTS:
+                printBorder("You've entered less IDs than expected.".length());
                 System.out.println("You've entered less IDs than expected.");
+                printBorder("You've entered less IDs than expected.".length());
                 break;
             case ROTOR_INPUT_TOO_MANY_ELEMENTS:
                 System.out.println("You've entered more IDs than expected.");
@@ -604,10 +610,10 @@ public class Console {
      *
      * @param dtoSpecs the dto containing the specs of the machine.
      */
-    public static void printSpecifications(DTOspecs dtoSpecs) {
+    private static void printSpecifications(DTOspecs dtoSpecs) {
         StringBuilder strSpecs = new StringBuilder();
 
-        strSpecs.append("Specifications: \n")
+        strSpecs.append("\nSpecifications: \n")
                 .append(" - Number Of Rotors (In Use / Available): ")
                 .append(dtoSpecs.getInUseRotorsCount())
                 .append(" / ")
@@ -641,7 +647,7 @@ public class Console {
      * @param inUsePlugs             the plugs in use
      * @param notchDistancesToWindow the current notch positions
      */
-    public static void printConfiguration(List<Integer> inUseRotorsIDs, String windowsCharacters, String inUseReflectorSymbol, String inUsePlugs, List<Integer> notchDistancesToWindow) {
+    private static void printConfiguration(List<Integer> inUseRotorsIDs, String windowsCharacters, String inUseReflectorSymbol, String inUsePlugs, List<Integer> notchDistancesToWindow) {
         StringBuilder strConfig = new StringBuilder();
 
         // prints rotors' configuration
@@ -694,7 +700,7 @@ public class Console {
      *
      * @param stats dto contains machine records
      */
-    public static void printStatistics(DTOstatistics stats) {
+    private static void printStatistics(DTOstatistics stats) {
         // get notch distances from windows
 
         for (StatisticRecord record : stats.getStats()) {
@@ -717,7 +723,7 @@ public class Console {
         }
     }
 
-    public static void loadExistingMachineFromFile() {
+    private static void loadExistingMachineFromFile() {
         String fileName = getXMLFileName();
         DTOstatus loadExistingMachineStatus;
         try {
@@ -737,7 +743,7 @@ public class Console {
         }
     }
 
-    public static void saveExistingMachineToFile() {
+    private static void saveExistingMachineToFile() {
         String fileName = getXMLFileName();
         try {
             DTOstatus saveExistingMachineStatus = engine.saveExistingMachineToFile(fileName);
@@ -747,5 +753,13 @@ public class Console {
         } catch (IOException e) {
             System.out.println("Couldn't save machine to this file. try again with another file.");
         }
+    }
+
+    private static void printBorder(int size) {
+        StringBuilder mystr = new StringBuilder();
+        for (int i = 0; i < size; i++) {
+            mystr.append('-');
+        }
+        System.out.println(mystr);
     }
 }
