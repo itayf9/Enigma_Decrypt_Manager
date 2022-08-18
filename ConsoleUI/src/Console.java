@@ -12,8 +12,11 @@ public class Console {
     private static final Engine engine = new EnigmaEngine();
     private static boolean isMachineLoaded = false;
     private static boolean isMachineConfigured = false;
-    // private static String xmlFileName = "C:\\Users\\kingd\\IdeaProjects\\Cracking_the_Enigma_Machine\\Engine\\src\\resource\\ex1-duplicate_letter_mapped_rotor_5.xml";
+    private static String xmlFileName = "C:/Users/itayf/IdeaProjects/Cracking the Enigma Machine/Engine/src/resource/ex1-sanity-paper-enigma.xml";
     private static final Scanner scanner = new Scanner(System.in);
+
+    private static final String MSG_WELCOME = "\nWelcome to Cracking The Enigma!!\n";
+    private static final String MSG_PLEASE_LOAD_MACHINE = "Please load machine from a file before selecting further operation.";
 
     public static void main(String[] args) {
         run();
@@ -25,7 +28,7 @@ public class Console {
     private static void run() {
 
         boolean isExit = false;
-        System.out.println("\nWelcome to Cracking The Enigma!!\n");
+        System.out.println(MSG_WELCOME);
 
         printMainMenu();
         Operation choice = getInputUserChoice();
@@ -39,21 +42,21 @@ public class Console {
                     if (isMachineLoaded) {
                         displaySpecifications();
                     } else {
-                        System.out.println("Please load machine from a file before selecting further operation.");
+                        System.out.println(MSG_PLEASE_LOAD_MACHINE);
                     }
                     break;
                 case CHOOSE_INIT_CONFIG_MANUAL:
                     if (isMachineLoaded) {
                         chooseConfigManual();
                     } else {
-                        System.out.println("Please load machine from a file before selecting further operation.");
+                        System.out.println(MSG_PLEASE_LOAD_MACHINE);
                     }
                     break;
                 case CHOOSE_INIT_CONFIG_AUTO:
                     if (isMachineLoaded) {
                         chooseConfigAuto();
                     } else {
-                        System.out.println("Please load machine from a file before selecting further operation.");
+                        System.out.println(MSG_PLEASE_LOAD_MACHINE);
                     }
                     break;
                 case PROCESS_INPUT:
@@ -91,7 +94,7 @@ public class Console {
                     if (isMachineLoaded) {
                         saveExistingMachineToFile();
                     } else {
-                        System.out.println("Please load machine from a file before selecting further operation.");
+                        System.out.println(MSG_PLEASE_LOAD_MACHINE);
                     }
                     break;
                 default:
