@@ -12,11 +12,15 @@ public class Console {
     private static final Engine engine = new EnigmaEngine();
     private static boolean isMachineLoaded = false;
     private static boolean isMachineConfigured = false;
-    private static String xmlFileName = "C:/Users/itayf/IdeaProjects/Cracking the Enigma Machine/Engine/src/resource/ex1-sanity-paper-enigma.xml";
     private static final Scanner scanner = new Scanner(System.in);
 
     private static final String MSG_WELCOME = "\nWelcome to Cracking The Enigma!!\n";
     private static final String MSG_PLEASE_LOAD_MACHINE = "Please load machine from a file before selecting further operation.";
+    private static final String MSG_PLEASE_CONFIG_BEFORE_CIPHER = "Please enter configuration, before ciphering some text.";
+    private static final String MSG_PLEASE_LOAD_MACHINE_AND_CONFIG_BEFORE_CIPHER = "Please load machine from file, and enter configuration\n  before ciphering some text.";
+    private static final String MSG_PLEASE_CONFIG_BEFORE_RESET = "Please enter configuration, before resetting it.";
+    private static final String MSG_PLEASE_LOAD_MACHINE_AND_CONFIG_BEFORE_RESET = "Please load machine from file, and enter configuration \before resetting it.";
+    private static final String MSG_PLEASE_LOAD_MACHINE_BEFORE_STATS = "Please load machine from a file before checking for statistics.";
 
     public static void main(String[] args) {
         run();
@@ -31,77 +35,82 @@ public class Console {
         System.out.println(MSG_WELCOME);
 
         printMainMenu();
+
         Operation choice = getInputUserChoice();
 
         while (!isExit) {
-            switch (choice) {
-                case READ_SYSTEM_DETAILS_FROM_XML:
-                    loadXmlFile();
-                    break;
-                case DISPLAY_SPECS:
-                    if (isMachineLoaded) {
-                        displaySpecifications();
-                    } else {
-                        System.out.println(MSG_PLEASE_LOAD_MACHINE);
-                    }
-                    break;
-                case CHOOSE_INIT_CONFIG_MANUAL:
-                    if (isMachineLoaded) {
-                        chooseConfigManual();
-                    } else {
-                        System.out.println(MSG_PLEASE_LOAD_MACHINE);
-                    }
-                    break;
-                case CHOOSE_INIT_CONFIG_AUTO:
-                    if (isMachineLoaded) {
-                        chooseConfigAuto();
-                    } else {
-                        System.out.println(MSG_PLEASE_LOAD_MACHINE);
-                    }
-                    break;
-                case PROCESS_INPUT:
-                    if (isMachineConfigured && isMachineLoaded) {
-                        processInput();
-                    } else if (isMachineLoaded) {
-                        System.out.println("Please enter configuration, before ciphering some text.");
-                    } else {
-                        System.out.println("Please load machine from file, and enter configuration before ciphering some text.");
-                    }
-                    break;
-                case RESET_CURRENT_CODE:
-                    if (isMachineConfigured) {
-                        resetConfig();
-                    } else if (isMachineLoaded) {
-                        System.out.println("Please enter configuration, before resetting it.");
-                    } else {
-                        System.out.println("Please load machine from file, and enter configuration before resetting it.");
-                    }
-                    break;
-                case HISTORY_AND_STATISTICS:
-                    if (isMachineLoaded) {
-                        getHistoryAndStats();
-                    } else {
-                        System.out.println("Please load machine from a file before checking for statistics.");
-                    }
-                    break;
-                case EXIT_SYSTEM:
-                    isExit = true;
-                    continue;
-                case READ_EXISTING_MACHINE_FROM_FILE:
-                    loadExistingMachineFromFile();
-                    break;
-                case WRITE_EXISTING_MACHINE_TO_FILE:
-                    if (isMachineLoaded) {
-                        saveExistingMachineToFile();
-                    } else {
-                        System.out.println(MSG_PLEASE_LOAD_MACHINE);
-                    }
-                    break;
-                default:
-                    break;
+            try {
+                switch (choice) {
+                    case READ_SYSTEM_DETAILS_FROM_XML:
+                        loadXmlFile();
+                        break;
+                    case DISPLAY_SPECS:
+                        if (isMachineLoaded) {
+                            displaySpecifications();
+                        } else {
+                            printMessageWithBorders(MSG_PLEASE_LOAD_MACHINE);
+                        }
+                        break;
+                    case CHOOSE_INIT_CONFIG_MANUAL:
+                        if (isMachineLoaded) {
+                            chooseConfigManual();
+                        } else {
+                            printMessageWithBorders(MSG_PLEASE_LOAD_MACHINE);
+                        }
+                        break;
+                    case CHOOSE_INIT_CONFIG_AUTO:
+                        if (isMachineLoaded) {
+                            chooseConfigAuto();
+                        } else {
+                            printMessageWithBorders(MSG_PLEASE_LOAD_MACHINE);
+                        }
+                        break;
+                    case PROCESS_INPUT:
+                        if (isMachineConfigured && isMachineLoaded) {
+                            processInput();
+                        } else if (isMachineLoaded) {
+                            printMessageWithBorders(MSG_PLEASE_CONFIG_BEFORE_CIPHER);
+                        } else {
+                            printMessageWithBorders(MSG_PLEASE_LOAD_MACHINE_AND_CONFIG_BEFORE_CIPHER);
+                        }
+                        break;
+                    case RESET_CURRENT_CODE:
+                        if (isMachineConfigured) {
+                            resetConfig();
+                        } else if (isMachineLoaded) {
+                            printMessageWithBorders(MSG_PLEASE_CONFIG_BEFORE_RESET);
+                        } else {
+                            printMessageWithBorders(MSG_PLEASE_LOAD_MACHINE_AND_CONFIG_BEFORE_RESET);
+                        }
+                        break;
+                    case HISTORY_AND_STATISTICS:
+                        if (isMachineLoaded) {
+                            getHistoryAndStats();
+                        } else {
+                            printMessageWithBorders(MSG_PLEASE_LOAD_MACHINE_BEFORE_STATS);
+                        }
+                        break;
+                    case EXIT_SYSTEM:
+                        isExit = true;
+                        continue;
+                    case READ_EXISTING_MACHINE_FROM_FILE:
+                        loadExistingMachineFromFile();
+                        break;
+                    case WRITE_EXISTING_MACHINE_TO_FILE:
+                        if (isMachineLoaded) {
+                            saveExistingMachineToFile();
+                        } else {
+                            printMessageWithBorders(MSG_PLEASE_LOAD_MACHINE);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                printMainMenu();
+                choice = getInputUserChoice();
+            } catch (Exception e) {
+                printMessageWithBorders("An unknown error had occurred. Please try again.");
             }
-            printMainMenu();
-            choice = getInputUserChoice();
         }
     }
 
@@ -135,21 +144,19 @@ public class Console {
             String userChoiceStr = scanner.nextLine().trim();
 
             while (userChoiceStr.length() == 0) {
-                System.out.println("No input was given. Please enter your choice (select 1 - 10).");
+                printMessageWithBorders("No input was given.\n  Please enter your choice (select 1 - 10).");
                 userChoiceStr = scanner.nextLine().trim();
             }
 
             userChoiceNum = Integer.parseInt(userChoiceStr);
 
             if (userChoiceNum < 1 || userChoiceNum > 10) {
-                System.out.println("The option you've chosen does not exist.");
-                System.out.println("Select an option from 1-10.");
+                printMessageWithBorders("The option you've chosen does not exist.\n  Select an option from 1-10.");
                 userChoiceNum = Operation.INVALID_OPERATION;
             }
 
         } catch (NumberFormatException e) {
-            System.out.println("The option you've chosen is not a number.");
-            System.out.println("Select an option from 1-10.");
+            printMessageWithBorders("The option you've chosen is not a number.\n  Select an option from 1-10.");
             userChoiceNum = Operation.INVALID_OPERATION;
         }
         System.out.println("");
@@ -189,9 +196,8 @@ public class Console {
         String StringOfChoices;
 
 
-        System.out.println("There is a place for " + numberOfIntegers + " rotors in this machine.\n" +
-                "Enter the rotors' ID's with \",\" between each rotor, counting from the left most rotor to the right most rotor.");
-        System.out.println("e.g - 1,2");
+        System.out.println("There is a place for " + numberOfIntegers + " rotors in this machine.");
+        System.out.println("Enter the rotor's ID's. e.g - For 3 rotors, enter: ID,ID,ID");
         StringOfChoices = scanner.nextLine();
 
         while (!isValid) {
@@ -199,7 +205,7 @@ public class Console {
                 isValid = true;
                 continue;
             }
-            System.out.println("Error! Cant be 0 Rotors. Try Again.");
+            System.out.println("Error! Can't be 0 rotors. Try again.");
             StringOfChoices = scanner.nextLine();
         }
 
@@ -216,8 +222,8 @@ public class Console {
         boolean isValid = false;
         String stringOfChoices;
 
-        System.out.println("Enter the rotors' window characters (the characters that will appear at the window for each rotor),\ncounting from the left most rotor to the right most rotor.");
-        System.out.println("e.g - ABC");
+        System.out.println("Enter the characters that will appear at the window for each rotor.");
+        System.out.println("e.g - For 3 rotors, enter: ABC");
 
         stringOfChoices = scanner.nextLine().toUpperCase();
 
@@ -226,7 +232,7 @@ public class Console {
                 isValid = true;
                 continue;
             }
-            System.out.println("Error! Cant be 0 Rotors. Try Again.");
+            System.out.println("Error! Can't be 0 rotors. Try again.");
             stringOfChoices = scanner.nextLine().toUpperCase();
         }
 
@@ -273,7 +279,8 @@ public class Console {
         String plugs = "";
 
         while (!isValid) {
-            System.out.println("Please enter your choice plugs. e.g - ABED");
+            System.out.println("Please enter your chosen plugs, with no spaces or separators.");
+            System.out.println("e.g - For 2 plugs, A to B and E to D, enter: ABED");
             plugs = scanner.nextLine().toUpperCase();
             isValid = true;
         }
@@ -309,7 +316,7 @@ public class Console {
      * @return string represents the file name.
      */
     private static String getXMLFileName() {
-        System.out.println("Please enter the full path of the file to load machine from (XML file).");
+        System.out.println("Enter the full path of the file to load machine from (XML file):");
 
         return scanner.nextLine();
     }
@@ -318,7 +325,7 @@ public class Console {
      * Q1 - loads xml file and builds the enigma machine.
      */
     static private void loadXmlFile() {
-        // String xmlFileName = getXMLFileName();
+        String xmlFileName = getXMLFileName();
         DTOstatus buildMachineFromXMLStatus = engine.buildMachineFromXmlFile(xmlFileName);
 
         if (!buildMachineFromXMLStatus.isSucceed()) {
@@ -326,9 +333,7 @@ public class Console {
         } else {
             isMachineLoaded = true;
             isMachineConfigured = false;
-            System.out.println("|-------------------------------------|");
-            System.out.println("| The machine was built successfully! |");
-            System.out.println("|-------------------------------------|");
+            printMessageWithBorders("The machine was built successfully!");
         }
     }
 
@@ -416,9 +421,7 @@ public class Console {
 
         DTOstatus configStatus = engine.selectConfigurationManual(rotorsIDs, windows, reflectorID, plugs);
         if (configStatus.isSucceed()) {
-            System.out.println("|-------------------------------------------|");
-            System.out.println("| Machine has been configured successfully. |");
-            System.out.println("|-------------------------------------------|");
+            printMessageWithBorders("Machine has been configured successfully.");
             isMachineConfigured = true;
         }
     }
@@ -443,9 +446,7 @@ public class Console {
      * Q5 - gets input from user and send it to machine to cipher.
      */
     static private void processInput() {
-        System.out.println("|------------------------------|");
-        System.out.println("| Please enter text to cipher: |");
-        System.out.println("|------------------------------|");
+        printMessageWithBorders("Please enter text to cipher:");
         String inputText = getInputCipherText();
         DTOciphertext cipherStatus = engine.cipherInputText(inputText);
         if (!cipherStatus.isSucceed()) {
@@ -463,9 +464,7 @@ public class Console {
     static private void resetConfig() {
         DTOresetConfig resetStatus = engine.resetConfiguration();
         if (resetStatus.isSucceed()) {
-            System.out.println("|----------------------------------------|");
-            System.out.println("| Configuration has reset successfully.  |");
-            System.out.println("|----------------------------------------|");
+            printMessageWithBorders("Configuration has reset successfully.");
         }
     }
 
@@ -655,9 +654,9 @@ public class Console {
             System.out.println(" - No configuration has been chosen yet.");
         } else {
             System.out.print(" - Original Configuration: ");
-            printConfiguration(dtoSpecs.getInUseRotorsIDs(), dtoSpecs.getWindowsCharacters(), dtoSpecs.getInUseReflectorSymbol(), dtoSpecs.getInUsePlugs(), dtoSpecs.getOriginalNotchPositions());
+            printConfiguration(dtoSpecs.getInUseRotorsIDs(), dtoSpecs.getOriginalWindowsCharacters(), dtoSpecs.getInUseReflectorSymbol(), dtoSpecs.getInUsePlugs(), dtoSpecs.getOriginalNotchPositions());
             System.out.print(" - Current Configuration:  ");
-            printConfiguration(dtoSpecs.getInUseRotorsIDs(), dtoSpecs.getWindowsCharacters(), dtoSpecs.getInUseReflectorSymbol(), dtoSpecs.getInUsePlugs(), dtoSpecs.getNotchDistancesToWindow());
+            printConfiguration(dtoSpecs.getInUseRotorsIDs(), dtoSpecs.getCurrentWindowsCharacters(), dtoSpecs.getInUseReflectorSymbol(), dtoSpecs.getInUsePlugs(), dtoSpecs.getNotchDistancesToWindow());
         }
     }
 
@@ -724,7 +723,11 @@ public class Console {
      * @param stats dto contains machine records
      */
     private static void printStatistics(DTOstatistics stats) {
-        // get notch distances from windows
+
+
+        if (stats.getStats().size() == 0) {
+            System.out.println("No statistics yet.");
+        }
 
         for (StatisticRecord record : stats.getStats()) {
 
@@ -746,8 +749,14 @@ public class Console {
         }
     }
 
+    private static String getExistingMachineFileName() {
+        System.out.println("Enter the name of the file of the existing machine: ");
+
+        return scanner.nextLine();
+    }
+
     private static void loadExistingMachineFromFile() {
-        String fileName = getXMLFileName();
+        String fileName = getExistingMachineFileName();
         DTOstatus loadExistingMachineStatus;
         try {
             loadExistingMachineStatus = engine.loadExistingMachineFromFile(fileName);
@@ -759,10 +768,10 @@ public class Console {
                 if (engine.getIsMachineConfigured()) {
                     isMachineConfigured = true;
                 }
-                System.out.println("Machine has been loaded successfully.");
+                printMessageWithBorders("Machine has been loaded successfully.");
             }
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println("Couldn't load machine from this file. try again with another file.");
+            printMessageWithBorders("Couldn't load machine from this file. try again with another file.");
         }
     }
 
@@ -771,14 +780,20 @@ public class Console {
         try {
             DTOstatus saveExistingMachineStatus = engine.saveExistingMachineToFile(fileName);
             if (saveExistingMachineStatus.isSucceed()) {
-                System.out.println("Machine has been saved successfully.");
+                printMessageWithBorders("Machine has been saved successfully.");
             }
         } catch (IOException e) {
-            System.out.println("Couldn't save machine to this file. try again with another file.");
+            printMessageWithBorders("Couldn't save machine to this file. try again with another file.");
         }
     }
 
-    private static void printBorder(int size) {
+    private static void printMessageWithBorders(String msg) {
+        printBorder(msg);
+        System.out.println("  " + msg);
+        printBorder(msg);
+    }
+
+    private static void printBorder(String msg) {
         StringBuilder myStr = new StringBuilder();
         myStr.append('|');
         for (int i = 0; i < size; i++) {

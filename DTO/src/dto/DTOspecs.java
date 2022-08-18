@@ -16,13 +16,16 @@ public class DTOspecs extends DTOstatus {
     private int cipheredTextsCount;
 
     private List<Integer> inUseRotorsIDs;
-    private String windowsCharacters;
+    private String originalWindowsCharacters;
+    private String currentWindowsCharacters;
     private String inUseReflectorSymbol;
     private String inUsePlugs;
 
     public DTOspecs(boolean isSucceeded, Problem details, int availableRotorsCount, int inUseRotorsCount,
-                    List<Integer> notchDistancesToWindow, List<Integer> originalNotchPositions, int availableReflectorsCount, int cipheredTextsCount,
-                    List<Integer> inUseRotorsIDs, String windowsCharacters, String inUseReflectorSymbol,
+                    List<Integer> notchDistancesToWindow, List<Integer> originalNotchPositions,
+                    int availableReflectorsCount, int cipheredTextsCount, List<Integer> inUseRotorsIDs,
+                    String originalWindowsCharacters, String currentWindowsCharacters,
+                    String inUseReflectorSymbol,
                     String inUsePlugs) {
         super(isSucceeded, details);
         this.availableRotorsCount = availableRotorsCount;
@@ -32,7 +35,8 @@ public class DTOspecs extends DTOstatus {
         this.availableReflectorsCount = availableReflectorsCount;
         this.cipheredTextsCount = cipheredTextsCount;
         this.inUseRotorsIDs = inUseRotorsIDs;
-        this.windowsCharacters = windowsCharacters;
+        this.originalWindowsCharacters = originalWindowsCharacters;
+        this.currentWindowsCharacters = currentWindowsCharacters;
         this.inUseReflectorSymbol = inUseReflectorSymbol;
         this.inUsePlugs = inUsePlugs;
     }
@@ -65,8 +69,12 @@ public class DTOspecs extends DTOstatus {
         return inUseRotorsIDs;
     }
 
-    public String getWindowsCharacters() {
-        return windowsCharacters;
+    public String getOriginalWindowsCharacters() {
+        return originalWindowsCharacters;
+    }
+
+    public String getCurrentWindowsCharacters() {
+        return currentWindowsCharacters;
     }
 
     public String getInUseReflectorSymbol() {
@@ -83,12 +91,14 @@ public class DTOspecs extends DTOstatus {
                 "availableRotorsCount=" + availableRotorsCount +
                 ", inUseRotorsCount=" + inUseRotorsCount +
                 ", notchDistancesToWindow=" + notchDistancesToWindow +
+                ", originalNotchPositions=" + originalNotchPositions +
                 ", availableReflectorsCount=" + availableReflectorsCount +
                 ", cipheredTextsCount=" + cipheredTextsCount +
                 ", inUseRotorsIDs=" + inUseRotorsIDs +
-                ", windowsCharacters=" + windowsCharacters +
+                ", originalWindowsCharacters='" + originalWindowsCharacters + '\'' +
+                ", currentWindowsCharacters='" + currentWindowsCharacters + '\'' +
                 ", inUseReflectorSymbol='" + inUseReflectorSymbol + '\'' +
-                ", inUsePlugs=" + inUsePlugs +
+                ", inUsePlugs='" + inUsePlugs + '\'' +
                 '}';
     }
 }

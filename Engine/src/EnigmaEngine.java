@@ -1,4 +1,5 @@
 import javafx.util.Pair;
+import machine.Machine;
 import machine.component.Reflector;
 import machine.component.Rotor;
 import dto.*;
@@ -23,8 +24,8 @@ import static utill.Utility.*;
 
 public class EnigmaEngine implements Engine {
 
-    // The engine contains the Enigma Machine instance.
-    private EnigmaMachine machine;
+    // The engine contains Machine instance and machine records object.
+    private Machine machine;
 
     private List<StatisticRecord> machineRecords = new ArrayList<>();
 
@@ -429,7 +430,8 @@ public class EnigmaEngine implements Engine {
         Problem details = Problem.NO_PROBLEM;
 
         List<Integer> inUseRotorsIDs = new ArrayList<>();
-        String windowsCharacters = "";
+        String originalWindowsCharacters = "";
+        String currentWindowsCharacters = "";
         String inUseReflectorSymbol = "";
         String inUsePlugs = "";
         List<Integer> notchDistancesToWindow = new ArrayList<>();
@@ -442,7 +444,8 @@ public class EnigmaEngine implements Engine {
 
         if (machine.isConfigured()) {
             inUseRotorsIDs = machine.getInUseRotorsIDs();
-            windowsCharacters = machine.getAllWindowsCharacters();
+            originalWindowsCharacters = machine.getOriginalWindowsCharacters();
+            currentWindowsCharacters = machine.getCurrentWindowsCharacters();
             inUseReflectorSymbol = decimalToRoman(machine.getInUseReflector().getId());
             inUsePlugs = machine.getAllPlugPairs();
             notchDistancesToWindow = machine.getInUseNotchDistanceToWindow();
@@ -482,7 +485,16 @@ public class EnigmaEngine implements Engine {
             rotorsIDList.add(Integer.parseInt(arrayOfStringRotorsIds[i]));
         }
         // here we have listOf integers representing rotors ids
-        updateConfiguration(rotorsIDList, windows, reflectorID, plugs);
+
+        StringBuilder reversedWindows = new StringBuilder();
+
+        for (int i = windows.length() - 1; i >= 0; i--) {
+            reversedWindows.append(windows.charAt(i));
+        }
+
+
+        // here we have String of window characters representing rotor's position according to the window.
+        updateConfiguration(rotorsIDList, reversedWindows.toString(), reflectorID, plugs);
 
         return new DTOstatus(isSucceed, details);
     }

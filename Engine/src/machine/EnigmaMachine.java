@@ -10,7 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class EnigmaMachine implements Serializable {
+public class EnigmaMachine implements Serializable, Machine {
+
+    /**
+     * This area describes the static area of the machine.
+     */
 
     // the machine contains a list of Rotors.
     private List<Rotor> availableRotors;
@@ -262,6 +266,21 @@ public class EnigmaMachine implements Serializable {
 
         for (int i = 0; i < inUseWindowsOffsets.size(); i++) {
             windowsCharacters.append(inUseRotors.get(i).translateOffset2Char(inUseWindowsOffsets.get(i)));
+        }
+
+        return windowsCharacters.toString();
+    }
+
+    @Override
+    public String getCurrentWindowsCharacters() {
+        StringBuilder windowsCharacters = new StringBuilder();
+
+        for (int i = 0; i < inUseWindowsOffsets.size(); i++) {
+            int currentOffset = inUseRotors.get(i).getOffset();
+            int difference = (currentOffset - inUseWindowsOffsets.get(i));
+            int windowOffset = (inUseWindowsOffsets.get(i) + difference + alphabet.length()) % alphabet.length();
+            Character currentNotchIndex = inUseRotors.get(i).translateOffset2Char(windowOffset);
+            windowsCharacters.append(currentNotchIndex);
         }
 
         return windowsCharacters.toString();

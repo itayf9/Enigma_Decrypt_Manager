@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CTE-Enigma xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../Enigma-Ex1.xsd">
-	<CTE-Machine rotors-count="1">
+<CTE-Enigma xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Enigma-Ex1.xsd">
+	<CTE-Machine rotors-count="2">
 		<ABC>
 			ABCDEF
 		</ABC>
