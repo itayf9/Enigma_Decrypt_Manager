@@ -496,7 +496,7 @@ public class Console {
                 msg = "You've entered more IDs than expected.";
                 break;
             case ROTOR_INPUT_OUT_OF_RANGE_ID:
-                msg = "One or more of the IDs you've entered doesn't exist in this machine.";
+                msg = "One or more of the IDs you've entered\n  doesn't exist in this machine.";
                 break;
             case ROTOR_DUPLICATION:
                 msg = "You have entered the same rotor twice or more.";
@@ -517,13 +517,13 @@ public class Console {
                 msg = "The machine's configuration hasn't been set yet.";
                 break;
             case SELF_PLUGGING:
-                msg = "One or more of the plugs you've entered is a 'self plug' (that is, a plug where the input and output are the same, e.g AA, DD....).";
+                msg = "One or more of the plugs you've entered is a 'self plug' \n  (e.g AA, DD..).";
                 break;
             case ALREADY_PLUGGED:
-                msg = "Among the plugs you've entered, at least one input leads to multiple outputs, or multiple inputs lead to one output , for example (AB and AC), or (DR and FR).";
+                msg = "Among the plugs you've entered, at least one input leads \n  to multiple outputs. or multiple inputs lead to one output.\n  for example (AB and AC), or (DR and FR).";
                 break;
             case PLUGS_INPUT_NOT_IN_ALPHABET:
-                msg = "Among the plugs you've entered, at least one character is not in the alphabet.";
+                msg = "Among the plugs you've entered, at least one character \n  is not in the alphabet.";
                 break;
             case PLUGS_INPUT_ODD_ALPHABET_AMOUNT:
                 msg = "You've entered an odd number of characters.";
@@ -535,7 +535,7 @@ public class Console {
                 msg = "You've entered less characters than expected.";
                 break;
             case WINDOWS_INPUT_NOT_IN_ALPHABET:
-                msg = "Among the characters you've entered, at least one character is not in the alphabet.";
+                msg = "Among the characters you've entered, at least one character \n  is not in the alphabet.";
                 break;
             case REFLECTOR_INPUT_OUT_OF_RANGE_ID:
                 msg = "The ID you've entered doesn't exist in this machine.";
@@ -550,46 +550,46 @@ public class Console {
                 msg = "The file you've requested couldn't be found.";
                 break;
             case JAXB_ERROR:
-                msg = "Could not use this file. The XML file you've requested is not a valid enigma machine file.";
+                msg = "Could not use this file. The XML file you've requested is not \n  a valid enigma machine file.";
                 break;
             case FILE_NOT_IN_FORMAT:
-                msg = "The file you've requested isn't in the required format (only .xml files are valid).";
+                msg = "The file you've requested isn't in the required format \n  (only .xml files are valid).";
                 break;
             case FILE_ODD_ALPHABET_AMOUNT:
-                msg = "This file is invalid. The amount of the alphabet letters is odd. Only an even number of letters is allowed.";
+                msg = "This file is invalid. The amount of the alphabet letters is odd. \n  Only an even number of letters is allowed.";
                 break;
             case FILE_NOT_ENOUGH_ROTORS:
-                msg = "This file is invalid. The machine requires more rotors, than available ones.";
+                msg = "This file is invalid. The machine requires more rotors. \n  than available ones.";
                 break;
             case FILE_ROTORS_COUNT_BELOW_TWO:
-                msg = "This file is invalid. The number of places for rotors inside the machine (referred to \"rotors count\" in the file), is smaller than 2. Machines should have at least 2 rotors.";
+                msg = "This file is invalid. The number of places for rotors inside \n  the machine, (referred to \"rotors count\" in the file), is \n  smaller than 2. Machines should have at least 2 rotors.";
                 break;
             case FILE_ROTOR_COUNT_HIGHER_THAN_99:
-                msg = "This file is invalid. The number of rotors count is higher than the machine supports (referred to \"rotors count\" in the file).";
+                msg = "This file is invalid. The number of rotors count is higher \n  than the machine supports. (referred to \"rotors count\" in the file).";
                 break;
             case FILE_ROTOR_MAPPING_NOT_IN_ALPHABET:
-                msg = "This file is invalid. Among the mappings of the rotors, at least one character is not in the alphabet.";
+                msg = "This file is invalid. Among the mappings of the rotors, \n  at least one character is not in the alphabet.";
                 break;
             case FILE_ROTOR_MAPPING_DUPPLICATION:
-                msg = "This file is invalid. Among the mappings of the rotors, at least one rotor has duplicate mapping.";
+                msg = "This file is invalid. Among the mappings of the rotors, \n  at least one rotor has duplicate mapping.";
                 break;
             case FILE_ROTOR_MAPPING_NOT_EQUAL_TO_ALPHABET_LENGTH:
-                msg = "This file is invalid. Among the mappings of the rotors, at least one rotor has more or less mappings then the alphabet characters.";
+                msg = "This file is invalid. Among the mappings of the rotors, \n  at least one rotor has more or less mappings \n  then the alphabet characters.";
                 break;
             case FILE_ROTOR_MAPPING_NOT_A_SINGLE_LETTER:
-                msg = "This file is invalid. Among the mapping of the rotors, at lease one entry doesn't contains a single letter (e.g, contains more than one letter like \"ABC\" --> \"F\"...).";
+                msg = "This file is invalid. Among the mapping of the rotors, \n  at lease one entry doesn't contains a single letter \n  (e.g, contains more than one letter like \"ABC\" --> \"F\"...).";
                 break;
             case FILE_ROTOR_INVALID_ID_RANGE:
-                msg = "The Rotors at the loaded file aren't maintaining a \"running-counter\" ids from 1.";
+                msg = "The Rotors at the loaded file aren't maintaining a \n  \"running-counter\" ids from 1.";
                 break;
             case FILE_OUT_OF_RANGE_NOTCH:
-                msg = "There is a at-least one rotor at the file loaded, that has a notch position that is in an unreachable location. ";
+                msg = "There is a at-least one rotor at the file loaded, \n  that has a notch position that is in an unreachable location. ";
                 break;
             case FILE_NUM_OF_REFLECTS_IS_NOT_HALF_OF_ABC:
-                msg = "There is a reflector in the file that is loaded that does not have exactly half the length of the alphabet the amount of reflects.";
+                msg = "There is a reflector in the file that is loaded that does not have \n  exactly half the length of the alphabet the amount of reflects.";
                 break;
             case FILE_REFLECTOR_INVALID_ID_RANGE:
-                msg = "There is a reflector in the loaded file that has an ID that is not supported by this machine.";
+                msg = "There is a reflector in the loaded file that has an ID \n  that is not supported by this machine.";
                 break;
             case FILE_REFLECTOR_SELF_MAPPING:
                 msg = "At-least one reflector has a self mapping row in it.";
@@ -607,13 +607,13 @@ public class Console {
                 msg = "There is more then 5 reflectors at the file that was loaded.";
                 break;
             case FILE_REFLECTOR_OUT_OF_RANGE_ID:
-                msg = "One of the reflectors at the loaded-file is out of possible range of ids.";
+                msg = "One of the reflectors at the loaded-file \n  is out of possible range of ids.";
                 break;
             case CIPHER_INPUT_NOT_IN_ALPHABET:
                 msg = "At-least one letter isn't on the alphabet on this machine.";
                 break;
             case FILE_EXISTING_LOAD_FAILED:
-                msg = "Loading an existing machine from this file has failed. Please use a different file.";
+                msg = "Loading an existing machine from this file has failed. \n  Please use a different file.";
                 break;
             case UNKNOWN:
                 msg = "There is an unknown error.";
@@ -622,9 +622,8 @@ public class Console {
                 msg = "All OK.";
                 break;
         }
-        printBorder(msg.length());
-        System.out.println("|" + msg + "|");
-        printBorder(msg.length());
+
+        printMessageWithBorders(msg);
     }
 
     /**
@@ -796,7 +795,8 @@ public class Console {
     private static void printBorder(String msg) {
         StringBuilder myStr = new StringBuilder();
         myStr.append('|');
-        for (int i = 0; i < size; i++) {
+        final int BORDER_SIZE = 80;
+        for (int i = 0; i < Math.min(BORDER_SIZE, msg.length() + 2); i++) {
             myStr.append('-');
         }
         myStr.append('|');

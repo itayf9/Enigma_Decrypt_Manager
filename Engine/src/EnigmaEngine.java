@@ -29,14 +29,13 @@ public class EnigmaEngine implements Engine {
 
     private List<StatisticRecord> machineRecords = new ArrayList<>();
 
-    // engine constructor
-    public EnigmaEngine() {
-    }
-
-    // creating new machine instance using all the parts the machine needs.
+    /**
+     * creating new machine instance using all the parts the machine needs.
+     */
     public void buildMachine(List<Rotor> availableRotors, List<Reflector> availableReflectors, int rotorsCount, String alphabet, Map<Character, Integer> character2index) {
         machine = new EnigmaMachine(availableRotors, availableReflectors, rotorsCount, alphabet, character2index);
     }
+
     /**
      * updating the current machine configurations.
      * based on String of input from the user.
@@ -456,7 +455,7 @@ public class EnigmaEngine implements Engine {
 
         return new DTOspecs(isSucceeded, details, availableRotorsCount, inUseRotorsCount,
                 notchDistancesToWindow, originalNotchPositions, availableReflectorsCount, cipheredTextsCount,
-                inUseRotorsIDs, windowsCharacters, inUseReflectorSymbol, inUsePlugs);
+                inUseRotorsIDs, originalWindowsCharacters, currentWindowsCharacters, inUseReflectorSymbol, inUsePlugs);
     }
 
     /**

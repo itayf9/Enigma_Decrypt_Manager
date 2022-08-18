@@ -6,31 +6,31 @@ import java.util.Map;
 
 public class Rotor implements Serializable {
 
-    private int id;
-    private final int originalNotchIndex;
-    private int offset = 0;
-    private Map<Character ,Integer> alphabetTranslator;
-    private int alphabetLength;
-    private List<Integer> forwardMapping;
-    private List<Integer> backwardMapping;
-
+    private int id; // id of rotor
+    private final int originalNotchIndex; // the notch position from the window.
+    private int offset = 0; // an offset to calculate current position according to window.
+    private Map<Character, Integer> alphabetTranslator; // translate alphabet characters to matching integer value.
+    private int alphabetLength; // alphabet length
+    private List<Integer> forwardMapping; // forward table for rotor mappings.
+    private List<Integer> backwardMapping; // backward table for rotor mappings.
 
     /**
      * constructor for Rotor
-     * @param id the unique id of the rotor
+     *
+     * @param id                 the unique id of the rotor
      * @param originalNotchIndex the index of the notch, in the original state of the rotor
      * @param alphabetTranslator the map that translates a character from the alphabet to an index
-     * @param alphabetLength the amount of letters in the alphabet
-     * @param forwardMapping the mapping from right to left
-     * @param backwardMapping the mapping from left to right
+     * @param alphabetLength     the amount of letters in the alphabet
+     * @param forwardMapping     the mapping from right to left
+     * @param backwardMapping    the mapping from left to right
      */
-    public Rotor(int id, int originalNotchIndex, Map<Character, Integer> alphabetTranslator , int alphabetLength, List<Integer> forwardMapping, List<Integer> backwardMapping){
+    public Rotor(int id, int originalNotchIndex, Map<Character, Integer> alphabetTranslator, int alphabetLength, List<Integer> forwardMapping, List<Integer> backwardMapping) {
         this.id = id;
         this.originalNotchIndex = originalNotchIndex;
         this.alphabetTranslator = alphabetTranslator;
-        this.alphabetLength= alphabetLength;
-        this.forwardMapping= forwardMapping;
-        this.backwardMapping= backwardMapping;
+        this.alphabetLength = alphabetLength;
+        this.forwardMapping = forwardMapping;
+        this.backwardMapping = backwardMapping;
 
     }
 
@@ -84,7 +84,6 @@ public class Rotor implements Serializable {
         return ((original_charIndex - offset + alphabetLength) % alphabetLength);
     }
 
-
     /**
      * rotates the rotor one step ahead of its current position
      */
@@ -99,7 +98,6 @@ public class Rotor implements Serializable {
     public void rotateToOffset(int offset) {
         this.offset = offset;
     }
-
 
     /**
      * translates an alphabet's letter, to its matching index, via 'alphabetTranslator'

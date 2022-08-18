@@ -11,7 +11,6 @@ public class DTOspecs extends DTOstatus {
     private List<Integer> originalNotchPositions;
 
 
-
     private int availableReflectorsCount;
     private int cipheredTextsCount;
 

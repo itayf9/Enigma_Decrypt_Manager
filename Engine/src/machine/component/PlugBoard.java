@@ -6,6 +6,7 @@ import java.util.Map;
 
 public class PlugBoard implements Serializable {
 
+    // key-value pairs representing the plugs.
     private Map<Integer, Integer> plugMap;
 
     /**

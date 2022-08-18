@@ -18,10 +18,13 @@ public class EnigmaMachine implements Serializable, Machine {
 
     // the machine contains a list of Rotors.
     private List<Rotor> availableRotors;
+
     // the machine contains also a list of Reflectors.
     private List<Reflector> availableReflectors;
+
     // we use rotorsCount as a field which describes the current number of allowed Rotors.
     private int rotorsCount;
+
     // we use alphabet as a field that describes and converts the indexes to "ABC Characters".
     private String alphabet;
 
@@ -29,21 +32,26 @@ public class EnigmaMachine implements Serializable, Machine {
     // with better complexity.
     private Map<Character, Integer> character2index;
 
-
-    // This area describes the current configuration of the machine.
+    /**
+     * This area describes the current configuration of the machine.
+     */
+    // boolean val to help the engine check if machine is already been configured.
+    private boolean isConfigured = false;
 
     // we represent the current Rotors offset from the window of the machine.
-    // using list of offset values.
+    // using list of integer values.
     private List<Integer> inUseWindowsOffsets;
+
     // we represent the plugBoard with plugBoard instance that contains a map of configured plugs.
     private PlugBoard plugBoard;
+
     // current Rotors configured in the machine to work with.
     private List<Rotor> inUseRotors;
+
     // current Reflector configured in the machine to work with.
     private Reflector inUseReflector;
-    // current text that got ciphered in the machine.
 
-    private boolean isConfigured = false;
+    // current text that got ciphered in the machine.
     private static int cipherCounter = 0;
 
     /**
@@ -84,30 +92,36 @@ public class EnigmaMachine implements Serializable, Machine {
     /**
      * @return a string that represents the alphabet
      */
+    @Override
     public String getAlphabet() {
         return alphabet;
     }
 
+    @Override
     public List<Integer> getInUseWindowsOffsets() {
         return inUseWindowsOffsets;
     }
 
     // getting size of the list of Available Rotors in the machine
+    @Override
     public int getAvailableRotorsLen() {
         return availableRotors.size();
     }
 
     // getting size of the list of Available Reflectors in the machine
+    @Override
     public int getAvailableReflectorsLen() {
         return availableReflectors.size();
     }
 
     // getting size of the rotors that is currently allowed to be in machine
+    @Override
     public int getRotorsCount() {
         return rotorsCount;
     }
 
     // getting all the notch positions of all in use rotors in machine
+    @Override
     public List<Integer> getInUseNotchDistanceToWindow() {
         List<Integer> notchPositions = new ArrayList<>();
 
@@ -118,6 +132,7 @@ public class EnigmaMachine implements Serializable, Machine {
         return notchPositions;
     }
 
+    @Override
     public List<Integer> getOriginalNotchPositions() {
         List<Integer> notchPositions = new ArrayList<>();
 
@@ -128,12 +143,14 @@ public class EnigmaMachine implements Serializable, Machine {
         return notchPositions;
     }
 
+    @Override
     public boolean isConfigured() {
         return isConfigured;
     }
 
     // updating the current config of the machine.
     // by sending the updated list of rotors, reflectors and plugs.
+    @Override
     public void setMachineConfiguration(List<Integer> rotorsIDs, List<Integer> windowOffsets, int reflectorID, String plugs) {
 
         if (inUseRotors.size() != 0) {
@@ -154,6 +171,7 @@ public class EnigmaMachine implements Serializable, Machine {
     }
 
     // initialize cipher sequence based on: input->plugs->rotors-reflector-rotors-plugs->screen.
+    @Override
     public char cipher(char srcChar) {
 
         // rotates the rotors
@@ -227,6 +245,7 @@ public class EnigmaMachine implements Serializable, Machine {
      * @param id an unique id of a rotor
      * @return the rotor with that id
      */
+    @Override
     public Rotor getRotorByID(Integer id) {
         return availableRotors.get(id - 1);
     }
@@ -248,6 +267,7 @@ public class EnigmaMachine implements Serializable, Machine {
     /**
      * @return a list of the ids of the in-use rotors, maintaining their order.
      */
+    @Override
     public List<Integer> getInUseRotorsIDs() {
         List<Integer> inUseRotorsIDs = new ArrayList<>();
 
@@ -261,7 +281,8 @@ public class EnigmaMachine implements Serializable, Machine {
     /**
      * @return a list of the alphabet letters, for each rotor, that are currently at the 'window' (meaning that the absolute position is 0)
      */
-    public String getAllWindowsCharacters() {
+    @Override
+    public String getOriginalWindowsCharacters() {
         StringBuilder windowsCharacters = new StringBuilder();
 
         for (int i = 0; i < inUseWindowsOffsets.size(); i++) {
@@ -289,6 +310,7 @@ public class EnigmaMachine implements Serializable, Machine {
     /**
      * @return a list of pairs of characters that are plugged in the plug board.
      */
+    @Override
     public String getAllPlugPairs() {
         List<Pair<Character, Character>> plugPairs = new ArrayList<>();
 
