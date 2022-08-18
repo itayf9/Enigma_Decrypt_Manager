@@ -738,10 +738,18 @@ public class EnigmaEngine implements Engine {
         boolean isSucceed = true;
         Problem details = Problem.NO_PROBLEM;
 
-        // check if the reflectorID exists in this machine.
-        if (reflectorID <= 0 || reflectorID > machine.getAvailableReflectorsLen()) {
+        if (reflectorID == -1) {
             isSucceed = false;
-            details = Problem.REFLECTOR_INPUT_OUT_OF_RANGE_ID;
+            details = Problem.REFLECTOR_INPUT_NOT_A_NUMBER;
+        } else if (reflectorID == -2) {
+            isSucceed = false;
+            details = Problem.REFLECTOR_INPUT_EMPTY_STRING;
+        } else {
+            // check if the reflectorID exists in this machine.
+            if (reflectorID <= 0 || reflectorID > machine.getAvailableReflectorsLen()) {
+                isSucceed = false;
+                details = Problem.REFLECTOR_INPUT_OUT_OF_RANGE_ID;
+            }
         }
 
         return new DTOstatus(isSucceed, details);

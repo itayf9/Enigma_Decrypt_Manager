@@ -244,20 +244,23 @@ public class Console {
 
         System.out.println("Enter the number of the wanted reflector (select 1-5).");
         System.out.println("1. I\n2. II\n3. III\n4. IV\n5. V\n");
-        String choice = scanner.nextLine().toUpperCase();
 
-        while (!isValid) {
-            if (choice.length() > 1) {
-                System.out.println("Invalid input. enter only the number that matches you choice.");
-                choice = scanner.nextLine().toUpperCase();
-            } else if (choice.charAt(0) < '1' || choice.charAt(0) > '5') {
-                System.out.println("Invalid option - try again ! with options from 1-5");
-                choice = scanner.nextLine().toUpperCase();
-            } else {
-                isValid = true;
+        String choiceStr;
+        int choiceNum;
+
+        try {
+            choiceStr = scanner.nextLine().trim();
+
+            if (choiceStr.length() == 0) {
+                return -2;
             }
+
+            choiceNum = Integer.parseInt(choiceStr);
+        } catch (NumberFormatException e) {
+            return -1;
         }
-        return Integer.parseInt(choice);
+
+        return choiceNum;
     }
 
     /**
@@ -479,7 +482,6 @@ public class Console {
         }
     }
 
-
     /**
      * display message for the user.
      *
@@ -538,6 +540,12 @@ public class Console {
                 break;
             case REFLECTOR_INPUT_OUT_OF_RANGE_ID:
                 msg = "The ID you've entered doesn't exist in this machine.";
+                break;
+            case REFLECTOR_INPUT_EMPTY_STRING:
+                msg = "You didn't enter any input.";
+                break;
+            case REFLECTOR_INPUT_NOT_A_NUMBER:
+                msg = "The ID you've entered isn't a number.";
                 break;
             case FILE_NOT_FOUND:
                 msg = "The file you've requested couldn't be found.";
