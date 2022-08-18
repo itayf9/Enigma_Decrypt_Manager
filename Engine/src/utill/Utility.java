@@ -7,7 +7,6 @@ public class Utility {
 
     public static final char NOT_VALID_SPECIAL_CHAR_IN_XML = ' ';
 
-    public static final String ESC = "" + (char)27;
 
     /**
      * converts a roman number into a decimal number.
@@ -66,36 +65,48 @@ public class Utility {
                 roman= "IV";
                 break;
             case 5:
-                roman= "V";
+                roman = "V";
                 break;
             default:
                 // throw ?
-                roman= NOT_VALID_DECIMAL_TO_ROMAN;
+                roman = NOT_VALID_DECIMAL_TO_ROMAN;
         }
 
         return roman;
     }
 
+    /**
+     * convets all special characters in a String of alphabet.
+     *
+     * @param alphabet the alphabet with special characters
+     * @return the alphabet with the replacements
+     */
     public static String convertXMLSpecialCharsInSeq(String alphabet) {
 
-        alphabet = alphabet.replaceAll("&lt;", "" +convertXMLSpecialChar("&lt;"));
-        alphabet = alphabet.replaceAll("&amp;", "" +convertXMLSpecialChar("&amp;"));
-        alphabet = alphabet.replaceAll("&gt;", "" +convertXMLSpecialChar("&gt;"));
-        alphabet = alphabet.replaceAll("&quot;", "" +convertXMLSpecialChar("&quot;"));
-        alphabet = alphabet.replaceAll("&apos;", "" +convertXMLSpecialChar("&apos;"));
+        alphabet = alphabet.replaceAll("&lt;", "" + convertXMLSpecialChar("&lt;"));
+        alphabet = alphabet.replaceAll("&amp;", "" + convertXMLSpecialChar("&amp;"));
+        alphabet = alphabet.replaceAll("&gt;", "" + convertXMLSpecialChar("&gt;"));
+        alphabet = alphabet.replaceAll("&quot;", "" + convertXMLSpecialChar("&quot;"));
+        alphabet = alphabet.replaceAll("&apos;", "" + convertXMLSpecialChar("&apos;"));
 
         return alphabet;
     }
 
-    public static char convertXMLSpecialChar (String specialChar) {
+    /**
+     * converts a single XML special character to its replacement.
+     *
+     * @param specialChar a String representing the special character
+     * @return the matching replacement
+     */
+    public static char convertXMLSpecialChar(String specialChar) {
         char originalChar;
 
-        switch (specialChar){
+        switch (specialChar) {
             case "&lt;":
-                originalChar= '<';
+                originalChar = '<';
                 break;
             case "&amp;":
-                originalChar= '&';
+                originalChar = '&';
                 break;
             case "&gt;":
                 originalChar= '>';

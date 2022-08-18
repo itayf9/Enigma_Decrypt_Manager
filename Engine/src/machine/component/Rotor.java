@@ -14,6 +14,8 @@ public class Rotor implements Serializable {
     private List<Integer> forwardMapping; // forward table for rotor mappings.
     private List<Integer> backwardMapping; // backward table for rotor mappings.
 
+    private static char NOT_FOUND_IN_MAP = '\n';
+
     /**
      * constructor for Rotor
      *
@@ -121,8 +123,7 @@ public class Rotor implements Serializable {
             }
         }
 
-        /********************************************************************add exception********************/
-        return '\n';
+        return NOT_FOUND_IN_MAP;
     }
 
     @Override

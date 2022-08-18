@@ -45,8 +45,5 @@ public enum Problem {
 
     UNKNOWN, NO_PROBLEM;
 
-    public void printMe() {
-        System.out.println(this.name());
-    }
 
 }

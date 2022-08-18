@@ -13,7 +13,7 @@ import java.util.Map;
 public class EnigmaMachine implements Serializable, Machine {
 
     /**
-     * This area describes the static area of the machine.
+     * This area describes the non changing features of the machine.
      */
 
     // the machine contains a list of Rotors.
@@ -97,30 +97,45 @@ public class EnigmaMachine implements Serializable, Machine {
         return alphabet;
     }
 
+    /**
+     * @return a list of window offsets of the in used rotors
+     */
     @Override
     public List<Integer> getInUseWindowsOffsets() {
         return inUseWindowsOffsets;
     }
 
-    // getting size of the list of Available Rotors in the machine
+
+    /**
+     * @return the size of the list of Available Rotors in the machine
+     */
     @Override
     public int getAvailableRotorsLen() {
         return availableRotors.size();
     }
 
-    // getting size of the list of Available Reflectors in the machine
+
+    /**
+     * @return the size of the list of Available Reflectors in the machine
+     */
     @Override
     public int getAvailableReflectorsLen() {
         return availableReflectors.size();
     }
 
-    // getting size of the rotors that is currently allowed to be in machine
+    /**
+     * @return the size of the rotors that is currently allowed to be in machine
+     */
     @Override
     public int getRotorsCount() {
         return rotorsCount;
     }
 
-    // getting all the notch positions of all in use rotors in machine
+    /**
+     * getting the current notch distances from the window, of the in use rotors in machine
+     *
+     * @return a list of notch distances to the windows
+     */
     @Override
     public List<Integer> getInUseNotchDistanceToWindow() {
         List<Integer> notchPositions = new ArrayList<>();
@@ -132,6 +147,11 @@ public class EnigmaMachine implements Serializable, Machine {
         return notchPositions;
     }
 
+    /**
+     * getting the original notch distances from the window, of the in use rotors in machine
+     *
+     * @return a list of original notch distances to the windows
+     */
     @Override
     public List<Integer> getOriginalNotchPositions() {
         List<Integer> notchPositions = new ArrayList<>();
@@ -143,13 +163,125 @@ public class EnigmaMachine implements Serializable, Machine {
         return notchPositions;
     }
 
+    /**
+     * finds a rotor by a specific id
+     *
+     * @param id an unique id of a rotor
+     * @return the rotor with that id
+     */
+    @Override
+    public Rotor getRotorByID(Integer id) {
+        return availableRotors.get(id - 1);
+    }
+
+    /**
+     * @return how many ciphered texts the machine has been ciphering so far
+     */
+    public static int getCipherCounter() {
+        return cipherCounter;
+    }
+
+    /**
+     * @return a list of the ids of the in-use rotors, maintaining their order.
+     */
+    @Override
+    public List<Integer> getInUseRotorsIDs() {
+        List<Integer> inUseRotorsIDs = new ArrayList<>();
+
+        for (Rotor rotor : inUseRotors) {
+            inUseRotorsIDs.add(rotor.getId());
+        }
+
+        return inUseRotorsIDs;
+    }
+
+    /**
+     * @return a list of the alphabet letters, for each rotor, that are currently at the 'window' (meaning that the absolute position is 0)
+     */
+    @Override
+    public String getOriginalWindowsCharacters() {
+        StringBuilder windowsCharacters = new StringBuilder();
+
+        for (int i = 0; i < inUseWindowsOffsets.size(); i++) {
+            windowsCharacters.append(inUseRotors.get(i).translateOffset2Char(inUseWindowsOffsets.get(i)));
+        }
+
+        return windowsCharacters.toString();
+    }
+
+    /**
+     * gets the current window characters.
+     *
+     * @return a String representing the window characters in the machine
+     */
+    @Override
+    public String getCurrentWindowsCharacters() {
+        StringBuilder windowsCharacters = new StringBuilder();
+
+        // goes through all offsets of in used rotors
+        for (int i = 0; i < inUseWindowsOffsets.size(); i++) {
+            int currentOffset = inUseRotors.get(i).getOffset();
+            int difference = (currentOffset - inUseWindowsOffsets.get(i));
+            int windowOffset = (inUseWindowsOffsets.get(i) + difference + alphabet.length()) % alphabet.length();
+            Character currentNotchIndex = inUseRotors.get(i).translateOffset2Char(windowOffset);
+            windowsCharacters.append(currentNotchIndex);
+        }
+
+        return windowsCharacters.toString();
+    }
+
+    /**
+     * @return a list of pairs of characters that are plugged in the plug board.
+     */
+    @Override
+    public String getAllPlugPairs() {
+        List<Pair<Character, Character>> plugPairs = new ArrayList<>();
+
+        // goes through the <key, value> pairs in the plug map
+        for (Map.Entry<Integer, Integer> plug : plugBoard.getPlugMap().entrySet()) {
+
+            // sets two new pairs of seperated characters.
+            // first is extracted from the current <key, value> pair.
+            // second is the opposite one to that <key, value> pair.
+            Pair<Character, Character> currentPlug = new Pair<>(alphabet.charAt(plug.getKey()), alphabet.charAt(plug.getValue()));
+            Pair<Character, Character> reversedCurrentPlug = new Pair<>(alphabet.charAt(plug.getValue()), alphabet.charAt(plug.getKey()));
+
+            // in order to prevent duplicates, checks this pair is already in the output list.
+            // if it's not, then the pair is added to the list.
+            if ((!plugPairs.contains(currentPlug)) && (!plugPairs.contains(reversedCurrentPlug))) {
+                plugPairs.add(currentPlug);
+            }
+        }
+
+        // convert the list of plug pairs to one string
+        StringBuilder allPlugPairsStr = new StringBuilder();
+
+        for (Pair<Character, Character> plugPair : plugPairs) {
+            allPlugPairsStr.append(plugPair.getKey())
+                    .append(plugPair.getValue());
+        }
+
+        return allPlugPairsStr.toString();
+    }
+
+    /**
+     * @return true is the machine is configured, false otherwise
+     */
     @Override
     public boolean isConfigured() {
         return isConfigured;
     }
 
-    // updating the current config of the machine.
-    // by sending the updated list of rotors, reflectors and plugs.
+
+    /**
+     * updating the current config of the machine.
+     * by sending the updated list of rotors, reflectors and plugs.
+     *
+     * @param rotorsIDs     a list of rotors id's
+     * @param windowOffsets a list of thw current offsets of the rotors
+     * @param reflectorID   the reflector id as an integer
+     * @param plugs         a String of plugs, without spaces or separators
+     */
     @Override
     public void setMachineConfiguration(List<Integer> rotorsIDs, List<Integer> windowOffsets, int reflectorID, String plugs) {
 
@@ -170,7 +302,13 @@ public class EnigmaMachine implements Serializable, Machine {
         isConfigured = true;
     }
 
-    // initialize cipher sequence based on: input->plugs->rotors-reflector-rotors-plugs->screen.
+    /**
+     * cipher one character in the machine.
+     * based on: input->plugs->rotors-reflector-rotors-plugs->output
+     *
+     * @param srcChar the character to cipher
+     * @return the ciphered character
+     */
     @Override
     public char cipher(char srcChar) {
 
@@ -225,6 +363,13 @@ public class EnigmaMachine implements Serializable, Machine {
         }
     }
 
+    /**
+     * increases the amount of ciphered texts that the machine has ciphered so far, by one.
+     */
+    public static void advanceCipherCounter() {
+        cipherCounter++;
+    }
+
     @Override
     public String toString() {
         return "EnigmaMachine{" + '\n' +
@@ -239,105 +384,8 @@ public class EnigmaMachine implements Serializable, Machine {
                 '}';
     }
 
-    /**
-     * finds a rotor by a specific id
-     *
-     * @param id an unique id of a rotor
-     * @return the rotor with that id
-     */
-    @Override
-    public Rotor getRotorByID(Integer id) {
-        return availableRotors.get(id - 1);
-    }
 
-    /**
-     * @return how many ciphered texts the machine has been ciphering so far
-     */
-    public static int getCipherCounter() {
-        return cipherCounter;
-    }
 
-    /**
-     * increases the amount of ciphered texts that the machine has ciphered so far, by one.
-     */
-    public static void advanceCipherCounter() {
-        cipherCounter++;
-    }
 
-    /**
-     * @return a list of the ids of the in-use rotors, maintaining their order.
-     */
-    @Override
-    public List<Integer> getInUseRotorsIDs() {
-        List<Integer> inUseRotorsIDs = new ArrayList<>();
 
-        for (Rotor rotor : inUseRotors) {
-            inUseRotorsIDs.add(rotor.getId());
-        }
-
-        return inUseRotorsIDs;
-    }
-
-    /**
-     * @return a list of the alphabet letters, for each rotor, that are currently at the 'window' (meaning that the absolute position is 0)
-     */
-    @Override
-    public String getOriginalWindowsCharacters() {
-        StringBuilder windowsCharacters = new StringBuilder();
-
-        for (int i = 0; i < inUseWindowsOffsets.size(); i++) {
-            windowsCharacters.append(inUseRotors.get(i).translateOffset2Char(inUseWindowsOffsets.get(i)));
-        }
-
-        return windowsCharacters.toString();
-    }
-
-    @Override
-    public String getCurrentWindowsCharacters() {
-        StringBuilder windowsCharacters = new StringBuilder();
-
-        for (int i = 0; i < inUseWindowsOffsets.size(); i++) {
-            int currentOffset = inUseRotors.get(i).getOffset();
-            int difference = (currentOffset - inUseWindowsOffsets.get(i));
-            int windowOffset = (inUseWindowsOffsets.get(i) + difference + alphabet.length()) % alphabet.length();
-            Character currentNotchIndex = inUseRotors.get(i).translateOffset2Char(windowOffset);
-            windowsCharacters.append(currentNotchIndex);
-        }
-
-        return windowsCharacters.toString();
-    }
-
-    /**
-     * @return a list of pairs of characters that are plugged in the plug board.
-     */
-    @Override
-    public String getAllPlugPairs() {
-        List<Pair<Character, Character>> plugPairs = new ArrayList<>();
-
-        // goes through the <key, value> pairs in the plug map
-        for (Map.Entry<Integer, Integer> plug : plugBoard.getPlugMap().entrySet()) {
-
-            // sets two new pairs of seperated characters.
-            // first is extracted from the current <key, value> pair.
-            // second is the opposite one to that <key, value> pair.
-            Pair<Character, Character> currentPlug = new Pair<>(alphabet.charAt(plug.getKey()), alphabet.charAt(plug.getValue()));
-            Pair<Character, Character> reversedCurrentPlug = new Pair<>(alphabet.charAt(plug.getValue()), alphabet.charAt(plug.getKey()));
-
-            // in order to prevent duplicates, checks this pair is already in the output list.
-            // if it's not, then the pair is added to the list.
-            if ((!plugPairs.contains(currentPlug)) && (!plugPairs.contains(reversedCurrentPlug))) {
-                plugPairs.add(currentPlug);
-            }
-        }
-
-        // convert the list of plug pairs to one string
-        StringBuilder allPlugPairsStr = new StringBuilder();
-
-        for (Pair<Character, Character> plugPair : plugPairs) {
-            allPlugPairsStr.append(plugPair.getKey())
-                    .append(plugPair.getValue());
-        }
-
-        return allPlugPairsStr.toString();
-    }
 }

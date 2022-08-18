@@ -115,7 +115,7 @@ public class Console {
     }
 
     /**
-     * the menu operations
+     * prints the menu operations
      */
     private static void printMainMenu() {
         System.out.println("\nSelect an operation:");
@@ -165,6 +165,11 @@ public class Console {
         return Operation.getOperation(userChoiceNum);
     }
 
+    /**
+     * asks the user to try again or go back to the menu
+     *
+     * @return true if wants to try again. false if wants to go back to the menu
+     */
     private static boolean getInputWantToTryAgain() {
 
         String userChoice;
@@ -324,7 +329,7 @@ public class Console {
     /**
      * Q1 - loads xml file and builds the enigma machine.
      */
-    static private void loadXmlFile() {
+    private static void loadXmlFile() {
         String xmlFileName = getXMLFileName();
         DTOstatus buildMachineFromXMLStatus = engine.buildMachineFromXmlFile(xmlFileName);
 
@@ -340,7 +345,7 @@ public class Console {
     /**
      * Q2 - display the machine specifications.
      */
-    static private void displaySpecifications() {
+    private static void displaySpecifications() {
         DTOspecs specsStatus = engine.displayMachineSpecifications();
         if (specsStatus.isSucceed()) {
             printSpecifications(specsStatus);
@@ -350,7 +355,7 @@ public class Console {
     /**
      * Q3 - choose new config manually.
      */
-    static private void chooseConfigManual() {
+    private static void chooseConfigManual() {
         boolean isWantToTryAgain;
         int rotorCount = engine.getRotorsCount();
 
@@ -369,7 +374,8 @@ public class Console {
             }
 
         }
-        System.out.println("All good.\n");
+        printMessageWithBorders("All good.");
+        System.out.println("\n");
 
         String windows = getInputSequenceOfCharacters();
         DTOstatus windowCharactersStatus = engine.validateWindowCharacters(windows);
@@ -385,7 +391,8 @@ public class Console {
             }
 
         }
-        System.out.println("All good.\n");
+        printMessageWithBorders("All good.");
+        System.out.println("\n");
 
         int reflectorID = getInputInteger();
         DTOstatus reflectorIDStatus = engine.validateReflector(reflectorID);
@@ -401,7 +408,8 @@ public class Console {
             }
 
         }
-        System.out.println("All good.\n");
+        printMessageWithBorders("All good.");
+        System.out.println("\n");
 
         String plugs = getInputListOfStrings();
         DTOstatus plugsStatus = engine.validatePlugs(plugs);
@@ -417,7 +425,8 @@ public class Console {
             }
 
         }
-        System.out.println("All good.\n");
+        printMessageWithBorders("All good.");
+        System.out.println("\n");
 
         DTOstatus configStatus = engine.selectConfigurationManual(rotorsIDs, windows, reflectorID, plugs);
         if (configStatus.isSucceed()) {
@@ -627,9 +636,9 @@ public class Console {
     }
 
     /**
-     * print the dto specs to the user as required
+     * print the specs to the user as required.
      *
-     * @param dtoSpecs the dto containing the specs of the machine.
+     * @param dtoSpecs the DTOspecs object, containing the specs of the machine.
      */
     private static void printSpecifications(DTOspecs dtoSpecs) {
         StringBuilder strSpecs = new StringBuilder();
@@ -660,13 +669,13 @@ public class Console {
     }
 
     /**
-     * print the Secret to the user.
+     * print the secret (configuration) to the user.
      *
-     * @param inUseRotorsIDs         the rotors ids
-     * @param windowsCharacters      window characters
-     * @param inUseReflectorSymbol   the reflector symbol
-     * @param inUsePlugs             the plugs in use
-     * @param notchDistancesToWindow the current notch positions
+     * @param inUseRotorsIDs         a list of the rotors ids
+     * @param windowsCharacters      a String of window characters
+     * @param inUseReflectorSymbol   a String of the reflector symbol
+     * @param inUsePlugs             a String of the plugs in use
+     * @param notchDistancesToWindow a list of the current notch positions
      */
     private static void printConfiguration(List<Integer> inUseRotorsIDs, String windowsCharacters, String inUseReflectorSymbol, String inUsePlugs, List<Integer> notchDistancesToWindow) {
         StringBuilder strConfig = new StringBuilder();
@@ -719,7 +728,7 @@ public class Console {
     /**
      * print all machine stats
      *
-     * @param stats dto contains machine records
+     * @param stats DTOstatistics object that contains machine records
      */
     private static void printStatistics(DTOstatistics stats) {
 
@@ -748,12 +757,20 @@ public class Console {
         }
     }
 
+    /**
+     * gets a file name for an existing machine
+     *
+     * @return a String of the file's name
+     */
     private static String getExistingMachineFileName() {
         System.out.println("Enter the name of the file of the existing machine: ");
 
         return scanner.nextLine();
     }
 
+    /**
+     * loads an existing machine from a file
+     */
     private static void loadExistingMachineFromFile() {
         String fileName = getExistingMachineFileName();
         DTOstatus loadExistingMachineStatus;
@@ -774,6 +791,9 @@ public class Console {
         }
     }
 
+    /**
+     * saves an existing machine to file
+     */
     private static void saveExistingMachineToFile() {
         String fileName = getXMLFileName();
         try {
@@ -786,12 +806,22 @@ public class Console {
         }
     }
 
+    /**
+     * print a messege with borders
+     *
+     * @param msg the messege to print
+     */
     private static void printMessageWithBorders(String msg) {
         printBorder(msg);
         System.out.println("  " + msg);
         printBorder(msg);
     }
 
+    /**
+     * prints a border in the size of a messege
+     *
+     * @param msg the messege
+     */
     private static void printBorder(String msg) {
         StringBuilder myStr = new StringBuilder();
         myStr.append('|');

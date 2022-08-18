@@ -29,6 +29,11 @@ public class EnigmaEngine implements Engine {
 
     private List<StatisticRecord> machineRecords = new ArrayList<>();
 
+    public static String JAXB_XML_PACKAGE_NAME = "machine.jaxb.generated";
+    private static int NOT_A_NUMBER_CODE = -1;
+    private static int EMPTY_STR_CODE = -2;
+
+
     /**
      * creating new machine instance using all the parts the machine needs.
      */
@@ -40,10 +45,10 @@ public class EnigmaEngine implements Engine {
      * updating the current machine configurations.
      * based on String of input from the user.
      *
-     * @param rotorsIDs    list of integers
-     * @param windowsChars string of characters
-     * @param reflectorID  integer
-     * @param plugs        string of plugs
+     * @param rotorsIDs    list of the wanted rotor's id's, sorted to the wanted order
+     * @param windowsChars String of characters that represents the window characters for each wanted rotor
+     * @param reflectorID  the id of the wanted reflector, as an integer
+     * @param plugs        String that represents plugs, with no spaces or separators
      */
     public void updateConfiguration(List<Integer> rotorsIDs, String windowsChars, int reflectorID, String plugs) {
 
@@ -51,15 +56,15 @@ public class EnigmaEngine implements Engine {
         List<Integer> windowOfssets = new ArrayList<>();
 
         for (int i = 0; i < windowsChars.length(); i++) {
-//            int j = windowsChars.length() - 1 - i;
-            Rotor r = machine.getRotorByID(rotorsIDs.get(i));
-            int offset = r.translateChar2Offset(windowsChars.charAt(i));
+            Rotor nextRotor = machine.getRotorByID(rotorsIDs.get(i));
+            int offset = nextRotor.translateChar2Offset(windowsChars.charAt(i));
             windowOfssets.add(offset);
         }
 
+        // sets the new configuration into the machine.
         machine.setMachineConfiguration(rotorsIDs, windowOfssets, reflectorID, plugs);
 
-        // add new configuration to statistical records
+        // adds new configuration to statistical records.
         StatisticRecord newRecord = new StatisticRecord(rotorsIDs, windowsChars, reflectorID, plugs, machine.getOriginalNotchPositions());
         machineRecords.add(newRecord);
 
@@ -68,24 +73,25 @@ public class EnigmaEngine implements Engine {
     /**
      * ciphering text with the cipher method of "machine".
      *
-     * @param toCipher string of text to cipher
-     * @return string of cipher text.
+     * @param toCipher a String of text to cipher
+     * @return a String of the ciphered text
      */
     public String cipherText(String toCipher) {
         StringBuilder cipheredText = new StringBuilder();
 
+        // goes through the character in the string
         for (Character currentChar : toCipher.toCharArray()) {
             cipheredText.append(machine.cipher(currentChar));
         }
 
+        // increasing the cipher counter
         advanceCipherCounter();
+
         return cipheredText.toString();
     }
 
     /**
-     * get the rotorsCount
-     *
-     * @return rotors count
+     * @return the rotors count of the machine
      */
     @Override
     public int getRotorsCount() {
@@ -93,14 +99,17 @@ public class EnigmaEngine implements Engine {
     }
 
     /**
-     * get fileName from user and load Xml file to build new machine.
+     * gets fileName from user and loads XML file to build a new machine.
+     * then, builds the machine.
      *
      * @param fileName string - name of xml file
+     * @return DTOstatus object that describes the status of the operation
      */
     public DTOstatus buildMachineFromXmlFile(String fileName) {
         boolean isSucceeded = true;
         Problem details;
 
+        // checks if the file is in the .xml format.
         if (!fileName.endsWith(".xml")) {
             isSucceeded = false;
             details = Problem.FILE_NOT_IN_FORMAT;
@@ -131,9 +140,9 @@ public class EnigmaEngine implements Engine {
     }
 
     /**
-     * validates the CTEngine
+     * validates the CTEEngine
      *
-     * @return detailed problem
+     * @return detailed Problem if occurred. if valid, returns Problem.NO_PROBLEM
      */
     private Problem validateCTEEnigma(CTEEnigma cteEnigma) {
         Problem problem = Problem.NO_PROBLEM;
@@ -163,7 +172,6 @@ public class EnigmaEngine implements Engine {
         }
 
         // check if all rotors ids are being a running counting from 1-N
-
         Comparator<CTERotor> CTERotorComparator = Comparator.comparingInt(CTERotor::getId);
         List<CTERotor> cteRotors = cteMachine.getCTERotors().getCTERotor();
         cteRotors.sort(CTERotorComparator);
@@ -211,7 +219,7 @@ public class EnigmaEngine implements Engine {
                 }
             }
         }
-        // if we got here safely then mapping is OK!
+        // if we got here safely then the rotor's mappings are OK!
 
 
         // check if all reflectors ids are being a running counting from 1-N
@@ -297,12 +305,12 @@ public class EnigmaEngine implements Engine {
     }
 
     /**
-     * unmarshalling the schema of provided Xml file to create jaxb classes.
-     * to help build the machine from a xml file.
+     * unmarshalling the schema of provided XML file to create jaxb classes.
+     * in order to build the machine from a XML file.
      *
-     * @param in InputStream
-     * @return jaxb generated engine
-     * @throws JAXBException jaxb exception..
+     * @param in a InputStream representing the file source
+     * @return a CTEEnigma object, representing a jaxb generated engine
+     * @throws JAXBException for an error that occurred in the jaxb process
      */
     private static CTEEnigma deserializeFrom(InputStream in) throws JAXBException {
         JAXBContext jc = JAXBContext.newInstance(JAXB_XML_PACKAGE_NAME);
@@ -310,12 +318,12 @@ public class EnigmaEngine implements Engine {
         return (CTEEnigma) u.unmarshal(in);
     }
 
-    public static String JAXB_XML_PACKAGE_NAME = "machine.jaxb.generated";
 
     /**
-     * convert all data from jaxb classes to our own classes.
+     * converts all data from jaxb classes to the normal classes.
      *
      * @param cteEnigma the engine generated from jaxb
+     * @return a Problem describing the problem that occurred. if valid, returns Problem.NO_PROBLEM
      */
     private Problem buildMachineFromCTEEnigma(CTEEnigma cteEnigma) {
 
@@ -323,13 +331,14 @@ public class EnigmaEngine implements Engine {
         if (problem != Problem.NO_PROBLEM) {
             return problem;
         }
+
         CTEMachine cteMachine = cteEnigma.getCTEMachine();
 
         List<Rotor> availableRotors = new ArrayList<>();
         List<Reflector> availableReflectors = new ArrayList<>();
         int rotorsCount = cteMachine.getRotorsCount();
 
-        // initialize alphabet and characters-2-index
+        // initializes alphabet and character-2-index map
         String alphabet = cteMachine.getABC().trim().toUpperCase();
 
         alphabet = convertXMLSpecialCharsInSeq(alphabet);
@@ -339,7 +348,7 @@ public class EnigmaEngine implements Engine {
             character2index.put(alphabet.charAt(i), i);
         }
 
-        // initialize rotors
+        // initializes rotors
         for (CTERotor cteRotor : cteMachine.getCTERotors().getCTERotor()) {
 
             int currentID = cteRotor.getId();
@@ -351,7 +360,7 @@ public class EnigmaEngine implements Engine {
             Map<Character, Integer> backwardTranslatorChar2index = new HashMap<>();
             int index = 0;
 
-            // go through all right positions to build the translators Char to index
+            // goes through all right positions to build the translators Char to index
             for (CTEPositioning ctePosition : cteRotor.getCTEPositioning()) {
                 forwardTranslatorChar2index.put(ctePosition.getRight().toUpperCase().charAt(0), index);
                 backwardTranslatorChar2index.put(ctePosition.getLeft().toUpperCase().charAt(0), index);
@@ -360,7 +369,7 @@ public class EnigmaEngine implements Engine {
 
             int indexOfLeftSide = 0;
 
-            // go through all left positions to build the forwarding map
+            // goes through all left positions to build the forwarding map
             // alert !! this is hard logic code, and it won't be readable for unworthy personal.
             for (CTEPositioning ctePosition : cteRotor.getCTEPositioning()) {
                 int indexOfRightSide = forwardTranslatorChar2index.get(ctePosition.getLeft().toUpperCase().charAt(0));
@@ -370,14 +379,14 @@ public class EnigmaEngine implements Engine {
 
             indexOfLeftSide = 0;
 
-            // go through all right positions to build the backward map
+            // goes through all right positions to build the backward map
             for (CTEPositioning ctePosition : cteRotor.getCTEPositioning()) {
                 int indexOfRightSide = backwardTranslatorChar2index.get(ctePosition.getRight().toUpperCase().charAt(0));
                 mapRotorBackward.set(indexOfRightSide, indexOfLeftSide);
                 indexOfLeftSide++;
             }
 
-            // creating a new rotor
+            // creates a new rotor
             Rotor currentRotor = new Rotor(currentID, currentNotchIndex,
                     forwardTranslatorChar2index, alphabet.length(),
                     mapRotorForward, mapRotorBackward);
@@ -385,14 +394,14 @@ public class EnigmaEngine implements Engine {
             availableRotors.add(currentRotor);
         }
 
-        //initialize reflectors
+        //initializes reflectors
         for (CTEReflector cteReflector : cteMachine.getCTEReflectors().getCTEReflector()) {
 
             int currentID = romanToDecimal(cteReflector.getId());
 
             List<Integer> reflectorMapping = new ArrayList<>(Collections.nCopies(alphabet.length(), 0));
 
-            // creating the mapping of the reflector
+            // creates the mapping of the reflector
             for (CTEReflect cteReflect : cteReflector.getCTEReflect()) {
                 int input = cteReflect.getInput() - 1;
                 int output = cteReflect.getOutput() - 1;
@@ -400,27 +409,28 @@ public class EnigmaEngine implements Engine {
                 reflectorMapping.set(output, input);
             }
 
-            // creating a new reflector
+            // creates a new reflector
             Reflector currentReflector = new Reflector(currentID, reflectorMapping);
 
             availableReflectors.add(currentReflector);
         }
 
-        // sort rotors and reflector by id
+        // sorts rotors and reflector by id
         Comparator<Rotor> rotorComparator = Comparator.comparingInt(Rotor::getId);
         availableRotors.sort(rotorComparator);
         Comparator<Reflector> reflectorComparator = Comparator.comparingInt(Reflector::getId);
         availableReflectors.sort(reflectorComparator);
 
+        // builds the machine with the components that were initialized
         buildMachine(availableRotors, availableReflectors, rotorsCount, alphabet, character2index);
 
         return problem;
     }
 
     /**
-     * fetching the current machine specifications.
+     * fetches the current machine specifications.
      *
-     * @return DTO object that represents the specs.
+     * @return DTOspecs object that represents the specs.
      */
     @Override
     public DTOspecs displayMachineSpecifications() {
@@ -459,21 +469,23 @@ public class EnigmaEngine implements Engine {
     }
 
     /**
-     * get new config from user and updating the machine configuration.
+     * prepares the new configuration from user, to be in the right format for the machine.
+     * then, updates the machine's configuration.
      *
-     * @param rotorsIDs   list of integers
-     * @param windows     string of characters
-     * @param reflectorID integer
-     * @param plugs       string of plugs
-     * @return dto status
+     * @param rotorsIDs   a String that represents a list of the wanted rotor's id's, sorted to the wanted order
+     * @param windows     String of characters that represents the window characters for each wanted rotor
+     * @param reflectorID the id of the wanted reflector, as an integer
+     * @param plugs       String that represents plugs, with no spaces or separators
+     * @return DTOstatus object that represents the status of the operation
      */
     @Override
     public DTOstatus selectConfigurationManual(String rotorsIDs, String windows, int reflectorID, String plugs) {
         boolean isSucceed = true;
         Problem details = Problem.NO_PROBLEM;
 
-        // convert rotors from string to list of Integers here because problem with user
-        // and not with random generating so only this function get effected.
+        // converts rotors from a String to list of Integers,
+        // because problems can happen only from user and not with random generating,
+        // so only this function gets effected.
 
         List<Integer> rotorsIDList = new ArrayList<>();
 
@@ -483,25 +495,26 @@ public class EnigmaEngine implements Engine {
 
             rotorsIDList.add(Integer.parseInt(arrayOfStringRotorsIds[i]));
         }
-        // here we have listOf integers representing rotors ids
+        // here we have a list of integers representing rotors ids
 
         StringBuilder reversedWindows = new StringBuilder();
 
         for (int i = windows.length() - 1; i >= 0; i--) {
             reversedWindows.append(windows.charAt(i));
         }
-
-
         // here we have String of window characters representing rotor's position according to the window.
+
+
         updateConfiguration(rotorsIDList, reversedWindows.toString(), reflectorID, plugs);
 
         return new DTOstatus(isSucceed, details);
     }
 
     /**
-     * get new config randomly and updating the machine config.
+     * randomizes a new configuration.
+     * then updates the machine configuration.
      *
-     * @return DTO object
+     * @return DTOsecretConfig object representing the new configuration
      */
     @Override
     public DTOsecretConfig selectConfigurationAuto() {
@@ -579,8 +592,8 @@ public class EnigmaEngine implements Engine {
     /**
      * validates the input text from the user and calls method "cipherText" to cipher the text.
      *
-     * @param inputText string of inputted text
-     * @return DTO which has the ciphered text
+     * @param inputText string of the input text
+     * @return DTOciphertext object which has the ciphered text
      */
     @Override
     public DTOciphertext cipherInputText(String inputText) {
@@ -598,7 +611,7 @@ public class EnigmaEngine implements Engine {
             long startMeasureTime = System.nanoTime();
             outputText = cipherText(inputText);
             long timeElapsed = System.nanoTime() - startMeasureTime;
-            Pair<Pair<String, String>, Long> inputTextToOutputTextToTimeElapsed = new Pair<>( new Pair<>(inputText, outputText) , timeElapsed) ;
+            Pair<Pair<String, String>, Long> inputTextToOutputTextToTimeElapsed = new Pair<>(new Pair<>(inputText, outputText), timeElapsed);
 
             machineRecords.get(machineRecords.size() - 1).getCipherHistory().add(inputTextToOutputTextToTimeElapsed);
         }
@@ -606,6 +619,12 @@ public class EnigmaEngine implements Engine {
         return new DTOciphertext(isSucceed, problem, outputText);
     }
 
+    /**
+     * checks if all characters in a given string are in the alphabet
+     *
+     * @param inputText a String to check
+     * @return a Problem that represents the problem of the text. if valid, returns Problem.NO_PROBLEM
+     */
     private Problem isAllCharsInAlphabet(String inputText) {
         final int NOT_FOUND = -1;
 
@@ -621,7 +640,7 @@ public class EnigmaEngine implements Engine {
     /**
      * resetting the offset of each rotor in configuration of machine to its original values.
      *
-     * @return DTOResetConfig
+     * @return DTOresetConfig representing the status of the operation
      */
     @Override
     public DTOresetConfig resetConfiguration() {
@@ -641,8 +660,8 @@ public class EnigmaEngine implements Engine {
     /**
      * validates rotors input from user.
      *
-     * @param rotorsIDs list of integers
-     * @return DTO status
+     * @param rotorsIDs a String representing the rotor's id's
+     * @return DTOstatus representing the status of the operation
      */
     @Override
     public DTOstatus validateRotors(String rotorsIDs) {
@@ -708,10 +727,10 @@ public class EnigmaEngine implements Engine {
     }
 
     /**
-     * validates window characters offsets input from user.
+     * validates window characters input from user.
      *
-     * @param windowChars string of characters
-     * @return DTO-status
+     * @param windowChars string of characters representing the windows characters
+     * @return DTOstatus representing the status of the operation
      */
     @Override
     public DTOstatus validateWindowCharacters(String windowChars) {
@@ -741,18 +760,18 @@ public class EnigmaEngine implements Engine {
     /**
      * validate reflector input from the user.
      *
-     * @param reflectorID integer
-     * @return DTO status
+     * @param reflectorID the reflector's id as an integer
+     * @return DTOstatus representing the status of the operation
      */
     @Override
     public DTOstatus validateReflector(int reflectorID) {
         boolean isSucceed = true;
         Problem details = Problem.NO_PROBLEM;
 
-        if (reflectorID == -1) {
+        if (reflectorID == NOT_A_NUMBER_CODE) {
             isSucceed = false;
             details = Problem.REFLECTOR_INPUT_NOT_A_NUMBER;
-        } else if (reflectorID == -2) {
+        } else if (reflectorID == EMPTY_STR_CODE) {
             isSucceed = false;
             details = Problem.REFLECTOR_INPUT_EMPTY_STRING;
         } else {
@@ -769,8 +788,8 @@ public class EnigmaEngine implements Engine {
     /**
      * validate plugs input from the user.
      *
-     * @param plugs string of plugs..
-     * @return DTO-status
+     * @param plugs a String of plugs with no spaces of separators
+     * @return DTOstatus representing the status of the operation
      */
     @Override
     public DTOstatus validatePlugs(String plugs) {
@@ -819,6 +838,11 @@ public class EnigmaEngine implements Engine {
         return new DTOstatus(isSucceed, details);
     }
 
+    /**
+     * gets all the history and statistics of the current machine
+     *
+     * @return DTOstatistics including the statistics of the machine
+     */
     public DTOstatistics getHistoryAndStatistics() {
         boolean isSucceeded = true;
         Problem details = Problem.NO_PROBLEM;
@@ -826,17 +850,20 @@ public class EnigmaEngine implements Engine {
         return new DTOstatistics(isSucceeded, details, machineRecords);
     }
 
+    /**
+     * @return true is the machine is configured. false otherwise
+     */
     public boolean getIsMachineConfigured() {
         return machine.isConfigured();
     }
 
-    @Override
-    public String toString() {
-        return "EnigmaEngine{" +
-                "machine=" + machine +
-                '}';
-    }
-
+    /**
+     * saves the existing machine into a file.
+     *
+     * @param fileName the name of the file to save the machine in
+     * @return DTOstatus representing the status of the operation
+     * @throws IOException for a problem with the saving
+     */
     public DTOstatus saveExistingMachineToFile(String fileName) throws IOException {
         boolean isSucceed = true;
         Problem details = Problem.NO_PROBLEM;
@@ -845,7 +872,7 @@ public class EnigmaEngine implements Engine {
             details = Problem.FILE_NOT_FOUND;
             return new DTOstatus(false, details);
         }
-        // else
+        // else, tries to save to the file
         try (ObjectOutputStream out =
                      new ObjectOutputStream(
                              Files.newOutputStream(Paths.get(fileName)))) {
@@ -857,6 +884,14 @@ public class EnigmaEngine implements Engine {
         return new DTOstatus(isSucceed, details);
     }
 
+    /**
+     * loads an existing machine from a file
+     *
+     * @param fileName the name of the file to load the machine from
+     * @return DTOstatus representing the status of the operation
+     * @throws IOException            for a problem with the loading
+     * @throws ClassNotFoundException for a problem with the serialized class
+     */
     public DTOstatus loadExistingMachineFromFile(String fileName) throws IOException, ClassNotFoundException {
         boolean isSucceed = true;
         Problem details = Problem.NO_PROBLEM;
@@ -865,8 +900,7 @@ public class EnigmaEngine implements Engine {
             details = Problem.FILE_NOT_FOUND;
             return new DTOstatus(false, details);
         }
-        // else
-
+        // else, tries to load from the file
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName))) {
 
             machine = (EnigmaMachine) in.readObject();
@@ -880,5 +914,12 @@ public class EnigmaEngine implements Engine {
         }
 
         return new DTOstatus(isSucceed, details);
+    }
+
+    @Override
+    public String toString() {
+        return "EnigmaEngine{" +
+                "machine=" + machine +
+                '}';
     }
 }

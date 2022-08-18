@@ -6,6 +6,12 @@ public enum Operation {
 
     public static final int INVALID_OPERATION = 0;
 
+    /**
+     * gets the matching operation for a choice.
+     *
+     * @param choice the choice as an integer
+     * @return the Operation matching to that choice
+     */
     public static Operation getOperation(int choice) {
         Operation selectedOperation;
 
