@@ -17,8 +17,6 @@ import java.util.*;
 import statistics.StatisticRecord;
 import problem.Problem;
 
-import static machine.EnigmaMachine.advanceCipherCounter;
-import static machine.EnigmaMachine.getCipherCounter;
 import static utill.Utility.*;
 
 
@@ -85,7 +83,7 @@ public class EnigmaEngine implements Engine {
         }
 
         // increasing the cipher counter
-        advanceCipherCounter();
+        machine.advanceCipherCounter();
 
         return cipheredText.toString();
     }
@@ -449,7 +447,7 @@ public class EnigmaEngine implements Engine {
         int availableRotorsCount = machine.getAvailableRotorsLen();
         int inUseRotorsCount = machine.getRotorsCount();
         int availableReflectorsCount = machine.getAvailableReflectorsLen();
-        int cipheredTextsCount = getCipherCounter();
+        int cipheredTextsCount = machine.getCipherCounter();
 
         if (machine.isConfigured()) {
             inUseRotorsIDs = machine.getInUseRotorsIDs();

@@ -111,4 +111,14 @@ public interface Machine {
      * @return a String representing the window characters in the machine
      */
     String getCurrentWindowsCharacters();
+
+    /**
+     * increases the amount of ciphered texts that the machine has ciphered so far, by one.
+     */
+    void advanceCipherCounter();
+
+    /**
+     * @return how many ciphered texts the machine has been ciphering so far
+     */
+    int getCipherCounter();
 }

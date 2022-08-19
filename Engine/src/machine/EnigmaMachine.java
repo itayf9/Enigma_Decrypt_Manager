@@ -52,7 +52,7 @@ public class EnigmaMachine implements Serializable, Machine {
     private Reflector inUseReflector;
 
     // current text that got ciphered in the machine.
-    private static int cipherCounter = 0;
+    private int cipherCounter = 0;
 
     /**
      * Constructor of Enigma Machine
@@ -71,7 +71,7 @@ public class EnigmaMachine implements Serializable, Machine {
         this.character2index = character2index;
         this.plugBoard = new PlugBoard();
         this.inUseRotors = new ArrayList<>();
-        cipherCounter = 0;
+        this.cipherCounter = 0;
     }
 
     /**
@@ -177,7 +177,7 @@ public class EnigmaMachine implements Serializable, Machine {
     /**
      * @return how many ciphered texts the machine has been ciphering so far
      */
-    public static int getCipherCounter() {
+    public int getCipherCounter() {
         return cipherCounter;
     }
 
@@ -366,7 +366,7 @@ public class EnigmaMachine implements Serializable, Machine {
     /**
      * increases the amount of ciphered texts that the machine has ciphered so far, by one.
      */
-    public static void advanceCipherCounter() {
+    public void advanceCipherCounter() {
         cipherCounter++;
     }
 

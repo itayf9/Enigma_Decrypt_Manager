@@ -19,7 +19,7 @@ public class Console {
     private static final String MSG_PLEASE_CONFIG_BEFORE_CIPHER = "Please enter configuration, before ciphering some text.";
     private static final String MSG_PLEASE_LOAD_MACHINE_AND_CONFIG_BEFORE_CIPHER = "Please load machine from file, and enter configuration\n  before ciphering some text.";
     private static final String MSG_PLEASE_CONFIG_BEFORE_RESET = "Please enter configuration, before resetting it.";
-    private static final String MSG_PLEASE_LOAD_MACHINE_AND_CONFIG_BEFORE_RESET = "Please load machine from file, and enter configuration \before resetting it.";
+    private static final String MSG_PLEASE_LOAD_MACHINE_AND_CONFIG_BEFORE_RESET = "Please load machine from file, and enter configuration\n  before resetting it.";
     private static final String MSG_PLEASE_LOAD_MACHINE_BEFORE_STATS = "Please load machine from a file before checking for statistics.";
 
     public static void main(String[] args) {
