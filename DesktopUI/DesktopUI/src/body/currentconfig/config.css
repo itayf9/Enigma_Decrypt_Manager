@@ -1,0 +1,26 @@
+.config-title {
+    -fx-text-fill: #0095ff;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+}
+
+.config-label {
+    -fx-font-size: 18px;
+
+}
+
+.config-label#rotors {
+    -fx-text-fill: #c72323;
+}
+
+.config-label#windows-characters {
+    -fx-text-fill: #8000a8;
+}
+
+.config-label#reflector {
+    -fx-text-fill: #003a9a;
+}
+
+.config-label#plugs {
+    -fx-text-fill: #de9c00;
+}

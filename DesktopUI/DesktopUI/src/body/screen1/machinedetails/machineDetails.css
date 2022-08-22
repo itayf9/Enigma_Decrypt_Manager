@@ -1,0 +1,18 @@
+.details-title {
+    -fx-text-fill: #0095ff;;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+}
+
+.property-label {
+    -fx-font-size: 15px;
+}
+
+.value-text {
+    -fx-font-size: 30px;
+}
+
+.value-shape {
+    -fx-fill: #0095ff;
+    -fx-stroke: #0038b9;
+}

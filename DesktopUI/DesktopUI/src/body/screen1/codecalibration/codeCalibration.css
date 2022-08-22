@@ -1,0 +1,11 @@
+.btn {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-color: #50c550;
+}
+
+.code-calibration-title{
+    -fx-text-fill: #0095ff;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+}
