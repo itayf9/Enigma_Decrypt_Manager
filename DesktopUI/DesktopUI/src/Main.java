@@ -15,7 +15,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("The Enigma Machine");
 
-        Parent load = FXMLLoader.load(getClass().getResource("body/screen1/codecalibration/codeCalibration.fxml"));
+        Parent load = FXMLLoader.load(getClass().getResource("app.fxml"));
         Scene scene = new Scene(load, 600, 400);
         primaryStage.setScene(scene);
         primaryStage.show();

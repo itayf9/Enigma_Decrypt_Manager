@@ -6,7 +6,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
-public class ConfigController {
+public class CodeCalibrationController {
 
     @FXML
     private TextField rotorsInput;
