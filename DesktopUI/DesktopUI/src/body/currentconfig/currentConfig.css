@@ -24,3 +24,7 @@
 .config-label#plugs {
     -fx-text-fill: #de9c00;
 }
+
+.config-label#noConfigMsg {
+    -fx-text-fill: black;
+}

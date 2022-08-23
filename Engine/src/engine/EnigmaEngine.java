@@ -209,8 +209,7 @@ public class EnigmaEngine implements Engine {
                 } else {
                     if (rotorRightMappingFlags.get(abc.indexOf(currentPosition.getRight().toUpperCase().charAt(0)))) {
                         return Problem.FILE_ROTOR_MAPPING_DUPPLICATION;
-                    }
-                    else if (rotorLeftMappingFlags.get(abc.indexOf(currentPosition.getLeft().toUpperCase().charAt(0)))) {
+                    } else if (rotorLeftMappingFlags.get(abc.indexOf(currentPosition.getLeft().toUpperCase().charAt(0)))) {
                         return Problem.FILE_ROTOR_MAPPING_DUPPLICATION;
                     } else {
                         rotorRightMappingFlags.set(abc.indexOf(currentPosition.getRight().toUpperCase().charAt(0)), true);
@@ -244,11 +243,9 @@ public class EnigmaEngine implements Engine {
             // fill reflectorID flag list
             if (currentID == NOT_VALID_ROMAN_TO_DECIMAL) {
                 return Problem.FILE_REFLECTOR_OUT_OF_RANGE_ID;
-            }
-            else if (reflectorIDFlags.get(currentID - 1)) {
+            } else if (reflectorIDFlags.get(currentID - 1)) {
                 return Problem.FILE_REFLECTOR_ID_DUPLICATIONS;
-            }
-            else {
+            } else {
                 reflectorIDFlags.set(currentID - 1, true);
             }
 
@@ -269,22 +266,21 @@ public class EnigmaEngine implements Engine {
 
             // check for duplicate mapping in each reflector
             for (CTEReflect cteReflectPair : cteReflectPairs) {
-            try {
-                // run through all input if true then duplicate found
-                if (reflectorMappingFlags.get(cteReflectPair.getInput() - 1)) {
-                    return Problem.FILE_REFLECTOR_MAPPING_DUPPLICATION;
-                } // run through all output if true then duplicate found
-                else if (reflectorMappingFlags.get(cteReflectPair.getOutput() - 1)) {
-                    return Problem.FILE_REFLECTOR_MAPPING_DUPPLICATION;
+                try {
+                    // run through all input if true then duplicate found
+                    if (reflectorMappingFlags.get(cteReflectPair.getInput() - 1)) {
+                        return Problem.FILE_REFLECTOR_MAPPING_DUPPLICATION;
+                    } // run through all output if true then duplicate found
+                    else if (reflectorMappingFlags.get(cteReflectPair.getOutput() - 1)) {
+                        return Problem.FILE_REFLECTOR_MAPPING_DUPPLICATION;
+                    } else {
+                        // if false then set true
+                        reflectorMappingFlags.set(cteReflectPair.getInput() - 1, true);
+                        reflectorMappingFlags.set(cteReflectPair.getOutput() - 1, true);
+                    }
+                } catch (IndexOutOfBoundsException e) {
+                    return Problem.FILE_REFLECTOR_MAPPING_NOT_IN_ALPHABET;
                 }
-                else {
-                    // if false then set true
-                    reflectorMappingFlags.set(cteReflectPair.getInput() - 1, true);
-                    reflectorMappingFlags.set(cteReflectPair.getOutput() - 1, true);
-                }
-            } catch (IndexOutOfBoundsException e) {
-                return Problem.FILE_REFLECTOR_MAPPING_NOT_IN_ALPHABET;
-            }
 
             }
 
@@ -504,10 +500,11 @@ public class EnigmaEngine implements Engine {
         }
         // here we have String of window characters representing rotor's position according to the window.
 
-
         updateConfiguration(rotorsIDList, reversedWindows.toString(), reflectorID, plugs);
 
-        return new DTOstatus(isSucceed, details);
+        List<Integer> notchPositions = machine.getOriginalNotchPositions();
+
+        return new DTOsecretConfig(isSucceed, details, rotorsIDList, windows, decimalToRoman(reflectorID), plugs, notchPositions);
     }
 
     /**
