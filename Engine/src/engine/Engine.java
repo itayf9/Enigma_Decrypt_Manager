@@ -1,3 +1,5 @@
+package engine;
+
 import dto.*;
 
 import java.io.IOException;
@@ -35,7 +37,7 @@ public interface Engine {
      * @param plugs       String that represents plugs, with no spaces or separators
      * @return DTOstatus object that represents the status of the operation
      */
-    DTOstatus selectConfigurationManual(String rotorsIDs, String windows, int reflectorID, String plugs);
+    DTOsecretConfig selectConfigurationManual(String rotorsIDs, String windows, int reflectorID, String plugs);
 
     /**
      * randomizes a new configuration.

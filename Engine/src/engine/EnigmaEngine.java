@@ -1,3 +1,5 @@
+package engine;
+
 import javafx.util.Pair;
 import machine.Machine;
 import machine.component.Reflector;
@@ -477,7 +479,7 @@ public class EnigmaEngine implements Engine {
      * @return DTOstatus object that represents the status of the operation
      */
     @Override
-    public DTOstatus selectConfigurationManual(String rotorsIDs, String windows, int reflectorID, String plugs) {
+    public DTOsecretConfig selectConfigurationManual(String rotorsIDs, String windows, int reflectorID, String plugs) {
         boolean isSucceed = true;
         Problem details = Problem.NO_PROBLEM;
 
@@ -916,7 +918,7 @@ public class EnigmaEngine implements Engine {
 
     @Override
     public String toString() {
-        return "EnigmaEngine{" +
+        return "engine.EnigmaEngine{" +
                 "machine=" + machine +
                 '}';
     }

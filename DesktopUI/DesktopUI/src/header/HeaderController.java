@@ -1,5 +1,6 @@
 package header;
 
+import app.MainController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -13,6 +14,8 @@ public class HeaderController {
 
     FileChooser fileChooser = new FileChooser();
 
+    private MainController mainController;
+
     @FXML
     private Button buttonLoadMachine;
 
@@ -20,11 +23,16 @@ public class HeaderController {
     private TextField textFieldLoadMachine;
 
     @FXML
-    void loadMachineFile(MouseEvent event) {
+    private void loadMachineFile(MouseEvent event) {
         fileChooser.setTitle("Load Machine");
-        File selectedMachineFile = fileChooser.showOpenDialog(new Stage());
-        
-        textFieldLoadMachine.setText(selectedMachineFile.getPath());
+        // String selectedMachineFile = fileChooser.showOpenDialog(new Stage()).getPath();
+
+        //textFieldLoadMachine.setText(selectedMachineFile);
+        mainController.loadMachineFromFile("selectedMachineFile");
+    }
+
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
     }
 
 }
