@@ -9,7 +9,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 public class EncryptDecryptController {
-    
+
     BodyController parentController;
 
     @FXML
@@ -23,8 +23,16 @@ public class EncryptDecryptController {
 
     @FXML
     void CipherCharacter(KeyEvent event) {
-        String cipheredChar = parentController.cipherCharacter(event.getCharacter());
-        outputLabel.setText(outputLabel.getText() + cipheredChar);
+        DTOciphertext cipheredCharStatus = parentController.cipherCharacter(event.getCharacter().toUpperCase());
+        if (!cipheredCharStatus.isSucceed()) {
+            inputTextField.getStyleClass().add("invalid-input");
+            cipherProblemLabel.getStyleClass().add("problem-details-label");
+            cipherProblemLabel.setText(cipheredCharStatus.getDetails().name());
+        } else {
+            outputLabel.setText(outputLabel.getText() + cipheredCharStatus.getCipheredText());
+            cipherProblemLabel.setText("");
+        }
+
     }
 
     @FXML

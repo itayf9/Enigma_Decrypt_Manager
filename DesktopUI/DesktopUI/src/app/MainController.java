@@ -35,7 +35,7 @@ public class MainController {
     }
 
     /**
-     * Q1 Load the machine
+     * Q1 + Q2 Load the machine
      *
      * @param selectedMachineFile fileName
      */
@@ -122,7 +122,13 @@ public class MainController {
         }
     }
 
-    public String cipherChar(String character) {
+    /**
+     * Q5 cipher character
+     *
+     * @param character String that contains one character
+     * @return ciphered Character
+     */
+    public DTOciphertext cipherChar(String character) {
         DTOciphertext cipheredTextStatus = engine.cipherInputText(character);
         return cipheredTextStatus;
     }

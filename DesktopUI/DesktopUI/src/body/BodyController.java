@@ -5,6 +5,7 @@ import body.currentconfig.CurrentConfigController;
 import body.screen1.codecalibration.CodeCalibrationController;
 import body.screen1.machinedetails.MachineDetailsController;
 import body.screen2.encrypt.EncryptDecryptController;
+import dto.DTOciphertext;
 import dto.DTOsecretConfig;
 import dto.DTOspecs;
 import dto.DTOstatus;
@@ -87,7 +88,7 @@ public class BodyController {
         mainController.setManualMachineConfig(rotors, windwos, reflector, plugs);
     }
 
-    public String cipherCharacter(String character) {
+    public DTOciphertext cipherCharacter(String character) {
         return mainController.cipherChar(character);
     }
 
