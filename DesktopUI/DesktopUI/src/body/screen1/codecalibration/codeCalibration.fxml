@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
 <GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="350.0" stylesheets="@codeCalibration.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.screen1.codecalibration.CodeCalibrationController">
     <columnConstraints>
         <ColumnConstraints hgrow="NEVER" maxWidth="112.0" minWidth="10.0" prefWidth="112.0" />
@@ -32,26 +31,26 @@
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <Button mnemonicParsing="false" onMouseClicked="#randomMachineConfig" prefHeight="25.0" prefWidth="94.0" styleClass="btn" text="Random" GridPane.halignment="CENTER" GridPane.rowIndex="9">
+        <Button fx:id="randomCalibrationButton" disable="true" mnemonicParsing="false" onMouseClicked="#randomMachineConfig" prefHeight="25.0" prefWidth="94.0" styleClass="btn" text="Random" GridPane.halignment="CENTER" GridPane.rowIndex="9">
             <GridPane.margin>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </GridPane.margin>
         </Button>
-        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#setMachineConfig" prefHeight="34.0" prefWidth="79.0" styleClass="btn" text="Set!" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="9">
+        <Button fx:id="setCalibrationButton" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#setMachineConfig" prefHeight="34.0" prefWidth="79.0" styleClass="btn" text="Set!" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="9">
             <GridPane.margin>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </GridPane.margin>
         </Button>
         <Label styleClass="rotors-label" text="Rotors:" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
-        <TextField fx:id="rotorsInput" prefHeight="25.0" prefWidth="199.0" promptText="e.g - 1,2,3" styleClass="input-text-field" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1" />
+        <TextField fx:id="rotorsInput" disable="true" prefHeight="25.0" prefWidth="199.0" promptText="e.g - 1,2,3" styleClass="input-text-field" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1" />
         <Label styleClass="window-label" text="Window Characters:" GridPane.halignment="LEFT" GridPane.rowIndex="3" />
-        <TextField fx:id="windowsCharsInput" prefHeight="25.0" prefWidth="76.0" promptText="e.g - ABC" styleClass="input-text-field" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="3" />
+        <TextField fx:id="windowsCharsInput" disable="true" prefHeight="25.0" prefWidth="76.0" promptText="e.g - ABC" styleClass="input-text-field" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="3" />
         <Label styleClass="reflector-label" text="Reflector:" GridPane.halignment="LEFT" GridPane.rowIndex="5" />
         <Label styleClass="Plugs-label" text="Plugs:" GridPane.halignment="LEFT" GridPane.rowIndex="7" />
-        <TextField fx:id="plugsInput" prefHeight="25.0" prefWidth="76.0" promptText="e.g - ABCD" styleClass="input-text-field" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="7" />
+        <TextField fx:id="plugsInput" disable="true" prefHeight="25.0" prefWidth="76.0" promptText="e.g - ABCD" styleClass="input-text-field" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="7" />
         <HBox fx:id="reflectorBox" alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="5">
             <children>
-                <RadioButton mnemonicParsing="false" prefHeight="50.0" prefWidth="30.0" text="I">
+                <RadioButton disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="30.0" text="I">
                     <HBox.margin>
                         <Insets right="10.0" />
                     </HBox.margin>
@@ -59,22 +58,22 @@
                         <ToggleGroup fx:id="reflector" />
                     </toggleGroup>
                 </RadioButton>
-                <RadioButton mnemonicParsing="false" prefHeight="50.0" prefWidth="30.0" text="II" toggleGroup="$reflector">
+                <RadioButton disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="30.0" text="II" toggleGroup="$reflector">
                     <HBox.margin>
                         <Insets right="10.0" />
                     </HBox.margin>
                 </RadioButton>
-                <RadioButton mnemonicParsing="false" prefHeight="50.0" prefWidth="30.0" text="III" toggleGroup="$reflector">
+                <RadioButton disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="30.0" text="III" toggleGroup="$reflector">
                     <HBox.margin>
                         <Insets right="10.0" />
                     </HBox.margin>
                 </RadioButton>
-                <RadioButton mnemonicParsing="false" prefHeight="50.0" prefWidth="30.0" text="IV" toggleGroup="$reflector">
+                <RadioButton disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="30.0" text="IV" toggleGroup="$reflector">
                     <HBox.margin>
                         <Insets right="10.0" />
                     </HBox.margin>
                 </RadioButton>
-                <RadioButton mnemonicParsing="false" prefHeight="50.0" prefWidth="30.0" text="V" toggleGroup="$reflector">
+                <RadioButton disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="30.0" text="V" toggleGroup="$reflector">
                     <HBox.margin>
                         <Insets right="10.0" />
                     </HBox.margin>

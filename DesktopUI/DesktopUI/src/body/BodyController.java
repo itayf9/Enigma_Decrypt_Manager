@@ -90,4 +90,8 @@ public class BodyController {
     public String cipherCharacter(String character) {
         return mainController.cipherChar(character);
     }
+
+    public void setAllowCodeCalibration(boolean isAllow) {
+        codeCalibrationController.selAllowCodeCalibration(isAllow);
+    }
 }

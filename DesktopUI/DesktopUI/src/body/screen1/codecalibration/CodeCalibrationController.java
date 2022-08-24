@@ -18,6 +18,12 @@ public class CodeCalibrationController {
     BodyController parentController;
 
     @FXML
+    private Button randomCalibrationButton;
+
+    @FXML
+    private Button setCalibrationButton;
+
+    @FXML
     private TextField rotorsInput;
 
     @FXML
@@ -149,5 +155,19 @@ public class CodeCalibrationController {
 
     public void setParentController(BodyController parentController) {
         this.parentController = parentController;
+    }
+
+    public void selAllowCodeCalibration(boolean isAllow) {
+
+        rotorsInput.setDisable(!isAllow);
+        windowsCharsInput.setDisable(!isAllow);
+        reflector.getToggles().forEach((Toggle t) -> {
+            RadioButton r = (RadioButton) t;
+            r.setDisable(!isAllow);
+        });
+        plugsInput.setDisable(!isAllow);
+        randomCalibrationButton.setDisable(!isAllow);
+        setCalibrationButton.setDisable(!isAllow);
+
     }
 }

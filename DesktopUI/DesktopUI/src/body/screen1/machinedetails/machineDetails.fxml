@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Rectangle?>
 
-
 <GridPane hgap="3.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0" prefWidth="596.0" stylesheets="@machineDetails.css" vgap="5.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.screen1.machinedetails.MachineDetailsController">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -31,7 +30,7 @@
       <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="2">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="60.0" stroke="BLACK" strokeType="INSIDE" styleClass="value-shape" width="60.0" />
-            <Label fx:id="usedRotors" alignment="CENTER" prefHeight="60.0" prefWidth="60.0" styleClass="value-text" text="1">
+            <Label fx:id="usedRotors" alignment="CENTER" prefHeight="60.0" prefWidth="60.0" styleClass="value-text" text="-">
                <padding>
                   <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                </padding>
@@ -41,19 +40,19 @@
       <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="60.0" stroke="BLACK" strokeType="INSIDE" styleClass="value-shape" width="60.0" />
-            <Label fx:id="availableRotors" alignment="CENTER" prefHeight="60.0" prefWidth="60.0" styleClass="value-text" text="1" />
+            <Label fx:id="availableRotors" alignment="CENTER" prefHeight="60.0" prefWidth="60.0" styleClass="value-text" text="-" />
          </children>
       </StackPane>
       <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="60.0" stroke="BLACK" strokeType="INSIDE" styleClass="value-shape" width="60.0" />
-            <Label fx:id="availableReflectors" alignment="CENTER" prefHeight="60.0" prefWidth="60.0" styleClass="value-text" text="1" />
+            <Label fx:id="availableReflectors" alignment="CENTER" prefHeight="60.0" prefWidth="60.0" styleClass="value-text" text="-" />
          </children>
       </StackPane>
       <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="60.0" stroke="BLACK" strokeType="INSIDE" styleClass="value-shape" width="60.0" />
-            <Label fx:id="cipheredTextCount" alignment="CENTER" prefHeight="60.0" prefWidth="60.0" styleClass="value-text" text="1" />
+            <Label fx:id="cipheredTextCount" alignment="CENTER" prefHeight="60.0" prefWidth="60.0" styleClass="value-text" text="-" />
          </children>
       </StackPane>
       <Label styleClass="property-label" text="Number Of Texts Ciphered So Far:" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.valignment="TOP" />

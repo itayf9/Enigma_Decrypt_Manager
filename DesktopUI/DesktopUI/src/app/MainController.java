@@ -47,6 +47,7 @@ public class MainController {
         } else {
             // create success msg
             DTOspecs specsStatus = engine.displayMachineSpecifications();
+            bodyController.setAllowCodeCalibration(true);
             if (!specsStatus.isSucceed()) {
                 // mashu
             } else {
