@@ -20,7 +20,7 @@ public class EncryptDecryptController {
     @FXML
     void CipherCharacter(KeyEvent event) {
         String cipheredChar = parentController.cipherCharacter(event.getCharacter());
-        outputLabel.setText(cipheredChar);
+        outputLabel.setText(outputLabel.getText() + cipheredChar);
     }
 
     @FXML

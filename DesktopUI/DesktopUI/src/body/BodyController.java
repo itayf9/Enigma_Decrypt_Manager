@@ -4,11 +4,13 @@ import app.MainController;
 import body.currentconfig.CurrentConfigController;
 import body.screen1.codecalibration.CodeCalibrationController;
 import body.screen1.machinedetails.MachineDetailsController;
+import body.screen2.encrypt.EncryptDecryptController;
 import dto.DTOsecretConfig;
 import dto.DTOspecs;
 import dto.DTOstatus;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
 public class BodyController {
@@ -33,10 +35,17 @@ public class BodyController {
     @FXML
     private CurrentConfigController currentConfigController;
 
+    @FXML
+    private AnchorPane encryptDecrypt;
+
+    @FXML
+    private EncryptDecryptController encryptDecryptController;
+
     public void setChildrenControllers() {
         codeCalibrationController.setParentController(this);
         machineDetailsController.setParentController(this);
         currentConfigController.setParentController(this);
+        encryptDecryptController.setParentController(this);
     }
 
     public void setMainController(MainController mainController) {

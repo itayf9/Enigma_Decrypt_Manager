@@ -25,7 +25,14 @@
                </content>
             </ScrollPane>
          </content></Tab>
-    <Tab text="Encrypt / Decrypt" />
+    <Tab text="Encrypt / Decrypt">
+         <content>
+            <ScrollPane prefHeight="200.0" prefWidth="200.0">
+               <content>
+                  <fx:include fx:id="encryptDecrypt" source="screen2/encrypt/encrypt-decrypt.fxml" />
+               </content>
+            </ScrollPane>
+         </content></Tab>
       <Tab text="Brute Force" />
   </tabs>
 </TabPane>
