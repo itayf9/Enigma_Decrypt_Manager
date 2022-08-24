@@ -12,6 +12,7 @@
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="319.0" minWidth="10.0" prefWidth="295.0" />
       <ColumnConstraints />
+      <ColumnConstraints />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints maxHeight="170.33331298828125" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
@@ -19,9 +20,9 @@
    </rowConstraints>
    <children>
       <Label prefHeight="27.0" styleClass="config-title" text="Current Machine Configuration:" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-      <ScrollPane maxWidth="1.7976931348623157E308" prefHeight="137.0" prefWidth="311.0" GridPane.columnSpan="3" GridPane.rowIndex="1">
+      <ScrollPane maxWidth="1.7976931348623157E308" prefHeight="137.0" GridPane.columnSpan="3" GridPane.rowIndex="1">
          <content>
-            <FlowPane maxWidth="1.7976931348623157E308" orientation="VERTICAL" prefHeight="133.0" prefWidth="307.0" prefWrapLength="200.0">
+            <FlowPane maxWidth="1.7976931348623157E308" orientation="VERTICAL" prefHeight="133.0" prefWrapLength="200.0">
                <children>
                   <Label id="rotors" fx:id="rotors" styleClass="config-label" stylesheets="@currentConfig.css" text="&lt;3,4,2&gt;" />
                   <Label id="windows-characters" fx:id="windows" styleClass="config-label" stylesheets="@currentConfig.css" text="&lt;BGF&gt;" />

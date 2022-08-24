@@ -47,12 +47,8 @@ public class MainController {
         } else {
             // create success msg
             DTOspecs specsStatus = engine.displayMachineSpecifications();
+            bodyController.displayMachineSpecs(specsStatus);
             bodyController.setAllowCodeCalibration(true);
-            if (!specsStatus.isSucceed()) {
-                // mashu
-            } else {
-                bodyController.displayMachineSpecs(specsStatus);
-            }
         }
     }
 
@@ -128,6 +124,6 @@ public class MainController {
 
     public String cipherChar(String character) {
         DTOciphertext cipheredTextStatus = engine.cipherInputText(character);
-        return cipheredTextStatus.getCipheredText();
+        return cipheredTextStatus;
     }
 }

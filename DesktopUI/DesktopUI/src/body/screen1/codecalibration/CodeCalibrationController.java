@@ -36,7 +36,7 @@ public class CodeCalibrationController {
     private HBox reflectorBox;
 
     @FXML
-    private ToggleGroup reflector;
+    private ToggleGroup reflectorToggles;
 
     @FXML
     private Label problemLabelPlugs;
@@ -91,7 +91,7 @@ public class CodeCalibrationController {
     }
 
     DTOstatus validateReflectorInput() {
-        RadioButton currentReflector = (RadioButton) reflector.getSelectedToggle();
+        RadioButton currentReflector = (RadioButton) reflectorToggles.getSelectedToggle();
         if (currentReflector == null) {
             problemLabelReflector.setText(Problem.NO_REFLECTOR_BEEN_CHOSEN.name());
             return new DTOstatus(false, Problem.NO_REFLECTOR_BEEN_CHOSEN);
@@ -148,7 +148,7 @@ public class CodeCalibrationController {
                 rflcStatus.isSucceed();
 
         if (isValid) {
-            RadioButton currentReflector = (RadioButton) reflector.getSelectedToggle();
+            RadioButton currentReflector = (RadioButton) reflectorToggles.getSelectedToggle();
             parentController.setManualMachineConfig(rotorsInput.getText(), windowsCharsInput.getText().toUpperCase(), romanToDecimal(currentReflector.getText()), plugsInput.getText().toUpperCase());
         }
     }
@@ -161,7 +161,7 @@ public class CodeCalibrationController {
 
         rotorsInput.setDisable(!isAllow);
         windowsCharsInput.setDisable(!isAllow);
-        reflector.getToggles().forEach((Toggle t) -> {
+        reflectorToggles.getToggles().forEach((Toggle t) -> {
             RadioButton r = (RadioButton) t;
             r.setDisable(!isAllow);
         });

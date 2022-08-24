@@ -29,7 +29,14 @@
          <content>
             <ScrollPane prefHeight="200.0" prefWidth="200.0">
                <content>
-                  <fx:include fx:id="encryptDecrypt" source="screen2/encrypt/encrypt-decrypt.fxml" />
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <fx:include fx:id="encryptDecrypt" source="screen2/encrypt/encrypt-decrypt.fxml" />
+                     </center>
+                     <top>
+                        <fx:include maxHeight="-Infinity" maxWidth="-Infinity" minHeight="150.0" minWidth="500.0" prefHeight="100.0" prefWidth="500.0" source="currentconfig/currentConfig.fxml" />
+                     </top>
+                  </BorderPane>
                </content>
             </ScrollPane>
          </content></Tab>

@@ -1,6 +1,7 @@
 package body.screen2.encrypt;
 
 import body.BodyController;
+import dto.DTOciphertext;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -16,6 +17,9 @@ public class EncryptDecryptController {
 
     @FXML
     private TextField inputTextField;
+
+    @FXML
+    private Label cipherProblemLabel;
 
     @FXML
     void CipherCharacter(KeyEvent event) {

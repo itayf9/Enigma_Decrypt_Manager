@@ -54,26 +54,26 @@
                     <HBox.margin>
                         <Insets right="10.0" />
                     </HBox.margin>
-                    <toggleGroup>
-                        <ToggleGroup fx:id="reflector" />
-                    </toggleGroup>
+               <toggleGroup>
+                  <ToggleGroup fx:id="reflectorToggles" />
+               </toggleGroup>
                 </RadioButton>
-                <RadioButton disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="30.0" text="II" toggleGroup="$reflector">
+                <RadioButton disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="30.0" text="II" toggleGroup="$reflectorToggles">
                     <HBox.margin>
                         <Insets right="10.0" />
                     </HBox.margin>
                 </RadioButton>
-                <RadioButton disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="30.0" text="III" toggleGroup="$reflector">
+                <RadioButton disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="30.0" text="III" toggleGroup="$reflectorToggles">
                     <HBox.margin>
                         <Insets right="10.0" />
                     </HBox.margin>
                 </RadioButton>
-                <RadioButton disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="30.0" text="IV" toggleGroup="$reflector">
+                <RadioButton disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="30.0" text="IV" toggleGroup="$reflectorToggles">
                     <HBox.margin>
                         <Insets right="10.0" />
                     </HBox.margin>
                 </RadioButton>
-                <RadioButton disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="30.0" text="V" toggleGroup="$reflector">
+                <RadioButton disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="30.0" text="V" toggleGroup="$reflectorToggles">
                     <HBox.margin>
                         <Insets right="10.0" />
                     </HBox.margin>

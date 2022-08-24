@@ -2,30 +2,41 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.screen2.encrypt.EncryptDecryptController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.screen2.encrypt.EncryptDecryptController">
    <children>
       <Label layoutX="11.0" layoutY="14.0" text="Enter Text:" />
       <Label layoutX="282.0" layoutY="14.0" prefHeight="17.0" prefWidth="76.0" text="Ciphered Text:" />
       <Button layoutX="544.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#ResetConfiguration" prefHeight="71.0" prefWidth="82.0" text="Reset" />
-      <Label fx:id="outputLabel" layoutX="378.0" layoutY="14.0" text="cipher" />
-      <TextField fx:id="inputTextField" layoutX="74.0" layoutY="10.0" onKeyTyped="#CipherCharacter" prefHeight="30.0" prefWidth="201.0" />
+      <ScrollPane layoutX="282.0" layoutY="50.0" prefHeight="0.0" prefWidth="242.0">
+         <content>
+            <Label fx:id="outputLabel" text="cipher">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </content>
+      </ScrollPane>
+      <TextField fx:id="inputTextField" layoutX="11.0" layoutY="52.0" onKeyTyped="#CipherCharacter" prefHeight="29.0" prefWidth="201.0" />
       <Button layoutX="544.0" layoutY="100.0" mnemonicParsing="false" onMouseClicked="#clearCurrentCipher" prefHeight="77.0" prefWidth="82.0" text="Clear" />
-      <StackPane layoutX="20.0" layoutY="186.0">
+      <StackPane layoutX="19.0" layoutY="194.0" prefHeight="200.0" prefWidth="618.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffc4c4" height="200.0" stroke="BLACK" strokeType="INSIDE" width="617.0" />
-            <FlowPane prefHeight="200.0" prefWidth="600.0">
+            <FlowPane prefHeight="200.0" prefWidth="533.0">
                <children>
                   <Circle fill="DODGERBLUE" radius="23.0" stroke="BLACK" strokeType="INSIDE" />
                </children>
             </FlowPane>
          </children>
       </StackPane>
+      <Label fx:id="cipherProblemLabel" layoutX="14.0" layoutY="85.0" styleClass="problem-details-label" text="error" />
    </children>
 </AnchorPane>
