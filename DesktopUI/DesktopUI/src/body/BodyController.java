@@ -77,4 +77,8 @@ public class BodyController {
     public void setManualMachineConfig(String rotors, String windwos, int reflector, String plugs) {
         mainController.setManualMachineConfig(rotors, windwos, reflector, plugs);
     }
+
+    public String cipherCharacter(String character) {
+        return mainController.cipherChar(character);
+    }
 }

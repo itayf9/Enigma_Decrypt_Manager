@@ -1,6 +1,7 @@
 package app;
 
 import body.BodyController;
+import dto.DTOciphertext;
 import dto.DTOsecretConfig;
 import dto.DTOspecs;
 import dto.DTOstatus;
@@ -122,5 +123,10 @@ public class MainController {
         } else {
             bodyController.displayCurrentConfig(configStatus);
         }
+    }
+
+    public String cipherChar(String character) {
+        DTOciphertext cipheredTextStatus = engine.cipherInputText(character);
+        return cipheredTextStatus.getCipheredText();
     }
 }
