@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ConsoleUI/ConsoleUI.iml" filepath="$PROJECT_DIR$/ConsoleUI/ConsoleUI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Cracking_the_Enigma_Machine.iml" filepath="$PROJECT_DIR$/.idea/Cracking_the_Enigma_Machine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DTO/DTO.iml" filepath="$PROJECT_DIR$/DTO/DTO.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DesktopUI/DesktopUI.iml" filepath="$PROJECT_DIR$/DesktopUI/DesktopUI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Engine/Engine.iml" filepath="$PROJECT_DIR$/Engine/Engine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EnigmaUtillity/EnigmaUtillity.iml" filepath="$PROJECT_DIR$/EnigmaUtillity/EnigmaUtillity.iml" />
+    </modules>
+  </component>
+</project>

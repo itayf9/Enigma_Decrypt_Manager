@@ -132,4 +132,11 @@ public class MainController {
         DTOciphertext cipheredTextStatus = engine.cipherInputText(character);
         return cipheredTextStatus;
     }
+
+    /**
+     * Q6 reset configuration
+     */
+    public void resetMachineConfiguration() {
+        engine.resetConfiguration();
+    }
 }

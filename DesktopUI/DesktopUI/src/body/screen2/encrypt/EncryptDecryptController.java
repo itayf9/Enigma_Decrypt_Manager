@@ -21,6 +21,10 @@ public class EncryptDecryptController {
     @FXML
     private Label cipherProblemLabel;
 
+    /**
+     * Q5 -> going up the chain to parent controller
+     * @param event key press
+     */
     @FXML
     void CipherCharacter(KeyEvent event) {
         DTOciphertext cipheredCharStatus = parentController.cipherCharacter(event.getCharacter().toUpperCase());
@@ -35,11 +39,19 @@ public class EncryptDecryptController {
 
     }
 
+    /**
+     * Q6 -> going up the chain to parent controller
+     * @param event button event
+     */
     @FXML
     void ResetConfiguration(MouseEvent event) {
-
+        parentController.resetMachineConfiguration();
     }
 
+    /**
+     * clear the textBox
+     * @param event button event
+     */
     @FXML
     void clearCurrentCipher(MouseEvent event) {
         inputTextField.setText("");

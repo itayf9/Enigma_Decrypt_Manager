@@ -10,7 +10,6 @@ import dto.DTOsecretConfig;
 import dto.DTOspecs;
 import dto.DTOstatus;
 import javafx.fxml.FXML;
-import javafx.scene.control.RadioButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
@@ -42,6 +41,9 @@ public class BodyController {
     @FXML
     private EncryptDecryptController encryptDecryptController;
 
+    /**
+     * init controllers
+     */
     public void setChildrenControllers() {
         codeCalibrationController.setParentController(this);
         machineDetailsController.setParentController(this);
@@ -49,50 +51,107 @@ public class BodyController {
         encryptDecryptController.setParentController(this);
     }
 
+    /**
+     * set Parent Controller
+     * @param mainController the Parent Controller
+     */
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
 
-
+    /**
+     * Q2 display machine specifications
+     * @param specsStatus DTO contains machine specs
+     */
     public void displayMachineSpecs(DTOspecs specsStatus) {
         setChildrenControllers();
         machineDetailsController.displayMachineDetails(specsStatus);
         currentConfigController.displayCurrentConfig();
     }
 
+    /**
+     * Q4 -> going up the chain to the main controller.
+     */
     public void setRandomMachineConfig() {
         mainController.setRandomMachineConfig();
     }
 
+    /**
+     * display the current configuration
+     * @param configStatus the current configuration DTO
+     */
     public void displayCurrentConfig(DTOsecretConfig configStatus) {
         currentConfigController.displayCurrentConfig(configStatus);
     }
 
-    public DTOstatus validateRotorsInput(String text) {
-        return mainController.validateRotorsInput(text);
+    /**
+     * rotors validation
+     * @param rotorsIds the rotors ids
+     * @return status
+     */
+    public DTOstatus validateRotorsInput(String rotorsIds) {
+        return mainController.validateRotorsInput(rotorsIds);
     }
 
-    public DTOstatus validateWindowsCharsInput(String input) {
-        return mainController.validateWindowsCharsInput(input);
+    /**
+     * window character validation
+     * @param windows the windows characters
+     * @return status
+     */
+    public DTOstatus validateWindowsCharsInput(String windows) {
+        return mainController.validateWindowsCharsInput(windows);
     }
 
+    /**
+     * validate chosen reflector
+     * @param currentReflector reflector number
+     * @return status
+     */
     public DTOstatus validateReflectorInput(int currentReflector) {
         return mainController.validateReflectorInput(currentReflector);
     }
 
-    public DTOstatus validatePlugsInput(String input) {
-        return mainController.validatePlugsInput(input);
+    /**
+     * validate plugs
+     * @param plugs the plugs
+     * @return status
+     */
+    public DTOstatus validatePlugsInput(String plugs) {
+        return mainController.validatePlugsInput(plugs);
     }
 
-    public void setManualMachineConfig(String rotors, String windwos, int reflector, String plugs) {
-        mainController.setManualMachineConfig(rotors, windwos, reflector, plugs);
+    /**
+     * Q3 -> going up the chain to the main Controller
+     * @param rotors rotor ids
+     * @param windows window characters
+     * @param reflector reflector number
+     * @param plugs plugs
+     */
+    public void setManualMachineConfig(String rotors, String windows, int reflector, String plugs) {
+        mainController.setManualMachineConfig(rotors, windows, reflector, plugs);
     }
 
+    /**
+     * Q5 -> going up the chain to the main controller
+     * @param character key pressed
+     * @return status and ciphered key
+     */
     public DTOciphertext cipherCharacter(String character) {
         return mainController.cipherChar(character);
     }
 
+    /**
+     * enable/disable calibration section
+     * @param isAllow bool value to disable or enable
+     */
     public void setAllowCodeCalibration(boolean isAllow) {
         codeCalibrationController.selAllowCodeCalibration(isAllow);
+    }
+
+    /**
+     * Q6 -> going up the chain to mainController
+     */
+    public void resetMachineConfiguration() {
+        mainController.resetMachineConfiguration();
     }
 }
