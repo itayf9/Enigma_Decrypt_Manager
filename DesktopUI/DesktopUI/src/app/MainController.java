@@ -37,7 +37,7 @@ public class MainController {
      * @param selectedMachineFile fileName
      */
     public void loadMachineFromFile(String selectedMachineFile) {
-        String fileName = "C:/Users/itayf/Downloads/resource/ex1-sanity-small.xml";
+        String fileName = "C:/Users/itayf/Downloads/resource/ex1-sanity-paper-enigma.xml";
         DTOstatus loadStatus = engine.buildMachineFromXmlFile(fileName);
         if (!loadStatus.isSucceed()) {
             // create error msg
@@ -47,6 +47,7 @@ public class MainController {
             bodyController.displayMachineSpecs(specsStatus);
             bodyController.setAllowCodeCalibration(true);
             bodyController.setLightBulb(engine.getMachineAlphabet());
+            bodyController.displayStatistics();
         }
     }
 
@@ -140,5 +141,9 @@ public class MainController {
 
     public DTOstatistics fetchStats() {
         return engine.getHistoryAndStatistics();
+    }
+
+    public DTOspecs fetchSpecs() {
+        return engine.displayMachineSpecifications();
     }
 }

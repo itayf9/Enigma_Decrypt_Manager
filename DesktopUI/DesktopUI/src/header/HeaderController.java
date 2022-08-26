@@ -3,6 +3,7 @@ package header;
 import app.MainController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
@@ -21,6 +22,9 @@ public class HeaderController {
 
     @FXML
     private TextField textFieldLoadMachine;
+
+    @FXML
+    private Label headerMesssageLabel;
 
     @FXML
     private void loadMachineFile(MouseEvent event) {

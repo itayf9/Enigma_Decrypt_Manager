@@ -13,6 +13,8 @@ import javafx.scene.layout.GridPane;
 
 import java.awt.*;
 
+import static utill.Utillity.getCurrentConfigFromSpecs;
+
 public class BodyController {
 
     private MainController mainController;
@@ -177,5 +179,12 @@ public class BodyController {
      */
     public void setLightBulb(String machineAlphabet) {
         encryptDecryptController.initAlphabetLightBulbs(machineAlphabet);
+    }
+
+    public void updateMachineInfo() {
+        DTOspecs specsStatus = mainController.fetchSpecs();
+
+        machineDetailsController.displayMachineDetails(specsStatus);
+        currentConfigController.displayCurrentConfig(getCurrentConfigFromSpecs(specsStatus));
     }
 }

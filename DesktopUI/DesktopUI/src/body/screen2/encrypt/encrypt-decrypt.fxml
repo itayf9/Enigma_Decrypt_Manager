@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="380.0" prefWidth="391.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.screen2.encrypt.EncryptDecryptController">
+<AnchorPane prefHeight="380.0" prefWidth="391.0" stylesheets="@encrypt-decrypt.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.screen2.encrypt.EncryptDecryptController">
    <children>
       <Label layoutX="9.0" layoutY="6.0" text="Enter Text:" />
       <Label layoutX="11.0" layoutY="99.0" prefHeight="17.0" prefWidth="76.0" text="Ciphered Text:" />
@@ -28,14 +28,18 @@
             </Label>
          </content>
       </ScrollPane>
-      <TextField fx:id="inputTextField" layoutX="11.0" layoutY="27.0" onKeyTyped="#CipherCharacter" prefHeight="29.0" prefWidth="268.0" />
+      <TextField fx:id="inputTextField" layoutX="11.0" layoutY="27.0" onKeyReleased="#deactivateLightBulb" onKeyTyped="#CipherCharacter" prefHeight="29.0" prefWidth="268.0" />
       <Button layoutX="296.0" layoutY="111.0" mnemonicParsing="false" onMouseClicked="#clearCurrentCipher" prefHeight="57.0" prefWidth="82.0" text="Clear" />
-      <StackPane layoutX="7.0" layoutY="176.0" prefHeight="200.0" prefWidth="376.0">
-         <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffc4c4" height="200.0" stroke="BLACK" strokeType="INSIDE" width="377.0" StackPane.alignment="TOP_LEFT" />
-            <FlowPane fx:id="lightbulbs" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="190.0" />
-         </children>
-      </StackPane>
+      <ScrollPane layoutX="7.0" layoutY="176.0">
+         <content>
+            <StackPane prefHeight="200.0" prefWidth="376.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffc4c4" height="200.0" stroke="BLACK" strokeType="INSIDE" width="377.0" StackPane.alignment="TOP_LEFT" />
+                  <FlowPane fx:id="lightbulbs" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="190.0" />
+               </children>
+            </StackPane>
+         </content>
+      </ScrollPane>
       <Label fx:id="cipherProblemLabel" layoutX="11.0" layoutY="56.0" styleClass="problem-details-label" text="error" />
    </children>
 </AnchorPane>
