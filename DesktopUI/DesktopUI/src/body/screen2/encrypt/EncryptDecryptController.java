@@ -33,6 +33,7 @@ public class EncryptDecryptController {
 
     /**
      * Q5 -> going up the chain to parent controller
+     *
      * @param event key press
      */
     @FXML

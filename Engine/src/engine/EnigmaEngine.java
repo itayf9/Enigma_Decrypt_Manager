@@ -931,4 +931,6 @@ public class EnigmaEngine implements Engine {
                 "machine=" + machine +
                 '}';
     }
+
+
 }

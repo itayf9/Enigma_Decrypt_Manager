@@ -125,4 +125,9 @@ public interface Engine {
      */
     DTOstatus loadExistingMachineFromFile(String fileName) throws IOException, ClassNotFoundException;
 
+    /**
+     * @return the machine's alphabet as a String
+     */
+    String getMachineAlphabet();
+
 }
