@@ -913,6 +913,18 @@ public class EnigmaEngine implements Engine {
         return new DTOstatus(isSucceed, details);
     }
 
+    /**
+     * @return the machine's alphabet as a String
+     */
+    @Override
+    public String getMachineAlphabet() {
+        if (machine != null) {
+            return machine.getAlphabet();
+        }
+
+        return "";
+    }
+
     @Override
     public String toString() {
         return "engine.EnigmaEngine{" +

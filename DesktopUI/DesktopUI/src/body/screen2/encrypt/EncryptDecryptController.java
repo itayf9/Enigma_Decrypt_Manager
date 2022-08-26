@@ -7,6 +7,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.StrokeType;
+import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 
 public class EncryptDecryptController {
 
@@ -21,6 +28,9 @@ public class EncryptDecryptController {
     @FXML
     private Label cipherProblemLabel;
 
+    @FXML
+    private FlowPane lightbulbs;
+
     /**
      * Q5 -> going up the chain to parent controller
      * @param event key press
@@ -34,6 +44,7 @@ public class EncryptDecryptController {
             cipherProblemLabel.setText(cipheredCharStatus.getDetails().name());
         } else {
             outputLabel.setText(outputLabel.getText() + cipheredCharStatus.getCipheredText());
+            parentController.displayStatistics();
             cipherProblemLabel.setText("");
         }
     }
@@ -61,5 +72,30 @@ public class EncryptDecryptController {
         this.parentController = parentController;
     }
 
+    public void initAlphabetLightBulbs(String alphabet) {
 
+        for (Character letter : alphabet.toCharArray()) {
+            StackPane nextLightBulb = new StackPane();
+
+            // adds the circle shape
+            Circle lightBulbCircle = new Circle();
+            lightBulbCircle.setFill(Paint.valueOf("DODGERBLUE"));
+            lightBulbCircle.setRadius(23.0);
+            lightBulbCircle.setStroke(Paint.valueOf("BLACK"));
+            lightBulbCircle.setStrokeType(StrokeType.valueOf("INSIDE"));
+
+            // adds the letter
+            Label lightBulbLetter = new Label("" + letter);
+            lightBulbLetter.setTextAlignment(TextAlignment.valueOf("CENTER"));
+            Font font = new Font(26.0);
+            lightBulbLetter.setFont(font);
+
+            // add circle and letter to stack pane
+            nextLightBulb.getChildren().add(lightBulbCircle);
+            nextLightBulb.getChildren().add(lightBulbLetter);
+
+            lightbulbs.getChildren().add(nextLightBulb);
+        }
+
+    }
 }

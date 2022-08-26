@@ -5,13 +5,13 @@ import body.currentconfig.CurrentConfigController;
 import body.screen1.codecalibration.CodeCalibrationController;
 import body.screen1.machinedetails.MachineDetailsController;
 import body.screen2.encrypt.EncryptDecryptController;
-import dto.DTOciphertext;
-import dto.DTOsecretConfig;
-import dto.DTOspecs;
-import dto.DTOstatus;
+import body.screen2.statistics.StatisticsController;
+import dto.*;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+
+import java.awt.*;
 
 public class BodyController {
 
@@ -41,6 +41,12 @@ public class BodyController {
     @FXML
     private EncryptDecryptController encryptDecryptController;
 
+    @FXML
+    private GridPane statistics;
+
+    @FXML
+    private StatisticsController statisticsController;
+
     /**
      * init controllers
      */
@@ -49,6 +55,7 @@ public class BodyController {
         machineDetailsController.setParentController(this);
         currentConfigController.setParentController(this);
         encryptDecryptController.setParentController(this);
+        statisticsController.setParentController(this);
     }
 
     /**
@@ -153,5 +160,22 @@ public class BodyController {
      */
     public void resetMachineConfiguration() {
         mainController.resetMachineConfiguration();
+    }
+
+    /**
+     * gets the stats from main controller and send it to ths stats controller
+     */
+    public void displayStatistics() {
+        DTOstatistics statistics = mainController.fetchStats();
+        statisticsController.displayStats(statistics);
+    }
+
+    /**
+     * init the lightBulbs
+     *
+     * @param machineAlphabet String of alphabet
+     */
+    public void setLightBulb(String machineAlphabet) {
+        encryptDecryptController.initAlphabetLightBulbs(machineAlphabet);
     }
 }

@@ -8,18 +8,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="391.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.screen2.encrypt.EncryptDecryptController">
+<AnchorPane prefHeight="380.0" prefWidth="391.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.screen2.encrypt.EncryptDecryptController">
    <children>
-      <Label layoutX="11.0" layoutY="14.0" text="Enter Text:" />
-      <Label layoutX="11.0" layoutY="107.0" prefHeight="17.0" prefWidth="76.0" text="Ciphered Text:" />
-      <Button layoutX="296.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#ResetConfiguration" prefHeight="71.0" prefWidth="82.0" text="Reset" />
-      <ScrollPane layoutX="11.0" layoutY="128.0" prefHeight="36.0" prefWidth="268.0">
+      <Label layoutX="9.0" layoutY="6.0" text="Enter Text:" />
+      <Label layoutX="11.0" layoutY="99.0" prefHeight="17.0" prefWidth="76.0" text="Ciphered Text:" />
+      <Button layoutX="296.0" layoutY="13.0" mnemonicParsing="false" onMouseClicked="#ResetConfiguration" prefHeight="57.0" prefWidth="82.0" text="Reset" />
+      <ScrollPane layoutX="11.0" layoutY="121.0" prefHeight="36.0" prefWidth="268.0">
          <content>
-            <Label fx:id="outputLabel" text="cipher">
+            <Label fx:id="outputLabel">
                <font>
                   <Font size="15.0" />
                </font>
@@ -29,18 +28,14 @@
             </Label>
          </content>
       </ScrollPane>
-      <TextField fx:id="inputTextField" layoutX="11.0" layoutY="35.0" onKeyTyped="#CipherCharacter" prefHeight="29.0" prefWidth="268.0" />
-      <Button layoutX="296.0" layoutY="108.0" mnemonicParsing="false" onMouseClicked="#clearCurrentCipher" prefHeight="77.0" prefWidth="82.0" text="Clear" />
-      <StackPane layoutX="19.0" layoutY="194.0" prefHeight="200.0" prefWidth="360.0">
+      <TextField fx:id="inputTextField" layoutX="11.0" layoutY="27.0" onKeyTyped="#CipherCharacter" prefHeight="29.0" prefWidth="268.0" />
+      <Button layoutX="296.0" layoutY="111.0" mnemonicParsing="false" onMouseClicked="#clearCurrentCipher" prefHeight="57.0" prefWidth="82.0" text="Clear" />
+      <StackPane layoutX="7.0" layoutY="176.0" prefHeight="200.0" prefWidth="376.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffc4c4" height="200.0" stroke="BLACK" strokeType="INSIDE" width="360.0" StackPane.alignment="TOP_LEFT" />
-            <FlowPane prefHeight="200.0" prefWidth="346.0">
-               <children>
-                  <Circle fill="DODGERBLUE" radius="23.0" stroke="BLACK" strokeType="INSIDE" />
-               </children>
-            </FlowPane>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffc4c4" height="200.0" stroke="BLACK" strokeType="INSIDE" width="377.0" StackPane.alignment="TOP_LEFT" />
+            <FlowPane fx:id="lightbulbs" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="190.0" />
          </children>
       </StackPane>
-      <Label fx:id="cipherProblemLabel" layoutX="14.0" layoutY="64.0" styleClass="problem-details-label" text="error" />
+      <Label fx:id="cipherProblemLabel" layoutX="11.0" layoutY="56.0" styleClass="problem-details-label" text="error" />
    </children>
 </AnchorPane>

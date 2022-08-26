@@ -1,10 +1,7 @@
 package app;
 
 import body.BodyController;
-import dto.DTOciphertext;
-import dto.DTOsecretConfig;
-import dto.DTOspecs;
-import dto.DTOstatus;
+import dto.*;
 import engine.Engine;
 import engine.EnigmaEngine;
 import header.HeaderController;
@@ -49,6 +46,7 @@ public class MainController {
             DTOspecs specsStatus = engine.displayMachineSpecifications();
             bodyController.displayMachineSpecs(specsStatus);
             bodyController.setAllowCodeCalibration(true);
+            bodyController.setLightBulb(engine.getMachineAlphabet());
         }
     }
 
@@ -138,5 +136,9 @@ public class MainController {
      */
     public void resetMachineConfiguration() {
         engine.resetConfiguration();
+    }
+
+    public DTOstatistics fetchStats() {
+        return engine.getHistoryAndStatistics();
     }
 }

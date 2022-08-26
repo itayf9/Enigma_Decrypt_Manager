@@ -25,11 +25,11 @@
          <content>
             <ScrollPane prefHeight="200.0" prefWidth="200.0">
                <content>
-                  <AnchorPane prefHeight="624.0" prefWidth="610.0">
+                  <AnchorPane>
                      <children>
-                        <fx:include layoutX="385.0" source="screen2/statistics/statistics.fxml" />
-                        <fx:include fx:id="encryptDecrypt" layoutY="150.0" source="screen2/encrypt/encrypt-decrypt.fxml" />
-                        <fx:include maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="160.0" source="currentconfig/currentConfig.fxml" />
+                         <fx:include fx:id="statistics" layoutX="385.0" source="screen2/statistics/statistics.fxml" />
+                         <fx:include fx:id="encryptDecrypt" layoutY="180.0" source="screen2/encrypt/encrypt-decrypt.fxml" />
+                        <fx:include fx:id="currentConfig2" source="currentconfig/currentConfig.fxml" />
                      </children>
                   </AnchorPane>
                </content>
