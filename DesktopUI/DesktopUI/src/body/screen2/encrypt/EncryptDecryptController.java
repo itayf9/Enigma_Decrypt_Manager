@@ -36,7 +36,6 @@ public class EncryptDecryptController {
             outputLabel.setText(outputLabel.getText() + cipheredCharStatus.getCipheredText());
             cipherProblemLabel.setText("");
         }
-
     }
 
     /**
