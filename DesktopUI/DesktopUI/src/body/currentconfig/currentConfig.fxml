@@ -8,21 +8,21 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxWidth="1.7976931348623157E308" prefHeight="180.0" stylesheets="@currentConfig.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.currentconfig.CurrentConfigController">
+<GridPane maxWidth="1.7976931348623157E308" stylesheets="@currentConfig.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.currentconfig.CurrentConfigController">
    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="319.0" minWidth="10.0" prefWidth="295.0" />
+      <ColumnConstraints hgrow="ALWAYS" maxWidth="319.0" minWidth="10.0" prefWidth="295.0" />
       <ColumnConstraints />
       <ColumnConstraints />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints maxHeight="170.33331298828125" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="142.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="142.0" />
    </rowConstraints>
    <children>
       <Label prefHeight="27.0" styleClass="config-title" text="Current Machine Configuration:" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-      <ScrollPane maxWidth="1.7976931348623157E308" prefHeight="137.0" GridPane.columnSpan="3" GridPane.rowIndex="1">
+      <ScrollPane fitToWidth="true" maxWidth="1.7976931348623157E308" prefHeight="137.0" GridPane.columnSpan="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
          <content>
-            <FlowPane maxWidth="1.7976931348623157E308" orientation="VERTICAL" prefHeight="133.0" prefWrapLength="200.0">
+            <FlowPane maxWidth="1.7976931348623157E308" orientation="VERTICAL" prefHeight="133.0" prefWidth="286.0" prefWrapLength="200.0">
                <children>
                   <Label id="rotors" fx:id="rotors" styleClass="config-label" stylesheets="@currentConfig.css" text="&lt;3,4,2&gt;" />
                   <Label id="windows-characters" fx:id="windows" styleClass="config-label" stylesheets="@currentConfig.css" text="&lt;BGF&gt;" />
