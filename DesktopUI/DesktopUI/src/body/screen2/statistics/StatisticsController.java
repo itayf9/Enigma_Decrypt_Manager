@@ -25,6 +25,8 @@ public class StatisticsController {
 
     public void displayStats(DTOstatistics stats) {
 
+        vBoxHistory.getChildren().clear();
+
         if (stats.getStats().size() == 0) {
             Label nextSecret = new Label("No statistics yet.");
             vBoxHistory.getChildren().add(nextSecret);
