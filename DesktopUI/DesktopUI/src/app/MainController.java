@@ -9,8 +9,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.GridPane;
 
-import static utill.Utility.decimalToRoman;
-
 public class MainController {
 
     private Engine engine = new EnigmaEngine();
@@ -38,16 +36,17 @@ public class MainController {
      */
     public void loadMachineFromFile(String selectedMachineFile) {
         String fileName = "C:/Users/itayf/Downloads/resource/ex1-sanity-paper-enigma.xml";
-        DTOstatus loadStatus = engine.buildMachineFromXmlFile(fileName);
+        DTOstatus loadStatus = engine.buildMachineFromXmlFile(selectedMachineFile);
         if (!loadStatus.isSucceed()) {
-            // create error msg
+            headerController.displayHeaderProblem(loadStatus.getDetails());
         } else {
-            // create success msg
+            headerController.displaySuccessHeaderLabel();
             DTOspecs specsStatus = engine.displayMachineSpecifications();
             bodyController.displayMachineSpecs(specsStatus);
             bodyController.setAllowCodeCalibration(true);
             bodyController.setLightBulb(engine.getMachineAlphabet());
             bodyController.displayStatistics();
+            bodyController.setAllowEncryptDecrypt(false);
         }
     }
 
@@ -56,12 +55,7 @@ public class MainController {
      */
     public void setRandomMachineConfig() {
         DTOsecretConfig configStatus = engine.selectConfigurationAuto();
-
-        if (!configStatus.isSucceed()) {
-            // err msg
-        } else {
-            bodyController.displayCurrentConfig(configStatus);
-        }
+        bodyController.displayCurrentConfig(configStatus);
     }
 
     /**

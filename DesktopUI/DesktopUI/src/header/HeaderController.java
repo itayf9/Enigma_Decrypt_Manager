@@ -8,12 +8,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
-import java.io.File;
+import problem.Problem;
 
 public class HeaderController {
 
     FileChooser fileChooser = new FileChooser();
+
+    String selectedMachineFile;
 
     private MainController mainController;
 
@@ -24,19 +25,29 @@ public class HeaderController {
     private TextField textFieldLoadMachine;
 
     @FXML
-    private Label headerMesssageLabel;
+    private Label headerMessageLabel;
 
     @FXML
     private void loadMachineFile(MouseEvent event) {
         fileChooser.setTitle("Load Machine");
-        // String selectedMachineFile = fileChooser.showOpenDialog(new Stage()).getPath();
-
-        //textFieldLoadMachine.setText(selectedMachineFile);
-        mainController.loadMachineFromFile("selectedMachineFile");
+        this.selectedMachineFile = fileChooser.showOpenDialog(new Stage()).getPath();
+        mainController.loadMachineFromFile(selectedMachineFile);
     }
 
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
 
+    public void displayHeaderProblem(Problem details) {
+        headerMessageLabel.getStyleClass().removeAll("success-label");
+        headerMessageLabel.getStyleClass().add("error-label");
+        headerMessageLabel.setText(details.name());
+    }
+
+    public void displaySuccessHeaderLabel() {
+        headerMessageLabel.getStyleClass().removeAll("error-label");
+        headerMessageLabel.getStyleClass().add("success-label");
+        headerMessageLabel.setText("Machine Loaded Successfully!");
+        textFieldLoadMachine.setText(selectedMachineFile);
+    }
 }

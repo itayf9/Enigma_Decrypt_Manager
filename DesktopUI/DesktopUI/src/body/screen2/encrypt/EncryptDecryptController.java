@@ -4,7 +4,7 @@ import body.BodyController;
 import dto.DTOciphertext;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
@@ -16,8 +16,6 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
-
-import java.util.List;
 
 public class EncryptDecryptController {
 
@@ -36,7 +34,14 @@ public class EncryptDecryptController {
     private Label cipherProblemLabel;
 
     @FXML
-    private FlowPane lightbulbs;
+    private FlowPane lightBulbs;
+
+    @FXML
+    private Button resetButton;
+
+    @FXML
+    private Button clearButton;
+
 
     /**
      * Q5 -> going up the chain to parent controller
@@ -47,6 +52,7 @@ public class EncryptDecryptController {
     void CipherCharacter(KeyEvent event) {
         DTOciphertext cipheredCharStatus = parentController.cipherCharacter(event.getCharacter().toUpperCase());
         if (!cipheredCharStatus.isSucceed()) {
+            cipheredLetter = "";
             inputTextField.getStyleClass().add("invalid-input");
             cipherProblemLabel.getStyleClass().add("problem-details-label");
             cipherProblemLabel.setText(cipheredCharStatus.getDetails().name());
@@ -111,7 +117,7 @@ public class EncryptDecryptController {
             nextLightBulb.getChildren().add(lightBulbCircle);
             nextLightBulb.getChildren().add(lightBulbLetter);
 
-            lightbulbs.getChildren().add(nextLightBulb);
+            lightBulbs.getChildren().add(nextLightBulb);
         }
     }
 
@@ -126,20 +132,29 @@ public class EncryptDecryptController {
     /**
      * activate animation on the matching bulb
      *
-     * @param letter
+     * @param letter the letter to find the bulb to activate
      */
     public void activateLightBulb(String letter) {
 
-        ObservableList<?> elements = lightbulbs.getChildren();
+        ObservableList<?> elements = lightBulbs.getChildren();
         StackPane currentPane = (StackPane) elements.get(alphabet.indexOf(letter.charAt(0)));
         currentPane.getStyleClass().add("light-on");
         Circle circle = (Circle) currentPane.getChildren().get(0);
         circle.setFill(Paint.valueOf("YELLOW"));
     }
 
+    /**
+     * deactivate the matching bulb
+     *
+     * @param event when user release the key presses
+     */
     @FXML
     public void deactivateLightBulb(KeyEvent event) {
-        ObservableList<?> elements = lightbulbs.getChildren();
+
+        if (cipheredLetter.equals("")) {
+            return;
+        }
+        ObservableList<?> elements = lightBulbs.getChildren();
         StackPane currentPane = (StackPane) elements.get(alphabet.indexOf(cipheredLetter.charAt(0)));
         Circle circle = (Circle) currentPane.getChildren().get(0);
         circle.setFill(Paint.valueOf("#cc5454"));

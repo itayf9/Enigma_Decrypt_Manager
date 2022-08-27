@@ -97,6 +97,7 @@ public class BodyController {
      */
     public void setRandomMachineConfig() {
         mainController.setRandomMachineConfig();
+        encryptDecryptController.setAllowEncryptDecrypt(true);
     }
 
     /**
@@ -146,14 +147,16 @@ public class BodyController {
     }
 
     /**
-     * Q3 -> going up the chain to the main Controller
-     * @param rotors rotor ids
-     * @param windows window characters
+     * Q3 -> assuming all components valid and machine will be configured!
+     *
+     * @param rotors    rotor ids
+     * @param windows   window characters
      * @param reflector reflector number
-     * @param plugs plugs
+     * @param plugs     plugs
      */
     public void setManualMachineConfig(String rotors, String windows, int reflector, String plugs) {
         mainController.setManualMachineConfig(rotors, windows, reflector, plugs);
+        encryptDecryptController.setAllowEncryptDecrypt(true);
     }
 
     /**
@@ -197,6 +200,9 @@ public class BodyController {
         encryptDecryptController.initAlphabetLightBulbs(machineAlphabet);
     }
 
+    /**
+     * update the current config and ciphered text values of machine details
+     */
     public void updateMachineInfo() {
         DTOspecs specsStatus = mainController.fetchSpecs();
         machineDetailsController.displayMachineDetails(specsStatus);
