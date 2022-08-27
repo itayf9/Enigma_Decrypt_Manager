@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -8,7 +9,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Rectangle?>
 
-<GridPane hgap="3.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0" prefWidth="596.0" stylesheets="@machineDetails.css" vgap="5.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.screen1.machinedetails.MachineDetailsController">
+<GridPane hgap="3.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0" prefWidth="596.0" vgap="5.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.screen1.machinedetails.MachineDetailsController">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -21,7 +22,7 @@
     <RowConstraints maxHeight="134.33331298828125" minHeight="10.0" prefHeight="64.66665649414062" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label styleClass="details-title" text="Machine Details:" GridPane.columnSpan="4">
+      <Label styleClass="component-title" text="Machine Details:" GridPane.columnSpan="4">
          <GridPane.margin>
             <Insets left="5.0" />
          </GridPane.margin>
@@ -62,4 +63,8 @@
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
    </padding>
+   <stylesheets>
+      <URL value="@../../../app/app.css" />
+      <URL value="@machineDetails.css" />
+   </stylesheets>
 </GridPane>

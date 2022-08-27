@@ -1,0 +1,34 @@
+.action-btn {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-color: #76d55d;
+}
+
+/*-fx-background-color: #50c550*/
+
+.action-btn:hover {
+    -fx-background-color: #489b54;
+}
+
+.input-text-field {
+    -fx-focus-color: #50a005;
+}
+
+.invalid-input-text-field {
+    -fx-text-box-border: #B22222;
+    -fx-focus-color: #B22222;
+}
+
+.error-label {
+    -fx-text-fill: firebrick;
+}
+
+.success-label {
+    -fx-text-fill: #50a005;
+}
+
+.component-title {
+    -fx-text-fill: #0095ff;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+}

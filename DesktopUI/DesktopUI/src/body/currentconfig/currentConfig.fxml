@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -8,7 +9,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxWidth="1.7976931348623157E308" stylesheets="@currentConfig.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.currentconfig.CurrentConfigController">
+<GridPane maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.currentconfig.CurrentConfigController">
    <columnConstraints>
       <ColumnConstraints hgrow="ALWAYS" maxWidth="319.0" minWidth="10.0" prefWidth="295.0" />
       <ColumnConstraints />
@@ -19,7 +20,7 @@
       <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="142.0" />
    </rowConstraints>
    <children>
-      <Label prefHeight="27.0" styleClass="config-title" text="Current Machine Configuration:" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+      <Label prefHeight="27.0" styleClass="component-title" text="Current Machine Configuration:" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
       <ScrollPane fitToWidth="true" maxWidth="1.7976931348623157E308" prefHeight="137.0" GridPane.columnSpan="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
          <content>
             <FlowPane maxWidth="1.7976931348623157E308" orientation="VERTICAL" prefHeight="133.0" prefWidth="286.0" prefWrapLength="200.0">
@@ -37,4 +38,8 @@
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
    </padding>
+   <stylesheets>
+      <URL value="@../../app/app.css" />
+      <URL value="@currentConfig.css" />
+   </stylesheets>
 </GridPane>

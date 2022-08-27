@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -27,7 +28,7 @@
       <RowConstraints maxHeight="54.666656494140625" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Button fx:id="buttonLoadMachine" mnemonicParsing="false" onMouseClicked="#loadMachineFile" prefHeight="25.0" prefWidth="107.0" styleClass="load-btn" stylesheets="@header.css" text="Load File" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+      <Button fx:id="buttonLoadMachine" mnemonicParsing="false" onMouseClicked="#loadMachineFile" prefHeight="25.0" prefWidth="107.0" styleClass="action-btn" text="Load File" GridPane.halignment="CENTER" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets />
          </GridPane.margin>
@@ -46,4 +47,8 @@
    <padding>
       <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
    </padding>
+   <stylesheets>
+      <URL value="@../app/app.css" />
+      <URL value="@header.css" />
+   </stylesheets>
 </GridPane>

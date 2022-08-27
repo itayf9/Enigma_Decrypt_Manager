@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="350.0" stylesheets="@codeCalibration.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.screen1.codecalibration.CodeCalibrationController">
+<GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.screen1.codecalibration.CodeCalibrationController">
     <columnConstraints>
         <ColumnConstraints hgrow="NEVER" maxWidth="112.0" minWidth="10.0" prefWidth="112.0" />
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="47.0" />
@@ -31,12 +32,12 @@
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <Button fx:id="randomCalibrationButton" disable="true" mnemonicParsing="false" onMouseClicked="#randomMachineConfig" prefHeight="25.0" prefWidth="94.0" styleClass="btn" text="Random" GridPane.halignment="CENTER" GridPane.rowIndex="9">
+        <Button fx:id="randomCalibrationButton" disable="true" mnemonicParsing="false" onMouseClicked="#randomMachineConfig" prefHeight="25.0" prefWidth="94.0" styleClass="action-btn" text="Random" GridPane.halignment="CENTER" GridPane.rowIndex="9">
             <GridPane.margin>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </GridPane.margin>
         </Button>
-        <Button fx:id="setCalibrationButton" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#setMachineConfig" prefHeight="34.0" prefWidth="79.0" styleClass="btn" text="Set!" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="9">
+        <Button fx:id="setCalibrationButton" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#setMachineConfig" prefHeight="34.0" prefWidth="79.0" styleClass="action-btn" text="Set!" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="9">
             <GridPane.margin>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </GridPane.margin>
@@ -80,17 +81,21 @@
                 </RadioButton>
             </children>
         </HBox>
-        <Label prefHeight="27.0" prefWidth="153.0" styleClass="code-calibration-title" text="Code Calibration:" textAlignment="CENTER" GridPane.columnSpan="4" GridPane.halignment="CENTER">
+        <Label prefHeight="27.0" prefWidth="153.0" styleClass="component-title" text="Code Calibration:" textAlignment="CENTER" GridPane.columnSpan="4" GridPane.halignment="CENTER">
             <GridPane.margin>
                 <Insets bottom="5.0" />
             </GridPane.margin>
         </Label>
-      <Label fx:id="problemLabelPlugs" styleClass="problem-details-label" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="LEFT" GridPane.rowIndex="8" />
-      <Label fx:id="problemLabelReflector" styleClass="problem-details-label" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="6" />
-      <Label fx:id="problemLabelWindows" styleClass="problem-details-label" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="4" />
-      <Label fx:id="problemLabelRotors" styleClass="problem-details-label" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2" />
+      <Label fx:id="problemLabelPlugs" styleClass="error-label" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="LEFT" GridPane.rowIndex="8" />
+      <Label fx:id="problemLabelReflector" styleClass="error-label" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="6" />
+      <Label fx:id="problemLabelWindows" styleClass="error-label" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="4" />
+      <Label fx:id="problemLabelRotors" styleClass="error-label" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2" />
     </children>
     <padding>
         <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
     </padding>
+   <stylesheets>
+      <URL value="@../../../app/app.css" />
+      <URL value="@codeCalibration.css" />
+   </stylesheets>
 </GridPane>

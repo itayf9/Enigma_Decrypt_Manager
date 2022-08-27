@@ -62,12 +62,12 @@ public class CodeCalibrationController {
         if (!rotorStatus.isSucceed()) {
             // generate message
             problemLabelRotors.setText(rotorStatus.getDetails().name());
-            if (!rotorsInput.getStyleClass().contains("invalid-input")) {
-                rotorsInput.getStyleClass().add("invalid-input");
+            if (!rotorsInput.getStyleClass().contains("invalid-input-text-field")) {
+                rotorsInput.getStyleClass().add("invalid-input-text-field");
             }
             rotorsInput.requestFocus(); // focus for the user to fix the invalid area
         } else {
-            rotorsInput.getStyleClass().remove("invalid-input");
+            rotorsInput.getStyleClass().remove("invalid-input-text-field");
             problemLabelRotors.setText("");
         }
         return rotorStatus;
@@ -79,12 +79,12 @@ public class CodeCalibrationController {
         if (!windowsStatus.isSucceed()) {
             // generate message
             problemLabelWindows.setText(windowsStatus.getDetails().name());
-            if (!windowsCharsInput.getStyleClass().contains("invalid-input")) {
-                windowsCharsInput.getStyleClass().add("invalid-input");
+            if (!windowsCharsInput.getStyleClass().contains("invalid-input-text-field")) {
+                windowsCharsInput.getStyleClass().add("invalid-input-text-field");
             }
             windowsCharsInput.requestFocus(); // focus for the user to fix the invalid area
         } else {
-            windowsCharsInput.getStyleClass().remove("invalid-input");
+            windowsCharsInput.getStyleClass().remove("invalid-input-text-field");
             problemLabelWindows.setText("");
         }
         return windowsStatus;
@@ -101,14 +101,14 @@ public class CodeCalibrationController {
         if (!reflectorStatus.isSucceed()) {
             // generate message
             problemLabelReflector.setText(reflectorStatus.getDetails().name());
-            if (!currentReflector.getStyleClass().contains("invalid-input")) {
-                currentReflector.getStyleClass().add("invalid-input");
+            if (!currentReflector.getStyleClass().contains("invalid-input-text-field")) {
+                currentReflector.getStyleClass().add("invalid-input-text-field");
             }
             //reflector.requestFocus(); // focus for the user to fix the invalid area
 
 
         } else {
-            currentReflector.getStyleClass().remove("invalid-input");
+            currentReflector.getStyleClass().remove("invalid-input-text-field");
             problemLabelReflector.setText("");
         }
         return reflectorStatus;
@@ -120,12 +120,12 @@ public class CodeCalibrationController {
         if (!plugsStatus.isSucceed()) {
             // generate message
             problemLabelPlugs.setText(plugsStatus.getDetails().name());
-            if (!plugsInput.getStyleClass().contains("invalid-input")) {
-                plugsInput.getStyleClass().add("invalid-input");
+            if (!plugsInput.getStyleClass().contains("invalid-input-text-field")) {
+                plugsInput.getStyleClass().add("invalid-input-text-field");
             }
             plugsInput.requestFocus(); // focus for the user to fix the invalid area
         } else {
-            plugsInput.getStyleClass().remove("invalid-input");
+            plugsInput.getStyleClass().remove("invalid-input-text-field");
             problemLabelPlugs.setText("");
         }
         return plugsStatus;

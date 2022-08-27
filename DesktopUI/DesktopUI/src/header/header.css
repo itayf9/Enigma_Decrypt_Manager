@@ -1,13 +1,3 @@
-.load-btn {
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-background-color: #76d55d;
-}
-
-.load-btn:hover {
-    -fx-background-color: #489b54;
-}
-
 .enigma-title {
     -fx-text-fill: #0095ff;
     -fx-font-weight: bold;

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -16,11 +17,15 @@
       <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="485.0" vgrow="ALWAYS" />
    </rowConstraints>
    <children>
-      <Label text="History &amp; Statistics: " GridPane.halignment="CENTER" />
+      <Label styleClass="component-title" text="History &amp; Statistics: " GridPane.halignment="CENTER" />
       <ScrollPane prefHeight="500.0" prefWidth="300.0" GridPane.rowIndex="1">
          <content>
             <VBox fx:id="vBoxHistory" />
          </content>
       </ScrollPane>
    </children>
+   <stylesheets>
+      <URL value="@../../../app/app.css" />
+      <URL value="@statistics.css" />
+   </stylesheets>
 </GridPane>
