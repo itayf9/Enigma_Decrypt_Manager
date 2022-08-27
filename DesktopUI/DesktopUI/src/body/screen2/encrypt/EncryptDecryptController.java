@@ -23,7 +23,7 @@ public class EncryptDecryptController {
 
     BodyController parentController;
 
-    String cipheredLetter;
+    String cipheredLetter = "";
 
     String alphabet;
     @FXML
@@ -113,6 +113,14 @@ public class EncryptDecryptController {
 
             lightbulbs.getChildren().add(nextLightBulb);
         }
+    }
+
+    public void setAllowEncryptDecrypt(boolean isAllow) {
+        inputTextField.setDisable(!isAllow);
+        resetButton.setDisable(!isAllow);
+        clearButton.setDisable(!isAllow);
+        inputTextField.setText("");
+        outputLabel.setText("");
     }
 
     /**

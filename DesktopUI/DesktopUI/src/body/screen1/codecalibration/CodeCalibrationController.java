@@ -1,7 +1,9 @@
 package body.screen1.codecalibration;
 
 import body.BodyController;
+import dto.DTOsecretConfig;
 import dto.DTOstatus;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -166,5 +168,51 @@ public class CodeCalibrationController {
         randomCalibrationButton.setDisable(!isAllow);
         setCalibrationButton.setDisable(!isAllow);
 
+    }
+
+    public void displayCurrentConfigInFields(DTOsecretConfig configStatus) {
+
+        // set rotors label
+        problemLabelRotors.setText("");
+
+        StringBuilder rotorsStr = new StringBuilder();
+        for (int i = configStatus.getRotors().size() - 1; i >= 0; i--) {
+            rotorsStr.append(configStatus.getRotors().get(i).toString());
+
+            if (i != 0) {
+                rotorsStr.append(",");
+            }
+        }
+        rotorsInput.getStyleClass().removeAll("invalid-input-text-field");
+        rotorsInput.setText(rotorsStr.toString());
+
+
+        // set windows label
+        problemLabelWindows.setText("");
+
+        windowsCharsInput.getStyleClass().removeAll("invalid-input-text-field");
+        windowsCharsInput.setText(configStatus.getWindows());
+
+        boolean isFoundSelectedRadioButton = false;
+        // set Reflector
+        problemLabelReflector.setText("");
+
+        ObservableList<Toggle> reflectorButtons = reflectorToggles.getToggles();
+        for (Toggle toggle : reflectorButtons) {
+            RadioButton radioButton = (RadioButton) toggle;
+            if (radioButton.getText().equals(configStatus.getReflectorSymbol())) {
+                radioButton.setSelected(true);
+                isFoundSelectedRadioButton = true;
+            }
+            if (!isFoundSelectedRadioButton) {
+                radioButton.setSelected(false);
+            }
+            ((RadioButton) toggle).getStyleClass().removeAll("invalid-input-text-field");
+        }
+
+        // set plugs label
+        problemLabelPlugs.setText("");
+        plugsInput.getStyleClass().removeAll("invalid-input-text-field");
+        plugsInput.setText(configStatus.getPlugs());
     }
 }

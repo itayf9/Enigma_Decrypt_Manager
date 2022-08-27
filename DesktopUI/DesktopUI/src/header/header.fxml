@@ -42,7 +42,7 @@
          </GridPane.margin>
       </TextField>
       <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="124.0" styleClass="enigma-title" stylesheets="@header.css" text="The Enigma Machine" GridPane.columnSpan="8" GridPane.halignment="CENTER" />
-      <Label fx:id="headerMesssageLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Label fx:id="headerMessageLabel" text="Label" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="2" />
    </children>
    <padding>
       <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />

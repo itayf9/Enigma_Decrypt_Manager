@@ -106,6 +106,7 @@ public class BodyController {
     public void displayCurrentConfig(DTOsecretConfig configStatus) {
         currentConfigScreen1Controller.displayCurrentConfig(configStatus);
         currentConfigScreen2Controller.displayCurrentConfig(configStatus);
+        codeCalibrationController.displayCurrentConfigInFields(configStatus);
     }
 
     /**
@@ -201,5 +202,9 @@ public class BodyController {
         machineDetailsController.displayMachineDetails(specsStatus);
         currentConfigScreen1Controller.displayCurrentConfig(getCurrentConfigFromSpecs(specsStatus));
         currentConfigScreen2Controller.displayCurrentConfig(getCurrentConfigFromSpecs(specsStatus));
+    }
+
+    public void setAllowEncryptDecrypt(boolean isAllow) {
+        encryptDecryptController.setAllowEncryptDecrypt(isAllow);
     }
 }

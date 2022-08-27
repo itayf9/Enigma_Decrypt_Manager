@@ -34,10 +34,10 @@
       <Label styleClass="component-title" text="Cipher Text:" />
       <ScrollPane fitToHeight="true" fitToWidth="true" GridPane.columnSpan="4" GridPane.rowIndex="7">
          <content>
-            <FlowPane fx:id="lightbulbs" alignment="TOP_CENTER" minHeight="93.0" minWidth="400.0" prefHeight="93.0" prefWidth="547.0" styleClass="lightbulbs-area" />
+            <FlowPane fx:id="lightBulbs" alignment="TOP_CENTER" minHeight="93.0" minWidth="400.0" prefHeight="93.0" prefWidth="547.0" styleClass="lightbulbs-area" />
          </content>
       </ScrollPane>
-      <Button maxHeight="1.7976931348623157E308" minHeight="50.0" minWidth="80.0" mnemonicParsing="false" onMouseClicked="#ResetConfiguration" prefWidth="82.0" styleClass="reset-btn" text="Reset" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="2">
+      <Button fx:id="resetButton" disable="true" maxHeight="1.7976931348623157E308" minHeight="50.0" minWidth="80.0" mnemonicParsing="false" onMouseClicked="#ResetConfiguration" prefWidth="82.0" styleClass="reset-btn" text="Reset" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="2">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
@@ -45,7 +45,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button maxHeight="1.7976931348623157E308" minHeight="50.0" minWidth="80.0" mnemonicParsing="false" onMouseClicked="#clearCurrentCipher" prefWidth="82.0" styleClass="clear-btn" text="Clear" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2">
+      <Button fx:id="clearButton" disable="true" maxHeight="1.7976931348623157E308" minHeight="50.0" minWidth="80.0" mnemonicParsing="false" onMouseClicked="#clearCurrentCipher" prefWidth="82.0" styleClass="clear-btn" text="Clear" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
@@ -58,7 +58,7 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </Label>
-      <TextField fx:id="inputTextField" maxWidth="1.7976931348623157E308" minHeight="40.0" onKeyReleased="#deactivateLightBulb" onKeyTyped="#CipherCharacter" prefHeight="40.0" prefWidth="268.0" styleClass="input-text-field" GridPane.rowIndex="2" />
+      <TextField fx:id="inputTextField" disable="true" maxWidth="1.7976931348623157E308" minHeight="40.0" onKeyReleased="#deactivateLightBulb" onKeyTyped="#CipherCharacter" prefHeight="40.0" prefWidth="268.0" styleClass="input-text-field" GridPane.rowIndex="2" />
       <Label prefHeight="17.0" prefWidth="76.0" text="Ciphered Text:" GridPane.rowIndex="4" />
       <Label text="Enter Text:" GridPane.rowIndex="1" />
       <ScrollPane maxWidth="1.7976931348623157E308" minHeight="40.0" prefHeight="40.0" prefWidth="268.0" GridPane.rowIndex="5">
