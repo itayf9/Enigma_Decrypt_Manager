@@ -32,10 +32,22 @@ public class BodyController {
     private MachineDetailsController machineDetailsController;
 
     @FXML
-    private GridPane currentConfig;
+    private GridPane currentConfigScreen1;
 
     @FXML
-    private CurrentConfigController currentConfigController;
+    private CurrentConfigController currentConfigScreen1Controller;
+
+    @FXML
+    private GridPane currentConfigScreen2;
+
+    @FXML
+    private CurrentConfigController currentConfigScreen2Controller;
+
+    @FXML
+    private GridPane currentConfigScreen3;
+
+    @FXML
+    private CurrentConfigController currentConfigScreen3Controller;
 
     @FXML
     private GridPane encryptDecrypt;
@@ -55,7 +67,8 @@ public class BodyController {
     public void setChildrenControllers() {
         codeCalibrationController.setParentController(this);
         machineDetailsController.setParentController(this);
-        currentConfigController.setParentController(this);
+        currentConfigScreen1Controller.setParentController(this);
+        currentConfigScreen2Controller.setParentController(this);
         encryptDecryptController.setParentController(this);
         statisticsController.setParentController(this);
     }
@@ -75,7 +88,8 @@ public class BodyController {
     public void displayMachineSpecs(DTOspecs specsStatus) {
         setChildrenControllers();
         machineDetailsController.displayMachineDetails(specsStatus);
-        currentConfigController.displayCurrentConfig();
+        currentConfigScreen1Controller.displayCurrentConfig();
+        currentConfigScreen2Controller.displayCurrentConfig();
     }
 
     /**
@@ -90,7 +104,8 @@ public class BodyController {
      * @param configStatus the current configuration DTO
      */
     public void displayCurrentConfig(DTOsecretConfig configStatus) {
-        currentConfigController.displayCurrentConfig(configStatus);
+        currentConfigScreen1Controller.displayCurrentConfig(configStatus);
+        currentConfigScreen2Controller.displayCurrentConfig(configStatus);
     }
 
     /**
@@ -185,6 +200,7 @@ public class BodyController {
         DTOspecs specsStatus = mainController.fetchSpecs();
 
         machineDetailsController.displayMachineDetails(specsStatus);
-        currentConfigController.displayCurrentConfig(getCurrentConfigFromSpecs(specsStatus));
+        currentConfigScreen1Controller.displayCurrentConfig(getCurrentConfigFromSpecs(specsStatus));
+        currentConfigScreen2Controller.displayCurrentConfig(getCurrentConfigFromSpecs(specsStatus));
     }
 }

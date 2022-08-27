@@ -21,14 +21,14 @@
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="500.0" minWidth="10.0" prefWidth="448.0" />
                         </columnConstraints>
                         <rowConstraints>
-                            <RowConstraints maxHeight="317.3333435058594" minHeight="165.0" prefHeight="165.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="100.0" prefHeight="165.0" vgrow="SOMETIMES" />
                             <RowConstraints maxHeight="1.7976931348623157E308" minHeight="5.0" prefHeight="13.0" vgrow="ALWAYS" />
                             <RowConstraints maxHeight="294.0" minHeight="250.0" prefHeight="250.0" vgrow="SOMETIMES" />
                         </rowConstraints>
                         <children>
                             <fx:include fx:id="machineDetails" layoutX="30.0" layoutY="20.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" source="screen1/machinedetails/machineDetails.fxml" GridPane.columnSpan="3" />
                             <fx:include fx:id="codeCalibration" layoutY="270.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" source="screen1/codecalibration/codeCalibration.fxml" GridPane.rowIndex="2" />
-                            <fx:include fx:id="currentConfig" layoutX="350.0" layoutY="260.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" source="currentconfig/currentConfig.fxml" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                            <fx:include fx:id="currentConfigScreen1" layoutX="350.0" layoutY="260.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" source="currentconfig/currentConfig.fxml" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                         </children>
                     </GridPane>
                 </content>
@@ -41,20 +41,20 @@
          <content>
              <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                  <content>
-                     <GridPane minHeight="545.0" minWidth="700.0" prefHeight="500.0" prefWidth="900.0">
+                     <GridPane hgap="5.0" minHeight="550.0" minWidth="700.0" prefHeight="500.0" prefWidth="900.0">
                          <columnConstraints>
                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="596.0" />
                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="304.0" />
                          </columnConstraints>
                          <rowConstraints>
-                             <RowConstraints maxHeight="183.33334350585938" minHeight="90.0" prefHeight="100.0" vgrow="SOMETIMES" />
-                             <RowConstraints maxHeight="1.7976931348623157E308" minHeight="5.0" prefHeight="18.333328247070312" vgrow="ALWAYS" />
-                             <RowConstraints minHeight="300.0" prefHeight="450.0" vgrow="SOMETIMES" />
+                             <RowConstraints maxHeight="183.33334350585938" minHeight="22.666656494140625" prefHeight="94.33332824707031" vgrow="SOMETIMES" />
+                             <RowConstraints maxHeight="179.33334350585938" minHeight="5.0" prefHeight="35.0" vgrow="ALWAYS" />
+                             <RowConstraints maxHeight="433.6666717529297" minHeight="200.0" prefHeight="432.0" vgrow="SOMETIMES" />
                          </rowConstraints>
                          <children>
                              <fx:include fx:id="statistics" layoutX="385.0" source="screen2/statistics/statistics.fxml" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                              <fx:include fx:id="encryptDecrypt" layoutY="180.0" source="screen2/encrypt/encrypt-decrypt.fxml" GridPane.rowIndex="2" />
-                             <fx:include fx:id="currentConfig2" source="currentconfig/currentConfig.fxml" />
+                             <fx:include fx:id="currentConfigScreen2" source="currentconfig/currentConfig.fxml" />
                          </children>
                      </GridPane>
                  </content>

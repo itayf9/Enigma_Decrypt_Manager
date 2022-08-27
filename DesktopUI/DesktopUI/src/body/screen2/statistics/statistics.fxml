@@ -15,11 +15,11 @@
    </columnConstraints>
    <rowConstraints>
       <RowConstraints maxHeight="195.0" minHeight="30.0" prefHeight="30.0" vgrow="NEVER" />
-      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="400.0" vgrow="ALWAYS" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="200.0" vgrow="ALWAYS" />
    </rowConstraints>
    <children>
       <Label styleClass="component-title" text="History &amp; Statistics: " GridPane.halignment="CENTER" />
-      <ScrollPane prefHeight="400.0" prefWidth="300.0" GridPane.rowIndex="1">
+      <ScrollPane prefHeight="200.0" prefWidth="300.0" GridPane.rowIndex="1">
          <content>
             <VBox fx:id="vBoxHistory" />
          </content>
