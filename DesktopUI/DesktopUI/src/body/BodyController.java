@@ -38,7 +38,7 @@ public class BodyController {
     private CurrentConfigController currentConfigController;
 
     @FXML
-    private AnchorPane encryptDecrypt;
+    private GridPane encryptDecrypt;
 
     @FXML
     private EncryptDecryptController encryptDecryptController;

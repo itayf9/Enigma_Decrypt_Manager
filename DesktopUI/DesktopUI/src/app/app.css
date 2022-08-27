@@ -10,6 +10,10 @@
     -fx-background-color: #489b54;
 }
 
+.component-with-border {
+    -fx-border-color: grey;
+}
+
 .input-text-field {
     -fx-focus-color: #50a005;
 }
