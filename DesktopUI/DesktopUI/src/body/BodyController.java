@@ -198,7 +198,6 @@ public class BodyController {
 
     public void updateMachineInfo() {
         DTOspecs specsStatus = mainController.fetchSpecs();
-
         machineDetailsController.displayMachineDetails(specsStatus);
         currentConfigScreen1Controller.displayCurrentConfig(getCurrentConfigFromSpecs(specsStatus));
         currentConfigScreen2Controller.displayCurrentConfig(getCurrentConfigFromSpecs(specsStatus));

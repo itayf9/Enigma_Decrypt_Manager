@@ -5,10 +5,7 @@ import dto.DTOstatus;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 import problem.Problem;
 
 import static utill.Utility.romanToDecimal;
@@ -133,7 +130,7 @@ public class CodeCalibrationController {
 
     @FXML
     void setMachineConfig(MouseEvent event) {
-        boolean isValid = true;
+        boolean isValid;
 
         DTOstatus rtrStatus = validateRotorsInput();
         DTOstatus wndStatus = validateWindowsInput();

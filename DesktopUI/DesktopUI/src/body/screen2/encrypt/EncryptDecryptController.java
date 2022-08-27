@@ -96,36 +96,13 @@ public class EncryptDecryptController {
 
             // adds the circle shape
             Circle lightBulbCircle = new Circle();
-            lightBulbCircle.setFill(Paint.valueOf("DODGERBLUE"));
+            lightBulbCircle.setFill(Paint.valueOf("#cc5454"));
             lightBulbCircle.setRadius(15);
             lightBulbCircle.setStroke(Paint.valueOf("BLACK"));
             lightBulbCircle.setStrokeType(StrokeType.valueOf("INSIDE"));
 
             // adds the letter
             Label lightBulbLetter = new Label("" + letter);
-            lightBulbLetter.setTextAlignment(TextAlignment.valueOf("CENTER"));
-            Font font = new Font(26.0);
-            lightBulbLetter.setFont(font);
-
-            // add circle and letter to stack pane
-            nextLightBulb.getChildren().add(lightBulbCircle);
-            nextLightBulb.getChildren().add(lightBulbLetter);
-
-            lightbulbs.getChildren().add(nextLightBulb);
-        }
-
-        for (int i = 0; i < 100; i++) {
-            StackPane nextLightBulb = new StackPane();
-
-            // adds the circle shape
-            Circle lightBulbCircle = new Circle();
-            lightBulbCircle.setFill(Paint.valueOf("DODGERBLUE"));
-            lightBulbCircle.setRadius(15);
-            lightBulbCircle.setStroke(Paint.valueOf("BLACK"));
-            lightBulbCircle.setStrokeType(StrokeType.valueOf("INSIDE"));
-
-            // adds the letter
-            Label lightBulbLetter = new Label("" + 'X');
             lightBulbLetter.setTextAlignment(TextAlignment.valueOf("CENTER"));
             Font font = new Font(26.0);
             lightBulbLetter.setFont(font);
@@ -157,7 +134,7 @@ public class EncryptDecryptController {
         ObservableList<?> elements = lightbulbs.getChildren();
         StackPane currentPane = (StackPane) elements.get(alphabet.indexOf(cipheredLetter.charAt(0)));
         Circle circle = (Circle) currentPane.getChildren().get(0);
-        circle.setFill(Paint.valueOf("DODGERBLUE"));
+        circle.setFill(Paint.valueOf("#cc5454"));
 
         currentPane.getStyleClass().remove("light-on");
     }
