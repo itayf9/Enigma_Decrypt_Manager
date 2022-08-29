@@ -8,10 +8,7 @@ import body.screen2.encrypt.EncryptDecryptController;
 import body.screen2.statistics.StatisticsController;
 import dto.*;
 import javafx.fxml.FXML;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-
-import java.awt.*;
 
 import static utill.Utillity.getCurrentConfigFromSpecs;
 
@@ -62,9 +59,10 @@ public class BodyController {
     private StatisticsController statisticsController;
 
     /**
-     * init controllers
+     * set up the application, connecting the controllers to their main controller
      */
-    public void setChildrenControllers() {
+    @FXML
+    public void initialize() {
         codeCalibrationController.setParentController(this);
         machineDetailsController.setParentController(this);
         currentConfigScreen1Controller.setParentController(this);
@@ -86,7 +84,6 @@ public class BodyController {
      * @param specsStatus DTO contains machine specs
      */
     public void displayMachineSpecs(DTOspecs specsStatus) {
-        setChildrenControllers();
         machineDetailsController.displayMachineDetails(specsStatus);
         currentConfigScreen1Controller.displayCurrentConfig(getCurrentConfigFromSpecs(specsStatus));
         currentConfigScreen2Controller.displayCurrentConfig(getCurrentConfigFromSpecs(specsStatus));
@@ -162,6 +159,7 @@ public class BodyController {
 
     /**
      * Q5 -> going up the chain to the main controller
+     *
      * @param character key pressed
      * @return status and ciphered key
      */

@@ -613,6 +613,10 @@ public class EnigmaEngine implements Engine {
         String outputText = "";
         Problem problem;
 
+        if (inputText.length() == 0) {
+            problem = Problem.CIPHER_INPUT_EMPTY_STRING;
+            return new DTOciphertext(false, problem, outputText);
+        }
         // check valid ABC
         problem = isAllCharsInAlphabet(inputText);
 

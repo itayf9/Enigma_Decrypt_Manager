@@ -8,7 +8,6 @@ import header.HeaderController;
 import javafx.fxml.FXML;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.GridPane;
-import static utill.Utillity.getCurrentConfigFromSpecs;
 
 public class MainController {
 
@@ -122,9 +121,8 @@ public class MainController {
      * @param character String that contains one character
      * @return ciphered Character
      */
-    public DTOciphertext cipherChar(String character) {
-        DTOciphertext cipheredTextStatus = engine.cipherInputText(character);
-        return cipheredTextStatus;
+    public DTOciphertext cipher(String character) {
+        return engine.cipherInputText(character);
     }
 
     /**

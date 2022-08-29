@@ -52,7 +52,7 @@ public class EncryptDecryptController {
         cipherModeToggles.getToggles().get(1).setSelected(true);
         processButton.setText("Process");
         setAllowEncryptDecrypt(false);
-
+        cipherProblemLabel.setText("");
     }
 
     /**
@@ -61,21 +61,24 @@ public class EncryptDecryptController {
      * @param event key press
      */
     @FXML
-    void CipherCharacter(KeyEvent event) {
-        DTOciphertext cipheredCharStatus = parentController.cipherCharacter(event.getCharacter().toUpperCase());
-        if (!cipheredCharStatus.isSucceed()) {
-            cipheredLetter = "";
-            inputTextField.getStyleClass().add("invalid-input");
-            cipherProblemLabel.getStyleClass().add("problem-details-label");
-            cipherProblemLabel.setText(cipheredCharStatus.getDetails().name());
-        } else {
-            outputLabel.setText(outputLabel.getText() + cipheredCharStatus.getCipheredText());
-            this.cipheredLetter = cipheredCharStatus.getCipheredText();
-            activateLightBulb(cipheredCharStatus.getCipheredText());
-            parentController.updateMachineInfo();
-            parentController.displayStatistics();
-            cipherProblemLabel.setText("");
-        }
+    void cipherCharacter(KeyEvent event) {
+        ToggleButton mode = (ToggleButton) cipherModeToggles.getSelectedToggle();
+
+        if (mode.getText().equals("Char by Char")) {
+            DTOciphertext cipheredCharStatus = parentController.cipher(event.getCharacter().toUpperCase());
+            if (!cipheredCharStatus.isSucceed()) {
+                cipheredLetter = "";
+                inputTextField.getStyleClass().add("invalid-input");
+                cipherProblemLabel.getStyleClass().add("problem-details-label");
+                cipherProblemLabel.setText(cipheredCharStatus.getDetails().name());
+            } else {
+                outputLabel.setText(outputLabel.getText() + cipheredCharStatus.getCipheredText());
+                this.cipheredLetter = cipheredCharStatus.getCipheredText();
+                activateLightBulb(cipheredCharStatus.getCipheredText());
+                parentController.updateMachineInfo();
+                cipherProblemLabel.setText("");
+            }
+        } // else return
     }
 
     @FXML
@@ -106,7 +109,7 @@ public class EncryptDecryptController {
      */
     @FXML
     void setCipherMode(MouseEvent event) {
-
+        clearTextFields();
         // adds a listener to the toggles
         // always keeps at least one toggle enabled
         cipherModeToggles.selectedToggleProperty().addListener((obsVal, oldToggle, newToggle) -> {
@@ -125,7 +128,6 @@ public class EncryptDecryptController {
         }
     }
 
-
     /**
      * Q6 -> going up the chain to parent controller
      *
@@ -138,12 +140,18 @@ public class EncryptDecryptController {
 
     /**
      * clear the textBox
+     *
      * @param event button event
      */
     @FXML
     void clearCurrentCipher(MouseEvent event) {
+        clearTextFields();
+    }
+
+    private void clearTextFields() {
         inputTextField.setText("");
         outputLabel.setText("");
+        cipherProblemLabel.setText("");
     }
 
     public void setParentController(BodyController parentController) {

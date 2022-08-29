@@ -30,6 +30,12 @@ public class HeaderController {
     private Label headerMessageLabel;
 
     @FXML
+    public void initialize() {
+        headerMessageLabel.setText("");
+    }
+
+
+    @FXML
     private void loadMachineFile(MouseEvent event) {
         fileChooser.setTitle("Load Machine");
         fileChooser.getExtensionFilters().add((new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml")));
