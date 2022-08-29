@@ -26,7 +26,11 @@ public class MainController {
         if (headerController != null && bodyController != null) {
             headerController.setMainController(this);
             bodyController.setMainController(this);
+
+            bodyController.updateMachineInfo();
         }
+
+
     }
 
     /**
@@ -135,5 +139,9 @@ public class MainController {
 
     public DTOspecs fetchSpecs() {
         return engine.displayMachineSpecifications();
+    }
+
+    public void setCharByCharCipherMode(boolean newCharByCharCipherMode) {
+        engine.setCharByCharState(newCharByCharCipherMode);
     }
 }

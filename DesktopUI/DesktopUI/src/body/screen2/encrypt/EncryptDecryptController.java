@@ -4,9 +4,7 @@ import body.BodyController;
 import dto.DTOciphertext;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
@@ -37,11 +35,24 @@ public class EncryptDecryptController {
     private FlowPane lightBulbs;
 
     @FXML
+    private ToggleGroup cipherModeToggles;
+
+    @FXML
+    private Button processButton;
+
+    @FXML
     private Button resetButton;
 
     @FXML
     private Button clearButton;
 
+
+    @FXML
+    public void initialize() {
+        cipherModeToggles.getToggles().get(1).setSelected(true);
+        setAllowEncryptDecrypt(false);
+
+    }
 
     /**
      * Q5 -> going up the chain to parent controller
@@ -66,8 +77,29 @@ public class EncryptDecryptController {
         }
     }
 
+    @FXML
+    void setCipherMode(MouseEvent event) {
+
+        // adds a listener to the toggles
+        // always keeps at least one toggle enabled
+        cipherModeToggles.selectedToggleProperty().addListener((obsVal, oldToggle, newToggle) -> {
+            if (newToggle == null) {
+                oldToggle.setSelected(true);
+            }
+        });
+
+        ToggleButton selectToggleButton = (ToggleButton) cipherModeToggles.getSelectedToggle();
+        if (selectToggleButton.getText().equals("Char by Char")) {
+            parentController.setCharByCharCipherMode(true);
+        } else {
+            parentController.setCharByCharCipherMode(false);
+        }
+    }
+
+
     /**
      * Q6 -> going up the chain to parent controller
+     *
      * @param event button event
      */
     @FXML
@@ -123,6 +155,11 @@ public class EncryptDecryptController {
 
     public void setAllowEncryptDecrypt(boolean isAllow) {
         inputTextField.setDisable(!isAllow);
+        cipherModeToggles.getToggles().forEach((Toggle t) -> {
+            ToggleButton b = (ToggleButton) t;
+            b.setDisable(!isAllow);
+        });
+        processButton.setDisable(!isAllow);
         resetButton.setDisable(!isAllow);
         clearButton.setDisable(!isAllow);
         inputTextField.setText("");

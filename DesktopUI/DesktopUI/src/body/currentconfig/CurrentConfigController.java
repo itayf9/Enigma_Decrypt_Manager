@@ -33,7 +33,8 @@ public class CurrentConfigController {
 
     public void displayCurrentConfig(DTOsecretConfig configStatus) {
 
-        if (configStatus.getDetails().equals(Problem.NO_CONFIGURATION)) {
+        if (configStatus.getDetails().equals(Problem.NO_LOADED_MACHINE) ||
+                configStatus.getDetails().equals(Problem.NO_CONFIGURATION)) {
             rotors.setText("");
             windows.setText("");
             reflector.setText("");

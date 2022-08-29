@@ -441,22 +441,31 @@ public class EnigmaEngine implements Engine {
         String inUsePlugs = "";
         List<Integer> notchDistancesToWindow = new ArrayList<>();
         List<Integer> originalNotchPositions = new ArrayList<>();
+        int availableRotorsCount = 0;
+        int inUseRotorsCount = 0;
+        int availableReflectorsCount = 0;
+        int cipheredTextsCount = 0;
 
-        int availableRotorsCount = machine.getAvailableRotorsLen();
-        int inUseRotorsCount = machine.getRotorsCount();
-        int availableReflectorsCount = machine.getAvailableReflectorsLen();
-        int cipheredTextsCount = machine.getCipherCounter();
+        try {
+            availableRotorsCount = machine.getAvailableRotorsLen();
+            inUseRotorsCount = machine.getRotorsCount();
+            availableReflectorsCount = machine.getAvailableReflectorsLen();
+            cipheredTextsCount = machine.getCipherCounter();
 
-        if (machine.isConfigured()) {
-            inUseRotorsIDs = machine.getInUseRotorsIDs();
-            originalWindowsCharacters = machine.getOriginalWindowsCharacters();
-            currentWindowsCharacters = machine.getCurrentWindowsCharacters();
-            inUseReflectorSymbol = decimalToRoman(machine.getInUseReflector().getId());
-            inUsePlugs = machine.getAllPlugPairs();
-            notchDistancesToWindow = machine.getInUseNotchDistanceToWindow();
-            originalNotchPositions = machine.getOriginalNotchPositions();
-        } else {
-            details = Problem.NO_CONFIGURATION;
+            if (machine.isConfigured()) {
+                inUseRotorsIDs = machine.getInUseRotorsIDs();
+                originalWindowsCharacters = machine.getOriginalWindowsCharacters();
+                currentWindowsCharacters = machine.getCurrentWindowsCharacters();
+                inUseReflectorSymbol = decimalToRoman(machine.getInUseReflector().getId());
+                inUsePlugs = machine.getAllPlugPairs();
+                notchDistancesToWindow = machine.getInUseNotchDistanceToWindow();
+                originalNotchPositions = machine.getOriginalNotchPositions();
+            } else {
+                details = Problem.NO_CONFIGURATION;
+            }
+        } catch (NullPointerException e) {
+            isSucceeded = false;
+            details = Problem.NO_LOADED_MACHINE;
         }
 
         return new DTOspecs(isSucceeded, details, availableRotorsCount, inUseRotorsCount,
@@ -605,12 +614,24 @@ public class EnigmaEngine implements Engine {
         if (problem.equals(Problem.NO_PROBLEM)) {
             isSucceed = true;
 
-            long startMeasureTime = System.nanoTime();
-            outputText = cipherText(inputText);
-            long timeElapsed = System.nanoTime() - startMeasureTime;
-            Pair<Pair<String, String>, Long> inputTextToOutputTextToTimeElapsed = new Pair<>(new Pair<>(inputText, outputText), timeElapsed);
+            // cipher in line-by-line mode
+            if (!charByCharState) {
+                long startMeasureTime = System.nanoTime();
+                outputText = cipherText(inputText);
+                long timeElapsed = System.nanoTime() - startMeasureTime;
+                Pair<Pair<String, String>, Long> inputTextToOutputTextToTimeElapsed = new Pair<>(new Pair<>(inputText, outputText), timeElapsed);
 
-            machineRecords.get(machineRecords.size() - 1).getCipherHistory().add(inputTextToOutputTextToTimeElapsed);
+                machineRecords.get(machineRecords.size() - 1).getCipherHistory().add(inputTextToOutputTextToTimeElapsed);
+            } else {
+                // cipher in char-by-char mode
+                long startMeasureTime = System.nanoTime();
+                outputText = cipherText(inputText);
+                long timeElapsed = System.nanoTime() - startMeasureTime;
+                currentCipherProcessTimeElapsed += timeElapsed; // value that engine holds for current  cipher time
+                currentCipherProcessInputText += inputText;
+                currentCipherProcessOutputText += outputText;
+            }
+
         }
 
         return new DTOciphertext(isSucceed, problem, outputText);
@@ -923,6 +944,41 @@ public class EnigmaEngine implements Engine {
         }
 
         return "";
+    }
+
+    /**
+     * true - for char by char cipher, false - for line by line.
+     *
+     * @param newCharByCharState the wanted state
+     */
+    @Override
+    public void setCharByCharState(boolean newCharByCharState) {
+        if (!newCharByCharState) {
+            resetCurrentCipherProcess();
+        }
+
+        this.charByCharState = newCharByCharState;
+    }
+
+    /**
+     * resets the current cipher process (for char-by-char mode)
+     */
+    private void resetCurrentCipherProcess() {
+        currentCipherProcessTimeElapsed = 0;
+        currentCipherProcessInputText = "";
+        currentCipherProcessOutputText = "";
+    }
+
+    /**
+     * finishes the current cipher process (in char-by-char mode)
+     */
+    @Override
+    public void doneCurrentCipherProcess() {
+        Pair<Pair<String, String>, Long> inputTextToOutputTextToTimeElapsed = new Pair<>(new Pair<>(currentCipherProcessInputText, currentCipherProcessOutputText), currentCipherProcessTimeElapsed);
+
+        machineRecords.get(machineRecords.size() - 1).getCipherHistory().add(inputTextToOutputTextToTimeElapsed);
+
+        resetCurrentCipherProcess();
     }
 
     @Override

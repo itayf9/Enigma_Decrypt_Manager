@@ -130,4 +130,16 @@ public interface Engine {
      */
     String getMachineAlphabet();
 
+    /**
+     * true - for char by char cipher, false - for line by line.
+     *
+     * @param charByCharState the wanted state
+     */
+    void setCharByCharState(boolean charByCharState);
+
+    /**
+     * finishes the current cipher process (in char-by-char mode)
+     */
+    void doneCurrentCipherProcess();
+
 }

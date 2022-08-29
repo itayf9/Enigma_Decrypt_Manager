@@ -98,6 +98,7 @@ public class BodyController {
     public void setRandomMachineConfig() {
         mainController.setRandomMachineConfig();
         encryptDecryptController.setAllowEncryptDecrypt(true);
+
     }
 
     /**
@@ -212,5 +213,9 @@ public class BodyController {
 
     public void setAllowEncryptDecrypt(boolean isAllow) {
         encryptDecryptController.setAllowEncryptDecrypt(isAllow);
+    }
+
+    public void setCharByCharCipherMode(boolean newCharByCharCipherMode) {
+        mainController.setCharByCharCipherMode(newCharByCharCipherMode);
     }
 }
