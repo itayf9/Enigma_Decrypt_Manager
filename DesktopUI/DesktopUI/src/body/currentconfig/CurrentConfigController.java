@@ -2,7 +2,6 @@ package body.currentconfig;
 
 import body.BodyController;
 import dto.DTOsecretConfig;
-import dto.DTOspecs;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.Label;
