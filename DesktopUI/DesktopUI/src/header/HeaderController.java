@@ -10,6 +10,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import problem.Problem;
 
+import java.io.File;
+
 public class HeaderController {
 
     FileChooser fileChooser = new FileChooser();
@@ -30,8 +32,14 @@ public class HeaderController {
     @FXML
     private void loadMachineFile(MouseEvent event) {
         fileChooser.setTitle("Load Machine");
-        this.selectedMachineFile = fileChooser.showOpenDialog(new Stage()).getPath();
-        mainController.loadMachineFromFile(selectedMachineFile);
+        fileChooser.getExtensionFilters().add((new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml")));
+        File chosenFile = fileChooser.showOpenDialog(new Stage());
+
+        if (chosenFile != null) {
+            this.selectedMachineFile = chosenFile.getAbsolutePath();
+            mainController.loadMachineFromFile(selectedMachineFile);
+        }
+
     }
 
     public void setMainController(MainController mainController) {
