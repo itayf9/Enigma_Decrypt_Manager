@@ -27,6 +27,11 @@ public class EnigmaEngine implements Engine {
     // The engine contains Machine instance and machine records object.
     private Machine machine;
 
+    private boolean charByCharState = false;
+
+    private long currentCipherProcessTimeElapsed;
+    private String currentCipherProcessOutputText;
+    private String currentCipherProcessInputText;
     private List<StatisticRecord> machineRecords = new ArrayList<>();
 
     public static String JAXB_XML_PACKAGE_NAME = "machine.jaxb.generated";
@@ -987,6 +992,4 @@ public class EnigmaEngine implements Engine {
                 "machine=" + machine +
                 '}';
     }
-
-
 }
