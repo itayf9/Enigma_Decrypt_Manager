@@ -165,8 +165,8 @@ public class BodyController {
      * @param character key pressed
      * @return status and ciphered key
      */
-    public DTOciphertext cipherCharacter(String character) {
-        return mainController.cipherChar(character);
+    public DTOciphertext cipher(String character) {
+        return mainController.cipher(character);
     }
 
     /**
@@ -217,5 +217,9 @@ public class BodyController {
 
     public void setCharByCharCipherMode(boolean newCharByCharCipherMode) {
         mainController.setCharByCharCipherMode(newCharByCharCipherMode);
+    }
+
+    public void doneCurrentCipherProcess() {
+        mainController.doneCurrentCipherProcess();
     }
 }

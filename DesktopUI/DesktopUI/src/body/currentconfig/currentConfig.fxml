@@ -25,10 +25,10 @@
          <content>
             <FlowPane orientation="VERTICAL" prefHeight="133.0" prefWrapLength="200.0">
                <children>
-                  <Label id="rotors" fx:id="rotors" styleClass="config-label" stylesheets="@currentConfig.css" text="&lt;3,4,2&gt;" />
-                  <Label id="windows-characters" fx:id="windows" styleClass="config-label" stylesheets="@currentConfig.css" text="&lt;BGF&gt;" />
-                  <Label id="reflector" fx:id="reflector" styleClass="config-label" stylesheets="@currentConfig.css" text="&lt;IV&gt;" />
-                  <Label id="plugs" fx:id="plugs" styleClass="config-label" stylesheets="@currentConfig.css" text="&lt;A|F, F|E&gt;" />
+                  <Label id="rotors" fx:id="rotors" styleClass="config-label" stylesheets="@currentConfig.css" />
+                  <Label id="windows-characters" fx:id="windows" styleClass="config-label" stylesheets="@currentConfig.css" />
+                  <Label id="reflector" fx:id="reflector" styleClass="config-label" stylesheets="@currentConfig.css" />
+                  <Label id="plugs" fx:id="plugs" styleClass="config-label" stylesheets="@currentConfig.css" />
                   <Label id="noConfigMsg" fx:id="noConfigMsg" styleClass="config-label" />
                </children>
             </FlowPane>

@@ -10,6 +10,17 @@
     -fx-background-color: #489b54;
 }
 
+.action-btn:pressed {
+    -fx-background-color: #50c550;
+}
+
+.option-btn {
+    -fx-background-color: grey;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+
 .component-with-border {
     -fx-border-color: grey;
 }

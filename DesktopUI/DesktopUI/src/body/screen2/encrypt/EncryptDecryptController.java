@@ -50,6 +50,7 @@ public class EncryptDecryptController {
     @FXML
     public void initialize() {
         cipherModeToggles.getToggles().get(1).setSelected(true);
+        processButton.setText("Process");
         setAllowEncryptDecrypt(false);
 
     }
@@ -78,6 +79,32 @@ public class EncryptDecryptController {
     }
 
     @FXML
+    void processHandler(MouseEvent event) {
+        ToggleButton mode = (ToggleButton) cipherModeToggles.getSelectedToggle();
+
+        if (mode.getText().equals("Char by Char")) { // done btn
+            clearTextFields();
+            parentController.doneCurrentCipherProcess();
+            parentController.displayStatistics();
+        } else {
+            DTOciphertext cipheredLineStatus = parentController.cipher(inputTextField.getText().toUpperCase());
+            if (!cipheredLineStatus.isSucceed()) {
+                inputTextField.getStyleClass().add("invalid-input");
+                cipherProblemLabel.getStyleClass().add("problem-details-label");
+                cipherProblemLabel.setText(cipheredLineStatus.getDetails().name());
+            } else {
+                outputLabel.setText(cipheredLineStatus.getCipheredText());
+                parentController.updateMachineInfo();
+                parentController.displayStatistics();
+                cipherProblemLabel.setText("");
+            }
+        }
+    }
+
+    /**
+     * @param event a mouse click on one of the 2 modes presented
+     */
+    @FXML
     void setCipherMode(MouseEvent event) {
 
         // adds a listener to the toggles
@@ -91,8 +118,10 @@ public class EncryptDecryptController {
         ToggleButton selectToggleButton = (ToggleButton) cipherModeToggles.getSelectedToggle();
         if (selectToggleButton.getText().equals("Char by Char")) {
             parentController.setCharByCharCipherMode(true);
+            processButton.setText("Done");
         } else {
             parentController.setCharByCharCipherMode(false);
+            processButton.setText("Process");
         }
     }
 

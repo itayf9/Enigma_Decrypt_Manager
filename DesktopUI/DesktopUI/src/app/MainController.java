@@ -145,4 +145,8 @@ public class MainController {
     public void setCharByCharCipherMode(boolean newCharByCharCipherMode) {
         engine.setCharByCharState(newCharByCharCipherMode);
     }
+
+    public void doneCurrentCipherProcess() {
+        engine.doneCurrentCipherProcess();
+    }
 }
