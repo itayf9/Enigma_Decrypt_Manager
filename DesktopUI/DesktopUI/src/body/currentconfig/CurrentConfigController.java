@@ -6,6 +6,7 @@ import dto.DTOspecs;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.Label;
+import problem.Problem;
 
 import java.util.List;
 
@@ -27,17 +28,22 @@ public class CurrentConfigController {
     @FXML
     private Label noConfigMsg;
 
+    @FXML
+    private Label configTitle;
 
-    public void displayCurrentConfig() {
-        rotors.setText("");
-        windows.setText("");
-        reflector.setText("");
-        plugs.setText("");
-        noConfigMsg.setText("No Configuration yet.");
-
-    }
 
     public void displayCurrentConfig(DTOsecretConfig configStatus) {
+
+        if (configStatus.getDetails().equals(Problem.NO_CONFIGURATION)) {
+            rotors.setText("");
+            windows.setText("");
+            reflector.setText("");
+            plugs.setText("");
+            noConfigMsg.setText("No Configuration yet.");
+            return;
+        }
+
+
         List<Integer> inUseRotorsIDs = configStatus.getRotors();
         List<Integer> notchDistancesToWindow = configStatus.getNotchDistances();
         StringBuilder rotorsStr = new StringBuilder();
@@ -93,4 +99,7 @@ public class CurrentConfigController {
     }
 
 
+    public void setTitle(String title) {
+        configTitle.setText(title);
+    }
 }

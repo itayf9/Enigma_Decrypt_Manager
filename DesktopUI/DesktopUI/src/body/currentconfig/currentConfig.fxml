@@ -20,7 +20,7 @@
       <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="142.0" vgrow="ALWAYS" />
    </rowConstraints>
    <children>
-      <Label styleClass="component-title" text="Current Machine Configuration:" GridPane.halignment="CENTER" />
+      <Label fx:id="configTitle" styleClass="component-title" text="Current Machine Configuration:" GridPane.halignment="CENTER" />
       <ScrollPane fitToHeight="true" fitToWidth="true" GridPane.columnSpan="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
          <content>
             <FlowPane orientation="VERTICAL" prefHeight="133.0" prefWrapLength="200.0">

@@ -1,10 +1,14 @@
 package body.screen1.machinedetails;
 
 import body.BodyController;
+import body.currentconfig.CurrentConfigController;
 import dto.DTOspecs;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
+
+import static utill.Utillity.getOriginalConfigFromSpecs;
 
 
 public class MachineDetailsController {
@@ -23,12 +27,24 @@ public class MachineDetailsController {
     @FXML
     private Label cipheredTextCount;
 
+    @FXML
+    private GridPane originalConfig;
+
+    @FXML
+    private CurrentConfigController originalConfigController;
+
+    @FXML
+    public void initialize() {
+        originalConfigController.setTitle("Original Machine Configuration:");
+    }
+
 
     public void displayMachineDetails(DTOspecs specsStatus) {
         usedRotors.setText("" + specsStatus.getInUseRotorsCount());
         availableRotors.setText("" + specsStatus.getAvailableRotorsCount());
         availableReflectors.setText("" + specsStatus.getAvailableReflectorsCount());
         cipheredTextCount.setText("" + specsStatus.getCipheredTextsCount());
+        originalConfigController.displayCurrentConfig(getOriginalConfigFromSpecs(specsStatus));
     }
 
     public void setParentController(BodyController parentController) {

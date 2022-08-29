@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Rectangle?>
 
-<GridPane hgap="3.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0" prefWidth="596.0" styleClass="component-with-border" vgap="5.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.screen1.machinedetails.MachineDetailsController">
+<GridPane hgap="3.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="596.0" styleClass="component-with-border" vgap="5.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.screen1.machinedetails.MachineDetailsController">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.33334350585938" minWidth="132.0" prefWidth="126.33334350585938" />
       <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="10.0" />
@@ -22,7 +22,8 @@
   <rowConstraints>
     <RowConstraints maxHeight="128.66665649414062" minHeight="30.0" prefHeight="30.0" vgrow="NEVER" />
     <RowConstraints maxHeight="267.0" minHeight="40.0" prefHeight="44.333343505859375" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="1.7976931348623157E308" minHeight="64.0" prefHeight="64.66665649414062" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="1.7976931348623157E308" minHeight="64.0" prefHeight="73.66665649414062" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="88.0" prefHeight="88.33334350585938" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <Label styleClass="component-title" text="Machine Details:" GridPane.columnSpan="4">
@@ -74,6 +75,7 @@
       <Label styleClass="property-label" text="Number Of Texts Ciphered So Far:" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="6" GridPane.rowIndex="1" GridPane.valignment="TOP" />
       <Label styleClass="property-label" text="Number Of Available Reflectors" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.valignment="TOP" />
       <Label styleClass="property-label" text="Number Of Available Rotors" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+      <fx:include fx:id="originalConfig" source="../../currentconfig/currentConfig.fxml" GridPane.columnSpan="7" GridPane.rowIndex="3" />
    </children>
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

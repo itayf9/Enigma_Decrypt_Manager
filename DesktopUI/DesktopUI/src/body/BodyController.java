@@ -88,8 +88,8 @@ public class BodyController {
     public void displayMachineSpecs(DTOspecs specsStatus) {
         setChildrenControllers();
         machineDetailsController.displayMachineDetails(specsStatus);
-        currentConfigScreen1Controller.displayCurrentConfig();
-        currentConfigScreen2Controller.displayCurrentConfig();
+        currentConfigScreen1Controller.displayCurrentConfig(getCurrentConfigFromSpecs(specsStatus));
+        currentConfigScreen2Controller.displayCurrentConfig(getCurrentConfigFromSpecs(specsStatus));
     }
 
     /**

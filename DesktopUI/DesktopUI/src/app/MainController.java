@@ -108,11 +108,7 @@ public class MainController {
      */
     public void setManualMachineConfig(String rotors, String windows, int reflector, String plugs) {
         DTOsecretConfig configStatus = engine.selectConfigurationManual(rotors, windows, reflector, plugs);
-        if (!configStatus.isSucceed()) {
-            // err msg
-        } else {
-            bodyController.displayCurrentConfig(configStatus);
-        }
+        bodyController.displayCurrentConfig(configStatus);
     }
 
     /**
