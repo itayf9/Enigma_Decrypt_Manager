@@ -50,11 +50,7 @@ public class CurrentConfigController {
         rotorsStr.append("<");
         for (int i = inUseRotorsIDs.size() - 1; i >= 0; i--) {
             rotorsStr.append(inUseRotorsIDs.get(i).toString());
-            if (notchDistancesToWindow.size() > 0) {
-                rotorsStr.append("(")
-                        .append(notchDistancesToWindow.get(i).toString())
-                        .append(")");
-            }
+
             if (i != 0) {
                 rotorsStr.append(",");
             }
@@ -64,9 +60,21 @@ public class CurrentConfigController {
         // display rotors ids
         this.rotors.setText(rotorsStr.toString());
 
-
         // display windows
-        this.windows.setText("<" + configStatus.getWindows() + ">");
+        StringBuilder reversedWindows = new StringBuilder();
+
+        for (int i = configStatus.getWindows().length() - 1; i >= 0; i--) {
+            reversedWindows.append(configStatus.getWindows().charAt(i));
+
+            if (notchDistancesToWindow.size() > 0) {
+                reversedWindows.append("(")
+                        .append(notchDistancesToWindow.get(i).toString())
+                        .append(")");
+            }
+        }
+
+
+        this.windows.setText("<" + reversedWindows.toString() + ">");
 
         // display reflector
         this.reflector.setText("<" + configStatus.getReflectorSymbol() + ">");
