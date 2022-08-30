@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PlugBoard implements Serializable {
+public class PlugBoard implements Serializable, Cloneable {
 
     // key-value pairs representing the plugs.
     private Map<Integer, Integer> plugMap;

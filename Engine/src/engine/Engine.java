@@ -141,5 +141,4 @@ public interface Engine {
      * finishes the current cipher process (in char-by-char mode)
      */
     void doneCurrentCipherProcess();
-
 }

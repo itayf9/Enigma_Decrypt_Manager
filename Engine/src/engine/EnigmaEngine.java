@@ -229,11 +229,9 @@ public class EnigmaEngine implements Engine {
         }
         // if we got here safely then the rotor's mappings are OK!
 
-
         // check if all reflectors ids are being a running counting from 1-N
         List<CTEReflector> cteReflectors = cteMachine.getCTEReflectors().getCTEReflector();
         List<Boolean> reflectorIDFlags = new ArrayList<>(Collections.nCopies(5, false));
-
 
         // check for reflector count < 5
         if (cteReflectors.size() > 5) {
@@ -442,9 +440,9 @@ public class EnigmaEngine implements Engine {
         String excludeChars = cteEnigma.getCTEDecipher().getCTEDictionary().getExcludeChars();
         int numberOfAgents = cteEnigma.getCTEDecipher().getAgents();
 
-        decryptManager = new DecryptManager(new Dictionary(words, excludeChars), numberOfAgents);
+        decryptManager = new DecryptManager(new Dictionary(words, excludeChars), numberOfAgents, this.machine);
 
-        return problem;
+        return problem; // for code readability -> problem = Problem.NO_PROBLEM;
     }
 
     /**

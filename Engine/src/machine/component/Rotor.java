@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-public class Rotor implements Serializable {
+public class Rotor implements Serializable, Cloneable {
 
     private int id; // id of rotor
     private final int originalNotchIndex; // the notch position from the window.

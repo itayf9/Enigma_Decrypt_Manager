@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class EnigmaMachine implements Serializable, Machine {
+public class EnigmaMachine implements Serializable, Cloneable, Machine {
 
     /**
      * This area describes the non changing features of the machine.
@@ -383,9 +383,4 @@ public class EnigmaMachine implements Serializable, Machine {
                 ", inUseReflector=" + inUseReflector + '\n' +
                 '}';
     }
-
-
-
-
-
 }
