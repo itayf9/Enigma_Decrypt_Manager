@@ -5,6 +5,7 @@ import dto.*;
 import engine.Engine;
 import engine.EnigmaEngine;
 import header.HeaderController;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.GridPane;
@@ -21,13 +22,18 @@ public class MainController {
     @FXML
     private BodyController bodyController;
 
+    private DTOsecretConfig configStatus;
+    
     @FXML
     public void initialize() {
         if (headerController != null && bodyController != null) {
             headerController.setMainController(this);
             bodyController.setMainController(this);
-
             bodyController.updateMachineInfo();
+
+
+            // addListner(()->bodyController.displayCurrentConfig(configStatus));
+
         }
 
 
@@ -59,6 +65,7 @@ public class MainController {
      */
     public void setRandomMachineConfig() {
         DTOsecretConfig configStatus = engine.selectConfigurationAuto();
+
         bodyController.displayCurrentConfig(configStatus);
     }
 

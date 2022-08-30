@@ -7,6 +7,7 @@ import body.screen1.machinedetails.MachineDetailsController;
 import body.screen2.encrypt.EncryptDecryptController;
 import body.screen2.statistics.StatisticsController;
 import dto.*;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.layout.GridPane;
 
@@ -58,6 +59,7 @@ public class BodyController {
     @FXML
     private StatisticsController statisticsController;
 
+
     /**
      * set up the application, connecting the controllers to their main controller
      */
@@ -95,7 +97,6 @@ public class BodyController {
     public void setRandomMachineConfig() {
         mainController.setRandomMachineConfig();
         encryptDecryptController.setAllowEncryptDecrypt(true);
-
     }
 
     /**
