@@ -319,7 +319,7 @@ public class EnigmaEngine implements Engine {
 
     /**
      * unmarshalling the schema of provided XML file to create jaxb classes.
-     * in order to build the machine from a XML file.
+     * in order to build the machine from an XML file.
      *
      * @param in a InputStream representing the file source
      * @return a CTEEnigma object, representing a jaxb generated engine
