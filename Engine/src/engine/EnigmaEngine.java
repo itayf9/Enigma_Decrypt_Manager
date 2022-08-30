@@ -305,13 +305,13 @@ public class EnigmaEngine implements Engine {
             }
         }
 
-
+        // validating the number of agents
         int numberOfAgents = cteEnigma.getCTEDecipher().getAgents();
 
         if (numberOfAgents < 2) {
-            problem = Problem.FILE_TOO_LITTLE_AGENTS;
+            return problem = Problem.FILE_TOO_LITTLE_AGENTS;
         } else if (numberOfAgents > 50) {
-            problem = Problem.FILE_TOO_MANY_AGENTS;
+            return problem = Problem.FILE_TOO_MANY_AGENTS;
         }
 
         return problem;

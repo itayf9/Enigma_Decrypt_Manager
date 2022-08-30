@@ -3,7 +3,7 @@ package machine.component;
 import java.io.Serializable;
 import java.util.List;
 
-public class Reflector implements Serializable {
+public class Reflector implements Serializable, Cloneable {
 
     private int id;
     private List<Integer> mapping;
