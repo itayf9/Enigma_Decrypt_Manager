@@ -4,10 +4,11 @@ import java.util.Set;
 
 public class DecryptManager {
 
-    private Set<String> dictionary;
+    private Dictionary dictionary;
+    private int numberOfAgents;
 
-    public void initializeDictionary() {
-        // some implementation
+    public DecryptManager(Dictionary dictionary, int numberOfAgents) {
+        this.dictionary = dictionary;
+        this.numberOfAgents = numberOfAgents;
     }
-
 }

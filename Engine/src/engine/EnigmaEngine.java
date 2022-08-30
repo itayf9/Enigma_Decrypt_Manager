@@ -1,5 +1,7 @@
 package engine;
 
+import dm.DecryptManager;
+import dm.Dictionary;
 import javafx.util.Pair;
 import machine.Machine;
 import machine.component.Reflector;
@@ -26,6 +28,8 @@ public class EnigmaEngine implements Engine {
 
     // The engine contains Machine instance and machine records object.
     private Machine machine;
+
+    private DecryptManager decryptManager;
 
     private boolean charByCharState = false;
 
@@ -122,7 +126,7 @@ public class EnigmaEngine implements Engine {
             try {
                 InputStream inputStream = new FileInputStream(fileName);
                 CTEEnigma cteEnigma = deserializeFrom(inputStream);
-                details = buildMachineFromCTEEnigma(cteEnigma);
+                details = buildEnigmaFromCTEEnigma(cteEnigma);
                 if (details != Problem.NO_PROBLEM) {
                     isSucceeded = false;
                 }
@@ -302,6 +306,14 @@ public class EnigmaEngine implements Engine {
         }
 
 
+        int numberOfAgents = cteEnigma.getCTEDecipher().getAgents();
+
+        if (numberOfAgents < 2) {
+            problem = Problem.FILE_TOO_LITTLE_AGENTS;
+        } else if (numberOfAgents > 50) {
+            problem = Problem.FILE_TOO_MANY_AGENTS;
+        }
+
         return problem;
     }
 
@@ -326,7 +338,7 @@ public class EnigmaEngine implements Engine {
      * @param cteEnigma the engine generated from jaxb
      * @return a Problem describing the problem that occurred. if valid, returns Problem.NO_PROBLEM
      */
-    private Problem buildMachineFromCTEEnigma(CTEEnigma cteEnigma) {
+    private Problem buildEnigmaFromCTEEnigma(CTEEnigma cteEnigma) {
 
         Problem problem = validateCTEEnigma(cteEnigma);
         if (problem != Problem.NO_PROBLEM) {
@@ -424,6 +436,13 @@ public class EnigmaEngine implements Engine {
 
         // builds the machine with the components that were initialized
         buildMachine(availableRotors, availableReflectors, rotorsCount, alphabet, character2index);
+
+        // initializes decrypt manager
+        String words = cteEnigma.getCTEDecipher().getCTEDictionary().getWords();
+        String excludeChars = cteEnigma.getCTEDecipher().getCTEDictionary().getExcludeChars();
+        int numberOfAgents = cteEnigma.getCTEDecipher().getAgents();
+
+        decryptManager = new DecryptManager(new Dictionary(words, excludeChars), numberOfAgents);
 
         return problem;
     }
