@@ -85,6 +85,11 @@ public class AgentTask implements Runnable {
         }
 
         // send candidate list to DM
+        try {
+            candidatesQueue.put(candidates);
+        } catch (InterruptedException ignored) {
+
+        }
 
     }
 }

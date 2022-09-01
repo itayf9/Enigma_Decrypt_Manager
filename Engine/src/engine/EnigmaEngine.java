@@ -961,6 +961,16 @@ public class EnigmaEngine implements Engine {
     }
 
     /**
+     * @return a list of all candidates of the deciphering process
+     */
+    public DTOcandidates getDecipherCandidates() {
+        boolean isSucceeded = true;
+        Problem details = Problem.NO_PROBLEM;
+
+        return new DTOcandidates(isSucceeded, details, decryptManager.getDecipherCandidates());
+    }
+
+    /**
      * @return the machine's alphabet as a String
      */
     @Override
