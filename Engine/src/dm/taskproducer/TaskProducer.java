@@ -1,6 +1,7 @@
 package dm.taskproducer;
 
 import dm.agent.AgentTask;
+import candidate.Candidate;
 import dm.dictionary.Dictionary;
 import dm.difficultylevel.DifficultyLevel;
 import machine.EnigmaMachine;
@@ -9,6 +10,7 @@ import machine.Machine;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.RejectedExecutionException;
 
@@ -25,13 +27,16 @@ public class TaskProducer implements Runnable {
     private boolean currentTaskSubmitted = true;
     private String textToDecipher;
     private Dictionary dictionary;
+    private BlockingQueue<List<Candidate>> candidatesQueue;
 
-    public TaskProducer(ExecutorService Pool, Machine machine, String textToDecipher, Dictionary dictionary) {
+    public TaskProducer(ExecutorService Pool, Machine machine, String textToDecipher,
+                        Dictionary dictionary, BlockingQueue<List<Candidate>> candidatesQueue) {
         this.Pool = Pool;
         this.machine = machine;
         this.alphabet = machine.getAlphabet();
         this.textToDecipher = textToDecipher;
         this.dictionary = dictionary;
+        this.candidatesQueue = candidatesQueue;
     }
 
     public void run() {
@@ -72,7 +77,8 @@ public class TaskProducer implements Runnable {
                     }
 
                     try {
-                        Pool.execute(new AgentTask(rotorsIDs, nextWindowsOffsets, inUseReflectorID, copyOfMachine, taskSize, textToDecipher, dictionary));
+                        Pool.execute(new AgentTask(rotorsIDs, nextWindowsOffsets, inUseReflectorID,
+                                copyOfMachine, taskSize, textToDecipher, dictionary, candidatesQueue));
                     } catch (RejectedExecutionException e) {
                         currentTaskSubmitted = false;
                         Thread.yield();

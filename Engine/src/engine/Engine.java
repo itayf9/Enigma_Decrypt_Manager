@@ -142,4 +142,9 @@ public interface Engine {
      * finishes the current cipher process (in char-by-char mode)
      */
     void doneCurrentCipherProcess();
+
+    /**
+     * @return a list of all candidates of the deciphering process
+     */
+    DTOcandidates getDecipherCandidates();
 }

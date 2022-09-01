@@ -1,10 +1,14 @@
 package dm.agent;
 
+import candidate.Candidate;
 import dm.dictionary.Dictionary;
 import machine.Machine;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.BlockingQueue;
+
+import static utill.Utility.decimalToRoman;
 
 public class AgentTask implements Runnable {
 
@@ -17,9 +21,11 @@ public class AgentTask implements Runnable {
     private List<Integer> rotorsIDs;
     private List<Integer> windowOffsets;
     private int inUseReflectorID;
+    private BlockingQueue<List<Candidate>> candidatesQueue;
 
     public AgentTask(List<Integer> rotorsIDs, List<Integer> windowOffsets, int inUseReflectorID,
-                     Machine copyOfMachine, int taskSize, String textToDecipher, Dictionary dictionary) {
+                     Machine copyOfMachine, int taskSize, String textToDecipher, Dictionary dictionary,
+                     BlockingQueue<List<Candidate>> candidatesQueue) {
         machine = copyOfMachine;
         this.taskSize = taskSize;
         this.textToDecipher = textToDecipher;
@@ -27,6 +33,7 @@ public class AgentTask implements Runnable {
         this.windowOffsets = windowOffsets;
         this.rotorsIDs = rotorsIDs;
         this.inUseReflectorID = inUseReflectorID;
+        this.candidatesQueue = candidatesQueue;
     }
 
     private String decipherLine(String LineToDecipher) {
@@ -63,7 +70,7 @@ public class AgentTask implements Runnable {
 
     @Override
     public void run() {
-        List<String> Candidates = new ArrayList<>();
+        List<Candidate> candidates = new ArrayList<>();
 
         for (int i = 0; i < taskSize; i++) {
 
@@ -72,12 +79,22 @@ public class AgentTask implements Runnable {
             machine.setMachineConfiguration(rotorsIDs, windowOffsets, inUseReflectorID, "");
 
             // ciphers the text
-            String candidate = decipherLine(textToDecipher);
+            String decipherResult = decipherLine(textToDecipher);
             resetConfig();
 
             // check dictionary
-            if (dictionary.isAllWordsInDictionary(candidate)) {
-                Candidates.add(candidate);
+            if (dictionary.isAllWordsInDictionary(decipherResult)) {
+
+
+                // convert windows offsets to characters.
+                String windowCharacters = machine.getOriginalWindowsCharacters(); // I trust this !
+
+                // convert reflector ID to Roman number.
+                String nextCandidateReflectorSymbol = decimalToRoman(inUseReflectorID);
+
+                Candidate nextCandidate = new Candidate(decipherResult, rotorsIDs, windowCharacters, nextCandidateReflectorSymbol);
+
+                candidates.add(nextCandidate);
             }
 
             // moves to the next configuration
