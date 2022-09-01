@@ -121,4 +121,8 @@ public interface Machine {
      * @return how many ciphered texts the machine has been ciphering so far
      */
     int getCipherCounter();
+
+    void saveCopyOfMachine(String fileName);
+
+    Machine getCopyOfMachine(String fileName);
 }

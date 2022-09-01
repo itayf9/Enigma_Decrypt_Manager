@@ -12,7 +12,8 @@ public class Reflector implements Serializable, Cloneable {
 
     /**
      * constructor for Reflector
-     * @param id the unique id of the rotor
+     *
+     * @param id      the unique id of the rotor
      * @param mapping a mapping that connects pairs of entries in the reflector
      */
     public Reflector(int id, List<Integer> mapping) {
@@ -32,7 +33,6 @@ public class Reflector implements Serializable, Cloneable {
 
 
     /**
-     *
      * @return the unique id of the rotor
      */
     public int getId() {
@@ -40,12 +40,16 @@ public class Reflector implements Serializable, Cloneable {
     }
 
     /**
-     *
      * @param inputIndex an index of one entry
      * @return the index of the matching entry
      */
     public int reflect(int inputIndex) {
         return mapping.get(inputIndex);
+    }
+
+    @Override
+    public Reflector clone() throws CloneNotSupportedException {
+        return new Reflector(this);
     }
 
     @Override

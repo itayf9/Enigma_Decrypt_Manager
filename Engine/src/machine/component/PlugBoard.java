@@ -27,7 +27,6 @@ public class PlugBoard implements Serializable, Cloneable {
     }
 
     /**
-     *
      * @return a map of indices that represents the pairs of letters that are currently plugged.
      */
     public Map<Integer, Integer> getPlugMap() {
@@ -68,15 +67,20 @@ public class PlugBoard implements Serializable, Cloneable {
 
         plugMap.clear();
         // run through all plugs
-        for (int i = 0; i < plugs.length(); i+=2) {
+        for (int i = 0; i < plugs.length(); i += 2) {
             // convert char to index
             int firstInPlugIndex = character2index.get(plugs.charAt(i));
-            int secondInPlugIndex = character2index.get(plugs.charAt(i+1));
+            int secondInPlugIndex = character2index.get(plugs.charAt(i + 1));
 
             // build  plug map
             plugMap.put(secondInPlugIndex, firstInPlugIndex);
             plugMap.put(firstInPlugIndex, secondInPlugIndex);
         }
+    }
+
+    @Override
+    public PlugBoard clone() throws CloneNotSupportedException {
+        return new PlugBoard(this);
     }
 
     @Override

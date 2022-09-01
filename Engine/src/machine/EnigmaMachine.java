@@ -1,11 +1,14 @@
 package machine;
 
+import engine.EnigmaEngine;
 import javafx.util.Pair;
 import machine.component.PlugBoard;
 import machine.component.Reflector;
 import machine.component.Rotor;
 
-import java.io.Serializable;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -73,6 +76,25 @@ public class EnigmaMachine implements Serializable, Cloneable, Machine {
         this.plugBoard = new PlugBoard();
         this.inUseRotors = new ArrayList<>();
         this.cipherCounter = 0;
+    }
+
+    /**
+     * copy constructor for EnigmaMachine
+     *
+     * @param other the EnigmaMachine to copy from
+     */
+    public EnigmaMachine(EnigmaMachine other) {
+        this.rotorsCount = other.rotorsCount;
+        this.alphabet = other.alphabet;
+        this.isConfigured = other.isConfigured;
+        this.cipherCounter = other.cipherCounter;
+        this.availableRotors = new ArrayList<>(availableRotors);
+        this.availableReflectors = new ArrayList<>(availableReflectors);
+        this.character2index = new HashMap<>(other.character2index);
+        this.inUseWindowsOffsets = new ArrayList<>(inUseWindowsOffsets);
+        this.plugBoard = new PlugBoard(other.plugBoard);
+        this.inUseRotors = new ArrayList<>(inUseRotors);
+        this.inUseReflector = new Reflector(inUseReflector);
     }
 
     /**

@@ -5,35 +5,40 @@ import dm.dictionary.Dictionary;
 import dm.difficultylevel.DifficultyLevel;
 import machine.EnigmaMachine;
 import machine.Machine;
-import machine.component.Rotor;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.RejectedExecutionException;
 
-public class Producer implements Runnable {
+public class TaskProducer implements Runnable {
+
+    // private String copyOfMachineLocation = "/dm/copyOfMachineLocation";
+    private final String END_OF_TASKS = "END OF TASKS";
     protected ExecutorService Pool = null;
     private Machine machine;
+    private String alphabet;
     private int taskSize;
-    private DifficultyLevel difficulty;
-    String currentWindowsCharacters;
+    private DifficultyLevel difficulty = DifficultyLevel.EASY;
+    private List<Integer> currentWindowsOffsets;
+    private boolean currentTaskSubmitted = true;
+    private String textToDecipher;
+    private Dictionary dictionary;
 
     public TaskProducer(ExecutorService Pool, Machine machine, String textToDecipher, Dictionary dictionary) {
         this.Pool = Pool;
+        this.machine = machine;
+        this.alphabet = machine.getAlphabet();
+        this.textToDecipher = textToDecipher;
+        this.dictionary = dictionary;
     }
 
     public void run() {
-        StringBuilder initWindows = new StringBuilder();
-        // init currentWindowsCharacters to "AAA according to size of rotors"
-        for (int i = 0; i < machine.getRotorsCount(); i++) {
-            initWindows.append(machine.getAlphabet().charAt(0));
-        }
-        currentWindowsCharacters = initWindows.toString();
+        List<Integer> currentWindowsOffsets = new ArrayList<>(Collections.nCopies(machine.getRotorsCount(), 0));
 
         boolean finishedAllTasks = false;
         // set the tasks and send them to the pool
-
 
         switch (difficulty) {
             case EASY:
@@ -74,7 +79,6 @@ public class Producer implements Runnable {
                     }
 
                 }
-
                 break;
             case MEDIUM:
                 break;
@@ -85,15 +89,28 @@ public class Producer implements Runnable {
             case UNDEFINED:
                 break;
         }
-
-
-        //setMachineConfiguration(List<Integer> rotorsIDs, List<Integer> windowOfssets, int reflectorID, String plugs);
     }
 
-    private String getNextWindowsChars(int taskSize, String currentWindowsCharacters) {
-        String nextWindowsChar = "";
+    private List<Integer> getNextWindowsOffsets(int taskSize, List<Integer> currentWindowsOffsets) {
 
-        return nextWindowsChar;
+        List<Integer> nextWindowsOffsets = new ArrayList<>(currentWindowsOffsets);
+
+        for (int i = 0; i < taskSize; i++) {
+
+            for (Integer windowOffset : nextWindowsOffsets) {
+                windowOffset = rotateWindow(windowOffset);
+
+                // check if it is needed to rotate next rotor
+                if (windowOffset != 0) {
+                    break;
+                }
+            }
+        }
+        return nextWindowsOffsets;
+    }
+
+    private int rotateWindow(Integer windowOffset) {
+        return (windowOffset + 1 + alphabet.length()) % alphabet.length();
     }
 
 }

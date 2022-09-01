@@ -1,6 +1,7 @@
 package engine;
 
 import dto.*;
+import machine.Machine;
 
 import java.io.IOException;
 

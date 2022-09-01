@@ -54,7 +54,6 @@ public class Rotor implements Serializable, Cloneable {
     }
 
     /**
-     *
      * @return the unique id of the rotor
      */
     public int getId() {
