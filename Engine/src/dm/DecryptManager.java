@@ -1,7 +1,9 @@
 package dm;
 
 
+import dm.dictionary.Dictionary;
 import dm.difficultylevel.DifficultyLevel;
+import dm.taskproducer.TaskProducer;
 import machine.Machine;
 
 import java.util.concurrent.ExecutorService;
@@ -16,7 +18,7 @@ public class DecryptManager {
 
     private DifficultyLevel difficultyLevel;
 
-    private Producer producer;
+    private TaskProducer taskProducer;
 
     private ExecutorService threadExecutor = Executors.newFixedThreadPool(numberOfAgents);
 

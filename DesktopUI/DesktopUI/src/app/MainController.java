@@ -7,6 +7,7 @@ import engine.EnigmaEngine;
 import header.HeaderController;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.GridPane;
 
@@ -22,8 +23,11 @@ public class MainController {
     @FXML
     private BodyController bodyController;
 
+    @FXML
+    private Label statusLabel;
+
     private DTOsecretConfig configStatus;
-    
+
     @FXML
     public void initialize() {
         if (headerController != null && bodyController != null) {

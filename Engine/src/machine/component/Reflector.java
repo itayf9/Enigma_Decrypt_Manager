@@ -1,6 +1,7 @@
 package machine.component;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Reflector implements Serializable, Cloneable {
@@ -17,6 +18,16 @@ public class Reflector implements Serializable, Cloneable {
     public Reflector(int id, List<Integer> mapping) {
         this.id = id;
         this.mapping = mapping;
+    }
+
+    /**
+     * copy constructor for Reflector
+     *
+     * @param otherReflector the reflector to copy from
+     */
+    public Reflector(Reflector otherReflector) {
+        this.id = otherReflector.id;
+        this.mapping = new ArrayList<>(otherReflector.mapping);
     }
 
 

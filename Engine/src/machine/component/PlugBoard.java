@@ -18,6 +18,15 @@ public class PlugBoard implements Serializable, Cloneable {
     }
 
     /**
+     * copy constructor for PlugBoard
+     *
+     * @param otherPlugBoard the plug board to copy fro
+     */
+    public PlugBoard(PlugBoard otherPlugBoard) {
+        this.plugMap = new HashMap<>(otherPlugBoard.plugMap);
+    }
+
+    /**
      *
      * @return a map of indices that represents the pairs of letters that are currently plugged.
      */

@@ -7,6 +7,7 @@ import machine.component.Rotor;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -368,6 +369,63 @@ public class EnigmaMachine implements Serializable, Cloneable, Machine {
      */
     public void advanceCipherCounter() {
         cipherCounter++;
+    }
+
+    @Override
+    public EnigmaMachine clone() throws CloneNotSupportedException {
+
+        PlugBoard copyPlugs = this.plugBoard.clone();
+
+        Rotor copyRotor = this.getRotorByID(0).clone();
+
+       /* try {
+            EnigmaMachine newEnigmaMachine = (EnigmaMachine) super.clone();
+
+            newEnigmaMachine.availableRotors = new ArrayList<>(availableRotors);
+
+            newEnigmaMachine.availableReflectors = new ArrayList<>(availableReflectors);
+
+            newEnigmaMachine.character2index = new HashMap<>(character2index);
+
+            newEnigmaMachine.inUseWindowsOffsets = new ArrayList<>(inUseWindowsOffsets);
+
+            newEnigmaMachine.plugBoard = new PlugBoard(plugBoard);
+
+            newEnigmaMachine.inUseRotors = new ArrayList<>(inUseRotors);
+
+            newEnigmaMachine.inUseReflector = new Reflector(inUseReflector);
+
+            return newEnigmaMachine;
+
+        } catch (CloneNotSupportedException e) {
+            return null;
+        }*/
+
+        return new EnigmaMachine(this);
+    }
+
+    public void saveCopyOfMachine(String fileName) {
+
+        try (ObjectOutputStream out =
+                     new ObjectOutputStream(
+                             Files.newOutputStream(Paths.get(fileName)))) {
+            out.writeObject(this);
+            out.flush();
+        } catch (IOException e) {
+
+        }
+    }
+
+    public Machine getCopyOfMachine(String fileName) {
+
+        Machine newMachineCopy = null;
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName))) {
+            newMachineCopy = (EnigmaMachine) in.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            //
+        }
+
+        return newMachineCopy;
     }
 
     @Override

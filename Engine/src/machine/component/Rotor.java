@@ -1,6 +1,8 @@
 package machine.component;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +36,21 @@ public class Rotor implements Serializable, Cloneable {
         this.forwardMapping = forwardMapping;
         this.backwardMapping = backwardMapping;
 
+    }
+
+    /**
+     * copy constructor for Rotor
+     *
+     * @param otherRotor the rotor to copy from
+     */
+    public Rotor(Rotor otherRotor) {
+        this.id = otherRotor.id;
+        this.originalNotchIndex = otherRotor.originalNotchIndex;
+        this.offset = otherRotor.offset;
+        this.alphabetTranslator = new HashMap<>(otherRotor.alphabetTranslator);
+        this.alphabetLength = otherRotor.alphabetLength;
+        this.forwardMapping = new ArrayList<>(otherRotor.forwardMapping);
+        this.backwardMapping = new ArrayList<>(otherRotor.backwardMapping);
     }
 
     /**
@@ -124,6 +141,11 @@ public class Rotor implements Serializable, Cloneable {
         }
 
         return NOT_FOUND_IN_MAP;
+    }
+
+    @Override
+    public Rotor clone() throws CloneNotSupportedException {
+        return new Rotor(this);
     }
 
     @Override

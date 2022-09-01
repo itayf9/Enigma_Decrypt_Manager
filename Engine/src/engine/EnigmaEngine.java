@@ -1,7 +1,7 @@
 package engine;
 
 import dm.DecryptManager;
-import dm.Dictionary;
+import dm.dictionary.Dictionary;
 import javafx.util.Pair;
 import machine.Machine;
 import machine.component.Reflector;

@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane minWidth="0.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.MainController">
+<GridPane minWidth="0.0" stylesheets="@app.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.MainController">
    <columnConstraints>
       <ColumnConstraints hgrow="ALWAYS" minWidth="0.0" />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints minHeight="100.0" vgrow="NEVER" />
       <RowConstraints minHeight="0.0" vgrow="ALWAYS" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
    </rowConstraints>
    <children>
       <fx:include fx:id="header" minHeight="100.0" minWidth="0.0" prefHeight="100.0" prefWidth="900.0" source="../header/header.fxml" />
       <fx:include fx:id="body" minHeight="0.0" minWidth="0.0" prefHeight="470.0" prefWidth="900.0" source="../body/body.fxml" GridPane.rowIndex="1" />
+      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="status-bar" stylesheets="@statusbar/statusbar.css" GridPane.rowIndex="2">
+         <children>
+            <Label fx:id="statusLabel" text="status" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </HBox>
    </children>
 </GridPane>

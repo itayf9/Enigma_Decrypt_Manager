@@ -1,4 +1,4 @@
-package dm;
+package dm.dictionary;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +30,19 @@ public class Dictionary {
         for (String word : dictionaryWords) {
             this.words.add(word);
         }
+    }
+
+    public boolean isAllWordsInDictionary(String text) {
+        boolean res = true;
+        String[] textWords = text.split(" ");
+
+        for (String word : textWords) {
+            if (!words.contains(word)) {
+                res = false;
+                break;
+            }
+        }
+        return res;
     }
 
 }
