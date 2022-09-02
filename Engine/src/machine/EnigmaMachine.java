@@ -88,13 +88,13 @@ public class EnigmaMachine implements Serializable, Cloneable, Machine {
         this.alphabet = other.alphabet;
         this.isConfigured = other.isConfigured;
         this.cipherCounter = other.cipherCounter;
-        this.availableRotors = new ArrayList<>(availableRotors);
-        this.availableReflectors = new ArrayList<>(availableReflectors);
+        this.availableRotors = new ArrayList<>(other.availableRotors);
+        this.availableReflectors = new ArrayList<>(other.availableReflectors);
         this.character2index = new HashMap<>(other.character2index);
-        this.inUseWindowsOffsets = new ArrayList<>(inUseWindowsOffsets);
+        this.inUseWindowsOffsets = new ArrayList<>(other.inUseWindowsOffsets);
         this.plugBoard = new PlugBoard(other.plugBoard);
-        this.inUseRotors = new ArrayList<>(inUseRotors);
-        this.inUseReflector = new Reflector(inUseReflector);
+        this.inUseRotors = new ArrayList<>(other.inUseRotors);
+        this.inUseReflector = new Reflector(other.inUseReflector);
     }
 
     /**

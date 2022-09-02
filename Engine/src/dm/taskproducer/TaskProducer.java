@@ -50,19 +50,21 @@ public class TaskProducer implements Runnable {
 
         switch (difficulty) {
             case EASY:
+                // set up first agentTask
+
+                // easy mode so rotors doesn't change.
+                List<Integer> inUseRotorsIDs = machine.getInUseRotorsIDs();
+                // get the reflector
+                int inUseReflectorID = machine.getInUseReflector().getId();
+                List<Integer> nextWindowsOffsets = null;
+                Machine copyOfMachine = null;
+
                 while (!finishedAllTasks) {
-
-                    List<Integer> rotorsIDs = null;
-                    int inUseReflectorID = 0;
-                    List<Integer> nextWindowsOffsets = null;
-
-                    // first clone a machine to send to the agent
-                    EnigmaMachine copyOfMachine = (EnigmaMachine) new EnigmaMachine((EnigmaMachine) machine); // Clone!
 
                     if (currentTaskSubmitted) {
 
-                        // easy mode so rotors doesn't change.
-                        rotorsIDs = machine.getInUseRotorsIDs();
+                        // first clone a machine to send to the agent
+                        copyOfMachine = new EnigmaMachine((EnigmaMachine) machine); // Clone!
 
                         // the next window characters to set for the agent, based on last window characters
                         nextWindowsOffsets = getNextWindowsOffsets(taskSize, currentWindowsOffsets);
@@ -74,13 +76,10 @@ public class TaskProducer implements Runnable {
                         // replace current list with next list
                         currentWindowsOffsets.clear();
                         currentWindowsOffsets.addAll(nextWindowsOffsets);
-
-                        // get the reflector
-                        inUseReflectorID = machine.getInUseReflector().getId();
                     }
 
                     try {
-                        Pool.execute(new AgentTask(rotorsIDs, nextWindowsOffsets, inUseReflectorID,
+                        Pool.execute(new AgentTask(inUseRotorsIDs, nextWindowsOffsets, inUseReflectorID,
                                 copyOfMachine, taskSize, textToDecipher, dictionary, candidatesQueue, uiAdapter));
                     } catch (RejectedExecutionException e) {
                         currentTaskSubmitted = false;

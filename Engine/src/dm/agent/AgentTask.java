@@ -88,7 +88,6 @@ public class AgentTask implements Runnable {
             // check dictionary
             if (dictionary.isAllWordsInDictionary(decipherResult)) {
 
-
                 // convert windows offsets to characters.
                 String windowCharacters = machine.getOriginalWindowsCharacters(); // I trust this !
 

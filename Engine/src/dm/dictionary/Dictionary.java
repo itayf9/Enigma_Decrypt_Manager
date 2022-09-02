@@ -14,6 +14,8 @@ public class Dictionary {
 
     public void initializeDictionary(String wordsAsString) {
 
+        StringBuilder wordsBuilder = new StringBuilder();
+
         // excludes all the excludedChars
         for (Character excludeChar : excludeChars.toCharArray()) {
             wordsAsString.replaceAll(excludeChar.toString(), "");

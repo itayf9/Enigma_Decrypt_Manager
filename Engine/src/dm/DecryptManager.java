@@ -31,6 +31,7 @@ public class DecryptManager {
         this.numberOfAgents = numberOfAgents;
         this.enigmaMachine = enigmaMachine;
         this.difficultyLevel = DifficultyLevel.UNDEFINED;
+        this.threadExecutor = Executors.newFixedThreadPool(numberOfAgents);
         this.textToDecipher = "";
         // enigmaMachine.saveCopyOfMachine(copyOfMachineLocation);
     }
