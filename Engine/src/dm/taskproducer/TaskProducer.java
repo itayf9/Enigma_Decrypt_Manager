@@ -6,6 +6,7 @@ import dm.dictionary.Dictionary;
 import dm.difficultylevel.DifficultyLevel;
 import machine.EnigmaMachine;
 import machine.Machine;
+import ui.adapter.UIAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,9 +29,11 @@ public class TaskProducer implements Runnable {
     private String textToDecipher;
     private Dictionary dictionary;
     private BlockingQueue<List<Candidate>> candidatesQueue;
+    private UIAdapter uiAdapter;
+
 
     public TaskProducer(ExecutorService Pool, Machine machine, String textToDecipher,
-                        Dictionary dictionary, BlockingQueue<List<Candidate>> candidatesQueue) {
+                        Dictionary dictionary, BlockingQueue<List<Candidate>> candidatesQueue, UIAdapter uiAdapter) {
         this.Pool = Pool;
         this.machine = machine;
         this.alphabet = machine.getAlphabet();
@@ -78,7 +81,7 @@ public class TaskProducer implements Runnable {
 
                     try {
                         Pool.execute(new AgentTask(rotorsIDs, nextWindowsOffsets, inUseReflectorID,
-                                copyOfMachine, taskSize, textToDecipher, dictionary, candidatesQueue));
+                                copyOfMachine, taskSize, textToDecipher, dictionary, candidatesQueue, uiAdapter));
                     } catch (RejectedExecutionException e) {
                         currentTaskSubmitted = false;
                         Thread.yield();

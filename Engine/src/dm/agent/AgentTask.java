@@ -1,5 +1,6 @@
 package dm.agent;
 
+import ui.adapter.UIAdapter;
 import candidate.Candidate;
 import dm.dictionary.Dictionary;
 import machine.Machine;
@@ -22,10 +23,11 @@ public class AgentTask implements Runnable {
     private List<Integer> windowOffsets;
     private int inUseReflectorID;
     private BlockingQueue<List<Candidate>> candidatesQueue;
+    private UIAdapter uiAdapter;
 
     public AgentTask(List<Integer> rotorsIDs, List<Integer> windowOffsets, int inUseReflectorID,
                      Machine copyOfMachine, int taskSize, String textToDecipher, Dictionary dictionary,
-                     BlockingQueue<List<Candidate>> candidatesQueue) {
+                     BlockingQueue<List<Candidate>> candidatesQueue, UIAdapter uiAdapter) {
         machine = copyOfMachine;
         this.taskSize = taskSize;
         this.textToDecipher = textToDecipher;
@@ -34,6 +36,7 @@ public class AgentTask implements Runnable {
         this.rotorsIDs = rotorsIDs;
         this.inUseReflectorID = inUseReflectorID;
         this.candidatesQueue = candidatesQueue;
+        this.uiAdapter = uiAdapter;
     }
 
     private String decipherLine(String LineToDecipher) {

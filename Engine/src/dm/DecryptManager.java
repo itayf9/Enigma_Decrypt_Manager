@@ -6,6 +6,7 @@ import dm.difficultylevel.DifficultyLevel;
 import dm.taskproducer.TaskProducer;
 import machine.Machine;
 import org.omg.CORBA.BooleanHolder;
+import ui.adapter.UIAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,7 @@ public class DecryptManager {
     private String textToDecipher;
     private BooleanHolder allTaskAreDone;
     private List<Candidate> allCandidates = new ArrayList<>();
+    private UIAdapter uiAdapter;
 
     public DecryptManager(Dictionary dictionary, int numberOfAgents, Machine enigmaMachine) {
         this.dictionary = dictionary;
@@ -37,7 +39,7 @@ public class DecryptManager {
         allTaskAreDone.value = false;
 
         Thread taskProducer = new Thread(new TaskProducer(threadExecutor, enigmaMachine,
-                textToDecipher, dictionary, candidatesQueue));
+                textToDecipher, dictionary, candidatesQueue, uiAdapter));
 
         Thread candidatesConsumer = new Thread(new CandidatesConsumer(candidatesQueue, allCandidates, allTaskAreDone));
 
