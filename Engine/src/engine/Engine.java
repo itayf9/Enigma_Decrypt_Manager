@@ -1,7 +1,8 @@
 package engine;
 
+import dm.difficultylevel.DifficultyLevel;
 import dto.*;
-import machine.Machine;
+import ui.adapter.UIAdapter;
 
 import java.io.IOException;
 

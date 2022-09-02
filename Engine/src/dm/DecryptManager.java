@@ -25,6 +25,7 @@ public class DecryptManager {
     private BooleanHolder allTaskAreDone;
     private List<Candidate> allCandidates = new ArrayList<>();
     private UIAdapter uiAdapter;
+    private long totalPossibleConfigurations;
 
     public DecryptManager(Dictionary dictionary, int numberOfAgents, Machine enigmaMachine) {
         this.dictionary = dictionary;
@@ -33,9 +34,10 @@ public class DecryptManager {
         this.difficultyLevel = DifficultyLevel.UNDEFINED;
         this.threadExecutor = Executors.newFixedThreadPool(numberOfAgents);
         this.textToDecipher = "";
+        this.totalPossibleConfigurations = (long) Math.pow(enigmaMachine.getAlphabet().length(), enigmaMachine.getRotorsCount());
     }
 
-    public void startDecrypt(String textToDecipher, DifficultyLevel difficultyLevel) {
+    public void startDecrypt(int taskSize, String textToDecipher, DifficultyLevel difficultyLevel, UIAdapter uiAdapter) {
         allTaskAreDone.value = false;
 
         Thread taskProducer = new Thread(new TaskProducer(threadExecutor, enigmaMachine, taskSize,
@@ -45,7 +47,7 @@ public class DecryptManager {
                 allCandidates, allTaskAreDone, totalPossibleConfigurations, uiAdapter));
 
         taskProducer.start(); // thread is in the air starting the missions spread.
-        candidatesConsumer.start();
+        candidatesCollectorTask.start();
 
         // main thread ends here
     }

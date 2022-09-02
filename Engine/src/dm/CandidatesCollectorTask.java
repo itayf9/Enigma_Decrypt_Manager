@@ -14,34 +14,45 @@ public class CandidatesCollectorTask extends Task<Boolean> {
     private BlockingQueue<AgentConclusion> candidateQueue;
     private List<Candidate> allCandidates;
     private BooleanHolder allTaskAreDone;
+    private long totalPossibleConfigurations;
+    private UIAdapter uiAdapter;
 
     public CandidatesCollectorTask(BlockingQueue<AgentConclusion> candidateQueue, List<Candidate> allCandidates,
                                    BooleanHolder allTaskAreDone, long totalPossibleConfigurations, UIAdapter uiAdapter) {
         this.candidateQueue = candidateQueue;
         this.allCandidates = allCandidates;
         this.allTaskAreDone = allTaskAreDone;
+        this.totalPossibleConfigurations = totalPossibleConfigurations;
+        this.uiAdapter = uiAdapter;
     }
 
     @Override
-    public void run() {
+    protected Boolean call() throws Exception {
+        final long[] wordCount = {1};
+
+        updateMessage("Searching for Candidates...");
+
 
         while (!allTaskAreDone.value) {
 
-            List<Candidate> queueTakenCandidates = null;
+            AgentConclusion queueTakenCandidates = null;
             try {
                 queueTakenCandidates = candidateQueue.take();
+                wordCount[0] += queueTakenCandidates.getNumOfScannedConfigurations();
+                updateProgress(wordCount[0], totalPossibleConfigurations);
+                uiAdapter.updateTotalProcessedConfigurations(queueTakenCandidates.getNumOfScannedConfigurations());
             } catch (InterruptedException e) {
                 if (allTaskAreDone.value) {
-                    return;
+                    return Boolean.TRUE;
                 }
             }
 
             if (queueTakenCandidates.getCandidates().size() != 0) {
                 for (Candidate candidate : queueTakenCandidates.getCandidates()) {
                     allCandidates.add(candidate);
+                    updateMessage("Found Candidate!");
                 }
             }
-
         }
         updateMessage("Done...");
         return Boolean.TRUE;

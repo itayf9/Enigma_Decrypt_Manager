@@ -2,6 +2,7 @@ package engine;
 
 import dm.DecryptManager;
 import dm.dictionary.Dictionary;
+import dm.difficultylevel.DifficultyLevel;
 import javafx.util.Pair;
 import machine.Machine;
 import machine.component.Reflector;
@@ -20,6 +21,7 @@ import java.util.*;
 
 import statistics.StatisticRecord;
 import problem.Problem;
+import ui.adapter.UIAdapter;
 
 import static utill.Utility.*;
 
@@ -960,9 +962,11 @@ public class EnigmaEngine implements Engine {
         return new DTOstatus(isSucceed, details);
     }
 
+
     /**
      * @return a list of all candidates of the deciphering process
      */
+    @Override
     public DTOcandidates getDecipherCandidates() {
         boolean isSucceeded = true;
         Problem details = Problem.NO_PROBLEM;
