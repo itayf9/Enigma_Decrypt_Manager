@@ -27,7 +27,7 @@ public class AgentTask implements Runnable {
 
     public AgentTask(List<Integer> rotorsIDs, List<Integer> windowOffsets, int inUseReflectorID,
                      Machine copyOfMachine, int taskSize, String textToDecipher, Dictionary dictionary,
-                     BlockingQueue<List<Candidate>> candidatesQueue, UIAdapter uiAdapter) {
+                     BlockingQueue<AgentConclusion> candidatesQueue, UIAdapter uiAdapter) {
         machine = copyOfMachine;
         this.taskSize = taskSize;
         this.textToDecipher = textToDecipher;
@@ -111,5 +111,9 @@ public class AgentTask implements Runnable {
 
         }
 
+    }
+
+    private boolean AllWindowsOffsetsAtBeginning() {
+        return windowOffsets.stream().allMatch(offset -> offset == 0);
     }
 }

@@ -970,6 +970,13 @@ public class EnigmaEngine implements Engine {
         return new DTOcandidates(isSucceeded, details, decryptManager.getDecipherCandidates());
     }
 
+    @Override
+    public void startBruteForceProcess(UIAdapter uiAdapter, Runnable onFinish, String textToDecipher,
+                                       DifficultyLevel difficultyLevel, int taskSize) {
+        decryptManager.startDecrypt(taskSize, textToDecipher, difficultyLevel, uiAdapter);
+    }
+
+
     /**
      * @return the machine's alphabet as a String
      */

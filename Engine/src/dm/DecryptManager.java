@@ -1,6 +1,7 @@
 package dm;
 
 import candidate.Candidate;
+import dm.agent.AgentConclusion;
 import dm.dictionary.Dictionary;
 import dm.difficultylevel.DifficultyLevel;
 import dm.taskproducer.TaskProducer;
@@ -19,7 +20,7 @@ public class DecryptManager {
     private int numberOfAgents;
     private DifficultyLevel difficultyLevel;
     private ExecutorService threadExecutor;
-    private BlockingQueue<List<Candidate>> candidatesQueue = new LinkedBlockingQueue<>();
+    private BlockingQueue<AgentConclusion> candidatesQueue = new LinkedBlockingQueue<>();
     private String textToDecipher;
     private BooleanHolder allTaskAreDone;
     private List<Candidate> allCandidates = new ArrayList<>();
@@ -37,10 +38,11 @@ public class DecryptManager {
     public void startDecrypt(String textToDecipher, DifficultyLevel difficultyLevel) {
         allTaskAreDone.value = false;
 
-        Thread taskProducer = new Thread(new TaskProducer(threadExecutor, enigmaMachine,
+        Thread taskProducer = new Thread(new TaskProducer(threadExecutor, enigmaMachine, taskSize,
                 textToDecipher, dictionary, candidatesQueue, uiAdapter));
 
-        Thread candidatesConsumer = new Thread(new CandidatesConsumer(candidatesQueue, allCandidates, allTaskAreDone));
+        Thread candidatesCollectorTask = new Thread(new CandidatesCollectorTask(candidatesQueue,
+                allCandidates, allTaskAreDone, totalPossibleConfigurations, uiAdapter));
 
         taskProducer.start(); // thread is in the air starting the missions spread.
         candidatesConsumer.start();

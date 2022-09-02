@@ -1,5 +1,6 @@
 package dm.taskproducer;
 
+import dm.agent.AgentConclusion;
 import dm.agent.AgentTask;
 import candidate.Candidate;
 import dm.dictionary.Dictionary;
@@ -28,15 +29,16 @@ public class TaskProducer implements Runnable {
     private boolean currentTaskSubmitted = true;
     private String textToDecipher;
     private Dictionary dictionary;
-    private BlockingQueue<List<Candidate>> candidatesQueue;
+    private BlockingQueue<AgentConclusion> candidatesQueue;
     private UIAdapter uiAdapter;
 
 
-    public TaskProducer(ExecutorService Pool, Machine machine, String textToDecipher,
-                        Dictionary dictionary, BlockingQueue<List<Candidate>> candidatesQueue, UIAdapter uiAdapter) {
+    public TaskProducer(ExecutorService Pool, Machine machine, int taskSize, String textToDecipher,
+                        Dictionary dictionary, BlockingQueue<AgentConclusion> candidatesQueue, UIAdapter uiAdapter) {
         this.Pool = Pool;
         this.machine = machine;
         this.alphabet = machine.getAlphabet();
+        this.taskSize = taskSize;
         this.textToDecipher = textToDecipher;
         this.dictionary = dictionary;
         this.candidatesQueue = candidatesQueue;

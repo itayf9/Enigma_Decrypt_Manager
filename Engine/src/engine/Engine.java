@@ -147,4 +147,14 @@ public interface Engine {
      * @return a list of all candidates of the deciphering process
      */
     DTOcandidates getDecipherCandidates();
+
+    /**
+     * @param uiAdapter
+     * @param onFinish
+     * @param textToDecipher
+     * @param difficultyLevel
+     * @param taskSize
+     */
+    void startBruteForceProcess(UIAdapter uiAdapter, Runnable onFinish, String textToDecipher, DifficultyLevel difficultyLevel, int taskSize);
+
 }

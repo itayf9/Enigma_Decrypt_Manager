@@ -1,3 +1,11 @@
+.settings-btn:hover {
+    -fx-background-color: #e7e7e7;
+}
+
+.settings-btn {
+    -fx-background-color: transparent;
+}
+
 .enigma-title {
     -fx-text-fill: #0095ff;
     -fx-font-weight: bold;
