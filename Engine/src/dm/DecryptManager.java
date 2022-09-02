@@ -14,12 +14,11 @@ import java.util.concurrent.*;
 
 public class DecryptManager {
 
-    private String copyOfMachineLocation = "/dm/copyOfMachineLocation";
     private Machine enigmaMachine;
     private Dictionary dictionary;
     private int numberOfAgents;
     private DifficultyLevel difficultyLevel;
-    private ExecutorService threadExecutor = Executors.newFixedThreadPool(numberOfAgents);
+    private ExecutorService threadExecutor;
     private BlockingQueue<List<Candidate>> candidatesQueue = new LinkedBlockingQueue<>();
     private String textToDecipher;
     private BooleanHolder allTaskAreDone;
@@ -33,7 +32,6 @@ public class DecryptManager {
         this.difficultyLevel = DifficultyLevel.UNDEFINED;
         this.threadExecutor = Executors.newFixedThreadPool(numberOfAgents);
         this.textToDecipher = "";
-        // enigmaMachine.saveCopyOfMachine(copyOfMachineLocation);
     }
 
     public void startDecrypt(String textToDecipher, DifficultyLevel difficultyLevel) {

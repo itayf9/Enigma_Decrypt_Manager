@@ -436,7 +436,7 @@ public class EnigmaEngine implements Engine {
         buildMachine(availableRotors, availableReflectors, rotorsCount, alphabet, character2index);
 
         // initializes decrypt manager
-        String words = cteEnigma.getCTEDecipher().getCTEDictionary().getWords();
+        String words = cteEnigma.getCTEDecipher().getCTEDictionary().getWords().trim();
         String excludeChars = cteEnigma.getCTEDecipher().getCTEDictionary().getExcludeChars();
         int numberOfAgents = cteEnigma.getCTEDecipher().getAgents();
 

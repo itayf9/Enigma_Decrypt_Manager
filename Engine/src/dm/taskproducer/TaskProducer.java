@@ -81,11 +81,11 @@ public class TaskProducer implements Runnable {
                     try {
                         Pool.execute(new AgentTask(inUseRotorsIDs, nextWindowsOffsets, inUseReflectorID,
                                 copyOfMachine, taskSize, textToDecipher, dictionary, candidatesQueue, uiAdapter));
+                        currentTaskSubmitted = true;
                     } catch (RejectedExecutionException e) {
                         currentTaskSubmitted = false;
                         Thread.yield();
                     }
-
                 }
                 break;
             case MEDIUM:

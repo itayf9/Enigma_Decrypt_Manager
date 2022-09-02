@@ -95,8 +95,9 @@ public class AgentTask implements Runnable {
                 String nextCandidateReflectorSymbol = decimalToRoman(inUseReflectorID);
 
                 Candidate nextCandidate = new Candidate(decipherResult, rotorsIDs, windowCharacters, nextCandidateReflectorSymbol);
-
                 candidates.add(nextCandidate);
+
+                uiAdapter.addNewCandidate(nextCandidate);
             }
 
             // moves to the next configuration

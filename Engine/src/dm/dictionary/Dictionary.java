@@ -1,6 +1,8 @@
 package dm.dictionary;
 
+import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Matcher;
 
 public class Dictionary {
 
@@ -9,6 +11,7 @@ public class Dictionary {
 
     public Dictionary(String wordsAsString, String excludeChars) {
         this.excludeChars = excludeChars;
+        this.words = new HashSet<>();
         initializeDictionary(wordsAsString);
     }
 
@@ -17,12 +20,16 @@ public class Dictionary {
         StringBuilder wordsBuilder = new StringBuilder();
 
         // excludes all the excludedChars
-        for (Character excludeChar : excludeChars.toCharArray()) {
-            wordsAsString.replaceAll(excludeChar.toString(), "");
+        for (Character regularCharacter : wordsAsString.toCharArray()) {
+            if (!excludeChars.contains(regularCharacter.toString())) {
+                wordsBuilder.append(regularCharacter);
+            }
         }
 
+        String wordsWithoutExcludeChars = wordsBuilder.toString();
+
         // assuming no exclude characters here !!
-        String[] dictionaryWords = wordsAsString.split(",");
+        String[] dictionaryWords = wordsWithoutExcludeChars.split(" ");
 
         // inserts the words into a set
         // deletes duplications
