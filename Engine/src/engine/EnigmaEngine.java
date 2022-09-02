@@ -1023,4 +1023,8 @@ public class EnigmaEngine implements Engine {
                 "machine=" + machine +
                 '}';
     }
+
+    public Machine getMachine() {
+        return machine;
+    }
 }
