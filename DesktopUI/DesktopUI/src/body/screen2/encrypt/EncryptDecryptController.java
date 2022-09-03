@@ -51,7 +51,6 @@ public class EncryptDecryptController {
     public void initialize() {
         cipherModeToggles.getToggles().get(1).setSelected(true);
         processButton.setText("Process");
-        setAllowEncryptDecrypt(false);
         cipherProblemLabel.setText("");
     }
 

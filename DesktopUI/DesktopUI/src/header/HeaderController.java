@@ -24,7 +24,7 @@ public class HeaderController {
     private Button buttonLoadMachine;
 
     @FXML
-    private TextField textFieldLoadMachine;
+    private Label filePathLoadMachineLabel;
 
     @FXML
     private Label headerMessageLabel;
@@ -62,6 +62,6 @@ public class HeaderController {
         headerMessageLabel.getStyleClass().removeAll("error-label");
         headerMessageLabel.getStyleClass().add("success-label");
         headerMessageLabel.setText("Machine Loaded Successfully!");
-        textFieldLoadMachine.setText(selectedMachineFile);
+        filePathLoadMachineLabel.setText(selectedMachineFile);
     }
 }

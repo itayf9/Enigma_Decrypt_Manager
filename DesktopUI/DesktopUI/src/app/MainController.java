@@ -5,6 +5,7 @@ import dto.*;
 import engine.Engine;
 import engine.EnigmaEngine;
 import header.HeaderController;
+import javafx.beans.property.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -33,12 +34,24 @@ public class MainController {
 
     private DTOsecretConfig configStatus;
 
+    private BooleanProperty isMachineConfiguredProperty = new SimpleBooleanProperty();
+    private BooleanProperty isMachineLoadedProperty = new SimpleBooleanProperty();
+
+    private ListProperty<Integer> inUseRotorsIDs = new SimpleListProperty<>();
+    private StringProperty currentWindowsCharacters = new SimpleStringProperty();
+    private StringProperty inUseReflectorSymbol = new SimpleStringProperty();
+    private StringProperty inUsePlugs = new SimpleStringProperty();
+
+    private ListProperty<Integer> currentNotchDistances = new SimpleListProperty<>();
+
     @FXML
     public void initialize() {
         if (headerController != null && bodyController != null) {
             headerController.setMainController(this);
             bodyController.setMainController(this);
             bodyController.updateMachineInfo();
+            bodyController.bindComponents(isMachineConfiguredProperty);
+            body.visibleProperty().bind(isMachineLoadedProperty);
         }
     }
 
@@ -56,10 +69,10 @@ public class MainController {
             headerController.displaySuccessHeaderLabel();
             DTOspecs specsStatus = engine.displayMachineSpecifications();
             bodyController.displayMachineSpecs(specsStatus);
-            bodyController.setAllowCodeCalibration(true);
             bodyController.setLightBulb(engine.getMachineAlphabet());
             bodyController.displayStatistics();
-            bodyController.setAllowEncryptDecrypt(false);
+            isMachineConfiguredProperty.setValue(Boolean.FALSE);
+            isMachineLoadedProperty.setValue(Boolean.TRUE);
         }
     }
 
@@ -74,6 +87,7 @@ public class MainController {
     public void setManualMachineConfig(String rotors, String windows, int reflector, String plugs) {
         DTOsecretConfig configStatus = engine.selectConfigurationManual(rotors, windows, reflector, plugs);
         bodyController.displayCurrentConfig(configStatus);
+        isMachineConfiguredProperty.setValue(Boolean.TRUE);
     }
 
     /**

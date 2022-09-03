@@ -43,6 +43,10 @@
     -fx-text-fill: #50a005;
 }
 
+.body-background {
+    -fx-background-color: linear-gradient(to bottom, #e7e7e7 7%, #9f9f9f 39%, #5d5d5d 100%)
+}
+
 .component-title {
     -fx-text-fill: #0095ff;
     -fx-font-weight: bold;

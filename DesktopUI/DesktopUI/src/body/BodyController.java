@@ -9,8 +9,11 @@ import body.screen2.statistics.StatisticsController;
 import body.screen3.candidate.area.CandidatesAreaController;
 import body.screen3.dm.operational.dmOperationalController;
 import dto.*;
+import javafx.beans.property.BooleanProperty;
 import javafx.fxml.FXML;
 import javafx.scene.layout.GridPane;
+
+import javax.script.Bindings;
 
 import static utill.Utillity.getCurrentConfigFromSpecs;
 
@@ -260,5 +263,18 @@ public class BodyController {
 
     public void doneCurrentCipherProcess() {
         mainController.doneCurrentCipherProcess();
+    }
+
+    public void bindComponents(BooleanProperty isMachineConfiguredProperty) {
+
+        // binds the components that need the isConfigured Boolean property.
+        encryptDecrypt.disableProperty().bind(isMachineConfiguredProperty.not());
+        encryptDecrypt2.disableProperty().bind(isMachineConfiguredProperty.not());
+        statistics.disableProperty().bind(isMachineConfiguredProperty.not());
+        dmOperational.disableProperty().bind(isMachineConfiguredProperty.not());
+        candidatesArea.disableProperty().bind(isMachineConfiguredProperty.not());
+
+        //
+
     }
 }

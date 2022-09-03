@@ -1,6 +1,10 @@
 package body.screen3.dm.operational;
 
 import body.BodyController;
+import dm.difficultylevel.DifficultyLevel;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -12,7 +16,7 @@ public class dmOperationalController {
     private Slider numOfAgentsSlider;
 
     @FXML
-    private ComboBox<?> difficultyLevelComboBox;
+    private ComboBox<String> difficultyLevelComboBox;
 
     @FXML
     private Spinner<?> taskSizeSpinner;

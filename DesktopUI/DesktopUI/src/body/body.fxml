@@ -82,7 +82,7 @@
                         <fx:include fx:id="encryptDecrypt2" source="screen2/encrypt/encrypt-decrypt.fxml" GridPane.columnIndex="1" />
                         <fx:include fx:id="currentConfigScreen3" source="currentconfig/currentConfig.fxml" />
                         <fx:include fx:id="dmOperational" source="screen3/dm/operational/dmOperational.fxml" GridPane.rowIndex="1" />
-                        <fx:include source="screen3/candidate/area/candidatesArea.fxml" GridPane.rowIndex="2" />
+                        <fx:include fx:id="candidatesArea" source="screen3/candidate/area/candidatesArea.fxml" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
               </content>
