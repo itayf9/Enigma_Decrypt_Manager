@@ -5,7 +5,6 @@ import dto.*;
 import engine.Engine;
 import engine.EnigmaEngine;
 import header.HeaderController;
-import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;

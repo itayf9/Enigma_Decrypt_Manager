@@ -9,6 +9,8 @@ public class AgentConclusion {
     private List<Candidate> candidates;
     private int numOfScannedConfigurations;
 
+    private long timeTakenToDoTask;
+
     public AgentConclusion(List<Candidate> candidates, int numOfScannedConfigurations) {
         this.candidates = candidates;
         this.numOfScannedConfigurations = numOfScannedConfigurations;

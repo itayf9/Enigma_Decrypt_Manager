@@ -1,5 +1,4 @@
 import dto.*;
-import engine.Engine;
 import engine.EnigmaEngine;
 import javafx.util.Pair;
 import problem.Problem;

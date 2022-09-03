@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="body.screen3.dm.operational.dmOperationalController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="132.0" minWidth="10.0" prefWidth="98.66665649414062" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.666656494140625" minWidth="0.0" prefWidth="33.333343505859375" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="116.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.66665649414062" minWidth="10.0" prefWidth="32.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="154.0" minWidth="10.0" prefWidth="127.6666259765625" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="85.33331298828125" minWidth="0.0" prefWidth="45.66668701171875" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.0" minWidth="10.0" prefWidth="82.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="91.66668701171875" minWidth="10.0" prefWidth="77.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="232.0" minHeight="30.0" prefHeight="30.0" vgrow="NEVER" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="5.0" prefHeight="5.0" vgrow="ALWAYS" />
+    <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" vgrow="NEVER" />
+    <RowConstraints maxHeight="43.0" minHeight="43.0" prefHeight="43.0" vgrow="NEVER" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="5.0" prefHeight="43.0" vgrow="ALWAYS" />
+  </rowConstraints>
+   <children>
+      <Label styleClass="component-title" text="Set Decrypt Menager" GridPane.columnSpan="8" />
+      <Slider fx:id="numOfAgentsSlider" max="50.0" min="2.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+      <ComboBox fx:id="difficultyLevelComboBox" maxWidth="1.7976931348623157E308" prefHeight="40.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+      <Button fx:id="playButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="action-btn" text="Play" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+      <Button fx:id="pauseButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="action-btn" text="Pause" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+      <Label fx:id="numOfAgentLabel" text="Number of Agents" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+      <Label text="Task Size" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+      <Spinner fx:id="taskSizeSpinner" GridPane.rowIndex="3" />
+      <Label text="Difficulty Level" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+   </children>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+   <stylesheets>
+      <URL value="@../../../../app/app.css" />
+      <URL value="@dmOperational.css" />
+   </stylesheets>
+</GridPane>

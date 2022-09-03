@@ -8,6 +8,7 @@
 
 .action-btn:hover {
     -fx-background-color: #489b54;
+    -fx-cursor: HAND;
 }
 
 .action-btn:pressed {

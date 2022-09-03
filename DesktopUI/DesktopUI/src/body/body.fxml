@@ -63,6 +63,30 @@
                </padding>
             </ScrollPane>
          </content></Tab>
-      <Tab text="Brute Force" />
+      <Tab text="Brute Force">
+         <content>
+            <ScrollPane>
+              <content>
+                  <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="550.0" prefWidth="900.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="367.0" minHeight="10.0" prefHeight="255.33334350585938" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="309.3333435058594" minHeight="0.0" prefHeight="156.3333740234375" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="188.66665649414062" minHeight="10.0" prefHeight="120.6666259765625" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <fx:include fx:id="encryptDecrypt2" source="screen2/encrypt/encrypt-decrypt.fxml" GridPane.columnIndex="1" />
+                        <fx:include fx:id="currentConfigScreen3" source="currentconfig/currentConfig.fxml" />
+                        <fx:include fx:id="dmOperational" source="screen3/dm/operational/dmOperational.fxml" GridPane.rowIndex="1" />
+                        <fx:include source="screen3/candidate/area/candidatesArea.fxml" GridPane.rowIndex="2" />
+                     </children>
+                  </GridPane>
+              </content>
+            </ScrollPane>
+         </content></Tab>
   </tabs>
 </TabPane>

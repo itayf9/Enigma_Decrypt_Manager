@@ -8,7 +8,7 @@ public class Candidate {
     private List<Integer> rotorsIDs;
     private String windowChars;
     private String reflectorSymbol;
-    // time measuring
+    private int processedByAgentID;
 
 
     public Candidate(String decipheredText, List<Integer> rotorsIDs, String windowChars, String reflectorSymbol) {
