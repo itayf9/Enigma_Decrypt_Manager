@@ -32,7 +32,13 @@ public class dmOperationalController {
 
     @FXML
     public void initialize() {
+        difficultyLevelComboBox.getItems().add("Easy");
+        difficultyLevelComboBox.getItems().add("Medium");
+        difficultyLevelComboBox.getItems().add("Hard");
+        difficultyLevelComboBox.getItems().add("Impossible");
 
+        difficultyLevelComboBox.setPromptText("Please Select");
+        
     }
 
     public void setParentController(BodyController parentController) {

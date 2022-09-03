@@ -95,8 +95,8 @@ public class MainController {
      */
     public void setRandomMachineConfig() {
         DTOsecretConfig configStatus = engine.selectConfigurationAuto();
-
         bodyController.displayCurrentConfig(configStatus);
+        isMachineConfiguredProperty.setValue(Boolean.TRUE);
     }
 
     /**
