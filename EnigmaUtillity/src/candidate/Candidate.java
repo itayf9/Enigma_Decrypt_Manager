@@ -21,4 +21,20 @@ public class Candidate {
     public String getDecipheredText() {
         return decipheredText;
     }
+
+    public List<Integer> getRotorsIDs() {
+        return rotorsIDs;
+    }
+
+    public String getWindowChars() {
+        return windowChars;
+    }
+
+    public String getReflectorSymbol() {
+        return reflectorSymbol;
+    }
+
+    public int getProcessedByAgentID() {
+        return processedByAgentID;
+    }
 }

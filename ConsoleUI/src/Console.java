@@ -1,5 +1,6 @@
 import dto.*;
 import engine.EnigmaEngine;
+import engine.Engine;
 import javafx.util.Pair;
 import problem.Problem;
 import statistics.StatisticRecord;

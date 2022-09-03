@@ -6,8 +6,9 @@ import body.screen1.codecalibration.CodeCalibrationController;
 import body.screen1.machinedetails.MachineDetailsController;
 import body.screen2.encrypt.EncryptDecryptController;
 import body.screen2.statistics.StatisticsController;
+import body.screen3.candidate.area.CandidatesAreaController;
+import body.screen3.dm.operational.dmOperationalController;
 import dto.*;
-import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.layout.GridPane;
 
@@ -17,6 +18,9 @@ public class BodyController {
 
     private MainController mainController;
 
+    /**
+     * screen 1 controllers and components
+     */
     @FXML
     private GridPane codeCalibration;
 
@@ -35,17 +39,15 @@ public class BodyController {
     @FXML
     private CurrentConfigController currentConfigScreen1Controller;
 
+    /**
+     * screen 2 controllers and components
+     */
+
     @FXML
     private GridPane currentConfigScreen2;
 
     @FXML
     private CurrentConfigController currentConfigScreen2Controller;
-
-    @FXML
-    private GridPane currentConfigScreen3;
-
-    @FXML
-    private CurrentConfigController currentConfigScreen3Controller;
 
     @FXML
     private GridPane encryptDecrypt;
@@ -59,18 +61,56 @@ public class BodyController {
     @FXML
     private StatisticsController statisticsController;
 
+    /**
+     * screen 3 controllers and components
+     */
+
+    @FXML
+    private GridPane currentConfigScreen3;
+
+    @FXML
+    private CurrentConfigController currentConfigScreen3Controller;
+
+    @FXML
+    private GridPane encryptDecrypt2;
+
+    @FXML
+    private EncryptDecryptController encryptDecrypt2Controller;
+
+    @FXML
+    private GridPane dmOperational;
+
+    @FXML
+    private dmOperationalController dmOperationalController;
+
+    @FXML
+    private GridPane candidatesArea;
+
+    @FXML
+    private CandidatesAreaController candidatesAreaController;
+
 
     /**
      * set up the application, connecting the controllers to their main controller
      */
     @FXML
     public void initialize() {
+
+        //screen 1
         codeCalibrationController.setParentController(this);
         machineDetailsController.setParentController(this);
         currentConfigScreen1Controller.setParentController(this);
+
+        //screen 2
         currentConfigScreen2Controller.setParentController(this);
         encryptDecryptController.setParentController(this);
         statisticsController.setParentController(this);
+
+        //screen 3
+        currentConfigScreen3Controller.setParentController(this);
+        encryptDecrypt2Controller.setParentController(this);
+        dmOperationalController.setParentController(this);
+        candidatesAreaController.setParentController(this);
     }
 
     /**
