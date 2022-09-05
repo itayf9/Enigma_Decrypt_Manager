@@ -6,6 +6,8 @@ import engine.Engine;
 import engine.EnigmaEngine;
 import header.HeaderController;
 import javafx.beans.property.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -19,6 +21,9 @@ import java.util.List;
 
 public class MainController {
 
+    /**
+     * app private members
+     */
     private Engine engine = new EnigmaEngine();
     @FXML
     private GridPane header;
@@ -40,12 +45,13 @@ public class MainController {
     private BooleanProperty isMachineConfiguredProperty;
     private BooleanProperty isMachineLoadedProperty;
 
-    private ListProperty<Integer> inUseRotorsIDs = new SimpleListProperty<>();
-    private StringProperty currentWindowsCharacters = new SimpleStringProperty();
-    private StringProperty inUseReflectorSymbol = new SimpleStringProperty();
-    private StringProperty inUsePlugs = new SimpleStringProperty();
+    // these properties would store the data of current config component.
+    private ListProperty<Integer> inUseRotorsIDsProperty;
+    private StringProperty currentWindowsCharactersProperty;
+    private StringProperty inUseReflectorSymbolProperty;
+    private StringProperty inUsePlugsProperty;
 
-    private ListProperty<Integer> currentNotchDistances = new SimpleListProperty<>();
+    private ListProperty<Integer> currentNotchDistances;
 
     private BooleanProperty isCharByCharModeProperty;
 
@@ -53,11 +59,26 @@ public class MainController {
 
     @FXML
     public void initialize() {
+
+        // controller initialize
         if (headerController != null && bodyController != null) {
             headerController.setMainController(this);
             bodyController.setMainController(this);
             bodyController.updateMachineInfo();
-            bodyController.bindComponents(isMachineConfiguredProperty);
+
+            // property initialize
+            this.isMachineConfiguredProperty = new SimpleBooleanProperty(false);
+            this.isMachineLoadedProperty = new SimpleBooleanProperty(false);
+            this.inUseRotorsIDsProperty = new SimpleListProperty<>();
+            this.currentWindowsCharactersProperty = new SimpleStringProperty("");
+            this.inUseReflectorSymbolProperty = new SimpleStringProperty("");
+            this.inUsePlugsProperty = new SimpleStringProperty("");
+            this.currentNotchDistances = new SimpleListProperty<>();
+            this.isCharByCharModeProperty = new SimpleBooleanProperty(false);
+
+            // binding initialize
+            bodyController.bindComponents(isMachineConfiguredProperty, inUseRotorsIDsProperty,
+                    currentWindowsCharactersProperty, inUseReflectorSymbolProperty, inUsePlugsProperty, currentNotchDistances);
             body.visibleProperty().bind(isMachineLoadedProperty);
         }
     }
@@ -93,7 +114,20 @@ public class MainController {
      */
     public void setManualMachineConfig(String rotors, String windows, int reflector, String plugs) {
         DTOsecretConfig configStatus = engine.selectConfigurationManual(rotors, windows, reflector, plugs);
-        bodyController.displayCurrentConfig(configStatus);
+
+        ObservableList<Integer> rotorsObservableList = FXCollections.observableArrayList(configStatus.getRotors());
+        inUseRotorsIDsProperty.setValue(rotorsObservableList);
+
+        currentWindowsCharactersProperty.setValue(configStatus.getWindows());
+        inUseReflectorSymbolProperty.setValue(configStatus.getReflectorSymbol());
+        inUsePlugsProperty.setValue(configStatus.getPlugs());
+
+        ObservableList<Integer> notchDistanceObservableList = FXCollections.observableArrayList(configStatus.getNotchDistances());
+        currentNotchDistances.setValue(notchDistanceObservableList);
+
+        // display original config in machine specs
+        bodyController.displayOriginalConfig(configStatus.getRotors(), configStatus.getWindows(), configStatus.getReflectorSymbol(), configStatus.getPlugs(), configStatus.getNotchDistances());
+
         isMachineConfiguredProperty.setValue(Boolean.TRUE);
     }
 

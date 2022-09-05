@@ -9,6 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import problem.Problem;
 
+import java.util.List;
+
 import static utill.Utillity.getOriginalConfigFromSpecs;
 
 
@@ -58,5 +60,9 @@ public class MachineDetailsController {
 
     public void setParentController(BodyController parentController) {
         this.parentController = parentController;
+    }
+
+    public void displayOriginalConfiguration(List<Integer> rotorsIDs, String currentWindowsCharacters, String inUseReflectorSymbol, String inUsePlugs, List<Integer> currentNotchDistances) {
+        originalConfigController.displayOriginalConfiguration(rotorsIDs, currentWindowsCharacters, inUseReflectorSymbol, inUsePlugs, currentNotchDistances);
     }
 }

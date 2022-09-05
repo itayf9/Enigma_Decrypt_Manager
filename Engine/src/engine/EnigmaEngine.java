@@ -537,7 +537,7 @@ public class EnigmaEngine implements Engine {
 
         List<Integer> notchPositions = machine.getOriginalNotchPositions();
 
-        return new DTOsecretConfig(isSucceed, details, rotorsIDList, windows, decimalToRoman(reflectorID), plugs, notchPositions);
+        return new DTOsecretConfig(isSucceed, details, rotorsIDList, reversedWindows.toString(), decimalToRoman(reflectorID), plugs, notchPositions);
     }
 
     /**

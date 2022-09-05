@@ -14,13 +14,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.RejectedExecutionException;
 
 public class TaskProducer implements Runnable {
 
     // private String copyOfMachineLocation = "/dm/copyOfMachineLocation";
     private final String END_OF_TASKS = "END OF TASKS";
-    protected ExecutorService Pool = null;
+    protected BlockingQueue<Runnable> agentTaskQueue;
     private Machine machine;
     private String alphabet;
     private int taskSize;
@@ -33,9 +34,9 @@ public class TaskProducer implements Runnable {
     private UIAdapter uiAdapter;
 
 
-    public TaskProducer(ExecutorService Pool, Machine machine, int taskSize, String textToDecipher,
+    public TaskProducer(BlockingQueue<Runnable> agentTaskQueue, Machine machine, int taskSize, String textToDecipher,
                         Dictionary dictionary, BlockingQueue<AgentConclusion> candidatesQueue, UIAdapter uiAdapter) {
-        this.Pool = Pool;
+        this.agentTaskQueue = agentTaskQueue;
         this.machine = machine;
         this.alphabet = machine.getAlphabet();
         this.taskSize = taskSize;
@@ -81,10 +82,10 @@ public class TaskProducer implements Runnable {
                     }
 
                     try {
-                        Pool.execute(new AgentTask(inUseRotorsIDs, nextWindowsOffsets, inUseReflectorID,
+                        agentTaskQueue.put(new AgentTask(inUseRotorsIDs, nextWindowsOffsets, inUseReflectorID,
                                 copyOfMachine, taskSize, textToDecipher, dictionary, candidatesQueue, uiAdapter));
                         currentTaskSubmitted = true;
-                    } catch (RejectedExecutionException e) {
+                    } catch (InterruptedException e) {
                         currentTaskSubmitted = false;
                         Thread.yield();
                     }
