@@ -34,8 +34,11 @@ public class MainController {
 
     private DTOsecretConfig configStatus;
 
-    private BooleanProperty isMachineConfiguredProperty = new SimpleBooleanProperty();
-    private BooleanProperty isMachineLoadedProperty = new SimpleBooleanProperty();
+    /**
+     * property stuff
+     */
+    private BooleanProperty isMachineConfiguredProperty;
+    private BooleanProperty isMachineLoadedProperty;
 
     private ListProperty<Integer> inUseRotorsIDs = new SimpleListProperty<>();
     private StringProperty currentWindowsCharacters = new SimpleStringProperty();
@@ -43,6 +46,10 @@ public class MainController {
     private StringProperty inUsePlugs = new SimpleStringProperty();
 
     private ListProperty<Integer> currentNotchDistances = new SimpleListProperty<>();
+
+    private BooleanProperty isCharByCharModeProperty;
+
+    private CurrWinCharsAndNotchPosBinding currWinCharsAndNotchPosBinding;
 
     @FXML
     public void initialize() {
@@ -95,8 +102,20 @@ public class MainController {
      */
     public void setRandomMachineConfig() {
         DTOsecretConfig configStatus = engine.selectConfigurationAuto();
-        bodyController.displayCurrentConfig(configStatus);
+
+        ObservableList<Integer> rotorsObservableList = FXCollections.observableArrayList(configStatus.getRotors());
+        inUseRotorsIDsProperty.setValue(rotorsObservableList);
+
+        currentWindowsCharactersProperty.setValue(configStatus.getWindows());
+        inUseReflectorSymbolProperty.setValue(configStatus.getReflectorSymbol());
+        inUsePlugsProperty.setValue(configStatus.getPlugs());
+
+        ObservableList<Integer> notchDistanceObservableList = FXCollections.observableArrayList(configStatus.getNotchDistances());
+        currentNotchDistances.setValue(notchDistanceObservableList);
+
         isMachineConfiguredProperty.setValue(Boolean.TRUE);
+
+        bodyController.displayOriginalConfig(inUseRotorsIDsProperty.getValue(), currentWindowsCharactersProperty.getValue(), inUseReflectorSymbolProperty.getValue(), inUsePlugsProperty.getValue(), currentNotchDistances.getValue());
     }
 
     /**

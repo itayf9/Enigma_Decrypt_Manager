@@ -9,11 +9,12 @@ import body.screen2.statistics.StatisticsController;
 import body.screen3.candidate.area.CandidatesAreaController;
 import body.screen3.dm.operational.dmOperationalController;
 import dto.*;
-import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.*;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.layout.GridPane;
 
-import javax.script.Bindings;
+import java.util.List;
 
 import static utill.Utillity.getCurrentConfigFromSpecs;
 
@@ -130,8 +131,6 @@ public class BodyController {
      */
     public void displayMachineSpecs(DTOspecs specsStatus) {
         machineDetailsController.displayMachineDetails(specsStatus);
-        currentConfigScreen1Controller.displayCurrentConfig(getCurrentConfigFromSpecs(specsStatus));
-        currentConfigScreen2Controller.displayCurrentConfig(getCurrentConfigFromSpecs(specsStatus));
     }
 
     /**
@@ -265,7 +264,9 @@ public class BodyController {
         mainController.doneCurrentCipherProcess();
     }
 
-    public void bindComponents(BooleanProperty isMachineConfiguredProperty) {
+    public void bindComponents(BooleanProperty isMachineConfiguredProperty, ListProperty<Integer> inUseRotorsIDsProperty,
+                               StringProperty currentWindowsCharactersProperty, StringProperty inUseReflectorSymbolProperty,
+                               StringProperty inUsePlugs, ListProperty<Integer> currentNotchDistances) {
 
         // binds the components that need the isConfigured Boolean property.
         encryptDecrypt.disableProperty().bind(isMachineConfiguredProperty.not());

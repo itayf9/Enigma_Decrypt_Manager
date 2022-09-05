@@ -16,7 +16,7 @@
       <ColumnConstraints />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints maxHeight="170.33331298828125" minHeight="30.0" prefHeight="30.0" vgrow="NEVER" />
+      <RowConstraints maxHeight="170.33331298828125" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="142.0" vgrow="ALWAYS" />
    </rowConstraints>
    <children>
@@ -25,10 +25,10 @@
          <content>
             <FlowPane orientation="VERTICAL" prefHeight="133.0" prefWrapLength="200.0">
                <children>
-                  <Label id="rotors" fx:id="rotors" styleClass="config-label" stylesheets="@currentConfig.css" />
-                  <Label id="windows-characters" fx:id="windows" styleClass="config-label" stylesheets="@currentConfig.css" />
-                  <Label id="reflector" fx:id="reflector" styleClass="config-label" stylesheets="@currentConfig.css" />
-                  <Label id="plugs" fx:id="plugs" styleClass="config-label" stylesheets="@currentConfig.css" />
+                  <Label id="rotors" fx:id="rotorsLabel" styleClass="config-label" stylesheets="@currentConfig.css" />
+                  <Label id="windows-characters" fx:id="windowsLabel" styleClass="config-label" stylesheets="@currentConfig.css" />
+                  <Label id="reflector" fx:id="reflectorLabel" styleClass="config-label" stylesheets="@currentConfig.css" />
+                  <Label id="plugs" fx:id="plugsLabel" styleClass="config-label" stylesheets="@currentConfig.css" />
                   <Label id="noConfigMsg" fx:id="noConfigMsg" styleClass="config-label" />
                </children>
             </FlowPane>
