@@ -18,7 +18,7 @@ public class DecryptManager {
     private final int LIMIT_NUMBER_OF_TASK = 1000;
     private Machine enigmaMachine;
     private Dictionary dictionary;
-    private int numberOfAgents;
+    private int numOfAvailableAgents;
     private DifficultyLevel difficultyLevel;
     private ExecutorService threadExecutor;
     private BlockingQueue<AgentConclusion> candidatesQueue;
@@ -33,21 +33,24 @@ public class DecryptManager {
     private long totalPossibleWindowsPositions;
     private BlockingQueue<Runnable> threadPoolBlockingQueue;
 
+    public int getNumOfAvailableAgents() {
+        return numOfAvailableAgents;
+    }
 
-    public DecryptManager(Dictionary dictionary, int numberOfAgents, Machine enigmaMachine) {
+
+    public DecryptManager(Dictionary dictionary, int numOfAvailableAgents, Machine enigmaMachine) {
         this.candidatesQueue = new LinkedBlockingQueue<>();
         this.threadPoolBlockingQueue = new LinkedBlockingQueue<>(LIMIT_NUMBER_OF_TASK);
         this.dictionary = dictionary;
-        this.numberOfAgents = numberOfAgents;
+        this.numOfAvailableAgents = numOfAvailableAgents;
         this.enigmaMachine = enigmaMachine;
         this.difficultyLevel = DifficultyLevel.UNDEFINED;
-        this.threadExecutor = new ThreadPoolExecutor(numberOfAgents, numberOfAgents,
-                0L, TimeUnit.MILLISECONDS, threadPoolBlockingQueue);
+
         this.textToDecipher = "";
         this.totalPossibleWindowsPositions = (long) Math.pow(enigmaMachine.getAlphabet().length(), enigmaMachine.getRotorsCount());
     }
 
-    public void startDecrypt(int taskSize, String textToDecipher, DifficultyLevel difficultyLevel, UIAdapter uiAdapter) {
+    public void startDecrypt(int taskSize, int numOfSelectedAgents, String textToDecipher, DifficultyLevel difficultyLevel, UIAdapter uiAdapter) {
         allTaskAreDone.value = false;
 
         // starting the thread pool
@@ -75,4 +78,5 @@ public class DecryptManager {
     public List<Candidate> getDecipherCandidates() {
         return allCandidates;
     }
+
 }

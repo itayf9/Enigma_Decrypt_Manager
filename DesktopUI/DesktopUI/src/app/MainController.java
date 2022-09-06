@@ -72,9 +72,10 @@ public class MainController {
     private StringProperty currentWindowsCharactersProperty;
     private StringProperty inUseReflectorSymbolProperty;
     private StringProperty inUsePlugsProperty;
-
     private ListProperty<Integer> currentNotchDistances;
+    private CurrWinCharsAndNotchPosBinding currWinCharsAndNotchPosBinding;
 
+    private IntegerProperty cipherCounterProperty;
     private BooleanProperty isCharByCharModeProperty;
     private ListProperty<StatisticRecord> statisticsProperty;
 
@@ -96,6 +97,8 @@ public class MainController {
             this.inUsePlugsProperty = new SimpleStringProperty("");
             this.currentNotchDistances = new SimpleListProperty<>();
             this.isCharByCharModeProperty = new SimpleBooleanProperty(false);
+            this.cipherCounterProperty = new SimpleIntegerProperty(0);
+            this.statisticsProperty = new SimpleListProperty<>();
 
             // binding initialize
             bodyController.bindComponents(isMachineConfiguredProperty, inUseRotorsIDsProperty,
@@ -124,6 +127,12 @@ public class MainController {
         } else {
             headerController.displaySuccessHeaderLabel();
             DTOspecs specsStatus = engine.displayMachineSpecifications();
+
+            int rotorsCount = specsStatus.getInUseRotorsCount();
+            int alphabetLength = engine.getMachineAlphabet().length();
+
+            setStatusMessage("Loaded Successfully");
+
             bodyController.displayMachineSpecs(specsStatus);
             bodyController.setLightBulb(engine.getMachineAlphabet());
             bodyController.displayStatistics();
@@ -195,7 +204,22 @@ public class MainController {
      * @return ciphered Character
      */
     public DTOciphertext cipher(String character) {
-        return engine.cipherInputText(character);
+        DTOciphertext cipherStatus = engine.cipherInputText(character);
+
+        DTOspecs specsStatus = engine.displayMachineSpecifications();
+
+        // update configuration
+        currentWindowsCharactersProperty.setValue(specsStatus.getCurrentWindowsCharacters());
+        ObservableList<Integer> notchDistanceObservableList = FXCollections.observableArrayList(specsStatus.getNotchDistancesToWindow());
+        currentNotchDistances.setValue(notchDistanceObservableList);
+        cipherCounterProperty.setValue(specsStatus.getCipheredTextsCount());
+
+        DTOstatistics statsStatus = engine.getHistoryAndStatistics();
+        // update statistics
+        ObservableList<StatisticRecord> statisticsObservableList = FXCollections.observableArrayList(statsStatus.getStats());
+        statisticsProperty.setValue(statisticsObservableList);
+
+        return cipherStatus;
     }
 
     /**
@@ -223,9 +247,10 @@ public class MainController {
         cleanOldResults();
         UIAdapter uiAdapter = createUIAdapter();
 
-        // toggleTaskButtons(true);
+        toggleTaskButtons(true);
 
-        // engine.startBruteForceProcess(uiAdapter, () -> toggleTaskButtons(false));
+        engine.startBruteForceProcess(uiAdapter, () -> toggleTaskButtons(false),
+                textToDecipher, difficultyLevel, taskSize, numOfAgentSelected);
     }
 
     private void toggleTaskButtons(boolean isActive) {
@@ -246,6 +271,14 @@ public class MainController {
                     createCandidateTile(Candidate.getDecipheredText(), Candidate.getRotorsIDs(), Candidate.getWindowChars(),
                             Candidate.getReflectorSymbol(), Candidate.getProcessedByAgentID());
                 },
+                () -> {
+                    HistogramsUtils.log("EDT: INCREASE total distinct words");
+                    totalDistinctCandidates.set(totalDistinctCandidates.get() + 1);
+                },
+                (delta) -> {
+                    HistogramsUtils.log("EDT: INCREASE total processed words");
+                    totalProcessedWords.set(totalProcessedWords.get() + delta);
+                }
 
         )*/
         return null;

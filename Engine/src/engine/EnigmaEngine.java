@@ -3,6 +3,7 @@ package engine;
 import dm.DecryptManager;
 import dm.dictionary.Dictionary;
 import dm.difficultylevel.DifficultyLevel;
+import javafx.concurrent.Task;
 import javafx.util.Pair;
 import machine.Machine;
 import machine.component.Reflector;
@@ -496,7 +497,7 @@ public class EnigmaEngine implements Engine {
 
         return new DTOspecs(isSucceeded, details, availableRotorsCount, inUseRotorsCount,
                 notchDistancesToWindow, originalNotchPositions, availableReflectorsCount, cipheredTextsCount,
-                inUseRotorsIDs, originalWindowsCharacters, currentWindowsCharacters, inUseReflectorSymbol, inUsePlugs);
+                inUseRotorsIDs, originalWindowsCharacters, currentWindowsCharacters, inUseReflectorSymbol, inUsePlugs, decryptManager.getNumOfAvailableAgents());
     }
 
     /**
@@ -978,8 +979,12 @@ public class EnigmaEngine implements Engine {
 
     @Override
     public void startBruteForceProcess(UIAdapter uiAdapter, Runnable onFinish, String textToDecipher,
-                                       DifficultyLevel difficultyLevel, int taskSize) {
-        decryptManager.startDecrypt(taskSize, textToDecipher, difficultyLevel, uiAdapter);
+                                       DifficultyLevel difficultyLevel, int taskSize, int numOfSelectedAgents) {
+
+        // getting a reference to the candidateCollectorTask.
+        // Task candidateCollectorReference = decryptManager.getCandidateColector();
+        // mainController.bindTaskToUIComponents(candidateCollectorReference, )
+        decryptManager.startDecrypt(taskSize, numOfSelectedAgents, textToDecipher, difficultyLevel, uiAdapter);
     }
 
 

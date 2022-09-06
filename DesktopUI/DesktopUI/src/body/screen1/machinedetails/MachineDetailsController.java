@@ -4,9 +4,12 @@ import body.BodyController;
 import body.currentconfig.CurrentConfigController;
 import dto.DTOspecs;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.IntegerProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.util.converter.NumberStringConverter;
 import problem.Problem;
 
 import java.util.List;
@@ -47,12 +50,10 @@ public class MachineDetailsController {
             usedRotors.setText("-");
             availableRotors.setText("-");
             availableReflectors.setText("-");
-            cipheredTextCount.setText("-");
         } else {
             usedRotors.setText("" + specsStatus.getInUseRotorsCount());
             availableRotors.setText("" + specsStatus.getAvailableRotorsCount());
             availableReflectors.setText("" + specsStatus.getAvailableReflectorsCount());
-            cipheredTextCount.setText("" + specsStatus.getCipheredTextsCount());
         }
 
         originalConfigController.displayCurrentConfig(getOriginalConfigFromSpecs(specsStatus));
@@ -64,5 +65,9 @@ public class MachineDetailsController {
 
     public void displayOriginalConfiguration(List<Integer> rotorsIDs, String currentWindowsCharacters, String inUseReflectorSymbol, String inUsePlugs, List<Integer> currentNotchDistances) {
         originalConfigController.displayOriginalConfiguration(rotorsIDs, currentWindowsCharacters, inUseReflectorSymbol, inUsePlugs, currentNotchDistances);
+    }
+
+    public void bindCipherCounterProperty(IntegerProperty cipherCounterProperty) {
+        cipheredTextCount.textProperty().bind(cipherCounterProperty.asString());
     }
 }

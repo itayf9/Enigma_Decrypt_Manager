@@ -156,6 +156,6 @@ public interface Engine {
      * @param difficultyLevel
      * @param taskSize
      */
-    void startBruteForceProcess(UIAdapter uiAdapter, Runnable onFinish, String textToDecipher, DifficultyLevel difficultyLevel, int taskSize);
+    void startBruteForceProcess(UIAdapter uiAdapter, Runnable onFinish, String textToDecipher, DifficultyLevel difficultyLevel, int taskSize, int numOfSelectedAgents);
 
 }

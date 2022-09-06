@@ -8,6 +8,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 
 public class dmOperationalController {
 
@@ -17,13 +18,13 @@ public class dmOperationalController {
     private Slider numOfAgentsSlider;
 
     @FXML
-    private ComboBox<String> difficultyLevelComboBox;
+    private ComboBox<DifficultyLevel> difficultyLevelComboBox;
 
     @FXML
     private Spinner<Integer> taskSizeSpinner;
 
     @FXML
-    private Button playButton;
+    private Button startButton;
 
     @FXML
     private Button pauseButton;
@@ -37,11 +38,10 @@ public class dmOperationalController {
 
     @FXML
     public void initialize() {
-        difficultyLevelComboBox.getItems().add("Easy");
-        difficultyLevelComboBox.getItems().add("Medium");
-        difficultyLevelComboBox.getItems().add("Hard");
-        difficultyLevelComboBox.getItems().add("Impossible");
-
+        difficultyLevelComboBox.getItems().add(DifficultyLevel.EASY);
+        difficultyLevelComboBox.getItems().add(DifficultyLevel.MEDIUM);
+        difficultyLevelComboBox.getItems().add(DifficultyLevel.HARD);
+        difficultyLevelComboBox.getItems().add(DifficultyLevel.IMPOSSIBLE);
         difficultyLevelComboBox.setPromptText("Please Select");
 
         this.textToDecipherProperty = new SimpleStringProperty();

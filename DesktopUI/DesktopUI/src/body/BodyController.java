@@ -115,6 +115,8 @@ public class BodyController {
         encryptDecrypt2Controller.setParentController(this);
         dmOperationalController.setParentController(this);
         candidatesAreaController.setParentController(this);
+
+        dmOperationalController.bindTextToDecipherPropertyToOutputCipher(encryptDecrypt2Controller.getOutputLabelProperty());
     }
 
     /**
@@ -279,6 +281,10 @@ public class BodyController {
         currentConfigScreen1Controller.bindConfigComponents(inUseRotorsIDsProperty, currentWindowsCharactersProperty, inUseReflectorSymbolProperty, inUsePlugs, currentNotchDistances, isMachineConfiguredProperty);
         currentConfigScreen2Controller.bindConfigComponents(inUseRotorsIDsProperty, currentWindowsCharactersProperty, inUseReflectorSymbolProperty, inUsePlugs, currentNotchDistances, isMachineConfiguredProperty);
         currentConfigScreen3Controller.bindConfigComponents(inUseRotorsIDsProperty, currentWindowsCharactersProperty, inUseReflectorSymbolProperty, inUsePlugs, currentNotchDistances, isMachineConfiguredProperty);
+
+        // cipher counter property bind
+
+        machineDetailsController.bindCipherCounterProperty(cipherCounterProperty);
 
     }
 
