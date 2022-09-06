@@ -2,35 +2,35 @@ package app;
 
 import bindings.CurrWinCharsAndNotchPosBinding;
 import body.BodyController;
+import dm.CandidatesCollectorTask;
+import dm.agent.AgentConclusion;
 import dm.difficultylevel.DifficultyLevel;
 import dto.*;
 import engine.Engine;
 import engine.EnigmaEngine;
 import header.HeaderController;
-import javafx.animation.*;
+import javafx.animation.FadeTransition;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 import javafx.util.Duration;
+import org.omg.CORBA.BooleanHolder;
 import statistics.StatisticRecord;
-import sun.java2d.cmm.ColorTransform;
-import sun.java2d.cmm.lcms.LCMSTransform;
 import ui.adapter.UIAdapter;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class MainController {
 
@@ -73,11 +73,26 @@ public class MainController {
     private StringProperty inUseReflectorSymbolProperty;
     private StringProperty inUsePlugsProperty;
     private ListProperty<Integer> currentNotchDistances;
-    private CurrWinCharsAndNotchPosBinding currWinCharsAndNotchPosBinding;
 
+    private CurrWinCharsAndNotchPosBinding currWinCharsAndNotchPosBinding;
     private IntegerProperty cipherCounterProperty;
     private BooleanProperty isCharByCharModeProperty;
     private ListProperty<StatisticRecord> statisticsProperty;
+
+    /**
+     * bruteforce stuff
+     */
+
+    private IntegerProperty totalDistinctCandidates;
+    private IntegerProperty totalProcessedConfigurations;
+
+
+    private long totalPossibleWindowsPositions;
+
+    private LongProperty totalPossibleConfigurations;
+
+    private BooleanHolder allTaskAreDone;
+
 
     @FXML
     public void initialize() {
@@ -99,10 +114,17 @@ public class MainController {
             this.isCharByCharModeProperty = new SimpleBooleanProperty(false);
             this.cipherCounterProperty = new SimpleIntegerProperty(0);
             this.statisticsProperty = new SimpleListProperty<>();
+            this.allTaskAreDone = new BooleanHolder();
+            this.totalDistinctCandidates = new SimpleIntegerProperty();
+            this.totalProcessedConfigurations = new SimpleIntegerProperty();
+            this.totalPossibleConfigurations = new SimpleLongProperty();
 
             // binding initialize
             bodyController.bindComponents(isMachineConfiguredProperty, inUseRotorsIDsProperty,
-                    currentWindowsCharactersProperty, inUseReflectorSymbolProperty, inUsePlugsProperty, currentNotchDistances, cipherCounterProperty);
+                    currentWindowsCharactersProperty, inUseReflectorSymbolProperty, inUsePlugsProperty,
+                    currentNotchDistances, cipherCounterProperty, totalDistinctCandidates,
+                    totalProcessedConfigurations, totalPossibleConfigurations);
+
             body.visibleProperty().bind(isMachineLoadedProperty);
 
             messegeLabel.textProperty().bind(statusLabel.textProperty());
@@ -136,7 +158,9 @@ public class MainController {
             bodyController.displayMachineSpecs(specsStatus);
             bodyController.setLightBulb(engine.getMachineAlphabet());
             bodyController.displayStatistics();
-            bodyController.setDMOperetionalSettings((int) Math.pow(alphabetLength, rotorsCount), specsStatus.getNumOfAvailableAgents());
+
+            this.totalPossibleWindowsPositions = (int) Math.pow(alphabetLength, rotorsCount);
+            bodyController.setDMOperetionalSettings((int) totalPossibleWindowsPositions, specsStatus.getNumOfAvailableAgents());
 
             headerController.enableLoadButtonTransition(false);
 
@@ -227,6 +251,14 @@ public class MainController {
      */
     public void resetMachineConfiguration() {
         engine.resetConfiguration();
+
+        DTOspecs specsStatus = engine.displayMachineSpecifications();
+
+        currentWindowsCharactersProperty.setValue(specsStatus.getOriginalWindowsCharacters()); // current should be the same here
+
+        ObservableList<Integer> notchDistanceObservableList = FXCollections.observableArrayList(specsStatus.getOriginalNotchPositions()); // current should be the same here
+        currentNotchDistances.setValue(notchDistanceObservableList);
+
         setStatusMessage("Reset Successfully");
     }
 
@@ -244,13 +276,45 @@ public class MainController {
 
     @FXML
     public void startBruteForceProcess(String textToDecipher, DifficultyLevel difficultyLevel, int taskSize, int numOfAgentSelected) {
+        allTaskAreDone.value = false;
+
         cleanOldResults();
         UIAdapter uiAdapter = createUIAdapter();
-
         toggleTaskButtons(true);
 
+        DTOspecs specsStatus = engine.displayMachineSpecifications();
+        if (!specsStatus.isSucceed()) {
+            // return error;
+        }
+
+        BlockingQueue<AgentConclusion> candidatesQueue = new LinkedBlockingQueue<>(1000);
+
+        switch (difficultyLevel) {
+            case EASY:
+                totalPossibleConfigurations.setValue(totalPossibleWindowsPositions);
+                break;
+            case MEDIUM:
+                totalPossibleConfigurations.setValue(totalPossibleWindowsPositions * specsStatus.getAvailableReflectorsCount());
+                break;
+            case HARD:
+                totalPossibleConfigurations.setValue(totalPossibleWindowsPositions *
+                        specsStatus.getAvailableReflectorsCount() *
+                        factorial(specsStatus.getAvailableRotorsCount()));
+                break;
+            case IMPOSSIBLE:
+                break;
+        }
+
+        CandidatesCollectorTask bruteForceTask = new CandidatesCollectorTask(candidatesQueue, allTaskAreDone, totalPossibleConfigurations.getValue(),
+                totalPossibleWindowsPositions, uiAdapter);
+
+        bodyController.bindBruteForceTaskComponentsToUIComponents(bruteForceTask, () -> {
+        });
+
+        new Thread(bruteForceTask).start();
+
         engine.startBruteForceProcess(uiAdapter, () -> toggleTaskButtons(false),
-                textToDecipher, difficultyLevel, taskSize, numOfAgentSelected);
+                textToDecipher, difficultyLevel, taskSize, numOfAgentSelected, candidatesQueue);
     }
 
     private void toggleTaskButtons(boolean isActive) {
@@ -266,22 +330,18 @@ public class MainController {
     }
 
     private UIAdapter createUIAdapter() {
-       /* return new UIAdapter(
-                (Candidate)->{
+        return new UIAdapter(
+                (Candidate) -> {
                     createCandidateTile(Candidate.getDecipheredText(), Candidate.getRotorsIDs(), Candidate.getWindowChars(),
                             Candidate.getReflectorSymbol(), Candidate.getProcessedByAgentID());
                 },
                 () -> {
-                    HistogramsUtils.log("EDT: INCREASE total distinct words");
                     totalDistinctCandidates.set(totalDistinctCandidates.get() + 1);
                 },
                 (delta) -> {
-                    HistogramsUtils.log("EDT: INCREASE total processed words");
-                    totalProcessedWords.set(totalProcessedWords.get() + delta);
+                    totalProcessedConfigurations.set(totalProcessedConfigurations.get() + delta);
                 }
-
-        )*/
-        return null;
+        );
     }
 
     private void createCandidateTile(String decipheredText, List<Integer> rotorsIDs, String windowChars, String reflectorSymbol, int processedByAgentID) {
@@ -296,6 +356,10 @@ public class MainController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void bindBruteForceTaskToUIComponents(Task<Boolean> BruteForceTask, Runnable onFinish) {
+        //  bodyController.
     }
 
     public void doneCurrentCipherProcess() {
@@ -353,5 +417,13 @@ public class MainController {
      */
     public DTOstatus validatePlugsInput(String plugs) {
         return engine.validatePlugs(plugs);
+    }
+
+    private long factorial(int number) {
+        long fact = 1;
+        for (int i = 1; i <= number; i++) {
+            fact = fact * i;
+        }
+        return fact;
     }
 }

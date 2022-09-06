@@ -6,13 +6,11 @@ import javafx.concurrent.Task;
 import org.omg.CORBA.BooleanHolder;
 import ui.adapter.UIAdapter;
 
-import java.util.List;
 import java.util.concurrent.BlockingQueue;
 
 public class CandidatesCollectorTask extends Task<Boolean> {
 
     private BlockingQueue<AgentConclusion> candidateQueue;
-    private List<Candidate> allCandidates;
     private BooleanHolder allTaskAreDone;
 
     private long totalPossibleConfigurations;
@@ -20,10 +18,9 @@ public class CandidatesCollectorTask extends Task<Boolean> {
     private long totalPossibleWindowsPositions;
     private UIAdapter uiAdapter;
 
-    public CandidatesCollectorTask(BlockingQueue<AgentConclusion> candidateQueue, List<Candidate> allCandidates,
-                                   BooleanHolder allTaskAreDone, long totalPossibleConfigurations, long totalPossibleWindowsPositions, UIAdapter uiAdapter) {
+    public CandidatesCollectorTask(BlockingQueue<AgentConclusion> candidateQueue, BooleanHolder allTaskAreDone,
+                                   long totalPossibleConfigurations, long totalPossibleWindowsPositions, UIAdapter uiAdapter) {
         this.candidateQueue = candidateQueue;
-        this.allCandidates = allCandidates;
         this.allTaskAreDone = allTaskAreDone;
         this.totalPossibleConfigurations = totalPossibleConfigurations;
         this.totalPossibleWindowsPositions = totalPossibleWindowsPositions;
@@ -32,10 +29,9 @@ public class CandidatesCollectorTask extends Task<Boolean> {
 
     @Override
     protected Boolean call() throws Exception {
-        final long[] wordCount = {1};
+        final long[] wordCount = {0};
 
         updateMessage("Searching for Candidates...");
-
 
         while (!allTaskAreDone.value) {
 
@@ -43,7 +39,14 @@ public class CandidatesCollectorTask extends Task<Boolean> {
             try {
                 queueTakenCandidates = candidateQueue.take();
                 wordCount[0] += queueTakenCandidates.getNumOfScannedConfigurations();
+
                 updateProgress(wordCount[0], totalPossibleConfigurations);
+
+                if (wordCount[0] == totalPossibleConfigurations) {
+                    System.out.println("condition works");
+                    allTaskAreDone.value = true;
+                }
+
                 uiAdapter.updateTotalProcessedConfigurations(queueTakenCandidates.getNumOfScannedConfigurations());
             } catch (InterruptedException e) {
                 if (allTaskAreDone.value) {
@@ -52,9 +55,9 @@ public class CandidatesCollectorTask extends Task<Boolean> {
             }
 
             if (queueTakenCandidates.getCandidates().size() != 0) {
+                updateMessage("Found Candidate!");
                 for (Candidate candidate : queueTakenCandidates.getCandidates()) {
-                    allCandidates.add(candidate);
-                    updateMessage("Found Candidate!");
+                    uiAdapter.addNewCandidate(candidate);
                 }
             }
         }

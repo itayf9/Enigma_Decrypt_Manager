@@ -1,6 +1,7 @@
 package engine;
 
 import dm.DecryptManager;
+import dm.agent.AgentConclusion;
 import dm.dictionary.Dictionary;
 import dm.difficultylevel.DifficultyLevel;
 import javafx.concurrent.Task;
@@ -19,6 +20,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.concurrent.BlockingQueue;
 
 import statistics.StatisticRecord;
 import problem.Problem;
@@ -979,12 +981,13 @@ public class EnigmaEngine implements Engine {
 
     @Override
     public void startBruteForceProcess(UIAdapter uiAdapter, Runnable onFinish, String textToDecipher,
-                                       DifficultyLevel difficultyLevel, int taskSize, int numOfSelectedAgents) {
+                                       DifficultyLevel difficultyLevel, int taskSize, int numOfSelectedAgents,
+                                       BlockingQueue<AgentConclusion> candidatesQueue) {
 
         // getting a reference to the candidateCollectorTask.
         // Task candidateCollectorReference = decryptManager.getCandidateColector();
         // mainController.bindTaskToUIComponents(candidateCollectorReference, )
-        decryptManager.startDecrypt(taskSize, numOfSelectedAgents, textToDecipher, difficultyLevel, uiAdapter);
+        decryptManager.startDecrypt(taskSize, numOfSelectedAgents, textToDecipher, difficultyLevel, uiAdapter, candidatesQueue);
     }
 
 

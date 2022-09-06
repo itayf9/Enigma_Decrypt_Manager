@@ -56,8 +56,6 @@ public class dmOperationalController {
 
     @FXML
     void startBruteForceAction(MouseEvent event) {
-
-
         DifficultyLevel difficultyLevel = difficultyLevelComboBox.getValue();
         int taskSize = taskSizeSpinner.getValue();
         int numOfAgentSelected = (int) numOfAgentsSlider.getValue();

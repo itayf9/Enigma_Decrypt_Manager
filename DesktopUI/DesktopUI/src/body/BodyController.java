@@ -8,6 +8,7 @@ import body.screen2.encrypt.EncryptDecryptController;
 import body.screen2.statistics.StatisticsController;
 import body.screen3.candidate.area.CandidatesAreaController;
 import body.screen3.dm.operational.dmOperationalController;
+import dm.CandidatesCollectorTask;
 import dm.difficultylevel.DifficultyLevel;
 import dto.*;
 import javafx.beans.property.*;
@@ -121,6 +122,7 @@ public class BodyController {
 
     /**
      * set Parent Controller
+     *
      * @param mainController the Parent Controller
      */
     public void setMainController(MainController mainController) {
@@ -129,6 +131,7 @@ public class BodyController {
 
     /**
      * Q2 display machine specifications
+     *
      * @param specsStatus DTO contains machine specs
      */
     public void displayMachineSpecs(DTOspecs specsStatus) {
@@ -145,6 +148,7 @@ public class BodyController {
 
     /**
      * display the current configuration
+     *
      * @param configStatus the current configuration DTO
      */
     public void displayCurrentConfig(DTOsecretConfig configStatus) {
@@ -155,6 +159,7 @@ public class BodyController {
 
     /**
      * rotors validation
+     *
      * @param rotorsIds the rotors ids
      * @return status
      */
@@ -164,6 +169,7 @@ public class BodyController {
 
     /**
      * window character validation
+     *
      * @param windows the windows characters
      * @return status
      */
@@ -173,6 +179,7 @@ public class BodyController {
 
     /**
      * validate chosen reflector
+     *
      * @param currentReflector reflector number
      * @return status
      */
@@ -182,6 +189,7 @@ public class BodyController {
 
     /**
      * validate plugs
+     *
      * @param plugs the plugs
      * @return status
      */
@@ -214,6 +222,7 @@ public class BodyController {
 
     /**
      * enable/disable calibration section
+     *
      * @param isAllow bool value to disable or enable
      */
     public void setAllowCodeCalibration(boolean isAllow) {
@@ -268,7 +277,8 @@ public class BodyController {
 
     public void bindComponents(BooleanProperty isMachineConfiguredProperty, ListProperty<Integer> inUseRotorsIDsProperty,
                                StringProperty currentWindowsCharactersProperty, StringProperty inUseReflectorSymbolProperty,
-                               StringProperty inUsePlugs, ListProperty<Integer> currentNotchDistances, IntegerProperty cipherCounterProperty) {
+                               StringProperty inUsePlugs, ListProperty<Integer> currentNotchDistances, IntegerProperty cipherCounterProperty,
+                               IntegerProperty totalDistinctCandidates, IntegerProperty totalProcessedConfigurations, LongProperty totalPossibleConfigurations) {
 
         // binds the components that need the isConfigured Boolean property.
         encryptDecrypt.disableProperty().bind(isMachineConfiguredProperty.not());
@@ -283,9 +293,11 @@ public class BodyController {
         currentConfigScreen3Controller.bindConfigComponents(inUseRotorsIDsProperty, currentWindowsCharactersProperty, inUseReflectorSymbolProperty, inUsePlugs, currentNotchDistances, isMachineConfiguredProperty);
 
         // cipher counter property bind
-
         machineDetailsController.bindCipherCounterProperty(cipherCounterProperty);
 
+        // brute force dashboard labels bind
+
+        candidatesAreaController.bindInitPropertiesToLabels(totalDistinctCandidates, totalProcessedConfigurations, totalPossibleConfigurations);
     }
 
     public void displayOriginalConfig(List<Integer> rotorsIDs, String currentWindowsCharacters, String inUseReflectorSymbol, String inUsePlugs, List<Integer> currentNotchDistances) {
@@ -298,5 +310,9 @@ public class BodyController {
 
     public void startBruteForce(String textToDecipher, DifficultyLevel difficultyLevel, int taskSize, int numOfAgentSelected) {
         mainController.startBruteForceProcess(textToDecipher, difficultyLevel, taskSize, numOfAgentSelected);
+    }
+
+    public void bindBruteForceTaskComponentsToUIComponents(CandidatesCollectorTask bruteForceTask, Runnable onFinish) {
+        candidatesAreaController.bindTaskComponentsToUIComponents(bruteForceTask, onFinish);
     }
 }

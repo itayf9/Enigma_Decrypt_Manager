@@ -39,19 +39,19 @@ public class DecryptManager {
 
 
     public DecryptManager(Dictionary dictionary, int numOfAvailableAgents, Machine enigmaMachine) {
-        this.candidatesQueue = new LinkedBlockingQueue<>();
         this.threadPoolBlockingQueue = new LinkedBlockingQueue<>(LIMIT_NUMBER_OF_TASK);
         this.dictionary = dictionary;
         this.numOfAvailableAgents = numOfAvailableAgents;
         this.enigmaMachine = enigmaMachine;
         this.difficultyLevel = DifficultyLevel.UNDEFINED;
-
         this.textToDecipher = "";
         this.totalPossibleWindowsPositions = (long) Math.pow(enigmaMachine.getAlphabet().length(), enigmaMachine.getRotorsCount());
     }
 
-    public void startDecrypt(int taskSize, int numOfSelectedAgents, String textToDecipher, DifficultyLevel difficultyLevel, UIAdapter uiAdapter) {
-        allTaskAreDone.value = false;
+    public void startDecrypt(int taskSize, int numOfSelectedAgents, String textToDecipher, DifficultyLevel difficultyLevel,
+                             UIAdapter uiAdapter, BlockingQueue<AgentConclusion> candidatesQueue) {
+
+        this.candidatesQueue = candidatesQueue;
 
         // starting the thread pool
         this.threadExecutor = new ThreadPoolExecutor(numOfSelectedAgents, numOfSelectedAgents,
@@ -61,16 +61,10 @@ public class DecryptManager {
         Thread taskProducer = new Thread(new TaskProducer(threadPoolBlockingQueue, enigmaMachine, taskSize,
                 textToDecipher, dictionary, candidatesQueue, uiAdapter));
 
-        // setting a thread that collects conclusions
-        Thread candidatesCollectorTask = new Thread(new CandidatesCollectorTask(candidatesQueue,
-                allCandidates, allTaskAreDone, totalPossibleConfigurations, totalPossibleWindowsPositions, uiAdapter));
-
         // trigger the threads
         threadExecutor.execute(() -> {
         });
         taskProducer.start(); // thread is in the air starting the missions spread.
-        candidatesCollectorTask.start();
-
 
         // main thread ends here
     }

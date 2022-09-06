@@ -9,12 +9,12 @@ public class UIAdapter {
 
     private Consumer<Candidate> introduceNewCandidate;
     private Runnable updateDistinct;
-    private Consumer<Integer> updateTotalProcessedWords;
+    private Consumer<Integer> updateTotalProcessedConfigurations;
 
     public UIAdapter(Consumer<Candidate> introduceNewCandidate, Runnable updateDistinct, Consumer<Integer> updateTotalProcessedConfigurations) {
         this.introduceNewCandidate = introduceNewCandidate;
         this.updateDistinct = updateDistinct;
-        this.updateTotalProcessedWords = updateTotalProcessedWords;
+        this.updateTotalProcessedConfigurations = updateTotalProcessedConfigurations;
     }
 
     public void addNewCandidate(Candidate candidate) {
@@ -28,7 +28,7 @@ public class UIAdapter {
 
     public void updateTotalProcessedConfigurations(int delta) {
         Platform.runLater(
-                () -> updateTotalProcessedWords.accept(delta)
+                () -> updateTotalProcessedConfigurations.accept(delta)
         );
     }
 }

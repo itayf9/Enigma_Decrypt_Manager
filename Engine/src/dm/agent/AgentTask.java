@@ -1,9 +1,9 @@
 package dm.agent;
 
-import ui.adapter.UIAdapter;
 import candidate.Candidate;
 import dm.dictionary.Dictionary;
 import machine.Machine;
+import ui.adapter.UIAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,47 +69,47 @@ public class AgentTask implements Runnable {
             }
         }
     }
-    
+
     @Override
     public void run() {
-
         List<Candidate> candidates = new ArrayList<>();
-        int i;
-        for (i = 0; i < taskSize; i++) {
+        int numOfConfigScanned = 0;
+        for (int i = 0; i < taskSize; i++) {
+            numOfConfigScanned++;
 
             if (AllWindowsOffsetsAtBeginning())
                 break;
+
+
+            // sets machine to the next configuration
+            // changes only the window offsets
+            machine.setMachineConfiguration(rotorsIDs, windowOffsets, inUseReflectorID, "");
+
+            // ciphers the text
+            String decipherResult = decipherLine(textToDecipher);
+            resetConfig();
+
+            // check dictionary
+            if (dictionary.isAllWordsInDictionary(decipherResult)) {
+
+                // convert windows offsets to characters.
+                String windowCharacters = machine.getOriginalWindowsCharacters(); // I trust this !
+
+                // convert reflector ID to Roman number.
+                String nextCandidateReflectorSymbol = decimalToRoman(inUseReflectorID);
+
+                Candidate nextCandidate = new Candidate(decipherResult, rotorsIDs, windowCharacters, nextCandidateReflectorSymbol);
+                candidates.add(nextCandidate);
+
+                uiAdapter.addNewCandidate(nextCandidate);
+            }
+
+            // moves to the next configuration
+            advanceWindow();
         }
-
-        // sets machine to the next configuration
-        // changes only the window offsets
-        machine.setMachineConfiguration(rotorsIDs, windowOffsets, inUseReflectorID, "");
-
-        // ciphers the text
-        String decipherResult = decipherLine(textToDecipher);
-        resetConfig();
-
-        // check dictionary
-        if (dictionary.isAllWordsInDictionary(decipherResult)) {
-
-            // convert windows offsets to characters.
-            String windowCharacters = machine.getOriginalWindowsCharacters(); // I trust this !
-
-            // convert reflector ID to Roman number.
-            String nextCandidateReflectorSymbol = decimalToRoman(inUseReflectorID);
-
-            Candidate nextCandidate = new Candidate(decipherResult, rotorsIDs, windowCharacters, nextCandidateReflectorSymbol);
-            candidates.add(nextCandidate);
-
-            uiAdapter.addNewCandidate(nextCandidate);
-        }
-
-        // moves to the next configuration
-        advanceWindow();
-
         // send conclusion to DM
         try {
-                candidatesQueue.put(new AgentConclusion(candidates, i));
+            candidatesQueue.put(new AgentConclusion(candidates, numOfConfigScanned));
         } catch (InterruptedException ignored) {
 
         }
