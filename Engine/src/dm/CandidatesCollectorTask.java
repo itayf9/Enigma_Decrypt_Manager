@@ -14,15 +14,19 @@ public class CandidatesCollectorTask extends Task<Boolean> {
     private BlockingQueue<AgentConclusion> candidateQueue;
     private List<Candidate> allCandidates;
     private BooleanHolder allTaskAreDone;
+
     private long totalPossibleConfigurations;
+
+    private long totalPossibleWindowsPositions;
     private UIAdapter uiAdapter;
 
     public CandidatesCollectorTask(BlockingQueue<AgentConclusion> candidateQueue, List<Candidate> allCandidates,
-                                   BooleanHolder allTaskAreDone, long totalPossibleConfigurations, UIAdapter uiAdapter) {
+                                   BooleanHolder allTaskAreDone, long totalPossibleConfigurations, long totalPossibleWindowsPositions, UIAdapter uiAdapter) {
         this.candidateQueue = candidateQueue;
         this.allCandidates = allCandidates;
         this.allTaskAreDone = allTaskAreDone;
         this.totalPossibleConfigurations = totalPossibleConfigurations;
+        this.totalPossibleWindowsPositions = totalPossibleWindowsPositions;
         this.uiAdapter = uiAdapter;
     }
 

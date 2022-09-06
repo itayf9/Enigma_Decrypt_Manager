@@ -1,19 +1,32 @@
 package app;
 
+import bindings.CurrWinCharsAndNotchPosBinding;
 import body.BodyController;
+import dm.difficultylevel.DifficultyLevel;
 import dto.*;
 import engine.Engine;
 import engine.EnigmaEngine;
 import header.HeaderController;
+import javafx.animation.*;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
+import javafx.util.Duration;
+import statistics.StatisticRecord;
+import sun.java2d.cmm.ColorTransform;
+import sun.java2d.cmm.lcms.LCMSTransform;
 import ui.adapter.UIAdapter;
 
 import java.io.IOException;
@@ -37,6 +50,15 @@ public class MainController {
     @FXML
     private Label statusLabel;
 
+    @FXML
+    private Label messegeLabel;
+
+    @FXML
+    private Rectangle statusBackShape;
+
+    private FadeTransition messegeFadeTransition = new FadeTransition(Duration.millis(5000), statusBackShape);
+
+
     private DTOsecretConfig configStatus;
 
     /**
@@ -54,8 +76,7 @@ public class MainController {
     private ListProperty<Integer> currentNotchDistances;
 
     private BooleanProperty isCharByCharModeProperty;
-
-    private CurrWinCharsAndNotchPosBinding currWinCharsAndNotchPosBinding;
+    private ListProperty<StatisticRecord> statisticsProperty;
 
     @FXML
     public void initialize() {
@@ -64,7 +85,7 @@ public class MainController {
         if (headerController != null && bodyController != null) {
             headerController.setMainController(this);
             bodyController.setMainController(this);
-            bodyController.updateMachineInfo();
+            //bodyController.updateMachineInfo();
 
             // property initialize
             this.isMachineConfiguredProperty = new SimpleBooleanProperty(false);
@@ -78,8 +99,15 @@ public class MainController {
 
             // binding initialize
             bodyController.bindComponents(isMachineConfiguredProperty, inUseRotorsIDsProperty,
-                    currentWindowsCharactersProperty, inUseReflectorSymbolProperty, inUsePlugsProperty, currentNotchDistances);
+                    currentWindowsCharactersProperty, inUseReflectorSymbolProperty, inUsePlugsProperty, currentNotchDistances, cipherCounterProperty);
             body.visibleProperty().bind(isMachineLoadedProperty);
+
+            messegeLabel.textProperty().bind(statusLabel.textProperty());
+            messegeLabel.opacityProperty().bind(statusBackShape.opacityProperty());
+            statusBackShape.heightProperty().bind(Bindings.add(2, statusLabel.heightProperty()));
+            statusBackShape.widthProperty().bind(statusLabel.widthProperty());
+            statusBackShape.setStrokeWidth(0);
+            statusBackShape.setOpacity(0);
         }
     }
 
@@ -99,6 +127,10 @@ public class MainController {
             bodyController.displayMachineSpecs(specsStatus);
             bodyController.setLightBulb(engine.getMachineAlphabet());
             bodyController.displayStatistics();
+            bodyController.setDMOperetionalSettings((int) Math.pow(alphabetLength, rotorsCount), specsStatus.getNumOfAvailableAgents());
+
+            headerController.enableLoadButtonTransition(false);
+
             isMachineConfiguredProperty.setValue(Boolean.FALSE);
             isMachineLoadedProperty.setValue(Boolean.TRUE);
         }
@@ -128,6 +160,8 @@ public class MainController {
         // display original config in machine specs
         bodyController.displayOriginalConfig(configStatus.getRotors(), configStatus.getWindows(), configStatus.getReflectorSymbol(), configStatus.getPlugs(), configStatus.getNotchDistances());
 
+        setStatusMessage("Configured Successfully");
+
         isMachineConfiguredProperty.setValue(Boolean.TRUE);
     }
 
@@ -146,6 +180,8 @@ public class MainController {
 
         ObservableList<Integer> notchDistanceObservableList = FXCollections.observableArrayList(configStatus.getNotchDistances());
         currentNotchDistances.setValue(notchDistanceObservableList);
+
+        setStatusMessage("Configured Successfully");
 
         isMachineConfiguredProperty.setValue(Boolean.TRUE);
 
@@ -167,6 +203,7 @@ public class MainController {
      */
     public void resetMachineConfiguration() {
         engine.resetConfiguration();
+        setStatusMessage("Reset Successfully");
     }
 
     public DTOstatistics fetchStats() {
@@ -182,7 +219,7 @@ public class MainController {
     }
 
     @FXML
-    public void startBruteForceProcess() {
+    public void startBruteForceProcess(String textToDecipher, DifficultyLevel difficultyLevel, int taskSize, int numOfAgentSelected) {
         cleanOldResults();
         UIAdapter uiAdapter = createUIAdapter();
 
@@ -231,6 +268,19 @@ public class MainController {
     public void doneCurrentCipherProcess() {
         engine.doneCurrentCipherProcess();
     }
+
+    public void setStatusMessage(String newStatus) {
+        statusBackShape.setOpacity(1);
+        messegeFadeTransition.stop();
+
+        messegeFadeTransition = new FadeTransition(Duration.millis(5000), statusBackShape);
+        statusLabel.setText(newStatus);
+        messegeFadeTransition.setFromValue(1.0);
+        messegeFadeTransition.setToValue(0.0);
+        messegeFadeTransition.setDelay(Duration.millis(3000));
+        messegeFadeTransition.play();
+    }
+
 
     /**
      * validate rotors

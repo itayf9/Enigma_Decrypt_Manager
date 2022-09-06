@@ -8,9 +8,9 @@ import body.screen2.encrypt.EncryptDecryptController;
 import body.screen2.statistics.StatisticsController;
 import body.screen3.candidate.area.CandidatesAreaController;
 import body.screen3.dm.operational.dmOperationalController;
+import dm.difficultylevel.DifficultyLevel;
 import dto.*;
 import javafx.beans.property.*;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.layout.GridPane;
 
@@ -266,7 +266,7 @@ public class BodyController {
 
     public void bindComponents(BooleanProperty isMachineConfiguredProperty, ListProperty<Integer> inUseRotorsIDsProperty,
                                StringProperty currentWindowsCharactersProperty, StringProperty inUseReflectorSymbolProperty,
-                               StringProperty inUsePlugs, ListProperty<Integer> currentNotchDistances) {
+                               StringProperty inUsePlugs, ListProperty<Integer> currentNotchDistances, IntegerProperty cipherCounterProperty) {
 
         // binds the components that need the isConfigured Boolean property.
         encryptDecrypt.disableProperty().bind(isMachineConfiguredProperty.not());
@@ -284,5 +284,13 @@ public class BodyController {
 
     public void displayOriginalConfig(List<Integer> rotorsIDs, String currentWindowsCharacters, String inUseReflectorSymbol, String inUsePlugs, List<Integer> currentNotchDistances) {
         machineDetailsController.displayOriginalConfiguration(rotorsIDs, currentWindowsCharacters, inUseReflectorSymbol, inUsePlugs, currentNotchDistances);
+    }
+
+    public void setDMOperetionalSettings(int maxTaskSize, int maxNumOfAgents) {
+        dmOperationalController.setSettings(maxTaskSize, maxNumOfAgents);
+    }
+
+    public void startBruteForce(String textToDecipher, DifficultyLevel difficultyLevel, int taskSize, int numOfAgentSelected) {
+        mainController.startBruteForceProcess(textToDecipher, difficultyLevel, taskSize, numOfAgentSelected);
     }
 }

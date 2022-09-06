@@ -1,10 +1,9 @@
 package body.currentconfig;
 
-import app.CurrWinCharsAndNotchPosBinding;
+import bindings.CurrWinCharsAndNotchPosBinding;
 import body.BodyController;
 import dto.DTOsecretConfig;
 import javafx.beans.binding.Bindings;
-import javafx.beans.binding.StringExpression;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.StringProperty;

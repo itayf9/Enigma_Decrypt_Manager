@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -9,6 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
 
 <GridPane minWidth="0.0" stylesheets="@app.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.MainController">
    <columnConstraints>
@@ -16,21 +19,43 @@
    </columnConstraints>
    <rowConstraints>
       <RowConstraints minHeight="100.0" vgrow="NEVER" />
-      <RowConstraints minHeight="0.0" vgrow="ALWAYS" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+      <RowConstraints minHeight="500.0" vgrow="ALWAYS" />
+      <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" vgrow="NEVER" />
    </rowConstraints>
    <children>
       <fx:include fx:id="header" minHeight="100.0" minWidth="0.0" prefHeight="100.0" prefWidth="900.0" source="../header/header.fxml" />
       <StackPane GridPane.rowIndex="1">
          <children>
-            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="body-background" />
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <Pane cache="true" prefHeight="200.0" prefWidth="200.0" styleClass="body-background" />
+            <ImageView fitHeight="500.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER_RIGHT">
+               <image>
+                  <Image url="@start-screen-enigma.png" />
+               </image>
+               <viewport>
+                  <Rectangle2D />
+               </viewport></ImageView>
             <fx:include fx:id="body" minHeight="0.0" minWidth="0.0" prefHeight="470.0" prefWidth="900.0" source="../body/body.fxml" GridPane.rowIndex="1" />
          </children>
       </StackPane>
       <HBox prefHeight="100.0" prefWidth="200.0" styleClass="status-bar" stylesheets="@statusbar/statusbar.css" GridPane.rowIndex="2">
          <children>
-            <Label fx:id="statusLabel" text="status" />
+            <StackPane alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="statusLabel" text="status" StackPane.alignment="CENTER_LEFT">
+                     <padding>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </padding>
+                  </Label>
+                  <Rectangle fx:id="statusBackShape" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" StackPane.alignment="CENTER_LEFT" />
+                  <Label fx:id="messegeLabel" text="message" textFill="WHITE" StackPane.alignment="CENTER_LEFT">
+                     <padding>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </padding></Label>
+               </children>
+               <padding>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </padding>
+            </StackPane>
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

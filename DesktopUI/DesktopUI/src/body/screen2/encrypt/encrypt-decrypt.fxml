@@ -14,26 +14,25 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane styleClass="component-with-border" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.screen2.encrypt.EncryptDecryptController">
+<GridPane minHeight="150.0" prefHeight="300.0" prefWidth="550.0" styleClass="component-with-border" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.screen2.encrypt.EncryptDecryptController">
    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="300.0" prefWidth="420.33331298828125" />
-      <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="4.3333740234375" prefWidth="5.66668701171875" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="186.0" minWidth="100.0" prefWidth="123.3333740234375" />
-      <ColumnConstraints />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="370.0" />
+      <ColumnConstraints hgrow="ALWAYS" maxWidth="50.0" minWidth="0.0" prefWidth="5.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="70.0" prefWidth="70.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="70.0" prefWidth="80.0" />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints />
       <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="NEVER" />
+      <RowConstraints minHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="40.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="25.0" prefHeight="25.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="40.0" vgrow="NEVER" />
-      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="40.0" vgrow="NEVER" />
+      <RowConstraints minHeight="40.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="1.7976931348623157E308" minHeight="5.0" prefHeight="5.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="50.0" prefHeight="100.0" vgrow="ALWAYS" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="50.0" prefHeight="100.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
       <Label styleClass="component-title" text="Cipher Text:" GridPane.rowIndex="1" />
@@ -47,10 +46,10 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </Label>
-      <TextField fx:id="inputTextField" maxWidth="1.7976931348623157E308" minHeight="40.0" onKeyReleased="#deactivateLightBulb" onKeyTyped="#cipherCharacter" prefHeight="40.0" prefWidth="268.0" styleClass="input-text-field" GridPane.rowIndex="3" />
-      <Label prefHeight="17.0" prefWidth="76.0" text="Ciphered Text:" GridPane.rowIndex="5" />
-      <Label text="Enter Text:" GridPane.rowIndex="2" />
-      <ScrollPane maxWidth="1.7976931348623157E308" minHeight="40.0" prefHeight="40.0" prefWidth="268.0" GridPane.rowIndex="6">
+      <TextField fx:id="inputTextField" maxWidth="1.7976931348623157E308" minHeight="40.0" onKeyReleased="#deactivateLightBulb" onKeyTyped="#cipherCharacter" prefHeight="40.0" prefWidth="268.0" styleClass="input-text-field" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+      <Label prefHeight="17.0" prefWidth="76.0" text="Ciphered Text:" GridPane.rowIndex="5" GridPane.valignment="BOTTOM" />
+      <Label text="Enter Text:" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+      <ScrollPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="40.0" prefHeight="40.0" prefWidth="268.0" GridPane.rowIndex="6" GridPane.valignment="TOP">
          <content>
             <Label fx:id="outputLabel">
                <font>
@@ -62,39 +61,41 @@
             </Label>
          </content>
       </ScrollPane>
-      <VBox alignment="CENTER" prefHeight="258.0" prefWidth="114.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.rowSpan="6">
+      <HBox prefHeight="47.0" prefWidth="114.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1">
          <children>
-            <HBox prefHeight="47.0" prefWidth="114.0">
-               <children>
-                  <ToggleButton mnemonicParsing="false" onMouseClicked="#setCipherMode" prefHeight="75.0" prefWidth="58.0" text="Char by Char" textAlignment="CENTER" wrapText="true">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="cipherModeToggles" />
-                     </toggleGroup>
-                  </ToggleButton>
-                  <ToggleButton mnemonicParsing="false" onMouseClicked="#setCipherMode" prefHeight="78.0" prefWidth="59.0" text="Full Line" textAlignment="CENTER" toggleGroup="$cipherModeToggles" wrapText="true" />
-               </children>
-            </HBox>
-
-            <Button fx:id="processButton" minHeight="50.0" minWidth="80.0" mnemonicParsing="false" onMouseClicked="#processHandler" prefWidth="82.0" styleClass="action-btn" text="Process / Done" textAlignment="CENTER" wrapText="true">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button fx:id="resetButton" maxHeight="1.7976931348623157E308" minHeight="50.0" minWidth="80.0" mnemonicParsing="false" onMouseClicked="#ResetConfiguration" prefWidth="82.0" styleClass="reset-btn" text="Reset">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button fx:id="clearButton" maxHeight="1.7976931348623157E308" minHeight="50.0" minWidth="80.0" mnemonicParsing="false" onMouseClicked="#clearCurrentCipher" prefWidth="82.0" styleClass="clear-btn" text="Clear">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
+            <ToggleButton mnemonicParsing="false" onMouseClicked="#setCipherMode" prefHeight="75.0" prefWidth="58.0" text="Char by Char" textAlignment="CENTER" wrapText="true">
+               <toggleGroup>
+                  <ToggleGroup fx:id="cipherModeToggles" />
+               </toggleGroup>
+            </ToggleButton>
+            <ToggleButton mnemonicParsing="false" onMouseClicked="#setCipherMode" prefHeight="78.0" prefWidth="59.0" text="Full Line" textAlignment="CENTER" toggleGroup="$cipherModeToggles" wrapText="true" />
          </children>
+      </HBox>
+
+      <Button fx:id="processButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="25.0" minWidth="80.0" mnemonicParsing="false" onMouseClicked="#processHandler" prefHeight="25.0" styleClass="action-btn" text="Process / Done" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
          <GridPane.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            <Insets bottom="2.0" left="2.0" right="2.0" top="5.0" />
          </GridPane.margin>
-      </VBox>
+      </Button>
+      <Button fx:id="resetButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="25.0" minWidth="70.0" mnemonicParsing="false" onMouseClicked="#ResetConfiguration" prefHeight="25.0" styleClass="reset-btn" text="Reset" GridPane.columnIndex="3" GridPane.rowIndex="3">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <GridPane.margin>
+            <Insets bottom="5.0" left="2.0" right="2.0" top="2.0" />
+         </GridPane.margin>
+      </Button>
+      <Button fx:id="clearButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="25.0" minWidth="70.0" mnemonicParsing="false" onMouseClicked="#clearCurrentCipher" prefHeight="25.0" styleClass="clear-btn" text="Clear" GridPane.columnIndex="2" GridPane.rowIndex="3">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <GridPane.margin>
+            <Insets bottom="5.0" left="2.0" right="2.0" top="2.0" />
+         </GridPane.margin>
+      </Button>
    </children>
    <stylesheets>
       <URL value="@../../../app/app.css" />

@@ -44,7 +44,7 @@
 }
 
 .body-background {
-    -fx-background-color: linear-gradient(to bottom, #e7e7e7 7%, #9f9f9f 39%, #5d5d5d 100%)
+    -fx-background-color: linear-gradient(to bottom, #92dcf1 7%, rgba(119, 172, 241, 0.95) 39%, #353396 100%)
 }
 
 .component-title {

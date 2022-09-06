@@ -16,7 +16,7 @@ public class Main extends Application {
         primaryStage.setTitle("The Enigma Machine");
 
         Parent load = FXMLLoader.load(getClass().getResource("app/app.fxml"));
-        Scene scene = new Scene(load, 900, 600);
+        Scene scene = new Scene(load, 900, 625);
         primaryStage.setScene(scene);
         primaryStage.show();
     }

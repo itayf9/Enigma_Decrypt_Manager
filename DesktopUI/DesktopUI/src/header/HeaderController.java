@@ -6,8 +6,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import problem.Problem;
 
 import java.io.File;
@@ -18,20 +20,35 @@ public class HeaderController {
 
     String selectedMachineFile;
 
+    FadeTransition loadButtonFadeTransition;
+
     private MainController mainController;
 
     @FXML
-    private Button buttonLoadMachine;
+    private Label filePathLoadMachineLabel;
 
     @FXML
-    private Label filePathLoadMachineLabel;
+    private Button loadFileButton;
 
     @FXML
     private Label headerMessageLabel;
 
     @FXML
     public void initialize() {
+
+        filePathLoadMachineLabel.setText("");
         headerMessageLabel.setText("");
+
+
+        loadButtonFadeTransition = new FadeTransition(Duration.millis(1500), loadFileButton);
+        loadButtonFadeTransition.setFromValue(1.0);
+        loadButtonFadeTransition.setToValue(0.3);
+        loadButtonFadeTransition.setCycleCount(Animation.INDEFINITE);
+        loadButtonFadeTransition.setAutoReverse(true);
+
+        enableLoadButtonTransition(true);
+
+
     }
 
 
@@ -63,5 +80,16 @@ public class HeaderController {
         headerMessageLabel.getStyleClass().add("success-label");
         headerMessageLabel.setText("Machine Loaded Successfully!");
         filePathLoadMachineLabel.setText(selectedMachineFile);
+    }
+
+    public void enableLoadButtonTransition(boolean isAllow) {
+        if (isAllow) {
+            loadButtonFadeTransition.play();
+        } else {
+            loadButtonFadeTransition.stop();
+            FadeTransition recover = new FadeTransition(Duration.millis(500), loadFileButton);
+            recover.setToValue(1.0);
+            recover.play();
+        }
     }
 }

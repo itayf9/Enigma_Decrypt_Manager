@@ -33,6 +33,8 @@ public class EnigmaEngine implements Engine {
 
     private DecryptManager decryptManager;
 
+    //private MainController mainController;
+
     private boolean charByCharState = false;
 
     private long currentCipherProcessTimeElapsed;

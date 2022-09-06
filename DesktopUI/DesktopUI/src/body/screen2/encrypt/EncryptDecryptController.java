@@ -2,6 +2,7 @@ package body.screen2.encrypt;
 
 import body.BodyController;
 import dto.DTOciphertext;
+import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -74,7 +75,7 @@ public class EncryptDecryptController {
                 outputLabel.setText(outputLabel.getText() + cipheredCharStatus.getCipheredText());
                 this.cipheredLetter = cipheredCharStatus.getCipheredText();
                 activateLightBulb(cipheredCharStatus.getCipheredText());
-                parentController.updateMachineInfo();
+                // parentController.updateMachineInfo();
                 cipherProblemLabel.setText("");
             }
         } // else return
@@ -96,7 +97,7 @@ public class EncryptDecryptController {
                 cipherProblemLabel.setText(cipheredLineStatus.getDetails().name());
             } else {
                 outputLabel.setText(cipheredLineStatus.getCipheredText());
-                parentController.updateMachineInfo();
+                //parentController.updateMachineInfo();
                 parentController.displayStatistics();
                 cipherProblemLabel.setText("");
             }
@@ -233,5 +234,9 @@ public class EncryptDecryptController {
         circle.setFill(Paint.valueOf("#cc5454"));
 
         currentPane.getStyleClass().remove("light-on");
+    }
+
+    public StringProperty getOutputLabelProperty() {
+        return outputLabel.textProperty();
     }
 }

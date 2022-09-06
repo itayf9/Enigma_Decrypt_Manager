@@ -25,8 +25,12 @@ public class DecryptManager {
     private String textToDecipher;
     private BooleanHolder allTaskAreDone;
     private List<Candidate> allCandidates = new ArrayList<>();
+
     private UIAdapter uiAdapter;
-    private long totalPossibleConfigurations;
+
+    private long totalPossibleConfigurations = 0;
+
+    private long totalPossibleWindowsPositions;
     private BlockingQueue<Runnable> threadPoolBlockingQueue;
 
 
@@ -40,17 +44,23 @@ public class DecryptManager {
         this.threadExecutor = new ThreadPoolExecutor(numberOfAgents, numberOfAgents,
                 0L, TimeUnit.MILLISECONDS, threadPoolBlockingQueue);
         this.textToDecipher = "";
-        this.totalPossibleConfigurations = (long) Math.pow(enigmaMachine.getAlphabet().length(), enigmaMachine.getRotorsCount());
+        this.totalPossibleWindowsPositions = (long) Math.pow(enigmaMachine.getAlphabet().length(), enigmaMachine.getRotorsCount());
     }
 
     public void startDecrypt(int taskSize, String textToDecipher, DifficultyLevel difficultyLevel, UIAdapter uiAdapter) {
         allTaskAreDone.value = false;
 
+        // starting the thread pool
+        this.threadExecutor = new ThreadPoolExecutor(numOfSelectedAgents, numOfSelectedAgents,
+                0L, TimeUnit.MILLISECONDS, threadPoolBlockingQueue);
+
+        // setting a thread that produces tasks
         Thread taskProducer = new Thread(new TaskProducer(threadPoolBlockingQueue, enigmaMachine, taskSize,
                 textToDecipher, dictionary, candidatesQueue, uiAdapter));
 
+        // setting a thread that collects conclusions
         Thread candidatesCollectorTask = new Thread(new CandidatesCollectorTask(candidatesQueue,
-                allCandidates, allTaskAreDone, totalPossibleConfigurations, uiAdapter));
+                allCandidates, allTaskAreDone, totalPossibleConfigurations, totalPossibleWindowsPositions, uiAdapter));
 
         // trigger the threads
         threadExecutor.execute(() -> {

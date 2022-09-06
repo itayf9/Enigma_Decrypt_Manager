@@ -11,12 +11,12 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="body.screen3.dm.operational.dmOperationalController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.screen3.dm.operational.dmOperationalController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="132.0" minWidth="10.0" prefWidth="98.66665649414062" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.666656494140625" minWidth="0.0" prefWidth="33.333343505859375" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="116.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.66665649414062" minWidth="10.0" prefWidth="32.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="130.0" prefWidth="130.3333740234375" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.66665649414062" minWidth="5.0" prefWidth="11.6666259765625" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="154.0" minWidth="10.0" prefWidth="127.6666259765625" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="85.33331298828125" minWidth="0.0" prefWidth="45.66668701171875" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.0" minWidth="10.0" prefWidth="82.0" />
@@ -27,17 +27,17 @@
       <RowConstraints maxHeight="1.7976931348623157E308" minHeight="5.0" prefHeight="5.0" vgrow="ALWAYS" />
     <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" vgrow="NEVER" />
     <RowConstraints maxHeight="43.0" minHeight="43.0" prefHeight="43.0" vgrow="NEVER" />
-      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="5.0" prefHeight="43.0" vgrow="ALWAYS" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="0.0" prefHeight="43.0" vgrow="ALWAYS" />
   </rowConstraints>
    <children>
       <Label styleClass="component-title" text="Set Decrypt Menager" GridPane.columnSpan="8" />
-      <Slider fx:id="numOfAgentsSlider" max="50.0" min="2.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-      <ComboBox fx:id="difficultyLevelComboBox" maxWidth="1.7976931348623157E308" prefHeight="40.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-      <Button fx:id="playButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="action-btn" text="Play" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-      <Button fx:id="pauseButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="action-btn" text="Pause" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+      <Slider fx:id="numOfAgentsSlider" majorTickUnit="1.0" max="50.0" min="2.0" minorTickCount="0" snapToTicks="true" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+      <ComboBox fx:id="difficultyLevelComboBox" maxWidth="1.7976931348623157E308" prefHeight="30.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+      <Button fx:id="startButton" mnemonicParsing="false" onMouseClicked="#startBruteForceAction" prefHeight="60.0" prefWidth="60.0" styleClass="action-btn" text="Start" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+      <Button fx:id="pauseButton" mnemonicParsing="false" onMouseClicked="#pauseBruteForceAction" prefHeight="60.0" prefWidth="60.0" styleClass="action-btn" text="Pause" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
       <Label fx:id="numOfAgentLabel" text="Number of Agents" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
       <Label text="Task Size" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
-      <Spinner fx:id="taskSizeSpinner" GridPane.rowIndex="3" />
+      <Spinner fx:id="taskSizeSpinner" editable="true" GridPane.rowIndex="3" />
       <Label text="Difficulty Level" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
    </children>
    <padding>

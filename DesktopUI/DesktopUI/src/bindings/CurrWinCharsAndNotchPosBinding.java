@@ -1,4 +1,4 @@
-package app;
+package bindings;
 
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.ListProperty;
