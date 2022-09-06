@@ -3,7 +3,6 @@ package dm;
 import candidate.Candidate;
 import dm.agent.AgentConclusion;
 import javafx.concurrent.Task;
-import org.omg.CORBA.BooleanHolder;
 import ui.adapter.UIAdapter;
 
 import java.util.concurrent.BlockingQueue;
@@ -11,19 +10,14 @@ import java.util.concurrent.BlockingQueue;
 public class CandidatesCollectorTask extends Task<Boolean> {
 
     private BlockingQueue<AgentConclusion> candidateQueue;
-    private BooleanHolder allTaskAreDone;
 
     private long totalPossibleConfigurations;
 
-    private long totalPossibleWindowsPositions;
     private UIAdapter uiAdapter;
 
-    public CandidatesCollectorTask(BlockingQueue<AgentConclusion> candidateQueue, BooleanHolder allTaskAreDone,
-                                   long totalPossibleConfigurations, long totalPossibleWindowsPositions, UIAdapter uiAdapter) {
+    public CandidatesCollectorTask(BlockingQueue<AgentConclusion> candidateQueue, long totalPossibleConfigurations, UIAdapter uiAdapter) {
         this.candidateQueue = candidateQueue;
-        this.allTaskAreDone = allTaskAreDone;
         this.totalPossibleConfigurations = totalPossibleConfigurations;
-        this.totalPossibleWindowsPositions = totalPossibleWindowsPositions;
         this.uiAdapter = uiAdapter;
     }
 
@@ -33,7 +27,7 @@ public class CandidatesCollectorTask extends Task<Boolean> {
 
         updateMessage("Searching for Candidates...");
 
-        while (!allTaskAreDone.value) {
+        while (wordCount[0] < totalPossibleConfigurations) {
 
             AgentConclusion queueTakenCandidates = null;
             try {
@@ -42,14 +36,9 @@ public class CandidatesCollectorTask extends Task<Boolean> {
 
                 updateProgress(wordCount[0], totalPossibleConfigurations);
 
-                if (wordCount[0] == totalPossibleConfigurations) {
-                    System.out.println("condition works");
-                    allTaskAreDone.value = true;
-                }
-
                 uiAdapter.updateTotalProcessedConfigurations(queueTakenCandidates.getNumOfScannedConfigurations());
             } catch (InterruptedException e) {
-                if (allTaskAreDone.value) {
+                if (wordCount[0] == totalPossibleConfigurations) {
                     return Boolean.TRUE;
                 }
             }

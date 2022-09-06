@@ -80,7 +80,6 @@ public class AgentTask implements Runnable {
             if (AllWindowsOffsetsAtBeginning())
                 break;
 
-
             // sets machine to the next configuration
             // changes only the window offsets
             machine.setMachineConfiguration(rotorsIDs, windowOffsets, inUseReflectorID, "");

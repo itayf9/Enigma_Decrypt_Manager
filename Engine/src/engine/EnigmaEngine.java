@@ -984,9 +984,6 @@ public class EnigmaEngine implements Engine {
                                        DifficultyLevel difficultyLevel, int taskSize, int numOfSelectedAgents,
                                        BlockingQueue<AgentConclusion> candidatesQueue) {
 
-        // getting a reference to the candidateCollectorTask.
-        // Task candidateCollectorReference = decryptManager.getCandidateColector();
-        // mainController.bindTaskToUIComponents(candidateCollectorReference, )
         decryptManager.startDecrypt(taskSize, numOfSelectedAgents, textToDecipher, difficultyLevel, uiAdapter, candidatesQueue);
     }
 

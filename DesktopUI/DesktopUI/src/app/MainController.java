@@ -23,7 +23,6 @@ import javafx.scene.control.TabPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
-import org.omg.CORBA.BooleanHolder;
 import statistics.StatisticRecord;
 import ui.adapter.UIAdapter;
 
@@ -91,9 +90,6 @@ public class MainController {
 
     private LongProperty totalPossibleConfigurations;
 
-    private BooleanHolder allTaskAreDone;
-
-
     @FXML
     public void initialize() {
 
@@ -114,7 +110,6 @@ public class MainController {
             this.isCharByCharModeProperty = new SimpleBooleanProperty(false);
             this.cipherCounterProperty = new SimpleIntegerProperty(0);
             this.statisticsProperty = new SimpleListProperty<>();
-            this.allTaskAreDone = new BooleanHolder();
             this.totalDistinctCandidates = new SimpleIntegerProperty();
             this.totalProcessedConfigurations = new SimpleIntegerProperty();
             this.totalPossibleConfigurations = new SimpleLongProperty();
@@ -276,16 +271,12 @@ public class MainController {
 
     @FXML
     public void startBruteForceProcess(String textToDecipher, DifficultyLevel difficultyLevel, int taskSize, int numOfAgentSelected) {
-        allTaskAreDone.value = false;
 
         cleanOldResults();
         UIAdapter uiAdapter = createUIAdapter();
         toggleTaskButtons(true);
 
         DTOspecs specsStatus = engine.displayMachineSpecifications();
-        if (!specsStatus.isSucceed()) {
-            // return error;
-        }
 
         BlockingQueue<AgentConclusion> candidatesQueue = new LinkedBlockingQueue<>(1000);
 
@@ -305,8 +296,7 @@ public class MainController {
                 break;
         }
 
-        CandidatesCollectorTask bruteForceTask = new CandidatesCollectorTask(candidatesQueue, allTaskAreDone, totalPossibleConfigurations.getValue(),
-                totalPossibleWindowsPositions, uiAdapter);
+        CandidatesCollectorTask bruteForceTask = new CandidatesCollectorTask(candidatesQueue, totalPossibleConfigurations.getValue(), uiAdapter);
 
         bodyController.bindBruteForceTaskComponentsToUIComponents(bruteForceTask, () -> {
         });

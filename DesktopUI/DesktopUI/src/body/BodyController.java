@@ -296,7 +296,6 @@ public class BodyController {
         machineDetailsController.bindCipherCounterProperty(cipherCounterProperty);
 
         // brute force dashboard labels bind
-
         candidatesAreaController.bindInitPropertiesToLabels(totalDistinctCandidates, totalProcessedConfigurations, totalPossibleConfigurations);
     }
 

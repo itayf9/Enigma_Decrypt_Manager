@@ -2,7 +2,6 @@ package dm.taskproducer;
 
 import dm.agent.AgentConclusion;
 import dm.agent.AgentTask;
-import candidate.Candidate;
 import dm.dictionary.Dictionary;
 import dm.difficultylevel.DifficultyLevel;
 import machine.EnigmaMachine;
@@ -13,36 +12,34 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.RejectedExecutionException;
 
 public class TaskProducer implements Runnable {
 
-    // private String copyOfMachineLocation = "/dm/copyOfMachineLocation";
     private final String END_OF_TASKS = "END OF TASKS";
     protected BlockingQueue<Runnable> agentTaskQueue;
-    private Machine machine;
-    private String alphabet;
-    private int taskSize;
-    private DifficultyLevel difficulty = DifficultyLevel.EASY;
-    private List<Integer> currentWindowsOffsets;
+    private final Machine machine;
+    private final String alphabet;
+    private final int taskSize;
+    private final DifficultyLevel difficulty;
     private boolean currentTaskSubmitted = true;
     private String textToDecipher;
     private Dictionary dictionary;
     private BlockingQueue<AgentConclusion> candidatesQueue;
-    private UIAdapter uiAdapter;
+
+    UIAdapter uiAdapter;
 
 
-    public TaskProducer(BlockingQueue<Runnable> agentTaskQueue, Machine machine, int taskSize, String textToDecipher,
+    public TaskProducer(BlockingQueue<Runnable> agentTaskQueue, Machine machine, int taskSize, DifficultyLevel difficultyLevel, String textToDecipher,
                         Dictionary dictionary, BlockingQueue<AgentConclusion> candidatesQueue, UIAdapter uiAdapter) {
         this.agentTaskQueue = agentTaskQueue;
         this.machine = machine;
         this.alphabet = machine.getAlphabet();
         this.taskSize = taskSize;
+        this.difficulty = difficultyLevel;
         this.textToDecipher = textToDecipher;
         this.dictionary = dictionary;
         this.candidatesQueue = candidatesQueue;
+        this.uiAdapter = uiAdapter;
     }
 
     public void run() {

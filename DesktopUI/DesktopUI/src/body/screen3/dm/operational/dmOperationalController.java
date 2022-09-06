@@ -57,7 +57,7 @@ public class dmOperationalController {
     @FXML
     void startBruteForceAction(MouseEvent event) {
         DifficultyLevel difficultyLevel = difficultyLevelComboBox.getValue();
-        int taskSize = taskSizeSpinner.getValue();
+        int taskSize = taskSizeSpinner.getValue(); // need to fix text value not updating if no button pressed
         int numOfAgentSelected = (int) numOfAgentsSlider.getValue();
         String textToDecipher = textToDecipherProperty.getValue();
 
