@@ -267,6 +267,12 @@ public class MainController {
 
     public void setCharByCharCipherMode(boolean newCharByCharCipherMode) {
         engine.setCharByCharState(newCharByCharCipherMode);
+
+        if (newCharByCharCipherMode) {
+            setStatusMessage("Switched to \"Char-By-Char\" Mode");
+        } else {
+            setStatusMessage("Switched to \"Full Line\" Mode");
+        }
     }
 
     @FXML
