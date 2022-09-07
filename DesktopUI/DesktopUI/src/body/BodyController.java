@@ -8,7 +8,6 @@ import body.screen2.encrypt.EncryptDecryptController;
 import body.screen2.statistics.StatisticsController;
 import body.screen3.candidate.area.CandidatesAreaController;
 import body.screen3.dm.operational.dmOperationalController;
-import dm.CandidatesCollectorTask;
 import dm.difficultylevel.DifficultyLevel;
 import dto.*;
 import javafx.beans.property.*;
@@ -278,7 +277,9 @@ public class BodyController {
     public void bindComponents(BooleanProperty isMachineConfiguredProperty, ListProperty<Integer> inUseRotorsIDsProperty,
                                StringProperty currentWindowsCharactersProperty, StringProperty inUseReflectorSymbolProperty,
                                StringProperty inUsePlugs, ListProperty<Integer> currentNotchDistances, IntegerProperty cipherCounterProperty,
-                               IntegerProperty totalDistinctCandidates, IntegerProperty totalProcessedConfigurations, LongProperty totalPossibleConfigurations) {
+                               IntegerProperty totalDistinctCandidates, IntegerProperty totalProcessedConfigurations,
+                               LongProperty totalPossibleConfigurations, DoubleProperty bruteForceProgressBar, StringProperty bruteForceProgressBarPercentageLabel
+            , StringProperty bruteForceStatus) {
 
         // binds the components that need the isConfigured Boolean property.
         encryptDecrypt.disableProperty().bind(isMachineConfiguredProperty.not());
@@ -296,7 +297,9 @@ public class BodyController {
         machineDetailsController.bindCipherCounterProperty(cipherCounterProperty);
 
         // brute force dashboard labels bind
-        candidatesAreaController.bindInitPropertiesToLabels(totalDistinctCandidates, totalProcessedConfigurations, totalPossibleConfigurations);
+        candidatesAreaController.bindInitPropertiesToLabels(totalDistinctCandidates, totalProcessedConfigurations, totalPossibleConfigurations,
+                bruteForceProgressBar, bruteForceProgressBarPercentageLabel
+                , bruteForceStatus);
     }
 
     public void displayOriginalConfig(List<Integer> rotorsIDs, String currentWindowsCharacters, String inUseReflectorSymbol, String inUsePlugs, List<Integer> currentNotchDistances) {
@@ -311,7 +314,8 @@ public class BodyController {
         mainController.startBruteForceProcess(textToDecipher, difficultyLevel, taskSize, numOfAgentSelected);
     }
 
-    public void bindBruteForceTaskComponentsToUIComponents(CandidatesCollectorTask bruteForceTask, Runnable onFinish) {
+    // don't need that any more
+    /*public void bindBruteForceTaskComponentsToUIComponents(CandidatesCollectorTask bruteForceTask, Runnable onFinish) {
         candidatesAreaController.bindTaskComponentsToUIComponents(bruteForceTask, onFinish);
-    }
+    }*/
 }

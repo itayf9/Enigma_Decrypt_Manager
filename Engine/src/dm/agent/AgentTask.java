@@ -3,7 +3,6 @@ package dm.agent;
 import candidate.Candidate;
 import dm.dictionary.Dictionary;
 import machine.Machine;
-import ui.adapter.UIAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,20 +13,17 @@ import static utill.Utility.decimalToRoman;
 public class AgentTask implements Runnable {
 
     private Machine machine;
-    private int taskSize;
-
-    private Dictionary dictionary;
-    private String textToDecipher;
-
-    private List<Integer> rotorsIDs;
+    private final int taskSize;
+    private final Dictionary dictionary;
+    private final String textToDecipher;
+    private final List<Integer> rotorsIDs;
     private List<Integer> windowOffsets;
     private int inUseReflectorID;
     private BlockingQueue<AgentConclusion> candidatesQueue;
-    private UIAdapter uiAdapter;
 
     public AgentTask(List<Integer> rotorsIDs, List<Integer> windowOffsets, int inUseReflectorID,
                      Machine copyOfMachine, int taskSize, String textToDecipher, Dictionary dictionary,
-                     BlockingQueue<AgentConclusion> candidatesQueue, UIAdapter uiAdapter) {
+                     BlockingQueue<AgentConclusion> candidatesQueue) {
         machine = copyOfMachine;
         this.taskSize = taskSize;
         this.textToDecipher = textToDecipher;
@@ -36,7 +32,6 @@ public class AgentTask implements Runnable {
         this.rotorsIDs = rotorsIDs;
         this.inUseReflectorID = inUseReflectorID;
         this.candidatesQueue = candidatesQueue;
-        this.uiAdapter = uiAdapter;
     }
 
     private String decipherLine(String LineToDecipher) {
@@ -60,11 +55,11 @@ public class AgentTask implements Runnable {
 
     private void advanceWindow() {
 
-        for (Integer windowOffset : windowOffsets) {
-            windowOffset = (windowOffset + 1 + machine.getAlphabet().length()) % machine.getAlphabet().length();
+        for (int i = 0; i < windowOffsets.size(); i++) {
+            windowOffsets.set(i, (windowOffsets.get(i) + 1 + machine.getAlphabet().length()) % machine.getAlphabet().length());
 
             // check if it is needed to rotate next rotor
-            if (windowOffset != 0) {
+            if (windowOffsets.get(i) != 0) {
                 break;
             }
         }
@@ -72,22 +67,34 @@ public class AgentTask implements Runnable {
 
     @Override
     public void run() {
+
         List<Candidate> candidates = new ArrayList<>();
         int numOfConfigScanned = 0;
+
         for (int i = 0; i < taskSize; i++) {
             numOfConfigScanned++;
-
-            if (AllWindowsOffsetsAtBeginning())
+            if (AllWindowsOffsetsAtBeginning()) {
                 break;
+            }
+
+
+            /*
+            ok, you should press "code with me", then "finish call" or something, then "enable call"
+             */
+
 
             // sets machine to the next configuration
             // changes only the window offsets
             machine.setMachineConfiguration(rotorsIDs, windowOffsets, inUseReflectorID, "");
+            if (windowOffsets.get(0) == 15 && windowOffsets.get(1) == 0 && windowOffsets.get(2) == 0) {
+                System.out.println(rotorsIDs);
+                System.out.println(inUseReflectorID);
+                System.out.println(decipherLine(textToDecipher));
+            }
 
             // ciphers the text
             String decipherResult = decipherLine(textToDecipher);
             resetConfig();
-
             // check dictionary
             if (dictionary.isAllWordsInDictionary(decipherResult)) {
 
@@ -99,8 +106,6 @@ public class AgentTask implements Runnable {
 
                 Candidate nextCandidate = new Candidate(decipherResult, rotorsIDs, windowCharacters, nextCandidateReflectorSymbol);
                 candidates.add(nextCandidate);
-
-                uiAdapter.addNewCandidate(nextCandidate);
             }
 
             // moves to the next configuration

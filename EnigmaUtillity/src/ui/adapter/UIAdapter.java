@@ -7,14 +7,25 @@ import java.util.function.Consumer;
 
 public class UIAdapter {
 
-    private Consumer<Candidate> introduceNewCandidate;
-    private Runnable updateDistinct;
-    private Consumer<Integer> updateTotalProcessedConfigurations;
+    private Consumer<Candidate> introduceNewCandidate; // need this when finding a candidate
+    private Runnable updateDistinct; // need this to update candidates found counter
+    private Consumer<Integer> updateTotalProcessedConfigurations; // need this to update scanned configs counter
+    private Consumer<String> updateTaskStatus; // need this to update task status
+    private Consumer<Double> updateProgressBar; // need this to update progressbar
+    private Consumer<Double> updateProgressBarPercentage; // need this to update progressbar percentage label
+    private Consumer<Long> updateTotalConfigs;
 
-    public UIAdapter(Consumer<Candidate> introduceNewCandidate, Runnable updateDistinct, Consumer<Integer> updateTotalProcessedConfigurations) {
+    public UIAdapter(Consumer<Candidate> introduceNewCandidate, Runnable updateDistinct,
+                     Consumer<Integer> updateTotalProcessedConfigurations, Consumer<String> updateTaskStatus,
+                     Consumer<Double> updateProgressBar, Consumer<Double> updateProgressBarPercentage,
+                     Consumer<Long> updateTotalConfigs) {
         this.introduceNewCandidate = introduceNewCandidate;
         this.updateDistinct = updateDistinct;
         this.updateTotalProcessedConfigurations = updateTotalProcessedConfigurations;
+        this.updateTaskStatus = updateTaskStatus;
+        this.updateProgressBar = updateProgressBar;
+        this.updateProgressBarPercentage = updateProgressBarPercentage;
+        this.updateTotalConfigs = updateTotalConfigs;
     }
 
     public void addNewCandidate(Candidate candidate) {
@@ -29,6 +40,29 @@ public class UIAdapter {
     public void updateTotalProcessedConfigurations(int delta) {
         Platform.runLater(
                 () -> updateTotalProcessedConfigurations.accept(delta)
+        );
+    }
+
+    public void updateTaskStatus(String status) {
+        Platform.runLater(
+                () -> updateTaskStatus.accept(status)
+        );
+    }
+
+    public void updateProgressBar(double percentage) {
+        Platform.runLater(
+                () -> {
+                    updateProgressBar.accept(percentage); // get the percentage and update progress
+                    updateProgressBarPercentage.accept(percentage); // update label according to percentage
+                }
+        );
+    }
+
+    public void updateTotalConfigsPossible(long totalPossibleConfigurations) {
+        Platform.runLater(
+                () -> {
+                    updateTotalConfigs.accept(totalPossibleConfigurations);
+                }
         );
     }
 }

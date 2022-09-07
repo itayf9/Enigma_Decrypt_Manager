@@ -9,9 +9,9 @@ import java.util.concurrent.BlockingQueue;
 
 public class CandidatesCollectorTask extends Task<Boolean> {
 
-    private BlockingQueue<AgentConclusion> candidateQueue;
+    private final BlockingQueue<AgentConclusion> candidateQueue;
 
-    private long totalPossibleConfigurations;
+    private final long totalPossibleConfigurations;
 
     private UIAdapter uiAdapter;
 
@@ -23,34 +23,40 @@ public class CandidatesCollectorTask extends Task<Boolean> {
 
     @Override
     protected Boolean call() throws Exception {
-        final long[] wordCount = {0};
+
+        final long[] scannedConfigsCount = {0};
+        uiAdapter.updateTotalConfigsPossible(totalPossibleConfigurations);
 
         updateMessage("Searching for Candidates...");
+        uiAdapter.updateTaskStatus("Searching for Candidates...");
 
-        while (wordCount[0] < totalPossibleConfigurations) {
-
+        while (scannedConfigsCount[0] < totalPossibleConfigurations) {
             AgentConclusion queueTakenCandidates = null;
             try {
                 queueTakenCandidates = candidateQueue.take();
-                wordCount[0] += queueTakenCandidates.getNumOfScannedConfigurations();
 
-                updateProgress(wordCount[0], totalPossibleConfigurations);
+                scannedConfigsCount[0] += queueTakenCandidates.getNumOfScannedConfigurations();
+
+                updateProgress(scannedConfigsCount[0], totalPossibleConfigurations);
+                uiAdapter.updateProgressBar(scannedConfigsCount[0] / totalPossibleConfigurations);
 
                 uiAdapter.updateTotalProcessedConfigurations(queueTakenCandidates.getNumOfScannedConfigurations());
             } catch (InterruptedException e) {
-                if (wordCount[0] == totalPossibleConfigurations) {
+                if (scannedConfigsCount[0] < totalPossibleConfigurations) {
                     return Boolean.TRUE;
                 }
             }
 
             if (queueTakenCandidates.getCandidates().size() != 0) {
                 updateMessage("Found Candidate!");
+                uiAdapter.updateTaskStatus("Found Candidate!");
                 for (Candidate candidate : queueTakenCandidates.getCandidates()) {
                     uiAdapter.addNewCandidate(candidate);
                 }
             }
         }
         updateMessage("Done...");
+        uiAdapter.updateTaskStatus("Done...");
         return Boolean.TRUE;
     }
 }

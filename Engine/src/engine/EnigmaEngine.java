@@ -1,17 +1,18 @@
 package engine;
 
 import dm.DecryptManager;
-import dm.agent.AgentConclusion;
 import dm.dictionary.Dictionary;
 import dm.difficultylevel.DifficultyLevel;
-import javafx.concurrent.Task;
+import dto.*;
 import javafx.util.Pair;
+import machine.EnigmaMachine;
 import machine.Machine;
 import machine.component.Reflector;
 import machine.component.Rotor;
-import dto.*;
-import machine.EnigmaMachine;
 import machine.jaxb.generated.*;
+import problem.Problem;
+import statistics.StatisticRecord;
+import ui.adapter.UIAdapter;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -20,11 +21,6 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
-import java.util.concurrent.BlockingQueue;
-
-import statistics.StatisticRecord;
-import problem.Problem;
-import ui.adapter.UIAdapter;
 
 import static utill.Utility.*;
 
@@ -966,8 +962,7 @@ public class EnigmaEngine implements Engine {
 
         return new DTOstatus(isSucceed, details);
     }
-
-
+    
     /**
      * @return a list of all candidates of the deciphering process
      */
@@ -981,10 +976,9 @@ public class EnigmaEngine implements Engine {
 
     @Override
     public void startBruteForceProcess(UIAdapter uiAdapter, Runnable onFinish, String textToDecipher,
-                                       DifficultyLevel difficultyLevel, int taskSize, int numOfSelectedAgents,
-                                       BlockingQueue<AgentConclusion> candidatesQueue) {
+                                       DifficultyLevel difficultyLevel, int taskSize, int numOfSelectedAgents) {
 
-        decryptManager.startDecrypt(taskSize, numOfSelectedAgents, textToDecipher, difficultyLevel, uiAdapter, candidatesQueue);
+        decryptManager.startDecrypt(taskSize, numOfSelectedAgents, textToDecipher, difficultyLevel, uiAdapter);
     }
 
 
