@@ -2,8 +2,6 @@ package app;
 
 import bindings.CurrWinCharsAndNotchPosBinding;
 import body.BodyController;
-import dm.CandidatesCollectorTask;
-import dm.agent.AgentConclusion;
 import dm.difficultylevel.DifficultyLevel;
 import dto.*;
 import engine.Engine;
@@ -14,7 +12,6 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -28,8 +25,6 @@ import ui.adapter.UIAdapter;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
 
 public class MainController {
 
@@ -84,11 +79,14 @@ public class MainController {
 
     private IntegerProperty totalDistinctCandidates;
     private IntegerProperty totalProcessedConfigurations;
+    private LongProperty totalPossibleConfigurations;
 
+    private DoubleProperty bruteForceProgress;
+    private StringProperty bruteForceProgressBarPercentageProperty;
+    private StringProperty bruteForceStatus;
 
     private long totalPossibleWindowsPositions;
 
-    private LongProperty totalPossibleConfigurations;
 
     @FXML
     public void initialize() {
@@ -97,7 +95,6 @@ public class MainController {
         if (headerController != null && bodyController != null) {
             headerController.setMainController(this);
             bodyController.setMainController(this);
-            //bodyController.updateMachineInfo();
 
             // property initialize
             this.isMachineConfiguredProperty = new SimpleBooleanProperty(false);
@@ -114,14 +111,21 @@ public class MainController {
             this.totalProcessedConfigurations = new SimpleIntegerProperty();
             this.totalPossibleConfigurations = new SimpleLongProperty();
 
+            /**
+             * bruteForce BINDINGS
+             */
+            this.bruteForceProgress = new SimpleDoubleProperty();
+            this.bruteForceStatus = new SimpleStringProperty("");
+            this.bruteForceProgressBarPercentageProperty = new SimpleStringProperty("0%");
+
             // binding initialize
             bodyController.bindComponents(isMachineConfiguredProperty, inUseRotorsIDsProperty,
                     currentWindowsCharactersProperty, inUseReflectorSymbolProperty, inUsePlugsProperty,
                     currentNotchDistances, cipherCounterProperty, totalDistinctCandidates,
-                    totalProcessedConfigurations, totalPossibleConfigurations);
+                    totalProcessedConfigurations, totalPossibleConfigurations, bruteForceProgress,
+                    bruteForceProgressBarPercentageProperty, bruteForceStatus);
 
             body.visibleProperty().bind(isMachineLoadedProperty);
-
             messegeLabel.textProperty().bind(statusLabel.textProperty());
             messegeLabel.opacityProperty().bind(statusBackShape.opacityProperty());
             statusBackShape.heightProperty().bind(Bindings.add(2, statusLabel.heightProperty()));
@@ -267,6 +271,11 @@ public class MainController {
 
     public void setCharByCharCipherMode(boolean newCharByCharCipherMode) {
         engine.setCharByCharState(newCharByCharCipherMode);
+        if (newCharByCharCipherMode) {
+            setStatusMessage("Switched to \"Char-By-Char\" Mode");
+        } else {
+            setStatusMessage("Switched to \"Full Line\" Mode");
+        }
     }
 
     @FXML
@@ -276,35 +285,9 @@ public class MainController {
         UIAdapter uiAdapter = createUIAdapter();
         toggleTaskButtons(true);
 
-        DTOspecs specsStatus = engine.displayMachineSpecifications();
-
-        BlockingQueue<AgentConclusion> candidatesQueue = new LinkedBlockingQueue<>(1000);
-
-        switch (difficultyLevel) {
-            case EASY:
-                totalPossibleConfigurations.setValue(totalPossibleWindowsPositions);
-                break;
-            case MEDIUM:
-                totalPossibleConfigurations.setValue(totalPossibleWindowsPositions * specsStatus.getAvailableReflectorsCount());
-                break;
-            case HARD:
-                totalPossibleConfigurations.setValue(totalPossibleWindowsPositions *
-                        specsStatus.getAvailableReflectorsCount() *
-                        factorial(specsStatus.getAvailableRotorsCount()));
-                break;
-            case IMPOSSIBLE:
-                break;
-        }
-
-        CandidatesCollectorTask bruteForceTask = new CandidatesCollectorTask(candidatesQueue, totalPossibleConfigurations.getValue(), uiAdapter);
-
-        bodyController.bindBruteForceTaskComponentsToUIComponents(bruteForceTask, () -> {
-        });
-
-        new Thread(bruteForceTask).start();
-
+        //fire up the DM
         engine.startBruteForceProcess(uiAdapter, () -> toggleTaskButtons(false),
-                textToDecipher, difficultyLevel, taskSize, numOfAgentSelected, candidatesQueue);
+                textToDecipher, difficultyLevel, taskSize, numOfAgentSelected);
     }
 
     private void toggleTaskButtons(boolean isActive) {
@@ -330,10 +313,31 @@ public class MainController {
                 },
                 (delta) -> {
                     totalProcessedConfigurations.set(totalProcessedConfigurations.get() + delta);
-                }
+                }, (status) -> {
+            bruteForceStatus.set(status);
+        }, (percentage) -> {
+            bruteForceProgress.set(percentage.doubleValue());
+        },
+                (percentage) -> {
+                    double percent = percentage.doubleValue();
+                    int tmpPercentValue = (int) percent * 100;
+                    String percentValue = tmpPercentValue + "%";
+                    bruteForceProgressBarPercentageProperty.set(percentValue);
+                }, (totalConfigs) -> {
+            totalPossibleConfigurations.setValue(totalConfigs);
+        }
         );
     }
 
+    /**
+     * creates a Candidate that shows in the flow-pane at the ui
+     *
+     * @param decipheredText     the decipheredText
+     * @param rotorsIDs          rotors part of config
+     * @param windowChars        windows part of config
+     * @param reflectorSymbol    reflector part of config
+     * @param processedByAgentID agent ID
+     */
     private void createCandidateTile(String decipheredText, List<Integer> rotorsIDs, String windowChars, String reflectorSymbol, int processedByAgentID) {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -348,10 +352,9 @@ public class MainController {
         }
     }
 
-    private void bindBruteForceTaskToUIComponents(Task<Boolean> BruteForceTask, Runnable onFinish) {
-        //  bodyController.
-    }
-
+    /**
+     * tells the engine to save ciphered characters to statistics and to stop holding characters in the buffer.
+     */
     public void doneCurrentCipherProcess() {
         engine.doneCurrentCipherProcess();
     }
@@ -367,7 +370,6 @@ public class MainController {
         messegeFadeTransition.setDelay(Duration.millis(3000));
         messegeFadeTransition.play();
     }
-
 
     /**
      * validate rotors
@@ -407,13 +409,5 @@ public class MainController {
      */
     public DTOstatus validatePlugsInput(String plugs) {
         return engine.validatePlugs(plugs);
-    }
-
-    private long factorial(int number) {
-        long fact = 1;
-        for (int i = 1; i <= number; i++) {
-            fact = fact * i;
-        }
-        return fact;
     }
 }

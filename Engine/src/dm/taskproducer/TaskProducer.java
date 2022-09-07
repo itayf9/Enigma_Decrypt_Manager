@@ -29,8 +29,8 @@ public class TaskProducer implements Runnable {
     UIAdapter uiAdapter;
 
 
-    public TaskProducer(BlockingQueue<Runnable> agentTaskQueue, Machine machine, int taskSize, DifficultyLevel difficultyLevel, String textToDecipher,
-                        Dictionary dictionary, BlockingQueue<AgentConclusion> candidatesQueue, UIAdapter uiAdapter) {
+    public TaskProducer(BlockingQueue<Runnable> agentTaskQueue, Machine machine, int taskSize, DifficultyLevel difficultyLevel,
+                        String textToDecipher, Dictionary dictionary, BlockingQueue<AgentConclusion> candidatesQueue) {
         this.agentTaskQueue = agentTaskQueue;
         this.machine = machine;
         this.alphabet = machine.getAlphabet();
@@ -39,7 +39,6 @@ public class TaskProducer implements Runnable {
         this.textToDecipher = textToDecipher;
         this.dictionary = dictionary;
         this.candidatesQueue = candidatesQueue;
-        this.uiAdapter = uiAdapter;
     }
 
     public void run() {
@@ -80,7 +79,7 @@ public class TaskProducer implements Runnable {
 
                     try {
                         agentTaskQueue.put(new AgentTask(inUseRotorsIDs, nextWindowsOffsets, inUseReflectorID,
-                                copyOfMachine, taskSize, textToDecipher, dictionary, candidatesQueue, uiAdapter));
+                                copyOfMachine, taskSize, textToDecipher, dictionary, candidatesQueue));
                         currentTaskSubmitted = true;
                     } catch (InterruptedException e) {
                         currentTaskSubmitted = false;
@@ -100,16 +99,15 @@ public class TaskProducer implements Runnable {
     }
 
     private List<Integer> getNextWindowsOffsets(int taskSize, List<Integer> currentWindowsOffsets) {
-
         List<Integer> nextWindowsOffsets = new ArrayList<>(currentWindowsOffsets);
 
         for (int i = 0; i < taskSize; i++) {
 
-            for (Integer windowOffset : nextWindowsOffsets) {
-                windowOffset = rotateWindow(windowOffset);
+            for (int j = 0; j < nextWindowsOffsets.size(); j++) {
+                nextWindowsOffsets.set(j, rotateWindow(nextWindowsOffsets.get(j)));
 
                 // check if it is needed to rotate next rotor
-                if (windowOffset != 0) {
+                if (nextWindowsOffsets.get(j) != 0) {
                     break;
                 }
             }

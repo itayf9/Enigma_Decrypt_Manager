@@ -1,12 +1,10 @@
 package engine;
 
-import dm.agent.AgentConclusion;
 import dm.difficultylevel.DifficultyLevel;
 import dto.*;
 import ui.adapter.UIAdapter;
 
 import java.io.IOException;
-import java.util.concurrent.BlockingQueue;
 
 public interface Engine {
 
@@ -158,8 +156,6 @@ public interface Engine {
      * @param difficultyLevel
      * @param taskSize
      */
-    public void startBruteForceProcess(UIAdapter uiAdapter, Runnable onFinish, String textToDecipher,
-                                       DifficultyLevel difficultyLevel, int taskSize, int numOfSelectedAgents,
-                                       BlockingQueue<AgentConclusion> candidatesQueue);
-
+    void startBruteForceProcess(UIAdapter uiAdapter, Runnable onFinish, String textToDecipher,
+                                DifficultyLevel difficultyLevel, int taskSize, int numOfSelectedAgents);
 }

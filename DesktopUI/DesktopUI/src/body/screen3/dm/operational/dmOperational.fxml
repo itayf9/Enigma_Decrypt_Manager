@@ -31,13 +31,13 @@
   </rowConstraints>
    <children>
       <Label styleClass="component-title" text="Set Decrypt Menager" GridPane.columnSpan="8" />
-      <Slider fx:id="numOfAgentsSlider" majorTickUnit="1.0" max="50.0" min="2.0" minorTickCount="0" snapToTicks="true" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-      <ComboBox fx:id="difficultyLevelComboBox" maxWidth="1.7976931348623157E308" prefHeight="30.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+      <Slider fx:id="numOfAgentsSlider" majorTickUnit="1.0" max="50.0" min="2.0" minorTickCount="0" snapToTicks="true" styleClass="number-of-agents-slider" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+      <ComboBox fx:id="difficultyLevelComboBox" maxWidth="1.7976931348623157E308" prefHeight="30.0" styleClass="difficulty-level-combo" GridPane.columnIndex="4" GridPane.rowIndex="3" />
       <Button fx:id="startButton" mnemonicParsing="false" onMouseClicked="#startBruteForceAction" prefHeight="60.0" prefWidth="60.0" styleClass="action-btn" text="Start" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
       <Button fx:id="pauseButton" mnemonicParsing="false" onMouseClicked="#pauseBruteForceAction" prefHeight="60.0" prefWidth="60.0" styleClass="action-btn" text="Pause" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
       <Label fx:id="numOfAgentLabel" text="Number of Agents" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
       <Label text="Task Size" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
-      <Spinner fx:id="taskSizeSpinner" editable="true" GridPane.rowIndex="3" />
+      <Spinner fx:id="taskSizeSpinner" editable="true" styleClass="task-size-spinner" GridPane.rowIndex="3" />
       <Label text="Difficulty Level" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
    </children>
    <padding>

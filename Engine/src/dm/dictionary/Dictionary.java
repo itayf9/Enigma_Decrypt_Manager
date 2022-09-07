@@ -1,8 +1,8 @@
 package dm.dictionary;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.regex.Matcher;
 
 public class Dictionary {
 
@@ -34,14 +34,18 @@ public class Dictionary {
         // inserts the words into a set
         // deletes duplications
         for (String word : dictionaryWords) {
-            this.words.add(word);
+            this.words.add(word.toUpperCase());
         }
+
+        System.out.println(words);
     }
 
     public boolean isAllWordsInDictionary(String text) {
         boolean res = true;
         String[] textWords = text.split(" ");
-
+        if (textWords.length == 2 && textWords[0].equals("SKY")) {
+            System.out.println(Arrays.toString(textWords));
+        }
         for (String word : textWords) {
             if (!words.contains(word)) {
                 res = false;
