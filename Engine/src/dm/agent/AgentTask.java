@@ -76,21 +76,10 @@ public class AgentTask implements Runnable {
             if (AllWindowsOffsetsAtBeginning()) {
                 break;
             }
-
-
-            /*
-            ok, you should press "code with me", then "finish call" or something, then "enable call"
-             */
-
-
+            
             // sets machine to the next configuration
             // changes only the window offsets
             machine.setMachineConfiguration(rotorsIDs, windowOffsets, inUseReflectorID, "");
-            if (windowOffsets.get(0) == 15 && windowOffsets.get(1) == 0 && windowOffsets.get(2) == 0) {
-                System.out.println(rotorsIDs);
-                System.out.println(inUseReflectorID);
-                System.out.println(decipherLine(textToDecipher));
-            }
 
             // ciphers the text
             String decipherResult = decipherLine(textToDecipher);

@@ -12,6 +12,7 @@ import dm.difficultylevel.DifficultyLevel;
 import dto.*;
 import javafx.beans.property.*;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 
 import java.util.List;
@@ -312,6 +313,10 @@ public class BodyController {
 
     public void startBruteForce(String textToDecipher, DifficultyLevel difficultyLevel, int taskSize, int numOfAgentSelected) {
         mainController.startBruteForceProcess(textToDecipher, difficultyLevel, taskSize, numOfAgentSelected);
+    }
+
+    public void insertCandidateToFlowPane(Node singleCandidateTile) {
+        candidatesAreaController.insertCandidateToFlowPane(singleCandidateTile);
     }
 
     // don't need that any more

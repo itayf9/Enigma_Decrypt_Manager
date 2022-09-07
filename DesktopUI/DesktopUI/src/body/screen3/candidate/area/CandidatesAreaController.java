@@ -7,6 +7,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.LongProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.FlowPane;
@@ -75,5 +76,9 @@ public class CandidatesAreaController {
         progressPercentageLabel.textProperty().bind(bruteForceProgressBarPercentageLabel);
         BFprogressBar.progressProperty().bind(bruteForceProgress);
         BFstatusLabel.textProperty().bind(Bindings.concat("Status: ", bruteForceStatus));
+    }
+
+    public void insertCandidateToFlowPane(Node singleCandidateTile) {
+        candidatesFlowPane.getChildren().add(singleCandidateTile);
     }
 }

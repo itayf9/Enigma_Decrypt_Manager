@@ -1,6 +1,5 @@
 package dm.dictionary;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -43,9 +42,7 @@ public class Dictionary {
     public boolean isAllWordsInDictionary(String text) {
         boolean res = true;
         String[] textWords = text.split(" ");
-        if (textWords.length == 2 && textWords[0].equals("SKY")) {
-            System.out.println(Arrays.toString(textWords));
-        }
+
         for (String word : textWords) {
             if (!words.contains(word)) {
                 res = false;

@@ -345,8 +345,7 @@ public class MainController {
 
             Node singleCandidateTile = loader.load();
 
-
-            // candidateFlowPane.getChildren().add(singleCandidateTile);
+            bodyController.insertCandidateToFlowPane(singleCandidateTile);
         } catch (IOException e) {
             e.printStackTrace();
         }
