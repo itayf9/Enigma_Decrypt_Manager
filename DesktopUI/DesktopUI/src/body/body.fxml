@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
@@ -8,9 +9,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.BodyController">
+<TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" styleClass="enigma-tabpane" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.BodyController">
   <tabs>
-    <Tab text="Machine">
+    <Tab styleClass="enigma-tab" text="Machine">
          <content>
             <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                 <content>
@@ -37,7 +38,7 @@
                </padding>
             </ScrollPane>
          </content></Tab>
-    <Tab text="Encrypt / Decrypt">
+    <Tab styleClass="enigma-tab" text="Encrypt / Decrypt">
          <content>
              <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                  <content>
@@ -63,7 +64,7 @@
                </padding>
             </ScrollPane>
          </content></Tab>
-      <Tab text="Brute Force">
+      <Tab styleClass="enigma-tab" text="Brute Force">
          <content>
             <ScrollPane prefHeight="470.0">
               <content>
@@ -89,4 +90,8 @@
             </ScrollPane>
          </content></Tab>
   </tabs>
+   <stylesheets>
+      <URL value="@../app/app.css" />
+      <URL value="@body.css" />
+   </stylesheets>
 </TabPane>
