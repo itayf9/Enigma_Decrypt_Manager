@@ -117,6 +117,7 @@ public class BodyController {
         dmOperationalController.setParentController(this);
         candidatesAreaController.setParentController(this);
 
+
         dmOperationalController.bindTextToDecipherPropertyToOutputCipher(encryptDecrypt2Controller.getOutputLabelProperty());
 
         encryptDecrypt2Controller.setAvailabilityOfCharByCharMode(false);
@@ -324,9 +325,4 @@ public class BodyController {
     public void insertCandidateToFlowPane(Node singleCandidateTile) {
         candidatesAreaController.insertCandidateToFlowPane(singleCandidateTile);
     }
-
-    // don't need that any more
-    /*public void bindBruteForceTaskComponentsToUIComponents(CandidatesCollectorTask bruteForceTask, Runnable onFinish) {
-        candidatesAreaController.bindTaskComponentsToUIComponents(bruteForceTask, onFinish);
-    }*/
 }

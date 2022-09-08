@@ -52,4 +52,7 @@ public class Dictionary {
         return res;
     }
 
+    public Set<String> getWords() {
+        return words;
+    }
 }

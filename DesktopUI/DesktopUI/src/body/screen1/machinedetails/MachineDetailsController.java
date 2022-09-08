@@ -4,12 +4,10 @@ import body.BodyController;
 import body.currentconfig.CurrentConfigController;
 import dto.DTOspecs;
 
-import javafx.beans.binding.Bindings;
 import javafx.beans.property.IntegerProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.util.converter.NumberStringConverter;
 import problem.Problem;
 
 import java.util.List;

@@ -10,6 +10,7 @@ import ui.adapter.UIAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.*;
 
 public class DecryptManager {
@@ -108,5 +109,9 @@ public class DecryptManager {
             fact = fact * i;
         }
         return fact;
+    }
+
+    public Set<String> getDictionaryWords() {
+        return dictionary.getWords();
     }
 }

@@ -32,20 +32,14 @@ public class EnigmaEngine implements Engine {
 
     private DecryptManager decryptManager;
 
-    //private MainController mainController;
-
     private boolean charByCharState = false;
-
     private long currentCipherProcessTimeElapsed;
     private String currentCipherProcessOutputText;
     private String currentCipherProcessInputText;
     private List<StatisticRecord> machineRecords = new ArrayList<>();
 
     public static String JAXB_XML_PACKAGE_NAME = "machine.jaxb.generated";
-    private static int NOT_A_NUMBER_CODE = -1;
-    private static int EMPTY_STR_CODE = -2;
-
-
+    
     /**
      * creating new machine instance using all the parts the machine needs.
      */
@@ -815,6 +809,8 @@ public class EnigmaEngine implements Engine {
         boolean isSucceed = true;
         Problem details = Problem.NO_PROBLEM;
 
+        int NOT_A_NUMBER_CODE = -1;
+        int EMPTY_STR_CODE = -2;
         if (reflectorID == NOT_A_NUMBER_CODE) {
             isSucceed = false;
             details = Problem.REFLECTOR_INPUT_NOT_A_NUMBER;
@@ -1023,10 +1019,13 @@ public class EnigmaEngine implements Engine {
     @Override
     public void doneCurrentCipherProcess() {
         Pair<Pair<String, String>, Long> inputTextToOutputTextToTimeElapsed = new Pair<>(new Pair<>(currentCipherProcessInputText, currentCipherProcessOutputText), currentCipherProcessTimeElapsed);
-
         machineRecords.get(machineRecords.size() - 1).getCipherHistory().add(inputTextToOutputTextToTimeElapsed);
-
         resetCurrentCipherProcess();
+    }
+
+    @Override
+    public DTOdictionary getDictionaryWords() {
+        return new DTOdictionary(decryptManager.getDictionaryWords());
     }
 
     @Override

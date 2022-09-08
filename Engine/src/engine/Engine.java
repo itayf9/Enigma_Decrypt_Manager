@@ -158,4 +158,7 @@ public interface Engine {
      */
     void startBruteForceProcess(UIAdapter uiAdapter, Runnable onFinish, String textToDecipher,
                                 DifficultyLevel difficultyLevel, int taskSize, int numOfSelectedAgents);
+
+    DTOdictionary getDictionaryWords();
+
 }
