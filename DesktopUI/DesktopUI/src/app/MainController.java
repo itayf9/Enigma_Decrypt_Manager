@@ -125,7 +125,7 @@ public class MainController {
             // binding initialize
             bodyController.bindComponents(isMachineConfiguredProperty, inUseRotorsIDsProperty,
                     currentWindowsCharactersProperty, inUseReflectorSymbolProperty, inUsePlugsProperty,
-                    currentNotchDistances, cipherCounterProperty, totalDistinctCandidates,
+                    currentNotchDistances, isCharByCharModeProperty, cipherCounterProperty, totalDistinctCandidates,
                     totalProcessedConfigurations, totalPossibleConfigurations, bruteForceProgress,
                     bruteForceProgressBarPercentageProperty, bruteForceStatus);
 
@@ -275,6 +275,7 @@ public class MainController {
 
     public void setCharByCharCipherMode(boolean newCharByCharCipherMode) {
         engine.setCharByCharState(newCharByCharCipherMode);
+        isCharByCharModeProperty.set(newCharByCharCipherMode);
         if (newCharByCharCipherMode) {
             setStatusMessage("Switched to \"Char-By-Char\" Mode");
         } else {

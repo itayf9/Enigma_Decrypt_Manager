@@ -118,6 +118,8 @@ public class BodyController {
         candidatesAreaController.setParentController(this);
 
         dmOperationalController.bindTextToDecipherPropertyToOutputCipher(encryptDecrypt2Controller.getOutputLabelProperty());
+
+        encryptDecrypt2Controller.setAvailabilityOfCharByCharMode(false);
     }
 
     /**
@@ -277,7 +279,8 @@ public class BodyController {
 
     public void bindComponents(BooleanProperty isMachineConfiguredProperty, ListProperty<Integer> inUseRotorsIDsProperty,
                                StringProperty currentWindowsCharactersProperty, StringProperty inUseReflectorSymbolProperty,
-                               StringProperty inUsePlugs, ListProperty<Integer> currentNotchDistances, IntegerProperty cipherCounterProperty,
+                               StringProperty inUsePlugs, ListProperty<Integer> currentNotchDistances, BooleanProperty isCharByCharModeProperty,
+                               IntegerProperty cipherCounterProperty,
                                IntegerProperty totalDistinctCandidates, IntegerProperty totalProcessedConfigurations,
                                LongProperty totalPossibleConfigurations, DoubleProperty bruteForceProgressBar, StringProperty bruteForceProgressBarPercentageLabel
             , StringProperty bruteForceStatus) {
@@ -293,6 +296,9 @@ public class BodyController {
         currentConfigScreen1Controller.bindConfigComponents(inUseRotorsIDsProperty, currentWindowsCharactersProperty, inUseReflectorSymbolProperty, inUsePlugs, currentNotchDistances, isMachineConfiguredProperty);
         currentConfigScreen2Controller.bindConfigComponents(inUseRotorsIDsProperty, currentWindowsCharactersProperty, inUseReflectorSymbolProperty, inUsePlugs, currentNotchDistances, isMachineConfiguredProperty);
         currentConfigScreen3Controller.bindConfigComponents(inUseRotorsIDsProperty, currentWindowsCharactersProperty, inUseReflectorSymbolProperty, inUsePlugs, currentNotchDistances, isMachineConfiguredProperty);
+
+        // cipher mode (Char By Char / Full line) bindings
+        encryptDecryptController.bindCipherMode(isCharByCharModeProperty);
 
         // cipher counter property bind
         machineDetailsController.bindCipherCounterProperty(cipherCounterProperty);

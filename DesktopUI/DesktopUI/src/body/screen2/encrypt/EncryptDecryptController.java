@@ -2,6 +2,8 @@ package body.screen2.encrypt;
 
 import body.BodyController;
 import dto.DTOciphertext;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -107,10 +109,8 @@ public class EncryptDecryptController {
         clearTextFields();
         if (cipherModeTS.isSelected()) {
             parentController.setCharByCharCipherMode(true);
-            processButton.setText("Done");
         } else {
             parentController.setCharByCharCipherMode(false);
-            processButton.setText("Process");
         }
     }
 
@@ -220,5 +220,17 @@ public class EncryptDecryptController {
 
     public StringProperty getOutputLabelProperty() {
         return outputLabel.textProperty();
+    }
+
+    public void setAvailabilityOfCharByCharMode(boolean availabilityOfCharByCharMode) {
+        if (!availabilityOfCharByCharMode) {
+            cipherModeTS.setSelected(availabilityOfCharByCharMode);
+        }
+
+        cipherModeTS.setVisible(availabilityOfCharByCharMode);
+    }
+
+    public void bindCipherMode(BooleanProperty isCharByCharModeProperty) {
+        processButton.textProperty().bind(Bindings.when(isCharByCharModeProperty.not()).then("Process").otherwise("Done"));
     }
 }
