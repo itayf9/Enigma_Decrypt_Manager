@@ -10,5 +10,14 @@
     <orderEntry type="module" module-name="Engine" />
     <orderEntry type="module" module-name="DTO" />
     <orderEntry type="module" module-name="EnigmaUtillity" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/tools/controlsfx-8.40.11.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

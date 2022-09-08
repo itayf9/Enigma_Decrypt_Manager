@@ -47,7 +47,7 @@
                      </padding>
                   </Label>
                   <Rectangle fx:id="statusBackShape" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" StackPane.alignment="CENTER_LEFT" />
-                  <Label fx:id="messegeLabel" text="message" textFill="WHITE" StackPane.alignment="CENTER_LEFT">
+                  <Label fx:id="messageLabel" text="message" textFill="WHITE" StackPane.alignment="CENTER_LEFT">
                      <padding>
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </padding></Label>

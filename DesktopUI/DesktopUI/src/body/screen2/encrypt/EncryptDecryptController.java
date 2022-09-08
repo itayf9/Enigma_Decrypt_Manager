@@ -36,7 +36,7 @@ public class EncryptDecryptController {
     private FlowPane lightBulbs;
 
     @FXML
-    private ToggleGroup cipherModeToggles;
+    private ToggleSwitch cipherModeTS;
 
     @FXML
     private Button processButton;

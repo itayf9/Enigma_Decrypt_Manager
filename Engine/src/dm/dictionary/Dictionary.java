@@ -33,7 +33,7 @@ public class Dictionary {
         // inserts the words into a set
         // deletes duplications
         for (String word : dictionaryWords) {
-            this.words.add(word.toUpperCase());
+            this.words.add(word);
         }
 
         System.out.println(words);
