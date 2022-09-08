@@ -43,9 +43,7 @@ public class dmOperationalController {
         difficultyLevelComboBox.getItems().add(DifficultyLevel.HARD);
         difficultyLevelComboBox.getItems().add(DifficultyLevel.IMPOSSIBLE);
         difficultyLevelComboBox.setPromptText("Please Select");
-
         this.textToDecipherProperty = new SimpleStringProperty();
-
         numOfAgentLabel.textProperty().bind(Bindings.concat("Number Of Agents: ", Bindings.format("%.0f", numOfAgentsSlider.valueProperty())));
     }
 
@@ -55,24 +53,32 @@ public class dmOperationalController {
     }
 
     @FXML
+    void resumeBruteForceAction(MouseEvent event) {
+
+    }
+
+    @FXML
+    void stopBruteForceAction(MouseEvent event) {
+
+    }
+
+    @FXML
     void startBruteForceAction(MouseEvent event) {
         DifficultyLevel difficultyLevel = difficultyLevelComboBox.getValue();
         int taskSize = taskSizeSpinner.getValue(); // need to fix text value not updating if no button pressed
         int numOfAgentSelected = (int) numOfAgentsSlider.getValue();
         String textToDecipher = textToDecipherProperty.getValue();
-
         parentController.startBruteForce(textToDecipher, difficultyLevel, taskSize, numOfAgentSelected);
     }
 
     public void setSettings(int maxTaskSize, int maxNumOfAgents) {
-        taskSizeSpinner.valueFactoryProperty().set(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, maxTaskSize));
+        taskSizeSpinner.valueFactoryProperty().set(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, maxTaskSize));
         numOfAgentsSlider.setMax(maxNumOfAgents);
     }
 
     public void bindTextToDecipherPropertyToOutputCipher(StringProperty cipheredText) {
         textToDecipherProperty.bind(cipheredText);
     }
-
 
     public void setParentController(BodyController parentController) {
         this.parentController = parentController;

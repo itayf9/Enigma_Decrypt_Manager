@@ -45,12 +45,12 @@ public class MainController {
     private Label statusLabel;
 
     @FXML
-    private Label messegeLabel;
+    private Label messageLabel;
 
     @FXML
     private Rectangle statusBackShape;
 
-    private FadeTransition messegeFadeTransition = new FadeTransition(Duration.millis(5000), statusBackShape);
+    private FadeTransition messageFadeTransition;
 
 
     private DTOsecretConfig configStatus;
@@ -110,6 +110,7 @@ public class MainController {
             this.totalDistinctCandidates = new SimpleIntegerProperty();
             this.totalProcessedConfigurations = new SimpleIntegerProperty();
             this.totalPossibleConfigurations = new SimpleLongProperty();
+            this.messageFadeTransition = new FadeTransition(Duration.millis(5000), statusBackShape);
 
             /**
              * bruteForce BINDINGS
@@ -126,8 +127,8 @@ public class MainController {
                     bruteForceProgressBarPercentageProperty, bruteForceStatus);
 
             body.visibleProperty().bind(isMachineLoadedProperty);
-            messegeLabel.textProperty().bind(statusLabel.textProperty());
-            messegeLabel.opacityProperty().bind(statusBackShape.opacityProperty());
+            messageLabel.textProperty().bind(statusLabel.textProperty());
+            messageLabel.opacityProperty().bind(statusBackShape.opacityProperty());
             statusBackShape.heightProperty().bind(Bindings.add(2, statusLabel.heightProperty()));
             statusBackShape.widthProperty().bind(statusLabel.widthProperty());
             statusBackShape.setStrokeWidth(0);
@@ -360,14 +361,14 @@ public class MainController {
 
     public void setStatusMessage(String newStatus) {
         statusBackShape.setOpacity(1);
-        messegeFadeTransition.stop();
+        messageFadeTransition.stop();
 
-        messegeFadeTransition = new FadeTransition(Duration.millis(5000), statusBackShape);
+        messageFadeTransition = new FadeTransition(Duration.millis(5000), statusBackShape);
         statusLabel.setText(newStatus);
-        messegeFadeTransition.setFromValue(1.0);
-        messegeFadeTransition.setToValue(0.0);
-        messegeFadeTransition.setDelay(Duration.millis(3000));
-        messegeFadeTransition.play();
+        messageFadeTransition.setFromValue(1.0);
+        messageFadeTransition.setToValue(0.0);
+        messageFadeTransition.setDelay(Duration.millis(3000));
+        messageFadeTransition.play();
     }
 
     /**

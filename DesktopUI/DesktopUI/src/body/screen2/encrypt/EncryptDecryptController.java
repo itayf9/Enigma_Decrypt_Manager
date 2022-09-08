@@ -15,6 +15,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
+import org.controlsfx.control.ToggleSwitch;
 
 public class EncryptDecryptController {
 
@@ -47,10 +48,8 @@ public class EncryptDecryptController {
     @FXML
     private Button clearButton;
 
-
     @FXML
     public void initialize() {
-        cipherModeToggles.getToggles().get(1).setSelected(true);
         processButton.setText("Process");
         cipherProblemLabel.setText("");
     }
@@ -62,9 +61,8 @@ public class EncryptDecryptController {
      */
     @FXML
     void cipherCharacter(KeyEvent event) {
-        ToggleButton mode = (ToggleButton) cipherModeToggles.getSelectedToggle();
 
-        if (mode.getText().equals("Char by Char")) {
+        if (cipherModeTS.isSelected()) {
             DTOciphertext cipheredCharStatus = parentController.cipher(event.getCharacter().toUpperCase());
             if (!cipheredCharStatus.isSucceed()) {
                 cipheredLetter = "";
@@ -75,17 +73,14 @@ public class EncryptDecryptController {
                 outputLabel.setText(outputLabel.getText() + cipheredCharStatus.getCipheredText());
                 this.cipheredLetter = cipheredCharStatus.getCipheredText();
                 activateLightBulb(cipheredCharStatus.getCipheredText());
-                // parentController.updateMachineInfo();
                 cipherProblemLabel.setText("");
             }
-        } // else return
+        }
     }
 
     @FXML
     void processHandler(MouseEvent event) {
-        ToggleButton mode = (ToggleButton) cipherModeToggles.getSelectedToggle();
-
-        if (mode.getText().equals("Char by Char")) { // done btn
+        if (cipherModeTS.isSelected()) { // done btn
             clearTextFields();
             parentController.doneCurrentCipherProcess();
             parentController.displayStatistics();
@@ -110,16 +105,7 @@ public class EncryptDecryptController {
     @FXML
     void setCipherMode(MouseEvent event) {
         clearTextFields();
-        // adds a listener to the toggles
-        // always keeps at least one toggle enabled
-        cipherModeToggles.selectedToggleProperty().addListener((obsVal, oldToggle, newToggle) -> {
-            if (newToggle == null) {
-                oldToggle.setSelected(true);
-            }
-        });
-
-        ToggleButton selectToggleButton = (ToggleButton) cipherModeToggles.getSelectedToggle();
-        if (selectToggleButton.getText().equals("Char by Char")) {
+        if (cipherModeTS.isSelected()) {
             parentController.setCharByCharCipherMode(true);
             processButton.setText("Done");
         } else {
@@ -192,10 +178,6 @@ public class EncryptDecryptController {
 
     public void setAllowEncryptDecrypt(boolean isAllow) {
         inputTextField.setDisable(!isAllow);
-        cipherModeToggles.getToggles().forEach((Toggle t) -> {
-            ToggleButton b = (ToggleButton) t;
-            b.setDisable(!isAllow);
-        });
         processButton.setDisable(!isAllow);
         resetButton.setDisable(!isAllow);
         clearButton.setDisable(!isAllow);
