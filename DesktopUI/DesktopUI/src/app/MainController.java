@@ -24,6 +24,7 @@ import statistics.StatisticRecord;
 import ui.adapter.UIAdapter;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.List;
 
 public class MainController {
@@ -333,13 +334,9 @@ public class MainController {
     /**
      * creates a Candidate that shows in the flow-pane at the ui
      *
-     * @param decipheredText     the decipheredText
-     * @param rotorsIDs          rotors part of config
-     * @param windowChars        windows part of config
-     * @param reflectorSymbol    reflector part of config
-     * @param processedByAgentID agent ID
+     * @param candidate the candidate to create a tile from
      */
-    private void createCandidateTile(String decipheredText, List<Integer> rotorsIDs, String windowChars, String reflectorSymbol, int processedByAgentID) {
+    private void createCandidateTile(Candidate candidate) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/body/screen3/candidate/tile/candidateTile.fxml"));

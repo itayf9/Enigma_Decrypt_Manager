@@ -8,14 +8,18 @@ public class Candidate {
     private List<Integer> rotorsIDs;
     private String windowChars;
     private String reflectorSymbol;
-    private int processedByAgentID;
+
+    private List<Integer> notchPositions;
+    private String processedByAgentName;
 
 
-    public Candidate(String decipheredText, List<Integer> rotorsIDs, String windowChars, String reflectorSymbol) {
+    public Candidate(String decipheredText, List<Integer> rotorsIDs, String windowChars, String reflectorSymbol, List<Integer> notchPositions, String processedByAgentName) {
         this.decipheredText = decipheredText;
         this.rotorsIDs = rotorsIDs;
         this.reflectorSymbol = reflectorSymbol;
         this.windowChars = windowChars;
+        this.notchPositions = notchPositions;
+        this.processedByAgentName = processedByAgentName;
     }
 
     public String getDecipheredText() {
@@ -34,7 +38,11 @@ public class Candidate {
         return reflectorSymbol;
     }
 
-    public int getProcessedByAgentID() {
-        return processedByAgentID;
+    public List<Integer> getNotchPositions() {
+        return notchPositions;
+    }
+
+    public String getProcessedByAgentName() {
+        return processedByAgentName;
     }
 }

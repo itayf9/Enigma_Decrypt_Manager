@@ -4,6 +4,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -25,7 +26,11 @@
       <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="340.00001525878906" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <FlowPane fx:id="candidatesFlowPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="candidates-flow-pane" GridPane.rowIndex="1" GridPane.rowSpan="3" />
+      <ScrollPane GridPane.rowIndex="1" GridPane.rowSpan="3">
+         <content>
+            <FlowPane fx:id="candidatesFlowPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="108.0" prefWidth="503.0" styleClass="candidates-flow-pane" />
+         </content>
+      </ScrollPane>
       <Label styleClass="component-title" text="Candidates" />
       <ProgressBar fx:id="BFprogressBar" maxWidth="1.7976931348623157E308" progress="0.0" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="3">
          <padding>

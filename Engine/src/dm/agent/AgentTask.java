@@ -83,7 +83,7 @@ public class AgentTask implements Runnable {
 
             // ciphers the text
             String decipherResult = decipherLine(textToDecipher);
-            resetConfig();
+
             // check dictionary
             if (dictionary.isAllWordsInDictionary(decipherResult)) {
 
@@ -93,9 +93,11 @@ public class AgentTask implements Runnable {
                 // convert reflector ID to Roman number.
                 String nextCandidateReflectorSymbol = decimalToRoman(inUseReflectorID);
 
-                Candidate nextCandidate = new Candidate(decipherResult, rotorsIDs, windowCharacters, nextCandidateReflectorSymbol);
+                Candidate nextCandidate = new Candidate(decipherResult, rotorsIDs, windowCharacters, nextCandidateReflectorSymbol, notchPositions, processedByAgentName);
                 candidates.add(nextCandidate);
             }
+
+            resetConfig();
 
             // moves to the next configuration
             advanceWindow();
