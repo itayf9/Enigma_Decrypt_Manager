@@ -159,6 +159,7 @@ public class MainController {
             setStatusMessage("Loaded Successfully");
 
             bodyController.displayMachineSpecs(specsStatus);
+            cipherCounterProperty.set(0);
             bodyController.setLightBulb(engine.getMachineAlphabet());
             bodyController.displayStatistics();
 
