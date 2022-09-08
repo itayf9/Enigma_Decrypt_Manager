@@ -2,6 +2,8 @@ package app;
 
 import bindings.CurrWinCharsAndNotchPosBinding;
 import body.BodyController;
+import body.screen3.candidate.tile.CandidateTileController;
+import candidate.Candidate;
 import dm.difficultylevel.DifficultyLevel;
 import dto.*;
 import engine.Engine;
@@ -307,8 +309,7 @@ public class MainController {
     private UIAdapter createUIAdapter() {
         return new UIAdapter(
                 (Candidate) -> {
-                    createCandidateTile(Candidate.getDecipheredText(), Candidate.getRotorsIDs(), Candidate.getWindowChars(),
-                            Candidate.getReflectorSymbol(), Candidate.getProcessedByAgentID());
+                    createCandidateTile(Candidate);
                 },
                 () -> {
                     totalDistinctCandidates.set(totalDistinctCandidates.get() + 1);
@@ -340,8 +341,15 @@ public class MainController {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/body/screen3/candidate/tile/candidateTile.fxml"));
-
             Node singleCandidateTile = loader.load();
+            CandidateTileController candidateTileController = loader.getController();
+
+            candidateTileController.setDecipheredText(candidate.getDecipheredText());
+            candidateTileController.setRotorsIDs(candidate.getRotorsIDs());
+            candidateTileController.setWindowsCharsAndNotches(candidate.getWindowChars(), candidate.getNotchPositions());
+            candidateTileController.setReflectorSymbol(candidate.getReflectorSymbol());
+            candidateTileController.setProcessedByAgentName(candidate.getProcessedByAgentName());
+
 
             bodyController.insertCandidateToFlowPane(singleCandidateTile);
         } catch (IOException e) {

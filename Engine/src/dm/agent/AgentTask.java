@@ -93,6 +93,12 @@ public class AgentTask implements Runnable {
                 // convert reflector ID to Roman number.
                 String nextCandidateReflectorSymbol = decimalToRoman(inUseReflectorID);
 
+                // fetch the notch positions
+                List<Integer> notchPositions = machine.getInUseNotchDistanceToWindow();
+
+                // fetch the current thread's name
+                String processedByAgentName = Thread.currentThread().getName();
+
                 Candidate nextCandidate = new Candidate(decipherResult, rotorsIDs, windowCharacters, nextCandidateReflectorSymbol, notchPositions, processedByAgentName);
                 candidates.add(nextCandidate);
             }
