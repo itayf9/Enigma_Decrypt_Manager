@@ -12,12 +12,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        EnigmaEngine engine = new EnigmaEngine();
+        // EnigmaEngine engine = new EnigmaEngine();
+        // engine.buildMachineFromXmlFile("C:/Users/itayf/IdeaProjects/Cracking the Enigma Machine/Engine/src/resource/ex2/ex2-basic.xml");
 
-        engine.buildMachineFromXmlFile("C:/Users/itayf/IdeaProjects/Cracking the Enigma Machine/Engine/src/resource/ex2/ex2-basic.xml");
-        for (int i = 0; i < 10; i++) {
-            System.out.println(factorial(i));
-        }
+        
     }
 }
 

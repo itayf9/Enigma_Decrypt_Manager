@@ -158,6 +158,7 @@ public class MainController {
 
             setStatusMessage("Loaded Successfully");
 
+            bodyController.setDictionaryWords(engine.getDictionaryWords().getDictionary());
             bodyController.displayMachineSpecs(specsStatus);
             cipherCounterProperty.set(0);
             bodyController.setLightBulb(engine.getMachineAlphabet());
@@ -364,6 +365,8 @@ public class MainController {
      */
     public void doneCurrentCipherProcess() {
         engine.doneCurrentCipherProcess();
+        DTOspecs specsStatus = engine.displayMachineSpecifications();
+        cipherCounterProperty.set(specsStatus.getCipheredTextsCount());
     }
 
     public void setStatusMessage(String newStatus) {

@@ -39,7 +39,7 @@ public class EnigmaEngine implements Engine {
     private List<StatisticRecord> machineRecords = new ArrayList<>();
 
     public static String JAXB_XML_PACKAGE_NAME = "machine.jaxb.generated";
-    
+
     /**
      * creating new machine instance using all the parts the machine needs.
      */
@@ -89,9 +89,10 @@ public class EnigmaEngine implements Engine {
         for (Character currentChar : toCipher.toCharArray()) {
             cipheredText.append(machine.cipher(currentChar));
         }
-
-        // increasing the cipher counter
-        machine.advanceCipherCounter();
+        if (!charByCharState) {
+            // increasing the cipher counter
+            machine.advanceCipherCounter();
+        }
 
         return cipheredText.toString();
     }
@@ -1021,6 +1022,7 @@ public class EnigmaEngine implements Engine {
         Pair<Pair<String, String>, Long> inputTextToOutputTextToTimeElapsed = new Pair<>(new Pair<>(currentCipherProcessInputText, currentCipherProcessOutputText), currentCipherProcessTimeElapsed);
         machineRecords.get(machineRecords.size() - 1).getCipherHistory().add(inputTextToOutputTextToTimeElapsed);
         resetCurrentCipherProcess();
+        machine.advanceCipherCounter();
     }
 
     @Override

@@ -7,6 +7,7 @@ import body.screen1.machinedetails.MachineDetailsController;
 import body.screen2.encrypt.EncryptDecryptController;
 import body.screen2.statistics.StatisticsController;
 import body.screen3.candidate.area.CandidatesAreaController;
+import body.screen3.dictionary.DictionaryController;
 import body.screen3.dm.operational.dmOperationalController;
 import dm.difficultylevel.DifficultyLevel;
 import dto.*;
@@ -16,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 
 import java.util.List;
+import java.util.Set;
 
 import static utill.Utillity.getCurrentConfigFromSpecs;
 
@@ -94,6 +96,12 @@ public class BodyController {
     @FXML
     private CandidatesAreaController candidatesAreaController;
 
+    @FXML
+    private GridPane dictionary;
+
+    @FXML
+    private DictionaryController dictionaryController;
+
 
     /**
      * set up the application, connecting the controllers to their main controller
@@ -116,6 +124,7 @@ public class BodyController {
         encryptDecrypt2Controller.setParentController(this);
         dmOperationalController.setParentController(this);
         candidatesAreaController.setParentController(this);
+        dictionaryController.setParentController(this);
 
 
         dmOperationalController.bindTextToDecipherPropertyToOutputCipher(encryptDecrypt2Controller.getOutputLabelProperty());
@@ -324,5 +333,9 @@ public class BodyController {
 
     public void insertCandidateToFlowPane(Node singleCandidateTile) {
         candidatesAreaController.insertCandidateToFlowPane(singleCandidateTile);
+    }
+
+    public void setDictionaryWords(Set<String> dictionaryWords) {
+        dictionaryController.setDictionaryWords(dictionaryWords);
     }
 }

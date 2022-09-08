@@ -41,24 +41,6 @@ public class CandidatesAreaController {
         this.parentController = parentController;
     }
 
-    /* public void bindTaskComponentsToUIComponents(CandidatesCollectorTask bruteForceTask, Runnable onFinish) {
-
-        // task message
-        BFstatusLabel.textProperty().bind(Bindings.concat("Status: ", bruteForceTask.messageProperty()));
-
-        // task progress bar
-        BFprogressBar.progressProperty().bind(bruteForceTask.progressProperty());
-
-        // task percent label
-        progressPercentageLabel.textProperty().bind(
-                Bindings.concat(Bindings.format("%.0f", Bindings.multiply(bruteForceTask.progressProperty(), 100)), " %"));
-
-        // task cleanup upon finish
-        bruteForceTask.valueProperty().addListener((observable, oldValue, newValue) -> {
-            onTaskFinished(Optional.ofNullable(onFinish));
-        });
-    }*/
-
     /*private void onTaskFinished(Optional<Runnable> onFinish) {
         this.BFstatusLabel.textProperty().unbind();
         this.progressPercentageLabel.textProperty().unbind();
