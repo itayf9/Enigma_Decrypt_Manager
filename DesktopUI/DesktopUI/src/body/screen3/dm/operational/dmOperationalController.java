@@ -3,9 +3,7 @@ package body.screen3.dm.operational;
 import body.BodyController;
 import dm.difficultylevel.DifficultyLevel;
 import javafx.beans.binding.Bindings;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -31,7 +29,6 @@ public class dmOperationalController {
 
     @FXML
     private Label numOfAgentLabel;
-
     private IntegerProperty totalPossibleWindowsPositions;
     private StringProperty textToDecipherProperty;
 
@@ -50,6 +47,16 @@ public class dmOperationalController {
     }
 
     @FXML
+    void handleBruteForceStartStopOperationAction(MouseEvent event) {
+
+        if (isBruteForceTaskActive.getValue()) {
+            stopBruteForceAction();
+        } else {
+            startBruteForceAction();
+        }
+    }
+
+    @FXML
     void pauseBruteForceAction(MouseEvent event) {
 
     }
@@ -62,8 +69,7 @@ public class dmOperationalController {
     void stopBruteForceAction() {
     }
 
-    @FXML
-    void startBruteForceAction(MouseEvent event) {
+    void startBruteForceAction() {
         DifficultyLevel difficultyLevel = difficultyLevelComboBox.getValue();
         int taskSize = taskSizeSpinner.getValue(); // need to fix text value not updating if no button pressed
         int numOfAgentSelected = (int) numOfAgentsSlider.getValue();
@@ -88,5 +94,11 @@ public class dmOperationalController {
 
     public void setParentController(BodyController parentController) {
         this.parentController = parentController;
+    }
+
+    public void bindComponents(BooleanProperty isBruteForceTaskActive) {
+        this.isBruteForceTaskActive = isBruteForceTaskActive;
+        startButton.textProperty().bind(Bindings.when(isBruteForceTaskActive.not()).then("Start").otherwise("Stop"));
+        pauseButton.disableProperty().bind(Bindings.when(isBruteForceTaskActive.not()).then(true).otherwise(false));
     }
 }

@@ -1,6 +1,7 @@
 package ui.adapter;
 
 import candidate.Candidate;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import javafx.application.Platform;
 
 import java.util.function.Consumer;
@@ -14,11 +15,13 @@ public class UIAdapter {
     private Consumer<Double> updateProgressBar; // need this to update progressbar
     private Consumer<Double> updateProgressBarPercentage; // need this to update progressbar percentage label
     private Consumer<Long> updateTotalConfigs;
+    private Consumer<Boolean> updateTaskActiveStatus;
+
 
     public UIAdapter(Consumer<Candidate> introduceNewCandidate, Runnable updateDistinct,
                      Consumer<Integer> updateTotalProcessedConfigurations, Consumer<String> updateTaskStatus,
                      Consumer<Double> updateProgressBar, Consumer<Double> updateProgressBarPercentage,
-                     Consumer<Long> updateTotalConfigs) {
+                     Consumer<Long> updateTotalConfigs, Consumer<Boolean> updateTaskOverStatus) {
         this.introduceNewCandidate = introduceNewCandidate;
         this.updateDistinct = updateDistinct;
         this.updateTotalProcessedConfigurations = updateTotalProcessedConfigurations;
@@ -26,6 +29,7 @@ public class UIAdapter {
         this.updateProgressBar = updateProgressBar;
         this.updateProgressBarPercentage = updateProgressBarPercentage;
         this.updateTotalConfigs = updateTotalConfigs;
+        this.updateTaskActiveStatus = updateTaskOverStatus;
     }
 
     public void addNewCandidate(Candidate candidate) {
@@ -62,6 +66,14 @@ public class UIAdapter {
         Platform.runLater(
                 () -> {
                     updateTotalConfigs.accept(totalPossibleConfigurations);
+                }
+        );
+    }
+
+    public void updateTaskActiveStatus(Boolean isActive) {
+        Platform.runLater(
+                () -> {
+                    updateTaskActiveStatus.accept(isActive);
                 }
         );
     }

@@ -128,8 +128,8 @@ public class CurrentConfigController {
     ) {
         rotorsLabel.textProperty().bind(new InUseRotorsIDsBinding(inUseRotorsIDsProperty));
         windowsLabel.textProperty().bind(new CurrWinCharsAndNotchPosBinding(currentWindowsCharactersProperty, currentNotchDistances));
-        reflectorLabel.textProperty().bind(inUseReflectorSymbolProperty);
-        plugsLabel.textProperty().bind(inUsePlugs);
+        reflectorLabel.textProperty().bind(new InUseReflectorSymbolBinding(inUseReflectorSymbolProperty));
+        plugsLabel.textProperty().bind(new InUsePlugsBinding(inUsePlugs));
         noConfigMsg.textProperty().bind(Bindings.when(isMachineConfigured).then("").otherwise("No Configuration."));
     }
 

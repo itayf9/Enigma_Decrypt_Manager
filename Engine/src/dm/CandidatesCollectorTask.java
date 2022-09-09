@@ -55,6 +55,7 @@ public class CandidatesCollectorTask extends Task<Boolean> {
                 }
             }
         }
+        uiAdapter.updateTaskActiveStatus(false);
         updateMessage("Done...");
         uiAdapter.updateTaskStatus("Done...");
         return Boolean.TRUE;

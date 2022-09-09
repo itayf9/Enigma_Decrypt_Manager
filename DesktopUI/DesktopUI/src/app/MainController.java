@@ -86,7 +86,9 @@ public class MainController {
 
     private DoubleProperty bruteForceProgress;
     private StringProperty bruteForceProgressBarPercentageProperty;
-    private StringProperty bruteForceStatus;
+    private StringProperty bruteForceStatusMessage;
+
+    private BooleanProperty isBruteForceTaskActive;
 
     private long totalPossibleWindowsPositions;
 
@@ -114,6 +116,8 @@ public class MainController {
             this.totalProcessedConfigurations = new SimpleIntegerProperty();
             this.totalPossibleConfigurations = new SimpleLongProperty();
             this.messageFadeTransition = new FadeTransition(Duration.millis(5000), statusBackShape);
+            this.isBruteForceTaskActive = new SimpleBooleanProperty(false);
+
 
             /**
              * bruteForce BINDINGS
@@ -127,7 +131,7 @@ public class MainController {
                     currentWindowsCharactersProperty, inUseReflectorSymbolProperty, inUsePlugsProperty,
                     currentNotchDistances, isCharByCharModeProperty, cipherCounterProperty, totalDistinctCandidates,
                     totalProcessedConfigurations, totalPossibleConfigurations, bruteForceProgress,
-                    bruteForceProgressBarPercentageProperty, bruteForceStatus);
+                    bruteForceProgressBarPercentageProperty, bruteForceStatusMessage, isBruteForceTaskActive);
 
             body.visibleProperty().bind(isMachineLoadedProperty);
             messageLabel.textProperty().bind(statusLabel.textProperty());
@@ -286,7 +290,7 @@ public class MainController {
 
     @FXML
     public void startBruteForceProcess(String textToDecipher, DifficultyLevel difficultyLevel, int taskSize, int numOfAgentSelected) {
-
+        isBruteForceTaskActive.set(true);
         cleanOldResults();
         UIAdapter uiAdapter = createUIAdapter();
         toggleTaskButtons(true);
@@ -330,6 +334,8 @@ public class MainController {
                     bruteForceProgressBarPercentageProperty.set(percentValue);
                 }, (totalConfigs) -> {
             totalPossibleConfigurations.setValue(totalConfigs);
+        }, (isActive) -> {
+            isBruteForceTaskActive.set(isActive);
         }
         );
     }
