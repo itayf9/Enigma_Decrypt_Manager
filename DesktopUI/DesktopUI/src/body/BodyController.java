@@ -294,7 +294,7 @@ public class BodyController {
                                IntegerProperty cipherCounterProperty,
                                IntegerProperty totalDistinctCandidates, IntegerProperty totalProcessedConfigurations,
                                LongProperty totalPossibleConfigurations, DoubleProperty bruteForceProgressBar, StringProperty bruteForceProgressBarPercentageLabel
-            , StringProperty bruteForceStatus) {
+            , StringProperty bruteForceStatusMessage, BooleanProperty isBruteForceTaskActive) {
 
         // binds the components that need the isConfigured Boolean property.
         encryptDecrypt.disableProperty().bind(isMachineConfiguredProperty.not());
@@ -317,7 +317,10 @@ public class BodyController {
         // brute force dashboard labels bind
         candidatesAreaController.bindInitPropertiesToLabels(totalDistinctCandidates, totalProcessedConfigurations, totalPossibleConfigurations,
                 bruteForceProgressBar, bruteForceProgressBarPercentageLabel
-                , bruteForceStatus);
+                , bruteForceStatusMessage);
+
+        // dm operational bind
+        dmOperationalController.bindComponents(isBruteForceTaskActive);
     }
 
     public void displayOriginalConfig(List<Integer> rotorsIDs, String currentWindowsCharacters, String inUseReflectorSymbol, String inUsePlugs, List<Integer> currentNotchDistances) {

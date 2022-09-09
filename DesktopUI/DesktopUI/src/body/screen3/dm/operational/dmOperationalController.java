@@ -35,6 +35,8 @@ public class dmOperationalController {
     private IntegerProperty totalPossibleWindowsPositions;
     private StringProperty textToDecipherProperty;
 
+    private BooleanProperty isBruteForceTaskActive;
+
 
     @FXML
     public void initialize() {
@@ -57,9 +59,7 @@ public class dmOperationalController {
 
     }
 
-    @FXML
-    void stopBruteForceAction(MouseEvent event) {
-
+    void stopBruteForceAction() {
     }
 
     @FXML
@@ -68,6 +68,12 @@ public class dmOperationalController {
         int taskSize = taskSizeSpinner.getValue(); // need to fix text value not updating if no button pressed
         int numOfAgentSelected = (int) numOfAgentsSlider.getValue();
         String textToDecipher = textToDecipherProperty.getValue();
+
+        if (difficultyLevel == null) {
+            System.out.println("Error not entered dificulty level");
+            return;
+        }
+
         parentController.startBruteForce(textToDecipher, difficultyLevel, taskSize, numOfAgentSelected);
     }
 

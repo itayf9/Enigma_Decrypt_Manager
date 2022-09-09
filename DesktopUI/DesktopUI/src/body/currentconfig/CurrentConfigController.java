@@ -1,6 +1,9 @@
 package body.currentconfig;
 
 import bindings.CurrWinCharsAndNotchPosBinding;
+import bindings.InUsePlugsBinding;
+import bindings.InUseReflectorSymbolBinding;
+import bindings.InUseRotorsIDsBinding;
 import body.BodyController;
 import dto.DTOsecretConfig;
 import javafx.beans.binding.Bindings;
@@ -123,7 +126,7 @@ public class CurrentConfigController {
                                      ListProperty<Integer> currentNotchDistances,
                                      BooleanProperty isMachineConfigured
     ) {
-        rotorsLabel.textProperty().bind(inUseRotorsIDsProperty.asString());
+        rotorsLabel.textProperty().bind(new InUseRotorsIDsBinding(inUseRotorsIDsProperty));
         windowsLabel.textProperty().bind(new CurrWinCharsAndNotchPosBinding(currentWindowsCharactersProperty, currentNotchDistances));
         reflectorLabel.textProperty().bind(inUseReflectorSymbolProperty);
         plugsLabel.textProperty().bind(inUsePlugs);

@@ -119,7 +119,7 @@ public class MainController {
              * bruteForce BINDINGS
              */
             this.bruteForceProgress = new SimpleDoubleProperty();
-            this.bruteForceStatus = new SimpleStringProperty("");
+            this.bruteForceStatusMessage = new SimpleStringProperty("");
             this.bruteForceProgressBarPercentageProperty = new SimpleStringProperty("0%");
 
             // binding initialize
@@ -319,7 +319,7 @@ public class MainController {
                 (delta) -> {
                     totalProcessedConfigurations.set(totalProcessedConfigurations.get() + delta);
                 }, (status) -> {
-            bruteForceStatus.set(status);
+            bruteForceStatusMessage.set(status);
         }, (percentage) -> {
             bruteForceProgress.set(percentage.doubleValue());
         },
