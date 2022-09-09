@@ -26,6 +26,10 @@ public class EncryptDecryptController {
     String cipheredLetter = "";
 
     String alphabet;
+
+    @FXML
+    private ScrollPane lightBulbsScrollPane;
+
     @FXML
     private Label outputLabel;
 
@@ -228,6 +232,11 @@ public class EncryptDecryptController {
         }
 
         cipherModeTS.setVisible(availabilityOfCharByCharMode);
+    }
+
+    public void showLightBulbs(boolean needToShow) {
+        lightBulbsScrollPane.setVisible(needToShow);
+        lightBulbsScrollPane.setHmax(0);
     }
 
     public void bindCipherMode(BooleanProperty isCharByCharModeProperty) {

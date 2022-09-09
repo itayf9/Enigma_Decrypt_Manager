@@ -1,0 +1,13 @@
+.search-text-field {
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: white;
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color: #b1b4b9;
+}
+
+.search-text-field:focused {
+    -fx-border-color: #0095ff;
+    -fx-border-width: 0 0 2 0;
+
+}

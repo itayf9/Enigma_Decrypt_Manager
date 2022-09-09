@@ -1,3 +1,8 @@
+.char-by-char-ts:selected .thumb-area {
+    -fx-background-color: #0095ff;
+}
+
+
 .clear-btn {
     -fx-background-color: #6674ce;
     -fx-text-fill: white;

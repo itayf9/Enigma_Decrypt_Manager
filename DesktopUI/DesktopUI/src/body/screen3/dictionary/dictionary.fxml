@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
@@ -9,22 +10,25 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.screen3.dictionary.DictionaryController">
+<GridPane vgap="5.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.screen3.dictionary.DictionaryController">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="ALWAYS" minWidth="100.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="NEVER" />
       <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="NEVER" />
-    <RowConstraints maxHeight="357.99998474121094" minHeight="10.0" prefHeight="357.99998474121094" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="200.0" minHeight="100.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <ScrollPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+      <ScrollPane fitToWidth="true" maxHeight="200.0" GridPane.rowIndex="2">
          <content>
-            <FlowPane fx:id="wordsAreaFlowPane" prefHeight="87.0" prefWidth="138.0" />
+            <FlowPane fx:id="wordsAreaFlowPane" hgap="5.0" maxHeight="200.0" prefHeight="95.0" vgap="5.0">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding></FlowPane>
          </content></ScrollPane>
       <Label styleClass="component-title" text="Dictionary:" />
-      <TextArea fx:id="searchTextField" prefHeight="200.0" prefWidth="200.0" promptText="search" GridPane.rowIndex="1" />
+      <TextArea fx:id="searchTextField" prefHeight="200.0" prefWidth="200.0" promptText="search" styleClass="search-text-field" GridPane.rowIndex="1" />
    </children>
    <stylesheets>
       <URL value="@../../../app/app.css" />

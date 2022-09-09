@@ -16,25 +16,25 @@
 
 <GridPane minHeight="150.0" prefHeight="300.0" prefWidth="550.0" styleClass="component-with-border" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.screen2.encrypt.EncryptDecryptController">
    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="370.0" />
-      <ColumnConstraints hgrow="ALWAYS" maxWidth="50.0" minWidth="0.0" prefWidth="5.0" />
+      <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="370.0" />
+      <ColumnConstraints hgrow="ALWAYS" maxWidth="50.0" minWidth="5.0" prefWidth="5.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="70.0" prefWidth="70.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="70.0" prefWidth="80.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="70.0" prefWidth="70.0" />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints />
       <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="NEVER" />
-      <RowConstraints minHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="40.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="25.0" prefHeight="25.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="40.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="5.0" prefHeight="5.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="50.0" prefHeight="100.0" vgrow="SOMETIMES" />
+      <RowConstraints vgrow="NEVER" />
+      <RowConstraints minHeight="40.0" vgrow="NEVER" />
+      <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="25.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="30.0" prefHeight="30.0" vgrow="NEVER" />
+      <RowConstraints minHeight="40.0" vgrow="NEVER" />
+      <RowConstraints maxHeight="100.0" minHeight="5.0" prefHeight="5.0" vgrow="ALWAYS" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="50.0" prefHeight="100.0" vgrow="ALWAYS" />
    </rowConstraints>
    <children>
       <Label styleClass="component-title" text="Cipher Text:" GridPane.rowIndex="1" />
-      <ScrollPane fitToHeight="true" fitToWidth="true" GridPane.columnSpan="4" GridPane.rowIndex="8">
+      <ScrollPane fx:id="lightBulbsScrollPane" fitToHeight="true" fitToWidth="true" GridPane.columnSpan="4" GridPane.rowIndex="8">
          <content>
             <FlowPane fx:id="lightBulbs" alignment="TOP_CENTER" minHeight="93.0" minWidth="400.0" prefHeight="93.0" prefWidth="547.0" styleClass="lightbulbs-area" />
          </content>
@@ -60,31 +60,31 @@
          </content>
       </ScrollPane>
 
-      <Button fx:id="processButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="25.0" minWidth="80.0" mnemonicParsing="false" onMouseClicked="#processHandler" prefHeight="25.0" styleClass="action-btn" text="Process / Done" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2">
+      <Button fx:id="processButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="25.0" minWidth="60.0" mnemonicParsing="false" onMouseClicked="#processHandler" prefHeight="25.0" styleClass="action-btn" text="Process / Done" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="2">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
          <GridPane.margin>
-            <Insets bottom="2.0" left="2.0" right="2.0" top="5.0" />
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </Button>
-      <Button fx:id="resetButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="25.0" minWidth="70.0" mnemonicParsing="false" onMouseClicked="#ResetConfiguration" prefHeight="25.0" styleClass="reset-btn" text="Reset" GridPane.columnIndex="3" GridPane.rowIndex="3">
+      <Button fx:id="resetButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onMouseClicked="#ResetConfiguration" prefHeight="25.0" styleClass="reset-btn" text="Reset" GridPane.columnIndex="3" GridPane.rowIndex="5" GridPane.rowSpan="2">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
          <GridPane.margin>
-            <Insets bottom="5.0" left="2.0" right="2.0" top="2.0" />
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </Button>
-      <Button fx:id="clearButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="25.0" minWidth="70.0" mnemonicParsing="false" onMouseClicked="#clearCurrentCipher" prefHeight="25.0" styleClass="clear-btn" text="Clear" GridPane.columnIndex="2" GridPane.rowIndex="3">
+      <Button fx:id="clearButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onMouseClicked="#clearCurrentCipher" prefHeight="25.0" styleClass="clear-btn" text="Clear" GridPane.columnIndex="2" GridPane.rowIndex="5" GridPane.rowSpan="2">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
          <GridPane.margin>
-            <Insets bottom="5.0" left="2.0" right="2.0" top="2.0" />
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </Button>
-      <ToggleSwitch fx:id="cipherModeTS" onMouseClicked="#setCipherMode" prefHeight="30.0" prefWidth="22.0" text="Char-By-Char Mode" GridPane.columnIndex="2" GridPane.rowIndex="1">
+      <ToggleSwitch fx:id="cipherModeTS" onMouseClicked="#setCipherMode" prefHeight="30.0" prefWidth="22.0" styleClass="char-by-char-ts" text="Char-By-Char Mode" GridPane.columnIndex="2" GridPane.rowIndex="1">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>

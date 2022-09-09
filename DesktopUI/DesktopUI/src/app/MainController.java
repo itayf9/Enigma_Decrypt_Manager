@@ -234,7 +234,6 @@ public class MainController {
      */
     public DTOciphertext cipher(String character) {
         DTOciphertext cipherStatus = engine.cipherInputText(character);
-
         DTOspecs specsStatus = engine.displayMachineSpecifications();
 
         // update configuration

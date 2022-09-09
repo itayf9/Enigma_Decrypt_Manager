@@ -130,6 +130,7 @@ public class BodyController {
         dmOperationalController.bindTextToDecipherPropertyToOutputCipher(encryptDecrypt2Controller.getOutputLabelProperty());
 
         encryptDecrypt2Controller.setAvailabilityOfCharByCharMode(false);
+        encryptDecrypt2Controller.showLightBulbs(false);
     }
 
     /**
