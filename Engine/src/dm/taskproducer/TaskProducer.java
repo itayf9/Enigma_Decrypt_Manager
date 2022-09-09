@@ -7,7 +7,6 @@ import dm.dictionary.Dictionary;
 import dm.difficultylevel.DifficultyLevel;
 import machine.EnigmaMachine;
 import machine.Machine;
-import ui.adapter.UIAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,17 +15,16 @@ import java.util.concurrent.BlockingQueue;
 
 public class TaskProducer implements Runnable {
 
-    private final String END_OF_TASKS = "END OF TASKS";
     protected BlockingQueue<Runnable> agentTaskQueue;
     private final Machine machine;
     private final String alphabet;
     private int taskSize;
     private final DifficultyLevel difficulty;
-    private boolean currentTaskSubmitted = true;
     private String textToDecipher;
     private Dictionary dictionary;
     private BlockingQueue<AgentConclusion> candidatesQueue;
     DecryptManager dm;
+    private int taskCounter = 0;
 
     public TaskProducer(DecryptManager dm, int taskSize, DifficultyLevel difficultyLevel, String textToDecipher) {
         this.dm = dm;
@@ -48,21 +46,28 @@ public class TaskProducer implements Runnable {
 
         switch (difficulty) {
             case EASY:
-                // set up first agentTask
-
                 // easy mode so rotors doesn't change.
+
                 List<Integer> inUseRotorsIDs = machine.getInUseRotorsIDs();
                 // get the reflector
                 int inUseReflectorID = machine.getInUseReflector().getId();
-                List<Integer> nextWindowsOffsets = null;
-                Machine copyOfMachine = null;
+                List<Integer> nextWindowsOffsets;
+                Machine copyOfMachine;
+
+                // set up first agentTask
+                copyOfMachine = new EnigmaMachine((EnigmaMachine) machine); // Clone!
+                try {
+                    taskCounter++;
+                    agentTaskQueue.put(new AgentTask(inUseRotorsIDs, currentWindowsOffsets, inUseReflectorID,
+                            copyOfMachine, taskSize, textToDecipher, dictionary, candidatesQueue, dm.isBruteForceActionCancelledProperty()));
+                } catch (InterruptedException ignored) {
+                    //throw new RuntimeException(e);
+                }
 
                 while (!finishedAllTasks && !dm.isIsBruteForceActionCancelled()) {
 
-                    if (currentTaskSubmitted) {
-
-                        // first clone a machine to send to the agent
-                        copyOfMachine = new EnigmaMachine((EnigmaMachine) machine); // Clone!
+                    // first clone a machine to send to the agent
+                    copyOfMachine = new EnigmaMachine((EnigmaMachine) machine); // Clone!
 
                     // the next window characters to set for the agent, based on last window characters
                     nextWindowsOffsets = getNextWindowsOffsets(taskSize, currentWindowsOffsets);
@@ -71,10 +76,9 @@ public class TaskProducer implements Runnable {
                         continue;
                     }
 
-                        // replace current list with next list
-                        currentWindowsOffsets.clear();
-                        currentWindowsOffsets.addAll(nextWindowsOffsets);
-                    }
+                    // replace current list with next list
+                    currentWindowsOffsets.clear();
+                    currentWindowsOffsets.addAll(nextWindowsOffsets);
 
                     try {
                         taskCounter++;
@@ -94,6 +98,7 @@ public class TaskProducer implements Runnable {
             case UNDEFINED:
                 break;
         }
+
     }
 
     private List<Integer> getNextWindowsOffsets(int taskSize, List<Integer> currentWindowsOffsets) {
@@ -119,5 +124,9 @@ public class TaskProducer implements Runnable {
 
     private int rotateWindow(Integer windowOffset) {
         return (windowOffset + 1 + alphabet.length()) % alphabet.length();
+    }
+
+    private boolean AllWindowsOffsetsAtBeginning(List<Integer> nextWindowsOffsets) {
+        return nextWindowsOffsets.stream().allMatch(offset -> offset == 0);
     }
 }
