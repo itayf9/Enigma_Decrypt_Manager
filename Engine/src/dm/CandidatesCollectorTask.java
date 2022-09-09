@@ -61,9 +61,10 @@ public class CandidatesCollectorTask extends Task<Boolean> {
             }
 
             try {
-                Thread.sleep(500);
+                Thread.sleep(100);
             } catch (InterruptedException ignored) {
-
+                uiAdapter.updateTaskStatus("Stopped...");
+                return Boolean.FALSE;
             }
 
 
