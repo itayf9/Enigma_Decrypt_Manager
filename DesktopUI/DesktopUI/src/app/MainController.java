@@ -83,13 +83,10 @@ public class MainController {
     private IntegerProperty totalDistinctCandidates;
     private IntegerProperty totalProcessedConfigurations;
     private LongProperty totalPossibleConfigurations;
-
     private DoubleProperty bruteForceProgress;
     private StringProperty bruteForceProgressBarPercentageProperty;
     private StringProperty bruteForceStatusMessage;
-
     private BooleanProperty isBruteForceTaskActive;
-
     private long totalPossibleWindowsPositions;
 
 
@@ -329,7 +326,7 @@ public class MainController {
         },
                 (percentage) -> {
                     double percent = percentage.doubleValue();
-                    int tmpPercentValue = (int) percent * 100;
+                    int tmpPercentValue = (int) (percent * 100);
                     String percentValue = tmpPercentValue + "%";
                     bruteForceProgressBarPercentageProperty.set(percentValue);
                 }, (totalConfigs) -> {
@@ -424,5 +421,10 @@ public class MainController {
      */
     public DTOstatus validatePlugsInput(String plugs) {
         return engine.validatePlugs(plugs);
+    }
+
+    public void stopBruteForceProcess() {
+        isBruteForceTaskActive.set(false);
+        engine.stopBruteForceProcess();
     }
 }

@@ -161,4 +161,6 @@ public interface Engine {
 
     DTOdictionary getDictionaryWords();
 
+    void stopBruteForceProcess();
+
 }

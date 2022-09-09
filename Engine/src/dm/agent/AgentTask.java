@@ -2,6 +2,7 @@ package dm.agent;
 
 import candidate.Candidate;
 import dm.dictionary.Dictionary;
+import javafx.beans.property.BooleanProperty;
 import machine.Machine;
 
 import java.util.ArrayList;
@@ -20,10 +21,11 @@ public class AgentTask implements Runnable {
     private List<Integer> windowOffsets;
     private int inUseReflectorID;
     private BlockingQueue<AgentConclusion> candidatesQueue;
+    BooleanProperty isBruteForceActionCancelled;
 
     public AgentTask(List<Integer> rotorsIDs, List<Integer> windowOffsets, int inUseReflectorID,
                      Machine copyOfMachine, int taskSize, String textToDecipher, Dictionary dictionary,
-                     BlockingQueue<AgentConclusion> candidatesQueue) {
+                     BlockingQueue<AgentConclusion> candidatesQueue, BooleanProperty isBruteForceActionCancelled) {
         machine = copyOfMachine;
         this.taskSize = taskSize;
         this.textToDecipher = textToDecipher;
@@ -32,6 +34,7 @@ public class AgentTask implements Runnable {
         this.rotorsIDs = rotorsIDs;
         this.inUseReflectorID = inUseReflectorID;
         this.candidatesQueue = candidatesQueue;
+        this.isBruteForceActionCancelled = isBruteForceActionCancelled;
     }
 
     private String decipherLine(String LineToDecipher) {
@@ -71,12 +74,12 @@ public class AgentTask implements Runnable {
         List<Candidate> candidates = new ArrayList<>();
         int numOfConfigScanned = 0;
 
-        for (int i = 0; i < taskSize; i++) {
+        for (int i = 0; i < taskSize && !isBruteForceActionCancelled.getValue(); i++) {
             numOfConfigScanned++;
             if (AllWindowsOffsetsAtBeginning()) {
                 break;
             }
-            
+
             // sets machine to the next configuration
             // changes only the window offsets
             machine.setMachineConfiguration(rotorsIDs, windowOffsets, inUseReflectorID, "");

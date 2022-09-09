@@ -5,6 +5,8 @@ import dm.agent.AgentConclusion;
 import dm.dictionary.Dictionary;
 import dm.difficultylevel.DifficultyLevel;
 import dm.taskproducer.TaskProducer;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import machine.Machine;
 import ui.adapter.UIAdapter;
 
@@ -15,22 +17,23 @@ import java.util.concurrent.*;
 
 public class DecryptManager {
 
-    BlockingQueue<AgentConclusion> candidatesQueue;
-
+    private BlockingQueue<AgentConclusion> candidatesQueue;
+    private ThreadPoolExecutor threadExecutor;
+    private Thread collector;
+    private Thread taskProducer;
     private final Machine enigmaMachine;
     private final Dictionary dictionary;
     private final int numOfAvailableAgents;
     private List<Candidate> allCandidates = new ArrayList<>();
-
     private long totalPossibleConfigurations;
-
     private long totalPossibleWindowsPositions;
-
     private final BlockingQueue<Runnable> threadPoolBlockingQueue;
 
     public int getNumOfAvailableAgents() {
         return numOfAvailableAgents;
     }
+
+    private BooleanProperty isBruteForceActionCancelled;
 
     public DecryptManager(Dictionary dictionary, int numOfAvailableAgents, Machine enigmaMachine) {
         int LIMIT_NUMBER_OF_TASK = 1000;
@@ -40,21 +43,51 @@ public class DecryptManager {
         this.enigmaMachine = enigmaMachine;
         this.candidatesQueue = new LinkedBlockingQueue<>(1000);
         this.totalPossibleWindowsPositions = (long) Math.pow(enigmaMachine.getAlphabet().length(), enigmaMachine.getRotorsCount());
+        this.isBruteForceActionCancelled = new SimpleBooleanProperty(false);
     }
 
+    /**
+     * cancel the bruteForce execution
+     */
+    public void stopDecrypt() {
+
+        // stopping the thread pool
+        isBruteForceActionCancelled.set(true);
+        threadExecutor.shutdownNow();
+
+        //  stopping the collector Task / Thread
+        collector.interrupt();
+
+        // stopping the producer Thread;
+        taskProducer.interrupt();
+    }
+
+    /**
+     * initiates the thread needed to start the brute force process
+     *
+     * @param taskSize            size of task per thread to execute
+     * @param numOfSelectedAgents num of threads in pool
+     * @param textToDecipher      the text that agents trying to cipher
+     * @param difficultyLevel     difficulty label
+     * @param uiAdapter           ui adapter to update the ui
+     */
     public void startDecrypt(int taskSize, int numOfSelectedAgents, String textToDecipher,
                              DifficultyLevel difficultyLevel, UIAdapter uiAdapter) {
+
+        isBruteForceActionCancelled.set(false);
 
         // updates the total configs property
         setTotalConfigs(difficultyLevel);
 
         // setting up the collector of the candidates
-        Thread collector = new Thread(new CandidatesCollectorTask(candidatesQueue, totalPossibleConfigurations, uiAdapter));
+        collector = new Thread(new CandidatesCollectorTask(candidatesQueue, totalPossibleConfigurations, uiAdapter, isBruteForceActionCancelledProperty()));
 
         // starting the thread pool
-        ThreadPoolExecutor threadExecutor = new ThreadPoolExecutor(numOfSelectedAgents, numOfSelectedAgents,
+        threadExecutor = new ThreadPoolExecutor(numOfSelectedAgents, numOfSelectedAgents,
                 0L, TimeUnit.MILLISECONDS, threadPoolBlockingQueue);
 
+
+        // setting up thr thread factory for the thread pool
         threadExecutor.setThreadFactory(new ThreadFactory() {
 
             private int nameCounter = 0;
@@ -66,10 +99,8 @@ public class DecryptManager {
             }
         });
 
-
         // setting a thread that produces tasks
-        Thread taskProducer = new Thread(new TaskProducer(threadPoolBlockingQueue, enigmaMachine, taskSize, difficultyLevel,
-                textToDecipher, dictionary, candidatesQueue));
+        taskProducer = new Thread(new TaskProducer(this, taskSize, difficultyLevel, textToDecipher));
 
         // trigger the threads
         threadExecutor.prestartAllCoreThreads();

@@ -978,6 +978,11 @@ public class EnigmaEngine implements Engine {
         decryptManager.startDecrypt(taskSize, numOfSelectedAgents, textToDecipher, difficultyLevel, uiAdapter);
     }
 
+    @Override
+    public void stopBruteForceProcess() {
+        decryptManager.stopDecrypt();
+    }
+
 
     /**
      * @return the machine's alphabet as a String

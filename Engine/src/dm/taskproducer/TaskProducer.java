@@ -1,5 +1,6 @@
 package dm.taskproducer;
 
+import dm.DecryptManager;
 import dm.agent.AgentConclusion;
 import dm.agent.AgentTask;
 import dm.dictionary.Dictionary;
@@ -25,20 +26,18 @@ public class TaskProducer implements Runnable {
     private String textToDecipher;
     private Dictionary dictionary;
     private BlockingQueue<AgentConclusion> candidatesQueue;
+    DecryptManager dm;
 
-    UIAdapter uiAdapter;
-
-
-    public TaskProducer(BlockingQueue<Runnable> agentTaskQueue, Machine machine, int taskSize, DifficultyLevel difficultyLevel,
-                        String textToDecipher, Dictionary dictionary, BlockingQueue<AgentConclusion> candidatesQueue) {
-        this.agentTaskQueue = agentTaskQueue;
-        this.machine = machine;
+    public TaskProducer(DecryptManager dm, int taskSize, DifficultyLevel difficultyLevel, String textToDecipher) {
+        this.dm = dm;
+        this.agentTaskQueue = dm.getThreadPoolBlockingQueue();
+        this.machine = dm.getEnigmaMachine();
         this.alphabet = machine.getAlphabet();
         this.taskSize = taskSize;
         this.difficulty = difficultyLevel;
         this.textToDecipher = textToDecipher;
-        this.dictionary = dictionary;
-        this.candidatesQueue = candidatesQueue;
+        this.dictionary = dm.getDictionary();
+        this.candidatesQueue = dm.getCandidatesQueue();
     }
 
     public void run() {
@@ -58,7 +57,7 @@ public class TaskProducer implements Runnable {
                 List<Integer> nextWindowsOffsets = null;
                 Machine copyOfMachine = null;
 
-                while (!finishedAllTasks) {
+                while (!finishedAllTasks && !dm.isIsBruteForceActionCancelled()) {
 
                     if (currentTaskSubmitted) {
 
@@ -79,11 +78,9 @@ public class TaskProducer implements Runnable {
 
                     try {
                         agentTaskQueue.put(new AgentTask(inUseRotorsIDs, nextWindowsOffsets, inUseReflectorID,
-                                copyOfMachine, taskSize, textToDecipher, dictionary, candidatesQueue));
-                        currentTaskSubmitted = true;
-                    } catch (InterruptedException e) {
-                        currentTaskSubmitted = false;
-                        Thread.yield();
+                                copyOfMachine, taskSize, textToDecipher, dictionary, candidatesQueue, dm.isBruteForceActionCancelledProperty()));
+                    } catch (InterruptedException ignored) {
+                        //e.printStackTrace();
                     }
                 }
                 break;
@@ -118,5 +115,4 @@ public class TaskProducer implements Runnable {
     private int rotateWindow(Integer windowOffset) {
         return (windowOffset + 1 + alphabet.length()) % alphabet.length();
     }
-
 }

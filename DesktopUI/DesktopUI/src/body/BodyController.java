@@ -342,4 +342,8 @@ public class BodyController {
     public void setDictionaryWords(Set<String> dictionaryWords) {
         dictionaryController.setDictionaryWords(dictionaryWords);
     }
+
+    public void stopBruteForce() {
+        mainController.stopBruteForceProcess();
+    }
 }

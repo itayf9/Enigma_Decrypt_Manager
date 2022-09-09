@@ -52,7 +52,10 @@ public class dmOperationalController {
         if (isBruteForceTaskActive.getValue()) {
             stopBruteForceAction();
         } else {
+            long startMeasureTime = System.nanoTime();
             startBruteForceAction();
+            long timeElapsed = System.nanoTime() - startMeasureTime;
+            System.out.println(timeElapsed);
         }
     }
 
@@ -67,6 +70,7 @@ public class dmOperationalController {
     }
 
     void stopBruteForceAction() {
+        parentController.stopBruteForce();
     }
 
     void startBruteForceAction() {
