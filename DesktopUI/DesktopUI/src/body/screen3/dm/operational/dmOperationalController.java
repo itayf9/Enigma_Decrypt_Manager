@@ -52,10 +52,7 @@ public class dmOperationalController {
         if (isBruteForceTaskActive.getValue()) {
             stopBruteForceAction();
         } else {
-            long startMeasureTime = System.nanoTime();
             startBruteForceAction();
-            long timeElapsed = System.nanoTime() - startMeasureTime;
-            System.out.println(timeElapsed);
         }
     }
 
@@ -78,6 +75,7 @@ public class dmOperationalController {
         int taskSize = taskSizeSpinner.getValue(); // need to fix text value not updating if no button pressed
         int numOfAgentSelected = (int) numOfAgentsSlider.getValue();
         String textToDecipher = textToDecipherProperty.getValue();
+        System.out.println("take size: " + taskSize);
 
         if (difficultyLevel == null) {
             System.out.println("Error not entered dificulty level");

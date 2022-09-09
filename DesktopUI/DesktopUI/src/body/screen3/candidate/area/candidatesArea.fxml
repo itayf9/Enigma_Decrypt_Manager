@@ -28,7 +28,10 @@
    <children>
       <ScrollPane fitToHeight="true" fitToWidth="true" GridPane.rowIndex="1" GridPane.rowSpan="3">
          <content>
-            <FlowPane fx:id="candidatesFlowPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="108.0" prefWidth="503.0" styleClass="candidates-flow-pane" />
+            <FlowPane fx:id="candidatesFlowPane" hgap="1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="108.0" prefWidth="503.0" styleClass="candidates-flow-pane" vgap="1.0">
+               <padding>
+                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+               </padding></FlowPane>
          </content>
       </ScrollPane>
       <Label styleClass="component-title" text="Candidates" />

@@ -20,7 +20,7 @@ public class TaskProducer implements Runnable {
     protected BlockingQueue<Runnable> agentTaskQueue;
     private final Machine machine;
     private final String alphabet;
-    private final int taskSize;
+    private int taskSize;
     private final DifficultyLevel difficulty;
     private boolean currentTaskSubmitted = true;
     private String textToDecipher;
@@ -64,12 +64,12 @@ public class TaskProducer implements Runnable {
                         // first clone a machine to send to the agent
                         copyOfMachine = new EnigmaMachine((EnigmaMachine) machine); // Clone!
 
-                        // the next window characters to set for the agent, based on last window characters
-                        nextWindowsOffsets = getNextWindowsOffsets(taskSize, currentWindowsOffsets);
-                        if (nextWindowsOffsets.size() == 0) {
-                            finishedAllTasks = true;
-                            continue; // exit the loop => kill the taskProducer.
-                        }
+                    // the next window characters to set for the agent, based on last window characters
+                    nextWindowsOffsets = getNextWindowsOffsets(taskSize, currentWindowsOffsets);
+                    if (AllWindowsOffsetsAtBeginning(nextWindowsOffsets)) {
+                        finishedAllTasks = true;
+                        continue;
+                    }
 
                         // replace current list with next list
                         currentWindowsOffsets.clear();
@@ -77,6 +77,7 @@ public class TaskProducer implements Runnable {
                     }
 
                     try {
+                        taskCounter++;
                         agentTaskQueue.put(new AgentTask(inUseRotorsIDs, nextWindowsOffsets, inUseReflectorID,
                                 copyOfMachine, taskSize, textToDecipher, dictionary, candidatesQueue, dm.isBruteForceActionCancelledProperty()));
                     } catch (InterruptedException ignored) {
@@ -107,6 +108,10 @@ public class TaskProducer implements Runnable {
                 if (nextWindowsOffsets.get(j) != 0) {
                     break;
                 }
+            }
+
+            if (AllWindowsOffsetsAtBeginning(nextWindowsOffsets)) {
+                return nextWindowsOffsets;
             }
         }
         return nextWindowsOffsets;

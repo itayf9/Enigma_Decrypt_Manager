@@ -285,7 +285,7 @@ public class MainController {
         }
     }
 
-    @FXML
+
     public void startBruteForceProcess(String textToDecipher, DifficultyLevel difficultyLevel, int taskSize, int numOfAgentSelected) {
         isBruteForceTaskActive.set(true);
         cleanOldResults();
