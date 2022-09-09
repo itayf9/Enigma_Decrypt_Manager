@@ -71,17 +71,19 @@ public class AgentTask implements Runnable {
     @Override
     public void run() {
 
+        System.out.println("thread num# " + Thread.currentThread().getName() + " starting to scan all offset from " + windowOffsets);
+
         List<Candidate> candidates = new ArrayList<>();
         int numOfConfigScanned = 0;
 
         for (int i = 0; i < taskSize && !isBruteForceActionCancelled.getValue(); i++) {
             numOfConfigScanned++;
-            if (AllWindowsOffsetsAtBeginning()) {
-                break;
-            }
 
             // sets machine to the next configuration
             // changes only the window offsets
+            if (Thread.currentThread().getName().equals("1")) {
+                System.out.println("scan rotors= " + rotorsIDs + "windows= " + windowOffsets + "reflector= " + inUseReflectorID);
+            }
             machine.setMachineConfiguration(rotorsIDs, windowOffsets, inUseReflectorID, "");
 
             // ciphers the text
@@ -110,9 +112,14 @@ public class AgentTask implements Runnable {
 
             // moves to the next configuration
             advanceWindow();
+
+            if (AllWindowsOffsetsAtBeginning()) {
+                break;
+            }
         }
         // send conclusion to DM
         try {
+            System.out.println("thread num# " + Thread.currentThread().getName() + " finished scan and reached to  " + windowOffsets);
             candidatesQueue.put(new AgentConclusion(candidates, numOfConfigScanned));
         } catch (InterruptedException ignored) {
 

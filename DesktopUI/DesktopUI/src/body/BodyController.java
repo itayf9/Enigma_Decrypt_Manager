@@ -346,4 +346,8 @@ public class BodyController {
     public void stopBruteForce() {
         mainController.stopBruteForceProcess();
     }
+
+    public void clearOldResultsOfBruteForce() {
+        candidatesAreaController.clearOldResultsOfBruteForce();
+    }
 }

@@ -63,4 +63,8 @@ public class CandidatesAreaController {
     public void insertCandidateToFlowPane(Node singleCandidateTile) {
         candidatesFlowPane.getChildren().add(singleCandidateTile);
     }
+
+    public void clearOldResultsOfBruteForce() {
+        candidatesFlowPane.getChildren().clear();
+    }
 }

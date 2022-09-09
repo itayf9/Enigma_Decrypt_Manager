@@ -30,7 +30,7 @@ public class CandidatesCollectorTask extends Task<Boolean> {
         uiAdapter.updateTotalConfigsPossible(totalPossibleConfigurations);
 
         updateMessage("Searching for Candidates...");
-        uiAdapter.updateTaskStatus("Searching for Candidates...");
+        uiAdapter.updateTaskStatus("Searching...");
 
         while (scannedConfigsCount[0] < totalPossibleConfigurations && !isBruteForceActionCancelled.getValue()) {
             AgentConclusion queueTakenCandidates = null;
@@ -53,8 +53,7 @@ public class CandidatesCollectorTask extends Task<Boolean> {
             }
 
             if (queueTakenCandidates.getCandidates().size() != 0) {
-                updateMessage("Found Candidate!");
-                uiAdapter.updateTaskStatus("Found Candidate!");
+
                 for (Candidate candidate : queueTakenCandidates.getCandidates()) {
                     uiAdapter.addNewCandidate(candidate);
                 }

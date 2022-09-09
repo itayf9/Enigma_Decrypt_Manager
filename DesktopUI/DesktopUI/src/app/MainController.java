@@ -303,10 +303,10 @@ public class MainController {
     }
 
     private void cleanOldResults() {
-        // candidateFlowPane.getChildren().clear();
-        // taskProgressBar.setProgress(0);
-        // totalDistinctWords.set(0); delete if no use
-        // totalProcessedCandidates.set(0);
+        bodyController.clearOldResultsOfBruteForce();
+        bruteForceProgress.set(0);
+        totalDistinctCandidates.set(0);
+        totalProcessedConfigurations.set(0);
     }
 
     private UIAdapter createUIAdapter() {
