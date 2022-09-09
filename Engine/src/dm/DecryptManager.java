@@ -114,4 +114,28 @@ public class DecryptManager {
     public Set<String> getDictionaryWords() {
         return dictionary.getWords();
     }
+
+    public Machine getEnigmaMachine() {
+        return enigmaMachine;
+    }
+
+    public Dictionary getDictionary() {
+        return dictionary;
+    }
+
+    public BlockingQueue<AgentConclusion> getCandidatesQueue() {
+        return candidatesQueue;
+    }
+
+    public BlockingQueue<Runnable> getThreadPoolBlockingQueue() {
+        return threadPoolBlockingQueue;
+    }
+
+    public boolean isIsBruteForceActionCancelled() {
+        return isBruteForceActionCancelled.get();
+    }
+
+    public BooleanProperty isBruteForceActionCancelledProperty() {
+        return isBruteForceActionCancelled;
+    }
 }

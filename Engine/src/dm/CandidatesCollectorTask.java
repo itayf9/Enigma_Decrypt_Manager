@@ -38,7 +38,7 @@ public class CandidatesCollectorTask extends Task<Boolean> {
                 scannedConfigsCount[0] += queueTakenCandidates.getNumOfScannedConfigurations();
 
                 updateProgress(scannedConfigsCount[0], totalPossibleConfigurations);
-                uiAdapter.updateProgressBar(scannedConfigsCount[0] / totalPossibleConfigurations);
+                uiAdapter.updateProgressBar((double) scannedConfigsCount[0] / (double) totalPossibleConfigurations);
 
                 uiAdapter.updateTotalProcessedConfigurations(queueTakenCandidates.getNumOfScannedConfigurations());
             } catch (InterruptedException e) {
@@ -54,6 +54,14 @@ public class CandidatesCollectorTask extends Task<Boolean> {
                     uiAdapter.addNewCandidate(candidate);
                 }
             }
+
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException ignored) {
+
+            }
+
+
         }
         uiAdapter.updateTaskActiveStatus(false);
         updateMessage("Done...");
