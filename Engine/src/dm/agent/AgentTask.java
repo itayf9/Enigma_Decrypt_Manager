@@ -71,6 +71,8 @@ public class AgentTask implements Runnable {
     @Override
     public void run() {
 
+        long startMeasureTime = System.nanoTime();
+
         List<Candidate> candidates = new ArrayList<>();
         int numOfConfigScanned = 0;
 
@@ -94,7 +96,7 @@ public class AgentTask implements Runnable {
                 String nextCandidateReflectorSymbol = decimalToRoman(inUseReflectorID);
 
                 // fetch the notch positions
-                List<Integer> notchPositions = machine.getInUseNotchDistanceToWindow();
+                List<Integer> notchPositions = machine.getOriginalNotchPositions(); // I trust this !
 
                 // fetch the current thread's name
                 String processedByAgentName = Thread.currentThread().getName();
@@ -114,10 +116,13 @@ public class AgentTask implements Runnable {
         }
         // send conclusion to DM
         try {
-            candidatesQueue.put(new AgentConclusion(candidates, numOfConfigScanned));
+            long timeElapsed = System.nanoTime() - startMeasureTime;
+            candidatesQueue.put(new AgentConclusion(candidates, numOfConfigScanned, timeElapsed));
         } catch (InterruptedException ignored) {
 
         }
+
+
     }
 
     private boolean AllWindowsOffsetsAtBeginning() {

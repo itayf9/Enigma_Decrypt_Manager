@@ -136,14 +136,6 @@ public class DecryptManager {
         return allCandidates;
     }
 
-    private long factorial(int number) {
-        long fact = 1;
-        for (int i = 1; i <= number; i++) {
-            fact = fact * i;
-        }
-        return fact;
-    }
-
     public Set<String> getDictionaryWords() {
         return dictionary.getWords();
     }

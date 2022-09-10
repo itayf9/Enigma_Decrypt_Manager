@@ -1,6 +1,7 @@
 package body.screen3.candidate.area;
 
 import body.BodyController;
+import javafx.beans.binding.Binding;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
@@ -53,7 +54,8 @@ public class CandidatesAreaController {
 
     public void bindInitPropertiesToLabels(IntegerProperty totalDistinctCandidates, IntegerProperty totalProcessedConfigurations,
                                            LongProperty totalAmountConfigurations, DoubleProperty bruteForceProgress,
-                                           StringProperty bruteForceProgressBarPercentageLabel, StringProperty bruteForceStatus) {
+                                           StringProperty bruteForceProgressBarPercentageLabel, StringProperty bruteForceStatus,
+                                           DoubleProperty averageTasksProcessTimeProperty) {
 
         numberOfTotalPossibleConfigurationsLabel.textProperty().bind(Bindings.concat("Total Configurations: ", totalAmountConfigurations.asString()));
         numberOfDistinctCandidatesLabel.textProperty().bind(Bindings.concat("Candidates found: ", totalDistinctCandidates.asString()));
@@ -61,6 +63,7 @@ public class CandidatesAreaController {
         progressPercentageLabel.textProperty().bind(bruteForceProgressBarPercentageLabel);
         BFprogressBar.progressProperty().bind(bruteForceProgress);
         BFstatusLabel.textProperty().bind(Bindings.concat("Status: ", bruteForceStatus));
+        averageProcessTimeLabel.textProperty().bind(Bindings.concat("averageProcessTime: ", Bindings.format("%.3f", averageTasksProcessTimeProperty), " ns"));
     }
 
     public void insertCandidateToFlowPane(Node singleCandidateTile) {

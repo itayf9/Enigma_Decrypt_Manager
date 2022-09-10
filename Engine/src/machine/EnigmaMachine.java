@@ -97,8 +97,6 @@ public class EnigmaMachine implements Serializable, Cloneable, Machine {
         this.plugBoard = new PlugBoard(other.plugBoard);
         this.inUseRotors = new ArrayList<>(other.inUseRotors);
         this.inUseReflector = new Reflector(other.inUseReflector);
-
-        System.out.println(" thread :" + Thread.currentThread().getName() + " Cloned the Machine");
     }
 
     /**

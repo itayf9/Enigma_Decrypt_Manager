@@ -27,15 +27,13 @@ import statistics.StatisticRecord;
 import ui.adapter.UIAdapter;
 
 import java.io.IOException;
-import java.util.Calendar;
-import java.util.List;
 
 public class MainController {
 
     /**
      * app private members
      */
-    private Engine engine = new EnigmaEngine();
+    private final Engine engine = new EnigmaEngine();
     @FXML
     private GridPane header;
     @FXML
@@ -89,6 +87,7 @@ public class MainController {
     private StringProperty bruteForceStatusMessage;
     private BooleanProperty isBruteForceTaskActive;
     private long totalPossibleWindowsPositions;
+    private DoubleProperty averageTasksProcessTimeProperty;
 
 
     @FXML
@@ -115,6 +114,7 @@ public class MainController {
             this.totalPossibleConfigurations = new SimpleLongProperty();
             this.messageFadeTransition = new FadeTransition(Duration.millis(5000), statusBackShape);
             this.isBruteForceTaskActive = new SimpleBooleanProperty(false);
+            this.averageTasksProcessTimeProperty = new SimpleDoubleProperty();
 
 
             /**
@@ -167,7 +167,7 @@ public class MainController {
             bodyController.displayStatistics();
 
             this.totalPossibleWindowsPositions = (int) Math.pow(alphabetLength, rotorsCount);
-            bodyController.setDMOperetionalSettings((int) totalPossibleWindowsPositions, specsStatus.getNumOfAvailableAgents());
+            bodyController.setDMOperetionalSettings((int) totalPossibleWindowsPositions, specsStatus.getNumOfAvailableAgents(), specsStatus);
 
             headerController.enableLoadButtonTransition(false);
 
@@ -286,21 +286,14 @@ public class MainController {
         }
     }
 
-
     public void startBruteForceProcess(String textToDecipher, DifficultyLevel difficultyLevel, int taskSize, int numOfAgentSelected) {
         isBruteForceTaskActive.set(true);
         cleanOldResults();
         UIAdapter uiAdapter = createUIAdapter();
-        toggleTaskButtons(true);
 
         //fire up the DM
-        engine.startBruteForceProcess(uiAdapter, () -> toggleTaskButtons(false),
-                textToDecipher, difficultyLevel, taskSize, numOfAgentSelected);
-    }
-
-    private void toggleTaskButtons(boolean isActive) {
-        // stopTaskButton.setDisable(!isActive);
-        // clearTaskButton.setDisable(isActive);
+        engine.startBruteForceProcess(uiAdapter, () -> {
+        }, textToDecipher, difficultyLevel, taskSize, numOfAgentSelected);
     }
 
     private void cleanOldResults() {
@@ -308,6 +301,7 @@ public class MainController {
         bruteForceProgress.set(0);
         totalDistinctCandidates.set(0);
         totalProcessedConfigurations.set(0);
+        averageTasksProcessTimeProperty.set(0);
     }
 
     private UIAdapter createUIAdapter() {
@@ -334,6 +328,8 @@ public class MainController {
             totalPossibleConfigurations.setValue(totalConfigs);
         }, (isActive) -> {
             isBruteForceTaskActive.set(isActive);
+        }, (averageTasksProcessTime) -> {
+            averageTasksProcessTimeProperty.set(averageTasksProcessTime);
         }
         );
     }

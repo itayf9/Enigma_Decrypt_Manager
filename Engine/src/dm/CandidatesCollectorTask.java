@@ -26,25 +26,39 @@ public class CandidatesCollectorTask extends Task<Boolean> {
     @Override
     protected Boolean call() {
 
-        final long[] scannedConfigsCount = {0};
+        long totalTasksProcessTime = 0;
+
+        long scannedConfigsCount = 0;
+
+        long tasksCounter = 0;
+
+        double averageTasksProcessTime;
+
         uiAdapter.updateTotalConfigsPossible(totalPossibleConfigurations);
 
         updateMessage("Searching for Candidates...");
         uiAdapter.updateTaskStatus("Searching...");
 
-        while (scannedConfigsCount[0] < totalPossibleConfigurations && !isBruteForceActionCancelled.getValue()) {
+        while (scannedConfigsCount < totalPossibleConfigurations && !isBruteForceActionCancelled.getValue()) {
             AgentConclusion queueTakenCandidates;
             try {
                 queueTakenCandidates = candidateQueue.take();
 
-                scannedConfigsCount[0] += queueTakenCandidates.getNumOfScannedConfigurations();
+                tasksCounter++;
+                totalTasksProcessTime += queueTakenCandidates.getTimeTakenToDoTask();
 
-                updateProgress(scannedConfigsCount[0], totalPossibleConfigurations);
-                uiAdapter.updateProgressBar((double) scannedConfigsCount[0] / (double) totalPossibleConfigurations);
+                averageTasksProcessTime = (double) totalTasksProcessTime / (double) tasksCounter;
+
+                uiAdapter.updateAverageTasksProcessTime(averageTasksProcessTime);
+
+                scannedConfigsCount += queueTakenCandidates.getNumOfScannedConfigurations();
+
+                updateProgress(scannedConfigsCount, totalPossibleConfigurations);
+                uiAdapter.updateProgressBar((double) scannedConfigsCount / (double) totalPossibleConfigurations);
 
                 uiAdapter.updateTotalProcessedConfigurations(queueTakenCandidates.getNumOfScannedConfigurations());
             } catch (InterruptedException e) {
-                if (scannedConfigsCount[0] >= totalPossibleConfigurations) {
+                if (scannedConfigsCount >= totalPossibleConfigurations) {
                     return Boolean.TRUE;
                 } else {
                     uiAdapter.updateTaskStatus("Stopped...");
@@ -65,7 +79,6 @@ public class CandidatesCollectorTask extends Task<Boolean> {
                 uiAdapter.updateTaskStatus("Stopped...");
                 return Boolean.FALSE;
             }
-
 
         }
         uiAdapter.updateTaskActiveStatus(false);

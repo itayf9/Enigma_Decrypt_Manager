@@ -8,12 +8,12 @@ public class AgentConclusion {
 
     private List<Candidate> candidates;
     private int numOfScannedConfigurations;
-
     private long timeTakenToDoTask;
 
-    public AgentConclusion(List<Candidate> candidates, int numOfScannedConfigurations) {
+    public AgentConclusion(List<Candidate> candidates, int numOfScannedConfigurations, long timeTakenToDoTask) {
         this.candidates = candidates;
         this.numOfScannedConfigurations = numOfScannedConfigurations;
+        this.timeTakenToDoTask = timeTakenToDoTask;
     }
 
     public List<Candidate> getCandidates() {
@@ -22,5 +22,9 @@ public class AgentConclusion {
 
     public int getNumOfScannedConfigurations() {
         return numOfScannedConfigurations;
+    }
+
+    public long getTimeTakenToDoTask() {
+        return timeTakenToDoTask;
     }
 }

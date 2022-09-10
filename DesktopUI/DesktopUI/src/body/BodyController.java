@@ -255,17 +255,39 @@ public class BodyController {
         mainController.setCharByCharCipherMode(newCharByCharCipherMode);
     }
 
+    /**
+     * function that tells the engine we finished ciphering in char-by-char
+     */
     public void doneCurrentCipherProcess() {
         mainController.doneCurrentCipherProcess();
     }
 
+    /**
+     * init the binding of all subclass components
+     *
+     * @param isMachineConfiguredProperty          isMachineConfiguredProperty
+     * @param inUseRotorsIDsProperty               inUseRotorsIDsProperty
+     * @param currentWindowsCharactersProperty     currentWindowsCharactersProperty
+     * @param inUseReflectorSymbolProperty         inUseReflectorSymbolProperty
+     * @param inUsePlugs                           inUsePlugs
+     * @param currentNotchDistances                currentNotchDistances
+     * @param isCharByCharModeProperty             isCharByCharModeProperty
+     * @param cipherCounterProperty                cipherCounterProperty
+     * @param totalDistinctCandidates              totalDistinctCandidates
+     * @param totalProcessedConfigurations         totalProcessedConfigurations
+     * @param totalPossibleConfigurations          totalPossibleConfigurations
+     * @param bruteForceProgressBar                bruteForceProgressBar
+     * @param bruteForceProgressBarPercentageLabel bruteForceProgressBarPercentageLabel
+     * @param bruteForceStatusMessage              bruteForceStatusMessage
+     * @param isBruteForceTaskActive               isBruteForceTaskActive
+     */
     public void bindComponents(BooleanProperty isMachineConfiguredProperty, ListProperty<Integer> inUseRotorsIDsProperty,
                                StringProperty currentWindowsCharactersProperty, StringProperty inUseReflectorSymbolProperty,
                                StringProperty inUsePlugs, ListProperty<Integer> currentNotchDistances, BooleanProperty isCharByCharModeProperty,
-                               IntegerProperty cipherCounterProperty,
-                               IntegerProperty totalDistinctCandidates, IntegerProperty totalProcessedConfigurations,
-                               LongProperty totalPossibleConfigurations, DoubleProperty bruteForceProgressBar, StringProperty bruteForceProgressBarPercentageLabel
-            , StringProperty bruteForceStatusMessage, BooleanProperty isBruteForceTaskActive) {
+                               IntegerProperty cipherCounterProperty, IntegerProperty totalDistinctCandidates,
+                               IntegerProperty totalProcessedConfigurations, LongProperty totalPossibleConfigurations,
+                               DoubleProperty bruteForceProgressBar, StringProperty bruteForceProgressBarPercentageLabel
+            , StringProperty bruteForceStatusMessage, BooleanProperty isBruteForceTaskActive, DoubleProperty averageTasksProcessTimeProperty) {
 
         // binds the components that need the isConfigured Boolean property.
         encryptDecrypt.disableProperty().bind(isMachineConfiguredProperty.not());
@@ -288,7 +310,7 @@ public class BodyController {
         // brute force dashboard labels bind
         candidatesAreaController.bindInitPropertiesToLabels(totalDistinctCandidates, totalProcessedConfigurations, totalPossibleConfigurations,
                 bruteForceProgressBar, bruteForceProgressBarPercentageLabel
-                , bruteForceStatusMessage);
+                , bruteForceStatusMessage, averageTasksProcessTimeProperty);
 
         // dm operational bind
         dmOperationalController.bindComponents(isBruteForceTaskActive);
@@ -320,5 +342,9 @@ public class BodyController {
 
     public void clearOldResultsOfBruteForce() {
         candidatesAreaController.clearOldResultsOfBruteForce();
+    }
+
+    public DTOspecs getMachineSpecs() {
+        return mainController.fetchSpecs();
     }
 }

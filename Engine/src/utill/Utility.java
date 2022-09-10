@@ -115,14 +115,22 @@ public class Utility {
                 originalChar= '\"';
                 break;
             case "&apos;":
-                originalChar= '\'';
+                originalChar = '\'';
                 break;
             default:
-                originalChar= NOT_VALID_SPECIAL_CHAR_IN_XML;
+                originalChar = NOT_VALID_SPECIAL_CHAR_IN_XML;
         }
 
         return originalChar;
 
+    }
+
+    public static long factorial(int number) {
+        long fact = 1;
+        for (int i = 1; i <= number; i++) {
+            fact = fact * i;
+        }
+        return fact;
     }
 
 }

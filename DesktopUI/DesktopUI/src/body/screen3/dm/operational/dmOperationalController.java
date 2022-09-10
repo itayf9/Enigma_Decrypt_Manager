@@ -2,6 +2,7 @@ package body.screen3.dm.operational;
 
 import body.BodyController;
 import dm.difficultylevel.DifficultyLevel;
+import dto.DTOspecs;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.*;
 import javafx.fxml.FXML;
@@ -39,6 +40,8 @@ public class dmOperationalController {
     private StringProperty textToDecipherProperty;
 
     private BooleanProperty isBruteForceTaskActive;
+
+    private DTOspecs specStatus;
 
 
     @FXML
@@ -87,7 +90,7 @@ public class dmOperationalController {
         System.out.println("take size: " + taskSize);
 
         if (difficultyLevel == null) {
-            System.out.println("Error not entered dificulty level");
+            System.out.println("Error not entered difficulty level");
             return;
         }
 

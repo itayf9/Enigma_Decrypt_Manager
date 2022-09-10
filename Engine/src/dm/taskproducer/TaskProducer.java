@@ -56,7 +56,6 @@ public class TaskProducer implements Runnable {
 
                 // set up first agentTask
                 try {
-                    taskCounter++;
                     agentTaskQueue.put(new AgentTask(inUseRotorsIDs, new ArrayList<>(currentWindowsOffsets), inUseReflectorID,
                             copyOfMachine, taskSize, textToDecipher, dictionary, candidatesQueue, dm.isBruteForceActionCancelledProperty()));
                 } catch (InterruptedException ignored) {
@@ -80,8 +79,6 @@ public class TaskProducer implements Runnable {
                     currentWindowsOffsets.addAll(nextWindowsOffsets);
 
                     try {
-                        taskCounter++;
-                        System.out.println(taskCounter);
                         agentTaskQueue.put(new AgentTask(inUseRotorsIDs, nextWindowsOffsets, inUseReflectorID,
                                 copyOfMachine, taskSize, textToDecipher, dictionary, candidatesQueue, dm.isBruteForceActionCancelledProperty()));
                     } catch (InterruptedException ignored) {

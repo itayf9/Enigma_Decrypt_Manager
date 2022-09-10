@@ -16,12 +16,13 @@ public class UIAdapter {
     private Consumer<Double> updateProgressBarPercentage; // need this to update progressbar percentage label
     private Consumer<Long> updateTotalConfigs;
     private Consumer<Boolean> updateTaskActiveStatus;
+    private Consumer<Double> updateAverageTasksProcessTime;
 
 
     public UIAdapter(Consumer<Candidate> introduceNewCandidate, Runnable updateDistinct,
                      Consumer<Integer> updateTotalProcessedConfigurations, Consumer<String> updateTaskStatus,
                      Consumer<Double> updateProgressBar, Consumer<Double> updateProgressBarPercentage,
-                     Consumer<Long> updateTotalConfigs, Consumer<Boolean> updateTaskOverStatus) {
+                     Consumer<Long> updateTotalConfigs, Consumer<Boolean> updateTaskOverStatus, Consumer<Double> updateAverageTasksProcessTime) {
         this.introduceNewCandidate = introduceNewCandidate;
         this.updateDistinct = updateDistinct;
         this.updateTotalProcessedConfigurations = updateTotalProcessedConfigurations;
@@ -30,6 +31,7 @@ public class UIAdapter {
         this.updateProgressBarPercentage = updateProgressBarPercentage;
         this.updateTotalConfigs = updateTotalConfigs;
         this.updateTaskActiveStatus = updateTaskOverStatus;
+        this.updateAverageTasksProcessTime = updateAverageTasksProcessTime;
     }
 
     public void addNewCandidate(Candidate candidate) {
@@ -74,6 +76,14 @@ public class UIAdapter {
         Platform.runLater(
                 () -> {
                     updateTaskActiveStatus.accept(isActive);
+                }
+        );
+    }
+
+    public void updateAverageTasksProcessTime(double averageTasksProcessTime) {
+        Platform.runLater(
+                () -> {
+                    updateAverageTasksProcessTime.accept(averageTasksProcessTime);
                 }
         );
     }
