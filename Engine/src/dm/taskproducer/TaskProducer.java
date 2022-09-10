@@ -9,9 +9,12 @@ import machine.EnigmaMachine;
 import machine.Machine;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
+
+import static utill.Utility.factorial;
 
 public class TaskProducer implements Runnable {
 
@@ -23,6 +26,8 @@ public class TaskProducer implements Runnable {
     private final String textToDecipher;
     private final Dictionary dictionary;
     private final BlockingQueue<AgentConclusion> candidatesQueue;
+
+    private List<List<Integer>> listOfAllPermutationsRotorsIDs = new ArrayList<>();
     DecryptManager dm;
     private int taskCounter = 0;
 
@@ -87,8 +92,10 @@ public class TaskProducer implements Runnable {
                 }
                 break;
             case MEDIUM:
+                produceMediumTasks(machine.getInUseRotorsIDs());
                 break;
             case HARD:
+                produceHardTasks();
                 break;
             case IMPOSSIBLE:
                 break;
@@ -96,6 +103,28 @@ public class TaskProducer implements Runnable {
                 break;
         }
 
+    }
+
+    public void printAllRecursive(
+            int n, List<Integer> elements) {
+
+        if (n == 1) {
+            printArray(elements);
+        } else {
+            for (int i = 0; i < n - 1; i++) {
+                printAllRecursive(n - 1, new ArrayList<>(elements));
+                if (n % 2 == 0) {
+                    Collections.swap(elements, i, n - 1);
+                } else {
+                    Collections.swap(elements, 0, n - 1);
+                }
+            }
+            printAllRecursive(n - 1, new ArrayList<>(elements));
+        }
+    }
+
+    public void printArray(List<Integer> elements) {
+        listOfAllPermutationsRotorsIDs.add(elements);
     }
 
     private List<Integer> getNextWindowsOffsets(int taskSize, List<Integer> currentWindowsOffsets) {
