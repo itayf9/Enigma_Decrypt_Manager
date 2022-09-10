@@ -9,12 +9,10 @@ import machine.EnigmaMachine;
 import machine.Machine;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 
-import static utill.Utility.factorial;
 
 public class TaskProducer implements Runnable {
 
