@@ -51,7 +51,8 @@ public class DictionaryController {
             for (String word : allWordsWithSearchedPrefix) {
                 Label wordLabel = new Label(word);
                 wordLabel.setPadding(new Insets(5));
-                wordLabel.setStyle("-fx-border-width: 1; -fx-border-color: grey; -fx-border-radius: 10;");
+                wordLabel.setOnMouseClicked(event -> parentController.appendNewWordToInputCipherText(wordLabel.getText()));
+                wordLabel.getStyleClass().add("word-label");
                 wordsAreaFlowPane.getChildren().add(wordLabel);
             }
         }

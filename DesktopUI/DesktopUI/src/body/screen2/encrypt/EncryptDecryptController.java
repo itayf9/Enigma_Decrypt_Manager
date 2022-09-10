@@ -241,4 +241,8 @@ public class EncryptDecryptController {
     public void bindCipherMode(BooleanProperty isCharByCharModeProperty) {
         processButton.textProperty().bind(Bindings.when(isCharByCharModeProperty.not()).then("Process").otherwise("Done"));
     }
+
+    public void appendNewWordToInputCipherText(String newWord) {
+        inputTextField.setText(inputTextField.getText() + " " + newWord);
+    }
 }

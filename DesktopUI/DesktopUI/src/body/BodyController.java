@@ -347,4 +347,8 @@ public class BodyController {
     public DTOspecs getMachineSpecs() {
         return mainController.fetchSpecs();
     }
+
+    public void appendNewWordToInputCipherText(String newWord) {
+        encryptDecrypt2Controller.appendNewWordToInputCipherText(newWord);
+    }
 }
