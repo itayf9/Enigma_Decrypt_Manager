@@ -17,23 +17,23 @@ import java.util.concurrent.*;
 
 public class DecryptManager {
 
-    private BlockingQueue<AgentConclusion> candidatesQueue;
+    private final BlockingQueue<AgentConclusion> candidatesQueue;
     private ThreadPoolExecutor threadExecutor;
     private Thread collector;
     private Thread taskProducer;
     private final Machine enigmaMachine;
     private final Dictionary dictionary;
     private final int numOfAvailableAgents;
-    private List<Candidate> allCandidates = new ArrayList<>();
+    private final List<Candidate> allCandidates = new ArrayList<>();
     private long totalPossibleConfigurations;
-    private long totalPossibleWindowsPositions;
+    private final long totalPossibleWindowsPositions;
     private final BlockingQueue<Runnable> threadPoolBlockingQueue;
 
     public int getNumOfAvailableAgents() {
         return numOfAvailableAgents;
     }
 
-    private BooleanProperty isBruteForceActionCancelled;
+    private final BooleanProperty isBruteForceActionCancelled;
 
     public DecryptManager(Dictionary dictionary, int numOfAvailableAgents, Machine enigmaMachine) {
         int LIMIT_NUMBER_OF_TASK = 1000;
@@ -125,7 +125,7 @@ public class DecryptManager {
                         factorial(enigmaMachine.getRotorsCount()));
                 break;
             case IMPOSSIBLE:
-                // need to calculate then implement Too damm HARD
+                // need to calculate then implement Too HARD
                 break;
         }
     }

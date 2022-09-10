@@ -12,8 +12,8 @@ public class CandidatesCollectorTask extends Task<Boolean> {
 
     private final BlockingQueue<AgentConclusion> candidateQueue;
     private final long totalPossibleConfigurations;
-    private UIAdapter uiAdapter;
-    private BooleanProperty isBruteForceActionCancelled;
+    private final UIAdapter uiAdapter;
+    private final BooleanProperty isBruteForceActionCancelled;
 
     public CandidatesCollectorTask(BlockingQueue<AgentConclusion> candidateQueue, long totalPossibleConfigurations,
                                    UIAdapter uiAdapter, BooleanProperty isBruteForceActionCancelled) {
@@ -24,7 +24,7 @@ public class CandidatesCollectorTask extends Task<Boolean> {
     }
 
     @Override
-    protected Boolean call() throws Exception {
+    protected Boolean call() {
 
         final long[] scannedConfigsCount = {0};
         uiAdapter.updateTotalConfigsPossible(totalPossibleConfigurations);
@@ -33,7 +33,7 @@ public class CandidatesCollectorTask extends Task<Boolean> {
         uiAdapter.updateTaskStatus("Searching...");
 
         while (scannedConfigsCount[0] < totalPossibleConfigurations && !isBruteForceActionCancelled.getValue()) {
-            AgentConclusion queueTakenCandidates = null;
+            AgentConclusion queueTakenCandidates;
             try {
                 queueTakenCandidates = candidateQueue.take();
 
@@ -60,7 +60,7 @@ public class CandidatesCollectorTask extends Task<Boolean> {
             }
 
             try {
-                Thread.sleep(100);
+                Thread.sleep(10);
             } catch (InterruptedException ignored) {
                 uiAdapter.updateTaskStatus("Stopped...");
                 return Boolean.FALSE;

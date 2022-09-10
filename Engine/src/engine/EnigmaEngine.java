@@ -959,7 +959,7 @@ public class EnigmaEngine implements Engine {
 
         return new DTOstatus(isSucceed, details);
     }
-    
+
     /**
      * @return a list of all candidates of the deciphering process
      */

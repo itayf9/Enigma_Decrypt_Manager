@@ -18,11 +18,11 @@ public class TaskProducer implements Runnable {
     protected BlockingQueue<Runnable> agentTaskQueue;
     private final Machine machine;
     private final String alphabet;
-    private int taskSize;
+    private final int taskSize;
     private final DifficultyLevel difficulty;
-    private String textToDecipher;
-    private Dictionary dictionary;
-    private BlockingQueue<AgentConclusion> candidatesQueue;
+    private final String textToDecipher;
+    private final Dictionary dictionary;
+    private final BlockingQueue<AgentConclusion> candidatesQueue;
     DecryptManager dm;
     private int taskCounter = 0;
 
@@ -52,13 +52,12 @@ public class TaskProducer implements Runnable {
                 // get the reflector
                 int inUseReflectorID = machine.getInUseReflector().getId();
                 List<Integer> nextWindowsOffsets;
-                Machine copyOfMachine;
+                Machine copyOfMachine = new EnigmaMachine((EnigmaMachine) machine); // Clone!
 
                 // set up first agentTask
-                copyOfMachine = new EnigmaMachine((EnigmaMachine) machine); // Clone!
                 try {
                     taskCounter++;
-                    agentTaskQueue.put(new AgentTask(inUseRotorsIDs, currentWindowsOffsets, inUseReflectorID,
+                    agentTaskQueue.put(new AgentTask(inUseRotorsIDs, new ArrayList<>(currentWindowsOffsets), inUseReflectorID,
                             copyOfMachine, taskSize, textToDecipher, dictionary, candidatesQueue, dm.isBruteForceActionCancelledProperty()));
                 } catch (InterruptedException ignored) {
                     //throw new RuntimeException(e);
@@ -82,6 +81,7 @@ public class TaskProducer implements Runnable {
 
                     try {
                         taskCounter++;
+                        System.out.println(taskCounter);
                         agentTaskQueue.put(new AgentTask(inUseRotorsIDs, nextWindowsOffsets, inUseReflectorID,
                                 copyOfMachine, taskSize, textToDecipher, dictionary, candidatesQueue, dm.isBruteForceActionCancelledProperty()));
                     } catch (InterruptedException ignored) {

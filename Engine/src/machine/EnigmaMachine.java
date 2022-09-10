@@ -1,12 +1,14 @@
 package machine;
 
-import engine.EnigmaEngine;
 import javafx.util.Pair;
 import machine.component.PlugBoard;
 import machine.component.Reflector;
 import machine.component.Rotor;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -21,20 +23,20 @@ public class EnigmaMachine implements Serializable, Cloneable, Machine {
      */
 
     // the machine contains a list of Rotors.
-    private List<Rotor> availableRotors;
+    private final List<Rotor> availableRotors;
 
     // the machine contains also a list of Reflectors.
-    private List<Reflector> availableReflectors;
+    private final List<Reflector> availableReflectors;
 
     // we use rotorsCount as a field which describes the current number of allowed Rotors.
-    private int rotorsCount;
+    private final int rotorsCount;
 
     // we use alphabet as a field that describes and converts the indexes to "ABC Characters".
-    private String alphabet;
+    private final String alphabet;
 
     // this map is used to replace alphabet.indexOf(srcChar)
     // with better complexity.
-    private Map<Character, Integer> character2index;
+    private final Map<Character, Integer> character2index;
 
     /**
      * This area describes the current configuration of the machine.
@@ -47,16 +49,16 @@ public class EnigmaMachine implements Serializable, Cloneable, Machine {
     private List<Integer> inUseWindowsOffsets;
 
     // we represent the plugBoard with plugBoard instance that contains a map of configured plugs.
-    private PlugBoard plugBoard;
+    private final PlugBoard plugBoard;
 
     // current Rotors configured in the machine to work with.
-    private List<Rotor> inUseRotors;
+    private final List<Rotor> inUseRotors;
 
     // current Reflector configured in the machine to work with.
     private Reflector inUseReflector;
 
     // current text that got ciphered in the machine.
-    private int cipherCounter = 0;
+    private int cipherCounter;
 
     /**
      * Constructor of Enigma Machine
@@ -95,6 +97,8 @@ public class EnigmaMachine implements Serializable, Cloneable, Machine {
         this.plugBoard = new PlugBoard(other.plugBoard);
         this.inUseRotors = new ArrayList<>(other.inUseRotors);
         this.inUseReflector = new Reflector(other.inUseReflector);
+
+        System.out.println(" thread :" + Thread.currentThread().getName() + " Cloned the Machine");
     }
 
     /**
@@ -393,7 +397,7 @@ public class EnigmaMachine implements Serializable, Cloneable, Machine {
         cipherCounter++;
     }
 
-    @Override
+    /*@Override
     public EnigmaMachine clone() throws CloneNotSupportedException {
 
         PlugBoard copyPlugs = this.plugBoard.clone();
@@ -421,10 +425,10 @@ public class EnigmaMachine implements Serializable, Cloneable, Machine {
 
         } catch (CloneNotSupportedException e) {
             return null;
-        }*/
+        }
 
         return new EnigmaMachine(this);
-    }
+    }*/
 
     public void saveCopyOfMachine(String fileName) {
 
@@ -433,7 +437,7 @@ public class EnigmaMachine implements Serializable, Cloneable, Machine {
                              Files.newOutputStream(Paths.get(fileName)))) {
             out.writeObject(this);
             out.flush();
-        } catch (IOException e) {
+        } catch (IOException ignored) {
 
         }
     }
@@ -441,7 +445,7 @@ public class EnigmaMachine implements Serializable, Cloneable, Machine {
     public Machine getCopyOfMachine(String fileName) {
 
         Machine newMachineCopy = null;
-        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName))) {
+        try (ObjectInputStream in = new ObjectInputStream(Files.newInputStream(Paths.get(fileName)))) {
             newMachineCopy = (EnigmaMachine) in.readObject();
         } catch (IOException | ClassNotFoundException e) {
             //

@@ -13,14 +13,14 @@ import static utill.Utility.decimalToRoman;
 
 public class AgentTask implements Runnable {
 
-    private Machine machine;
+    private final Machine machine;
     private final int taskSize;
     private final Dictionary dictionary;
     private final String textToDecipher;
     private final List<Integer> rotorsIDs;
-    private List<Integer> windowOffsets;
-    private int inUseReflectorID;
-    private BlockingQueue<AgentConclusion> candidatesQueue;
+    private final List<Integer> windowOffsets;
+    private final int inUseReflectorID;
+    private final BlockingQueue<AgentConclusion> candidatesQueue;
     BooleanProperty isBruteForceActionCancelled;
 
     public AgentTask(List<Integer> rotorsIDs, List<Integer> windowOffsets, int inUseReflectorID,
@@ -71,8 +71,6 @@ public class AgentTask implements Runnable {
     @Override
     public void run() {
 
-        System.out.println("thread num# " + Thread.currentThread().getName() + " starting to scan all offset from " + windowOffsets);
-
         List<Candidate> candidates = new ArrayList<>();
         int numOfConfigScanned = 0;
 
@@ -81,9 +79,6 @@ public class AgentTask implements Runnable {
 
             // sets machine to the next configuration
             // changes only the window offsets
-            if (Thread.currentThread().getName().equals("1")) {
-                System.out.println("scan rotors= " + rotorsIDs + "windows= " + windowOffsets + "reflector= " + inUseReflectorID);
-            }
             machine.setMachineConfiguration(rotorsIDs, windowOffsets, inUseReflectorID, "");
 
             // ciphers the text
@@ -119,7 +114,6 @@ public class AgentTask implements Runnable {
         }
         // send conclusion to DM
         try {
-            System.out.println("thread num# " + Thread.currentThread().getName() + " finished scan and reached to  " + windowOffsets);
             candidatesQueue.put(new AgentConclusion(candidates, numOfConfigScanned));
         } catch (InterruptedException ignored) {
 
@@ -127,6 +121,11 @@ public class AgentTask implements Runnable {
     }
 
     private boolean AllWindowsOffsetsAtBeginning() {
-        return windowOffsets.stream().allMatch(offset -> offset == 0);
+        for (Integer offset : windowOffsets) {
+            if (offset != 0) {
+                return false;
+            }
+        }
+        return true;
     }
 }
