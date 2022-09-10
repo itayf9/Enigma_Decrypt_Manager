@@ -37,6 +37,9 @@ public class CandidatesAreaController {
     @FXML
     private Label BFstatusLabel;
 
+    @FXML
+    private Label averageProcessTimeLabel;
+
     public void setParentController(BodyController parentController) {
         this.parentController = parentController;
     }

@@ -98,7 +98,6 @@ public class EncryptDecryptController {
                 cipherProblemLabel.setText(cipheredLineStatus.getDetails().name());
             } else {
                 outputLabel.setText(cipheredLineStatus.getCipheredText());
-                //parentController.updateMachineInfo();
                 parentController.displayStatistics();
                 cipherProblemLabel.setText("");
             }

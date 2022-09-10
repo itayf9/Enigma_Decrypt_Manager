@@ -160,17 +160,6 @@ public class BodyController {
     }
 
     /**
-     * display the current configuration
-     *
-     * @param configStatus the current configuration DTO
-     */
-    public void displayCurrentConfig(DTOsecretConfig configStatus) {
-        currentConfigScreen1Controller.displayCurrentConfig(configStatus);
-        currentConfigScreen2Controller.displayCurrentConfig(configStatus);
-        codeCalibrationController.displayCurrentConfigInFields(configStatus);
-    }
-
-    /**
      * rotors validation
      *
      * @param rotorsIds the rotors ids
@@ -234,15 +223,6 @@ public class BodyController {
     }
 
     /**
-     * enable/disable calibration section
-     *
-     * @param isAllow bool value to disable or enable
-     */
-    public void setAllowCodeCalibration(boolean isAllow) {
-        codeCalibrationController.selAllowCodeCalibration(isAllow);
-    }
-
-    /**
      * Q6 -> going up the chain to mainController
      */
     public void resetMachineConfiguration() {
@@ -267,19 +247,10 @@ public class BodyController {
     }
 
     /**
-     * update the current config and ciphered text values of machine details
+     * a function that tells the main controller to update the char-by-char mode in the engine
+     *
+     * @param newCharByCharCipherMode true or false
      */
-    public void updateMachineInfo() {
-        DTOspecs specsStatus = mainController.fetchSpecs();
-        machineDetailsController.displayMachineDetails(specsStatus);
-        currentConfigScreen1Controller.displayCurrentConfig(getCurrentConfigFromSpecs(specsStatus));
-        currentConfigScreen2Controller.displayCurrentConfig(getCurrentConfigFromSpecs(specsStatus));
-    }
-
-    public void setAllowEncryptDecrypt(boolean isAllow) {
-        encryptDecryptController.setAllowEncryptDecrypt(isAllow);
-    }
-
     public void setCharByCharCipherMode(boolean newCharByCharCipherMode) {
         mainController.setCharByCharCipherMode(newCharByCharCipherMode);
     }
@@ -327,8 +298,8 @@ public class BodyController {
         machineDetailsController.displayOriginalConfiguration(rotorsIDs, currentWindowsCharacters, inUseReflectorSymbol, inUsePlugs, currentNotchDistances);
     }
 
-    public void setDMOperetionalSettings(int maxTaskSize, int maxNumOfAgents) {
-        dmOperationalController.setSettings(maxTaskSize, maxNumOfAgents);
+    public void setDMOperetionalSettings(long totalPossibleWindowsPositions, int maxNumOfAgents, DTOspecs specStatus) {
+        dmOperationalController.setSettings(totalPossibleWindowsPositions, maxNumOfAgents, specStatus);
     }
 
     public void startBruteForce(String textToDecipher, DifficultyLevel difficultyLevel, int taskSize, int numOfAgentSelected) {

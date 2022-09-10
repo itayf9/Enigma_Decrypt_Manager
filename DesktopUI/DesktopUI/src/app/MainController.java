@@ -129,7 +129,7 @@ public class MainController {
                     currentWindowsCharactersProperty, inUseReflectorSymbolProperty, inUsePlugsProperty,
                     currentNotchDistances, isCharByCharModeProperty, cipherCounterProperty, totalDistinctCandidates,
                     totalProcessedConfigurations, totalPossibleConfigurations, bruteForceProgress,
-                    bruteForceProgressBarPercentageProperty, bruteForceStatusMessage, isBruteForceTaskActive);
+                    bruteForceProgressBarPercentageProperty, bruteForceStatusMessage, isBruteForceTaskActive, averageTasksProcessTimeProperty);
 
             body.visibleProperty().bind(isMachineLoadedProperty);
             messageLabel.textProperty().bind(statusLabel.textProperty());

@@ -19,6 +19,7 @@
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.66665649414062" minWidth="5.0" prefWidth="11.6666259765625" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="154.0" minWidth="10.0" prefWidth="127.6666259765625" />
       <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="5.0" prefWidth="45.66668701171875" />
+      <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.0" minWidth="25.0" prefWidth="82.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="91.66668701171875" minWidth="25.0" prefWidth="77.0" />
   </columnConstraints>
@@ -33,11 +34,11 @@
       <Label styleClass="component-title" text="Set Decrypt Menager" GridPane.columnSpan="8" />
       <Slider fx:id="numOfAgentsSlider" majorTickUnit="1.0" max="50.0" min="2.0" minorTickCount="0" snapToTicks="true" styleClass="number-of-agents-slider" GridPane.columnIndex="2" GridPane.rowIndex="3" />
       <ComboBox fx:id="difficultyLevelComboBox" maxWidth="1.7976931348623157E308" prefHeight="30.0" styleClass="difficulty-level-combo" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-      <Button fx:id="startButton" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onMouseClicked="#handleBruteForceStartStopOperationAction" prefHeight="60.0" prefWidth="60.0" styleClass="action-btn" text="Start" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+      <Button fx:id="startButton" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onMouseClicked="#handleBruteForceStartStopOperationAction" prefHeight="60.0" prefWidth="60.0" styleClass="action-btn" text="Start" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin></Button>
-      <Button fx:id="pauseButton" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onMouseClicked="#pauseBruteForceAction" prefHeight="60.0" prefWidth="60.0" styleClass="action-btn" text="Pause" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+      <Button fx:id="pauseButton" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onMouseClicked="#pauseBruteForceAction" prefHeight="60.0" prefWidth="60.0" styleClass="action-btn" text="Pause" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin></Button>
@@ -45,6 +46,8 @@
       <Label text="Task Size" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
       <Spinner fx:id="taskSizeSpinner" editable="true" styleClass="task-size-spinner" GridPane.rowIndex="3" />
       <Label text="Difficulty Level" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+      <Label text="Tasks Amount" GridPane.columnIndex="6" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+      <Label fx:id="tasksAmountLabel" text="amount" GridPane.columnIndex="6" GridPane.rowIndex="3" />
    </children>
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.*;
 
+import static utill.Utility.factorial;
+
 public class DecryptManager {
 
     private final BlockingQueue<AgentConclusion> candidatesQueue;
