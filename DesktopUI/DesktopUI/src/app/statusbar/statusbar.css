@@ -3,3 +3,15 @@
     -fx-border-color: grey;
     -fx-border-width: 1 0 0 0;
 }
+
+.success-message-area {
+    -fx-fill: #50a005;
+}
+
+.error-message-label {
+    -fx-fill: firebrick;
+}
+
+.info-message-label {
+    -fx-fill: #0095ff;
+}

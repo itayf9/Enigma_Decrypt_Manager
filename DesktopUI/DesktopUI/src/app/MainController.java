@@ -1,5 +1,6 @@
 package app;
 
+import app.statusbar.MessageTone;
 import bindings.CurrWinCharsAndNotchPosBinding;
 import body.BodyController;
 import body.screen3.candidate.tile.CandidateTileController;
@@ -158,7 +159,7 @@ public class MainController {
             int rotorsCount = specsStatus.getInUseRotorsCount();
             int alphabetLength = engine.getMachineAlphabet().length();
 
-            setStatusMessage("Loaded Successfully");
+            setStatusMessage("Loaded Successfully", MessageTone.SUCCESS);
 
             bodyController.setDictionaryWords(engine.getDictionaryWords().getDictionary());
             bodyController.displayMachineSpecs(specsStatus);
@@ -200,7 +201,7 @@ public class MainController {
         // display original config in machine specs
         bodyController.displayOriginalConfig(configStatus.getRotors(), configStatus.getWindows(), configStatus.getReflectorSymbol(), configStatus.getPlugs(), configStatus.getNotchDistances());
 
-        setStatusMessage("Configured Successfully");
+        setStatusMessage("Configured Successfully", MessageTone.SUCCESS);
 
         isMachineConfiguredProperty.setValue(Boolean.TRUE);
     }
@@ -221,7 +222,7 @@ public class MainController {
         ObservableList<Integer> notchDistanceObservableList = FXCollections.observableArrayList(configStatus.getNotchDistances());
         currentNotchDistances.setValue(notchDistanceObservableList);
 
-        setStatusMessage("Configured Successfully");
+        setStatusMessage("Configured Successfully", MessageTone.SUCCESS);
 
         isMachineConfiguredProperty.setValue(Boolean.TRUE);
 
@@ -265,7 +266,7 @@ public class MainController {
         ObservableList<Integer> notchDistanceObservableList = FXCollections.observableArrayList(specsStatus.getOriginalNotchPositions()); // current should be the same here
         currentNotchDistances.setValue(notchDistanceObservableList);
 
-        setStatusMessage("Reset Successfully");
+        setStatusMessage("Reset Successfully", MessageTone.SUCCESS);
     }
 
     public DTOstatistics fetchStats() {
@@ -280,9 +281,9 @@ public class MainController {
         engine.setCharByCharState(newCharByCharCipherMode);
         isCharByCharModeProperty.set(newCharByCharCipherMode);
         if (newCharByCharCipherMode) {
-            setStatusMessage("Switched to \"Char-By-Char\" Mode");
+            setStatusMessage("Switched to \"Char-By-Char\" Mode", MessageTone.INFO);
         } else {
-            setStatusMessage("Switched to \"Full Line\" Mode");
+            setStatusMessage("Switched to \"Full Line\" Mode", MessageTone.INFO);
         }
     }
 
@@ -368,8 +369,10 @@ public class MainController {
         cipherCounterProperty.set(specsStatus.getCipheredTextsCount());
     }
 
-    public void setStatusMessage(String newStatus) {
+    public void setStatusMessage(String newStatus, MessageTone messageTone) {
         statusBackShape.setOpacity(1);
+        statusBackShape.getStyleClass().add(messageTone.colorClassOfMessage());
+        messageTone.removeAllStyleClassExcept(statusBackShape.getStyleClass());
         messageFadeTransition.stop();
 
         messageFadeTransition = new FadeTransition(Duration.millis(5000), statusBackShape);
