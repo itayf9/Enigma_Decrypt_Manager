@@ -64,15 +64,12 @@ public class TaskProducer implements Runnable {
 
     private void produceHardTasks() {
 
-        //for (int i = 0; i < factorial(machine.getRotorsCount()); i++) {
+        this.listOfAllPermutationsRotorsIDs = permute(new ArrayList<>(machine.getInUseRotorsIDs()));
 
-        List<Integer> rotorsIDs = new ArrayList<>(machine.getInUseRotorsIDs());
-
-        printAllRecursive(rotorsIDs.size(), rotorsIDs);
         System.out.println(listOfAllPermutationsRotorsIDs);
-
-        //produceMediumTasks(rotorsIDs);
-        //  }
+        for (int i = 0; i < listOfAllPermutationsRotorsIDs.size(); i++) {
+            produceMediumTasks(listOfAllPermutationsRotorsIDs.get(i));
+        }
     }
 
     private void produceMediumTasks(List<Integer> rotorsIDs) {
@@ -131,26 +128,28 @@ public class TaskProducer implements Runnable {
         }
     }
 
-    public void printAllRecursive(
-            int n, List<Integer> elements) {
-
-        if (n == 1) {
-            printArray(elements);
-        } else {
-            for (int i = 0; i < n - 1; i++) {
-                printAllRecursive(n - 1, new ArrayList<>(elements));
-                if (n % 2 == 0) {
-                    Collections.swap(elements, i, n - 1);
-                } else {
-                    Collections.swap(elements, 0, n - 1);
-                }
-            }
-            printAllRecursive(n - 1, new ArrayList<>(elements));
+    public List<List<Integer>> permute(List<Integer> nums) {
+        List<List<Integer>> results = new ArrayList<List<Integer>>();
+        if (nums == null || nums.size() == 0) {
+            return results;
         }
+        List<Integer> result = new ArrayList<>();
+        dfs(nums, results, result);
+        return results;
     }
 
-    public void printArray(List<Integer> elements) {
-        listOfAllPermutationsRotorsIDs.add(elements);
+    public void dfs(List<Integer> nums, List<List<Integer>> results, List<Integer> result) {
+        if (nums.size() == result.size()) {
+            List<Integer> temp = new ArrayList<>(result);
+            results.add(temp);
+        }
+        for (int i = 0; i < nums.size(); i++) {
+            if (!result.contains(nums.get(i))) {
+                result.add(nums.get(i));
+                dfs(nums, results, result);
+                result.remove(result.size() - 1);
+            }
+        }
     }
 
     private List<Integer> getNextWindowsOffsets(int taskSize, List<Integer> currentWindowsOffsets) {
