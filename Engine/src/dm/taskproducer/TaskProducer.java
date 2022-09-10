@@ -44,52 +44,11 @@ public class TaskProducer implements Runnable {
     }
 
     public void run() {
-        List<Integer> currentWindowsOffsets = new ArrayList<>(Collections.nCopies(machine.getRotorsCount(), 0));
 
-        boolean finishedAllTasks = false;
         // set the tasks and send them to the pool
-
         switch (difficulty) {
             case EASY:
-                // easy mode so rotors doesn't change.
-
-                List<Integer> inUseRotorsIDs = machine.getInUseRotorsIDs();
-                // get the reflector
-                int inUseReflectorID = machine.getInUseReflector().getId();
-                List<Integer> nextWindowsOffsets;
-                Machine copyOfMachine = new EnigmaMachine((EnigmaMachine) machine); // Clone!
-
-                // set up first agentTask
-                try {
-                    agentTaskQueue.put(new AgentTask(inUseRotorsIDs, new ArrayList<>(currentWindowsOffsets), inUseReflectorID,
-                            copyOfMachine, taskSize, textToDecipher, dictionary, candidatesQueue, dm.isBruteForceActionCancelledProperty()));
-                } catch (InterruptedException ignored) {
-                    //throw new RuntimeException(e);
-                }
-
-                while (!finishedAllTasks && !dm.isIsBruteForceActionCancelled()) {
-
-                    // first clone a machine to send to the agent
-                    copyOfMachine = new EnigmaMachine((EnigmaMachine) machine); // Clone!
-
-                    // the next window characters to set for the agent, based on last window characters
-                    nextWindowsOffsets = getNextWindowsOffsets(taskSize, currentWindowsOffsets);
-                    if (AllWindowsOffsetsAtBeginning(nextWindowsOffsets)) {
-                        finishedAllTasks = true;
-                        continue;
-                    }
-
-                    // replace current list with next list
-                    currentWindowsOffsets.clear();
-                    currentWindowsOffsets.addAll(nextWindowsOffsets);
-
-                    try {
-                        agentTaskQueue.put(new AgentTask(inUseRotorsIDs, nextWindowsOffsets, inUseReflectorID,
-                                copyOfMachine, taskSize, textToDecipher, dictionary, candidatesQueue, dm.isBruteForceActionCancelledProperty()));
-                    } catch (InterruptedException ignored) {
-                        //e.printStackTrace();
-                    }
-                }
+                produceEasyTasks(machine.getInUseReflector().getId(), machine.getInUseRotorsIDs());
                 break;
             case MEDIUM:
                 produceMediumTasks(machine.getInUseRotorsIDs());
@@ -98,11 +57,78 @@ public class TaskProducer implements Runnable {
                 produceHardTasks();
                 break;
             case IMPOSSIBLE:
-                break;
-            case UNDEFINED:
+
                 break;
         }
+    }
 
+    private void produceHardTasks() {
+
+        //for (int i = 0; i < factorial(machine.getRotorsCount()); i++) {
+
+        List<Integer> rotorsIDs = new ArrayList<>(machine.getInUseRotorsIDs());
+
+        printAllRecursive(rotorsIDs.size(), rotorsIDs);
+        System.out.println(listOfAllPermutationsRotorsIDs);
+
+        //produceMediumTasks(rotorsIDs);
+        //  }
+    }
+
+    private void produceMediumTasks(List<Integer> rotorsIDs) {
+
+        int numOfReflectors = machine.getAvailableReflectorsLen();
+
+        for (int i = 1; i <= numOfReflectors; i++) {
+            produceEasyTasks(i, rotorsIDs);
+        }
+    }
+
+    private void produceEasyTasks(int reflectorID, List<Integer> rotorsIDs) {
+
+        List<Integer> currentWindowsOffsets = new ArrayList<>(Collections.nCopies(machine.getRotorsCount(), 0));
+
+        boolean finishedAllTasks = false;
+
+        // easy mode so rotors doesn't change.
+
+        List<Integer> inUseRotorsIDs = rotorsIDs;
+        // get the reflector
+        int inUseReflectorID = reflectorID;
+        List<Integer> nextWindowsOffsets;
+        Machine copyOfMachine = new EnigmaMachine((EnigmaMachine) machine); // Clone!
+
+        // set up first agentTask
+        try {
+            agentTaskQueue.put(new AgentTask(inUseRotorsIDs, new ArrayList<>(currentWindowsOffsets), inUseReflectorID,
+                    copyOfMachine, taskSize, textToDecipher, dictionary, candidatesQueue, dm.isBruteForceActionCancelledProperty()));
+        } catch (InterruptedException ignored) {
+            //throw new RuntimeException(e);
+        }
+
+        while (!finishedAllTasks && !dm.isIsBruteForceActionCancelled()) {
+
+            // first clone a machine to send to the agent
+            copyOfMachine = new EnigmaMachine((EnigmaMachine) machine); // Clone!
+
+            // the next window characters to set for the agent, based on last window characters
+            nextWindowsOffsets = getNextWindowsOffsets(taskSize, currentWindowsOffsets);
+            if (AllWindowsOffsetsAtBeginning(nextWindowsOffsets)) {
+                finishedAllTasks = true;
+                continue;
+            }
+
+            // replace current list with next list
+            currentWindowsOffsets.clear();
+            currentWindowsOffsets.addAll(nextWindowsOffsets);
+
+            try {
+                agentTaskQueue.put(new AgentTask(inUseRotorsIDs, nextWindowsOffsets, inUseReflectorID,
+                        copyOfMachine, taskSize, textToDecipher, dictionary, candidatesQueue, dm.isBruteForceActionCancelledProperty()));
+            } catch (InterruptedException ignored) {
+                //e.printStackTrace();
+            }
+        }
     }
 
     public void printAllRecursive(

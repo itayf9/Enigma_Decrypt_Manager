@@ -35,8 +35,6 @@ public class Dictionary {
         for (String word : dictionaryWords) {
             this.words.add(word);
         }
-
-        System.out.println(words);
     }
 
     public boolean isAllWordsInDictionary(String text) {
