@@ -1,6 +1,7 @@
 package body;
 
 import app.MainController;
+import app.statusbar.MessageTone;
 import body.currentconfig.CurrentConfigController;
 import body.screen1.codecalibration.CodeCalibrationController;
 import body.screen1.machinedetails.MachineDetailsController;
@@ -295,6 +296,7 @@ public class BodyController {
         statistics.disableProperty().bind(isMachineConfiguredProperty.not());
         dmOperational.disableProperty().bind(isMachineConfiguredProperty.not());
         candidatesArea.disableProperty().bind(isMachineConfiguredProperty.not());
+        dictionary.disableProperty().bind(isMachineConfiguredProperty.not());
 
         // config bindings
         currentConfigScreen1Controller.bindConfigComponents(inUseRotorsIDsProperty, currentWindowsCharactersProperty, inUseReflectorSymbolProperty, inUsePlugs, currentNotchDistances, isMachineConfiguredProperty);
@@ -350,5 +352,9 @@ public class BodyController {
 
     public void appendNewWordToInputCipherText(String newWord) {
         encryptDecrypt2Controller.appendNewWordToInputCipherText(newWord);
+    }
+
+    public void setStatusMessage(String statusMessage, MessageTone messageTone) {
+        mainController.setStatusMessage(statusMessage, messageTone);
     }
 }

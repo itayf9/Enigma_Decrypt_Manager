@@ -1,5 +1,6 @@
 package body.screen1.codecalibration;
 
+import app.statusbar.MessageTone;
 import body.BodyController;
 import dto.DTOsecretConfig;
 import dto.DTOstatus;
@@ -151,6 +152,8 @@ public class CodeCalibrationController {
         if (isValid) {
             RadioButton currentReflector = (RadioButton) reflectorToggles.getSelectedToggle();
             parentController.setManualMachineConfig(rotorsInput.getText(), windowsCharsInput.getText().toUpperCase(), romanToDecimal(currentReflector.getText()), plugsInput.getText().toUpperCase());
+        } else {
+            parentController.setStatusMessage("Could not calibrate the machine", MessageTone.ERROR);
         }
     }
 

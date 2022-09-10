@@ -8,10 +8,10 @@
     -fx-fill: #50a005;
 }
 
-.error-message-label {
+.error-message-area {
     -fx-fill: firebrick;
 }
 
-.info-message-label {
+.info-message-area {
     -fx-fill: #0095ff;
 }

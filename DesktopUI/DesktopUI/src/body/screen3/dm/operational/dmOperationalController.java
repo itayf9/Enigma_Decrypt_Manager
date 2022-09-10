@@ -1,5 +1,6 @@
 package body.screen3.dm.operational;
 
+import app.statusbar.MessageTone;
 import body.BodyController;
 import dm.difficultylevel.DifficultyLevel;
 import dto.DTOspecs;
@@ -90,12 +91,13 @@ public class dmOperationalController {
         System.out.println("take size: " + taskSize);
 
         if (difficultyLevel == null) {
-            System.out.println("Error not entered difficulty level");
+            parentController.setStatusMessage("Please enter a difficulty level", MessageTone.ERROR);
             return;
         }
 
         if (textToDecipher.equals("")) {
             System.out.println("Error not entered text to decipher");
+            parentController.setStatusMessage("Please cipher some text", MessageTone.ERROR);
             return;
         }
 

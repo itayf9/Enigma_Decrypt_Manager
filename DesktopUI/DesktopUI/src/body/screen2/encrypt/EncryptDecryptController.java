@@ -1,5 +1,6 @@
 package body.screen2.encrypt;
 
+import app.statusbar.MessageTone;
 import body.BodyController;
 import dto.DTOciphertext;
 import javafx.beans.binding.Bindings;
@@ -75,6 +76,7 @@ public class EncryptDecryptController {
                 inputTextField.getStyleClass().add("invalid-input");
                 cipherProblemLabel.getStyleClass().add("problem-details-label");
                 cipherProblemLabel.setText(cipheredCharStatus.getDetails().name());
+                parentController.setStatusMessage("Could not cipher that character", MessageTone.ERROR);
             } else {
                 outputLabel.setText(outputLabel.getText() + cipheredCharStatus.getCipheredText());
                 this.cipheredLetter = cipheredCharStatus.getCipheredText();
@@ -96,6 +98,7 @@ public class EncryptDecryptController {
                 inputTextField.getStyleClass().add("invalid-input");
                 cipherProblemLabel.getStyleClass().add("problem-details-label");
                 cipherProblemLabel.setText(cipheredLineStatus.getDetails().name());
+                parentController.setStatusMessage("Could not cipher that text", MessageTone.ERROR);
             } else {
                 outputLabel.setText(cipheredLineStatus.getCipheredText());
                 parentController.displayStatistics();
