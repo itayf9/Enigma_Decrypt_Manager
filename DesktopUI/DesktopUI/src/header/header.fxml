@@ -10,6 +10,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.RadioMenuItem?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -56,12 +57,17 @@
         <items>
             <Menu mnemonicParsing="false" text="Skins">
               <items>
-                  <RadioMenuItem mnemonicParsing="false" text="Unspecified Action" />
-                  <RadioMenuItem mnemonicParsing="false" text="Unspecified Action" />
-                  <RadioMenuItem mnemonicParsing="false" text="Unspecified Action" />
+                  <RadioMenuItem fx:id="skinDefaultButton" mnemonicParsing="false" selected="true" text="Default">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="skinsGroup" />
+                     </toggleGroup></RadioMenuItem>
+                  <RadioMenuItem fx:id="skinDarkButton" mnemonicParsing="false" text="Dark" toggleGroup="$skinsGroup" />
+                  <RadioMenuItem mnemonicParsing="false" toggleGroup="$skinsGroup" />
               </items>
             </Menu>
             <MenuItem mnemonicParsing="false" text="Animations" />
+            <MenuItem mnemonicParsing="false" text="Configuration" />
+            <MenuItem mnemonicParsing="false" text="About" />
         </items>
          <graphic>
             <ImageView fitHeight="24.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">

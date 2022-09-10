@@ -9,6 +9,7 @@ import dto.*;
 import engine.Engine;
 import engine.EnigmaEngine;
 import header.HeaderController;
+import header.Skin;
 import javafx.animation.FadeTransition;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.*;
@@ -426,5 +427,9 @@ public class MainController {
     public void stopBruteForceProcess() {
         isBruteForceTaskActive.set(false);
         engine.stopBruteForceProcess();
+    }
+
+    public void setAppSkin(Skin skin) {
+        int x;
     }
 }
