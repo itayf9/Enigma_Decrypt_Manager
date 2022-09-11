@@ -25,9 +25,7 @@ public class TaskProducer implements Runnable {
     private final Dictionary dictionary;
     private final BlockingQueue<AgentConclusion> candidatesQueue;
 
-    private List<List<Integer>> listOfAllPermutationsRotorsIDs = new ArrayList<>();
     DecryptManager dm;
-    private int taskCounter = 0;
 
     public TaskProducer(DecryptManager dm, int taskSize, DifficultyLevel difficultyLevel, String textToDecipher) {
         this.dm = dm;
@@ -62,11 +60,10 @@ public class TaskProducer implements Runnable {
 
     private void produceHardTasks() {
 
-        this.listOfAllPermutationsRotorsIDs = permute(new ArrayList<>(machine.getInUseRotorsIDs()));
+        List<List<Integer>> listOfAllPermutationsRotorsIDs = permute(new ArrayList<>(machine.getInUseRotorsIDs()));
 
-        System.out.println(listOfAllPermutationsRotorsIDs);
-        for (int i = 0; i < listOfAllPermutationsRotorsIDs.size(); i++) {
-            produceMediumTasks(listOfAllPermutationsRotorsIDs.get(i));
+        for (List<Integer> listOfAllPermutationsRotorsID : listOfAllPermutationsRotorsIDs) {
+            produceMediumTasks(listOfAllPermutationsRotorsID);
         }
     }
 
@@ -104,7 +101,7 @@ public class TaskProducer implements Runnable {
         while (!finishedAllTasks && !dm.isIsBruteForceActionCancelled()) {
 
             // first clone a machine to send to the agent
-            copyOfMachine = new EnigmaMachine((EnigmaMachine) machine); // Clone!
+            copyOfMachine = new EnigmaMachine((EnigmaMachine) machine);
 
             // the next window characters to set for the agent, based on last window characters
             nextWindowsOffsets = getNextWindowsOffsets(taskSize, currentWindowsOffsets);
@@ -120,14 +117,17 @@ public class TaskProducer implements Runnable {
             try {
                 agentTaskQueue.put(new AgentTask(inUseRotorsIDs, nextWindowsOffsets, inUseReflectorID,
                         copyOfMachine, taskSize, textToDecipher, dictionary, candidatesQueue, dm.isBruteForceActionCancelledProperty()));
-            } catch (InterruptedException ignored) {
-                //e.printStackTrace();
+            } catch (InterruptedException e) {
+                // producer Stopped so need to die
+                return;
             }
         }
+
+        System.out.println("producer died with taskSize = " + taskSize);
     }
 
     public List<List<Integer>> permute(List<Integer> nums) {
-        List<List<Integer>> results = new ArrayList<List<Integer>>();
+        List<List<Integer>> results = new ArrayList<>();
         if (nums == null || nums.size() == 0) {
             return results;
         }

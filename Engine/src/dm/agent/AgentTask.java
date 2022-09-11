@@ -69,8 +69,7 @@ public class AgentTask implements Runnable {
     }
 
     @Override
-    public void run() {
-
+    public synchronized void run() {
         long startMeasureTime = System.nanoTime();
 
         List<Candidate> candidates = new ArrayList<>();
@@ -81,14 +80,15 @@ public class AgentTask implements Runnable {
 
             // sets machine to the next configuration
             // changes only the window offsets
+
             machine.setMachineConfiguration(rotorsIDs, windowOffsets, inUseReflectorID, "");
 
             // ciphers the text
             String decipherResult = decipherLine(textToDecipher);
 
+
             // check dictionary
             if (dictionary.isAllWordsInDictionary(decipherResult)) {
-
                 // convert windows offsets to characters.
                 String windowCharacters = machine.getOriginalWindowsCharacters(); // I trust this !
 
@@ -117,12 +117,11 @@ public class AgentTask implements Runnable {
         // send conclusion to DM
         try {
             long timeElapsed = System.nanoTime() - startMeasureTime;
+            System.out.println("agent " + Thread.currentThread().getName() + " did " + numOfConfigScanned + " configs");
             candidatesQueue.put(new AgentConclusion(candidates, numOfConfigScanned, timeElapsed));
         } catch (InterruptedException ignored) {
 
         }
-
-
     }
 
     private boolean AllWindowsOffsetsAtBeginning() {

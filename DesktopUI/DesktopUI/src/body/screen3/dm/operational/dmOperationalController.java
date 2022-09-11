@@ -5,7 +5,9 @@ import body.BodyController;
 import dm.difficultylevel.DifficultyLevel;
 import dto.DTOspecs;
 import javafx.beans.binding.Bindings;
-import javafx.beans.property.*;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -88,7 +90,6 @@ public class dmOperationalController {
         int taskSize = taskSizeSpinner.getValue(); // need to fix text value not updating if no button pressed
         int numOfAgentSelected = (int) numOfAgentsSlider.getValue();
         String textToDecipher = textToDecipherProperty.getValue();
-        System.out.println("take size: " + taskSize);
 
         if (difficultyLevel == null) {
             parentController.setStatusMessage("Please enter a difficulty level", MessageTone.ERROR);

@@ -90,13 +90,29 @@ public class EnigmaMachine implements Serializable, Cloneable, Machine {
         this.alphabet = other.alphabet;
         this.isConfigured = other.isConfigured;
         this.cipherCounter = other.cipherCounter;
-        this.availableRotors = new ArrayList<>(other.availableRotors);
-        this.availableReflectors = new ArrayList<>(other.availableReflectors);
-        this.character2index = new HashMap<>(other.character2index);
-        this.inUseWindowsOffsets = new ArrayList<>(other.inUseWindowsOffsets);
-        this.plugBoard = new PlugBoard(other.plugBoard);
-        this.inUseRotors = new ArrayList<>(other.inUseRotors);
-        this.inUseReflector = new Reflector(other.inUseReflector);
+        this.availableRotors = other.getCopyOfAvailableRotors(); // needed deep copy
+        this.availableReflectors = other.getCopyOfAvailableReflectors(); // needed deep copy
+        this.character2index = new HashMap<>(other.character2index); // based on primitives so it's fine
+        this.inUseWindowsOffsets = new ArrayList<>(other.inUseWindowsOffsets); // based on primitives so it's fine
+        this.plugBoard = new PlugBoard(other.plugBoard); // based on primitives so it's fine
+        this.inUseRotors = new ArrayList<>(other.inUseRotors); // based on primitives so it's fine
+        this.inUseReflector = new Reflector(other.inUseReflector); // based on primitives so it's fine
+    }
+
+    private List<Rotor> getCopyOfAvailableRotors() {
+        List<Rotor> newRotors = new ArrayList<>();
+        for (Rotor rotor : availableRotors) {
+            newRotors.add(new Rotor(rotor));
+        }
+        return newRotors;
+    }
+
+    private List<Reflector> getCopyOfAvailableReflectors() {
+        List<Reflector> newReflectors = new ArrayList<>();
+        for (Reflector reflector : availableReflectors) {
+            newReflectors.add(new Reflector(reflector));
+        }
+        return newReflectors;
     }
 
     /**

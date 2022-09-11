@@ -39,15 +39,25 @@ public class Dictionary {
 
     public boolean isAllWordsInDictionary(String text) {
         boolean res = true;
-        String[] textWords = text.split(" ");
+        String[] textWords = text.trim().split(" ");
 
         for (String word : textWords) {
-            if (!words.contains(word)) {
-                res = false;
-                break;
+            if (!word.equals("")) {
+                if (!words.contains(word)) {
+                    res = false;
+                    break;
+                }
             }
         }
         return res;
+    }
+
+    @Override
+    public String toString() {
+        return "Dictionary{" +
+                "words=" + words +
+                ", excludeChars='" + excludeChars + '\'' +
+                '}';
     }
 
     public Set<String> getWords() {

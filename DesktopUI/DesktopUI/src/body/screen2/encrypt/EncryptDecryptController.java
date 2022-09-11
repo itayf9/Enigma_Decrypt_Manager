@@ -8,7 +8,10 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
@@ -246,6 +249,10 @@ public class EncryptDecryptController {
     }
 
     public void appendNewWordToInputCipherText(String newWord) {
-        inputTextField.setText(inputTextField.getText() + " " + newWord);
+        if (inputTextField.getText().equals("")) {
+            inputTextField.setText(newWord);
+        } else {
+            inputTextField.setText(inputTextField.getText() + " " + newWord);
+        }
     }
 }

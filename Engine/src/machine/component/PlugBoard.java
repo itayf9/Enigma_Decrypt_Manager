@@ -20,7 +20,7 @@ public class PlugBoard implements Serializable, Cloneable {
     /**
      * copy constructor for PlugBoard
      *
-     * @param otherPlugBoard the plug board to copy fro
+     * @param otherPlugBoard the plug board to copy from
      */
     public PlugBoard(PlugBoard otherPlugBoard) {
         this.plugMap = new HashMap<>(otherPlugBoard.plugMap);
@@ -35,10 +35,11 @@ public class PlugBoard implements Serializable, Cloneable {
 
     /**
      * finds out if a letter has a plug in the plug board.
+     *
      * @param keyIndex index that represents a letter to be checked
      * @return 'true' if the letter is currently plugged, 'false' otherwise
      */
-    public boolean isPlugged(int keyIndex){
+    public boolean isPlugged(int keyIndex) {
         return plugMap.containsKey(keyIndex);
     }
 
@@ -46,6 +47,7 @@ public class PlugBoard implements Serializable, Cloneable {
     /**
      * finds out the value of the matching letter, which is plugged to the given letter
      * assuming the pair exists in the plug board
+     *
      * @param keyIndex index that represents a letter to be checked
      * @return index that represents the matching pair
      */
@@ -56,14 +58,15 @@ public class PlugBoard implements Serializable, Cloneable {
 
     /**
      * initializes the plug board mapping.
+     *
      * @param character2index a map that translates each letter in the alphabet, to an index.
-     * @param plugs a string that represents the plug pairs.
-     *              There is no separation between pairs.
-     *              There is no division in a pair.
-     *              For example, "AZDE" means that there are two pairs.
-     *              A,Z and D,E.
+     * @param plugs           a string that represents the plug pairs.
+     *                        There is no separation between pairs.
+     *                        There is no division in a pair.
+     *                        For example, "AZDE" means that there are two pairs.
+     *                        A,Z and D,E.
      */
-    public void initPlugBoardMap(Map<Character, Integer> character2index, String plugs){
+    public void initPlugBoardMap(Map<Character, Integer> character2index, String plugs) {
 
         plugMap.clear();
         // run through all plugs

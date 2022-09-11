@@ -19,7 +19,7 @@ import static utill.Utility.factorial;
 
 public class DecryptManager {
 
-    private final BlockingQueue<AgentConclusion> candidatesQueue;
+    private BlockingQueue<AgentConclusion> candidatesQueue;
     private ThreadPoolExecutor threadExecutor;
     private Thread collector;
     private Thread taskProducer;
@@ -43,7 +43,7 @@ public class DecryptManager {
         this.dictionary = dictionary;
         this.numOfAvailableAgents = numOfAvailableAgents;
         this.enigmaMachine = enigmaMachine;
-        this.candidatesQueue = new LinkedBlockingQueue<>(1000);
+        this.candidatesQueue = new LinkedBlockingQueue<>();
         this.totalPossibleWindowsPositions = (long) Math.pow(enigmaMachine.getAlphabet().length(), enigmaMachine.getRotorsCount());
         this.isBruteForceActionCancelled = new SimpleBooleanProperty(false);
     }
