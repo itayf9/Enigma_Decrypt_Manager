@@ -14,11 +14,8 @@ public class CandidatesCollectorTask extends Task<Boolean> {
     private final BlockingQueue<AgentConclusion> candidateQueue;
     private final long totalPossibleConfigurations;
     private final UIAdapter uiAdapter;
-
     private final DecryptManager dm;
-
     private final BooleanProperty isBruteForceActionPaused;
-
     private final BooleanProperty isBruteForceActionCancelled;
 
 
@@ -85,7 +82,7 @@ public class CandidatesCollectorTask extends Task<Boolean> {
             }
 
             if (isBruteForceActionPaused.getValue()) {
-                synchronized (dm.getDummmy()) {
+                synchronized (isBruteForceActionPaused) {
                     while (isBruteForceActionPaused.getValue()) {
                         try {
                             uiAdapter.updateTaskStatus("Paused...");
@@ -95,9 +92,8 @@ public class CandidatesCollectorTask extends Task<Boolean> {
                             System.out.println("collector died");
                             return Boolean.FALSE;
                         }
-                        System.out.println("collector awake from wait");
                     }
-                    System.out.println("collector out of while loop");
+                    uiAdapter.updateTaskStatus("Searching...");
                 }
             }
 
