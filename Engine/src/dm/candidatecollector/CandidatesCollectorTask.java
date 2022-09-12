@@ -89,11 +89,11 @@ public class CandidatesCollectorTask extends Task<Boolean> {
                     while (isBruteForceActionPaused.getValue()) {
                         try {
                             uiAdapter.updateTaskStatus("Paused...");
-                            System.out.println("collector " + Thread.currentThread().getName() + " waits with key :" + dm.getDummmy());
-                            wait();
-                            System.out.println("collector stopped waiting with key :" + dm.getDummmy());
+                            isBruteForceActionPaused.wait();
                         } catch (InterruptedException ignored) {
-
+                            uiAdapter.updateTaskStatus("Stopped...");
+                            System.out.println("collector died");
+                            return Boolean.FALSE;
                         }
                         System.out.println("collector awake from wait");
                     }

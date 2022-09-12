@@ -427,6 +427,7 @@ public class MainController {
 
     public void stopBruteForceProcess() {
         isBruteForceTaskActive.set(false);
+        isBruteForceTaskPaused.set(false);
         engine.stopBruteForceProcess();
     }
 

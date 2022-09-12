@@ -61,7 +61,7 @@ public class DecryptManager {
     public void pauseDecrypt() {
         System.out.println("about to set pause to " + true);
         System.out.println("now paused is " + isIsBruteForceActionPaused());
-        synchronized (dummy) {
+        synchronized (isBruteForceActionPaused) {
             System.out.println("inside sync on dm");
             isBruteForceActionPaused.setValue(true);
         }
@@ -71,9 +71,9 @@ public class DecryptManager {
      * resume the execution after being paused
      */
     public void resumeDecrypt() {
-        synchronized (dummy) {
+        synchronized (isBruteForceActionPaused) {
             isBruteForceActionPaused.setValue(false);
-            dummy.notifyAll();
+            isBruteForceActionPaused.notifyAll();
             System.out.println("dm had notified all with key :" + dummy);
         }
     }

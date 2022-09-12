@@ -3,6 +3,7 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -70,21 +71,27 @@
               <content>
                   <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="470.0" prefWidth="900.0" styleClass="tab-gridpane">
                     <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="329.3333435058594" minWidth="10.0" prefWidth="288.33331298828125" />
-                      <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="377.66668701171875" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="329.3333435058594" minWidth="280.0" prefWidth="280.0" />
+                      <ColumnConstraints hgrow="NEVER" maxWidth="2.0" minWidth="2.0" prefWidth="2.0" />
+                        <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="370.0" prefWidth="394.3333740234375" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="2.0" minWidth="2.0" prefWidth="2.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="150.0" prefWidth="200.0" />
                     </columnConstraints>
                     <rowConstraints>
-                      <RowConstraints maxHeight="195.0" minHeight="195.0" prefHeight="195.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="309.3333435058594" minHeight="0.0" prefHeight="113.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="160.0" prefHeight="164.33334350585938" vgrow="ALWAYS" />
+                      <RowConstraints maxHeight="200.0" minHeight="200.0" prefHeight="200.0" vgrow="NEVER" />
+                      <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="NEVER" />
+                      <RowConstraints maxHeight="100.0" minHeight="100.0" prefHeight="100.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="5.0" minHeight="5.0" prefHeight="5.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="160.0" prefHeight="164.33334350585938" vgrow="ALWAYS" />
                     </rowConstraints>
                      <children>
-                        <fx:include fx:id="encryptDecrypt2" source="screen2/encrypt/encrypt-decrypt.fxml" GridPane.columnIndex="1" />
+                        <fx:include fx:id="encryptDecrypt2" source="screen2/encrypt/encrypt-decrypt.fxml" GridPane.columnIndex="2" />
                         <fx:include fx:id="currentConfigScreen3" source="currentconfig/currentConfig.fxml" />
-                        <fx:include fx:id="dmOperational" source="screen3/dm/operational/dmOperational.fxml" GridPane.columnSpan="3" GridPane.rowIndex="1" />
-                        <fx:include fx:id="candidatesArea" source="screen3/candidate/area/candidatesArea.fxml" GridPane.columnSpan="3" GridPane.rowIndex="2" />
-                        <fx:include fx:id="dictionary" source="screen3/dictionary/dictionary.fxml" GridPane.columnIndex="2" />
+                        <fx:include fx:id="dmOperational" source="screen3/dm/operational/dmOperational.fxml" GridPane.columnSpan="5" GridPane.rowIndex="2" />
+                        <fx:include fx:id="candidatesArea" source="screen3/candidate/area/candidatesArea.fxml" GridPane.columnSpan="5" GridPane.rowIndex="4" />
+                        <fx:include fx:id="dictionary" source="screen3/dictionary/dictionary.fxml" GridPane.columnIndex="4" />
+                        <Separator prefWidth="200.0" GridPane.columnSpan="5" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <Separator prefWidth="200.0" GridPane.columnSpan="5" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
               </content>

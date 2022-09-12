@@ -39,7 +39,7 @@ public class MachineDetailsController {
 
     @FXML
     public void initialize() {
-        originalConfigController.setTitle("Original Machine Configuration:");
+        originalConfigController.setTitle("Original Machine Configuration");
     }
 
 

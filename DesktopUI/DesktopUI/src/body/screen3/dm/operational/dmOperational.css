@@ -1,10 +1,10 @@
 
 .task-size-spinner *.increment-arrow-button {
-    -fx-background-color: #6674ce;
+    -fx-background-color: #0095ff;
 }
 
 .task-size-spinner *.decrement-arrow-button {
-    -fx-background-color: #6674ce;
+    -fx-background-color: #0095ff;
 }
 
 .task-size-spinner *.increment-arrow-button *.increment-arrow {
@@ -16,11 +16,11 @@
 }
 
 .number-of-agents-slider *.thumb {
-    -fx-background-color: #6674ce;
+    -fx-background-color: #0095ff;
 }
 
 .difficulty-level-combo *.arrow-button {
-    -fx-background-color: #6674ce;
+    -fx-background-color: #0095ff;
 }
 
 .difficulty-level-combo *.arrow {
