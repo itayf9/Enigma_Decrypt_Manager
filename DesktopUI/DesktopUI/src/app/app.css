@@ -1,18 +1,21 @@
 .action-btn {
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-background-color: #76d55d;
+    /*-fx-background-color: #76d55d;*/
+    -fx-background-color: #0095ff;
 }
 
 /*-fx-background-color: #50c550*/
 
 .action-btn:hover {
-    -fx-background-color: #489b54;
+    /*-fx-background-color: #489b54;*/
+    -fx-background-color: #005c9a;
     -fx-cursor: HAND;
 }
 
 .action-btn:pressed {
-    -fx-background-color: #50c550;
+    /*-fx-background-color: #50c550;*/
+    -fx-background-color: #50b0ff;
 }
 
 .option-btn {

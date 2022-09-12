@@ -1,8 +1,8 @@
 package dm.agent;
 
 import candidate.Candidate;
+import dm.decryptmanager.DecryptManager;
 import dm.dictionary.Dictionary;
-import javafx.beans.property.BooleanProperty;
 import machine.Machine;
 
 import java.util.ArrayList;
@@ -20,12 +20,13 @@ public class AgentTask implements Runnable {
     private final List<Integer> rotorsIDs;
     private final List<Integer> windowOffsets;
     private final int inUseReflectorID;
+
+    private final DecryptManager dm;
     private final BlockingQueue<AgentConclusion> candidatesQueue;
-    BooleanProperty isBruteForceActionCancelled;
 
     public AgentTask(List<Integer> rotorsIDs, List<Integer> windowOffsets, int inUseReflectorID,
-                     Machine copyOfMachine, int taskSize, String textToDecipher, Dictionary dictionary,
-                     BlockingQueue<AgentConclusion> candidatesQueue, BooleanProperty isBruteForceActionCancelled) {
+                     Machine copyOfMachine, DecryptManager dm, int taskSize, String textToDecipher, Dictionary dictionary,
+                     BlockingQueue<AgentConclusion> candidatesQueue) {
         machine = copyOfMachine;
         this.taskSize = taskSize;
         this.textToDecipher = textToDecipher;
@@ -33,8 +34,8 @@ public class AgentTask implements Runnable {
         this.windowOffsets = windowOffsets;
         this.rotorsIDs = rotorsIDs;
         this.inUseReflectorID = inUseReflectorID;
+        this.dm = dm;
         this.candidatesQueue = candidatesQueue;
-        this.isBruteForceActionCancelled = isBruteForceActionCancelled;
     }
 
     private String decipherLine(String LineToDecipher) {
@@ -69,13 +70,14 @@ public class AgentTask implements Runnable {
     }
 
     @Override
-    public synchronized void run() {
+    public void run() {
         long startMeasureTime = System.nanoTime();
 
         List<Candidate> candidates = new ArrayList<>();
         int numOfConfigScanned = 0;
 
-        for (int i = 0; i < taskSize && !isBruteForceActionCancelled.getValue(); i++) {
+
+        for (int i = 0; i < taskSize && !dm.isIsBruteForceActionCancelled(); i++) {
             numOfConfigScanned++;
 
             // sets machine to the next configuration
@@ -110,9 +112,34 @@ public class AgentTask implements Runnable {
             // moves to the next configuration
             advanceWindow();
 
+
             if (AllWindowsOffsetsAtBeginning()) {
                 break;
             }
+
+/*            System.out.println("For agent " + Thread.currentThread().getName() + "is brute paused = " + dm.isIsBruteForceActionPaused());
+            if (dm.isIsBruteForceActionPaused()) {
+
+                System.out.println("about to sync with key :" + dm.getDummmy());
+                System.out.println("current is brute paused = " + dm.isIsBruteForceActionPaused());
+                synchronized (dm.getDummmy()) {
+                    System.out.println("agent " + Thread.currentThread().getName() + " got the key : " + dm.getDummmy());
+
+                    while (dm.isIsBruteForceActionPaused()) {
+                        try {
+                            System.out.println("agent waits" + Thread.currentThread().getName() + " with key : " + dm.getDummmy());
+                            wait();
+                            System.out.println("agent stopped waiting " + Thread.currentThread().getName() + " with key : " + dm.getDummmy());
+                        } catch (InterruptedException ignored) {
+
+                        }
+                        System.out.println("agent awaken");
+                    }
+                    System.out.println("out of while loop");
+
+                }
+            }*/
+
         }
         // send conclusion to DM
         try {

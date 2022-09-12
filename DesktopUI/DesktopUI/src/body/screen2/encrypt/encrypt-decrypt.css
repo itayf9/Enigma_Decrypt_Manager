@@ -8,15 +8,36 @@
 
 
 .clear-btn {
-    -fx-background-color: #6674ce;
-    -fx-text-fill: white;
+    /*-fx-background-color: #6674ce;*/
+    -fx-border-color: #0095ff;
+    -fx-border-radius: 5;
+    -fx-border-width: 2px;
+    -fx-background-color: white;
+    -fx-background-radius: 5;
+    -fx-text-fill: #0095ff;
     -fx-font-weight: bold;
 }
 
+.clear-btn:hover {
+    -fx-background-color: #0095ff;
+    -fx-text-fill: white;
+    -fx-border-color: #048ec2;
+}
+
 .reset-btn {
+    -fx-background-color: white;
+    -fx-text-fill: #cc5454;
+    -fx-font-weight: bold;
+    -fx-border-radius: 5;
+    -fx-border-color: #cc5454;
+    -fx-border-width: 2px;
+    -fx-background-radius: 5;
+}
+
+.reset-btn:hover {
     -fx-background-color: #cc5454;
     -fx-text-fill: white;
-    -fx-font-weight: bold;
+    -fx-border-color: #9a0000;
 }
 
 .lightbulbs-area {

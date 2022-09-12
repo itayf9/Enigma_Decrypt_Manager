@@ -1,6 +1,6 @@
 package engine;
 
-import dm.DecryptManager;
+import dm.decryptmanager.DecryptManager;
 import dm.dictionary.Dictionary;
 import dm.difficultylevel.DifficultyLevel;
 import dto.*;

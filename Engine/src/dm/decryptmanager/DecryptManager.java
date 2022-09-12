@@ -1,7 +1,8 @@
-package dm;
+package dm.decryptmanager;
 
 import candidate.Candidate;
 import dm.agent.AgentConclusion;
+import dm.candidatecollector.CandidatesCollectorTask;
 import dm.dictionary.Dictionary;
 import dm.difficultylevel.DifficultyLevel;
 import dm.taskproducer.TaskProducer;
@@ -38,6 +39,11 @@ public class DecryptManager {
 
     private final BooleanProperty isBruteForceActionCancelled;
 
+    private final BooleanProperty isBruteForceActionPaused;
+
+    private final Object dummy = new Object();
+
+
     public DecryptManager(Dictionary dictionary, int numOfAvailableAgents, Machine enigmaMachine) {
         int LIMIT_NUMBER_OF_TASK = 1000;
         this.threadPoolBlockingQueue = new LinkedBlockingQueue<>(LIMIT_NUMBER_OF_TASK);
@@ -46,6 +52,7 @@ public class DecryptManager {
         this.enigmaMachine = enigmaMachine;
         this.totalPossibleWindowsPositions = (long) Math.pow(enigmaMachine.getAlphabet().length(), enigmaMachine.getRotorsCount());
         this.isBruteForceActionCancelled = new SimpleBooleanProperty(false);
+        this.isBruteForceActionPaused = new SimpleBooleanProperty(false);
     }
 
     /**
@@ -83,7 +90,9 @@ public class DecryptManager {
         setTotalConfigs(difficultyLevel);
 
         // setting up the collector of the candidates
-        collector = new Thread(new CandidatesCollectorTask(candidatesQueue, totalPossibleConfigurations, uiAdapter, isBruteForceActionCancelledProperty()));
+        collector = new Thread(new CandidatesCollectorTask(candidatesQueue, totalPossibleConfigurations, uiAdapter, this,
+                isBruteForceActionCancelledProperty(), isBruteForceActionPaused));
+        collector.setName("THE_COLLECTOR");
 
         // starting the thread pool
         threadExecutor = new ThreadPoolExecutor(numOfSelectedAgents, numOfSelectedAgents,
@@ -166,5 +175,17 @@ public class DecryptManager {
 
     public BooleanProperty isBruteForceActionCancelledProperty() {
         return isBruteForceActionCancelled;
+    }
+
+    public boolean isIsBruteForceActionPaused() {
+        return isBruteForceActionPaused.get();
+    }
+
+    public BooleanProperty isBruteForceActionPausedProperty() {
+        return isBruteForceActionPaused;
+    }
+
+    public Object getDummmy() {
+        return dummy;
     }
 }

@@ -72,7 +72,7 @@
          </content>
       </ScrollPane>
 
-      <Button fx:id="processButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="25.0" minWidth="60.0" mnemonicParsing="false" onMouseClicked="#processHandler" prefHeight="25.0" styleClass="action-btn" text="Process / Done" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="2">
+                  <Button fx:id="processButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="25.0" minWidth="60.0" mnemonicParsing="false" onMouseClicked="#processHandler" prefHeight="25.0" styleClass="action-btn" text="Process / Done" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="2">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

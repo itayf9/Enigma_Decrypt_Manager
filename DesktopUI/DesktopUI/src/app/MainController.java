@@ -87,6 +87,7 @@ public class MainController {
     private StringProperty bruteForceProgressBarPercentageProperty;
     private StringProperty bruteForceStatusMessage;
     private BooleanProperty isBruteForceTaskActive;
+    private BooleanProperty isBruteForceTaskPaused;
     private long totalPossibleWindowsPositions;
     private DoubleProperty averageTasksProcessTimeProperty;
 
@@ -115,6 +116,7 @@ public class MainController {
             this.totalPossibleConfigurations = new SimpleLongProperty();
             this.messageFadeTransition = new FadeTransition(Duration.millis(5000), statusBackShape);
             this.isBruteForceTaskActive = new SimpleBooleanProperty(false);
+            this.isBruteForceTaskPaused = new SimpleBooleanProperty(false);
             this.averageTasksProcessTimeProperty = new SimpleDoubleProperty();
 
 
@@ -130,7 +132,7 @@ public class MainController {
                     currentWindowsCharactersProperty, inUseReflectorSymbolProperty, inUsePlugsProperty,
                     currentNotchDistances, isCharByCharModeProperty, cipherCounterProperty, totalDistinctCandidates,
                     totalProcessedConfigurations, totalPossibleConfigurations, bruteForceProgress,
-                    bruteForceProgressBarPercentageProperty, bruteForceStatusMessage, isBruteForceTaskActive, averageTasksProcessTimeProperty);
+                    bruteForceProgressBarPercentageProperty, bruteForceStatusMessage, isBruteForceTaskActive, isBruteForceTaskPaused, averageTasksProcessTimeProperty);
 
             body.visibleProperty().bind(isMachineLoadedProperty);
             messageLabel.textProperty().bind(statusLabel.textProperty());

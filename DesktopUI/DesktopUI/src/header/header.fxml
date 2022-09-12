@@ -47,7 +47,11 @@
             <Insets />
          </GridPane.margin>
          <content>
-            <Label fx:id="filePathLoadMachineLabel" text="File Path" />
+            <Label fx:id="filePathLoadMachineLabel" styleClass="file-path-label" text="File Path">
+               <padding>
+                  <Insets left="5.0" top="5.0" />
+               </padding>
+            </Label>
          </content>
       </ScrollPane>
       <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="17.0" styleClass="enigma-title" stylesheets="@header.css" text="Cracking The Enigma Machine" GridPane.columnSpan="8" GridPane.halignment="CENTER" />

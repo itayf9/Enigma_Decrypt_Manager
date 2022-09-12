@@ -1,6 +1,7 @@
-package dm;
+package dm.candidatecollector;
 
 import candidate.Candidate;
+import dm.decryptmanager.DecryptManager;
 import dm.agent.AgentConclusion;
 import javafx.beans.property.BooleanProperty;
 import javafx.concurrent.Task;
@@ -14,13 +15,21 @@ public class CandidatesCollectorTask extends Task<Boolean> {
     private final BlockingQueue<AgentConclusion> candidateQueue;
     private final long totalPossibleConfigurations;
     private final UIAdapter uiAdapter;
+
+    private final DecryptManager dm;
+
+    private final BooleanProperty isBruteForceActionPaused;
+
     private final BooleanProperty isBruteForceActionCancelled;
 
+
     public CandidatesCollectorTask(BlockingQueue<AgentConclusion> candidateQueue, long totalPossibleConfigurations,
-                                   UIAdapter uiAdapter, BooleanProperty isBruteForceActionCancelled) {
+                                   UIAdapter uiAdapter, DecryptManager dm, BooleanProperty isBruteForceActionCancelled, BooleanProperty isBruteForceActionPaused) {
         this.candidateQueue = candidateQueue;
         this.totalPossibleConfigurations = totalPossibleConfigurations;
         this.uiAdapter = uiAdapter;
+        this.dm = dm;
+        this.isBruteForceActionPaused = isBruteForceActionPaused;
         this.isBruteForceActionCancelled = isBruteForceActionCancelled;
     }
 
@@ -78,8 +87,26 @@ public class CandidatesCollectorTask extends Task<Boolean> {
                 }
             }
 
+            if (isBruteForceActionPaused.getValue()) {
+                synchronized (dm.getDummmy()) {
+                    while (isBruteForceActionPaused.getValue()) {
+                        try {
+                            uiAdapter.updateTaskStatus("Paused...");
+                            System.out.println("collector " + Thread.currentThread().getName() + " waits with key :" + dm.getDummmy());
+                            wait();
+                            System.out.println("collector stopped waiting with key :" + dm.getDummmy());
+                        } catch (InterruptedException ignored) {
+
+                        }
+                        System.out.println("collector awake from wait");
+                    }
+                    System.out.println("collector out of while loop");
+                }
+            }
+
+
             try {
-                Thread.sleep(100);
+                Thread.sleep(10);
             } catch (InterruptedException ignored) {
                 uiAdapter.updateTaskStatus("Stopped...");
                 System.out.println("collector died");

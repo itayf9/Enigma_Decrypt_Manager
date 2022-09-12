@@ -288,7 +288,7 @@ public class BodyController {
                                IntegerProperty cipherCounterProperty, IntegerProperty totalDistinctCandidates,
                                IntegerProperty totalProcessedConfigurations, LongProperty totalPossibleConfigurations,
                                DoubleProperty bruteForceProgressBar, StringProperty bruteForceProgressBarPercentageLabel
-            , StringProperty bruteForceStatusMessage, BooleanProperty isBruteForceTaskActive, DoubleProperty averageTasksProcessTimeProperty) {
+            , StringProperty bruteForceStatusMessage, BooleanProperty isBruteForceTaskActive, BooleanProperty isBruteForceTaskPaused, DoubleProperty averageTasksProcessTimeProperty) {
 
         // binds the components that need the isConfigured Boolean property.
         encryptDecrypt.disableProperty().bind(isMachineConfiguredProperty.not());
@@ -315,7 +315,7 @@ public class BodyController {
                 , bruteForceStatusMessage, averageTasksProcessTimeProperty);
 
         // dm operational bind
-        dmOperationalController.bindComponents(isBruteForceTaskActive);
+        dmOperationalController.bindComponents(isBruteForceTaskActive, isBruteForceTaskPaused);
     }
 
     public void displayOriginalConfig(List<Integer> rotorsIDs, String currentWindowsCharacters, String inUseReflectorSymbol, String inUsePlugs, List<Integer> currentNotchDistances) {

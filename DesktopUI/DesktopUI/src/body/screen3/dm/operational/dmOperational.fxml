@@ -38,7 +38,7 @@
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin></Button>
-      <Button fx:id="pauseButton" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onMouseClicked="#pauseBruteForceAction" prefHeight="60.0" prefWidth="60.0" styleClass="action-btn" text="Pause" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+      <Button fx:id="pauseButton" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onMouseClicked="#handleBruteForcePauseResumeOperationAction" prefHeight="60.0" prefWidth="60.0" styleClass="action-btn" text="Pause" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin></Button>

@@ -72,14 +72,13 @@ public class dmOperationalController {
         }
     }
 
-    @FXML
-    void pauseBruteForceAction(MouseEvent event) {
 
+    void pauseBruteForceAction() {
+        parentController.pauseBruteForce();
     }
 
-    @FXML
-    void resumeBruteForceAction(MouseEvent event) {
-
+    void resumeBruteForceAction() {
+        parentController.resumeBruteForce();
     }
 
     void stopBruteForceAction() {
@@ -137,13 +136,16 @@ public class dmOperationalController {
         this.parentController = parentController;
     }
 
-    public void bindComponents(BooleanProperty isBruteForceTaskActive) {
+    public void bindComponents(BooleanProperty isBruteForceTaskActive, BooleanProperty isBruteForceTaskPaused) {
         this.isBruteForceTaskActive = isBruteForceTaskActive;
+        this.isBruteForceTaskPaused = isBruteForceTaskPaused;
         taskSizeSpinner.disableProperty().bind(isBruteForceTaskActive);
         numOfAgentsSlider.disableProperty().bind(isBruteForceTaskActive);
         difficultyLevelComboBox.disableProperty().bind(isBruteForceTaskActive);
         startButton.textProperty().bind(Bindings.when(isBruteForceTaskActive.not()).then("Start").otherwise("Stop"));
         pauseButton.disableProperty().bind(Bindings.when(isBruteForceTaskActive.not()).then(true).otherwise(false));
+
+        pauseButton.textProperty().bind(Bindings.when(isBruteForceTaskPaused.not().or(isBruteForceTaskActive.not())).then("Pause").otherwise("Resume"));
     }
 
     public void displayTasksAmount(int taskSize, DifficultyLevel difficultyLevel) {

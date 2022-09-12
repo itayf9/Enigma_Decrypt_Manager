@@ -10,6 +10,10 @@
     -fx-background-color: transparent;
 }
 
+.file-path-label {
+    -fx-font-size: 15px;
+}
+
 .enigma-title {
     -fx-text-fill: #0095ff;
     -fx-font-weight: bold;

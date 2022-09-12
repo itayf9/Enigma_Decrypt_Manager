@@ -1,6 +1,6 @@
 package dm.taskproducer;
 
-import dm.DecryptManager;
+import dm.decryptmanager.DecryptManager;
 import dm.agent.AgentConclusion;
 import dm.agent.AgentTask;
 import dm.dictionary.Dictionary;
@@ -23,9 +23,10 @@ public class TaskProducer implements Runnable {
     private final DifficultyLevel difficulty;
     private final String textToDecipher;
     private final Dictionary dictionary;
+
     private final BlockingQueue<AgentConclusion> candidatesQueue;
 
-    DecryptManager dm;
+    private final DecryptManager dm;
 
     public TaskProducer(DecryptManager dm, int taskSize, DifficultyLevel difficultyLevel, String textToDecipher) {
         this.dm = dm;
@@ -102,7 +103,7 @@ public class TaskProducer implements Runnable {
         // set up first agentTask
         try {
             agentTaskQueue.put(new AgentTask(inUseRotorsIDs, new ArrayList<>(currentWindowsOffsets), inUseReflectorID,
-                    copyOfMachine, taskSize, textToDecipher, dictionary, candidatesQueue, dm.isBruteForceActionCancelledProperty()));
+                    copyOfMachine, dm, taskSize, textToDecipher, dictionary, candidatesQueue));
         } catch (InterruptedException ignored) {
             //throw new RuntimeException(e);
         }
@@ -125,7 +126,7 @@ public class TaskProducer implements Runnable {
 
             try {
                 agentTaskQueue.put(new AgentTask(inUseRotorsIDs, nextWindowsOffsets, inUseReflectorID,
-                        copyOfMachine, taskSize, textToDecipher, dictionary, candidatesQueue, dm.isBruteForceActionCancelledProperty()));
+                        copyOfMachine, dm, taskSize, textToDecipher, dictionary, candidatesQueue));
             } catch (InterruptedException e) {
                 // producer Stopped so need to die
                 return;

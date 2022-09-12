@@ -5,11 +5,11 @@
 }
 
 .success-message-area {
-    -fx-fill: #50a005;
+    -fx-fill: #0095ff;
 }
 
 .error-message-area {
-    -fx-fill: firebrick;
+    -fx-fill: #cc5454;
 }
 
 .info-message-area {
