@@ -63,11 +63,9 @@ public class CandidatesCollectorTask extends Task<Boolean> {
             } catch (InterruptedException e) {
                 if (scannedConfigsCount >= totalPossibleConfigurations) {
                     System.out.println("collector died");
-                    candidateQueue.clear();
                     return Boolean.TRUE;
                 } else {
                     uiAdapter.updateTaskStatus("Stopped...");
-                    candidateQueue.clear();
                     System.out.println("collector died");
                     return Boolean.FALSE;
                 }
@@ -84,7 +82,6 @@ public class CandidatesCollectorTask extends Task<Boolean> {
                 Thread.sleep(100);
             } catch (InterruptedException ignored) {
                 uiAdapter.updateTaskStatus("Stopped...");
-                candidateQueue.clear();
                 System.out.println("collector died");
                 return Boolean.FALSE;
             }
@@ -93,7 +90,6 @@ public class CandidatesCollectorTask extends Task<Boolean> {
         uiAdapter.updateTaskActiveStatus(false);
         updateMessage("Done...");
         uiAdapter.updateTaskStatus("Done...");
-        candidateQueue.clear();
         System.out.println("collector died");
         return Boolean.TRUE;
     }

@@ -95,8 +95,13 @@ public class EncryptDecryptController {
         }
     }
 
+    /**
+     * handles the Process btn action
+     *
+     * @param ignored mouseEvent ignored
+     */
     @FXML
-    void processHandler(MouseEvent event) {
+    void processHandler(MouseEvent ignored) {
         if (cipherModeTS.isSelected()) { // done btn
             clearTextFields();
             parentController.doneCurrentCipherProcess();
@@ -117,10 +122,10 @@ public class EncryptDecryptController {
     }
 
     /**
-     * @param event a mouse click on one of the 2 modes presented
+     * @param ignored a mouse click on one of the 2 modes presented
      */
     @FXML
-    void setCipherMode(MouseEvent event) {
+    void setCipherMode(MouseEvent ignored) {
         clearTextFields();
         if (cipherModeTS.isSelected()) {
             parentController.setCharByCharCipherMode(true);
@@ -132,20 +137,20 @@ public class EncryptDecryptController {
     /**
      * Q6 -> going up the chain to parent controller
      *
-     * @param event button event
+     * @param ignored mouse event ignored
      */
     @FXML
-    void ResetConfiguration(MouseEvent event) {
+    void ResetConfiguration(MouseEvent ignored) {
         parentController.resetMachineConfiguration();
     }
 
     /**
      * clear the textBox
      *
-     * @param event button event
+     * @param ignored mouse event ignored
      */
     @FXML
-    void clearCurrentCipher(MouseEvent event) {
+    void clearCurrentCipher(MouseEvent ignored) {
         clearTextFields();
     }
 

@@ -50,17 +50,26 @@ public class TaskProducer implements Runnable {
                 produceMediumTasks(machine.getInUseRotorsIDs());
                 break;
             case HARD:
-                produceHardTasks();
+                produceHardTasks(machine.getInUseRotorsIDs());
                 break;
             case IMPOSSIBLE:
-
+                produceImpossibleTasks();
                 break;
+        }
+        System.out.println("producer died with taskSize = " + taskSize);
+    }
+
+    private void produceImpossibleTasks() {
+        List<List<Integer>> listOfAllCombinationsRotorsIDs = generateCombinations(machine.getAvailableRotorsLen(), machine.getRotorsCount());
+
+        for (List<Integer> combination : listOfAllCombinationsRotorsIDs) {
+            produceHardTasks(combination);
         }
     }
 
-    private void produceHardTasks() {
+    private void produceHardTasks(List<Integer> rotorsIDs) {
 
-        List<List<Integer>> listOfAllPermutationsRotorsIDs = permute(new ArrayList<>(machine.getInUseRotorsIDs()));
+        List<List<Integer>> listOfAllPermutationsRotorsIDs = permute(new ArrayList<>(rotorsIDs));
 
         for (List<Integer> permutation : listOfAllPermutationsRotorsIDs) {
             produceMediumTasks(permutation);
@@ -122,8 +131,36 @@ public class TaskProducer implements Runnable {
                 return;
             }
         }
+    }
 
-        System.out.println("producer died with taskSize = " + taskSize);
+    public List<List<Integer>> generateCombinations(int n, int k) {
+        List<List<Integer>> combinations = new ArrayList<>();
+        ArrayList<Integer> combination = new ArrayList<>(Collections.nCopies(k, 0));
+
+        // initialize with the lowest lexicographic combination
+        for (int i = 0; i < k; i++) {
+            combination.set(combination.get(i), i);
+        }
+
+        while (combination.get(k - 1) < n) {
+            combinations.add((List<Integer>) combination.clone());
+
+            // generate next combination in lexicographic order
+            int t = k - 1;
+            while (t != 0 && combination.get(t) == n - k + t) {
+                t--;
+            }
+            combination.set(t, combination.get(t) + 1);
+            for (int i = t + 1; i < k; i++) {
+                combination.set(i, combination.get(i - 1) + 1);
+            }
+        }
+
+        for (List<Integer> updatedCombination : combinations) {
+            updatedCombination.replaceAll(integer -> integer + 1);
+        }
+
+        return combinations;
     }
 
     public List<List<Integer>> permute(List<Integer> nums) {

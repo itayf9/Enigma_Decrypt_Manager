@@ -168,7 +168,11 @@ public class dmOperationalController {
                         factorial(specStatus.getInUseRotorsCount()));
                 break;
             case IMPOSSIBLE:
-                // need to calculate then implement Too HARD
+                totalPossibleConfigurations = (totalPossibleWindowsPositions *
+                        specStatus.getAvailableReflectorsCount() *
+                        factorial(specStatus.getInUseRotorsCount()) *
+                        (nCk(specStatus.getAvailableRotorsCount(), specStatus.getInUseRotorsCount()))
+                );
                 break;
         }
 

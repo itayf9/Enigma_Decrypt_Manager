@@ -44,7 +44,6 @@ public class DecryptManager {
         this.dictionary = dictionary;
         this.numOfAvailableAgents = numOfAvailableAgents;
         this.enigmaMachine = enigmaMachine;
-        this.candidatesQueue = new LinkedBlockingQueue<>();
         this.totalPossibleWindowsPositions = (long) Math.pow(enigmaMachine.getAlphabet().length(), enigmaMachine.getRotorsCount());
         this.isBruteForceActionCancelled = new SimpleBooleanProperty(false);
     }
@@ -77,6 +76,7 @@ public class DecryptManager {
     public void startDecrypt(int taskSize, int numOfSelectedAgents, String textToDecipher,
                              DifficultyLevel difficultyLevel, UIAdapter uiAdapter) {
 
+        this.candidatesQueue = new LinkedBlockingQueue<>();
         isBruteForceActionCancelled.set(false);
 
         // updates the total configs property
@@ -88,7 +88,6 @@ public class DecryptManager {
         // starting the thread pool
         threadExecutor = new ThreadPoolExecutor(numOfSelectedAgents, numOfSelectedAgents,
                 0L, TimeUnit.MILLISECONDS, threadPoolBlockingQueue);
-
 
         // setting up thr thread factory for the thread pool
         threadExecutor.setThreadFactory(new ThreadFactory() {
@@ -128,7 +127,11 @@ public class DecryptManager {
                         factorial(enigmaMachine.getRotorsCount()));
                 break;
             case IMPOSSIBLE:
-                // need to calculate then implement Too HARD
+                totalPossibleConfigurations = (totalPossibleWindowsPositions *
+                        enigmaMachine.getAvailableReflectorsLen() *
+                        factorial(enigmaMachine.getRotorsCount()) *
+                        nCk(enigmaMachine.getAvailableRotorsLen(), enigmaMachine.getRotorsCount())
+                );
                 break;
         }
     }
