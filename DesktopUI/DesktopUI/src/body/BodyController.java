@@ -292,11 +292,11 @@ public class BodyController {
 
         // binds the components that need the isConfigured Boolean property.
         encryptDecrypt.disableProperty().bind(isMachineConfiguredProperty.not());
-        encryptDecrypt2.disableProperty().bind(isMachineConfiguredProperty.not());
+        encryptDecrypt2.disableProperty().bind(isMachineConfiguredProperty.not().or(isBruteForceTaskActive));
         statistics.disableProperty().bind(isMachineConfiguredProperty.not());
         dmOperational.disableProperty().bind(isMachineConfiguredProperty.not());
         candidatesArea.disableProperty().bind(isMachineConfiguredProperty.not());
-        dictionary.disableProperty().bind(isMachineConfiguredProperty.not());
+        dictionary.disableProperty().bind(isMachineConfiguredProperty.not().or(isBruteForceTaskActive));
 
         // config bindings
         currentConfigScreen1Controller.bindConfigComponents(inUseRotorsIDsProperty, currentWindowsCharactersProperty, inUseReflectorSymbolProperty, inUsePlugs, currentNotchDistances, isMachineConfiguredProperty);

@@ -16,6 +16,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
@@ -50,6 +51,9 @@ public class EncryptDecryptController {
     private ToggleSwitch cipherModeTS;
 
     @FXML
+    private Label cipheredOutputHeadline;
+
+    @FXML
     private Button processButton;
 
     @FXML
@@ -62,6 +66,8 @@ public class EncryptDecryptController {
     public void initialize() {
         processButton.setText("Process");
         cipherProblemLabel.setText("");
+
+        cipheredOutputHeadline.visibleProperty().bind(Bindings.when(outputLabel.textProperty().isEqualTo("")).then(true).otherwise(false));
     }
 
     /**

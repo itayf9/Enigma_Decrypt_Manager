@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -9,7 +10,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Rectangle?>
 
-<GridPane hgap="3.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="210.0" prefWidth="600.0" styleClass="component-with-border" vgap="5.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.screen1.machinedetails.MachineDetailsController">
+<GridPane hgap="3.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="210.0" prefWidth="600.0" vgap="5.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.screen1.machinedetails.MachineDetailsController">
   <columnConstraints>
       <ColumnConstraints hgrow="NEVER" maxWidth="140.0" minWidth="75.0" prefWidth="78.0" />
       <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="5.0" prefWidth="25.0" />
@@ -37,7 +38,7 @@
       <RowConstraints maxHeight="1.7976931348623157E308" minHeight="0.0" prefHeight="0.0" vgrow="NEVER" />
   </rowConstraints>
    <children>
-      <Label styleClass="component-title" text="Machine Details:" GridPane.columnSpan="4">
+      <Label styleClass="component-title" text="Machine Details" GridPane.columnSpan="4">
          <GridPane.margin>
             <Insets left="5.0" />
          </GridPane.margin>
@@ -83,7 +84,7 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </StackPane>
-      <Label alignment="TOP_CENTER" minHeight="-Infinity" styleClass="property-label" text="Texts Ciphered So Far:" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="6" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+      <Label alignment="TOP_CENTER" minHeight="-Infinity" styleClass="property-label" text="Texts Ciphered So Far" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="6" GridPane.rowIndex="2" GridPane.valignment="TOP" />
       <Label alignment="TOP_CENTER" styleClass="property-label" text="Available Reflectors" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="TOP" />
       <Label alignment="TOP_CENTER" styleClass="property-label" text="Available Rotors" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP" />
       <fx:include fx:id="originalConfig" source="../../currentconfig/currentConfig.fxml" GridPane.columnIndex="8" GridPane.columnSpan="7" GridPane.rowSpan="7" />
@@ -95,4 +96,8 @@
       <URL value="@../../../app/app.css" />
       <URL value="@machineDetails.css" />
    </stylesheets>
+   <styleClass>
+      <String fx:value="component-with-border" />
+      <String fx:value="component-with-background" />
+   </styleClass>
 </GridPane>

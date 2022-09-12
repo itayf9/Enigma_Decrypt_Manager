@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 
 import static utill.Utility.factorial;
+import static utill.Utility.nCk;
 
 public class dmOperationalController {
 
@@ -110,6 +111,22 @@ public class dmOperationalController {
         taskSizeSpinner.valueFactoryProperty().set(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, (int) totalPossibleWindowsPositions));
         numOfAgentsSlider.setMax(maxNumOfAgents);
         this.totalPossibleWindowsPositions = totalPossibleWindowsPositions;
+
+        taskSizeSpinner.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                int newValueAsInt = Integer.parseInt(newValue);
+                if (newValueAsInt > 0 && newValueAsInt <= totalPossibleWindowsPositions) {
+                    taskSizeSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, (int) totalPossibleWindowsPositions, newValueAsInt));
+                } else {
+                    taskSizeSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, (int) totalPossibleWindowsPositions, Integer.parseInt(oldValue)));
+                    taskSizeSpinner.getEditor().setText(oldValue);
+                }
+            } catch (NumberFormatException e) {
+                taskSizeSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, (int) totalPossibleWindowsPositions, Integer.parseInt(oldValue)));
+                taskSizeSpinner.getEditor().setText(oldValue);
+            }
+
+        });
     }
 
     public void bindTextToDecipherPropertyToOutputCipher(StringProperty cipheredText) {
@@ -122,6 +139,9 @@ public class dmOperationalController {
 
     public void bindComponents(BooleanProperty isBruteForceTaskActive) {
         this.isBruteForceTaskActive = isBruteForceTaskActive;
+        taskSizeSpinner.disableProperty().bind(isBruteForceTaskActive);
+        numOfAgentsSlider.disableProperty().bind(isBruteForceTaskActive);
+        difficultyLevelComboBox.disableProperty().bind(isBruteForceTaskActive);
         startButton.textProperty().bind(Bindings.when(isBruteForceTaskActive.not()).then("Start").otherwise("Stop"));
         pauseButton.disableProperty().bind(Bindings.when(isBruteForceTaskActive.not()).then(true).otherwise(false));
     }

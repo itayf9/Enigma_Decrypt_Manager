@@ -62,8 +62,8 @@ public class TaskProducer implements Runnable {
 
         List<List<Integer>> listOfAllPermutationsRotorsIDs = permute(new ArrayList<>(machine.getInUseRotorsIDs()));
 
-        for (List<Integer> listOfAllPermutationsRotorsID : listOfAllPermutationsRotorsIDs) {
-            produceMediumTasks(listOfAllPermutationsRotorsID);
+        for (List<Integer> permutation : listOfAllPermutationsRotorsIDs) {
+            produceMediumTasks(permutation);
         }
     }
 

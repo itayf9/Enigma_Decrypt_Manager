@@ -16,6 +16,7 @@ import java.util.Set;
 import java.util.concurrent.*;
 
 import static utill.Utility.factorial;
+import static utill.Utility.nCk;
 
 public class DecryptManager {
 

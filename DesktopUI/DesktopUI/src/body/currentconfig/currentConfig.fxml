@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -9,7 +10,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane styleClass="component-with-border" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.currentconfig.CurrentConfigController">
+<GridPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.currentconfig.CurrentConfigController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="295.0" />
       <ColumnConstraints />
@@ -20,7 +21,7 @@
       <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="142.0" vgrow="ALWAYS" />
    </rowConstraints>
    <children>
-      <Label fx:id="configTitle" styleClass="component-title" text="Current Machine Configuration:" GridPane.halignment="CENTER" />
+      <Label fx:id="configTitle" styleClass="component-title" text="Current Machine Configuration" GridPane.halignment="LEFT" />
       <ScrollPane fitToHeight="true" fitToWidth="true" GridPane.columnSpan="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
          <content>
             <FlowPane orientation="VERTICAL" prefHeight="133.0" prefWrapLength="200.0">
@@ -45,4 +46,8 @@
       <URL value="@../../app/app.css" />
       <URL value="@currentConfig.css" />
    </stylesheets>
+   <styleClass>
+      <String fx:value="component-with-border" />
+      <String fx:value="component-with-background" />
+   </styleClass>
 </GridPane>

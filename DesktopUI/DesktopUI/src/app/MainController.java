@@ -151,15 +151,16 @@ public class MainController {
         String fileName = "C:/Users/itayf/Downloads/resource/ex1-sanity-paper-enigma.xml";
         DTOstatus loadStatus = engine.buildMachineFromXmlFile(selectedMachineFile);
         if (!loadStatus.isSucceed()) {
-            headerController.displayHeaderProblem(loadStatus.getDetails());
+            //headerController.displayHeaderProblem(loadStatus.getDetails());
+            setStatusMessage(loadStatus.getDetails().name(), MessageTone.ERROR);
         } else {
-            headerController.displaySuccessHeaderLabel();
+            headerController.displayFilePath();
             DTOspecs specsStatus = engine.displayMachineSpecifications();
 
             int rotorsCount = specsStatus.getInUseRotorsCount();
             int alphabetLength = engine.getMachineAlphabet().length();
 
-            setStatusMessage("Loaded Successfully", MessageTone.SUCCESS);
+            setStatusMessage("Machine Loaded Successfully!", MessageTone.SUCCESS);
 
             bodyController.setDictionaryWords(engine.getDictionaryWords().getDictionary());
             bodyController.displayMachineSpecs(specsStatus);

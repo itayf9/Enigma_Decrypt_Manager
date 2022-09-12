@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="900.0" vgap="5.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="header.HeaderController">
+<GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="900.0" styleClass="header-gridpane" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="header.HeaderController">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="NEVER" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
@@ -31,13 +31,12 @@
   </columnConstraints>
   <rowConstraints>
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-    <RowConstraints maxHeight="54.666656494140625" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="54.666656494140625" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="54.666656494140625" minHeight="0.0" prefHeight="40.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Button fx:id="loadFileButton" mnemonicParsing="false" onMouseClicked="#loadMachineFile" prefHeight="25.0" prefWidth="107.0" styleClass="action-btn" text="Load File" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+      <Button fx:id="loadFileButton" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#loadMachineFile" prefWidth="107.0" styleClass="action-btn" text="Load File" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
          <GridPane.margin>
-            <Insets />
+            <Insets left="5.0" right="5.0" />
          </GridPane.margin>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -51,8 +50,7 @@
             <Label fx:id="filePathLoadMachineLabel" text="File Path" />
          </content>
       </ScrollPane>
-      <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="124.0" styleClass="enigma-title" stylesheets="@header.css" text="The Enigma Machine" GridPane.columnSpan="8" GridPane.halignment="CENTER" />
-      <Label fx:id="headerMessageLabel" text="Label" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="2" />
+      <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="17.0" styleClass="enigma-title" stylesheets="@header.css" text="Cracking The Enigma Machine" GridPane.columnSpan="8" GridPane.halignment="CENTER" />
       <MenuButton mnemonicParsing="false" prefHeight="32.0" prefWidth="36.0" styleClass="settings-btn">
         <items>
             <Menu mnemonicParsing="false" text="Skins">
@@ -79,7 +77,7 @@
       </MenuButton>
    </children>
    <padding>
-      <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
+      <Insets bottom="10.0" left="15.0" right="15.0" top="5.0" />
    </padding>
    <stylesheets>
       <URL value="@../app/app.css" />

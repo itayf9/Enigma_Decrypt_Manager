@@ -13,9 +13,9 @@
   <tabs>
     <Tab styleClass="enigma-tab" text="Machine">
          <content>
-            <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+            <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="tab-scrollpane">
                 <content>
-                    <GridPane minHeight="420.0" minWidth="700.0" prefHeight="440.0" prefWidth="900.0">
+                    <GridPane minHeight="420.0" minWidth="700.0" prefHeight="440.0" prefWidth="900.0" styleClass="tab-gridpane">
                         <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="500.0" minWidth="10.0" prefWidth="448.0" />
                             <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="26.66668701171875" />
@@ -40,9 +40,9 @@
          </content></Tab>
     <Tab styleClass="enigma-tab" text="Encrypt / Decrypt">
          <content>
-             <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+             <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="tab-scrollpane">
                  <content>
-                     <GridPane hgap="5.0" minHeight="451.0" minWidth="700.0" prefHeight="451.0" prefWidth="890.0">
+                     <GridPane hgap="5.0" minHeight="451.0" minWidth="700.0" prefHeight="451.0" prefWidth="890.0" styleClass="tab-gridpane">
                          <columnConstraints>
                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="596.0" />
                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="304.0" />
@@ -66,9 +66,9 @@
          </content></Tab>
       <Tab styleClass="enigma-tab" text="Brute Force">
          <content>
-            <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="470.0">
+            <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="470.0" styleClass="tab-scrollpane">
               <content>
-                  <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="470.0" prefWidth="900.0">
+                  <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="470.0" prefWidth="900.0" styleClass="tab-gridpane">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="329.3333435058594" minWidth="10.0" prefWidth="288.33331298828125" />
                       <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="377.66668701171875" />

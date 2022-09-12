@@ -43,14 +43,11 @@ public class HeaderController {
     @FXML
     private Button loadFileButton;
 
-    @FXML
-    private Label headerMessageLabel;
 
     @FXML
     public void initialize() {
 
         filePathLoadMachineLabel.setText("");
-        headerMessageLabel.setText("");
 
 
         loadButtonFadeTransition = new FadeTransition(Duration.millis(1500), loadFileButton);
@@ -100,15 +97,10 @@ public class HeaderController {
     }
 
     public void displayHeaderProblem(Problem details) {
-        headerMessageLabel.getStyleClass().removeAll("success-label");
-        headerMessageLabel.getStyleClass().add("error-label");
-        headerMessageLabel.setText(details.name());
+
     }
 
-    public void displaySuccessHeaderLabel() {
-        headerMessageLabel.getStyleClass().removeAll("error-label");
-        headerMessageLabel.getStyleClass().add("success-label");
-        headerMessageLabel.setText("Machine Loaded Successfully!");
+    public void displayFilePath() {
         filePathLoadMachineLabel.setText(selectedMachineFile);
     }
 

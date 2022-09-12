@@ -2,6 +2,10 @@
     -fx-background-color: #e7e7e7;
 }
 
+.header-gridpane {
+    -fx-background-color: white;
+}
+
 .settings-btn {
     -fx-background-color: transparent;
 }
@@ -9,4 +13,6 @@
 .enigma-title {
     -fx-text-fill: #0095ff;
     -fx-font-weight: bold;
+    -fx-font-size: 15px;
 }
+

@@ -2,6 +2,10 @@
     -fx-background-color: #0095ff;
 }
 
+.ciphered-text-headline-label {
+    -fx-text-fill: grey;
+}
+
 
 .clear-btn {
     -fx-background-color: #6674ce;

@@ -133,4 +133,8 @@ public class Utility {
         return fact;
     }
 
+    public static long nCk(int n, int k) {
+        return factorial(n) / (factorial(k) * factorial(n - k));
+    }
+
 }

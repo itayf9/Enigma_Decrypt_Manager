@@ -47,6 +47,10 @@
     -fx-background-color: linear-gradient(to bottom, #92dcf1 7%, rgba(119, 172, 241, 0.95) 39%, #353396 100%)
 }
 
+.component-with-background {
+    -fx-background-color: white;
+}
+
 .component-title {
     -fx-text-fill: #0095ff;
     -fx-font-weight: bold;

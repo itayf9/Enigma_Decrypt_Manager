@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
@@ -11,10 +12,11 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.ToggleSwitch?>
 
-<GridPane minHeight="150.0" prefHeight="300.0" prefWidth="550.0" styleClass="component-with-border" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.screen2.encrypt.EncryptDecryptController">
+<GridPane minHeight="150.0" prefHeight="300.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.screen2.encrypt.EncryptDecryptController">
    <columnConstraints>
       <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="370.0" />
       <ColumnConstraints hgrow="ALWAYS" maxWidth="50.0" minWidth="5.0" prefWidth="5.0" />
@@ -33,7 +35,7 @@
       <RowConstraints maxHeight="1.7976931348623157E308" minHeight="50.0" prefHeight="100.0" vgrow="ALWAYS" />
    </rowConstraints>
    <children>
-      <Label styleClass="component-title" text="Cipher Text:" GridPane.rowIndex="1" />
+      <Label styleClass="component-title" text="Cipher Some Text" GridPane.rowIndex="1" />
       <ScrollPane fx:id="lightBulbsScrollPane" fitToHeight="true" fitToWidth="true" GridPane.columnSpan="4" GridPane.rowIndex="8">
          <content>
             <FlowPane fx:id="lightBulbs" alignment="TOP_CENTER" minHeight="93.0" minWidth="400.0" prefHeight="93.0" prefWidth="547.0" styleClass="lightbulbs-area" />
@@ -44,19 +46,29 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </Label>
-      <TextField fx:id="inputTextField" maxWidth="1.7976931348623157E308" minHeight="40.0" onKeyReleased="#deactivateLightBulb" onKeyTyped="#cipherCharacter" prefHeight="40.0" prefWidth="268.0" styleClass="input-text-field" GridPane.rowIndex="3" GridPane.valignment="TOP" />
-      <Label prefHeight="17.0" prefWidth="76.0" text="Ciphered Text:" GridPane.rowIndex="5" GridPane.valignment="BOTTOM" />
-      <Label text="Enter Text:" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+      <TextField fx:id="inputTextField" maxWidth="1.7976931348623157E308" minHeight="40.0" onKeyReleased="#deactivateLightBulb" onKeyTyped="#cipherCharacter" prefHeight="40.0" prefWidth="268.0" promptText="Cipher something..." styleClass="input-text-field" GridPane.rowIndex="3" GridPane.valignment="TOP" />
       <ScrollPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="40.0" prefHeight="40.0" prefWidth="268.0" GridPane.rowIndex="6" GridPane.valignment="TOP">
          <content>
-            <Label fx:id="outputLabel">
-               <font>
-                  <Font size="15.0" />
-               </font>
-               <padding>
-                  <Insets top="5.0" />
-               </padding>
-            </Label>
+            <StackPane>
+               <children>
+                  <Label fx:id="outputLabel" StackPane.alignment="CENTER_LEFT">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                     <StackPane.margin>
+                        <Insets left="5.0" />
+                     </StackPane.margin>
+                  </Label>
+                  <Label fx:id="cipheredOutputHeadline" styleClass="ciphered-text-headline-label" text="The Ciphered Text Will Be Shown Here" StackPane.alignment="CENTER_LEFT">
+                     <StackPane.margin>
+                        <Insets left="5.0" />
+                     </StackPane.margin>
+                  </Label>
+               </children>
+            </StackPane>
          </content>
       </ScrollPane>
 
@@ -97,4 +109,8 @@
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
    </padding>
+   <styleClass>
+      <String fx:value="component-with-border" />
+      <String fx:value="component-with-background" />
+   </styleClass>
 </GridPane>

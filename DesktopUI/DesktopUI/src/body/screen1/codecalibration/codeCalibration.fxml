@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -12,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="350.0" styleClass="component-with-border" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.screen1.codecalibration.CodeCalibrationController">
+<GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.screen1.codecalibration.CodeCalibrationController">
     <columnConstraints>
         <ColumnConstraints hgrow="NEVER" maxWidth="112.0" minWidth="10.0" prefWidth="112.0" />
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="47.0" />
@@ -81,7 +82,7 @@
                 </RadioButton>
             </children>
         </HBox>
-        <Label prefHeight="27.0" prefWidth="153.0" styleClass="component-title" text="Code Calibration:" textAlignment="CENTER" GridPane.columnSpan="4" GridPane.halignment="CENTER">
+        <Label prefHeight="27.0" prefWidth="153.0" styleClass="component-title" text="Code Calibration" textAlignment="CENTER" GridPane.columnSpan="4" GridPane.halignment="CENTER">
             <GridPane.margin>
                 <Insets />
             </GridPane.margin>
@@ -98,4 +99,8 @@
       <URL value="@../../../app/app.css" />
       <URL value="@codeCalibration.css" />
    </stylesheets>
+   <styleClass>
+      <String fx:value="component-with-border" />
+      <String fx:value="component-with-background" />
+   </styleClass>
 </GridPane>

@@ -42,3 +42,15 @@
 .enigma-tabpane *.tab-header-area *.tab-header-background {
     -fx-background-color: #a9a9a9;
 }
+
+.enigma-tabpane *.tab-context-area {
+    -fx-background-color: #fafcfb;
+}
+
+.tab-gridpane {
+    -fx-background-color: #fafcfb;
+}
+
+.tab-scrollpane {
+    -fx-background-color: #fafcfb;
+}
