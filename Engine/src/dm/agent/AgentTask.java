@@ -88,7 +88,6 @@ public class AgentTask implements Runnable {
             // ciphers the text
             String decipherResult = decipherLine(textToDecipher);
 
-
             // check dictionary
             if (dictionary.isAllWordsInDictionary(decipherResult)) {
                 // convert windows offsets to characters.

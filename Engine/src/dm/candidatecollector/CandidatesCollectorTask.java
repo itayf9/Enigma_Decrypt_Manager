@@ -7,7 +7,6 @@ import javafx.beans.property.BooleanProperty;
 import javafx.concurrent.Task;
 import ui.adapter.UIAdapter;
 
-import java.math.BigInteger;
 import java.util.concurrent.BlockingQueue;
 
 public class CandidatesCollectorTask extends Task<Boolean> {
@@ -48,8 +47,6 @@ public class CandidatesCollectorTask extends Task<Boolean> {
 
         updateMessage("Searching for Candidates...");
         uiAdapter.updateTaskStatus("Searching...");
-        System.out.println("total possible config: " + totalPossibleConfigurations);
-        System.out.println(isBruteForceActionCancelled.getValue());
 
         while (scannedConfigsCount < totalPossibleConfigurations && !isBruteForceActionCancelled.getValue()) {
             AgentConclusion queueTakenCandidates;

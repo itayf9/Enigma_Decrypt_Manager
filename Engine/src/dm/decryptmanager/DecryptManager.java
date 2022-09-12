@@ -56,6 +56,29 @@ public class DecryptManager {
     }
 
     /**
+     * pauses execution
+     */
+    public void pauseDecrypt() {
+        System.out.println("about to set pause to " + true);
+        System.out.println("now paused is " + isIsBruteForceActionPaused());
+        synchronized (dummy) {
+            System.out.println("inside sync on dm");
+            isBruteForceActionPaused.setValue(true);
+        }
+    }
+
+    /**
+     * resume the execution after being paused
+     */
+    public void resumeDecrypt() {
+        synchronized (dummy) {
+            isBruteForceActionPaused.setValue(false);
+            dummy.notifyAll();
+            System.out.println("dm had notified all with key :" + dummy);
+        }
+    }
+
+    /**
      * cancel the bruteForce execution
      */
     public void stopDecrypt() {
@@ -112,6 +135,7 @@ public class DecryptManager {
 
         // setting a thread that produces tasks
         taskProducer = new Thread(new TaskProducer(this, taskSize, difficultyLevel, textToDecipher));
+        taskProducer.setName("TASK_PRODUCER");
 
         // trigger the threads
         threadExecutor.prestartAllCoreThreads();

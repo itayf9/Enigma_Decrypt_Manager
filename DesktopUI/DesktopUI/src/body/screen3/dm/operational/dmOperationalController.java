@@ -44,6 +44,7 @@ public class dmOperationalController {
     private StringProperty textToDecipherProperty;
 
     private BooleanProperty isBruteForceTaskActive;
+    private BooleanProperty isBruteForceTaskPaused;
 
     private DTOspecs specStatus;
 
@@ -69,6 +70,17 @@ public class dmOperationalController {
             stopBruteForceAction();
         } else {
             startBruteForceAction();
+        }
+    }
+
+    @FXML
+    void handleBruteForcePauseResumeOperationAction(MouseEvent event) {
+
+        if (isBruteForceTaskPaused.getValue()) {
+            System.out.println("going in resume");
+            resumeBruteForceAction();
+        } else {
+            pauseBruteForceAction();
         }
     }
 

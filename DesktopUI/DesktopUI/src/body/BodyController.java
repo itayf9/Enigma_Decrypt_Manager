@@ -357,4 +357,12 @@ public class BodyController {
     public void setStatusMessage(String statusMessage, MessageTone messageTone) {
         mainController.setStatusMessage(statusMessage, messageTone);
     }
+
+    public void pauseBruteForce() {
+        mainController.pauseBruteForceProcess();
+    }
+
+    public void resumeBruteForce() {
+        mainController.resumeBruteForceProcess();
+    }
 }

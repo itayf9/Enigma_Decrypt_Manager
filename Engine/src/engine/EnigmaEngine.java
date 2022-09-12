@@ -972,7 +972,7 @@ public class EnigmaEngine implements Engine {
     }
 
     @Override
-    public void startBruteForceProcess(UIAdapter uiAdapter, Runnable onFinish, String textToDecipher,
+    public void startBruteForceProcess(UIAdapter uiAdapter, String textToDecipher,
                                        DifficultyLevel difficultyLevel, int taskSize, int numOfSelectedAgents) {
 
         decryptManager.startDecrypt(taskSize, numOfSelectedAgents, textToDecipher, difficultyLevel, uiAdapter);
@@ -981,6 +981,16 @@ public class EnigmaEngine implements Engine {
     @Override
     public void stopBruteForceProcess() {
         decryptManager.stopDecrypt();
+    }
+
+    @Override
+    public void pauseBruteForceProcess() {
+        decryptManager.pauseDecrypt();
+    }
+
+    @Override
+    public void resumeBruteForceProcess() {
+        decryptManager.resumeDecrypt();
     }
 
 

@@ -296,8 +296,7 @@ public class MainController {
         UIAdapter uiAdapter = createUIAdapter();
 
         //fire up the DM
-        engine.startBruteForceProcess(uiAdapter, () -> {
-        }, textToDecipher, difficultyLevel, taskSize, numOfAgentSelected);
+        engine.startBruteForceProcess(uiAdapter, textToDecipher, difficultyLevel, taskSize, numOfAgentSelected);
     }
 
     private void cleanOldResults() {
@@ -433,5 +432,18 @@ public class MainController {
 
     public void setAppSkin(Skin skin) {
         int x;
+    }
+
+    /**
+     * pause the engine brute force process
+     */
+    public void pauseBruteForceProcess() {
+        isBruteForceTaskPaused.set(true);
+        engine.pauseBruteForceProcess();
+    }
+
+    public void resumeBruteForceProcess() {
+        isBruteForceTaskPaused.set(false);
+        engine.resumeBruteForceProcess();
     }
 }

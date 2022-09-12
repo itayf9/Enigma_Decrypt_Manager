@@ -150,17 +150,34 @@ public interface Engine {
     DTOcandidates getDecipherCandidates();
 
     /**
-     * @param uiAdapter
-     * @param onFinish
-     * @param textToDecipher
-     * @param difficultyLevel
-     * @param taskSize
+     * @param uiAdapter       object that updates the ui element
+     * @param onFinish        function to execute when task is finished
+     * @param textToDecipher  the text to decipher
+     * @param difficultyLevel the difficulty level
+     * @param taskSize        size of task
      */
-    void startBruteForceProcess(UIAdapter uiAdapter, Runnable onFinish, String textToDecipher,
+    void startBruteForceProcess(UIAdapter uiAdapter, String textToDecipher,
                                 DifficultyLevel difficultyLevel, int taskSize, int numOfSelectedAgents);
 
+    /**
+     * get all words in dictionary
+     *
+     * @return DTO contains Set of Strings
+     */
     DTOdictionary getDictionaryWords();
 
+    /**
+     * cancel the thread pool execution
+     */
     void stopBruteForceProcess();
 
+    /**
+     * pause the thread pool execution
+     */
+    void pauseBruteForceProcess();
+
+    /**
+     * resume the thread pool execution after being paused
+     */
+    void resumeBruteForceProcess();
 }
