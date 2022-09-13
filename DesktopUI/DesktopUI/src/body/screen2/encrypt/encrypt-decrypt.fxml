@@ -36,11 +36,6 @@
    </rowConstraints>
    <children>
       <Label styleClass="component-title" text="Cipher Some Text" GridPane.rowIndex="1" />
-      <ScrollPane fx:id="lightBulbsScrollPane" fitToHeight="true" fitToWidth="true" GridPane.columnSpan="4" GridPane.rowIndex="8">
-         <content>
-            <FlowPane fx:id="lightBulbs" alignment="TOP_CENTER" minHeight="93.0" minWidth="400.0" prefHeight="93.0" prefWidth="547.0" styleClass="lightbulbs-area" />
-         </content>
-      </ScrollPane>
       <TextField fx:id="inputTextField" maxWidth="1.7976931348623157E308" minHeight="40.0" onKeyPressed="#cipherCharacter" onKeyReleased="#deactivateLightBulb" prefHeight="40.0" prefWidth="268.0" promptText="Cipher something..." styleClass="input-text-field" GridPane.rowIndex="3" GridPane.valignment="TOP" />
       <ScrollPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="40.0" prefHeight="40.0" prefWidth="268.0" styleClass="sub-component-with-background" GridPane.rowIndex="6" GridPane.valignment="TOP">
          <content>
@@ -96,6 +91,15 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </ToggleSwitch>
+      <ScrollPane fx:id="lightBulbsScrollPane" fitToWidth="true" maxHeight="200.0" styleClass="sub-component-with-background" GridPane.columnSpan="4" GridPane.rowIndex="8">
+         <content>
+            <FlowPane fx:id="lightBulbs" alignment="TOP_CENTER" hgap="5.0" maxHeight="200.0" prefHeight="95.0" styleClass="lightbulbs-area" vgap="5.0">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </FlowPane>
+         </content>
+      </ScrollPane>
    </children>
    <stylesheets>
       <URL value="@../../../app/app-default.css" />

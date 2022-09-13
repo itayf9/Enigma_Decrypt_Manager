@@ -60,10 +60,10 @@
     -fx-stroke-type: inside;
 }
 
-.lightbulb-circle:hover {
-    -fx-fill: #a24141;
-    -fx-stroke: black;
-    -fx-stroke-type: inside;
+.lightbulbs-area .lightbulb:hover {
+    -fx-background-color: #c0c0c0;
+    -fx-border-width: 2;
+    -fx-cursor: hand;
 }
 
 .lightbulb-circle:pressed {
@@ -72,12 +72,6 @@
     -fx-stroke-type: inside;
 }
 
-
-.lightbulb-letter {
-    -fx-alignment: center;
-    -fx-font-size: 26;
-}
-
-.light-on {
-    -fx-fill: Yellow;
+.lightbulbs-area .light-on {
+    -fx-background-color: #ffff00;
 }

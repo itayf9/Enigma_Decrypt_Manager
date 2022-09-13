@@ -67,6 +67,7 @@ public class EncryptDecryptController {
         processButton.setText("Process");
 
         cipheredOutputHeadline.visibleProperty().bind(Bindings.when(outputLabel.textProperty().isEqualTo("")).then(true).otherwise(false));
+        lightBulbs.disableProperty().bind(cipherModeTS.selectedProperty().not());
     }
 
     /**
@@ -266,20 +267,16 @@ public class EncryptDecryptController {
             return;
         }
         ObservableList<?> elements = lightBulbs.getChildren();
-        StackPane currentPane = (StackPane) elements.get(alphabet.indexOf(cipheredLetter.charAt(0)));
-        //Circle circle = (Circle) currentPane.getChildren().get(0);
-        //circle.setFill(Paint.valueOf("#cc5454"));
+        Button currentPane = (Button) elements.get(alphabet.indexOf(cipheredLetter.charAt(0)));
 
-        currentPane.getChildren().get(0).getStyleClass().removeAll("light-on");
-        currentPane.getChildren().get(1).getStyleClass().removeAll("light-on");
+        currentPane.getStyleClass().removeAll("light-on");
     }
 
     private void deactivateLight() {
         ObservableList<?> elements = lightBulbs.getChildren();
-        StackPane currentPane = (StackPane) elements.get(alphabet.indexOf(cipheredLetter.charAt(0)));
+        Button currentPane = (Button) elements.get(alphabet.indexOf(cipheredLetter.charAt(0)));
 
-        currentPane.getChildren().get(0).getStyleClass().removeAll("light-on");
-        currentPane.getChildren().get(1).getStyleClass().removeAll("light-on");
+        currentPane.getStyleClass().removeAll("light-on");
     }
 
     public StringProperty getOutputLabelProperty() {
