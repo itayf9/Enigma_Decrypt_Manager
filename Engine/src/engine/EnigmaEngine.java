@@ -1046,6 +1046,12 @@ public class EnigmaEngine implements Engine {
     }
 
     @Override
+    public boolean isAllWordsInDictionary(String text) {
+        return decryptManager.isAllWordsInDictionary(text);
+    }
+
+
+    @Override
     public String toString() {
         return "engine.EnigmaEngine{" +
                 "machine=" + machine +

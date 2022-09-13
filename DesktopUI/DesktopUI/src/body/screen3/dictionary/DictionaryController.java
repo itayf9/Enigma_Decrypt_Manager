@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 
 import java.util.Set;
@@ -19,7 +20,7 @@ public class DictionaryController {
     private FlowPane wordsAreaFlowPane;
 
     @FXML
-    private TextArea searchTextField;
+    private TextField searchTextField;
 
     @FXML
     public void initialize() {

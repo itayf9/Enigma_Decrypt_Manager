@@ -10,8 +10,16 @@
     -fx-background-color: transparent;
 }
 
+.settings-btn *.arrow {
+    -fx-background-color: #000001;
+}
+
 .file-path-label {
     -fx-font-size: 15px;
+}
+
+.file-path-area {
+    -fx-background-color: #e7e7e7;
 }
 
 .enigma-title {

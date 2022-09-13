@@ -180,4 +180,6 @@ public interface Engine {
      * resume the thread pool execution after being paused
      */
     void resumeBruteForceProcess();
+
+    boolean isAllWordsInDictionary(String textToCipher);
 }

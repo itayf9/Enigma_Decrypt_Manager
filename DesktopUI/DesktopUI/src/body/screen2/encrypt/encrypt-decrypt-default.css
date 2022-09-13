@@ -2,6 +2,16 @@
     -fx-background-color: #0095ff;
 }
 
+.char-by-char-ts .thumb-area {
+    -fx-background-color: #e7e7e7;
+}
+
+.char-by-char-ts .thumb {
+    -fx-background-color: white;
+    -fx-border-color: #e7e7e7;
+    -fx-border-radius: 90deg;
+}
+
 .ciphered-text-headline-label {
     -fx-text-fill: grey;
 }
@@ -41,7 +51,18 @@
 }
 
 .lightbulbs-area {
-    -fx-background-color: #293462;
+    -fx-background-color: #e7e7e7;
+}
+
+.lightbulb-circle {
+    -fx-fill: #cc5454;
+    -fx-stroke: black;
+    -fx-stroke-type: inside;
+}
+
+.lightbulb-letter {
+    -fx-alignment: center;
+    -fx-font-size: 26;
 }
 
 .light-on {

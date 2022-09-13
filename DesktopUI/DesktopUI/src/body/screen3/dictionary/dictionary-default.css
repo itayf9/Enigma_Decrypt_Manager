@@ -1,0 +1,28 @@
+.search-text-field {
+    -fx-border-radius: 30;
+    -fx-background-radius: 30;
+    -fx-background-color: #e7e7e7;
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color: #b1b4b9;
+}
+
+.search-text-field:focused {
+    -fx-border-color: #0095ff;
+    -fx-border-width: 1 1 2 1;
+    -fx-background-color: white;
+
+}
+
+.word-label {
+    -fx-border-width: 1;
+    -fx-border-color: grey;
+    -fx-border-radius: 10;
+}
+
+.word-label:hover {
+    -fx-border-color: #5d5d5d;
+    -fx-background-color: grey;
+    -fx-background-radius: 10;
+    -fx-text-fill: white;
+    -fx-cursor: HAND;
+}

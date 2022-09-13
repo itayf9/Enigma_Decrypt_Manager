@@ -7,6 +7,7 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -42,9 +43,6 @@ public class EncryptDecryptController {
     private TextField inputTextField;
 
     @FXML
-    private Label cipherProblemLabel;
-
-    @FXML
     private FlowPane lightBulbs;
 
     @FXML
@@ -65,7 +63,6 @@ public class EncryptDecryptController {
     @FXML
     public void initialize() {
         processButton.setText("Process");
-        cipherProblemLabel.setText("");
 
         cipheredOutputHeadline.visibleProperty().bind(Bindings.when(outputLabel.textProperty().isEqualTo("")).then(true).otherwise(false));
     }
@@ -77,20 +74,23 @@ public class EncryptDecryptController {
      */
     @FXML
     void cipherCharacter(KeyEvent event) {
+        cipherOneCharacter(event.getCode().getName().toUpperCase());
+
+    }
+
+    private void cipherOneCharacter(String character) {
+        inputTextField.getStyleClass().removeAll("invalid-input-text-field");
 
         if (cipherModeTS.isSelected()) {
-            DTOciphertext cipheredCharStatus = parentController.cipher(event.getCharacter().toUpperCase());
+            DTOciphertext cipheredCharStatus = parentController.cipher(character);
             if (!cipheredCharStatus.isSucceed()) {
                 cipheredLetter = "";
-                inputTextField.getStyleClass().add("invalid-input");
-                cipherProblemLabel.getStyleClass().add("problem-details-label");
-                cipherProblemLabel.setText(cipheredCharStatus.getDetails().name());
+                inputTextField.getStyleClass().add("invalid-input-text-field");
                 parentController.setStatusMessage("Could not cipher that character", MessageTone.ERROR);
             } else {
                 outputLabel.setText(outputLabel.getText() + cipheredCharStatus.getCipheredText());
                 this.cipheredLetter = cipheredCharStatus.getCipheredText();
                 activateLightBulb(cipheredCharStatus.getCipheredText());
-                cipherProblemLabel.setText("");
             }
         }
     }
@@ -109,15 +109,45 @@ public class EncryptDecryptController {
         } else {
             DTOciphertext cipheredLineStatus = parentController.cipher(inputTextField.getText().toUpperCase());
             if (!cipheredLineStatus.isSucceed()) {
-                inputTextField.getStyleClass().add("invalid-input");
-                cipherProblemLabel.getStyleClass().add("problem-details-label");
-                cipherProblemLabel.setText(cipheredLineStatus.getDetails().name());
-                parentController.setStatusMessage("Could not cipher that text", MessageTone.ERROR);
+                inputTextField.getStyleClass().add("invalid-input-text-field");
+                parentController.setStatusMessage("Could not cipher that text. " + cipheredLineStatus.getDetails(), MessageTone.ERROR);
             } else {
                 outputLabel.setText(cipheredLineStatus.getCipheredText());
                 parentController.displayStatistics();
-                cipherProblemLabel.setText("");
             }
+        }
+    }
+
+    void processHandlerBruteForce(MouseEvent ignored) {
+
+        StringBuilder textBuilder = new StringBuilder();
+        String textToCipher;
+
+        // excludes all the excludedChars
+        for (Character regularCharacter : inputTextField.getText().toUpperCase().toCharArray()) {
+            if (!dictionaryExcludeCharactersProperty.getValue().contains(regularCharacter.toString())) {
+                textBuilder.append(regularCharacter);
+            }
+        }
+        textToCipher = textBuilder.toString();
+
+        // checks if all words are in the dictionary
+        if (!parentController.isAllWordsInDictionary(textToCipher)) {
+            inputTextField.getStyleClass().add("invalid-input-text-field");
+
+            parentController.setStatusMessage("All words should be from the dictionary", MessageTone.ERROR);
+            return;
+        }
+
+        // ciphers the text
+        DTOciphertext cipheredLineStatus = parentController.cipher(textToCipher);
+
+        if (!cipheredLineStatus.isSucceed()) {
+            inputTextField.getStyleClass().add("invalid-input-text-field");
+            parentController.setStatusMessage("Could not cipher that text", MessageTone.ERROR);
+        } else {
+            outputLabel.setText(cipheredLineStatus.getCipheredText());
+            parentController.displayStatistics();
         }
     }
 
@@ -157,7 +187,6 @@ public class EncryptDecryptController {
     private void clearTextFields() {
         inputTextField.setText("");
         outputLabel.setText("");
-        cipherProblemLabel.setText("");
     }
 
     public void setParentController(BodyController parentController) {
@@ -177,20 +206,27 @@ public class EncryptDecryptController {
 
             // adds the circle shape
             Circle lightBulbCircle = new Circle();
-            lightBulbCircle.setFill(Paint.valueOf("#cc5454"));
             lightBulbCircle.setRadius(15);
-            lightBulbCircle.setStroke(Paint.valueOf("BLACK"));
-            lightBulbCircle.setStrokeType(StrokeType.valueOf("INSIDE"));
+            lightBulbCircle.getStyleClass().add("lightbulb-circle");
 
             // adds the letter
             Label lightBulbLetter = new Label("" + letter);
-            lightBulbLetter.setTextAlignment(TextAlignment.valueOf("CENTER"));
-            Font font = new Font(26.0);
-            lightBulbLetter.setFont(font);
+            lightBulbLetter.getStyleClass().add("lightbulb-letter");
 
             // add circle and letter to stack pane
             nextLightBulb.getChildren().add(lightBulbCircle);
             nextLightBulb.getChildren().add(lightBulbLetter);
+
+            nextLightBulb.setOnMousePressed(event -> {
+                StackPane srcLightBulb = (StackPane) event.getSource();
+                Label srcLightBulbLetterLabel = (Label) srcLightBulb.getChildren().get(1);
+                inputTextField.setText(inputTextField.getText() + srcLightBulbLetterLabel.getText());
+                cipherOneCharacter(srcLightBulbLetterLabel.getText());
+            });
+
+            nextLightBulb.setOnMouseReleased(event -> {
+                deactivateLight();
+            });
 
             lightBulbs.getChildren().add(nextLightBulb);
         }
@@ -214,9 +250,10 @@ public class EncryptDecryptController {
 
         ObservableList<?> elements = lightBulbs.getChildren();
         StackPane currentPane = (StackPane) elements.get(alphabet.indexOf(letter.charAt(0)));
-        currentPane.getStyleClass().add("light-on");
-        Circle circle = (Circle) currentPane.getChildren().get(0);
-        circle.setFill(Paint.valueOf("YELLOW"));
+        currentPane.getChildren().get(0).getStyleClass().add("light-on");
+        currentPane.getChildren().get(1).getStyleClass().add("light-on");
+        //Circle circle = (Circle) currentPane.getChildren().get(0);
+        //circle.setFill(Paint.valueOf("YELLOW"));
     }
 
     /**
@@ -232,10 +269,19 @@ public class EncryptDecryptController {
         }
         ObservableList<?> elements = lightBulbs.getChildren();
         StackPane currentPane = (StackPane) elements.get(alphabet.indexOf(cipheredLetter.charAt(0)));
-        Circle circle = (Circle) currentPane.getChildren().get(0);
-        circle.setFill(Paint.valueOf("#cc5454"));
+        //Circle circle = (Circle) currentPane.getChildren().get(0);
+        //circle.setFill(Paint.valueOf("#cc5454"));
 
-        currentPane.getStyleClass().remove("light-on");
+        currentPane.getChildren().get(0).getStyleClass().removeAll("light-on");
+        currentPane.getChildren().get(1).getStyleClass().removeAll("light-on");
+    }
+
+    private void deactivateLight() {
+        ObservableList<?> elements = lightBulbs.getChildren();
+        StackPane currentPane = (StackPane) elements.get(alphabet.indexOf(cipheredLetter.charAt(0)));
+
+        currentPane.getChildren().get(0).getStyleClass().removeAll("light-on");
+        currentPane.getChildren().get(1).getStyleClass().removeAll("light-on");
     }
 
     public StringProperty getOutputLabelProperty() {
@@ -265,5 +311,13 @@ public class EncryptDecryptController {
         } else {
             inputTextField.setText(inputTextField.getText() + " " + newWord);
         }
+    }
+
+    public void setOnActionProcessToBruteForceMode() {
+        processButton.setOnMouseClicked(this::processHandlerBruteForce);
+    }
+
+    public void setEncryptExcludeCharsValue(StringProperty dictionaryExcludeCharsProperty) {
+        this.dictionaryExcludeCharactersProperty = dictionaryExcludeCharsProperty;
     }
 }

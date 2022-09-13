@@ -3,6 +3,14 @@
 
 }
 
+.config-flowpane {
+    -fx-background-color: #2b2b2c;
+}
+
+.config-scrollpane {
+    -fx-background-color: #2b2b2c;
+}
+
 .config-label#rotors {
     -fx-text-fill: #c72323;
 }
@@ -20,5 +28,5 @@
 }
 
 .config-label#noConfigMsg {
-    -fx-text-fill: black;
+    -fx-text-fill: white;
 }

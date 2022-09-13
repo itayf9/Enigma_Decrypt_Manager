@@ -207,11 +207,11 @@ public class DecryptManager {
         return isBruteForceActionPaused.get();
     }
 
-    public BooleanProperty isBruteForceActionPausedProperty() {
-        return isBruteForceActionPaused;
+    public String getDictionaryExcludeCharacters() {
+        return dictionary.getExcludeChars();
     }
 
-    public Object getDummmy() {
-        return dummy;
+    public boolean isAllWordsInDictionary(String text) {
+        return dictionary.isAllWordsInDictionary(text);
     }
 }

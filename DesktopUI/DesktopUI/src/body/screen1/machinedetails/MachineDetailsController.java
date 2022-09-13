@@ -4,12 +4,14 @@ import body.BodyController;
 import body.currentconfig.CurrentConfigController;
 import dto.DTOspecs;
 
+import header.Skin;
 import javafx.beans.property.IntegerProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import problem.Problem;
 
+import java.net.URL;
 import java.util.List;
 
 import static utill.Utillity.getOriginalConfigFromSpecs;
@@ -67,5 +69,10 @@ public class MachineDetailsController {
 
     public void bindCipherCounterProperty(IntegerProperty cipherCounterProperty) {
         cipheredTextCount.textProperty().bind(cipherCounterProperty.asString());
+    }
+
+    public void setComponentsSkin(URL currentConfigUrl) {
+        originalConfig.getStylesheets().removeAll(originalConfig.getStylesheets());
+        originalConfig.getStylesheets().add(currentConfigUrl.toString());
     }
 }

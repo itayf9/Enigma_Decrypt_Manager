@@ -22,16 +22,20 @@
    </rowConstraints>
    <children>
       <Label fx:id="configTitle" styleClass="component-title" text="Current Machine Configuration" GridPane.halignment="LEFT" />
-      <ScrollPane fitToHeight="true" fitToWidth="true" GridPane.columnSpan="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+      <ScrollPane fitToHeight="true" fitToWidth="true" styleClass="config-scrollpane" GridPane.columnSpan="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
          <content>
             <FlowPane orientation="VERTICAL" prefHeight="133.0" prefWrapLength="200.0">
                <children>
-                  <Label id="rotors" fx:id="rotorsLabel" styleClass="config-label" stylesheets="@currentConfig.css" />
-                  <Label id="windows-characters" fx:id="windowsLabel" styleClass="config-label" stylesheets="@currentConfig.css" />
-                  <Label id="reflector" fx:id="reflectorLabel" styleClass="config-label" stylesheets="@currentConfig.css" />
-                  <Label id="plugs" fx:id="plugsLabel" styleClass="config-label" stylesheets="@currentConfig.css" />
+                  <Label id="rotors" fx:id="rotorsLabel" styleClass="config-label" stylesheets="@currentConfig-default.css" />
+                  <Label id="windows-characters" fx:id="windowsLabel" styleClass="config-label" stylesheets="@currentConfig-default.css" />
+                  <Label id="reflector" fx:id="reflectorLabel" styleClass="config-label" stylesheets="@currentConfig-default.css" />
+                  <Label id="plugs" fx:id="plugsLabel" styleClass="config-label" stylesheets="@currentConfig-default.css" />
                   <Label id="noConfigMsg" fx:id="noConfigMsg" styleClass="config-label" />
                </children>
+               <styleClass>
+                  <String fx:value="config-flowpane" />
+                  <String fx:value="sub-component-with-background" />
+               </styleClass>
             </FlowPane>
          </content>
          <padding>
@@ -43,8 +47,8 @@
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
    </padding>
    <stylesheets>
-      <URL value="@../../app/app.css" />
-      <URL value="@currentConfig.css" />
+      <URL value="@../../app/app-default.css" />
+      <URL value="@currentConfig-default.css" />
    </stylesheets>
    <styleClass>
       <String fx:value="component-with-border" />

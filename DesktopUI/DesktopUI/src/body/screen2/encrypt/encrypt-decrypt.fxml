@@ -41,13 +41,8 @@
             <FlowPane fx:id="lightBulbs" alignment="TOP_CENTER" minHeight="93.0" minWidth="400.0" prefHeight="93.0" prefWidth="547.0" styleClass="lightbulbs-area" />
          </content>
       </ScrollPane>
-      <Label fx:id="cipherProblemLabel" styleClass="error-label" text="error" GridPane.rowIndex="4" GridPane.valignment="TOP">
-         <GridPane.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </GridPane.margin>
-      </Label>
-      <TextField fx:id="inputTextField" maxWidth="1.7976931348623157E308" minHeight="40.0" onKeyReleased="#deactivateLightBulb" onKeyTyped="#cipherCharacter" prefHeight="40.0" prefWidth="268.0" promptText="Cipher something..." styleClass="input-text-field" GridPane.rowIndex="3" GridPane.valignment="TOP" />
-      <ScrollPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="40.0" prefHeight="40.0" prefWidth="268.0" GridPane.rowIndex="6" GridPane.valignment="TOP">
+      <TextField fx:id="inputTextField" maxWidth="1.7976931348623157E308" minHeight="40.0" onKeyPressed="#cipherCharacter" onKeyReleased="#deactivateLightBulb" prefHeight="40.0" prefWidth="268.0" promptText="Cipher something..." styleClass="input-text-field" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+      <ScrollPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="40.0" prefHeight="40.0" prefWidth="268.0" styleClass="sub-component-with-background" GridPane.rowIndex="6" GridPane.valignment="TOP">
          <content>
             <StackPane>
                <children>
@@ -103,8 +98,8 @@
       </ToggleSwitch>
    </children>
    <stylesheets>
-      <URL value="@../../../app/app.css" />
-      <URL value="@encrypt-decrypt.css" />
+      <URL value="@../../../app/app-default.css" />
+      <URL value="@encrypt-decrypt-default.css" />
    </stylesheets>
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

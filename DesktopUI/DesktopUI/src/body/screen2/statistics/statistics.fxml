@@ -12,6 +12,8 @@
 
 <GridPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.screen2.statistics.StatisticsController">
    <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="300.0" />
    </columnConstraints>
    <rowConstraints>
@@ -19,16 +21,16 @@
       <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="200.0" vgrow="ALWAYS" />
    </rowConstraints>
    <children>
-      <Label styleClass="component-title" text="History &amp; Statistics" GridPane.halignment="CENTER" />
-      <ScrollPane prefHeight="200.0" prefWidth="300.0" GridPane.rowIndex="1">
+      <Label styleClass="component-title" text="History &amp; Statistics" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+      <ScrollPane prefHeight="200.0" prefWidth="300.0" styleClass="sub-component-with-background" GridPane.columnIndex="2" GridPane.rowIndex="1">
          <content>
-            <VBox fx:id="vBoxHistory" />
+            <VBox fx:id="vBoxHistory" styleClass="sub-component-with-background" />
          </content>
       </ScrollPane>
    </children>
    <stylesheets>
-      <URL value="@../../../app/app.css" />
-      <URL value="@statistics.css" />
+      <URL value="@../../../app/app-default.css" />
+      <URL value="@statistics-default.css" />
    </stylesheets>
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

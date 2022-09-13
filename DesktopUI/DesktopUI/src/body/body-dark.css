@@ -1,0 +1,56 @@
+.enigma-tab {
+    -fx-background-radius: 0;
+    -fx-border-width: 0;
+    -fx-border-insets: 0;
+    -fx-background-insets: 0;
+    -fx-background-color: #3C3C3C;
+    -fx-padding: 2 9 2 9;
+}
+
+.enigma-tab:selected {
+    -fx-focus-color: transparent;
+    -fx-border-width: 2 0 0 0;
+    -fx-border-color: #77afe1;
+    -fx-background-insets: 4 0 0 0;
+    -fx-border-insets: 2 0 0 0;
+    -fx-border-radius: 1;
+    -fx-padding: 0 9 2 9;
+    -fx-background-color: #2b2b2c;
+}
+
+.enigma-tab:hover {
+    -fx-background-color: linear-gradient(to bottom, #575757 7%, rgb(60, 60, 60) 39%, #2b2b2c 100%)
+}
+
+.enigma-tab:hover.enigma-tab:selected {
+    -fx-background-color: #2b2b2c;
+}
+
+.enigma-tab:selected *.tab-label {
+    -fx-text-fill: #77afe1;
+}
+
+.enigma-tab *.tab-label {
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.enigma-tabpane *.tab-header-area {
+    -fx-padding: 0 0 0 0;
+}
+
+.enigma-tabpane *.tab-header-area *.tab-header-background {
+    -fx-background-color: #313336;
+}
+
+.enigma-tabpane *.tab-context-area {
+    -fx-background-color: #2b2b2c;
+}
+
+.tab-gridpane {
+    -fx-background-color: #2b2b2c;
+}
+
+.tab-scrollpane {
+    -fx-background-color: #2b2b2c;
+}

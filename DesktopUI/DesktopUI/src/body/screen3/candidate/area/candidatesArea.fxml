@@ -26,7 +26,7 @@
       <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="340.00001525878906" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <ScrollPane fitToHeight="true" fitToWidth="true" GridPane.rowIndex="1" GridPane.rowSpan="3">
+      <ScrollPane fitToHeight="true" fitToWidth="true" styleClass="sub-component-with-background" GridPane.rowIndex="1" GridPane.rowSpan="3">
          <content>
             <FlowPane fx:id="candidatesFlowPane" hgap="1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="108.0" prefWidth="503.0" styleClass="candidates-flow-pane" vgap="1.0">
                <padding>
@@ -50,7 +50,7 @@
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
    </padding>
    <stylesheets>
-      <URL value="@../../../../app/app.css" />
-      <URL value="@candidatesArea.css" />
+       <URL value="@../../../../app/app-default.css" />
+       <URL value="@candidatesArea-default.css" />
    </stylesheets>
 </GridPane>

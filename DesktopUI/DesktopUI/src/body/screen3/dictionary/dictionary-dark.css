@@ -7,21 +7,21 @@
 }
 
 .search-text-field:focused {
-    -fx-border-color: #0095ff;
+    -fx-border-color: #77afe1;
     -fx-border-width: 0 0 2 0;
 
 }
 
 .word-label {
     -fx-border-width: 1;
-    -fx-border-color: grey;
+    -fx-border-color: #aeb0b3;
     -fx-border-radius: 10;
 }
 
 .word-label:hover {
-    -fx-border-color: #5d5d5d;
-    -fx-background-color: grey;
+    -fx-border-color: #eaeaea;
+    -fx-background-color: #aeb0b3;
     -fx-background-radius: 10;
-    -fx-text-fill: white;
+    -fx-text-fill: #3c3f41;
     -fx-cursor: HAND;
 }

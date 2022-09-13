@@ -22,12 +22,14 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import statistics.StatisticRecord;
 import ui.adapter.UIAdapter;
 
 import java.io.IOException;
+import java.net.URL;
 
 public class MainController {
 
@@ -39,10 +41,17 @@ public class MainController {
     private GridPane header;
     @FXML
     private HeaderController headerController;
+
+    @FXML
+    private GridPane appGridPane;
+
     @FXML
     private TabPane body;
     @FXML
     private BodyController bodyController;
+
+    @FXML
+    private HBox statusBar;
 
     @FXML
     private Label statusLabel;
@@ -432,7 +441,45 @@ public class MainController {
     }
 
     public void setAppSkin(Skin skin) {
-        int x;
+
+        System.out.println("before remove");
+        System.out.println(header.getStylesheets());
+
+
+        // removes all stylesheets
+        header.getStylesheets().removeAll(header.getStylesheets());
+        appGridPane.getStylesheets().removeAll(appGridPane.getStylesheets());
+        body.getStylesheets().removeAll(body.getStylesheets());
+        statusBar.getStylesheets().removeAll(statusBar.getStylesheets());
+
+        System.out.println("after remove");
+        System.out.println(header.getStylesheets());
+
+        // adds "app", "header", "body", "statusbar" stylesheets
+        URL appUrl = getClass().getResource("/app/app-" + skin.skinName() + ".css");
+        header.getStylesheets().add(appUrl.toString());
+        appGridPane.getStylesheets().add(appUrl.toString());
+        body.getStylesheets().add(appUrl.toString());
+        statusBar.getStylesheets().add(appUrl.toString());
+
+        URL headerUrl = getClass().getResource("/header/header-" + skin.skinName() + ".css");
+        header.getStylesheets().add(headerUrl.toString());
+
+        URL bodyUrl = getClass().getResource("/body/body-" + skin.skinName() + ".css");
+        body.getStylesheets().add(bodyUrl.toString());
+
+        URL statusbarUrl = getClass().getResource("/app/statusbar/statusbar-" + skin.skinName() + ".css");
+        statusBar.getStylesheets().add(statusbarUrl.toString());
+
+        System.out.println("after add");
+        System.out.println(header.getStylesheets());
+
+        // adds stylesheets to the body components
+        bodyController.setComponentsSkin(appUrl.toString(), skin);
+
+        // sets images
+        headerController.setImages(skin);
+
     }
 
     /**
@@ -446,5 +493,9 @@ public class MainController {
     public void resumeBruteForceProcess() {
         isBruteForceTaskPaused.set(false);
         engine.resumeBruteForceProcess();
+    }
+
+    public boolean isAllWordsInDictionary(String textToCipher) {
+        return engine.isAllWordsInDictionary(textToCipher);
     }
 }

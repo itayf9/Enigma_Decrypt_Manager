@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Rectangle?>
 
-<GridPane minWidth="0.0" stylesheets="@app.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.MainController">
+<GridPane fx:id="appGridPane" minWidth="0.0" stylesheets="@app-default.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.MainController">
    <columnConstraints>
       <ColumnConstraints hgrow="ALWAYS" minWidth="0.0" />
    </columnConstraints>
@@ -37,11 +37,11 @@
             <fx:include fx:id="body" minHeight="0.0" minWidth="0.0" prefHeight="470.0" prefWidth="900.0" source="../body/body.fxml" GridPane.rowIndex="1" />
          </children>
       </StackPane>
-      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="status-bar" stylesheets="@statusbar/statusbar.css" GridPane.rowIndex="2">
+      <HBox fx:id="statusBar" prefHeight="100.0" prefWidth="200.0" styleClass="status-bar" stylesheets="@statusbar/statusbar-default.css" GridPane.rowIndex="2">
          <children>
-            <StackPane alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0">
+            <StackPane alignment="CENTER_LEFT" prefHeight="150.0">
                <children>
-                  <Label fx:id="statusLabel" text="status" StackPane.alignment="CENTER_LEFT">
+                  <Label fx:id="statusLabel" styleClass="status-label" text="status" StackPane.alignment="CENTER_LEFT">
                      <padding>
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </padding>

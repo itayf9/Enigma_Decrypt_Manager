@@ -2,20 +2,18 @@ package header;
 
 import app.MainController;
 import javafx.animation.*;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioMenuItem;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import problem.Problem;
 
 import java.io.File;
+import java.net.URL;
 
 public class HeaderController {
 
@@ -36,6 +34,12 @@ public class HeaderController {
 
     @FXML
     private RadioMenuItem skinDarkButton;
+
+    @FXML
+    private MenuButton settingsMenuButton;
+
+    @FXML
+    private ImageView settingsButtonImg;
 
     @FXML
     private Label filePathLoadMachineLabel;
@@ -115,4 +119,10 @@ public class HeaderController {
         }
     }
 
+    public void setImages(Skin skin) {
+
+        URL settingsImgUrl = getClass().getResource("/header/settings_gear_" + skin.skinName() + ".png");
+
+        settingsButtonImg.setImage(new Image(settingsImgUrl.toString()));
+    }
 }

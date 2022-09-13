@@ -12,15 +12,15 @@ import body.screen3.dictionary.DictionaryController;
 import body.screen3.dm.operational.dmOperationalController;
 import dm.difficultylevel.DifficultyLevel;
 import dto.*;
+import header.Skin;
 import javafx.beans.property.*;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 
+import java.net.URL;
 import java.util.List;
 import java.util.Set;
-
-import static utill.Utillity.getCurrentConfigFromSpecs;
 
 public class BodyController {
 
@@ -132,6 +132,7 @@ public class BodyController {
 
         encryptDecrypt2Controller.setAvailabilityOfCharByCharMode(false);
         encryptDecrypt2Controller.showLightBulbs(false);
+        encryptDecrypt2Controller.setOnActionProcessToBruteForceMode();
     }
 
     /**
@@ -364,5 +365,79 @@ public class BodyController {
 
     public void resumeBruteForce() {
         mainController.resumeBruteForceProcess();
+    }
+
+    public void setComponentsSkin(String appUrl, Skin skin) {
+
+        // removes all stylesheets
+        currentConfigScreen1.getStylesheets().removeAll(currentConfigScreen1.getStylesheets());
+        machineDetails.getStylesheets().removeAll(machineDetails.getStylesheets());
+        codeCalibration.getStylesheets().removeAll(codeCalibration.getStylesheets());
+
+        currentConfigScreen2.getStylesheets().removeAll(currentConfigScreen2.getStylesheets());
+        encryptDecrypt.getStylesheets().removeAll(encryptDecrypt.getStylesheets());
+        statistics.getStylesheets().removeAll(statistics.getStylesheets());
+
+        currentConfigScreen3.getStylesheets().removeAll(currentConfigScreen3.getStylesheets());
+        encryptDecrypt2.getStylesheets().removeAll(encryptDecrypt2.getStylesheets());
+        dictionary.getStylesheets().removeAll(dictionary.getStylesheets());
+        dmOperational.getStylesheets().removeAll(dmOperational.getStylesheets());
+        candidatesArea.getStylesheets().removeAll(candidatesArea.getStylesheets());
+
+
+        // adds new "app" stylesheet
+        currentConfigScreen1.getStylesheets().add(appUrl);
+        machineDetails.getStylesheets().add(appUrl);
+        codeCalibration.getStylesheets().add(appUrl);
+
+        currentConfigScreen2.getStylesheets().add(appUrl);
+        encryptDecrypt.getStylesheets().add(appUrl);
+        statistics.getStylesheets().add(appUrl);
+
+        currentConfigScreen3.getStylesheets().add(appUrl);
+        encryptDecrypt2.getStylesheets().add(appUrl);
+        dictionary.getStylesheets().add(appUrl);
+        dmOperational.getStylesheets().add(appUrl);
+        candidatesArea.getStylesheets().add(appUrl);
+
+        // adds new "specific" stylesheets
+        URL currentConfigUrl = getClass().getResource("/body/currentconfig/currentConfig-" + skin.skinName() + ".css");
+        currentConfigScreen1.getStylesheets().add(currentConfigUrl.toString());
+        currentConfigScreen2.getStylesheets().add(currentConfigUrl.toString());
+        currentConfigScreen3.getStylesheets().add(currentConfigUrl.toString());
+
+        URL machineDetailsUrl = getClass().getResource("/body/screen1/machinedetails/machineDetails-" + skin.skinName() + ".css");
+        machineDetails.getStylesheets().add(machineDetailsUrl.toString());
+
+        URL codeCalibrationUrl = getClass().getResource("/body/screen1/codecalibration/codeCalibration-" + skin.skinName() + ".css");
+        codeCalibration.getStylesheets().add(codeCalibrationUrl.toString());
+
+        URL encryptDecryptUrl = getClass().getResource("/body/screen2/encrypt/encrypt-decrypt-" + skin.skinName() + ".css");
+        encryptDecrypt.getStylesheets().add(encryptDecryptUrl.toString());
+        encryptDecrypt2.getStylesheets().add(encryptDecryptUrl.toString());
+
+        URL statisticsUrl = getClass().getResource("/body/screen2/statistics/statistics-" + skin.skinName() + ".css");
+        statistics.getStylesheets().add(statisticsUrl.toString());
+
+        URL dictionaryUrl = getClass().getResource("/body/screen3/dictionary/dictionary-" + skin.skinName() + ".css");
+        dictionary.getStylesheets().add(dictionaryUrl.toString());
+
+        URL dmOperationalUrl = getClass().getResource("/body/screen3/dm/operational/dmOperational-" + skin.skinName() + ".css");
+        dmOperational.getStylesheets().add(dmOperationalUrl.toString());
+
+        URL candidatesAreaUrl = getClass().getResource("/body/screen3/candidate/area/candidatesArea-" + skin.skinName() + ".css");
+        candidatesArea.getStylesheets().add(candidatesAreaUrl.toString());
+
+        // sets the original config component
+        machineDetailsController.setComponentsSkin(currentConfigUrl);
+
+    }
+
+    public void setEncryptExcludeCharsValue(StringProperty dictionaryExcludeCharsProperty) {
+        encryptDecrypt2Controller.setEncryptExcludeCharsValue(dictionaryExcludeCharsProperty);
+    }
+
+    public boolean isAllWordsInDictionary(String textToCipher) {
+        return mainController.isAllWordsInDictionary(textToCipher);
     }
 }

@@ -1,0 +1,59 @@
+.char-by-char-ts:selected .thumb-area {
+    -fx-background-color: #77afe1;
+}
+
+.char-by-char-ts .thumb-area {
+    -fx-background-color: #2b2b2c;
+}
+
+.char-by-char-ts .thumb {
+    -fx-background-color: #3c3f41;
+    -fx-border-color: #2b2b2c;
+    -fx-border-radius: 90deg;
+
+}
+
+.ciphered-text-headline-label {
+    -fx-text-fill: grey;
+}
+
+.clear-btn {
+    /*-fx-background-color: #6674ce;*/
+    -fx-border-color: #77afe1;
+    -fx-border-radius: 5;
+    -fx-border-width: 2px;
+    -fx-background-color: #3c3f41;
+    -fx-background-radius: 5;
+    -fx-text-fill: #77afe1;
+    -fx-font-weight: bold;
+}
+
+.clear-btn:hover {
+    -fx-background-color: #77afe1;
+    -fx-text-fill: white;
+    -fx-border-color: #a5caec;
+}
+
+.reset-btn {
+    -fx-background-color: #3c3f41;
+    -fx-text-fill: #cc5454;
+    -fx-font-weight: bold;
+    -fx-border-radius: 5;
+    -fx-border-color: #cc5454;
+    -fx-border-width: 2px;
+    -fx-background-radius: 5;
+}
+
+.reset-btn:hover {
+    -fx-background-color: #cc5454;
+    -fx-text-fill: white;
+    -fx-border-color: #9a0000;
+}
+
+.lightbulbs-area {
+    -fx-background-color: #293462;
+}
+
+.light-on {
+    -fx-fill: Yellow;
+}

@@ -1,3 +1,7 @@
+.label {
+    -fx-text-fill: black;
+}
+
 .action-btn {
     -fx-text-fill: white;
     -fx-font-weight: bold;
@@ -52,6 +56,14 @@
 
 .component-with-background {
     -fx-background-color: white;
+}
+
+.sub-component-with-background {
+    -fx-background-color: #e7e7e7;
+}
+
+.sub-component-with-background .viewport * {
+    -fx-background-color: #e7e7e7;
 }
 
 .component-title {

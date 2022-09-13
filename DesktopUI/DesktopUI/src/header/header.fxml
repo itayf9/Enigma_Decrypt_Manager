@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
@@ -43,48 +44,53 @@
          </cursor>
       </Button>
       <ScrollPane GridPane.columnIndex="2" GridPane.columnSpan="5" GridPane.rowIndex="1">
-         <GridPane.margin>
-            <Insets />
-         </GridPane.margin>
-         <content>
-            <Label fx:id="filePathLoadMachineLabel" styleClass="file-path-label" text="File Path">
-               <padding>
-                  <Insets left="5.0" top="5.0" />
-               </padding>
-            </Label>
-         </content>
+          <GridPane.margin>
+              <Insets />
+          </GridPane.margin>
+          <content>
+              <Label fx:id="filePathLoadMachineLabel" styleClass="file-path-label" text="File Path">
+                  <padding>
+                      <Insets left="5.0" top="5.0" />
+                  </padding>
+              </Label>
+          </content>
+         <styleClass>
+            <String fx:value="file-path-area" />
+            <String fx:value="sub-component-with-background" />
+         </styleClass>
       </ScrollPane>
-      <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="17.0" styleClass="enigma-title" stylesheets="@header.css" text="Cracking The Enigma Machine" GridPane.columnSpan="8" GridPane.halignment="CENTER" />
-      <MenuButton mnemonicParsing="false" prefHeight="32.0" prefWidth="36.0" styleClass="settings-btn">
-        <items>
-            <Menu mnemonicParsing="false" text="Skins">
-              <items>
-                  <RadioMenuItem fx:id="skinDefaultButton" mnemonicParsing="false" selected="true" text="Default">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="skinsGroup" />
-                     </toggleGroup></RadioMenuItem>
-                  <RadioMenuItem fx:id="skinDarkButton" mnemonicParsing="false" text="Dark" toggleGroup="$skinsGroup" />
-                  <RadioMenuItem mnemonicParsing="false" toggleGroup="$skinsGroup" />
-              </items>
+       <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="17.0" styleClass="enigma-title" stylesheets="@header-default.css" text="Cracking The Enigma Machine" GridPane.columnSpan="8" GridPane.halignment="CENTER" />
+       <MenuButton fx:id="settingsMenuButton" mnemonicParsing="false" prefHeight="32.0" prefWidth="36.0" styleClass="settings-btn">
+           <items>
+               <Menu mnemonicParsing="false" text="Skins">
+                   <items>
+                       <RadioMenuItem fx:id="skinDefaultButton" mnemonicParsing="false" selected="true" text="Default">
+                           <toggleGroup>
+                               <ToggleGroup fx:id="skinsGroup" />
+                           </toggleGroup>
+                       </RadioMenuItem>
+                       <RadioMenuItem fx:id="skinDarkButton" mnemonicParsing="false" text="Dark" toggleGroup="$skinsGroup" />
+                       <RadioMenuItem mnemonicParsing="false" toggleGroup="$skinsGroup" />
+                   </items>
             </Menu>
             <MenuItem mnemonicParsing="false" text="Animations" />
             <MenuItem mnemonicParsing="false" text="Configuration" />
             <MenuItem mnemonicParsing="false" text="About" />
         </items>
          <graphic>
-            <ImageView fitHeight="24.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@settings_gear.png" />
-               </image>
-            </ImageView>
+             <ImageView fx:id="settingsButtonImg" fitHeight="24.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                 <image>
+                     <Image url="@settings_gear_default.png" />
+                 </image>
+             </ImageView>
          </graphic>
-      </MenuButton>
+       </MenuButton>
    </children>
-   <padding>
-      <Insets bottom="10.0" left="15.0" right="15.0" top="5.0" />
-   </padding>
-   <stylesheets>
-      <URL value="@../app/app.css" />
-      <URL value="@header.css" />
-   </stylesheets>
+    <padding>
+        <Insets bottom="10.0" left="15.0" right="15.0" top="5.0" />
+    </padding>
+    <stylesheets>
+        <URL value="@../app/app-default.css" />
+        <URL value="@header-default.css" />
+    </stylesheets>
 </GridPane>
