@@ -54,10 +54,13 @@
     -fx-background-color: #e7e7e7;
 }
 
-.lightbulb-circle {
-    -fx-fill: #cc5454;
-    -fx-stroke: black;
-    -fx-stroke-type: inside;
+.lightbulbs-area .lightbulb {
+    -fx-background-color: #e7e7e7;
+    -fx-border-color: black;
+    -fx-font-size: 15;
+    -fx-border-radius: 30;
+    -fx-background-radius: 30;
+    /*-fx-alignment: center;*/
 }
 
 .lightbulbs-area .lightbulb:hover {
@@ -66,10 +69,10 @@
     -fx-cursor: hand;
 }
 
-.lightbulb-circle:pressed {
-    -fx-fill: #e77777;
-    -fx-stroke: black;
-    -fx-stroke-type: inside;
+.lightbulbs-area .lightbulb:pressed {
+    -fx-background-color: #3c3f41;
+    -fx-border-color: #c0c0c0;
+    -fx-text-fill: white;
 }
 
 .lightbulbs-area .light-on {

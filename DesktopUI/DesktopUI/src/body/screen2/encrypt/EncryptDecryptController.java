@@ -7,7 +7,6 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,12 +15,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.StrokeType;
-import javafx.scene.text.Font;
-import javafx.scene.text.TextAlignment;
 import org.controlsfx.control.ToggleSwitch;
 
 public class EncryptDecryptController {
@@ -65,7 +58,6 @@ public class EncryptDecryptController {
     @FXML
     public void initialize() {
         processButton.setText("Process");
-
         cipheredOutputHeadline.visibleProperty().bind(Bindings.when(outputLabel.textProperty().isEqualTo("")).then(true).otherwise(false));
         lightBulbs.disableProperty().bind(cipherModeTS.selectedProperty().not());
     }
@@ -201,26 +193,24 @@ public class EncryptDecryptController {
         this.alphabet = alphabet;
 
         for (Character letter : alphabet.toCharArray()) {
-            StackPane nextLightBulb = new StackPane();
+            Button nextLightBulb = new Button();
 
             // adds the circle shape
-            Circle lightBulbCircle = new Circle();
-            lightBulbCircle.setRadius(15);
-            lightBulbCircle.getStyleClass().add("lightbulb-circle");
+            nextLightBulb.setMaxWidth(35);
+            nextLightBulb.setMaxHeight(35);
+            nextLightBulb.setMinWidth(35);
+            nextLightBulb.setMinHeight(35);
+            nextLightBulb.getStyleClass().add("lightbulb");
 
             // adds the letter
-            Label lightBulbLetter = new Label("" + letter);
-            lightBulbLetter.getStyleClass().add("lightbulb-letter");
-
-            // add circle and letter to stack pane
-            nextLightBulb.getChildren().add(lightBulbCircle);
-            nextLightBulb.getChildren().add(lightBulbLetter);
+            nextLightBulb.setText("" + letter);
+            nextLightBulb.setWrapText(true);
 
             nextLightBulb.setOnMousePressed(event -> {
-                StackPane srcLightBulb = (StackPane) event.getSource();
-                Label srcLightBulbLetterLabel = (Label) srcLightBulb.getChildren().get(1);
-                inputTextField.setText(inputTextField.getText() + srcLightBulbLetterLabel.getText());
-                cipherOneCharacter(srcLightBulbLetterLabel.getText());
+                Button srcLightBulb = (Button) event.getSource();
+                String srcLightBulbLetter = srcLightBulb.getText();
+                inputTextField.setText(inputTextField.getText() + srcLightBulbLetter);
+                cipherOneCharacter(srcLightBulbLetter);
             });
 
             nextLightBulb.setOnMouseReleased(event -> {
@@ -246,13 +236,9 @@ public class EncryptDecryptController {
      * @param letter the letter to find the bulb to activate
      */
     public void activateLightBulb(String letter) {
-
         ObservableList<?> elements = lightBulbs.getChildren();
-        StackPane currentPane = (StackPane) elements.get(alphabet.indexOf(letter.charAt(0)));
-        currentPane.getChildren().get(0).getStyleClass().add("light-on");
-        currentPane.getChildren().get(1).getStyleClass().add("light-on");
-        //Circle circle = (Circle) currentPane.getChildren().get(0);
-        //circle.setFill(Paint.valueOf("YELLOW"));
+        Button currentPane = (Button) elements.get(alphabet.indexOf(letter.charAt(0)));
+        currentPane.getStyleClass().add("light-on");
     }
 
     /**
