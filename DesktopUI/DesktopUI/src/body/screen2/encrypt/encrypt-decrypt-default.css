@@ -60,6 +60,19 @@
     -fx-stroke-type: inside;
 }
 
+.lightbulb-circle:hover {
+    -fx-fill: #a24141;
+    -fx-stroke: black;
+    -fx-stroke-type: inside;
+}
+
+.lightbulb-circle:pressed {
+    -fx-fill: #e77777;
+    -fx-stroke: black;
+    -fx-stroke-type: inside;
+}
+
+
 .lightbulb-letter {
     -fx-alignment: center;
     -fx-font-size: 26;
