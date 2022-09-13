@@ -19,12 +19,13 @@ public class DTOspecs extends DTOstatus {
     private String currentWindowsCharacters;
     private String inUseReflectorSymbol;
     private String inUsePlugs;
+    private String dictionaryExcludeCharacters;
 
     public DTOspecs(boolean isSucceeded, Problem details, int availableRotorsCount, int inUseRotorsCount,
                     List<Integer> notchDistancesToWindow, List<Integer> originalNotchPositions,
                     int availableReflectorsCount, int cipheredTextsCount, List<Integer> inUseRotorsIDs,
                     String originalWindowsCharacters, String currentWindowsCharacters,
-                    String inUseReflectorSymbol,
+                    String inUseReflectorSymbol, String dictionaryExcludeCharacters,
                     String inUsePlugs, int numOfAvailableAgents) {
         super(isSucceeded, details);
         this.availableRotorsCount = availableRotorsCount;
@@ -39,6 +40,7 @@ public class DTOspecs extends DTOstatus {
         this.inUseReflectorSymbol = inUseReflectorSymbol;
         this.inUsePlugs = inUsePlugs;
         this.numOfAvailableAgents = numOfAvailableAgents;
+        this.dictionaryExcludeCharacters = dictionaryExcludeCharacters;
     }
 
     public int getAvailableRotorsCount() {
@@ -87,6 +89,10 @@ public class DTOspecs extends DTOstatus {
 
     public int getNumOfAvailableAgents() {
         return numOfAvailableAgents;
+    }
+
+    public String getDictionaryExcludeCharacters() {
+        return dictionaryExcludeCharacters;
     }
 
     @Override

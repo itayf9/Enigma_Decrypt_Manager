@@ -83,7 +83,6 @@ public class DecryptManager {
      */
     public void stopDecrypt() {
         isBruteForceActionPaused.setValue(false);
-        // ALSO NEED TO CHECK IF STOPPED IN UI TO TOGGLE PAUSE FROM RESUME
 
         // stopping the thread pool
         isBruteForceActionCancelled.set(true);

@@ -63,4 +63,8 @@ public class Dictionary {
     public Set<String> getWords() {
         return words;
     }
+
+    public String getExcludeChars() {
+        return excludeChars;
+    }
 }

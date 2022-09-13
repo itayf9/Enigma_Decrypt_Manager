@@ -459,6 +459,7 @@ public class EnigmaEngine implements Engine {
         String currentWindowsCharacters = "";
         String inUseReflectorSymbol = "";
         String inUsePlugs = "";
+        String dictionaryExcludeCharacters = "";
         List<Integer> notchDistancesToWindow = new ArrayList<>();
         List<Integer> originalNotchPositions = new ArrayList<>();
         int availableRotorsCount = 0;
@@ -471,6 +472,7 @@ public class EnigmaEngine implements Engine {
             inUseRotorsCount = machine.getRotorsCount();
             availableReflectorsCount = machine.getAvailableReflectorsLen();
             cipheredTextsCount = machine.getCipherCounter();
+            dictionaryExcludeCharacters = decryptManager.getDictionaryExcludeCharacters();
 
             if (machine.isConfigured()) {
                 inUseRotorsIDs = machine.getInUseRotorsIDs();
@@ -490,7 +492,8 @@ public class EnigmaEngine implements Engine {
 
         return new DTOspecs(isSucceeded, details, availableRotorsCount, inUseRotorsCount,
                 notchDistancesToWindow, originalNotchPositions, availableReflectorsCount, cipheredTextsCount,
-                inUseRotorsIDs, originalWindowsCharacters, currentWindowsCharacters, inUseReflectorSymbol, inUsePlugs, decryptManager.getNumOfAvailableAgents());
+                inUseRotorsIDs, originalWindowsCharacters, currentWindowsCharacters, inUseReflectorSymbol, dictionaryExcludeCharacters,
+                inUsePlugs, decryptManager.getNumOfAvailableAgents());
     }
 
     /**

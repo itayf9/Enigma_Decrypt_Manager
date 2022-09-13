@@ -99,6 +99,7 @@ public class MainController {
     private BooleanProperty isBruteForceTaskPaused;
     private long totalPossibleWindowsPositions;
     private DoubleProperty averageTasksProcessTimeProperty;
+    private StringProperty dictionaryExcludeCharsProperty;
 
 
     @FXML
@@ -127,6 +128,7 @@ public class MainController {
             this.isBruteForceTaskActive = new SimpleBooleanProperty(false);
             this.isBruteForceTaskPaused = new SimpleBooleanProperty(false);
             this.averageTasksProcessTimeProperty = new SimpleDoubleProperty();
+            this.dictionaryExcludeCharsProperty = new SimpleStringProperty();
 
 
             /**
@@ -141,7 +143,8 @@ public class MainController {
                     currentWindowsCharactersProperty, inUseReflectorSymbolProperty, inUsePlugsProperty,
                     currentNotchDistances, isCharByCharModeProperty, cipherCounterProperty, totalDistinctCandidates,
                     totalProcessedConfigurations, totalPossibleConfigurations, bruteForceProgress,
-                    bruteForceProgressBarPercentageProperty, bruteForceStatusMessage, isBruteForceTaskActive, isBruteForceTaskPaused, averageTasksProcessTimeProperty);
+                    bruteForceProgressBarPercentageProperty, bruteForceStatusMessage, isBruteForceTaskActive,
+                    isBruteForceTaskPaused, averageTasksProcessTimeProperty);
 
             body.visibleProperty().bind(isMachineLoadedProperty);
             messageLabel.textProperty().bind(statusLabel.textProperty());
@@ -162,30 +165,24 @@ public class MainController {
         String fileName = "C:/Users/itayf/Downloads/resource/ex1-sanity-paper-enigma.xml";
         DTOstatus loadStatus = engine.buildMachineFromXmlFile(selectedMachineFile);
         if (!loadStatus.isSucceed()) {
-            //headerController.displayHeaderProblem(loadStatus.getDetails());
             setStatusMessage(loadStatus.getDetails().name(), MessageTone.ERROR);
         } else {
             headerController.displayFilePath();
             DTOspecs specsStatus = engine.displayMachineSpecifications();
-
             int rotorsCount = specsStatus.getInUseRotorsCount();
             int alphabetLength = engine.getMachineAlphabet().length();
-
             setStatusMessage("Machine Loaded Successfully!", MessageTone.SUCCESS);
-
             bodyController.setDictionaryWords(engine.getDictionaryWords().getDictionary());
             bodyController.displayMachineSpecs(specsStatus);
             cipherCounterProperty.set(0);
             bodyController.setLightBulb(engine.getMachineAlphabet());
             bodyController.displayStatistics();
-
             this.totalPossibleWindowsPositions = (int) Math.pow(alphabetLength, rotorsCount);
             bodyController.setDMOperetionalSettings((int) totalPossibleWindowsPositions, specsStatus.getNumOfAvailableAgents(), specsStatus);
-
             headerController.enableLoadButtonTransition(false);
-
             isMachineConfiguredProperty.setValue(Boolean.FALSE);
             isMachineLoadedProperty.setValue(Boolean.TRUE);
+            dictionaryExcludeCharsProperty.setValue(specsStatus.getDictionaryExcludeCharacters());
         }
     }
 

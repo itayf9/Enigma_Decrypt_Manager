@@ -43,7 +43,7 @@
          </padding></Label>
     </children>
    <stylesheets>
-      <URL value="@../../../../app/app.css" />
+      <URL value="@../../../../app/app-default.css"/>
       <URL value="@candidateTile.css" />
    </stylesheets>
    <padding>

@@ -288,8 +288,9 @@ public class BodyController {
                                StringProperty inUsePlugs, ListProperty<Integer> currentNotchDistances, BooleanProperty isCharByCharModeProperty,
                                IntegerProperty cipherCounterProperty, IntegerProperty totalDistinctCandidates,
                                IntegerProperty totalProcessedConfigurations, LongProperty totalPossibleConfigurations,
-                               DoubleProperty bruteForceProgressBar, StringProperty bruteForceProgressBarPercentageLabel
-            , StringProperty bruteForceStatusMessage, BooleanProperty isBruteForceTaskActive, BooleanProperty isBruteForceTaskPaused, DoubleProperty averageTasksProcessTimeProperty) {
+                               DoubleProperty bruteForceProgressBar, StringProperty bruteForceProgressBarPercentageLabel,
+                               StringProperty bruteForceStatusMessage, BooleanProperty isBruteForceTaskActive, BooleanProperty isBruteForceTaskPaused,
+                               DoubleProperty averageTasksProcessTimeProperty) {
 
         // binds the components that need the isConfigured Boolean property.
         encryptDecrypt.disableProperty().bind(isMachineConfiguredProperty.not());

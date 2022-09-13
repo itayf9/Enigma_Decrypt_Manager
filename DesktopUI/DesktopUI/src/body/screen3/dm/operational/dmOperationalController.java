@@ -42,7 +42,6 @@ public class dmOperationalController {
 
     private long totalPossibleWindowsPositions;
     private StringProperty textToDecipherProperty;
-
     private BooleanProperty isBruteForceTaskActive;
     private BooleanProperty isBruteForceTaskPaused;
 
@@ -103,6 +102,8 @@ public class dmOperationalController {
         int numOfAgentSelected = (int) numOfAgentsSlider.getValue();
         String textToDecipher = textToDecipherProperty.getValue();
 
+        // clear text from exclude characters
+
         if (difficultyLevel == null) {
             parentController.setStatusMessage("Please enter a difficulty level", MessageTone.ERROR);
             return;
@@ -156,7 +157,6 @@ public class dmOperationalController {
         difficultyLevelComboBox.disableProperty().bind(isBruteForceTaskActive);
         startButton.textProperty().bind(Bindings.when(isBruteForceTaskActive.not()).then("Start").otherwise("Stop"));
         pauseButton.disableProperty().bind(Bindings.when(isBruteForceTaskActive.not()).then(true).otherwise(false));
-
         pauseButton.textProperty().bind(Bindings.when(isBruteForceTaskPaused.not().or(isBruteForceTaskActive.not())).then("Pause").otherwise("Resume"));
     }
 
