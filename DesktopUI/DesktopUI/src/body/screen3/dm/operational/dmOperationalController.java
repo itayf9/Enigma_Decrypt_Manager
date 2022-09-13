@@ -48,10 +48,10 @@ public class dmOperationalController {
 
     private DTOspecs specStatus;
 
-    private ImageView startButtonIcon = new ImageView("/resource/play-solid.png");
-    private ImageView pauseButtonIcon = new ImageView("/resource/pause-solid.png");
-    private ImageView stopButtonIcon = new ImageView("/resource/stop-solid.png");
-    private ImageView resumeButtonIcon = new ImageView("/resource/resume-play.png");
+    private ImageView startButtonIcon = new ImageView("/resource/buttonicons/play-solid.png");
+    private ImageView pauseButtonIcon = new ImageView("/resource/buttonicons/pause-solid.png");
+    private ImageView stopButtonIcon = new ImageView("/resource/buttonicons/stop-solid.png");
+    private ImageView resumeButtonIcon = new ImageView("/resource/buttonicons/resume-play.png");
 
     @FXML
     public void initialize() {

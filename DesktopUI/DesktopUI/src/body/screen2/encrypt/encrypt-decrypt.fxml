@@ -72,7 +72,7 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </Button>
-      <Button fx:id="resetButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onMouseClicked="#ResetConfiguration" prefHeight="25.0" styleClass="reset-btn" text="Reset" GridPane.columnIndex="3" GridPane.rowIndex="5" GridPane.rowSpan="2">
+      <Button fx:id="resetButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onMouseClicked="#ResetConfiguration" styleClass="reset-btn" text="Reset" GridPane.columnIndex="3" GridPane.rowIndex="5" GridPane.rowSpan="2">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -80,7 +80,7 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </Button>
-      <Button fx:id="clearButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onMouseClicked="#clearCurrentCipher" prefHeight="25.0" styleClass="clear-btn" text="Clear" GridPane.columnIndex="2" GridPane.rowIndex="5" GridPane.rowSpan="2">
+      <Button fx:id="clearButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onMouseClicked="#clearCurrentCipher" styleClass="clear-btn" text="Clear" GridPane.columnIndex="2" GridPane.rowIndex="5" GridPane.rowSpan="2">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

@@ -3,6 +3,7 @@ package body.screen2.encrypt;
 import app.statusbar.MessageTone;
 import body.BodyController;
 import dto.DTOciphertext;
+import javafx.animation.FadeTransition;
 import javafx.animation.PathTransition;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
@@ -63,7 +64,9 @@ public class EncryptDecryptController {
 
     private PathTransition cipherPathTransition = new PathTransition();
 
-    private ImageView processButtonIcon = new ImageView("/resource/gears-solid.png");
+    private FadeTransition cipherFadeTransition = new FadeTransition();
+
+    private ImageView processButtonIcon = new ImageView("/resource/buttonicons/gears-solid.png");
     private ImageView resetButtonIcon = new ImageView("/resource/arrow-rotate-right-solid.png");
     private ImageView clearButtonIcon = new ImageView("/resource/delete-left-solid.png");
 
@@ -74,12 +77,18 @@ public class EncryptDecryptController {
         cipheredOutputHeadline.visibleProperty().bind(Bindings.when(outputLabel.textProperty().isEqualTo("")).then(true).otherwise(false));
         lightBulbs.disableProperty().bind(cipherModeTS.selectedProperty().not());
 
-        cipherPathTransition.setDuration(Duration.millis(2000));
+        cipherPathTransition.setDuration(Duration.millis(1500));
         cipherPathTransition.setNode(animationCipherLabel);
         cipherPathTransition.setPath(lineCipher);
 
-        processButtonIcon.setFitWidth(12);
-        processButtonIcon.setFitHeight(12);
+        cipherFadeTransition.setFromValue(0);
+        cipherFadeTransition.setToValue(1);
+        cipherFadeTransition.setDuration(Duration.millis(500));
+        cipherFadeTransition.setDelay(Duration.millis(1500));
+        cipherFadeTransition.setNode(outputLabel);
+
+        processButtonIcon.setFitWidth(17);
+        processButtonIcon.setFitHeight(17);
         resetButtonIcon.setFitWidth(12);
         resetButtonIcon.setFitHeight(12);
         clearButtonIcon.setFitWidth(12);
@@ -89,7 +98,7 @@ public class EncryptDecryptController {
         resetButton.setGraphic(resetButtonIcon);
         clearButton.setGraphic(clearButtonIcon);
 
-        processButton.setContentDisplay(ContentDisplay.BOTTOM);
+        processButton.setContentDisplay(ContentDisplay.LEFT);
         resetButton.setContentDisplay(ContentDisplay.BOTTOM);
         clearButton.setContentDisplay(ContentDisplay.BOTTOM);
 
@@ -144,6 +153,8 @@ public class EncryptDecryptController {
                 parentController.displayStatistics();
                 animationCipherLabel.setText(cipheredLineStatus.getCipheredText());
                 cipherPathTransition.play();
+                outputLabel.setOpacity(0);
+                cipherFadeTransition.play();
             }
         }
     }
