@@ -83,7 +83,6 @@ public class dmOperationalController {
         }
     }
 
-
     void pauseBruteForceAction() {
         parentController.pauseBruteForce();
     }

@@ -178,6 +178,7 @@ public class MainController {
             bodyController.setLightBulb(engine.getMachineAlphabet());
             bodyController.displayStatistics();
             this.totalPossibleWindowsPositions = (int) Math.pow(alphabetLength, rotorsCount);
+            bodyController.setEncryptExcludeCharsValue(dictionaryExcludeCharsProperty);
             bodyController.setDMOperetionalSettings((int) totalPossibleWindowsPositions, specsStatus.getNumOfAvailableAgents(), specsStatus);
             headerController.enableLoadButtonTransition(false);
             isMachineConfiguredProperty.setValue(Boolean.FALSE);

@@ -17,7 +17,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
@@ -59,6 +58,9 @@ public class EncryptDecryptController {
 
     @FXML
     private Button clearButton;
+
+    private StringProperty dictionaryExcludeCharactersProperty;
+
 
     @FXML
     public void initialize() {
@@ -157,11 +159,7 @@ public class EncryptDecryptController {
     @FXML
     void setCipherMode(MouseEvent ignored) {
         clearTextFields();
-        if (cipherModeTS.isSelected()) {
-            parentController.setCharByCharCipherMode(true);
-        } else {
-            parentController.setCharByCharCipherMode(false);
-        }
+        parentController.setCharByCharCipherMode(cipherModeTS.isSelected());
     }
 
     /**
@@ -259,10 +257,10 @@ public class EncryptDecryptController {
     /**
      * deactivate the matching bulb
      *
-     * @param event when user release the key presses
+     * @param ignored when user release the key presses
      */
     @FXML
-    public void deactivateLightBulb(KeyEvent event) {
+    public void deactivateLightBulb(KeyEvent ignored) {
 
         if (cipheredLetter.equals("")) {
             return;
