@@ -50,11 +50,11 @@
     -fx-border-color: #9a0000;
 }
 
-.lightbulbs-area {
+.light-bulbs-area {
     -fx-background-color: #e7e7e7;
 }
 
-.lightbulbs-area .lightbulb {
+.light-bulbs-area .light-bulb {
     -fx-background-color: #e7e7e7;
     -fx-border-color: black;
     -fx-font-size: 15;
@@ -63,18 +63,18 @@
     /*-fx-alignment: center;*/
 }
 
-.lightbulbs-area .lightbulb:hover {
+.light-bulbs-area .light-bulb:hover {
     -fx-background-color: #c0c0c0;
     -fx-border-width: 2;
     -fx-cursor: hand;
 }
 
-.lightbulbs-area .lightbulb:pressed {
+.light-bulbs-area .light-bulb:pressed {
     -fx-background-color: #3c3f41;
     -fx-border-color: #c0c0c0;
     -fx-text-fill: white;
 }
 
-.lightbulbs-area .light-on {
+.light-bulbs-area .light-on {
     -fx-background-color: #ffff00;
 }

@@ -235,7 +235,7 @@ public class EncryptDecryptController {
             nextLightBulb.setMaxHeight(35);
             nextLightBulb.setMinWidth(35);
             nextLightBulb.setMinHeight(35);
-            nextLightBulb.getStyleClass().add("lightbulb");
+            nextLightBulb.getStyleClass().add("light-bulb");
 
             // adds the letter
             nextLightBulb.setText("" + letter);
