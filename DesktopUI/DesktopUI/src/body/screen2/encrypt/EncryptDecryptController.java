@@ -3,18 +3,19 @@ package body.screen2.encrypt;
 import app.statusbar.MessageTone;
 import body.BodyController;
 import dto.DTOciphertext;
+import javafx.animation.PathTransition;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.shape.*;
+import javafx.util.Duration;
 import org.controlsfx.control.ToggleSwitch;
 
 public class EncryptDecryptController {
@@ -44,6 +45,12 @@ public class EncryptDecryptController {
     private Label cipheredOutputHeadline;
 
     @FXML
+    private Label animationCipherLabel;
+
+    @FXML
+    private Line lineCipher;
+
+    @FXML
     private Button processButton;
 
     @FXML
@@ -54,12 +61,38 @@ public class EncryptDecryptController {
 
     private StringProperty dictionaryExcludeCharactersProperty;
 
+    private PathTransition cipherPathTransition = new PathTransition();
+
+    private ImageView processButtonIcon = new ImageView("/resource/gears-solid.png");
+    private ImageView resetButtonIcon = new ImageView("/resource/arrow-rotate-right-solid.png");
+    private ImageView clearButtonIcon = new ImageView("/resource/delete-left-solid.png");
+
 
     @FXML
     public void initialize() {
         processButton.setText("Process");
         cipheredOutputHeadline.visibleProperty().bind(Bindings.when(outputLabel.textProperty().isEqualTo("")).then(true).otherwise(false));
         lightBulbs.disableProperty().bind(cipherModeTS.selectedProperty().not());
+
+        cipherPathTransition.setDuration(Duration.millis(2000));
+        cipherPathTransition.setNode(animationCipherLabel);
+        cipherPathTransition.setPath(lineCipher);
+
+        processButtonIcon.setFitWidth(12);
+        processButtonIcon.setFitHeight(12);
+        resetButtonIcon.setFitWidth(12);
+        resetButtonIcon.setFitHeight(12);
+        clearButtonIcon.setFitWidth(12);
+        clearButtonIcon.setFitHeight(12);
+
+        processButton.setGraphic(processButtonIcon);
+        resetButton.setGraphic(resetButtonIcon);
+        clearButton.setGraphic(clearButtonIcon);
+
+        processButton.setContentDisplay(ContentDisplay.BOTTOM);
+        resetButton.setContentDisplay(ContentDisplay.BOTTOM);
+        clearButton.setContentDisplay(ContentDisplay.BOTTOM);
+
     }
 
     /**
@@ -109,6 +142,8 @@ public class EncryptDecryptController {
             } else {
                 outputLabel.setText(cipheredLineStatus.getCipheredText());
                 parentController.displayStatistics();
+                animationCipherLabel.setText(cipheredLineStatus.getCipheredText());
+                cipherPathTransition.play();
             }
         }
     }

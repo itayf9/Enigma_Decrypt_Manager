@@ -10,6 +10,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 import static utill.Utility.factorial;
@@ -47,6 +48,10 @@ public class dmOperationalController {
 
     private DTOspecs specStatus;
 
+    private ImageView startButtonIcon = new ImageView("/resource/play-solid.png");
+    private ImageView pauseButtonIcon = new ImageView("/resource/pause-solid.png");
+    private ImageView stopButtonIcon = new ImageView("/resource/stop-solid.png");
+    private ImageView resumeButtonIcon = new ImageView("/resource/resume-play.png");
 
     @FXML
     public void initialize() {
@@ -60,6 +65,18 @@ public class dmOperationalController {
 
         taskSizeSpinner.valueProperty().addListener((observable, oldValue, newValue) -> displayTasksAmount(newValue, difficultyLevelComboBox.getValue()));
         difficultyLevelComboBox.valueProperty().addListener((observable, oldValue, newValue) -> displayTasksAmount(taskSizeSpinner.getValue(), newValue));
+
+        startButtonIcon.setFitWidth(12);
+        startButtonIcon.setFitHeight(12);
+        pauseButtonIcon.setFitWidth(12);
+        pauseButtonIcon.setFitHeight(12);
+        stopButtonIcon.setFitWidth(12);
+        stopButtonIcon.setFitHeight(12);
+        resumeButtonIcon.setFitWidth(12);
+        resumeButtonIcon.setFitHeight(12);
+
+        startButton.setContentDisplay(ContentDisplay.BOTTOM);
+        pauseButton.setContentDisplay(ContentDisplay.BOTTOM);
     }
 
     @FXML
@@ -115,6 +132,7 @@ public class dmOperationalController {
         }
 
         parentController.startBruteForce(textToDecipher, difficultyLevel, taskSize, numOfAgentSelected);
+
     }
 
     public void setSettings(long totalPossibleWindowsPositions, int maxNumOfAgents, DTOspecs specStatus) {
@@ -155,8 +173,10 @@ public class dmOperationalController {
         numOfAgentsSlider.disableProperty().bind(isBruteForceTaskActive);
         difficultyLevelComboBox.disableProperty().bind(isBruteForceTaskActive);
         startButton.textProperty().bind(Bindings.when(isBruteForceTaskActive.not()).then("Start").otherwise("Stop"));
+        startButton.graphicProperty().bind(Bindings.when(isBruteForceTaskActive.not()).then(startButtonIcon).otherwise(stopButtonIcon));
         pauseButton.disableProperty().bind(Bindings.when(isBruteForceTaskActive.not()).then(true).otherwise(false));
         pauseButton.textProperty().bind(Bindings.when(isBruteForceTaskPaused.not().or(isBruteForceTaskActive.not())).then("Pause").otherwise("Resume"));
+        pauseButton.graphicProperty().bind(Bindings.when(isBruteForceTaskPaused.not().or(isBruteForceTaskActive.not())).then(pauseButtonIcon).otherwise(resumeButtonIcon));
     }
 
     public void displayTasksAmount(int taskSize, DifficultyLevel difficultyLevel) {

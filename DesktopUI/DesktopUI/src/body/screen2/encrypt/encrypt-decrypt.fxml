@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.ToggleSwitch?>
 
@@ -35,6 +36,7 @@
       <RowConstraints maxHeight="1.7976931348623157E308" minHeight="50.0" prefHeight="100.0" vgrow="ALWAYS" />
    </rowConstraints>
    <children>
+      <Label fx:id="animationCipherLabel" text="animation" GridPane.rowIndex="1" />
       <Label styleClass="component-title" text="Cipher Some Text" GridPane.rowIndex="1" />
       <TextField fx:id="inputTextField" maxWidth="1.7976931348623157E308" minHeight="40.0" onKeyPressed="#cipherCharacter" onKeyReleased="#deactivateLightBulb" prefHeight="40.0" prefWidth="268.0" promptText="Cipher something..." styleClass="input-text-field" GridPane.rowIndex="3" GridPane.valignment="TOP" />
       <ScrollPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="40.0" prefHeight="40.0" prefWidth="268.0" styleClass="sub-component-with-background" GridPane.rowIndex="6" GridPane.valignment="TOP">
@@ -93,13 +95,14 @@
       </ToggleSwitch>
       <ScrollPane fx:id="lightBulbsScrollPane" fitToWidth="true" maxHeight="200.0" styleClass="sub-component-with-background" GridPane.columnSpan="4" GridPane.rowIndex="8">
          <content>
-            <FlowPane fx:id="lightBulbs" alignment="TOP_CENTER" hgap="5.0" maxHeight="200.0" prefHeight="95.0" styleClass="lightbulbs-area" vgap="5.0">
+            <FlowPane fx:id="lightBulbs" alignment="TOP_CENTER" hgap="5.0" maxHeight="200.0" prefHeight="95.0" styleClass="light-bulbs-area" vgap="5.0">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </FlowPane>
          </content>
       </ScrollPane>
+      <Line fx:id="lineCipher" endX="-275.4800109863281" endY="17.292892456054688" opacity="0.0" startX="-275.7729187011719" startY="-56.106468200683594" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
    </children>
    <stylesheets>
       <URL value="@../../../app/app-default.css" />
