@@ -26,6 +26,21 @@ public class CodeCalibrationController {
     private Button setCalibrationButton;
 
     @FXML
+    private HBox rotorsHbox;
+
+    @FXML
+    private HBox windowsCharHbox;
+
+    @FXML
+    private HBox plugsHBox;
+
+    @FXML
+    private Button removePlugButton;
+
+    @FXML
+    private Button addPlugButton;
+
+    @FXML
     private TextField rotorsInput;
 
     @FXML
@@ -37,8 +52,13 @@ public class CodeCalibrationController {
     @FXML
     private HBox reflectorBox;
 
-    @FXML
     private ToggleGroup reflectorToggles;
+    private String alphabet;
+
+    @FXML
+    public void initialize() {
+        reflectorToggles = new ToggleGroup();
+    }
 
     @FXML
     private Label problemLabelPlugs;
@@ -219,5 +239,47 @@ public class CodeCalibrationController {
         problemLabelPlugs.setText("");
         plugsInput.getStyleClass().removeAll("invalid-input-text-field");
         plugsInput.setText(configStatus.getPlugs());
+    }*/
+
+    @FXML
+    void addPlugAction(MouseEvent event) {
+        HBox plugPair = new HBox();
+        ComboBox<Character> firstInPair = new ComboBox<>();
+        ComboBox<Character> secondInPair = new ComboBox<>();
+
+        firstInPair.getStyleClass().add("code-calibration-combo-box");
+        secondInPair.getStyleClass().add("code-calibration-combo-box");
+
+        firstInPair.setPromptText("-");
+        secondInPair.setPromptText("-");
+
+        firstInPair.setMinWidth(53);
+        secondInPair.setMinWidth(53);
+
+        firstInPair.setPrefWidth(53);
+        secondInPair.setPrefWidth(53);
+
+        firstInPair.setMinHeight(25);
+        secondInPair.setMinHeight(25);
+
+        firstInPair.setPrefHeight(25);
+        secondInPair.setPrefHeight(25);
+
+        for (Character letter : alphabet.toCharArray()) {
+
+            firstInPair.getItems().add(letter);
+            secondInPair.getItems().add(letter);
+        }
+
+        plugPair.getChildren().addAll(firstInPair, secondInPair);
+        plugsHBox.getChildren().add(plugPair);
     }
+
+    @FXML
+    void removePlugAction(MouseEvent event) {
+        if (plugsHBox.getChildren().size() != 0) {
+            plugsHBox.getChildren().remove(plugsHBox.getChildren().size() - 1);
+        }
+    }
+
 }

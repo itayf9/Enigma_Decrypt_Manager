@@ -50,6 +50,18 @@
     -fx-text-fill: #50a005;
 }
 
+.scroll-bar *.thumb {
+    -fx-background-color: grey;
+}
+
+.scroll-bar *.decrement-button *.decrement-arrow {
+    -fx-background-color: grey;
+}
+
+.scroll-bar *.increment-button *.increment-arrow {
+    -fx-background-color: grey;
+}
+
 .body-background {
     -fx-background-color: linear-gradient(to bottom, #92dcf1 7%, rgba(119, 172, 241, 0.95) 39%, #353396 100%)
 }
