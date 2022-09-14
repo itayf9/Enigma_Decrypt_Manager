@@ -62,8 +62,6 @@ public class HeaderController {
     public void initialize() {
 
         filePathLoadMachineLabel.setText("");
-
-
         loadButtonFadeTransition = new FadeTransition(Duration.millis(1500), loadFileButton);
         loadButtonFadeTransition.setFromValue(1.0);
         loadButtonFadeTransition.setToValue(0.3);

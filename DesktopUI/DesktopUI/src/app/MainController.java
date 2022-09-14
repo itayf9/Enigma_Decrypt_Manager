@@ -144,6 +144,7 @@ public class MainController {
                     bruteForceProgressBarPercentageProperty, bruteForceStatusMessage, isBruteForceTaskActive,
                     isBruteForceTaskPaused, averageTasksProcessTimeProperty);
 
+            // general setting to initialize sub components
             body.visibleProperty().bind(isMachineLoadedProperty);
             messageLabel.textProperty().bind(statusLabel.textProperty());
             messageLabel.opacityProperty().bind(statusBackShape.opacityProperty());
@@ -392,7 +393,10 @@ public class MainController {
         messageFadeTransition.setFromValue(1.0);
         messageFadeTransition.setToValue(0.0);
         messageFadeTransition.setDelay(Duration.millis(3000));
-        messageFadeTransition.play();
+
+        if (isAnimationProperty.getValue()) {
+            messageFadeTransition.play();
+        }
     }
 
     /**

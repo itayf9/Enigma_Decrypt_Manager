@@ -441,4 +441,8 @@ public class BodyController {
     public boolean isAllWordsInDictionary(String textToCipher) {
         return mainController.isAllWordsInDictionary(textToCipher);
     }
+
+    public void setIsAnimationPropertyEncryptDecrypt(BooleanProperty isAnimationProperty) {
+        encryptDecryptController.setIsAnimationPropertyEncryptDecrypt(isAnimationProperty);
+    }
 }

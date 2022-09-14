@@ -69,6 +69,7 @@ public class EncryptDecryptController {
     private ImageView processButtonIcon = new ImageView("/resource/buttonicons/gears-solid.png");
     private ImageView resetButtonIcon = new ImageView("/resource/arrow-rotate-right-solid.png");
     private ImageView clearButtonIcon = new ImageView("/resource/delete-left-solid.png");
+    private BooleanProperty isAnimationProperty;
 
 
     @FXML
@@ -101,7 +102,6 @@ public class EncryptDecryptController {
         processButton.setContentDisplay(ContentDisplay.LEFT);
         resetButton.setContentDisplay(ContentDisplay.BOTTOM);
         clearButton.setContentDisplay(ContentDisplay.BOTTOM);
-
     }
 
     /**
@@ -112,7 +112,6 @@ public class EncryptDecryptController {
     @FXML
     void cipherCharacter(KeyEvent event) {
         cipherOneCharacter(event.getCode().getName().toUpperCase());
-
     }
 
     private void cipherOneCharacter(String character) {
@@ -353,5 +352,9 @@ public class EncryptDecryptController {
 
     public void setEncryptExcludeCharsValue(StringProperty dictionaryExcludeCharsProperty) {
         this.dictionaryExcludeCharactersProperty = dictionaryExcludeCharsProperty;
+    }
+
+    public void setIsAnimationPropertyEncryptDecrypt(BooleanProperty isAnimationProperty) {
+        this.isAnimationProperty = isAnimationProperty;
     }
 }
