@@ -152,9 +152,13 @@ public class EncryptDecryptController {
                 outputLabel.setText(cipheredLineStatus.getCipheredText());
                 parentController.displayStatistics();
                 animationCipherLabel.setText(cipheredLineStatus.getCipheredText());
-                cipherPathTransition.play();
-                outputLabel.setOpacity(0);
-                cipherFadeTransition.play();
+
+                if (isAnimationProperty.getValue()) {
+                    animationCipherLabel.setOpacity(1);
+                    cipherPathTransition.play();
+                    outputLabel.setOpacity(0);
+                    cipherFadeTransition.play();
+                }
             }
         }
     }
@@ -299,9 +303,12 @@ public class EncryptDecryptController {
             return;
         }
         ObservableList<?> elements = lightBulbs.getChildren();
-        Button currentPane = (Button) elements.get(alphabet.indexOf(cipheredLetter.charAt(0)));
 
-        currentPane.getStyleClass().removeAll("light-on");
+        elements.forEach(o -> {
+            Button currentPane = (Button) o;
+            currentPane.getStyleClass().removeAll("light-on");
+        });
+
     }
 
     private void deactivateLight() {

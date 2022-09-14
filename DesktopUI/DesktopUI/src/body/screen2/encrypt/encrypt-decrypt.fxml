@@ -36,28 +36,34 @@
       <RowConstraints maxHeight="1.7976931348623157E308" minHeight="50.0" prefHeight="100.0" vgrow="ALWAYS" />
    </rowConstraints>
    <children>
-      <Label fx:id="animationCipherLabel" text="animation" GridPane.rowIndex="1" />
+      <Label fx:id="animationCipherLabel" opacity="0.0" text="animation" GridPane.rowIndex="1" />
       <Label styleClass="component-title" text="Cipher Some Text" GridPane.rowIndex="1" />
-      <TextField fx:id="inputTextField" maxWidth="1.7976931348623157E308" minHeight="40.0" onKeyPressed="#cipherCharacter" onKeyReleased="#deactivateLightBulb" prefHeight="40.0" prefWidth="268.0" promptText="Cipher something..." styleClass="input-text-field" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+      <TextField fx:id="inputTextField" maxWidth="1.7976931348623157E308" minHeight="40.0" onKeyPressed="#cipherCharacter" onKeyReleased="#deactivateLightBulb" prefHeight="40.0" prefWidth="268.0" promptText="Cipher something..." styleClass="input-text-field" GridPane.rowIndex="3" GridPane.valignment="TOP">
+         <font>
+            <Font size="15.0" />
+         </font></TextField>
       <ScrollPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="40.0" prefHeight="40.0" prefWidth="268.0" styleClass="sub-component-with-background" GridPane.rowIndex="6" GridPane.valignment="TOP">
          <content>
             <StackPane>
                <children>
                   <Label fx:id="outputLabel" StackPane.alignment="CENTER_LEFT">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
                      <padding>
                         <Insets top="5.0" />
                      </padding>
                      <StackPane.margin>
                         <Insets left="5.0" />
                      </StackPane.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
                   </Label>
                   <Label fx:id="cipheredOutputHeadline" styleClass="ciphered-text-headline-label" text="The Ciphered Text Will Be Shown Here" StackPane.alignment="CENTER_LEFT">
                      <StackPane.margin>
                         <Insets left="5.0" />
                      </StackPane.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
                   </Label>
                </children>
             </StackPane>

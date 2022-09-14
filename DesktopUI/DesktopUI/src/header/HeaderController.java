@@ -2,6 +2,9 @@ package header;
 
 import app.MainController;
 import javafx.animation.*;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.BooleanProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -17,11 +20,15 @@ import java.net.URL;
 
 public class HeaderController {
 
-    FileChooser fileChooser = new FileChooser();
+    private FileChooser fileChooser = new FileChooser();
 
-    String selectedMachineFile;
+    private String selectedMachineFile;
 
-    FadeTransition loadButtonFadeTransition;
+    private FadeTransition loadButtonFadeTransition;
+
+    private BooleanProperty isAnimationProperty;
+
+    private BooleanProperty isMachineLoadedProperty;
 
     private MainController mainController;
 
@@ -37,6 +44,9 @@ public class HeaderController {
 
     @FXML
     private MenuButton settingsMenuButton;
+
+    @FXML
+    private MenuItem animationMenu;
 
     @FXML
     private ImageView settingsButtonImg;
@@ -108,6 +118,11 @@ public class HeaderController {
         filePathLoadMachineLabel.setText(selectedMachineFile);
     }
 
+    @FXML
+    void toggleAnimation(ActionEvent event) {
+        isAnimationProperty.setValue(!isAnimationProperty.getValue());
+    }
+
     public void enableLoadButtonTransition(boolean isAllow) {
         if (isAllow) {
             loadButtonFadeTransition.play();
@@ -124,5 +139,20 @@ public class HeaderController {
         URL settingsImgUrl = getClass().getResource("/header/settings_gear_" + skin.skinName() + ".png");
 
         settingsButtonImg.setImage(new Image(settingsImgUrl.toString()));
+    }
+
+    public void bindSettings(BooleanProperty isAnimationProperty) {
+        animationMenu.textProperty().bind(Bindings.when(isAnimationProperty).then("Disable Animations").otherwise("Enable Animations"));
+    }
+
+    public void setProperties(BooleanProperty isAnimationProperty, BooleanProperty isMachineLoadedProperty) {
+        this.isMachineLoadedProperty = isMachineLoadedProperty;
+        this.isAnimationProperty = isAnimationProperty;
+        isAnimationProperty.addListener((observable, oldValue, newValue) -> {
+            if (!isMachineLoadedProperty.getValue()) {
+                enableLoadButtonTransition(newValue);
+            }
+
+        });
     }
 }

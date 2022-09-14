@@ -101,6 +101,8 @@ public class MainController {
     private DoubleProperty averageTasksProcessTimeProperty;
     private StringProperty dictionaryExcludeCharsProperty;
 
+    private BooleanProperty isAnimationProperty;
+
 
     @FXML
     public void initialize() {
@@ -129,11 +131,7 @@ public class MainController {
             this.isBruteForceTaskPaused = new SimpleBooleanProperty(false);
             this.averageTasksProcessTimeProperty = new SimpleDoubleProperty();
             this.dictionaryExcludeCharsProperty = new SimpleStringProperty();
-
-
-            /**
-             * bruteForce BINDINGS
-             */
+            this.isAnimationProperty = new SimpleBooleanProperty(true);
             this.bruteForceProgress = new SimpleDoubleProperty();
             this.bruteForceStatusMessage = new SimpleStringProperty("");
             this.bruteForceProgressBarPercentageProperty = new SimpleStringProperty("0%");
@@ -153,6 +151,12 @@ public class MainController {
             statusBackShape.widthProperty().bind(statusLabel.widthProperty());
             statusBackShape.setStrokeWidth(0);
             statusBackShape.setOpacity(0);
+
+            // header bindings & settings
+            headerController.setProperties(isAnimationProperty, isMachineLoadedProperty);
+            headerController.bindSettings(isAnimationProperty);
+
+            bodyController.setIsAnimationPropertyEncryptDecrypt(isAnimationProperty);
         }
     }
 
@@ -495,4 +499,5 @@ public class MainController {
     public boolean isAllWordsInDictionary(String textToCipher) {
         return engine.isAllWordsInDictionary(textToCipher);
     }
+
 }

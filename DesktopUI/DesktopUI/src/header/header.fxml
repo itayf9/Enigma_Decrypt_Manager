@@ -73,7 +73,7 @@
                        <RadioMenuItem mnemonicParsing="false" toggleGroup="$skinsGroup" />
                    </items>
             </Menu>
-            <MenuItem mnemonicParsing="false" text="Animations" />
+            <MenuItem fx:id="animationMenu" mnemonicParsing="false" onAction="#toggleAnimation" text="Animations" />
             <MenuItem mnemonicParsing="false" text="Configuration" />
             <MenuItem mnemonicParsing="false" text="About" />
         </items>
