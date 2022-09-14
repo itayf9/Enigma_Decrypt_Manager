@@ -116,32 +116,22 @@ public class AgentTask implements Runnable {
                 break;
             }
 
-/*            System.out.println("For agent " + Thread.currentThread().getName() + "is brute paused = " + dm.isIsBruteForceActionPaused());
-            if (dm.isIsBruteForceActionPaused()) {
+/*          if (dm.isIsBruteForceActionPaused()) {
 
-                System.out.println("about to sync with key :" + dm.getDummmy());
-                System.out.println("current is brute paused = " + dm.isIsBruteForceActionPaused());
-                synchronized (dm.getDummmy()) {
-                    System.out.println("agent " + Thread.currentThread().getName() + " got the key : " + dm.getDummmy());
-
+                // need to bring back that boolean property
+               synchronized (dm.isIsBruteForceActionPaused()) {
                     while (dm.isIsBruteForceActionPaused()) {
                         try {
-                            System.out.println("agent waits" + Thread.currentThread().getName() + " with key : " + dm.getDummmy());
                             wait();
-                            System.out.println("agent stopped waiting " + Thread.currentThread().getName() + " with key : " + dm.getDummmy());
                         } catch (InterruptedException ignored) {
-
                         }
-                        System.out.println("agent awaken");
                     }
-                    System.out.println("out of while loop");
-
                 }
             }*/
-
         }
         // send conclusion to DM
         try {
+            System.out.println(Thread.currentThread().getName() + " sent conclusion to collector");
             long timeElapsed = System.nanoTime() - startMeasureTime;
             candidatesQueue.put(new AgentConclusion(candidates, numOfConfigScanned, timeElapsed));
         } catch (InterruptedException ignored) {

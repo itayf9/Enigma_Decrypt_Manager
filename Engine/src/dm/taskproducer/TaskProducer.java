@@ -1,8 +1,8 @@
 package dm.taskproducer;
 
-import dm.decryptmanager.DecryptManager;
 import dm.agent.AgentConclusion;
 import dm.agent.AgentTask;
+import dm.decryptmanager.DecryptManager;
 import dm.dictionary.Dictionary;
 import dm.difficultylevel.DifficultyLevel;
 import machine.EnigmaMachine;
@@ -23,10 +23,11 @@ public class TaskProducer implements Runnable {
     private final DifficultyLevel difficulty;
     private final String textToDecipher;
     private final Dictionary dictionary;
-
     private final BlockingQueue<AgentConclusion> candidatesQueue;
-
     private final DecryptManager dm;
+
+    private static int taskCounter = 0;
+
 
     public TaskProducer(DecryptManager dm, int taskSize, DifficultyLevel difficultyLevel, String textToDecipher) {
         this.dm = dm;
@@ -57,13 +58,15 @@ public class TaskProducer implements Runnable {
                 produceImpossibleTasks();
                 break;
         }
-        System.out.println("producer died with taskSize = " + taskSize);
+        System.out.println("producer died with taskSize = " + taskSize + " and taskCounter=" + taskCounter);
     }
 
     private void produceImpossibleTasks() {
-        List<List<Integer>> listOfAllCombinationsRotorsIDs = generateCombinations(machine.getAvailableRotorsLen(), machine.getRotorsCount());
+        List<List<Integer>> listOfAllCombinationsRotorsIDsFixed = generateCombinations(machine.getAvailableRotorsLen(), machine.getRotorsCount());
 
-        for (List<Integer> combination : listOfAllCombinationsRotorsIDs) {
+        System.out.println("listOfAllCombinationsRotorsIDsFixed =" + listOfAllCombinationsRotorsIDsFixed.size());
+
+        for (List<Integer> combination : listOfAllCombinationsRotorsIDsFixed) {
             produceHardTasks(combination);
         }
     }
@@ -89,9 +92,7 @@ public class TaskProducer implements Runnable {
     private void produceEasyTasks(int reflectorID, List<Integer> rotorsIDs) {
 
         List<Integer> currentWindowsOffsets = new ArrayList<>(Collections.nCopies(machine.getRotorsCount(), 0));
-
         boolean finishedAllTasks = false;
-
         // easy mode so rotors doesn't change.
 
         List<Integer> inUseRotorsIDs = rotorsIDs;
@@ -102,6 +103,7 @@ public class TaskProducer implements Runnable {
 
         // set up first agentTask
         try {
+            taskCounter++;
             agentTaskQueue.put(new AgentTask(inUseRotorsIDs, new ArrayList<>(currentWindowsOffsets), inUseReflectorID,
                     copyOfMachine, dm, taskSize, textToDecipher, dictionary, candidatesQueue));
         } catch (InterruptedException ignored) {
@@ -136,11 +138,11 @@ public class TaskProducer implements Runnable {
 
     public List<List<Integer>> generateCombinations(int n, int k) {
         List<List<Integer>> combinations = new ArrayList<>();
-        ArrayList<Integer> combination = new ArrayList<>(Collections.nCopies(k, 0));
+        ArrayList<Integer> combination = new ArrayList<>();
 
         // initialize with the lowest lexicographic combination
         for (int i = 0; i < k; i++) {
-            combination.set(combination.get(i), i);
+            combination.add(i);
         }
 
         while (combination.get(k - 1) < n) {

@@ -1,8 +1,8 @@
 package dm.candidatecollector;
 
 import candidate.Candidate;
-import dm.decryptmanager.DecryptManager;
 import dm.agent.AgentConclusion;
+import dm.decryptmanager.DecryptManager;
 import javafx.beans.property.BooleanProperty;
 import javafx.concurrent.Task;
 import ui.adapter.UIAdapter;
@@ -18,9 +18,9 @@ public class CandidatesCollectorTask extends Task<Boolean> {
     private final BooleanProperty isBruteForceActionPaused;
     private final BooleanProperty isBruteForceActionCancelled;
 
-
     public CandidatesCollectorTask(BlockingQueue<AgentConclusion> candidateQueue, long totalPossibleConfigurations,
-                                   UIAdapter uiAdapter, DecryptManager dm, BooleanProperty isBruteForceActionCancelled, BooleanProperty isBruteForceActionPaused) {
+                                   UIAdapter uiAdapter, DecryptManager dm, BooleanProperty isBruteForceActionCancelled,
+                                   BooleanProperty isBruteForceActionPaused) {
         this.candidateQueue = candidateQueue;
         this.totalPossibleConfigurations = totalPossibleConfigurations;
         this.uiAdapter = uiAdapter;
@@ -33,15 +33,11 @@ public class CandidatesCollectorTask extends Task<Boolean> {
     protected Boolean call() {
 
         long totalTasksProcessTime = 0;
-
         long scannedConfigsCount = 0;
-
         long tasksCounter = 0;
-
         double averageTasksProcessTime;
 
         uiAdapter.updateTotalConfigsPossible(totalPossibleConfigurations);
-
         updateMessage("Searching for Candidates...");
         uiAdapter.updateTaskStatus("Searching...");
 
@@ -49,20 +45,17 @@ public class CandidatesCollectorTask extends Task<Boolean> {
             AgentConclusion queueTakenCandidates;
             try {
                 queueTakenCandidates = candidateQueue.take();
-
                 tasksCounter++;
+                System.out.println(tasksCounter);
                 totalTasksProcessTime += queueTakenCandidates.getTimeTakenToDoTask();
-
                 averageTasksProcessTime = (double) totalTasksProcessTime / (double) tasksCounter;
-
                 uiAdapter.updateAverageTasksProcessTime(averageTasksProcessTime);
-
                 scannedConfigsCount += queueTakenCandidates.getNumOfScannedConfigurations();
 
                 updateProgress(scannedConfigsCount, totalPossibleConfigurations);
                 uiAdapter.updateProgressBar((double) scannedConfigsCount / (double) totalPossibleConfigurations);
-
                 uiAdapter.updateTotalProcessedConfigurations(queueTakenCandidates.getNumOfScannedConfigurations());
+
             } catch (InterruptedException e) {
                 if (scannedConfigsCount >= totalPossibleConfigurations) {
                     System.out.println("collector died");

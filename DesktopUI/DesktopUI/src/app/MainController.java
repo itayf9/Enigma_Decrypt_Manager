@@ -361,8 +361,7 @@ public class MainController {
             candidateTileController.setWindowsCharsAndNotches(candidate.getWindowChars(), candidate.getNotchPositions());
             candidateTileController.setReflectorSymbol(candidate.getReflectorSymbol());
             candidateTileController.setProcessedByAgentName(candidate.getProcessedByAgentName());
-
-
+            
             bodyController.insertCandidateToFlowPane(singleCandidateTile);
         } catch (IOException e) {
             e.printStackTrace();
