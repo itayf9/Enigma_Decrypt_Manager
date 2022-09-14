@@ -62,13 +62,13 @@ public class EncryptDecryptController {
 
     private StringProperty dictionaryExcludeCharactersProperty;
 
-    private PathTransition cipherPathTransition = new PathTransition();
+    private final PathTransition cipherPathTransition = new PathTransition();
 
-    private FadeTransition cipherFadeTransition = new FadeTransition();
+    private final FadeTransition cipherFadeTransition = new FadeTransition();
 
-    private ImageView processButtonIcon = new ImageView("/resource/buttonicons/gears-solid.png");
-    private ImageView resetButtonIcon = new ImageView("/resource/arrow-rotate-right-solid.png");
-    private ImageView clearButtonIcon = new ImageView("/resource/delete-left-solid.png");
+    private final ImageView processButtonIcon = new ImageView("/resource/buttonicons/gears-solid.png");
+    private final ImageView resetButtonIcon = new ImageView("/resource/arrow-rotate-right-solid.png");
+    private final ImageView clearButtonIcon = new ImageView("/resource/delete-left-solid.png");
     private BooleanProperty isAnimationProperty;
 
 
@@ -239,6 +239,9 @@ public class EncryptDecryptController {
      * @param alphabet string of the alphabet
      */
     public void initAlphabetLightBulbs(String alphabet) {
+        // clear old light bulbs
+        lightBulbs.getChildren().clear();
+
         this.alphabet = alphabet;
 
         for (Character letter : alphabet.toCharArray()) {
@@ -262,9 +265,7 @@ public class EncryptDecryptController {
                 cipherOneCharacter(srcLightBulbLetter);
             });
 
-            nextLightBulb.setOnMouseReleased(event -> {
-                deactivateLight();
-            });
+            nextLightBulb.setOnMouseReleased(event -> deactivateLight());
 
             lightBulbs.getChildren().add(nextLightBulb);
         }

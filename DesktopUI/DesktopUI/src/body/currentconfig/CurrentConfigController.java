@@ -51,7 +51,6 @@ public class CurrentConfigController {
             return;
         }
 
-
         List<Integer> inUseRotorsIDs = configStatus.getRotors();
         List<Integer> notchDistancesToWindow = configStatus.getNotchDistances();
         StringBuilder rotorsStr = new StringBuilder();

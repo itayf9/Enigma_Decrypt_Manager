@@ -44,7 +44,11 @@ public class MachineDetailsController {
         originalConfigController.setTitle("Original Machine Configuration");
     }
 
-
+    /**
+     * displays the machine specs
+     *
+     * @param specsStatus machine specs
+     */
     public void displayMachineDetails(DTOspecs specsStatus) {
         if (specsStatus.getDetails().equals(Problem.NO_LOADED_MACHINE)) {
             usedRotors.setText("-");
@@ -56,7 +60,7 @@ public class MachineDetailsController {
             availableReflectors.setText("" + specsStatus.getAvailableReflectorsCount());
         }
 
-        originalConfigController.displayCurrentConfig(getOriginalConfigFromSpecs(specsStatus));
+        // originalConfigController.displayCurrentConfig(getOriginalConfigFromSpecs(specsStatus));
     }
 
     public void setParentController(BodyController parentController) {

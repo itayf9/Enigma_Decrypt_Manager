@@ -127,7 +127,6 @@ public class BodyController {
         candidatesAreaController.setParentController(this);
         dictionaryController.setParentController(this);
 
-
         dmOperationalController.bindTextToDecipherPropertyToOutputCipher(encryptDecrypt2Controller.getOutputLabelProperty());
 
         encryptDecrypt2Controller.setAvailabilityOfCharByCharMode(false);
@@ -320,13 +319,30 @@ public class BodyController {
         dmOperationalController.bindComponents(isBruteForceTaskActive, isBruteForceTaskPaused);
     }
 
+    /**
+     * updates the original machine config at every load
+     *
+     * @param rotorsIDs                rotorsIDs
+     * @param currentWindowsCharacters window characters
+     * @param inUseReflectorSymbol     I, II, III, IV, X
+     * @param inUsePlugs               Plugs
+     * @param currentNotchDistances    Notch positions
+     */
     public void displayOriginalConfig(List<Integer> rotorsIDs, String currentWindowsCharacters, String inUseReflectorSymbol, String inUsePlugs, List<Integer> currentNotchDistances) {
         machineDetailsController.displayOriginalConfiguration(rotorsIDs, currentWindowsCharacters, inUseReflectorSymbol, inUsePlugs, currentNotchDistances);
     }
 
+    /**
+     * sets dmController settings like spinner Max-Value & agent Max-Value.
+     *
+     * @param totalPossibleWindowsPositions the amount needed to complete one lap of all windows configs possible
+     * @param maxNumOfAgents                Max num of agent from the xml file
+     * @param specStatus                    machine specifications
+     */
     public void setDMOperetionalSettings(long totalPossibleWindowsPositions, int maxNumOfAgents, DTOspecs specStatus) {
         dmOperationalController.setSettings(totalPossibleWindowsPositions, maxNumOfAgents, specStatus);
     }
+
 
     public void startBruteForce(String textToDecipher, DifficultyLevel difficultyLevel, int taskSize, int numOfAgentSelected) {
         mainController.startBruteForceProcess(textToDecipher, difficultyLevel, taskSize, numOfAgentSelected);
@@ -368,6 +384,12 @@ public class BodyController {
         mainController.resumeBruteForceProcess();
     }
 
+    /**
+     * changes skin of all subcomponents
+     *
+     * @param appUrl appUrl
+     * @param skin   skin
+     */
     public void setComponentsSkin(String appUrl, Skin skin) {
 
         // removes all stylesheets
@@ -444,5 +466,9 @@ public class BodyController {
 
     public void setIsAnimationPropertyEncryptDecrypt(BooleanProperty isAnimationProperty) {
         encryptDecryptController.setIsAnimationPropertyEncryptDecrypt(isAnimationProperty);
+    }
+
+    public void setCodeCalibration(int inUseRotorsCount, int availableRotorsCount, String machineAlphabet, int availableReflectorsCount) {
+        codeCalibrationController.setCodeCalibration(inUseRotorsCount, availableRotorsCount, machineAlphabet, availableReflectorsCount);
     }
 }

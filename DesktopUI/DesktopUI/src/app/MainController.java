@@ -63,9 +63,8 @@ public class MainController {
     private Rectangle statusBackShape;
 
     private FadeTransition messageFadeTransition;
-
-
-    private DTOsecretConfig configStatus;
+    
+    private DTOsecretConfig configStatus; // do we still need this!!!!!!?????
 
     /**
      * property stuff
@@ -177,6 +176,13 @@ public class MainController {
             int rotorsCount = specsStatus.getInUseRotorsCount();
             int alphabetLength = engine.getMachineAlphabet().length();
             setStatusMessage("Machine Loaded Successfully!", MessageTone.SUCCESS);
+
+            inUseRotorsIDsProperty.clear();
+            currentWindowsCharactersProperty.set("");
+            inUseReflectorSymbolProperty.set("");
+            currentNotchDistances.clear();
+            inUsePlugsProperty.set("");
+
             bodyController.setDictionaryWords(engine.getDictionaryWords().getDictionary());
             bodyController.displayMachineSpecs(specsStatus);
             cipherCounterProperty.set(0);
@@ -189,6 +195,7 @@ public class MainController {
             isMachineConfiguredProperty.setValue(Boolean.FALSE);
             isMachineLoadedProperty.setValue(Boolean.TRUE);
             dictionaryExcludeCharsProperty.setValue(specsStatus.getDictionaryExcludeCharacters());
+            bodyController.setCodeCalibration(specsStatus.getInUseRotorsCount(), specsStatus.getAvailableRotorsCount(), engine.getMachineAlphabet(), specsStatus.getAvailableReflectorsCount());
         }
     }
 
@@ -284,14 +291,29 @@ public class MainController {
         setStatusMessage("Reset Successfully", MessageTone.SUCCESS);
     }
 
+    /**
+     * gets all the statistics data from the engine
+     *
+     * @return all the stats gathered at the engine statistics
+     */
     public DTOstatistics fetchStats() {
         return engine.getHistoryAndStatistics();
     }
 
+    /**
+     * gets all the specification data from the engine
+     *
+     * @return all the specification .of the current machine .from the engine
+     */
     public DTOspecs fetchSpecs() {
         return engine.displayMachineSpecifications();
     }
 
+    /**
+     * configure the engine to which cipher state it needs to answer.
+     *
+     * @param newCharByCharCipherMode true for char-by-char mode, false otherwise
+     */
     public void setCharByCharCipherMode(boolean newCharByCharCipherMode) {
         engine.setCharByCharState(newCharByCharCipherMode);
         isCharByCharModeProperty.set(newCharByCharCipherMode);
@@ -302,6 +324,14 @@ public class MainController {
         }
     }
 
+    /**
+     * this method initiates the brute force task at the engine
+     *
+     * @param textToDecipher     the text to decipher
+     * @param difficultyLevel    Easy, Medium, Hard or Impossible.
+     * @param taskSize           the size of single task every agent going to scan through
+     * @param numOfAgentSelected how many agents going wo work on this process
+     */
     public void startBruteForceProcess(String textToDecipher, DifficultyLevel difficultyLevel, int taskSize, int numOfAgentSelected) {
         isBruteForceTaskActive.set(true);
         cleanOldResults();
@@ -311,6 +341,9 @@ public class MainController {
         engine.startBruteForceProcess(uiAdapter, textToDecipher, difficultyLevel, taskSize, numOfAgentSelected);
     }
 
+    /**
+     * clear all findings of last process and labels progress
+     */
     private void cleanOldResults() {
         bodyController.clearOldResultsOfBruteForce();
         bruteForceProgress.set(0);
@@ -319,33 +352,26 @@ public class MainController {
         averageTasksProcessTimeProperty.set(0);
     }
 
+    /**
+     * create & configure how the ui adapter will change each property of Main Controller.
+     *
+     * @return ui adapter object
+     */
     private UIAdapter createUIAdapter() {
         return new UIAdapter(
-                (Candidate) -> {
-                    createCandidateTile(Candidate);
-                },
-                () -> {
-                    totalDistinctCandidates.set(totalDistinctCandidates.get() + 1);
-                },
-                (delta) -> {
-                    totalProcessedConfigurations.set(totalProcessedConfigurations.get() + delta);
-                }, (status) -> {
-            bruteForceStatusMessage.set(status);
-        }, (percentage) -> {
-            bruteForceProgress.set(percentage.doubleValue());
-        },
+                this::createCandidateTile,
+                () -> totalDistinctCandidates.set(totalDistinctCandidates.get() + 1),
+                (delta) -> totalProcessedConfigurations.set(totalProcessedConfigurations.get() + delta),
+                (status) -> bruteForceStatusMessage.set(status),
+                (percentage) -> bruteForceProgress.set(percentage),
                 (percentage) -> {
-                    double percent = percentage.doubleValue();
+                    double percent = percentage;
                     int tmpPercentValue = (int) (percent * 100);
                     String percentValue = tmpPercentValue + "%";
                     bruteForceProgressBarPercentageProperty.set(percentValue);
-                }, (totalConfigs) -> {
-            totalPossibleConfigurations.setValue(totalConfigs);
-        }, (isActive) -> {
-            isBruteForceTaskActive.set(isActive);
-        }, (averageTasksProcessTime) -> {
-            averageTasksProcessTimeProperty.set(averageTasksProcessTime);
-        }
+                }, (totalConfigs) -> totalPossibleConfigurations.setValue(totalConfigs),
+                (isActive) -> isBruteForceTaskActive.set(isActive),
+                (averageTasksProcessTime) -> averageTasksProcessTimeProperty.set(averageTasksProcessTime)
         );
     }
 
@@ -382,6 +408,12 @@ public class MainController {
         cipherCounterProperty.set(specsStatus.getCipheredTextsCount());
     }
 
+    /**
+     * set the Status m
+     *
+     * @param newStatus   the status text message to show
+     * @param messageTone Red for Errors, Blue for normal Status updates.
+     */
     public void setStatusMessage(String newStatus, MessageTone messageTone) {
         statusBackShape.setOpacity(1);
         statusBackShape.getStyleClass().add(messageTone.colorClassOfMessage());
@@ -439,12 +471,20 @@ public class MainController {
         return engine.validatePlugs(plugs);
     }
 
+    /**
+     * stops & cancel the engine Brute-Force process
+     */
     public void stopBruteForceProcess() {
         isBruteForceTaskActive.set(false);
         isBruteForceTaskPaused.set(false);
         engine.stopBruteForceProcess();
     }
 
+    /**
+     * changes the skin theme across the entire app.
+     *
+     * @param skin the skin to change to: Dark, Normal, Spacial
+     */
     public void setAppSkin(Skin skin) {
 
         System.out.println("before remove");
@@ -495,13 +535,21 @@ public class MainController {
         engine.pauseBruteForceProcess();
     }
 
+    /**
+     * resume the engine brute force process
+     */
     public void resumeBruteForceProcess() {
         isBruteForceTaskPaused.set(false);
         engine.resumeBruteForceProcess();
     }
 
+    /**
+     * check if text words are from dictionary
+     *
+     * @param textToCipher textToCipher
+     * @return .True - if all words are in dictionary, False otherwise
+     */
     public boolean isAllWordsInDictionary(String textToCipher) {
         return engine.isAllWordsInDictionary(textToCipher);
     }
-
 }

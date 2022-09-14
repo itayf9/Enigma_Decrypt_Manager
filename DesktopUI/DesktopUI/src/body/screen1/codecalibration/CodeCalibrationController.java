@@ -11,8 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import problem.Problem;
 
-import java.util.List;
-
+import static utill.Utility.decimalToRoman;
 import static utill.Utility.romanToDecimal;
 
 public class CodeCalibrationController {
@@ -41,12 +40,6 @@ public class CodeCalibrationController {
     private Button addPlugButton;
 
     @FXML
-    private TextField rotorsInput;
-
-    @FXML
-    private TextField windowsCharsInput;
-
-    @FXML
     private TextField plugsInput;
 
     @FXML
@@ -61,68 +54,56 @@ public class CodeCalibrationController {
     }
 
     @FXML
-    private Label problemLabelPlugs;
-
-    @FXML
-    private Label problemLabelReflector;
-
-    @FXML
-    private Label problemLabelWindows;
-
-    @FXML
-    private Label problemLabelRotors;
-
-
-    @FXML
-    void randomMachineConfig(MouseEvent event) {
+    void randomMachineConfig(MouseEvent ignored) {
         parentController.setRandomMachineConfig();
     }
 
-    DTOstatus validateRotorsInput() {
+
+  /*  DTOstatus validateRotorsInput() {
         String input = rotorsInput.getText();
         DTOstatus rotorStatus = parentController.validateRotorsInput(input);
         if (!rotorStatus.isSucceed()) {
             // generate message
-            problemLabelRotors.setText(rotorStatus.getDetails().name());
+            // problemLabelRotors.setText(rotorStatus.getDetails().name());
             if (!rotorsInput.getStyleClass().contains("invalid-input-text-field")) {
                 rotorsInput.getStyleClass().add("invalid-input-text-field");
             }
             rotorsInput.requestFocus(); // focus for the user to fix the invalid area
         } else {
             rotorsInput.getStyleClass().remove("invalid-input-text-field");
-            problemLabelRotors.setText("");
+            // problemLabelRotors.setText("");
         }
         return rotorStatus;
-    }
+    }*/
 
-    DTOstatus validateWindowsInput() {
+    /*DTOstatus validateWindowsInput() {
         String input = windowsCharsInput.getText().toUpperCase();
         DTOstatus windowsStatus = parentController.validateWindowsCharsInput(input);
         if (!windowsStatus.isSucceed()) {
             // generate message
-            problemLabelWindows.setText(windowsStatus.getDetails().name());
+            // problemLabelWindows.setText(windowsStatus.getDetails().name());
             if (!windowsCharsInput.getStyleClass().contains("invalid-input-text-field")) {
                 windowsCharsInput.getStyleClass().add("invalid-input-text-field");
             }
             windowsCharsInput.requestFocus(); // focus for the user to fix the invalid area
         } else {
             windowsCharsInput.getStyleClass().remove("invalid-input-text-field");
-            problemLabelWindows.setText("");
+            // problemLabelWindows.setText("");
         }
         return windowsStatus;
-    }
+    }*/
 
     DTOstatus validateReflectorInput() {
         RadioButton currentReflector = (RadioButton) reflectorToggles.getSelectedToggle();
         if (currentReflector == null) {
-            problemLabelReflector.setText(Problem.NO_REFLECTOR_BEEN_CHOSEN.name());
+            // problemLabelReflector.setText(Problem.NO_REFLECTOR_BEEN_CHOSEN.name());
             return new DTOstatus(false, Problem.NO_REFLECTOR_BEEN_CHOSEN);
         }
 
         DTOstatus reflectorStatus = parentController.validateReflectorInput(romanToDecimal(currentReflector.getText()));
         if (!reflectorStatus.isSucceed()) {
             // generate message
-            problemLabelReflector.setText(reflectorStatus.getDetails().name());
+            // problemLabelReflector.setText(reflectorStatus.getDetails().name());
             if (!currentReflector.getStyleClass().contains("invalid-input-text-field")) {
                 currentReflector.getStyleClass().add("invalid-input-text-field");
             }
@@ -131,7 +112,7 @@ public class CodeCalibrationController {
 
         } else {
             currentReflector.getStyleClass().remove("invalid-input-text-field");
-            problemLabelReflector.setText("");
+            // problemLabelReflector.setText("");
         }
         return reflectorStatus;
     }
@@ -141,64 +122,109 @@ public class CodeCalibrationController {
         DTOstatus plugsStatus = parentController.validatePlugsInput(input);
         if (!plugsStatus.isSucceed()) {
             // generate message
-            problemLabelPlugs.setText(plugsStatus.getDetails().name());
+            // problemLabelPlugs.setText(plugsStatus.getDetails().name());
             if (!plugsInput.getStyleClass().contains("invalid-input-text-field")) {
                 plugsInput.getStyleClass().add("invalid-input-text-field");
             }
             plugsInput.requestFocus(); // focus for the user to fix the invalid area
         } else {
             plugsInput.getStyleClass().remove("invalid-input-text-field");
-            problemLabelPlugs.setText("");
+            // problemLabelPlugs.setText("");
         }
         return plugsStatus;
     }
 
     @FXML
-    void setMachineConfig(MouseEvent event) {
+    void setMachineConfig(MouseEvent ignored) {
         boolean isValid;
 
+        /*
         DTOstatus rtrStatus = validateRotorsInput();
         DTOstatus wndStatus = validateWindowsInput();
+
+         */
         DTOstatus rflcStatus = validateReflectorInput();
         DTOstatus plgsStatus = validatePlugsInput();
 
         // assuming all is valid
 
-        isValid = rtrStatus.isSucceed() &&
+        /*isValid = rtrStatus.isSucceed() &&
                 wndStatus.isSucceed() &&
                 plgsStatus.isSucceed() &&
-                rflcStatus.isSucceed();
+                rflcStatus.isSucceed();*/
 
-        if (isValid) {
+       /* if (isValid) {
             RadioButton currentReflector = (RadioButton) reflectorToggles.getSelectedToggle();
             parentController.setManualMachineConfig(rotorsInput.getText(), windowsCharsInput.getText().toUpperCase(), romanToDecimal(currentReflector.getText()), plugsInput.getText().toUpperCase());
         } else {
             parentController.setStatusMessage("Could not calibrate the machine", MessageTone.ERROR);
-        }
+        }*/
     }
 
     public void setParentController(BodyController parentController) {
         this.parentController = parentController;
     }
 
-    public void selAllowCodeCalibration(boolean isAllow) {
+    public void setCodeCalibration(int inUseRotorsCount, int availableRotorsCount, String machineAlphabet, int availableReflectorsCount) {
 
-        rotorsInput.setDisable(!isAllow);
-        windowsCharsInput.setDisable(!isAllow);
-        reflectorToggles.getToggles().forEach((Toggle t) -> {
-            RadioButton r = (RadioButton) t;
-            r.setDisable(!isAllow);
-        });
-        plugsInput.setDisable(!isAllow);
-        randomCalibrationButton.setDisable(!isAllow);
-        setCalibrationButton.setDisable(!isAllow);
+        this.alphabet = machineAlphabet;
+        // remove old machine stuff
+        rotorsHbox.getChildren().clear();
+        windowsCharHbox.getChildren().clear();
+        reflectorBox.getChildren().clear();
+        plugsHBox.getChildren().clear();
 
+        // create new components
+
+//         <ComboBox minWidth="53.0" prefHeight="25.0" prefWidth="53.0" promptText="1" />
+
+        for (int i = 0; i < inUseRotorsCount; i++) {
+            ComboBox<Integer> nextRotorComboBox = new ComboBox<>();
+            ComboBox<Character> nextWindowComboBox = new ComboBox<>();
+
+            nextRotorComboBox.getStyleClass().add("code-calibration-combo-box");
+            nextWindowComboBox.getStyleClass().add("code-calibration-combo-box");
+
+            nextRotorComboBox.setMinWidth(53);
+            nextWindowComboBox.setMinWidth(53);
+
+            nextRotorComboBox.setPrefWidth(53);
+            nextWindowComboBox.setPrefWidth(53);
+
+            nextRotorComboBox.setMinHeight(25);
+            nextWindowComboBox.setMinHeight(25);
+
+            nextRotorComboBox.setPrefHeight(25);
+            nextWindowComboBox.setPrefHeight(25);
+
+
+            for (int j = 1; j <= availableRotorsCount; j++) {
+                nextRotorComboBox.setPromptText("-");
+                nextRotorComboBox.getItems().add(j);
+            }
+            rotorsHbox.getChildren().add(nextRotorComboBox);
+
+            for (Character window : machineAlphabet.toCharArray()) {
+                nextWindowComboBox.setPromptText("-");
+                nextWindowComboBox.getItems().add(window);
+            }
+
+            windowsCharHbox.getChildren().add(nextWindowComboBox);
+        }
+
+        for (int i = 1; i <= availableReflectorsCount; i++) {
+            RadioButton nextReflectorRadioButton = new RadioButton();
+            nextReflectorRadioButton.setText(decimalToRoman(i));
+            nextReflectorRadioButton.setToggleGroup(reflectorToggles);
+
+            reflectorBox.getChildren().add(nextReflectorRadioButton);
+        }
     }
 
-    public void displayCurrentConfigInFields(DTOsecretConfig configStatus) {
+    /*public void displayCurrentConfigInFields(DTOsecretConfig configStatus) {
 
         // set rotors label
-        problemLabelRotors.setText("");
+        // problemLabelRotors.setText("");
 
         StringBuilder rotorsStr = new StringBuilder();
         for (int i = configStatus.getRotors().size() - 1; i >= 0; i--) {
@@ -213,14 +239,14 @@ public class CodeCalibrationController {
 
 
         // set windows label
-        problemLabelWindows.setText("");
+        // problemLabelWindows.setText("");
 
         windowsCharsInput.getStyleClass().removeAll("invalid-input-text-field");
         windowsCharsInput.setText(configStatus.getWindows());
 
         boolean isFoundSelectedRadioButton = false;
         // set Reflector
-        problemLabelReflector.setText("");
+        // problemLabelReflector.setText("");
 
         ObservableList<Toggle> reflectorButtons = reflectorToggles.getToggles();
         for (Toggle toggle : reflectorButtons) {
@@ -236,7 +262,7 @@ public class CodeCalibrationController {
         }
 
         // set plugs label
-        problemLabelPlugs.setText("");
+        // problemLabelPlugs.setText("");
         plugsInput.getStyleClass().removeAll("invalid-input-text-field");
         plugsInput.setText(configStatus.getPlugs());
     }*/

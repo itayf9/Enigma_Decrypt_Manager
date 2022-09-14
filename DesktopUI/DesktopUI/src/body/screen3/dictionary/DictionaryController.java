@@ -36,7 +36,14 @@ public class DictionaryController {
         this.parentController = parentController;
     }
 
+    /**
+     * initialize the dictionary Controller to have all dictionary words.
+     *
+     * @param dictionaryWords a Set of String(the words) from the dictionary of the DM
+     */
     public void setDictionaryWords(Set<String> dictionaryWords) {
+        // clear old words
+        wordsAreaFlowPane.getChildren().clear();
         // insert words to dictionary
         for (String word : dictionaryWords) {
             dictionary.insert(word);
