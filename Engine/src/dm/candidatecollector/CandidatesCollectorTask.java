@@ -46,7 +46,6 @@ public class CandidatesCollectorTask extends Task<Boolean> {
             try {
                 queueTakenCandidates = candidateQueue.take();
                 tasksCounter++;
-                System.out.println(tasksCounter);
                 totalTasksProcessTime += queueTakenCandidates.getTimeTakenToDoTask();
                 averageTasksProcessTime = (double) totalTasksProcessTime / (double) tasksCounter;
                 uiAdapter.updateAverageTasksProcessTime(averageTasksProcessTime);
@@ -58,11 +57,9 @@ public class CandidatesCollectorTask extends Task<Boolean> {
 
             } catch (InterruptedException e) {
                 if (scannedConfigsCount >= totalPossibleConfigurations) {
-                    System.out.println("collector died");
                     return Boolean.TRUE;
                 } else {
                     uiAdapter.updateTaskStatus("Stopped...");
-                    System.out.println("collector died");
                     return Boolean.FALSE;
                 }
             }
@@ -82,7 +79,6 @@ public class CandidatesCollectorTask extends Task<Boolean> {
                             isBruteForceActionPaused.wait();
                         } catch (InterruptedException ignored) {
                             uiAdapter.updateTaskStatus("Stopped...");
-                            System.out.println("collector died");
                             return Boolean.FALSE;
                         }
                     }
@@ -95,7 +91,6 @@ public class CandidatesCollectorTask extends Task<Boolean> {
                 Thread.sleep(10);
             } catch (InterruptedException ignored) {
                 uiAdapter.updateTaskStatus("Stopped...");
-                System.out.println("collector died");
                 return Boolean.FALSE;
             }
 
@@ -103,7 +98,6 @@ public class CandidatesCollectorTask extends Task<Boolean> {
         uiAdapter.updateTaskActiveStatus(false);
         updateMessage("Done...");
         uiAdapter.updateTaskStatus("Done...");
-        System.out.println("collector died");
         return Boolean.TRUE;
     }
 }

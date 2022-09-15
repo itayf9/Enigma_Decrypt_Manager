@@ -131,7 +131,6 @@ public class AgentTask implements Runnable {
         }
         // send conclusion to DM
         try {
-            System.out.println(Thread.currentThread().getName() + " sent conclusion to collector");
             long timeElapsed = System.nanoTime() - startMeasureTime;
             candidatesQueue.put(new AgentConclusion(candidates, numOfConfigScanned, timeElapsed));
         } catch (InterruptedException ignored) {

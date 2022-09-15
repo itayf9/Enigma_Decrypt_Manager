@@ -29,8 +29,6 @@ public class CandidatesAreaController {
     @FXML
     private Label numberOfScannedConfigurationsLabel;
 
-    @FXML
-    private Label numberOfTotalPossibleConfigurationsLabel;
 
     @FXML
     private Label numberOfDistinctCandidatesLabel;
@@ -44,26 +42,18 @@ public class CandidatesAreaController {
     public void setParentController(BodyController parentController) {
         this.parentController = parentController;
     }
-
-    /*private void onTaskFinished(Optional<Runnable> onFinish) {
-        this.BFstatusLabel.textProperty().unbind();
-        this.progressPercentageLabel.textProperty().unbind();
-        this.BFprogressBar.progressProperty().unbind();
-        onFinish.ifPresent(Runnable::run);
-    }*/
-
+    
     public void bindInitPropertiesToLabels(IntegerProperty totalDistinctCandidates, IntegerProperty totalProcessedConfigurations,
                                            LongProperty totalAmountConfigurations, DoubleProperty bruteForceProgress,
                                            StringProperty bruteForceProgressBarPercentageLabel, StringProperty bruteForceStatus,
                                            DoubleProperty averageTasksProcessTimeProperty) {
 
-        numberOfTotalPossibleConfigurationsLabel.textProperty().bind(Bindings.concat("Total Configurations: ", totalAmountConfigurations.asString()));
-        numberOfDistinctCandidatesLabel.textProperty().bind(Bindings.concat("Candidates found: ", totalDistinctCandidates.asString()));
-        numberOfScannedConfigurationsLabel.textProperty().bind(Bindings.concat("Scanned: ", totalProcessedConfigurations.asString()));
+        numberOfDistinctCandidatesLabel.textProperty().bind(totalDistinctCandidates.asString());
+        numberOfScannedConfigurationsLabel.textProperty().bind(Bindings.concat(totalProcessedConfigurations.asString(), " / ", totalAmountConfigurations.asString()));
         progressPercentageLabel.textProperty().bind(bruteForceProgressBarPercentageLabel);
         BFprogressBar.progressProperty().bind(bruteForceProgress);
-        BFstatusLabel.textProperty().bind(Bindings.concat("Status: ", bruteForceStatus));
-        averageProcessTimeLabel.textProperty().bind(Bindings.concat("averageProcessTime: ", Bindings.format("%.3f", averageTasksProcessTimeProperty), " ns"));
+        BFstatusLabel.textProperty().bind(bruteForceStatus);
+        averageProcessTimeLabel.textProperty().bind(Bindings.concat(Bindings.format("%.3f", averageTasksProcessTimeProperty), " ns"));
     }
 
     public void insertCandidateToFlowPane(Node singleCandidateTile) {

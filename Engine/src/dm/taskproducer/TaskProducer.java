@@ -58,14 +58,10 @@ public class TaskProducer implements Runnable {
                 produceImpossibleTasks();
                 break;
         }
-        System.out.println("producer died with taskSize = " + taskSize + " and taskCounter=" + taskCounter);
     }
 
     private void produceImpossibleTasks() {
         List<List<Integer>> listOfAllCombinationsRotorsIDsFixed = generateCombinations(machine.getAvailableRotorsLen(), machine.getRotorsCount());
-
-        System.out.println("listOfAllCombinationsRotorsIDsFixed =" + listOfAllCombinationsRotorsIDsFixed.size());
-
         for (List<Integer> combination : listOfAllCombinationsRotorsIDsFixed) {
             produceHardTasks(combination);
         }

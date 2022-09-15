@@ -14,6 +14,23 @@
     -fx-background-color: #000001;
 }
 
+.settings-btn *.menu-item:hover {
+    -fx-background-color: #0095ff;
+}
+
+.settings-btn *.menu-item:hover .label {
+    -fx-text-fill: white;
+}
+
+.settings-btn *.menu-item:focused {
+    -fx-background-color: #0095ff;
+}
+
+.settings-btn *.menu-item:focused .label {
+    -fx-text-fill: white;
+}
+
+
 .file-path-label {
     -fx-font-size: 15px;
 }

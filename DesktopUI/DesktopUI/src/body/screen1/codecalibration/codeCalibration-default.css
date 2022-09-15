@@ -28,3 +28,14 @@
 .sub-component-with-background .code-calibration-combo-box *.combo-box-popup *.list-view *.list-cell {
     -fx-border-width: 0;
 }
+
+.sub-component-with-background .code-calibration-combo-box *.combo-box-popup *.list-view *.list-cell:hover {
+    /* -fx-border-width: 0;*/
+    -fx-background-color: #c0c0c0;
+}
+
+.sub-component-with-background .code-calibration-combo-box *.combo-box-popup *.list-view *.list-cell:pressed {
+    /*-fx-border-width: 0;*/
+    -fx-background-color: #3c3f41;
+    -fx-text-fill: white;
+}

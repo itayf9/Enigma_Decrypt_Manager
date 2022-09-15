@@ -369,7 +369,8 @@ public class MainController {
                     int tmpPercentValue = (int) (percent * 100);
                     String percentValue = tmpPercentValue + "%";
                     bruteForceProgressBarPercentageProperty.set(percentValue);
-                }, (totalConfigs) -> totalPossibleConfigurations.setValue(totalConfigs),
+                },
+                (totalConfigs) -> totalPossibleConfigurations.setValue(totalConfigs),
                 (isActive) -> isBruteForceTaskActive.set(isActive),
                 (averageTasksProcessTime) -> averageTasksProcessTimeProperty.set(averageTasksProcessTime)
         );
