@@ -2,7 +2,7 @@ package dm.decryptmanager;
 
 import candidate.Candidate;
 import dm.agent.AgentConclusion;
-import dm.candidatecollector.CandidatesCollectorTask;
+import dm.candidatecollector.CandidatesCollector;
 import dm.dictionary.Dictionary;
 import dm.difficultylevel.DifficultyLevel;
 import dm.taskproducer.TaskProducer;

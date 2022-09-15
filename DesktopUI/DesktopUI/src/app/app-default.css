@@ -99,6 +99,10 @@
     -fx-accent: #0095ff;
 }
 
+.radio-button *.radio {
+    -fx-background-color: #e7e7e7;
+}
+
 .body-background {
     -fx-background-color: linear-gradient(to bottom, #92dcf1 7%, rgba(119, 172, 241, 0.95) 39%, #353396 100%)
 }
