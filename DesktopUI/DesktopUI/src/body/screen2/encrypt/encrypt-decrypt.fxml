@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.ToggleSwitch?>
 
-<GridPane minHeight="150.0" prefHeight="300.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.screen2.encrypt.EncryptDecryptController">
+<GridPane minHeight="150.0" minWidth="190.0" prefHeight="300.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.screen2.encrypt.EncryptDecryptController">
    <columnConstraints>
       <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="370.0" />
       <ColumnConstraints hgrow="ALWAYS" maxWidth="50.0" minWidth="5.0" prefWidth="5.0" />

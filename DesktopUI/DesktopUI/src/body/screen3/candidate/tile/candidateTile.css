@@ -1,8 +1,9 @@
-.candidate-label-text {
+.sub-component-with-background .candidate-label-text {
+    -fx-background-color: transparent;
     -fx-text-fill: white;
 }
 
-.tile {
+.sub-component-with-background .tile {
     -fx-border-width: 2;
     -fx-border-color: rgba(0, 122, 222, 0.35);
     -fx-background-color: #2f2f6c;

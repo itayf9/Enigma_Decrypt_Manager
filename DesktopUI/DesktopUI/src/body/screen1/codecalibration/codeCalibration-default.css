@@ -12,6 +12,19 @@
     -fx-background-color: #3c3f41;
 }
 
+.sub-component-with-background .code-calibration-combo-box *.combo-box-popup *.scroll-bar *.thumb {
+    -fx-background-color: grey;
+}
+
+.sub-component-with-background .code-calibration-combo-box *.combo-box-popup *.scroll-bar *.decrement-button *.decrement-arrow {
+    -fx-background-color: grey;
+}
+
+.sub-component-with-background .code-calibration-combo-box *.combo-box-popup *.scroll-bar *.increment-button *.increment-arrow {
+    -fx-background-color: grey;
+}
+
+
 .sub-component-with-background .code-calibration-combo-box *.combo-box-popup *.list-view *.list-cell {
     -fx-border-width: 0;
 }

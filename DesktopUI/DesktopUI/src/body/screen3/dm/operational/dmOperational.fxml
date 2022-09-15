@@ -59,11 +59,11 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Label fx:id="numOfAgentLabel" text="Number of Agents" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
-      <Label text="Task Size" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+      <Label fx:id="numOfAgentLabel" styleClass="sub-title" text="Number of Agents" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+      <Label styleClass="sub-title" text="Task Size" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
       <Spinner fx:id="taskSizeSpinner" editable="true" styleClass="task-size-spinner" GridPane.rowIndex="3" />
-      <Label text="Difficulty Level" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
-      <Label text="Tasks Amount" GridPane.columnIndex="6" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+      <Label styleClass="sub-title" text="Difficulty Level" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+      <Label styleClass="sub-title" text="Tasks' Amount" GridPane.columnIndex="6" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
       <Label fx:id="tasksAmountLabel" text="amount" GridPane.columnIndex="6" GridPane.rowIndex="3" />
       <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.rowSpan="2" />
    </children>
