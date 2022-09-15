@@ -23,7 +23,7 @@
    <children>
       <ScrollPane fitToWidth="true" maxHeight="200.0" styleClass="sub-component-with-background" GridPane.rowIndex="2">
          <content>
-            <FlowPane fx:id="wordsAreaFlowPane" hgap="5.0" maxHeight="200.0" prefHeight="95.0" vgap="5.0">
+            <FlowPane fx:id="wordsAreaFlowPane" hgap="5.0" maxHeight="200.0" prefHeight="95.0" styleClass="words-area" vgap="5.0">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>

@@ -6,6 +6,7 @@ import dto.DTOsecretConfig;
 import dto.DTOstatus;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -40,9 +41,6 @@ public class CodeCalibrationController {
     private Button addPlugButton;
 
     @FXML
-    private TextField plugsInput;
-
-    @FXML
     private HBox reflectorBox;
 
     private ToggleGroup reflectorToggles;
@@ -59,31 +57,33 @@ public class CodeCalibrationController {
     }
 
 
-  /*  DTOstatus validateRotorsInput() {
-        String input = rotorsInput.getText();
-        DTOstatus rotorStatus = parentController.validateRotorsInput(input);
-        if (!rotorStatus.isSucceed()) {
-            // generate message
-            // problemLabelRotors.setText(rotorStatus.getDetails().name());
-            if (!rotorsInput.getStyleClass().contains("invalid-input-text-field")) {
-                rotorsInput.getStyleClass().add("invalid-input-text-field");
-            }
-            rotorsInput.requestFocus(); // focus for the user to fix the invalid area
-        } else {
-            rotorsInput.getStyleClass().remove("invalid-input-text-field");
-            // problemLabelRotors.setText("");
-        }
-        return rotorStatus;
-    }*/
+    DTOstatus validateRotorsInput() {
+        StringBuilder rotorsInputBuilder = new StringBuilder();
 
-    /*DTOstatus validateWindowsInput() {
-        String input = windowsCharsInput.getText().toUpperCase();
-        DTOstatus windowsStatus = parentController.validateWindowsCharsInput(input);
-        if (!windowsStatus.isSucceed()) {
-            // generate message
-            // problemLabelWindows.setText(windowsStatus.getDetails().name());
-            if (!windowsCharsInput.getStyleClass().contains("invalid-input-text-field")) {
-                windowsCharsInput.getStyleClass().add("invalid-input-text-field");
+        for (int i = 0; i < rotorsHbox.getChildren().size(); i++) {
+            ComboBox<Integer> nextRotorComboBox = (ComboBox<Integer>) rotorsHbox.getChildren().get(i);
+
+            if (nextRotorComboBox.getValue() != null) {
+                rotorsInputBuilder.append(nextRotorComboBox.getValue());
+
+                if (i != rotorsHbox.getChildren().size() - 1) {
+                    rotorsInputBuilder.append(",");
+                }
+            }
+        }
+
+        rotorsInput = rotorsInputBuilder.toString();
+
+        return parentController.validateRotorsInput(rotorsInput);
+    }
+
+    DTOstatus validateWindowsInput() {
+
+        StringBuilder windowsBuilder = new StringBuilder();
+        for (Node window : windowsCharHbox.getChildren()) {
+            ComboBox<Character> windowCharacter = (ComboBox<Character>) window;
+            if (windowCharacter.getValue() != null) {
+                windowsBuilder.append(windowCharacter.getValue());
             }
             windowsCharsInput.requestFocus(); // focus for the user to fix the invalid area
         } else {
@@ -118,20 +118,28 @@ public class CodeCalibrationController {
     }
 
     DTOstatus validatePlugsInput() {
-        String input = plugsInput.getText().toUpperCase();
-        DTOstatus plugsStatus = parentController.validatePlugsInput(input);
-        if (!plugsStatus.isSucceed()) {
-            // generate message
-            // problemLabelPlugs.setText(plugsStatus.getDetails().name());
-            if (!plugsInput.getStyleClass().contains("invalid-input-text-field")) {
-                plugsInput.getStyleClass().add("invalid-input-text-field");
+        StringBuilder plugsInputBuilder = new StringBuilder();
+
+        for (Node nextNode : plugsHBox.getChildren()) {
+            HBox nextPlug = (HBox) nextNode;
+            ComboBox<Character> firstInPlug = (ComboBox<Character>) nextPlug.getChildren().get(0);
+            ComboBox<Character> secondInPlug = (ComboBox<Character>) nextPlug.getChildren().get(1);
+
+            if (firstInPlug.getValue() != null) {
+                plugsInputBuilder.append(firstInPlug.getValue());
             }
-            plugsInput.requestFocus(); // focus for the user to fix the invalid area
-        } else {
-            plugsInput.getStyleClass().remove("invalid-input-text-field");
-            // problemLabelPlugs.setText("");
+            if (secondInPlug.getValue() != null) {
+                plugsInputBuilder.append(secondInPlug.getValue());
+            }
+
+            if (plugsInputBuilder.length() % 2 == 1) {
+                return new DTOstatus(false, Problem.PLUGS_MISSING_VALUES);
+            }
         }
-        return plugsStatus;
+
+        plugsInput = plugsInputBuilder.toString();
+
+        return parentController.validatePlugsInput(plugsInput);
     }
 
     @FXML
@@ -175,8 +183,6 @@ public class CodeCalibrationController {
         plugsHBox.getChildren().clear();
 
         // create new components
-
-//         <ComboBox minWidth="53.0" prefHeight="25.0" prefWidth="53.0" promptText="1" />
 
         for (int i = 0; i < inUseRotorsCount; i++) {
             ComboBox<Integer> nextRotorComboBox = new ComboBox<>();

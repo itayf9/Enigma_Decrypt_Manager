@@ -60,7 +60,7 @@ public class MachineDetailsController {
             availableReflectors.setText("" + specsStatus.getAvailableReflectorsCount());
         }
 
-        // originalConfigController.displayCurrentConfig(getOriginalConfigFromSpecs(specsStatus));
+         originalConfigController.clearOldOriginalConfig();
     }
 
     public void setParentController(BodyController parentController) {

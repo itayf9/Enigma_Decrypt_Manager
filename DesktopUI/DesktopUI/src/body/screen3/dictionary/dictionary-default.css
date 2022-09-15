@@ -13,16 +13,23 @@
 
 }
 
-.word-label {
+.words-area .word-label {
     -fx-border-width: 1;
-    -fx-border-color: grey;
+    -fx-background-color: #e7e7e7;
+    -fx-border-color: black;
     -fx-border-radius: 10;
 }
 
-.word-label:hover {
+.words-area .word-label:hover {
     -fx-border-color: #5d5d5d;
-    -fx-background-color: grey;
+    -fx-background-color: #c0c0c0;
     -fx-background-radius: 10;
     -fx-text-fill: white;
     -fx-cursor: HAND;
+}
+
+.words-area .word-label:pressed {
+    -fx-background-color: #3c3f41;
+    -fx-border-color: #c0c0c0;
+    -fx-text-fill: white;
 }

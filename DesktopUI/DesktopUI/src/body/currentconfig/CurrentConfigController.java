@@ -39,74 +39,12 @@ public class CurrentConfigController {
     private Label configTitle;
 
 
-    public void displayCurrentConfig(DTOsecretConfig configStatus) {
-
-        if (configStatus.getDetails().equals(Problem.NO_LOADED_MACHINE) ||
-                configStatus.getDetails().equals(Problem.NO_CONFIGURATION)) {
-            rotorsLabel.setText("");
-            windowsLabel.setText("");
-            reflectorLabel.setText("");
-            plugsLabel.setText("");
-            // noConfigMsg.setText("No Configuration yet.");
-            return;
-        }
-
-        List<Integer> inUseRotorsIDs = configStatus.getRotors();
-        List<Integer> notchDistancesToWindow = configStatus.getNotchDistances();
-        StringBuilder rotorsStr = new StringBuilder();
-
-        rotorsStr.append("<");
-        for (int i = inUseRotorsIDs.size() - 1; i >= 0; i--) {
-            rotorsStr.append(inUseRotorsIDs.get(i).toString());
-
-            if (i != 0) {
-                rotorsStr.append(",");
-            }
-        }
-        rotorsStr.append(">");
-
-        // display rotors ids
-        this.rotorsLabel.setText(rotorsStr.toString());
-
-        // display windows
-        StringBuilder reversedWindows = new StringBuilder();
-
-        for (int i = configStatus.getWindows().length() - 1; i >= 0; i--) {
-            reversedWindows.append(configStatus.getWindows().charAt(i));
-
-            if (notchDistancesToWindow.size() > 0) {
-                reversedWindows.append("(")
-                        .append(notchDistancesToWindow.get(i).toString())
-                        .append(")");
-            }
-        }
-
-
-        this.windowsLabel.setText("<" + reversedWindows.toString() + ">");
-
-        // display reflector
-        this.reflectorLabel.setText("<" + configStatus.getReflectorSymbol() + ">");
-
-        StringBuilder plugsBuilder = new StringBuilder();
-        String inUsePlugs = configStatus.getPlugs();
-
-        if (inUsePlugs.length() > 0) {
-            plugsBuilder.append("<");
-            for (int i = 0; i < inUsePlugs.length(); i += 2) {
-                plugsBuilder.append(inUsePlugs.charAt(i))
-                        .append("|")
-                        .append(inUsePlugs.charAt(i + 1));
-                if (i != inUsePlugs.length() - 2) {
-                    plugsBuilder.append(",");
-                }
-            }
-            plugsBuilder.append(">");
-        }
-
-        // display plugs
-        this.plugsLabel.setText(plugsBuilder.toString());
-
-        this.noConfigMsg.setText("");
+    public void clearOldOriginalConfig() {
+        rotorsLabel.setText("");
+        windowsLabel.setText("");
+        reflectorLabel.setText("");
+        plugsLabel.setText("");
+        noConfigMsg.setText("No Configuration yet.");
     }
 
     public void setParentController(BodyController parentController) {
