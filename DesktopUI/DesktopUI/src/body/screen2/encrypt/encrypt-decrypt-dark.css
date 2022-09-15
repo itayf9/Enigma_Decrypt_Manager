@@ -50,10 +50,34 @@
     -fx-border-color: #9a0000;
 }
 
-.lightbulbs-area {
-    -fx-background-color: #293462;
+.light-bulbs-area {
+    -fx-background-color: #2b2b2c;
 }
 
-.light-on {
-    -fx-fill: Yellow;
+.light-bulbs-area .light-bulb {
+    -fx-background-color: #2b2b2c;
+    -fx-border-color: #aeb0b3;
+    -fx-font-size: 15;
+    -fx-text-fill: #aeb0b3;
+    -fx-border-radius: 30;
+    -fx-background-radius: 30;
+    /*-fx-alignment: center;*/
+}
+
+.light-bulbs-area .light-bulb:hover {
+    -fx-background-color: #aeb0b3;
+    -fx-text-fill: #2b2b2c;
+    -fx-border-width: 2;
+    -fx-cursor: hand;
+}
+
+.light-bulbs-area .light-bulb:pressed {
+    -fx-background-color: #e7e7e7;
+    -fx-border-color: #aeb0b3;
+    -fx-text-fill: #2b2b2c;
+}
+
+.light-bulbs-area .light-on {
+    -fx-background-color: #ffff00;
+    -fx-text-fill: black;
 }

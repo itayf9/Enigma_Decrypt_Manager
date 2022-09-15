@@ -26,13 +26,6 @@
     -fx-background-color: #50b0ff;
 }
 
-.option-btn {
-    -fx-background-color: grey;
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-}
-
-
 .component-with-border {
     -fx-border-color: grey;
 }
@@ -97,6 +90,7 @@
 
 .progress-bar {
     -fx-accent: #0095ff;
+    -fx-background-color: #e7e7e7;
 }
 
 .radio-button *.radio {

@@ -116,7 +116,7 @@ public class AgentTask implements Runnable {
                 break;
             }
 
-/*          if (dm.isIsBruteForceActionPaused()) {
+            if (dm.getIsBruteForceActionPaused()) {
 
                 // need to bring back that boolean property
                synchronized (dm.isIsBruteForceActionPaused()) {

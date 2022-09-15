@@ -59,7 +59,6 @@
             <String fx:value="sub-component-with-background" />
          </styleClass>
       </ScrollPane>
-       <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="17.0" styleClass="enigma-title" stylesheets="@header-default.css" text="Cracking The Enigma Machine" GridPane.columnSpan="8" GridPane.halignment="CENTER" />
        <MenuButton fx:id="settingsMenuButton" mnemonicParsing="false" prefHeight="32.0" prefWidth="36.0" styleClass="settings-btn">
            <items>
                <Menu mnemonicParsing="false" text="Skins">
@@ -85,6 +84,7 @@
              </ImageView>
          </graphic>
        </MenuButton>
+      <Label styleClass="enigma-title" text="Cracking The Enigma Machine" GridPane.columnIndex="1" GridPane.columnSpan="6" GridPane.halignment="CENTER" />
    </children>
     <padding>
         <Insets bottom="10.0" left="15.0" right="15.0" top="5.0" />

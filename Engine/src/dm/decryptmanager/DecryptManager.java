@@ -200,6 +200,10 @@ public class DecryptManager {
         return isBruteForceActionPaused.get();
     }
 
+    public BooleanProperty isBruteForceActionPausedProperty() {
+        return isBruteForceActionPaused;
+    }
+
     public String getDictionaryExcludeCharacters() {
         return dictionary.getExcludeChars();
     }

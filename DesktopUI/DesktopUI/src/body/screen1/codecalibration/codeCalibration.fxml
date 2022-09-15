@@ -49,10 +49,26 @@
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </GridPane.margin>
         </Button>
-        <Label styleClass="rotors-label" text="Rotors:" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
-        <Label styleClass="window-label" text="Windows:" GridPane.halignment="LEFT" GridPane.rowIndex="4" />
-        <Label styleClass="reflector-label" text="Reflector:" GridPane.halignment="LEFT" GridPane.rowIndex="6" />
-        <Label styleClass="Plugs-label" text="Plugs:" GridPane.halignment="LEFT" GridPane.rowIndex="8" />
+        <Label text="Rotors:" GridPane.halignment="LEFT" GridPane.rowIndex="2">
+         <styleClass>
+            <String fx:value="rotors-label" />
+            <String fx:value="sub-title" />
+         </styleClass></Label>
+        <Label text="Windows:" GridPane.halignment="LEFT" GridPane.rowIndex="4">
+         <styleClass>
+            <String fx:value="window-label" />
+            <String fx:value="sub-title" />
+         </styleClass></Label>
+        <Label text="Reflector:" GridPane.halignment="LEFT" GridPane.rowIndex="6">
+         <styleClass>
+            <String fx:value="reflector-label" />
+            <String fx:value="sub-title" />
+         </styleClass></Label>
+        <Label text="Plugs:" GridPane.halignment="LEFT" GridPane.rowIndex="8">
+         <styleClass>
+            <String fx:value="Plugs-label" />
+            <String fx:value="sub-title" />
+         </styleClass></Label>
         <HBox fx:id="reflectorBox" alignment="CENTER_LEFT" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
             <children>
                 <RadioButton mnemonicParsing="false" prefHeight="50.0" prefWidth="30.0" text="I">

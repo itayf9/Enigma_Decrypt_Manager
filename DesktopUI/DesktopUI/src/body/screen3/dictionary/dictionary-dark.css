@@ -1,27 +1,37 @@
 .search-text-field {
-    -fx-border-radius: 0;
-    -fx-background-radius: 0;
-    -fx-background-color: white;
-    -fx-border-width: 0 0 2 0;
-    -fx-border-color: #b1b4b9;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-background-color: #2b2b2c;
+    -fx-text-fill: #aeb0b3;
+    -fx-border-width: 0;
+    -fx-border-color: #aeb0b3;
 }
 
 .search-text-field:focused {
     -fx-border-color: #77afe1;
-    -fx-border-width: 0 0 2 0;
+    -fx-border-width: 1;
+    -fx-background-color: #313336;
 
 }
 
-.word-label {
+.words-area .word-label {
     -fx-border-width: 1;
+    -fx-background-color: #2b2b2c;
     -fx-border-color: #aeb0b3;
+    -fx-text-fill: #aeb0b3;
     -fx-border-radius: 10;
 }
 
-.word-label:hover {
+.words-area .word-label:hover {
     -fx-border-color: #eaeaea;
     -fx-background-color: #aeb0b3;
     -fx-background-radius: 10;
     -fx-text-fill: #3c3f41;
     -fx-cursor: HAND;
+}
+
+.words-area .word-label:pressed {
+    -fx-background-color: #e7e7e7;
+    -fx-border-color: #c0c0c0;
+    -fx-text-fill: #3c3f41;
 }

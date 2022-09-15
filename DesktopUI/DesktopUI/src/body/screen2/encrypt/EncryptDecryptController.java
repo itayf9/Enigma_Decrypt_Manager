@@ -67,8 +67,6 @@ public class EncryptDecryptController {
     private final FadeTransition cipherFadeTransition = new FadeTransition();
 
     private final ImageView processButtonIcon = new ImageView("/resource/buttonicons/gears-solid.png");
-    private final ImageView resetButtonIcon = new ImageView("/resource/arrow-rotate-right-solid.png");
-    private final ImageView clearButtonIcon = new ImageView("/resource/delete-left-solid.png");
     private BooleanProperty isAnimationProperty;
 
 
@@ -90,18 +88,11 @@ public class EncryptDecryptController {
 
         processButtonIcon.setFitWidth(17);
         processButtonIcon.setFitHeight(17);
-        resetButtonIcon.setFitWidth(12);
-        resetButtonIcon.setFitHeight(12);
-        clearButtonIcon.setFitWidth(12);
-        clearButtonIcon.setFitHeight(12);
 
         processButton.setGraphic(processButtonIcon);
-        resetButton.setGraphic(resetButtonIcon);
-        clearButton.setGraphic(clearButtonIcon);
 
         processButton.setContentDisplay(ContentDisplay.LEFT);
-        resetButton.setContentDisplay(ContentDisplay.BOTTOM);
-        clearButton.setContentDisplay(ContentDisplay.BOTTOM);
+
     }
 
     /**

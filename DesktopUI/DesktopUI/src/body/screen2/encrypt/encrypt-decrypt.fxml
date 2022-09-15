@@ -27,11 +27,10 @@
    <rowConstraints>
       <RowConstraints />
       <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="NEVER" />
-      <RowConstraints maxHeight="27.333328247070312" minHeight="4.6666717529296875" prefHeight="13.0" vgrow="NEVER" />
-      <RowConstraints maxHeight="41.0" minHeight="12.666671752929688" prefHeight="36.0" vgrow="NEVER" />
-      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="0.0" prefHeight="17.666656494140625" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="30.0" prefHeight="30.0" vgrow="NEVER" />
-      <RowConstraints minHeight="40.0" vgrow="NEVER" />
+      <RowConstraints maxHeight="27.333328247070312" minHeight="5.0" prefHeight="13.0" vgrow="NEVER" />
+      <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="NEVER" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="5.0" prefHeight="60.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="40.0" prefHeight="40.0" vgrow="NEVER" />
       <RowConstraints maxHeight="100.0" minHeight="5.0" prefHeight="5.0" vgrow="NEVER" />
       <RowConstraints maxHeight="1.7976931348623157E308" minHeight="50.0" prefHeight="100.0" vgrow="ALWAYS" />
    </rowConstraints>
@@ -42,7 +41,7 @@
          <font>
             <Font size="15.0" />
          </font></TextField>
-      <ScrollPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="40.0" prefHeight="40.0" prefWidth="268.0" styleClass="sub-component-with-background" GridPane.rowIndex="6" GridPane.valignment="TOP">
+      <ScrollPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="40.0" prefHeight="40.0" prefWidth="268.0" styleClass="sub-component-with-background" GridPane.rowIndex="5" GridPane.valignment="TOP">
          <content>
             <StackPane>
                <children>
@@ -70,7 +69,7 @@
          </content>
       </ScrollPane>
 
-                  <Button fx:id="processButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="25.0" minWidth="60.0" mnemonicParsing="false" onMouseClicked="#processHandler" prefHeight="25.0" styleClass="action-btn" text="Process / Done" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="2">
+                  <Button fx:id="processButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="60.0" mnemonicParsing="false" onMouseClicked="#processHandler" styleClass="action-btn" text="Process / Done" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="3">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -99,7 +98,7 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </ToggleSwitch>
-      <ScrollPane fx:id="lightBulbsScrollPane" fitToWidth="true" maxHeight="200.0" styleClass="sub-component-with-background" GridPane.columnSpan="4" GridPane.rowIndex="8">
+      <ScrollPane fx:id="lightBulbsScrollPane" fitToWidth="true" maxHeight="200.0" styleClass="sub-component-with-background" GridPane.columnSpan="4" GridPane.rowIndex="7">
          <content>
             <FlowPane fx:id="lightBulbs" alignment="TOP_CENTER" hgap="5.0" maxHeight="200.0" prefHeight="95.0" styleClass="light-bulbs-area" vgap="5.0">
                <padding>
