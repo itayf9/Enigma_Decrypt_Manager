@@ -196,7 +196,7 @@ public class DecryptManager {
         return isBruteForceActionCancelled;
     }
 
-    public boolean isIsBruteForceActionPaused() {
+    public boolean getIsBruteForceActionPaused() {
         return isBruteForceActionPaused.get();
     }
 

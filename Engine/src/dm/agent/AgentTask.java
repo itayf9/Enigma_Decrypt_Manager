@@ -76,13 +76,11 @@ public class AgentTask implements Runnable {
         List<Candidate> candidates = new ArrayList<>();
         int numOfConfigScanned = 0;
 
-
         for (int i = 0; i < taskSize && !dm.isIsBruteForceActionCancelled(); i++) {
             numOfConfigScanned++;
 
             // sets machine to the next configuration
             // changes only the window offsets
-
             machine.setMachineConfiguration(rotorsIDs, windowOffsets, inUseReflectorID, "");
 
             // ciphers the text
@@ -119,18 +117,20 @@ public class AgentTask implements Runnable {
             if (dm.getIsBruteForceActionPaused()) {
 
                 // need to bring back that boolean property
-               synchronized (dm.isIsBruteForceActionPaused()) {
-                    while (dm.isIsBruteForceActionPaused()) {
+                synchronized (dm.isBruteForceActionPausedProperty()) {
+                    while (dm.getIsBruteForceActionPaused()) {
                         try {
-                            wait();
+                            dm.isBruteForceActionPausedProperty().wait();
                         } catch (InterruptedException ignored) {
                         }
                     }
                 }
-            }*/
+            }
         }
         // send conclusion to DM
         try {
+            if (candidates.size() > 0) {
+            }
             long timeElapsed = System.nanoTime() - startMeasureTime;
             candidatesQueue.put(new AgentConclusion(candidates, numOfConfigScanned, timeElapsed));
         } catch (InterruptedException ignored) {

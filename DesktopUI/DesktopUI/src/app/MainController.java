@@ -494,6 +494,7 @@ public class MainController {
 
         // removes all stylesheets
         header.getStylesheets().removeAll(header.getStylesheets());
+        System.out.println(header.getStylesheets());
         appGridPane.getStylesheets().removeAll(appGridPane.getStylesheets());
         body.getStylesheets().removeAll(body.getStylesheets());
         statusBar.getStylesheets().removeAll(statusBar.getStylesheets());

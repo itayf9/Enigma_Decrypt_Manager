@@ -40,7 +40,7 @@
 }
 
 .enigma-tabpane *.tab-header-area *.tab-header-background {
-    -fx-background-color: #a9a9a9;
+    -fx-background-color: #e7e7e7;
 }
 
 .enigma-tabpane *.tab-context-area {

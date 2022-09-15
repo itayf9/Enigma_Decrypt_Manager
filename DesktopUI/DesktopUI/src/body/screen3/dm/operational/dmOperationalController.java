@@ -93,7 +93,6 @@ public class dmOperationalController {
     void handleBruteForcePauseResumeOperationAction(MouseEvent event) {
 
         if (isBruteForceTaskPaused.getValue()) {
-            System.out.println("going in resume");
             resumeBruteForceAction();
         } else {
             pauseBruteForceAction();
@@ -126,7 +125,6 @@ public class dmOperationalController {
         }
 
         if (textToDecipher.equals("")) {
-            System.out.println("Error not entered text to decipher");
             parentController.setStatusMessage("Please cipher some text", MessageTone.ERROR);
             return;
         }
