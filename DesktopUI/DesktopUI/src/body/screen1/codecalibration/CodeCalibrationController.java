@@ -4,7 +4,6 @@ import app.statusbar.MessageTone;
 import body.BodyController;
 import dto.DTOsecretConfig;
 import dto.DTOstatus;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -46,6 +45,10 @@ public class CodeCalibrationController {
     private ToggleGroup reflectorToggles;
     private String alphabet;
 
+    String rotorsInput;
+    String windowsInput;
+    String plugsInput;
+
     @FXML
     public void initialize() {
         reflectorToggles = new ToggleGroup();
@@ -85,13 +88,12 @@ public class CodeCalibrationController {
             if (windowCharacter.getValue() != null) {
                 windowsBuilder.append(windowCharacter.getValue());
             }
-            windowsCharsInput.requestFocus(); // focus for the user to fix the invalid area
-        } else {
-            windowsCharsInput.getStyleClass().remove("invalid-input-text-field");
-            // problemLabelWindows.setText("");
         }
-        return windowsStatus;
-    }*/
+
+        windowsInput = windowsBuilder.toString();
+
+        return parentController.validateWindowsCharsInput(windowsInput);
+    }
 
     DTOstatus validateReflectorInput() {
         RadioButton currentReflector = (RadioButton) reflectorToggles.getSelectedToggle();
@@ -100,21 +102,7 @@ public class CodeCalibrationController {
             return new DTOstatus(false, Problem.NO_REFLECTOR_BEEN_CHOSEN);
         }
 
-        DTOstatus reflectorStatus = parentController.validateReflectorInput(romanToDecimal(currentReflector.getText()));
-        if (!reflectorStatus.isSucceed()) {
-            // generate message
-            // problemLabelReflector.setText(reflectorStatus.getDetails().name());
-            if (!currentReflector.getStyleClass().contains("invalid-input-text-field")) {
-                currentReflector.getStyleClass().add("invalid-input-text-field");
-            }
-            //reflector.requestFocus(); // focus for the user to fix the invalid area
-
-
-        } else {
-            currentReflector.getStyleClass().remove("invalid-input-text-field");
-            // problemLabelReflector.setText("");
-        }
-        return reflectorStatus;
+        return parentController.validateReflectorInput(romanToDecimal(currentReflector.getText()));
     }
 
     DTOstatus validatePlugsInput() {
@@ -144,29 +132,40 @@ public class CodeCalibrationController {
 
     @FXML
     void setMachineConfig(MouseEvent ignored) {
-        boolean isValid;
 
-        /*
+        boolean isValid;
         DTOstatus rtrStatus = validateRotorsInput();
         DTOstatus wndStatus = validateWindowsInput();
-
-         */
         DTOstatus rflcStatus = validateReflectorInput();
         DTOstatus plgsStatus = validatePlugsInput();
 
         // assuming all is valid
 
-        /*isValid = rtrStatus.isSucceed() &&
+        isValid = rtrStatus.isSucceed() &&
                 wndStatus.isSucceed() &&
                 plgsStatus.isSucceed() &&
-                rflcStatus.isSucceed();*/
+                rflcStatus.isSucceed();
 
-       /* if (isValid) {
+        if (isValid) {
             RadioButton currentReflector = (RadioButton) reflectorToggles.getSelectedToggle();
-            parentController.setManualMachineConfig(rotorsInput.getText(), windowsCharsInput.getText().toUpperCase(), romanToDecimal(currentReflector.getText()), plugsInput.getText().toUpperCase());
+            parentController.setManualMachineConfig(rotorsInput, windowsInput, romanToDecimal(currentReflector.getText()), plugsInput);
         } else {
-            parentController.setStatusMessage("Could not calibrate the machine", MessageTone.ERROR);
-        }*/
+            StringBuilder statusMessage = new StringBuilder();
+            if (!rtrStatus.isSucceed()) {
+                statusMessage.append(rtrStatus.getDetails().name()).append(" ");
+            }
+            if (!wndStatus.isSucceed()) {
+                statusMessage.append(wndStatus.getDetails().name()).append(" ");
+            }
+            if (!plgsStatus.isSucceed()) {
+                statusMessage.append(plgsStatus.getDetails().name()).append(" ");
+            }
+            if (!rflcStatus.isSucceed()) {
+                statusMessage.append(rflcStatus.getDetails().name()).append(" ");
+            }
+
+            parentController.setStatusMessage("Could not calibrate the machine. " + statusMessage.toString(), MessageTone.ERROR);
+        }
     }
 
     public void setParentController(BodyController parentController) {
@@ -180,6 +179,7 @@ public class CodeCalibrationController {
         rotorsHbox.getChildren().clear();
         windowsCharHbox.getChildren().clear();
         reflectorBox.getChildren().clear();
+        reflectorToggles.getToggles().clear();
         plugsHBox.getChildren().clear();
 
         // create new components

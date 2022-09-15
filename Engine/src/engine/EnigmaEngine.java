@@ -327,7 +327,6 @@ public class EnigmaEngine implements Engine {
         return (CTEEnigma) u.unmarshal(in);
     }
 
-
     /**
      * converts all data from jaxb classes to the normal classes.
      *
