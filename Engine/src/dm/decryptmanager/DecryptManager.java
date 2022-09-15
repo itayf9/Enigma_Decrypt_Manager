@@ -41,8 +41,6 @@ public class DecryptManager {
 
     private final BooleanProperty isBruteForceActionPaused;
 
-    private final Object dummy = new Object();
-
 
     public DecryptManager(Dictionary dictionary, int numOfAvailableAgents, Machine enigmaMachine) {
         int LIMIT_NUMBER_OF_TASK = 1000;
@@ -110,7 +108,7 @@ public class DecryptManager {
         setTotalConfigs(difficultyLevel);
 
         // setting up the collector of the candidates
-        collector = new Thread(new CandidatesCollectorTask(candidatesQueue, totalPossibleConfigurations, uiAdapter, this,
+        collector = new Thread(new CandidatesCollector(candidatesQueue, totalPossibleConfigurations, uiAdapter,
                 isBruteForceActionCancelledProperty(), isBruteForceActionPaused));
         collector.setName("THE_COLLECTOR");
 

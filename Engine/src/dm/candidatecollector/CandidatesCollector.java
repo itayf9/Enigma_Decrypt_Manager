@@ -2,35 +2,31 @@ package dm.candidatecollector;
 
 import candidate.Candidate;
 import dm.agent.AgentConclusion;
-import dm.decryptmanager.DecryptManager;
 import javafx.beans.property.BooleanProperty;
-import javafx.concurrent.Task;
 import ui.adapter.UIAdapter;
 
 import java.util.concurrent.BlockingQueue;
 
-public class CandidatesCollectorTask extends Task<Boolean> {
+public class CandidatesCollector implements Runnable {
 
     private final BlockingQueue<AgentConclusion> candidateQueue;
     private final long totalPossibleConfigurations;
     private final UIAdapter uiAdapter;
-    private final DecryptManager dm;
     private final BooleanProperty isBruteForceActionPaused;
     private final BooleanProperty isBruteForceActionCancelled;
 
-    public CandidatesCollectorTask(BlockingQueue<AgentConclusion> candidateQueue, long totalPossibleConfigurations,
-                                   UIAdapter uiAdapter, DecryptManager dm, BooleanProperty isBruteForceActionCancelled,
-                                   BooleanProperty isBruteForceActionPaused) {
+    public CandidatesCollector(BlockingQueue<AgentConclusion> candidateQueue, long totalPossibleConfigurations,
+                               UIAdapter uiAdapter, BooleanProperty isBruteForceActionCancelled,
+                               BooleanProperty isBruteForceActionPaused) {
         this.candidateQueue = candidateQueue;
         this.totalPossibleConfigurations = totalPossibleConfigurations;
         this.uiAdapter = uiAdapter;
-        this.dm = dm;
         this.isBruteForceActionPaused = isBruteForceActionPaused;
         this.isBruteForceActionCancelled = isBruteForceActionCancelled;
     }
 
     @Override
-    protected Boolean call() {
+    public void run() {
 
         long totalTasksProcessTime = 0;
         long scannedConfigsCount = 0;
@@ -38,7 +34,6 @@ public class CandidatesCollectorTask extends Task<Boolean> {
         double averageTasksProcessTime;
 
         uiAdapter.updateTotalConfigsPossible(totalPossibleConfigurations);
-        updateMessage("Searching for Candidates...");
         uiAdapter.updateTaskStatus("Searching...");
 
         while (scannedConfigsCount < totalPossibleConfigurations && !isBruteForceActionCancelled.getValue()) {
@@ -51,16 +46,15 @@ public class CandidatesCollectorTask extends Task<Boolean> {
                 uiAdapter.updateAverageTasksProcessTime(averageTasksProcessTime);
                 scannedConfigsCount += queueTakenCandidates.getNumOfScannedConfigurations();
 
-                updateProgress(scannedConfigsCount, totalPossibleConfigurations);
                 uiAdapter.updateProgressBar((double) scannedConfigsCount / (double) totalPossibleConfigurations);
                 uiAdapter.updateTotalProcessedConfigurations(queueTakenCandidates.getNumOfScannedConfigurations());
 
             } catch (InterruptedException e) {
                 if (scannedConfigsCount >= totalPossibleConfigurations) {
-                    return Boolean.TRUE;
+                    return;
                 } else {
                     uiAdapter.updateTaskStatus("Stopped...");
-                    return Boolean.FALSE;
+                    return;
                 }
             }
 
@@ -79,25 +73,21 @@ public class CandidatesCollectorTask extends Task<Boolean> {
                             isBruteForceActionPaused.wait();
                         } catch (InterruptedException ignored) {
                             uiAdapter.updateTaskStatus("Stopped...");
-                            return Boolean.FALSE;
+                            return;
                         }
                     }
                     uiAdapter.updateTaskStatus("Searching...");
                 }
             }
 
-
             try {
-                Thread.sleep(10);
+                Thread.sleep(25);
             } catch (InterruptedException ignored) {
                 uiAdapter.updateTaskStatus("Stopped...");
-                return Boolean.FALSE;
+                return;
             }
-
         }
         uiAdapter.updateTaskActiveStatus(false);
-        updateMessage("Done...");
         uiAdapter.updateTaskStatus("Done...");
-        return Boolean.TRUE;
     }
 }
