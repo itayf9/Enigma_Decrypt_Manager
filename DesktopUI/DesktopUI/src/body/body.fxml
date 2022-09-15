@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" styleClass="enigma-tabpane" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.BodyController">
+<TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="900.0" styleClass="enigma-tabpane" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.BodyController">
   <tabs>
     <Tab styleClass="enigma-tab" text="Machine">
          <content>
@@ -18,9 +18,9 @@
                 <content>
                     <GridPane minHeight="420.0" minWidth="700.0" prefHeight="440.0" prefWidth="900.0" styleClass="tab-gridpane">
                         <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="500.0" minWidth="10.0" prefWidth="448.0" />
-                            <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="26.66668701171875" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="500.0" minWidth="10.0" prefWidth="448.0" />
+                            <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="100.0" />
+                            <ColumnConstraints hgrow="NEVER" maxWidth="1.7976931348623157E308" minWidth="5.0" prefWidth="5.0" />
+                            <ColumnConstraints hgrow="ALWAYS" maxWidth="500.0" minWidth="60.0" />
                         </columnConstraints>
                         <rowConstraints>
                             <RowConstraints maxHeight="1.7976931348623157E308" minHeight="100.0" prefHeight="292.33331298828125" vgrow="SOMETIMES" />
@@ -43,10 +43,11 @@
          <content>
              <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="tab-scrollpane">
                  <content>
-                     <GridPane hgap="5.0" minHeight="451.0" minWidth="700.0" prefHeight="451.0" prefWidth="890.0" styleClass="tab-gridpane">
+                     <GridPane minHeight="451.0" minWidth="500.0" prefHeight="451.0" prefWidth="900.0" styleClass="tab-gridpane">
                          <columnConstraints>
-                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="596.0" />
-                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="304.0" />
+                             <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="345.0" />
+                             <ColumnConstraints hgrow="NEVER" maxWidth="5.0" minWidth="5.0" prefWidth="5.0" />
+                        <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="190.0" />
                          </columnConstraints>
                          <rowConstraints>
                              <RowConstraints maxHeight="150.0" minHeight="90.0" prefHeight="90.0" vgrow="SOMETIMES" />
@@ -54,7 +55,7 @@
                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="150.0" prefHeight="150.0" vgrow="ALWAYS" />
                          </rowConstraints>
                          <children>
-                             <fx:include fx:id="statistics" layoutX="385.0" source="screen2/statistics/statistics.fxml" GridPane.columnIndex="1" GridPane.rowSpan="3" />
+                             <fx:include fx:id="statistics" layoutX="385.0" source="screen2/statistics/statistics.fxml" GridPane.columnIndex="2" GridPane.rowSpan="3" />
                              <fx:include fx:id="encryptDecrypt" layoutY="180.0" source="screen2/encrypt/encrypt-decrypt.fxml" GridPane.rowIndex="2" />
                              <fx:include fx:id="currentConfigScreen2" source="currentconfig/currentConfig.fxml" />
                          </children>
@@ -79,10 +80,10 @@
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints maxHeight="200.0" minHeight="200.0" prefHeight="200.0" vgrow="NEVER" />
-                      <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="NEVER" />
+                      <RowConstraints maxHeight="5.0" minHeight="5.0" prefHeight="5.0" vgrow="NEVER" />
                       <RowConstraints maxHeight="100.0" minHeight="100.0" prefHeight="100.0" vgrow="NEVER" />
-                        <RowConstraints maxHeight="5.0" minHeight="5.0" prefHeight="5.0" vgrow="NEVER" />
-                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="160.0" prefHeight="164.33334350585938" vgrow="ALWAYS" />
+                        <RowConstraints maxHeight="94.66665649414062" minHeight="5.0" prefHeight="5.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="75.33334350585938" prefHeight="145.33334350585938" vgrow="ALWAYS" />
                     </rowConstraints>
                      <children>
                         <fx:include fx:id="encryptDecrypt2" source="screen2/encrypt/encrypt-decrypt.fxml" GridPane.columnIndex="2" />
@@ -102,7 +103,7 @@
          </content></Tab>
   </tabs>
    <stylesheets>
-       <URL value="@../app/app-default.css"/>
-       <URL value="@body-default.css"/>
+       <URL value="@../app/app-default.css" />
+       <URL value="@body-default.css" />
    </stylesheets>
 </TabPane>
