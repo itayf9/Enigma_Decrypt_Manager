@@ -37,17 +37,9 @@ public class TaskProducer implements Runnable {
         this.textToDecipher = textToDecipher;
         this.dictionary = dm.getDictionary();
         this.candidatesQueue = dm.getCandidatesQueue();
-        this.machines = new HashMap<>();
-
     }
 
     public void run() {
-
-        // initialize map of machines for agents
-        for (int i = 1; i <= dm.getNumOfAvailableAgents(); i++) {
-            Machine copyOfMachine = new EnigmaMachine((EnigmaMachine) machine); // Clone!
-            machines.put(String.valueOf(i), copyOfMachine);
-        }
         // set the tasks and send them to the pool
         switch (difficulty) {
             case EASY:
@@ -97,13 +89,13 @@ public class TaskProducer implements Runnable {
         // easy mode so rotors & reflector doesn't change.
 
         List<Integer> nextWindowsOffsets;
-        // Machine copyOfMachine = new EnigmaMachine((EnigmaMachine) machine); // Clone!
+        Machine copyOfMachine = new EnigmaMachine((EnigmaMachine) machine); // Clone!
 
         // set up first agentTask
         try {
             taskCounter++;
             agentTaskQueue.put(new AgentTask(rotorsIDs, new ArrayList<>(currentWindowsOffsets), reflectorID,
-                    machines, dm, taskSize, textToDecipher, dictionary, candidatesQueue));
+                    copyOfMachine, dm, taskSize, textToDecipher, dictionary, candidatesQueue));
         } catch (InterruptedException ignored) {
             //throw new RuntimeException(e);
         }
@@ -111,7 +103,7 @@ public class TaskProducer implements Runnable {
         while (!finishedAllTasks && !dm.isIsBruteForceActionCancelled()) {
 
             // first clone a machine to send to the agent
-            // copyOfMachine = new EnigmaMachine((EnigmaMachine) machine);
+            copyOfMachine = new EnigmaMachine((EnigmaMachine) machine);
 
             // the next window characters to set for the agent, based on last window characters
             nextWindowsOffsets = getNextWindowsOffsets(taskSize, currentWindowsOffsets);
@@ -126,7 +118,7 @@ public class TaskProducer implements Runnable {
 
             try {
                 agentTaskQueue.put(new AgentTask(rotorsIDs, nextWindowsOffsets, reflectorID,
-                        machines, dm, taskSize, textToDecipher, dictionary, candidatesQueue));
+                        copyOfMachine, dm, taskSize, textToDecipher, dictionary, candidatesQueue));
             } catch (InterruptedException e) {
                 // producer Stopped so need to die
                 return;

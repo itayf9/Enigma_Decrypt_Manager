@@ -21,15 +21,13 @@ public class AgentTask implements Runnable {
     private final List<Integer> rotorsIDs;
     private final List<Integer> windowOffsets;
     private final int inUseReflectorID;
-
-    private Map<String, Machine> machines;
     private final DecryptManager dm;
     private final BlockingQueue<AgentConclusion> candidatesQueue;
 
     public AgentTask(List<Integer> rotorsIDs, List<Integer> windowOffsets, int inUseReflectorID,
-                     Map<String, Machine> machines, DecryptManager dm, int taskSize, String textToDecipher, Dictionary dictionary,
+                     Machine copyOfMachine, DecryptManager dm, int taskSize, String textToDecipher, Dictionary dictionary,
                      BlockingQueue<AgentConclusion> candidatesQueue) {
-        this.machines = machines;
+        this.machine = copyOfMachine;
         this.taskSize = taskSize;
         this.textToDecipher = textToDecipher;
         this.dictionary = dictionary;
