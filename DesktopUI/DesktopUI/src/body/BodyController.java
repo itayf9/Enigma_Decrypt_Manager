@@ -17,8 +17,10 @@ import javafx.beans.property.*;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
+import problem.Problem;
 
 import java.net.URL;
+import java.nio.file.FileStore;
 import java.util.List;
 import java.util.Set;
 
@@ -470,5 +472,9 @@ public class BodyController {
 
     public void setCodeCalibration(int inUseRotorsCount, int availableRotorsCount, String machineAlphabet, int availableReflectorsCount) {
         codeCalibrationController.setCodeCalibration(inUseRotorsCount, availableRotorsCount, machineAlphabet, availableReflectorsCount);
+    }
+
+    public String convertProblemToMessage(Problem problem) {
+        return mainController.convertProblemToMessage(problem);
     }
 }

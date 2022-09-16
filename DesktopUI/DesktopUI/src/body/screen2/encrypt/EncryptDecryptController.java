@@ -113,7 +113,8 @@ public class EncryptDecryptController {
             if (!cipheredCharStatus.isSucceed()) {
                 cipheredLetter = "";
                 inputTextField.getStyleClass().add("invalid-input-text-field");
-                parentController.setStatusMessage("Could not cipher that character", MessageTone.ERROR);
+                parentController.setStatusMessage("Could not cipher that character. " +
+                        parentController.convertProblemToMessage(cipheredCharStatus.getDetails()), MessageTone.ERROR);
             } else {
                 outputLabel.setText(outputLabel.getText() + cipheredCharStatus.getCipheredText());
                 this.cipheredLetter = cipheredCharStatus.getCipheredText();
@@ -137,7 +138,8 @@ public class EncryptDecryptController {
             DTOciphertext cipheredLineStatus = parentController.cipher(inputTextField.getText().toUpperCase());
             if (!cipheredLineStatus.isSucceed()) {
                 inputTextField.getStyleClass().add("invalid-input-text-field");
-                parentController.setStatusMessage("Could not cipher that text. " + cipheredLineStatus.getDetails(), MessageTone.ERROR);
+                parentController.setStatusMessage("Could not cipher that text. " +
+                        parentController.convertProblemToMessage(cipheredLineStatus.getDetails()), MessageTone.ERROR);
             } else {
                 outputLabel.setText(cipheredLineStatus.getCipheredText());
                 parentController.displayStatistics();
@@ -179,7 +181,8 @@ public class EncryptDecryptController {
 
         if (!cipheredLineStatus.isSucceed()) {
             inputTextField.getStyleClass().add("invalid-input-text-field");
-            parentController.setStatusMessage("Could not cipher that text", MessageTone.ERROR);
+            parentController.setStatusMessage("Could not cipher that text. " +
+                    parentController.convertProblemToMessage(cipheredLineStatus.getDetails()), MessageTone.ERROR);
         } else {
             outputLabel.setText(cipheredLineStatus.getCipheredText());
             parentController.displayStatistics();

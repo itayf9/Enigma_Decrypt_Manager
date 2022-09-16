@@ -152,16 +152,16 @@ public class CodeCalibrationController {
         } else {
             StringBuilder statusMessage = new StringBuilder();
             if (!rtrStatus.isSucceed()) {
-                statusMessage.append(rtrStatus.getDetails().name()).append(" ");
+                statusMessage.append(parentController.convertProblemToMessage(rtrStatus.getDetails())).append(" ");
             }
             if (!wndStatus.isSucceed()) {
-                statusMessage.append(wndStatus.getDetails().name()).append(" ");
+                statusMessage.append(parentController.convertProblemToMessage(wndStatus.getDetails())).append(" ");
             }
             if (!plgsStatus.isSucceed()) {
-                statusMessage.append(plgsStatus.getDetails().name()).append(" ");
+                statusMessage.append(parentController.convertProblemToMessage(plgsStatus.getDetails())).append(" ");
             }
             if (!rflcStatus.isSucceed()) {
-                statusMessage.append(rflcStatus.getDetails().name()).append(" ");
+                statusMessage.append(parentController.convertProblemToMessage(rflcStatus.getDetails())).append(" ");
             }
 
             parentController.setStatusMessage("Could not calibrate the machine. " + statusMessage.toString(), MessageTone.ERROR);

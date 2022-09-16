@@ -25,6 +25,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
+import problem.Problem;
 import statistics.StatisticRecord;
 import ui.adapter.UIAdapter;
 
@@ -169,7 +170,7 @@ public class MainController {
         String fileName = "C:/Users/itayf/Downloads/resource/ex1-sanity-paper-enigma.xml";
         DTOstatus loadStatus = engine.buildMachineFromXmlFile(selectedMachineFile);
         if (!loadStatus.isSucceed()) {
-            setStatusMessage(loadStatus.getDetails().name(), MessageTone.ERROR);
+            setStatusMessage("Could not load that file. " + convertProblemToMessage(loadStatus.getDetails()), MessageTone.ERROR);
         } else {
             headerController.displayFilePath();
             DTOspecs specsStatus = engine.displayMachineSpecifications();
@@ -553,5 +554,70 @@ public class MainController {
      */
     public boolean isAllWordsInDictionary(String textToCipher) {
         return engine.isAllWordsInDictionary(textToCipher);
+    }
+
+    public String convertProblemToMessage(Problem problem) {
+        switch (problem) {
+            case CIPHER_INPUT_EMPTY_STRING:
+                return "Please enter some text.";
+            case CIPHER_INPUT_NOT_IN_ALPHABET:
+                return "The text should contain only letters from the machine's alphabet.";
+            case FILE_NOT_ENOUGH_ROTORS:
+                return "There are not enough rotors.";
+            case FILE_NUM_OF_REFLECTS_IS_NOT_HALF_OF_ABC:
+                return "All reflectors should contains exactly a half of the alphabet amount inputs.";
+            case FILE_ODD_ALPHABET_AMOUNT:
+                return "The alphabet amount should be an even number.";
+            case FILE_OUT_OF_RANGE_NOTCH:
+                return "All notches should have a position within the range of available inputs in their rotor.";
+            case FILE_REFLECTOR_ID_DUPLICATIONS:
+                return "Each reflector should have a unique symbol.";
+            case FILE_REFLECTOR_INVALID_ID_RANGE:
+                return "All reflectors should have symbol of I - V only.";
+            case FILE_REFLECTOR_MAPPING_DUPPLICATION:
+                return "All reflectors should be valid, and each input should lead into a unique output.";
+            case FILE_REFLECTOR_MAPPING_NOT_IN_ALPHABET:
+                return "All reflectors should be valid, and all inputs should be from the machine's alphabet.";
+            case FILE_REFLECTOR_OUT_OF_RANGE_ID:
+                return "All reflectors should have symbol of I - V only.";
+            case FILE_REFLECTOR_SELF_MAPPING:
+                return "All reflectors should be valid, and each input should lead into a unique output.";
+            case FILE_ROTOR_COUNT_HIGHER_THAN_99:
+                return "Should have up to 99 rotors only.";
+            case FILE_ROTOR_INVALID_ID_RANGE:
+                return "All rotors should have in an running indexing starting from 1 only.";
+            case FILE_ROTOR_MAPPING_DUPPLICATION:
+                return "All rotors should be valid, and each input should lead into a unique output.";
+            case FILE_ROTOR_MAPPING_NOT_A_SINGLE_LETTER:
+                return "All rotors should contain inputs and outputs that represent one letter.";
+            case FILE_ROTOR_MAPPING_NOT_EQUAL_TO_ALPHABET_LENGTH:
+                return "All rotors should contain exactly all of the letters as inputs and outputs.";
+            case FILE_ROTOR_MAPPING_NOT_IN_ALPHABET:
+                return "All rotors should be valid, and all inputs should be from the machine's alphabet.";
+            case FILE_ROTORS_COUNT_BELOW_TWO:
+                return "Should have at least 2 rotors.";
+            case FILE_TOO_MANY_REFLECTORS:
+                return "Should have up to 5 reflectors only.";
+            case FILE_TOO_LITTLE_AGENTS:
+                return "Should have at least 2 agents.";
+            case FILE_TOO_MANY_AGENTS:
+                return "Should have up to 50 agents only.";
+            case ROTOR_VALIDATE_EMPTY_STRING:
+                return "Please enter all the required rotors.";
+            case ROTOR_DUPLICATION:
+                return "Cannot use a rotor more than once.";
+            case ROTOR_INPUT_NOT_ENOUGH_ELEMENTS:
+                return "Please enter all the required rotors.";
+            case WINDOW_INPUT_TOO_FEW_LETTERS:
+                return "Please enter all the required windows.";
+            case NO_REFLECTOR_BEEN_CHOSEN:
+                return "Please choose a reflector.";
+            case SELF_PLUGGING:
+                return "Each plug should have different inputs and outputs.";
+            case PLUGS_MISSING_VALUES:
+                return "Please complete the plug selection.";
+            default:
+                return "";
+        }
     }
 }

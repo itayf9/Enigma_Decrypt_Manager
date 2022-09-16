@@ -82,9 +82,19 @@
     -fx-background-color: grey;
 }
 
+.scroll-bar *.decrement-button:hover {
+    -fx-background-color: #2b2b2c;
+}
+
+.scroll-bar *.increment-button:hover {
+    -fx-background-color: #2b2b2c;
+}
+
 .combo-box *.list-cell {
     -fx-background-color: #2b2b2c;
     -fx-text-fill: #aeb0b3;
+    -fx-border-radius: 2 0 0 2;
+    -fx-border-width: 1 0 1 1;
 }
 
 .combo-box *.combo-box-popup *.list-view *.list-cell {
@@ -107,6 +117,9 @@
 
 .progress-bar {
     -fx-accent: #77afe1;
+}
+
+.progress-bar *.track {
     -fx-background-color: #2b2b2c;
 }
 
@@ -118,8 +131,38 @@
     -fx-background-color: grey;
 }
 
+.radio-button *.label {
+    -fx-text-fill: #aeb0b3;
+}
+
+.separator *.line {
+    -fx-background-color: grey;
+    -fx-border-width: 0;
+}
+
+.spinner *.text-field {
+    -fx-background-color: #2b2b2c;
+    -fx-text-fill: #aeb0b3;
+    -fx-border-color: grey;
+    -fx-border-radius: 2 0 0 2;
+    -fx-border-width: 1 0 1 1;
+}
+
+.slider *.track {
+    -fx-background-color: transparent;
+    -fx-border-color: #2b2b2c;
+}
+
+.spinner *.text-field:focused {
+    -fx-background-color: #3c3f41;
+}
+
 .body-background {
     -fx-background-color: linear-gradient(to bottom, #353396 7%, rgb(60, 63, 65) 39%, #2b2b2c 100%)
+}
+
+.scroll-pane *.corner {
+    -fx-background-color: #2b2b2c;
 }
 
 .component-with-background {
