@@ -35,14 +35,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // EnigmaEngine engine = new EnigmaEngine();
-        // engine.buildMachineFromXmlFile("C:/Users/kingd/IdeaProjects/Cracking_the_Enigma_Machine/Engine/src/resource/ex2/ex2-basic.xml");
+        System.out.println("Test");
 
-        List<List<Integer>> list = generate(5, 3);
-        System.out.println(list.size());
-        for (List<Integer> comb : list) {
-            System.out.println(comb);
-        }
     }
 }
 

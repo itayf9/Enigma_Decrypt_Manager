@@ -1,15 +1,12 @@
 package body.screen3.dictionary;
 
 import body.BodyController;
-import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 
-import java.io.CharConversionException;
 import java.util.Set;
 
 public class DictionaryController {
@@ -26,8 +23,6 @@ public class DictionaryController {
 
     @FXML
     public void initialize() {
-        this.dictionary = new Trie();
-
         this.searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             displayDictionaryWordsThatStartWith(newValue);
         });
@@ -48,6 +43,7 @@ public class DictionaryController {
 
         // clear old words
         wordsAreaFlowPane.getChildren().clear();
+        this.dictionary = new Trie();
         // insert words to dictionary
         for (String word : dictionaryWords) {
             dictionary.insert(word);

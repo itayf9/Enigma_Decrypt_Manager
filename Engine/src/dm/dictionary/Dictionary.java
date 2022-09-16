@@ -15,6 +15,9 @@ public class Dictionary {
     }
 
     public void initializeDictionary(String wordsAsString) {
+        
+        // clear old words at the engine
+        words.clear();
 
         StringBuilder wordsBuilder = new StringBuilder();
 

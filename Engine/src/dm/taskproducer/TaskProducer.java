@@ -89,18 +89,15 @@ public class TaskProducer implements Runnable {
 
         List<Integer> currentWindowsOffsets = new ArrayList<>(Collections.nCopies(machine.getRotorsCount(), 0));
         boolean finishedAllTasks = false;
-        // easy mode so rotors doesn't change.
+        // easy mode so rotors & reflector doesn't change.
 
-        List<Integer> inUseRotorsIDs = rotorsIDs;
-        // get the reflector
-        int inUseReflectorID = reflectorID;
         List<Integer> nextWindowsOffsets;
         Machine copyOfMachine = new EnigmaMachine((EnigmaMachine) machine); // Clone!
 
         // set up first agentTask
         try {
             taskCounter++;
-            agentTaskQueue.put(new AgentTask(inUseRotorsIDs, new ArrayList<>(currentWindowsOffsets), inUseReflectorID,
+            agentTaskQueue.put(new AgentTask(rotorsIDs, new ArrayList<>(currentWindowsOffsets), reflectorID,
                     copyOfMachine, dm, taskSize, textToDecipher, dictionary, candidatesQueue));
         } catch (InterruptedException ignored) {
             //throw new RuntimeException(e);
@@ -123,7 +120,7 @@ public class TaskProducer implements Runnable {
             currentWindowsOffsets.addAll(nextWindowsOffsets);
 
             try {
-                agentTaskQueue.put(new AgentTask(inUseRotorsIDs, nextWindowsOffsets, inUseReflectorID,
+                agentTaskQueue.put(new AgentTask(rotorsIDs, nextWindowsOffsets, reflectorID,
                         copyOfMachine, dm, taskSize, textToDecipher, dictionary, candidatesQueue));
             } catch (InterruptedException e) {
                 // producer Stopped so need to die
@@ -133,7 +130,6 @@ public class TaskProducer implements Runnable {
     }
 
     public List<List<Integer>> generateCombinations(int n, int k) {
-        List<List<Integer>> combinations = new ArrayList<>();
         ArrayList<Integer> combination = new ArrayList<>();
 
         // initialize with the lowest lexicographic combination
@@ -141,6 +137,7 @@ public class TaskProducer implements Runnable {
             combination.add(i);
         }
 
+        List<List<Integer>> combinations = new ArrayList<>();
         while (combination.get(k - 1) < n) {
             combinations.add((List<Integer>) combination.clone());
 

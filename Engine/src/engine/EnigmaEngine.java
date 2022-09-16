@@ -30,6 +30,7 @@ public class EnigmaEngine implements Engine {
     // The engine contains Machine instance and machine records object.
     private Machine machine;
 
+
     private DecryptManager decryptManager;
 
     private boolean charByCharState = false;

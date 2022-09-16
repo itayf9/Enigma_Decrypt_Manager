@@ -64,7 +64,7 @@ public class MainController {
     private Rectangle statusBackShape;
 
     private FadeTransition messageFadeTransition;
-    
+
     private DTOsecretConfig configStatus; // do we still need this!!!!!!?????
 
     /**
@@ -174,7 +174,15 @@ public class MainController {
      * @param selectedMachineFile fileName
      */
     public void loadMachineFromFile(String selectedMachineFile) {
-        String fileName = "C:/Users/itayf/Downloads/resource/ex1-sanity-paper-enigma.xml";
+        // check if brute force task is running ?
+        if (isBruteForceTaskActive.getValue()) {
+
+            // let's stop the process
+            stopBruteForceProcess();
+
+        }
+
+        // then load new machine
         DTOstatus loadStatus = engine.buildMachineFromXmlFile(selectedMachineFile);
         if (!loadStatus.isSucceed()) {
             setStatusMessage("Could not load that file. " + convertProblemToMessage(loadStatus.getDetails()), MessageTone.ERROR);
@@ -403,7 +411,7 @@ public class MainController {
             candidateTileController.setWindowsCharsAndNotches(candidate.getWindowChars(), candidate.getNotchPositions());
             candidateTileController.setReflectorSymbol(candidate.getReflectorSymbol());
             candidateTileController.setProcessedByAgentName(candidate.getProcessedByAgentName());
-            
+
             bodyController.insertCandidateToFlowPane(singleCandidateTile);
         } catch (IOException e) {
             e.printStackTrace();
