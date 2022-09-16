@@ -44,6 +44,8 @@ public class EnigmaEngine implements Engine {
      * creating new machine instance using all the parts the machine needs.
      */
     public void buildMachine(List<Rotor> availableRotors, List<Reflector> availableReflectors, int rotorsCount, String alphabet, Map<Character, Integer> character2index) {
+        currentCipherProcessOutputText = "";
+        currentCipherProcessInputText = "";
         machine = new EnigmaMachine(availableRotors, availableReflectors, rotorsCount, alphabet, character2index);
     }
 

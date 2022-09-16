@@ -53,7 +53,7 @@ public class CandidatesAreaController {
         progressPercentageLabel.textProperty().bind(bruteForceProgressBarPercentageLabel);
         BFprogressBar.progressProperty().bind(bruteForceProgress);
         BFstatusLabel.textProperty().bind(bruteForceStatus);
-        averageProcessTimeLabel.textProperty().bind(Bindings.concat(Bindings.format("%.3f", averageTasksProcessTimeProperty), " ns"));
+        averageProcessTimeLabel.textProperty().bind(Bindings.concat(Bindings.format("%.3f", averageTasksProcessTimeProperty), " ms"));
     }
 
     public void insertCandidateToFlowPane(Node singleCandidateTile) {

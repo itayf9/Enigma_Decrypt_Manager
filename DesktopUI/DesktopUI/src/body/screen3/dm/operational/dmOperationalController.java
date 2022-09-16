@@ -6,6 +6,7 @@ import dm.difficultylevel.DifficultyLevel;
 import dto.DTOspecs;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.LongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
@@ -41,7 +42,7 @@ public class dmOperationalController {
     @FXML
     private Label tasksAmountLabel;
 
-    private long totalPossibleWindowsPositions;
+    private LongProperty totalPossibleWindowsPositions;
     private StringProperty textToDecipherProperty;
     private BooleanProperty isBruteForceTaskActive;
     private BooleanProperty isBruteForceTaskPaused;
@@ -133,26 +134,25 @@ public class dmOperationalController {
 
     }
 
-    public void setSettings(long totalPossibleWindowsPositions, int maxNumOfAgents, DTOspecs specStatus) {
+    public void setSettings(LongProperty totalPossibleWindowsPositions, int maxNumOfAgents, DTOspecs specStatus) {
         this.specStatus = specStatus;
-        taskSizeSpinner.valueFactoryProperty().set(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, (int) totalPossibleWindowsPositions));
+        taskSizeSpinner.valueFactoryProperty().set(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, (totalPossibleWindowsPositions.getValue().intValue())));
         numOfAgentsSlider.setMax(maxNumOfAgents);
         this.totalPossibleWindowsPositions = totalPossibleWindowsPositions;
 
         taskSizeSpinner.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
             try {
                 int newValueAsInt = Integer.parseInt(newValue);
-                if (newValueAsInt > 0 && newValueAsInt <= totalPossibleWindowsPositions) {
-                    taskSizeSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, (int) totalPossibleWindowsPositions, newValueAsInt));
+                if (newValueAsInt > 0 && newValueAsInt <= totalPossibleWindowsPositions.getValue()) {
+                    taskSizeSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, totalPossibleWindowsPositions.getValue().intValue(), newValueAsInt));
                 } else {
-                    taskSizeSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, (int) totalPossibleWindowsPositions, Integer.parseInt(oldValue)));
+                    taskSizeSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, totalPossibleWindowsPositions.getValue().intValue(), Integer.parseInt(oldValue)));
                     taskSizeSpinner.getEditor().setText(oldValue);
                 }
             } catch (NumberFormatException e) {
-                taskSizeSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, (int) totalPossibleWindowsPositions, Integer.parseInt(oldValue)));
+                taskSizeSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, totalPossibleWindowsPositions.getValue().intValue(), Integer.parseInt(oldValue)));
                 taskSizeSpinner.getEditor().setText(oldValue);
             }
-
         });
     }
 
@@ -188,18 +188,18 @@ public class dmOperationalController {
 
         switch (difficultyLevel) {
             case EASY:
-                totalPossibleConfigurations = (totalPossibleWindowsPositions);
+                totalPossibleConfigurations = (totalPossibleWindowsPositions.getValue());
                 break;
             case MEDIUM:
-                totalPossibleConfigurations = (totalPossibleWindowsPositions * specStatus.getAvailableReflectorsCount());
+                totalPossibleConfigurations = (totalPossibleWindowsPositions.getValue() * specStatus.getAvailableReflectorsCount());
                 break;
             case HARD:
-                totalPossibleConfigurations = (totalPossibleWindowsPositions *
+                totalPossibleConfigurations = (totalPossibleWindowsPositions.getValue() *
                         specStatus.getAvailableReflectorsCount() *
                         factorial(specStatus.getInUseRotorsCount()));
                 break;
             case IMPOSSIBLE:
-                totalPossibleConfigurations = (totalPossibleWindowsPositions *
+                totalPossibleConfigurations = (totalPossibleWindowsPositions.getValue() *
                         specStatus.getAvailableReflectorsCount() *
                         factorial(specStatus.getInUseRotorsCount()) *
                         (nCk(specStatus.getAvailableRotorsCount(), specStatus.getInUseRotorsCount()))

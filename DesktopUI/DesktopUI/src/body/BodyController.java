@@ -20,7 +20,6 @@ import javafx.scene.layout.GridPane;
 import problem.Problem;
 
 import java.net.URL;
-import java.nio.file.FileStore;
 import java.util.List;
 import java.util.Set;
 
@@ -341,7 +340,7 @@ public class BodyController {
      * @param maxNumOfAgents                Max num of agent from the xml file
      * @param specStatus                    machine specifications
      */
-    public void setDMOperetionalSettings(long totalPossibleWindowsPositions, int maxNumOfAgents, DTOspecs specStatus) {
+    public void setDMOperetionalSettings(LongProperty totalPossibleWindowsPositions, int maxNumOfAgents, DTOspecs specStatus) {
         dmOperationalController.setSettings(totalPossibleWindowsPositions, maxNumOfAgents, specStatus);
     }
 
@@ -476,5 +475,10 @@ public class BodyController {
 
     public String convertProblemToMessage(Problem problem) {
         return mainController.convertProblemToMessage(problem);
+    }
+
+    public void clearOldComponents() {
+        encryptDecryptController.clearTextFields();
+        encryptDecrypt2Controller.clearTextFields();
     }
 }

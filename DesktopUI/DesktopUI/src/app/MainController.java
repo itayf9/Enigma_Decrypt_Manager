@@ -97,7 +97,7 @@ public class MainController {
     private StringProperty bruteForceStatusMessage;
     private BooleanProperty isBruteForceTaskActive;
     private BooleanProperty isBruteForceTaskPaused;
-    private long totalPossibleWindowsPositions;
+    private LongProperty totalPossibleWindowsPositions;
     private DoubleProperty averageTasksProcessTimeProperty;
     private StringProperty dictionaryExcludeCharsProperty;
 
@@ -135,6 +135,7 @@ public class MainController {
             this.bruteForceProgress = new SimpleDoubleProperty();
             this.bruteForceStatusMessage = new SimpleStringProperty("");
             this.bruteForceProgressBarPercentageProperty = new SimpleStringProperty("0%");
+            this.totalPossibleWindowsPositions = new SimpleLongProperty();
 
             // binding initialize
             bodyController.bindComponents(isMachineConfiguredProperty, inUseRotorsIDsProperty,
@@ -158,7 +159,13 @@ public class MainController {
             headerController.bindSettings(isAnimationProperty);
 
             bodyController.setIsAnimationPropertyEncryptDecrypt(isAnimationProperty);
+
+            isMachineConfiguredProperty.addListener((observable, oldValue, newValue) -> clearOldComponents());
         }
+    }
+
+    private void clearOldComponents() {
+        bodyController.clearOldComponents();
     }
 
     /**
@@ -178,20 +185,22 @@ public class MainController {
             int alphabetLength = engine.getMachineAlphabet().length();
             setStatusMessage("Machine Loaded Successfully!", MessageTone.SUCCESS);
 
+            // clear old current config
             inUseRotorsIDsProperty.clear();
             currentWindowsCharactersProperty.set("");
             inUseReflectorSymbolProperty.set("");
             currentNotchDistances.clear();
             inUsePlugsProperty.set("");
 
+            // set new stuff
             bodyController.setDictionaryWords(engine.getDictionaryWords().getDictionary(), engine.getMachineAlphabet());
             bodyController.displayMachineSpecs(specsStatus);
             cipherCounterProperty.set(0);
             bodyController.setLightBulb(engine.getMachineAlphabet());
             bodyController.displayStatistics();
-            this.totalPossibleWindowsPositions = (int) Math.pow(alphabetLength, rotorsCount);
+            this.totalPossibleWindowsPositions.setValue(Math.pow(alphabetLength, rotorsCount));
             bodyController.setEncryptExcludeCharsValue(dictionaryExcludeCharsProperty);
-            bodyController.setDMOperetionalSettings((int) totalPossibleWindowsPositions, specsStatus.getNumOfAvailableAgents(), specsStatus);
+            bodyController.setDMOperetionalSettings(totalPossibleWindowsPositions, specsStatus.getNumOfAvailableAgents(), specsStatus);
             headerController.enableLoadButtonTransition(false);
             isMachineConfiguredProperty.setValue(Boolean.FALSE);
             isMachineLoadedProperty.setValue(Boolean.TRUE);
@@ -373,7 +382,7 @@ public class MainController {
                 },
                 (totalConfigs) -> totalPossibleConfigurations.setValue(totalConfigs),
                 (isActive) -> isBruteForceTaskActive.set(isActive),
-                (averageTasksProcessTime) -> averageTasksProcessTimeProperty.set(averageTasksProcessTime)
+                (averageTasksProcessTime) -> averageTasksProcessTimeProperty.set(averageTasksProcessTime / (double) 1000)
         );
     }
 
