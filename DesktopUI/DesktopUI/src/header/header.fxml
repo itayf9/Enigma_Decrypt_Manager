@@ -69,7 +69,7 @@
                            </toggleGroup>
                        </RadioMenuItem>
                        <RadioMenuItem fx:id="skinDarkButton" mnemonicParsing="false" text="Dark" toggleGroup="$skinsGroup" />
-                       <RadioMenuItem mnemonicParsing="false" toggleGroup="$skinsGroup" />
+                       <RadioMenuItem fx:id="skinSpecialButton" mnemonicParsing="false" text="Special" toggleGroup="$skinsGroup" />
                    </items>
             </Menu>
             <MenuItem fx:id="animationMenu" mnemonicParsing="false" onAction="#toggleAnimation" text="Animations" />

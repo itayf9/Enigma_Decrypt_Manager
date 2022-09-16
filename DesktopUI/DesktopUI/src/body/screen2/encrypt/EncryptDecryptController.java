@@ -218,7 +218,7 @@ public class EncryptDecryptController {
         clearTextFields();
     }
 
-    private void clearTextFields() {
+    public void clearTextFields() {
         inputTextField.setText("");
         outputLabel.setText("");
     }

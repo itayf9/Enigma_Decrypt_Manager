@@ -43,6 +43,9 @@ public class HeaderController {
     private RadioMenuItem skinDarkButton;
 
     @FXML
+    private RadioMenuItem skinSpecialButton;
+
+    @FXML
     private MenuButton settingsMenuButton;
 
     @FXML
@@ -82,6 +85,8 @@ public class HeaderController {
                 case "skinDarkButton":
                     skin = Skin.DARK;
                     break;
+                case "skinSpecialButton":
+                    skin = Skin.SPECIAL;
             }
 
             mainController.setAppSkin(skin);

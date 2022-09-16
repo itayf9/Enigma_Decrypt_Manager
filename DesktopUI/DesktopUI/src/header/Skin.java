@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum Skin {
-    DEFAULT, DARK;
+    DEFAULT, DARK, SPECIAL;
 
     public String skinName() {
 
@@ -13,6 +13,8 @@ public enum Skin {
                 return "default";
             case DARK:
                 return "dark";
+            case SPECIAL:
+                return "special";
             default:
                 return "default";
         }
@@ -23,6 +25,7 @@ public enum Skin {
         List<String> allSkinNames = new ArrayList<>();
         allSkinNames.add(DEFAULT.skinName());
         allSkinNames.add(DARK.skinName());
+        allSkinNames.add(SPECIAL.skinName());
 
         return allSkinNames;
     }
