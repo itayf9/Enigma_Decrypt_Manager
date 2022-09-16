@@ -7,13 +7,14 @@ import machine.Machine;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.BlockingQueue;
 
 import static utill.Utility.decimalToRoman;
 
 public class AgentTask implements Runnable {
 
-    private final Machine machine;
+    private Machine machine;
     private final int taskSize;
     private final Dictionary dictionary;
     private final String textToDecipher;
@@ -21,13 +22,14 @@ public class AgentTask implements Runnable {
     private final List<Integer> windowOffsets;
     private final int inUseReflectorID;
 
+    private Map<String, Machine> machines;
     private final DecryptManager dm;
     private final BlockingQueue<AgentConclusion> candidatesQueue;
 
     public AgentTask(List<Integer> rotorsIDs, List<Integer> windowOffsets, int inUseReflectorID,
-                     Machine copyOfMachine, DecryptManager dm, int taskSize, String textToDecipher, Dictionary dictionary,
+                     Map<String, Machine> machines, DecryptManager dm, int taskSize, String textToDecipher, Dictionary dictionary,
                      BlockingQueue<AgentConclusion> candidatesQueue) {
-        machine = copyOfMachine;
+        this.machines = machines;
         this.taskSize = taskSize;
         this.textToDecipher = textToDecipher;
         this.dictionary = dictionary;
@@ -71,6 +73,8 @@ public class AgentTask implements Runnable {
 
     @Override
     public void run() {
+        this.machine = machines.get(Thread.currentThread().getName());
+
         long startMeasureTime = System.nanoTime();
 
         List<Candidate> candidates = new ArrayList<>();

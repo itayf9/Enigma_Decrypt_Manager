@@ -23,10 +23,7 @@ public class DictionaryController {
 
     @FXML
     public void initialize() {
-        this.searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            displayDictionaryWordsThatStartWith(newValue);
-        });
-
+        this.searchTextField.textProperty().addListener((observable, oldValue, newValue) -> displayDictionaryWordsThatStartWith(newValue));
     }
 
     public void setParentController(BodyController parentController) {
