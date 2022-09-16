@@ -354,8 +354,8 @@ public class BodyController {
         candidatesAreaController.insertCandidateToFlowPane(singleCandidateTile);
     }
 
-    public void setDictionaryWords(Set<String> dictionaryWords) {
-        dictionaryController.setDictionaryWords(dictionaryWords);
+    public void setDictionaryWords(Set<String> dictionaryWords, String alphabet) {
+        dictionaryController.setDictionaryWords(dictionaryWords, alphabet);
     }
 
     public void stopBruteForce() {

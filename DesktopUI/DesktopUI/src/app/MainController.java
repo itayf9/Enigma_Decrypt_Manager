@@ -183,8 +183,8 @@ public class MainController {
             inUseReflectorSymbolProperty.set("");
             currentNotchDistances.clear();
             inUsePlugsProperty.set("");
-            
-            bodyController.setDictionaryWords(engine.getDictionaryWords().getDictionary());
+
+            bodyController.setDictionaryWords(engine.getDictionaryWords().getDictionary(), engine.getMachineAlphabet());
             bodyController.displayMachineSpecs(specsStatus);
             cipherCounterProperty.set(0);
             bodyController.setLightBulb(engine.getMachineAlphabet());

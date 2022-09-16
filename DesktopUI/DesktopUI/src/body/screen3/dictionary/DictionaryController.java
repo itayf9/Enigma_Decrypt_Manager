@@ -9,6 +9,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 
+import java.io.CharConversionException;
 import java.util.Set;
 
 public class DictionaryController {
@@ -21,6 +22,7 @@ public class DictionaryController {
 
     @FXML
     private TextField searchTextField;
+    private String alphabet;
 
     @FXML
     public void initialize() {
@@ -41,7 +43,9 @@ public class DictionaryController {
      *
      * @param dictionaryWords a Set of String(the words) from the dictionary of the DM
      */
-    public void setDictionaryWords(Set<String> dictionaryWords) {
+    public void setDictionaryWords(Set<String> dictionaryWords, String alphabet) {
+        this.alphabet = alphabet;
+
         // clear old words
         wordsAreaFlowPane.getChildren().clear();
         // insert words to dictionary
@@ -57,10 +61,21 @@ public class DictionaryController {
         Set<String> allWordsWithSearchedPrefix = dictionary.getAllWordsWithPrefix(newValue.toUpperCase());
         if (allWordsWithSearchedPrefix != null) {
             for (String word : allWordsWithSearchedPrefix) {
+                boolean validWord = true;
                 Label wordLabel = new Label(word);
                 wordLabel.setPadding(new Insets(5));
-                wordLabel.setOnMouseClicked(event -> parentController.appendNewWordToInputCipherText(wordLabel.getText()));
-                wordLabel.getStyleClass().add("word-label");
+
+                for (Character letter : word.toCharArray()) {
+                    if (!alphabet.contains("" + letter)) {
+                        wordLabel.getStyleClass().add("invalid-word-label");
+                        validWord = false;
+                    }
+                }
+
+                if (validWord) {
+                    wordLabel.setOnMouseClicked(event -> parentController.appendNewWordToInputCipherText(wordLabel.getText()));
+                    wordLabel.getStyleClass().add("word-label");
+                }
                 wordsAreaFlowPane.getChildren().add(wordLabel);
             }
         }
