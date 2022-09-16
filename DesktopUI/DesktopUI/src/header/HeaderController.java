@@ -1,6 +1,7 @@
 package header;
 
 import app.MainController;
+import app.statusbar.MessageTone;
 import javafx.animation.*;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
@@ -156,6 +157,14 @@ public class HeaderController {
                 enableLoadButtonTransition(newValue);
             }
 
+        });
+
+        isAnimationProperty.addListener((observable, oldValue, newValue) -> {
+            if (!newValue) {
+                mainController.setStatusMessage("Animations: OFF", MessageTone.INFO);
+            } else {
+                mainController.setStatusMessage("Animations: ON", MessageTone.INFO);
+            }
         });
     }
 }

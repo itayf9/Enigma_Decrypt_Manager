@@ -1,0 +1,52 @@
+.search-text-field {
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-background-color: #2b2b2c;
+    -fx-text-fill: #aeb0b3;
+    -fx-border-width: 0;
+    -fx-border-color: #aeb0b3;
+}
+
+.search-text-field:focused {
+    -fx-border-color: #D36B00;
+    -fx-border-width: 1;
+    -fx-background-color: #313336;
+
+}
+
+.words-area .word-label {
+    -fx-border-width: 1;
+    -fx-background-color: #ffe3b0;
+    -fx-border-color: #2b2b2c;
+    -fx-text-fill: #2b2b2c;
+    -fx-border-radius: 10;
+}
+
+.words-area .word-label:hover {
+    -fx-border-color: #eaeaea;
+    -fx-background-color: #aeb0b3;
+    -fx-background-radius: 10;
+    -fx-text-fill: #3c3f41;
+    -fx-cursor: HAND;
+}
+
+.words-area .word-label:pressed {
+    -fx-background-color: #e7e7e7;
+    -fx-border-color: #c0c0c0;
+    -fx-text-fill: #3c3f41;
+}
+
+.words-area .invalid-word-label {
+
+    -fx-border-width: 1;
+    -fx-background-color: grey;
+    -fx-border-color: #aeb0b3;
+    -fx-text-fill: #aeb0b3;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-opacity: 0.7;
+}
+
+.words-area .invalid-word-label *.text {
+    -fx-strikethrough: true;
+}

@@ -8,8 +8,6 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.Spinner?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -34,31 +32,17 @@
       <RowConstraints maxHeight="1.7976931348623157E308" minHeight="0.0" prefHeight="0.0" vgrow="ALWAYS" />
   </rowConstraints>
    <children>
-      <Label styleClass="component-title" text="Set Decrypt Menager" GridPane.columnSpan="8" />
+      <Label styleClass="component-title" text="Set Decrypt Manager" GridPane.columnSpan="8" />
       <Slider fx:id="numOfAgentsSlider" majorTickUnit="1.0" max="50.0" min="2.0" minorTickCount="0" snapToTicks="true" styleClass="number-of-agents-slider" GridPane.columnIndex="2" GridPane.rowIndex="3" />
       <ComboBox fx:id="difficultyLevelComboBox" maxWidth="1.7976931348623157E308" prefHeight="30.0" styleClass="difficulty-level-combo" GridPane.columnIndex="4" GridPane.rowIndex="3" />
       <Button fx:id="startButton" minHeight="50.0" minWidth="70.0" mnemonicParsing="false" onMouseClicked="#handleBruteForceStartStopOperationAction" prefHeight="50.0" prefWidth="70.0" styleClass="action-btn" text="Start" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.rowSpan="2">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </GridPane.margin>
-         <graphic>
-            <ImageView fitHeight="12.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../resource/play-solid.png" />
-               </image>
-            </ImageView>
-         </graphic></Button>
+         </GridPane.margin></Button>
       <Button fx:id="pauseButton" minHeight="50.0" minWidth="70.0" mnemonicParsing="false" onMouseClicked="#handleBruteForcePauseResumeOperationAction" prefHeight="50.0" prefWidth="70.0" styleClass="action-btn" text="Pause" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.rowSpan="2">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </GridPane.margin>
-         <graphic>
-            <ImageView fitHeight="12.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../resource/pause-solid.png" />
-               </image>
-            </ImageView>
-         </graphic></Button>
+         </GridPane.margin></Button>
       <Label fx:id="numOfAgentLabel" styleClass="sub-title" text="Number of Agents" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
       <Label styleClass="sub-title" text="Task Size" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
       <Spinner fx:id="taskSizeSpinner" editable="true" styleClass="task-size-spinner" GridPane.rowIndex="3" />

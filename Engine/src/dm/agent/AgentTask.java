@@ -73,8 +73,6 @@ public class AgentTask implements Runnable {
 
     @Override
     public void run() {
-        this.machine = machines.get(Thread.currentThread().getName());
-
         long startMeasureTime = System.nanoTime();
 
         List<Candidate> candidates = new ArrayList<>();

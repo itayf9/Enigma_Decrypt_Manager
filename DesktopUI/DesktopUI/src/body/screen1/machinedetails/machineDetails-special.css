@@ -1,0 +1,14 @@
+.property-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #2b2b2c;
+}
+
+.value-text {
+    -fx-font-size: 30px;
+    -fx-text-fill: white;
+}
+
+.value-shape {
+    -fx-fill: #D36B00;
+    -fx-stroke: #ffe3b0;
+}

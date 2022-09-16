@@ -75,6 +75,7 @@ public class EncryptDecryptController {
         processButton.setText("Process");
         cipheredOutputHeadline.visibleProperty().bind(Bindings.when(outputLabel.textProperty().isEqualTo("")).then(true).otherwise(false));
         lightBulbs.disableProperty().bind(cipherModeTS.selectedProperty().not());
+        animationCipherLabel.textProperty().bind(outputLabel.textProperty());
 
         cipherPathTransition.setDuration(Duration.millis(1500));
         cipherPathTransition.setNode(animationCipherLabel);
@@ -143,7 +144,6 @@ public class EncryptDecryptController {
             } else {
                 outputLabel.setText(cipheredLineStatus.getCipheredText());
                 parentController.displayStatistics();
-                animationCipherLabel.setText(cipheredLineStatus.getCipheredText());
 
                 if (isAnimationProperty.getValue()) {
                     animationCipherLabel.setOpacity(1);

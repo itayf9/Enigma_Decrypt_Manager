@@ -1,0 +1,50 @@
+.settings-btn:hover {
+    -fx-background-color: #e7e7e7;
+    -fx-opacity: 0.4;
+}
+
+.header-gridpane {
+    -fx-background-color: white;
+    -fx-background-image: url("/resource/specialskin/wood-background.jpeg");
+    -fx-background-size: 900 100;
+}
+
+.settings-btn {
+    -fx-background-color: transparent;
+}
+
+.settings-btn *.arrow {
+    -fx-background-color: #000001;
+}
+
+.settings-btn *.menu-item:hover {
+    -fx-background-color: #D36B00;
+}
+
+.settings-btn *.menu-item:hover .label {
+    -fx-text-fill: white;
+}
+
+.settings-btn *.menu-item:focused {
+    -fx-background-color: #D36B00;
+}
+
+.settings-btn *.menu-item:focused .label {
+    -fx-text-fill: white;
+}
+
+
+.file-path-label {
+    -fx-font-size: 15px;
+}
+
+.file-path-area {
+    -fx-background-color: #FF9551;
+}
+
+.enigma-title {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+}
+

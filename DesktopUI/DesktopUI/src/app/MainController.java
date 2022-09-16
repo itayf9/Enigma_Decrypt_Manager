@@ -161,6 +161,8 @@ public class MainController {
             bodyController.setIsAnimationPropertyEncryptDecrypt(isAnimationProperty);
 
             isMachineConfiguredProperty.addListener((observable, oldValue, newValue) -> clearOldComponents());
+
+            bruteForceStatusMessage.addListener((observable, oldValue, newValue) -> setStatusMessage("Decrypt Manager: " + newValue, MessageTone.INFO));
         }
     }
 
