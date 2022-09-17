@@ -5,7 +5,6 @@ import dto.DTOstatistics;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.util.Pair;
@@ -29,15 +28,19 @@ public class StatisticsController {
     public void displayStats(DTOstatistics stats) {
 
         vBoxHistory.getChildren().clear();
-
         if (stats.getStats().size() == 0) {
             Label nextSecret = new Label("No statistics yet.");
             vBoxHistory.getChildren().add(nextSecret);
         }
 
         for (StatisticRecord record : stats.getStats()) {
-
             VBox nextRecord = new VBox();
+            nextRecord.getStyleClass().add("record-vbox");
+            nextRecord.setMaxWidth(Integer.MAX_VALUE);
+            nextRecord.setFillWidth(true);
+
+            Label configTitle = new Label("Configuration:");
+            configTitle.getStyleClass().add("sub-title");
 
             Label nextSecret = new Label(assembleConfiguration(record.getInUseRotors(), record.getWindowCharacters(),
                     Utility.decimalToRoman(record.getReflectorID()), record.getPlugs(), record.getOriginalNotchPositions()));
@@ -47,33 +50,34 @@ public class StatisticsController {
 
             nextRecord.getChildren().add(configTitle);
             nextRecord.getChildren().add(nextSecret);
-
-            TableView<Pair<Pair<String, String>, Long>> cipherRecordTable;
+            nextRecord.getChildren().add(textTitle);
+            TableView<TableViewStatistic> cipherRecordTable;
 
             if (record.getCipherHistory().size() != 0) {
                 cipherRecordTable = new TableView<>();
                 cipherRecordTable.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                TableColumn<Pair<Pair<String, String>, Long>, String> inputColumn = new TableColumn<>("Input");
 
-                inputColumn.setCellValueFactory(new PropertyValueFactory<>("key::key"));
-
-                TableColumn<Pair<Pair<String, String>, Long>, String> outputColumn = new TableColumn<>("Output");
-
-                outputColumn.setCellValueFactory(new PropertyValueFactory<>("key"));
-
-                TableColumn<Pair<Pair<String, String>, Long>, String> timeTakenColumn = new TableColumn<>("Time Taken");
-
-                timeTakenColumn.setCellValueFactory(new PropertyValueFactory<>("value"));
+                TableColumn<TableViewStatistic, String> inputColumn = new TableColumn<>("Input");
+                inputColumn.setCellValueFactory(new PropertyValueFactory<>("input"));
+                inputColumn.setSortable(false);
+                inputColumn.setMinWidth(50);
+                TableColumn<TableViewStatistic, String> outputColumn = new TableColumn<>("Output");
+                outputColumn.setCellValueFactory(new PropertyValueFactory<>("output"));
+                outputColumn.setSortable(false);
+                outputColumn.setMinWidth(50);
+                TableColumn<TableViewStatistic, String> timeTakenColumn = new TableColumn<>("Time Taken (ns)");
+                timeTakenColumn.setCellValueFactory(new PropertyValueFactory<>("timeTaken"));
+                timeTakenColumn.setSortable(false);
+                timeTakenColumn.setMinWidth(50);
 
                 cipherRecordTable.getColumns().addAll(inputColumn, outputColumn, timeTakenColumn);
 
                 for (Pair<Pair<String, String>, Long> currentCipherRecord : record.getCipherHistory()) {
-
-                    cipherRecordTable.getItems().add(currentCipherRecord);
+                    Pair<String, String> pairCipher = currentCipherRecord.getKey();
+                    long time = currentCipherRecord.getValue();
+                    cipherRecordTable.getItems().add(new TableViewStatistic(pairCipher, time));
                 }
-
                 nextRecord.getChildren().add(cipherRecordTable);
-
             }
 
             vBoxHistory.getChildren().add(nextRecord);
