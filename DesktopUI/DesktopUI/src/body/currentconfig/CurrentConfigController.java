@@ -13,6 +13,7 @@ import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import problem.Problem;
 
 import java.util.List;
@@ -44,7 +45,7 @@ public class CurrentConfigController {
         windowsLabel.setText("");
         reflectorLabel.setText("");
         plugsLabel.setText("");
-        noConfigMsg.setText("No Configuration yet.");
+        noConfigMsg.setText("No configuration yet.");
     }
 
     public void setParentController(BodyController parentController) {
@@ -67,7 +68,7 @@ public class CurrentConfigController {
         windowsLabel.textProperty().bind(new CurrWinCharsAndNotchPosBinding(currentWindowsCharactersProperty, currentNotchDistances));
         reflectorLabel.textProperty().bind(new InUseReflectorSymbolBinding(inUseReflectorSymbolProperty));
         plugsLabel.textProperty().bind(new InUsePlugsBinding(inUsePlugs));
-        noConfigMsg.textProperty().bind(Bindings.when(isMachineConfigured).then("").otherwise("No Configuration."));
+        noConfigMsg.textProperty().bind(Bindings.when(isMachineConfigured).then("").otherwise("No configuration yet."));
     }
 
     public void displayOriginalConfiguration(List<Integer> rotorsIDs, String currentWindowsCharacters, String inUseReflectorSymbol, String inUsePlugs, List<Integer> currentNotchDistances) {

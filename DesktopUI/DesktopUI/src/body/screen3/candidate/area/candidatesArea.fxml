@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="400.0" prefHeight="150.0" prefWidth="900.0" styleClass="component-with-background" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.screen3.candidate.area.CandidatesAreaController">
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="400.0" prefHeight="160.0" prefWidth="900.0" styleClass="component-with-background" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="body.screen3.candidate.area.CandidatesAreaController">
   <columnConstraints>
     <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="100.0" />
       <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="5.0" prefWidth="15.0" />
@@ -24,11 +24,11 @@
   </columnConstraints>
   <rowConstraints>
     <RowConstraints maxHeight="194.0" minHeight="30.0" prefHeight="30.0" vgrow="NEVER" />
-      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="340.00001525878906" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="340.00001525878906" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="8.0" prefHeight="8.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="340.00001525878906" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="1.7976931348623157E308" minHeight="25.0" prefHeight="25.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="5.0" prefHeight="5.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="25.0" prefHeight="25.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="340.00001525878906" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
@@ -46,18 +46,18 @@
             <Insets right="10.0" />
          </padding></ProgressBar>
       <Label fx:id="progressPercentageLabel" text="100 %" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-      <Label fx:id="numberOfScannedConfigurationsLabel" prefHeight="22.0" text="100 / 27100" GridPane.columnIndex="5" GridPane.columnSpan="2147483647" GridPane.rowIndex="2" />
-      <Label fx:id="numberOfDistinctCandidatesLabel" text="200003" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="5" />
-      <Label fx:id="BFstatusLabel" text="searchig...." GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2" />
-      <Label fx:id="averageProcessTimeLabel" text="11222922.333 ns" GridPane.columnIndex="5" GridPane.columnSpan="2147483647" GridPane.rowIndex="5" />
-      <Label styleClass="sub-title" text="Scanned Configurations:" GridPane.columnIndex="5" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
+      <Label fx:id="numberOfScannedConfigurationsLabel" text="100 / 27100" GridPane.columnIndex="5" GridPane.columnSpan="2147483647" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+      <Label fx:id="numberOfDistinctCandidatesLabel" text="200003" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="5" GridPane.valignment="TOP" />
+      <Label fx:id="BFstatusLabel" text="searchig...." GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+      <Label fx:id="averageProcessTimeLabel" text="11222922.333 ns" GridPane.columnIndex="5" GridPane.columnSpan="2147483647" GridPane.rowIndex="5" GridPane.valignment="TOP" />
+      <Label styleClass="sub-title" text="Scanned Configurations:" GridPane.columnIndex="5" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" GridPane.valignment="TOP">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label styleClass="sub-title" text="Candidates Found:" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="4" />
-      <Label styleClass="sub-title" text="Status:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-      <Label styleClass="sub-title" text="Average Process Time:" GridPane.columnIndex="5" GridPane.columnSpan="2147483647" GridPane.rowIndex="4" />
+      <Label styleClass="sub-title" text="Candidates Found:" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="4" GridPane.valignment="TOP" />
+      <Label styleClass="sub-title" text="Status:" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+      <Label styleClass="sub-title" text="Average Process Time:" GridPane.columnIndex="5" GridPane.columnSpan="2147483647" GridPane.rowIndex="4" GridPane.valignment="TOP" />
       <Separator prefWidth="200.0" GridPane.columnIndex="2" GridPane.columnSpan="2147483647" GridPane.rowIndex="3" />
    </children>
    <padding>

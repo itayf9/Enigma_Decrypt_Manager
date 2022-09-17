@@ -20,7 +20,7 @@
       <ColumnConstraints hgrow="NEVER" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="154.0" minWidth="-Infinity" prefWidth="127.6666259765625" />
       <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="45.66668701171875" />
-      <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="101.0" prefWidth="101.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="80.0" prefWidth="90.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="80.0" prefWidth="90.0" />
   </columnConstraints>
@@ -44,10 +44,10 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin></Button>
       <Label fx:id="numOfAgentLabel" styleClass="sub-title" text="Number of Agents" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
-      <Label styleClass="sub-title" text="Task Size" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+      <Label styleClass="sub-title" text="Task Size:" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
       <Spinner fx:id="taskSizeSpinner" editable="true" styleClass="task-size-spinner" GridPane.rowIndex="3" />
-      <Label styleClass="sub-title" text="Difficulty Level" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
-      <Label styleClass="sub-title" text="Amount Of Tasks" GridPane.columnIndex="6" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+      <Label styleClass="sub-title" text="Difficulty Level:" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+      <Label styleClass="sub-title" text="Amount Of Tasks:" GridPane.columnIndex="6" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
       <Label fx:id="tasksAmountLabel" text="amount" GridPane.columnIndex="6" GridPane.rowIndex="3" />
       <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.rowSpan="2" />
    </children>
