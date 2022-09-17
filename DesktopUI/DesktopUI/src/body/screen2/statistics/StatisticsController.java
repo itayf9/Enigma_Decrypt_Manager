@@ -42,20 +42,28 @@ public class StatisticsController {
             Label configTitle = new Label("Configuration:");
             configTitle.getStyleClass().add("sub-title");
 
+            ScrollPane nextSecretPane = new ScrollPane();
+
             Label nextSecret = new Label(assembleConfiguration(record.getInUseRotors(), record.getWindowCharacters(),
                     Utility.decimalToRoman(record.getReflectorID()), record.getPlugs(), record.getOriginalNotchPositions()));
+
+            nextSecretPane.setContent(nextSecret);
+            nextSecretPane.setMaxSize(250, 30);
 
             Label textTitle = new Label("Ciphered Texts:");
             textTitle.getStyleClass().add("sub-title");
 
             nextRecord.getChildren().add(configTitle);
-            nextRecord.getChildren().add(nextSecret);
+            nextRecord.getChildren().add(nextSecretPane);
             nextRecord.getChildren().add(textTitle);
             TableView<TableViewStatistic> cipherRecordTable;
 
+            // create new table of history only if the list of history has elements
             if (record.getCipherHistory().size() != 0) {
                 cipherRecordTable = new TableView<>();
                 cipherRecordTable.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                cipherRecordTable.setMinWidth(250);
+                cipherRecordTable.setMaxWidth(250);
 
                 TableColumn<TableViewStatistic, String> inputColumn = new TableColumn<>("Input");
                 inputColumn.setCellValueFactory(new PropertyValueFactory<>("input"));
@@ -78,6 +86,9 @@ public class StatisticsController {
                     cipherRecordTable.getItems().add(new TableViewStatistic(pairCipher, time));
                 }
                 nextRecord.getChildren().add(cipherRecordTable);
+            } else {
+                Label noHistoryLabel = new Label("None.");
+                nextRecord.getChildren().add(noHistoryLabel);
             }
 
             vBoxHistory.getChildren().add(nextRecord);

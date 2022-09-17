@@ -22,7 +22,7 @@
       <Label styleClass="component-title" text="History &amp; Statistics" GridPane.halignment="CENTER" />
       <ScrollPane prefHeight="200.0" prefWidth="300.0" styleClass="sub-component-with-background" GridPane.rowIndex="1">
          <content>
-            <VBox fx:id="vBoxHistory">
+            <VBox fx:id="vBoxHistory" prefWidth="250.0">
                <styleClass>
                   <String fx:value="sub-component-with-background" />
                   <String fx:value="statistics-vbox" />

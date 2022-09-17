@@ -2,6 +2,10 @@
     -fx-spacing: 5;
 }
 
+.record-vbox *.scroll-bar *.thumb {
+    -fx-background-color: grey;
+}
+
 .record-vbox {
     -fx-border-color: grey;
     -fx-border-radius: 10;

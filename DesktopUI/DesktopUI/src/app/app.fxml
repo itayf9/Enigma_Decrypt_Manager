@@ -27,9 +27,9 @@
       <StackPane GridPane.rowIndex="1">
          <children>
             <Pane cache="true" prefHeight="200.0" prefWidth="200.0" styleClass="body-background" />
-            <ImageView fx:id="startImage" fitHeight="500.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER_RIGHT">
+            <ImageView fx:id="startImage" fitHeight="400.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
                <image>
-                  <Image url="@start-screen-enigma.png" />
+                  <Image url="@starting-screen-enigma.png" />
                </image>
                <viewport>
                   <Rectangle2D />
@@ -41,7 +41,7 @@
          <children>
             <StackPane alignment="CENTER_LEFT">
                <children>
-                  <Label fx:id="statusLabel" styleClass="status-label" text="status" StackPane.alignment="CENTER_LEFT" />
+                  <Label fx:id="statusLabel" styleClass="status-label" text="Daniel Sionov &amp; Itay Finkelshtein" StackPane.alignment="CENTER_LEFT" />
                   <Rectangle fx:id="statusBackShape" arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" StackPane.alignment="CENTER_LEFT" />
                   <Label fx:id="messageLabel" text="message" textFill="WHITE" StackPane.alignment="CENTER_LEFT" />
                </children>

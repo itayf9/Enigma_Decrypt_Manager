@@ -73,7 +73,6 @@
                    </items>
             </Menu>
             <MenuItem fx:id="animationMenu" mnemonicParsing="false" onAction="#toggleAnimation" text="Animations" />
-            <MenuItem fx:id="configMenu" mnemonicParsing="false" onAction="#toogleConfigAppearance" text="Configuration" />
             <MenuItem fx:id="aboutMenu" mnemonicParsing="false" onAction="#showAboutScene" text="About" />
         </items>
          <graphic>

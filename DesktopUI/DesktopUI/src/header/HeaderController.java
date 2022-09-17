@@ -61,9 +61,6 @@ public class HeaderController {
     private MenuItem animationMenu;
 
     @FXML
-    private MenuItem configMenu;
-
-    @FXML
     private MenuItem aboutMenu;
 
     @FXML

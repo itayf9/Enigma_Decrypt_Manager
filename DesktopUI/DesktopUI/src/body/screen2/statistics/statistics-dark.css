@@ -3,7 +3,7 @@
 }
 
 .record-vbox {
-    -fx-border-color: grey;
+    -fx-border-color: #3c3f41;
     -fx-border-radius: 10;
     -fx-padding: 5;
     -fx-spacing: 5;
