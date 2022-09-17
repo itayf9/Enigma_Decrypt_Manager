@@ -3,7 +3,10 @@ package body.screen2.statistics;
 import body.BodyController;
 import dto.DTOstatistics;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.util.Pair;
 import statistics.StatisticRecord;
@@ -34,13 +37,49 @@ public class StatisticsController {
 
         for (StatisticRecord record : stats.getStats()) {
 
+            VBox nextRecord = new VBox();
+
             Label nextSecret = new Label(assembleConfiguration(record.getInUseRotors(), record.getWindowCharacters(),
                     Utility.decimalToRoman(record.getReflectorID()), record.getPlugs(), record.getOriginalNotchPositions()));
 
-            vBoxHistory.getChildren().add(nextSecret);
+            nextRecord.getChildren().add(nextSecret);
 
-            for (Pair<Pair<String, String>, Long> currentCipherRecord : record.getCipherHistory()) {
-                StringBuilder cipherRecordStr = new StringBuilder();
+            TableView<Pair<Pair<String, String>, Long>> cipherRecordTable;
+
+            if (record.getCipherHistory().size() != 0) {
+                cipherRecordTable = new TableView<>();
+                cipherRecordTable.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                TableColumn<Pair<Pair<String, String>, Long>, String> inputColumn = new TableColumn<>("Input");
+
+                inputColumn.setCellValueFactory(new PropertyValueFactory<>("key::key"));
+
+                TableColumn<Pair<Pair<String, String>, Long>, String> outputColumn = new TableColumn<>("Output");
+
+                outputColumn.setCellValueFactory(new PropertyValueFactory<>("key"));
+
+                TableColumn<Pair<Pair<String, String>, Long>, String> timeTakenColumn = new TableColumn<>("Time Taken");
+
+                timeTakenColumn.setCellValueFactory(new PropertyValueFactory<>("value"));
+
+                cipherRecordTable.getColumns().addAll(inputColumn, outputColumn, timeTakenColumn);
+
+                for (Pair<Pair<String, String>, Long> currentCipherRecord : record.getCipherHistory()) {
+
+                    cipherRecordTable.getItems().add(currentCipherRecord);
+                }
+
+                nextRecord.getChildren().add(cipherRecordTable);
+
+            }
+
+            vBoxHistory.getChildren().add(nextRecord);
+
+            //for (Pair<Pair<String, String>, Long> currentCipherRecord : record.getCipherHistory()) {
+
+            //   cipherRecordTable.getItems().add(currentCipherRecord);
+
+
+                /*StringBuilder cipherRecordStr = new StringBuilder();
 
                 cipherRecordStr.append("#. ")
                         .append("<")
@@ -50,11 +89,11 @@ public class StatisticsController {
                         .append(" (").append(currentCipherRecord.getValue()).append(" nano-seconds)");
 
                 Label newCipherHistory = new Label(cipherRecordStr.toString());
-                vBoxHistory.getChildren().add(newCipherHistory);
+                vBoxHistory.getChildren().add(newCipherHistory);*/
 
-            }
-
+            // }
         }
+
     }
 
     private String assembleConfiguration(List<Integer> inUseRotorsIDs, String windowsCharacters, String inUseReflectorSymbol, String inUsePlugs, List<Integer> notchDistancesToWindow) {
@@ -65,11 +104,6 @@ public class StatisticsController {
         strConfig.append("<");
         for (int i = inUseRotorsIDs.size() - 1; i >= 0; i--) {
             strConfig.append(inUseRotorsIDs.get(i).toString());
-            if (notchDistancesToWindow.size() > 0) {
-                strConfig.append("(")
-                        .append(notchDistancesToWindow.get(i).toString())
-                        .append(")");
-            }
             if (i != 0) {
                 strConfig.append(",");
             }
@@ -80,6 +114,11 @@ public class StatisticsController {
         strConfig.append("<");
         for (int i = windowsCharacters.length() - 1; i >= 0; i--) {
             strConfig.append(windowsCharacters.charAt(i));
+            if (notchDistancesToWindow.size() > 0) {
+                strConfig.append("(")
+                        .append(notchDistancesToWindow.get(i).toString())
+                        .append(")");
+            }
         }
         strConfig.append(">");
 

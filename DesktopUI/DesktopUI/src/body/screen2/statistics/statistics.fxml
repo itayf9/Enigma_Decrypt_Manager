@@ -5,6 +5,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -22,7 +24,15 @@
       <Label styleClass="component-title" text="History &amp; Statistics" GridPane.halignment="CENTER" />
       <ScrollPane prefHeight="200.0" prefWidth="300.0" styleClass="sub-component-with-background" GridPane.rowIndex="1">
          <content>
-            <VBox fx:id="vBoxHistory" styleClass="sub-component-with-background" />
+            <VBox fx:id="vBoxHistory" styleClass="sub-component-with-background">
+               <children>
+                  <TableView fx:id="statisticsTableView" prefHeight="200.0" prefWidth="200.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="C1" />
+                      <TableColumn prefWidth="75.0" text="C2" />
+                    </columns>
+                  </TableView>
+               </children></VBox>
          </content>
       </ScrollPane>
    </children>
