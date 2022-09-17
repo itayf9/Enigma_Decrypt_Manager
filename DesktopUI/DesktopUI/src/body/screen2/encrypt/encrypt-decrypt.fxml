@@ -107,7 +107,7 @@
             </FlowPane>
          </content>
       </ScrollPane>
-      <Line fx:id="lineCipher" endX="-275.4800109863281" endY="17.292892456054688" opacity="0.0" startX="-275.7729187011719" startY="-56.106468200683594" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+      <Line fx:id="lineCipher" endX="-275.4800109863281" endY="17.292892456054688" opacity="0.0" startX="-275.4800109863281" startY="-65.92998504638672" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
    </children>
    <stylesheets>
       <URL value="@../../../app/app-default.css" />

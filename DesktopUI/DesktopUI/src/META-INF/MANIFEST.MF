@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Main-Class: Main
+Class-Path: controlsfx-8.40.11.jar;DTO.jar;Engine.jar;EnigmaUtillity.jar
+ ;
+

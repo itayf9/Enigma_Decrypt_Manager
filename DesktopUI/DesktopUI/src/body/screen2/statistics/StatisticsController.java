@@ -42,6 +42,10 @@ public class StatisticsController {
             Label nextSecret = new Label(assembleConfiguration(record.getInUseRotors(), record.getWindowCharacters(),
                     Utility.decimalToRoman(record.getReflectorID()), record.getPlugs(), record.getOriginalNotchPositions()));
 
+            Label textTitle = new Label("Ciphered Texts:");
+            textTitle.getStyleClass().add("sub-title");
+
+            nextRecord.getChildren().add(configTitle);
             nextRecord.getChildren().add(nextSecret);
 
             TableView<Pair<Pair<String, String>, Long>> cipherRecordTable;

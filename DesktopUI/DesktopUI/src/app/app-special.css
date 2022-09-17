@@ -35,13 +35,13 @@
     -fx-border-width: 0 0 2 0;
     -fx-border-color: #b1b4b9;
     -fx-text-fill: white;
+    -fx-font-family: Serif;
 }
 
 .input-text-field:focused {
     -fx-border-color: #D36B00;
     -fx-border-width: 0 0 2 0;
     -fx-background-color: #3c3f41;
-
 }
 
 .invalid-input-text-field {

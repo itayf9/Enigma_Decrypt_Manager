@@ -1,0 +1,14 @@
+
+.credits-gridpane {
+    -fx-background-color: white;
+}
+
+.credits-gridpane *.sub-title {
+    -fx-font-size: 17;
+}
+
+.credit-title {
+    -fx-font-size: 32;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0095ff;
+}

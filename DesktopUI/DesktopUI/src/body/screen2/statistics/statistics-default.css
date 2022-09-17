@@ -1,0 +1,49 @@
+.statistics-vbox {
+    -fx-spacing: 5;
+}
+
+.record-vbox {
+    -fx-border-color: grey;
+    -fx-border-radius: 10;
+    -fx-padding: 5;
+    -fx-spacing: 5;
+}
+
+.table-view *.column-resize-line {
+    -fx-background-color: grey;
+}
+
+.table-view *.scroll-bar *.thumb {
+    -fx-background-color: grey;
+}
+
+.table-view {
+    -fx-text-fill: #2b2b2c;
+}
+
+.table-view *.table-cell {
+    -fx-text-fill: #2b2b2c;
+    -fx-border-color: #2b2b2c;
+    -fx-padding: 2 0 2 10px;
+    -fx-alignment: center;
+}
+
+.table-view *.table-cell:hover {
+    -fx-text-fill: #2b2b2c;
+}
+
+.table-view:row-selection *.column-header-background *.nested-column-header *.table-column *.label {
+    -fx-background-color: grey;
+}
+
+.table-view *.table-row-cell *.table-cell:odd {
+    -fx-background-color: #e7e7e7;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+
+.table-view *.table-row-cell *.table-cell:even {
+    -fx-background-color: #aeb0b3;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}

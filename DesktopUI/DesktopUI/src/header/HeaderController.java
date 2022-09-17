@@ -151,11 +151,11 @@ public class HeaderController {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
-        stage.setHeight(300);
-        stage.setWidth(300);
+        stage.setHeight(400);
+        stage.setWidth(400);
 
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/header/about/  .fxml"));
+        loader.setLocation(getClass().getResource("/header/about/credits.fxml"));
         try {
             Node creditsWindow = loader.load();
 

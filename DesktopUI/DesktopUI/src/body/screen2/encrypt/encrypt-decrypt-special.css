@@ -15,6 +15,7 @@
 
 .ciphered-text-headline-label {
     -fx-text-fill: grey;
+    -fx-font-family: Serif;
 }
 
 .clear-btn {
