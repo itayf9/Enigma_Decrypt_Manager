@@ -27,7 +27,7 @@
       <StackPane GridPane.rowIndex="1">
          <children>
             <Pane cache="true" prefHeight="200.0" prefWidth="200.0" styleClass="body-background" />
-            <ImageView fitHeight="500.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER_RIGHT">
+            <ImageView fx:id="startImage" fitHeight="500.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER_RIGHT">
                <image>
                   <Image url="@start-screen-enigma.png" />
                </image>

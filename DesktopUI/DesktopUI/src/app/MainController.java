@@ -21,6 +21,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.shape.Rectangle;
@@ -45,6 +46,9 @@ public class MainController {
 
     @FXML
     private GridPane appGridPane;
+
+    @FXML
+    private ImageView startImage;
 
     @FXML
     private TabPane body;
@@ -147,6 +151,8 @@ public class MainController {
 
             // general setting to initialize sub components
             body.visibleProperty().bind(isMachineLoadedProperty);
+            startImage.fitHeightProperty().bind(Bindings.when(isMachineLoadedProperty.not()).then(500).otherwise(100));
+            startImage.fitWidthProperty().bind(Bindings.when(isMachineLoadedProperty.not()).then(900).otherwise(100));
             messageLabel.textProperty().bind(statusLabel.textProperty());
             messageLabel.opacityProperty().bind(statusBackShape.opacityProperty());
             statusBackShape.heightProperty().bind(Bindings.add(2, statusLabel.heightProperty()));
