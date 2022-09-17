@@ -2,21 +2,29 @@ package header;
 
 import app.MainController;
 import app.statusbar.MessageTone;
+import body.screen3.candidate.tile.CandidateTileController;
 import javafx.animation.*;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import problem.Problem;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 
 public class HeaderController {
@@ -51,6 +59,12 @@ public class HeaderController {
 
     @FXML
     private MenuItem animationMenu;
+
+    @FXML
+    private MenuItem configMenu;
+
+    @FXML
+    private MenuItem aboutMenu;
 
     @FXML
     private ImageView settingsButtonImg;
@@ -125,6 +139,35 @@ public class HeaderController {
     @FXML
     void toggleAnimation(ActionEvent event) {
         isAnimationProperty.setValue(!isAnimationProperty.getValue());
+    }
+
+    @FXML
+    void toogleConfigAppearance(ActionEvent event) {
+
+    }
+
+    @FXML
+    void showAboutScene(ActionEvent event) {
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
+        stage.setHeight(300);
+        stage.setWidth(300);
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/header/about/  .fxml"));
+        try {
+            Node creditsWindow = loader.load();
+
+            //CandidateTileController candidateTileController = loader.getController();
+
+            Scene s = new Scene((Parent) creditsWindow);
+            stage.setScene(s);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     public void enableLoadButtonTransition(boolean isAllow) {
