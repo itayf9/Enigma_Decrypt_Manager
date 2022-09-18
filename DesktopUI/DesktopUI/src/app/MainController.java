@@ -151,8 +151,8 @@ public class MainController {
 
             // general setting to initialize sub components
             body.visibleProperty().bind(isMachineLoadedProperty);
-            startImage.fitHeightProperty().bind(Bindings.when(isMachineLoadedProperty.not()).then(500).otherwise(100));
-            startImage.fitWidthProperty().bind(Bindings.when(isMachineLoadedProperty.not()).then(900).otherwise(100));
+            startImage.fitHeightProperty().bind(Bindings.when(isMachineLoadedProperty.not()).then(500).otherwise(1));
+            startImage.fitWidthProperty().bind(Bindings.when(isMachineLoadedProperty.not()).then(900).otherwise(1));
             messageLabel.textProperty().bind(statusLabel.textProperty());
             messageLabel.opacityProperty().bind(statusBackShape.opacityProperty());
             statusBackShape.heightProperty().bind(Bindings.add(2, statusLabel.heightProperty()));
@@ -639,10 +639,13 @@ public class MainController {
                 return "Please choose a reflector.";
             case SELF_PLUGGING:
                 return "Each plug should have different inputs and outputs.";
+            case ALREADY_PLUGGED:
+                return "Each plug should have unique inputs and outputs.";
             case PLUGS_MISSING_VALUES:
                 return "Please complete the plug selection.";
             default:
                 return "";
         }
     }
+
 }

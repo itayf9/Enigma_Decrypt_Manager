@@ -3,6 +3,7 @@
     -fx-background-radius: 0;
     -fx-border-width: 0;
     -fx-border-insets: 0;
+    -fx-background-image: url("/resource/specialskin/wood-background.jpeg");
     -fx-background-insets: 0;
     -fx-background-color: white;
     -fx-padding: 2 9 2 9;
@@ -32,6 +33,7 @@
 }
 
 .enigma-tab *.tab-label {
+    -fx-text-fill: white;
     -fx-font-weight: bold;
 }
 
@@ -41,6 +43,7 @@
 
 .enigma-tabpane *.tab-header-area *.tab-header-background {
     -fx-background-color: #e7e7e7;
+    -fx-background-image: url("/resource/specialskin/wood-background.jpeg");
 }
 
 .enigma-tabpane *.tab-context-area {

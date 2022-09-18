@@ -26,7 +26,7 @@
       <fx:include fx:id="header" minHeight="100.0" minWidth="0.0" prefHeight="100.0" source="../header/header.fxml" />
       <StackPane GridPane.rowIndex="1">
          <children>
-            <Pane cache="true" prefHeight="200.0" prefWidth="200.0" styleClass="body-background" />
+            <Pane cache="true" styleClass="body-background" />
             <ImageView fx:id="startImage" fitHeight="400.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
                <image>
                   <Image url="@starting-screen-enigma.png" />

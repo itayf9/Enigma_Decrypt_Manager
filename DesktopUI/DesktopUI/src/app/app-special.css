@@ -183,7 +183,7 @@
 
 
 .component-title {
-    -fx-text-fill: #D36B00;
+    -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-font-size: 18px;
 }

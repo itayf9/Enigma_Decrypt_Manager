@@ -6,12 +6,16 @@
     -fx-border-width: 1 0 0 0;
 }
 
-.status-label {
+.status-bar .label {
+    -fx-text-fill: white;
+}
+
+.status-bar .status-label {
     -fx-text-fill: #ffe3b0;
 }
 
 .success-message-area {
-    -fx-fill: #0095ff;
+    -fx-fill: #D36B00;
 }
 
 .error-message-area {
@@ -19,5 +23,5 @@
 }
 
 .info-message-area {
-    -fx-fill: #0095ff;
+    -fx-fill: #D36B00;
 }

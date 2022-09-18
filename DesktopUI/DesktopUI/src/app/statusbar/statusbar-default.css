@@ -4,7 +4,11 @@
     -fx-border-width: 1 0 0 0;
 }
 
-.status-label {
+.status-bar .label {
+    -fx-text-fill: white;
+}
+
+.status-bar .status-label {
     -fx-text-fill: black;
 }
 
