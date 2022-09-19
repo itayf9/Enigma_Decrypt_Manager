@@ -3,6 +3,7 @@ package dm.candidatecollector;
 import candidate.Candidate;
 import dm.agent.AgentConclusion;
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.LongProperty;
 import ui.adapter.UIAdapter;
 
 import java.util.concurrent.BlockingQueue;
@@ -11,18 +12,24 @@ public class CandidatesCollector implements Runnable {
 
     private final BlockingQueue<AgentConclusion> candidateQueue;
     private final long totalPossibleConfigurations;
+
+    private LongProperty totalTimeDecryptProperty;
     private final UIAdapter uiAdapter;
     private final BooleanProperty isBruteForceActionPaused;
     private final BooleanProperty isBruteForceActionCancelled;
 
+    private long pauseMeasuring;
+
     public CandidatesCollector(BlockingQueue<AgentConclusion> candidateQueue, long totalPossibleConfigurations,
-                               UIAdapter uiAdapter, BooleanProperty isBruteForceActionCancelled,
+                               UIAdapter uiAdapter, LongProperty totalTimeDecryptProperty, BooleanProperty isBruteForceActionCancelled,
                                BooleanProperty isBruteForceActionPaused) {
         this.candidateQueue = candidateQueue;
         this.totalPossibleConfigurations = totalPossibleConfigurations;
+        this.totalTimeDecryptProperty = totalTimeDecryptProperty;
         this.uiAdapter = uiAdapter;
         this.isBruteForceActionPaused = isBruteForceActionPaused;
         this.isBruteForceActionCancelled = isBruteForceActionCancelled;
+        this.pauseMeasuring = 0;
     }
 
     @Override
@@ -54,6 +61,7 @@ public class CandidatesCollector implements Runnable {
                     return;
                 } else {
                     uiAdapter.updateTaskStatus("Stopped...");
+                    uiAdapter.updateTotalTimeDecrypt(System.nanoTime() - totalTimeDecryptProperty.getValue() + pauseMeasuring);
                     return;
                 }
             }
@@ -70,13 +78,16 @@ public class CandidatesCollector implements Runnable {
                     while (isBruteForceActionPaused.getValue()) {
                         try {
                             uiAdapter.updateTaskStatus("Paused...");
+                            pauseMeasuring += System.nanoTime() - totalTimeDecryptProperty.getValue();
                             isBruteForceActionPaused.wait();
                         } catch (InterruptedException ignored) {
                             uiAdapter.updateTaskStatus("Stopped...");
+                            uiAdapter.updateTotalTimeDecrypt(System.nanoTime() - totalTimeDecryptProperty.getValue() + pauseMeasuring);
                             return;
                         }
                     }
                     uiAdapter.updateTaskStatus("Searching...");
+                    totalTimeDecryptProperty.set(System.nanoTime());
                 }
             }
 
@@ -84,10 +95,12 @@ public class CandidatesCollector implements Runnable {
                 Thread.sleep(25);
             } catch (InterruptedException ignored) {
                 uiAdapter.updateTaskStatus("Stopped...");
+                uiAdapter.updateTotalTimeDecrypt(System.nanoTime() - totalTimeDecryptProperty.getValue() + pauseMeasuring);
                 return;
             }
         }
         uiAdapter.updateTaskActiveStatus(false);
         uiAdapter.updateTaskStatus("Done...");
+        uiAdapter.updateTotalTimeDecrypt(System.nanoTime() - totalTimeDecryptProperty.getValue() + pauseMeasuring);
     }
 }

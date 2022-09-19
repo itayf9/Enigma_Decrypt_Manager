@@ -282,6 +282,7 @@ public class BodyController {
      * @param bruteForceProgressBarPercentageLabel bruteForceProgressBarPercentageLabel
      * @param bruteForceStatusMessage              bruteForceStatusMessage
      * @param isBruteForceTaskActive               isBruteForceTaskActive
+     * @param totalTimeDecryptProperty             totalTimeDecryptProperty
      */
     public void bindComponents(BooleanProperty isMachineConfiguredProperty, ListProperty<Integer> inUseRotorsIDsProperty,
                                StringProperty currentWindowsCharactersProperty, StringProperty inUseReflectorSymbolProperty,
@@ -290,7 +291,7 @@ public class BodyController {
                                IntegerProperty totalProcessedConfigurations, LongProperty totalPossibleConfigurations,
                                DoubleProperty bruteForceProgressBar, StringProperty bruteForceProgressBarPercentageLabel,
                                StringProperty bruteForceStatusMessage, BooleanProperty isBruteForceTaskActive, BooleanProperty isBruteForceTaskPaused,
-                               DoubleProperty averageTasksProcessTimeProperty) {
+                               DoubleProperty averageTasksProcessTimeProperty, LongProperty totalTimeDecryptProperty) {
 
         // binds the components that need the isConfigured Boolean property.
         encryptDecrypt.disableProperty().bind(isMachineConfiguredProperty.not());
@@ -312,9 +313,9 @@ public class BodyController {
         machineDetailsController.bindCipherCounterProperty(cipherCounterProperty);
 
         // brute force dashboard labels bind
-        candidatesAreaController.bindInitPropertiesToLabels(totalDistinctCandidates, totalProcessedConfigurations, totalPossibleConfigurations,
+        candidatesAreaController.bindInitPropertiesToLabels(isBruteForceTaskActive, totalDistinctCandidates, totalProcessedConfigurations, totalPossibleConfigurations,
                 bruteForceProgressBar, bruteForceProgressBarPercentageLabel
-                , bruteForceStatusMessage, averageTasksProcessTimeProperty);
+                , bruteForceStatusMessage, averageTasksProcessTimeProperty, totalTimeDecryptProperty);
 
         // dm operational bind
         dmOperationalController.bindComponents(isBruteForceTaskActive, isBruteForceTaskPaused);

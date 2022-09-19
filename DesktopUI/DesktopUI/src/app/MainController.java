@@ -103,6 +103,7 @@ public class MainController {
     private BooleanProperty isBruteForceTaskPaused;
     private LongProperty totalPossibleWindowsPositions;
     private DoubleProperty averageTasksProcessTimeProperty;
+    private LongProperty totalTimeDecryptProperty;
     private StringProperty dictionaryExcludeCharsProperty;
 
     private BooleanProperty isAnimationProperty;
@@ -140,6 +141,7 @@ public class MainController {
             this.bruteForceStatusMessage = new SimpleStringProperty("");
             this.bruteForceProgressBarPercentageProperty = new SimpleStringProperty("0%");
             this.totalPossibleWindowsPositions = new SimpleLongProperty();
+            this.totalTimeDecryptProperty = new SimpleLongProperty();
 
             // binding initialize
             bodyController.bindComponents(isMachineConfiguredProperty, inUseRotorsIDsProperty,
@@ -147,7 +149,7 @@ public class MainController {
                     currentNotchDistances, isCharByCharModeProperty, cipherCounterProperty, totalDistinctCandidates,
                     totalProcessedConfigurations, totalPossibleConfigurations, bruteForceProgress,
                     bruteForceProgressBarPercentageProperty, bruteForceStatusMessage, isBruteForceTaskActive,
-                    isBruteForceTaskPaused, averageTasksProcessTimeProperty);
+                    isBruteForceTaskPaused, averageTasksProcessTimeProperty, totalTimeDecryptProperty);
 
             // general setting to initialize sub components
             body.visibleProperty().bind(isMachineLoadedProperty);
@@ -398,7 +400,8 @@ public class MainController {
                 },
                 (totalConfigs) -> totalPossibleConfigurations.setValue(totalConfigs),
                 (isActive) -> isBruteForceTaskActive.set(isActive),
-                (averageTasksProcessTime) -> averageTasksProcessTimeProperty.set(averageTasksProcessTime / (double) 1000)
+                (averageTasksProcessTime) -> averageTasksProcessTimeProperty.set(averageTasksProcessTime / (double) 1000000),
+                (totalTimeDecrypt) -> totalTimeDecryptProperty.set(totalTimeDecrypt / 1000000)
         );
     }
 

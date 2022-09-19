@@ -7,7 +7,9 @@ import dm.dictionary.Dictionary;
 import dm.difficultylevel.DifficultyLevel;
 import dm.taskproducer.TaskProducer;
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.LongProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleLongProperty;
 import machine.Machine;
 import ui.adapter.UIAdapter;
 
@@ -31,6 +33,8 @@ public class DecryptManager {
     private final List<Candidate> allCandidates = new ArrayList<>();
     private long totalPossibleConfigurations;
     private final long totalPossibleWindowsPositions;
+
+    private LongProperty totalTimeDecryptProperty;
     private final BlockingQueue<Runnable> threadPoolBlockingQueue;
 
     public int getNumOfAvailableAgents() {
@@ -49,6 +53,7 @@ public class DecryptManager {
         this.numOfAvailableAgents = numOfAvailableAgents;
         this.enigmaMachine = enigmaMachine;
         this.totalPossibleWindowsPositions = (long) Math.pow(enigmaMachine.getAlphabet().length(), enigmaMachine.getRotorsCount());
+        this.totalTimeDecryptProperty = new SimpleLongProperty();
         this.isBruteForceActionCancelled = new SimpleBooleanProperty(false);
         this.isBruteForceActionPaused = new SimpleBooleanProperty(false);
     }
@@ -101,15 +106,18 @@ public class DecryptManager {
     public void startDecrypt(int taskSize, int numOfSelectedAgents, String textToDecipher,
                              DifficultyLevel difficultyLevel, UIAdapter uiAdapter) {
 
+
         this.candidatesQueue = new LinkedBlockingQueue<>();
         isBruteForceActionCancelled.set(false);
+
+        totalTimeDecryptProperty.setValue(System.nanoTime());
 
         // updates the total configs property
         setTotalConfigs(difficultyLevel);
 
         // setting up the collector of the candidates
         collector = new Thread(new CandidatesCollector(candidatesQueue, totalPossibleConfigurations, uiAdapter,
-                isBruteForceActionCancelledProperty(), isBruteForceActionPaused));
+                totalTimeDecryptProperty, isBruteForceActionCancelledProperty(), isBruteForceActionPaused));
         collector.setName("THE_COLLECTOR");
 
         // starting the thread pool

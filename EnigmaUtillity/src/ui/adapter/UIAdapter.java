@@ -1,7 +1,6 @@
 package ui.adapter;
 
 import candidate.Candidate;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import javafx.application.Platform;
 
 import java.util.function.Consumer;
@@ -18,11 +17,14 @@ public class UIAdapter {
     private Consumer<Boolean> updateTaskActiveStatus;
     private Consumer<Double> updateAverageTasksProcessTime;
 
+    private Consumer<Long> updateTotalTimeDecrypt;
+
 
     public UIAdapter(Consumer<Candidate> introduceNewCandidate, Runnable updateDistinct,
                      Consumer<Integer> updateTotalProcessedConfigurations, Consumer<String> updateTaskStatus,
                      Consumer<Double> updateProgressBar, Consumer<Double> updateProgressBarPercentage,
-                     Consumer<Long> updateTotalConfigs, Consumer<Boolean> updateTaskOverStatus, Consumer<Double> updateAverageTasksProcessTime) {
+                     Consumer<Long> updateTotalConfigs, Consumer<Boolean> updateTaskOverStatus, Consumer<Double> updateAverageTasksProcessTime,
+                     Consumer<Long> updateTotalTimeDecrypt) {
         this.introduceNewCandidate = introduceNewCandidate;
         this.updateDistinct = updateDistinct;
         this.updateTotalProcessedConfigurations = updateTotalProcessedConfigurations;
@@ -32,6 +34,7 @@ public class UIAdapter {
         this.updateTotalConfigs = updateTotalConfigs;
         this.updateTaskActiveStatus = updateTaskOverStatus;
         this.updateAverageTasksProcessTime = updateAverageTasksProcessTime;
+        this.updateTotalTimeDecrypt = updateTotalTimeDecrypt;
     }
 
     public void addNewCandidate(Candidate candidate) {
@@ -87,4 +90,13 @@ public class UIAdapter {
                 }
         );
     }
+
+    public void updateTotalTimeDecrypt(Long totalTimeDecrypt) {
+        Platform.runLater(
+                () -> {
+                    updateTotalTimeDecrypt.accept(totalTimeDecrypt);
+                }
+        );
+    }
+
 }
